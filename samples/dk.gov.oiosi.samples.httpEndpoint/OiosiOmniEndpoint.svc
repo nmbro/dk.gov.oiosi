@@ -1,0 +1,75 @@
+<% @ServiceHost Language=C# Debug="true"  
+	Service="dk.gov.oiosi.samples.httpEndpoint.OiosiOmniEndpoint" 
+	Factory="dk.gov.oiosi.extension.wcf.ServiceHostFactory" %>
+
+/*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this
+  * file except in compliance with the License. You may obtain
+  * a copy of the License at http://www.mozilla.org/MPL/
+  *
+  * Software distributed under the License is distributed on an
+  * "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express
+  * or implied. See the License for the specific language governing
+  * rights and limitations under the License.
+  *
+  *
+  * The Original Code is .NET RASP toolkit.
+  *
+  * The Initial Developer of the Original Code is Accenture and Avanade.
+  * Portions created by Accenture and Avanade are Copyright (C) 2007
+  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * All Rights Reserved.
+  *
+  * Contributor(s):
+  *   Gert Sylvest (gerts@avanade.com)
+  *   Patrik Johansson (p.johansson@accenture.com)
+  *   Michael Nielsen (michaelni@avanade.com)
+  *   Dennis Søgaard (dennis.j.sogaard@accenture.com)
+  *   Mikkel Hippe Brun (mhb@itst.dk)
+  *   Finn Hartmann Jordal (fhj@itst.dk)
+  *   Christian Lanng (chl@itst.dk)
+  *
+  *
+*/
+
+using System;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+
+using dk.gov.oiosi.communication.fault;
+using dk.gov.oiosi.communication.service;
+using dk.gov.oiosi.raspProfile.communication.service;
+
+namespace dk.gov.oiosi.samples.httpEndpoint {
+
+    /// <summary>
+    /// Default endpoint that takes any document, and returns an empty SOAP message with action '*'
+    /// </summary>
+    public class OiosiOmniEndpoint : IServiceContract{
+
+        public Message RequestRespond(Message request) {
+            
+            // Test for RASP protocol compliance
+            // 1. Make sure all headers that should be there are there
+            for (int i = 0; i <= RaspServiceImplementation.MandatoryCustomHeaders.GetUpperBound(0); i++) {
+                if (request.Headers.FindHeader(RaspServiceImplementation.MandatoryCustomHeaders[i, 0], RaspServiceImplementation.MandatoryCustomHeaders[i, 1]) < 0) {
+                    // If not... return a SOAP fault
+                    return System.ServiceModel.Channels.Message.CreateMessage(MessageVersion.Soap12WSAddressing10,
+                            new OiosiMessageFault(new Exception("Missing mandatory header " + RaspServiceImplementation.MandatoryCustomHeaders[i, 1] + ":" + RaspServiceImplementation.MandatoryCustomHeaders[i, 0]),
+                            OiosiMessageFault.OiosiFaultCode.Sender,
+                            OiosiMessageFault.OiosiInnerFaultCode.MissingHeaderFault),
+                            common.Definitions.DefaultOiosiNamespace2007 + OiosiMessageFault.OiosiInnerFaultCode.MissingHeaderFault.ToString());
+                }
+            }
+
+            
+            // Create the reply message
+            string body = "Request was received " + DateTime.Now.ToString();
+            return Message.CreateMessage(MessageVersion.Soap12WSAddressing10, 
+                request.Headers.Action + "Response", (object)body);
+        }
+
+    }
+
+}

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_BindingElementNotInStackException" xml:space="preserve">
+    <value>Kunne ikke finde BindingElement "[type]" i WCF stakken.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_BindingElementOrderMismatchException" xml:space="preserve">
+    <value>BindingElement rækkefølge fejl. Elementet "[before]" skal være før "[current]".</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelException" xml:space="preserve">
+    <value>Der skete en fejl i interceptoren.</value>
+    <comment>This message will never be shown.</comment>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorInternalFailureException" xml:space="preserve">
+    <value>Der skete en intern fejl i serveren.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Channels_UnsupportedChannelTypeException" xml:space="preserve">
+    <value>Kanaltypen "[type]" i protokolstakken er ikke understøttet.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_InterceptorException" xml:space="preserve">
+    <value>Der er sket en generel interceptor fejl i protokolstakken.</value>
+    <comment>This message should never be shown.</comment>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_AuthorisationProcessFailedException" xml:space="preserve">
+    <value>Der skete en intern fejl ved autorisationen.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_NotAuthorisedException" xml:space="preserve">
+    <value>Der er ikke adgang til serveren med klientcertifikat med navn "[certificatefriendlyname]" og subject "[certificatesubject]" samt dokumenttypen "[documenttypefriendlyname]". </value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_FailedToGetCertificateSubjectException" xml:space="preserve">
+    <value>Kunner ikke hente certifikatsubject ud af beskeden i protokolstakken (WCF) med følgende SOAP action "[messageaction]"</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_Header_NoElementsFoundException" xml:space="preserve">
+    <value>Søgningen efter tag'et "[tagname]" i security headeren gav intet resultat.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_Header_ToManyElementsFoundException" xml:space="preserve">
+    <value>Søgningen efter tag'et "[tagname]" i security headeren returnerede '[results]' resultater, hvilket er for mange.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_FailedToLoadSchemaException" xml:space="preserve">
+    <value>Kunne ikke loade XML schema filen "[filename]". Schema filen anvendes til at validere afsendte og modtagne beskeder af en bestemt type</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidateDocumentFailedException" xml:space="preserve">
+    <value>Kunne ikke validere (XML Schema validere) meddelelsens SOAP body.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidationInterceptionEmptyBodyException" xml:space="preserve">
+    <value>SOAP-meddelelsens body var tom ved schema validerings interceptoren, dvs der fandtes ingen meddelelse som kunne valideres</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidateDocumentFailedException" xml:space="preserve">
+    <value>Kunne ikke schematron validere meddelelsen.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidationInterceptionEmptyBodyException" xml:space="preserve">
+    <value>Netværksmeddelelsens body var tom ved schematron validator interceptoren, dvs der fandtes ingen meddelelse som kunne valideres.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_XsltTransform_XsltTransformFailedException" xml:space="preserve">
+    <value>Kunne ikke XSLT-transformere meddelelsen (med henblik på grafisk visning). Dette kan betyde, at der er fejl i meddelelsens struktur ift XSLT stylesheetet, eller at dette er forkert konfigureret.</value>
+  </data>
+</root>

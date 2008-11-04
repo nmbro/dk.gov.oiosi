@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Invoice xmlns="http://rep.oio.dk/ubl/xml/schemas/0p71/pie/" xmlns:com="http://rep.oio.dk/ubl/xml/schemas/0p71/common/" xmlns:main="http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://rep.oio.dk/ubl/xml/schemas/0p71/pie/ pie2/piestrict.xsd"  xmlns:h="http://www.w3.org/1999/xhtml">
+	<com:ID>200500001</com:ID>
+	<com:IssueDate>2005-01-01</com:IssueDate>
+	<com:TypeCode>PIE</com:TypeCode><main:InvoiceCurrencyCode>DKK</main:InvoiceCurrencyCode>
+	
+	<com:Note>I forbindelse med status yder vi 10% rabat i uge 42 på alle ordrer.</com:Note>
+	<main:EncodedDocument agencyID="Farum">ZnNhZ2dmYWRmaGhhZGZhZGZo</main:EncodedDocument>
+	<com:BuyersReferenceID schemeID="EAN">5290987654321</com:BuyersReferenceID>
+	<com:ReferencedOrder>
+		<com:BuyersOrderID>M-147-B</com:BuyersOrderID>
+		<com:SellersOrderID>765476</com:SellersOrderID>
+		<com:IssueDate>2003-07-02</com:IssueDate>
+	</com:ReferencedOrder>
+	<com:BuyerParty>
+		<com:ID schemeID="CVR">26769388</com:ID>
+		<com:AccountCode>45654455</com:AccountCode>
+		<com:PartyName>
+			<com:Name>IT- og Telestyrelsen</com:Name>
+		</com:PartyName>
+		<com:Address>
+			<com:ID>Faktura</com:ID>
+			<com:Street>Holsteinsgade</com:Street>
+			<com:HouseNumber>63</com:HouseNumber>
+			<com:CityName>København Ø</com:CityName>
+			<com:PostalZone>1260</com:PostalZone>
+			<com:Country>
+				<com:Code listID="ISO 3166-1">DK</com:Code>
+			</com:Country>
+		</com:Address>
+		<com:BuyerContact>
+			<com:ID>hj@itst.dk</com:ID>
+			<com:Name>Hans Jensen</com:Name>
+			<com:Phone>33456545</com:Phone>
+			<com:Fax>33456550</com:Fax>
+			<com:E-Mail>hj@itst.dk</com:E-Mail>
+			<com:Role>Rekvirent</com:Role>
+		</com:BuyerContact>
+		<com:ExtensibleContent>
+			<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+		</com:ExtensibleContent>
+	</com:BuyerParty>
+	<com:BuyerParty>
+		<com:ID schemeID="CVR">26769388</com:ID>
+		<com:AccountCode>45654455</com:AccountCode>
+		<com:PartyName>
+			<com:Name>IT- og Telestyrelsen</com:Name>
+		</com:PartyName>
+		<com:Address>
+			<com:ID>Juridisk</com:ID>
+			<com:Street>Bredgade</com:Street>
+			<com:HouseNumber>40</com:HouseNumber>
+			<com:CityName>København K</com:CityName>
+			<com:PostalZone>1260</com:PostalZone>
+			<com:Country>
+				<com:Code listID="ISO 3166-1">DK</com:Code>
+			</com:Country>
+		</com:Address>
+		<com:BuyerContact>
+			<com:ID>hj@itst.dk</com:ID>
+			<com:Name>Hans Jensen</com:Name>
+			<com:Phone>33456545</com:Phone>
+			<com:Fax>33456550</com:Fax>
+			<com:E-Mail>hj@itst.dk</com:E-Mail>
+			<com:Role>Rekvirent</com:Role>
+		</com:BuyerContact>
+		<com:ExtensibleContent>
+			<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+		</com:ExtensibleContent>
+	</com:BuyerParty>
+	<com:DestinationParty>
+		<com:ID schemeID="CVR">56668519</com:ID>
+		<com:AccountCode>889876</com:AccountCode>
+		<com:PartyName>
+			<com:Name>ITST</com:Name>
+		</com:PartyName>
+		<com:Contact>
+			<com:ID>hj@itst.dk</com:ID>
+			<com:Name>Hans Jensen</com:Name>
+			<com:Phone>33456545</com:Phone>
+			<com:Fax>33456550</com:Fax>
+			<com:E-Mail>hj@itst.dk</com:E-Mail>
+		</com:Contact>
+		<com:Language>
+			<com:ID>da</com:ID>
+		</com:Language>
+		<com:Address>
+			<com:ID>454333</com:ID>
+			<com:Street>Bredgade</com:Street>
+			<com:AdditionalStreet/>
+			<com:HouseNumber>40</com:HouseNumber>
+			<com:InhouseMail>3. sal</com:InhouseMail>
+			<com:CityName>København K</com:CityName>
+			<com:PostalZone>1260</com:PostalZone>
+			<com:Country>
+				<com:Code>DK</com:Code>
+			</com:Country>
+		</com:Address>
+	</com:DestinationParty>
+	<com:SellerParty>
+		<com:ID schemeID="CVR">26666668</com:ID>
+		<com:BuyersID>123456</com:BuyersID>
+		<com:PartyName>
+			<com:Name>PJ Unconstruction A/S</com:Name>
+		</com:PartyName>
+		<com:Address>
+			<com:ID>Vareafsendelse</com:ID>
+			<com:Street>Jernbanegade</com:Street>
+			<com:HouseNumber>875</com:HouseNumber>
+			<com:CityName>Roskilde</com:CityName>
+			<com:PostalZone>4000</com:PostalZone>
+			<com:Country>
+				<com:Code listID="ISO 3166-2">DK-025</com:Code>
+			</com:Country>
+		</com:Address>
+		<com:PartyTaxScheme>
+			<com:CompanyTaxID schemeID="CVR">56668519</com:CompanyTaxID>	
+	</com:PartyTaxScheme>
+		<com:OrderContact>
+			<com:ID>ppt@pj-unconstruction.dk</com:ID>
+			<com:Name>Peter Petersen</com:Name>
+			<com:Phone>34546787</com:Phone>
+			<com:Fax>23456566</com:Fax>
+			<com:E-Mail>ppt@pj-unconstruction.dk</com:E-Mail>
+		</com:OrderContact>
+		<com:ExtensibleContent>
+			<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+		</com:ExtensibleContent>
+	</com:SellerParty>
+	<com:PaymentMeans>
+		<com:TypeCodeID>71</com:TypeCodeID>
+		<com:PaymentDueDate>2004-09-01</com:PaymentDueDate>
+		<com:PaymentChannelCode>INDBETALINGSKORT</com:PaymentChannelCode>
+		<com:PaymentID>554321234543445</com:PaymentID>
+		<com:PayeeFinancialAccount>
+			<com:ID>65366333</com:ID>
+			<com:TypeCode>FIK</com:TypeCode>
+			<com:FiBranch>
+				<com:ID>6666</com:ID>
+				<com:FinancialInstitution>
+					<com:ID>DABADKKK</com:ID>
+					<com:Name>Andelsbanken</com:Name>
+				</com:FinancialInstitution>
+			</com:FiBranch>
+		</com:PayeeFinancialAccount>
+		<com:PaymentAdvice>
+			<com:LongAdvice><![CDATA[Lang advisering for kortart 75
+			Linjeskift bevares vha. CDATA]]></com:LongAdvice>
+			<com:AccountToAccount>
+				<com:PayerNote>Oplysning til modtager</com:PayerNote>
+				<com:PayeeNote>Oplysning til egen konto</com:PayeeNote>
+			</com:AccountToAccount>
+		</com:PaymentAdvice>
+		<com:ExtensibleContent>
+			<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+		</com:ExtensibleContent>
+	</com:PaymentMeans>
+	<com:PaymentTerms>
+		<com:ID>CONTRACT</com:ID>
+		<com:RateAmount currencyID="DKK">743.33</com:RateAmount>
+		<com:SettlementDiscountRateNumeric>4</com:SettlementDiscountRateNumeric>
+		<com:PenaltySurchargeRateNumeric>4</com:PenaltySurchargeRateNumeric>
+		<com:SettlementPeriod>
+			<com:EndDateTimeDate>2003-07-02</com:EndDateTimeDate>
+		</com:SettlementPeriod>
+		<com:PenaltyPeriod>
+			<com:StartDateTime>2003-07-02T12:13:14+01:00</com:StartDateTime>
+		</com:PenaltyPeriod>
+	</com:PaymentTerms>
+	<com:AllowanceCharge>
+		<com:ID>Afgift</com:ID>
+		<com:ChargeIndicator>true</com:ChargeIndicator>
+		<com:MultiplierReasonCode>343</com:MultiplierReasonCode>
+		<com:MultiplierFactorQuantity unitCode="stk" unitCodeListAgencyID="n/a">40</com:MultiplierFactorQuantity>
+		<com:AllowanceChargeAmount currencyID="DKK">400.00</com:AllowanceChargeAmount>
+		<com:BuyersReferenceID>7110-4545333544</com:BuyersReferenceID>
+	</com:AllowanceCharge>
+	<com:AllowanceCharge>
+		<com:ID>Gebyr</com:ID>
+		<com:ChargeIndicator>true</com:ChargeIndicator>
+		<com:MultiplierReasonCode>343</com:MultiplierReasonCode>
+		<com:MultiplierFactorQuantity unitCode="stk" unitCodeListAgencyID="n/a">40</com:MultiplierFactorQuantity>
+		<com:AllowanceChargeAmount currencyID="DKK">400</com:AllowanceChargeAmount>
+	</com:AllowanceCharge>
+	<com:TaxTotal>
+		<com:TaxTypeCode>VAT</com:TaxTypeCode>
+		<com:TaxAmounts>
+			<com:TaxableAmount currencyID="DKK">400.00</com:TaxableAmount>
+			<com:TaxAmount currencyID="DKK">100.00</com:TaxAmount>
+		</com:TaxAmounts>
+		<com:CategoryTotal>
+			<com:RateCategoryCodeID>VAT</com:RateCategoryCodeID>
+			<com:RatePercentNumeric>25</com:RatePercentNumeric>
+			<com:TaxAmounts>
+				<com:TaxableAmount currencyID="DKK">1000.00</com:TaxableAmount>
+				<com:TaxAmount currencyID="DKK">250.00</com:TaxAmount>
+			</com:TaxAmounts>
+		</com:CategoryTotal>
+	</com:TaxTotal>
+	<com:LegalTotals>
+		<com:LineExtensionTotalAmount currencyID="DKK">24000</com:LineExtensionTotalAmount>
+		<com:ToBePaidTotalAmount currencyID="DKK">30000</com:ToBePaidTotalAmount>
+	</com:LegalTotals>
+	<com:InvoiceLine>
+		<com:ID>45</com:ID>
+		<com:InvoicedQuantity unitCode="Stk" unitCodeListAgencyID="n/a">1000</com:InvoicedQuantity>
+		<com:LineExtensionAmount currencyID="DKK">560.00</com:LineExtensionAmount>
+		<com:Note>RØD</com:Note>
+		<com:ReferencedOrderLine>
+			<com:BuyersID>656544!</com:BuyersID>
+			<com:SellersID>4223222</com:SellersID>
+			<com:DestinationParty>
+				<com:ID schemeID="CVR">56668519</com:ID>
+				<com:AccountCode>889876</com:AccountCode>
+				<com:PartyName>
+					<com:Name>ITST</com:Name>
+				</com:PartyName>
+				<com:Contact>
+					<com:ID>hj@itst.dk</com:ID>
+					<com:Name>Hans Jensen</com:Name>
+					<com:Phone>33456545</com:Phone>
+					<com:Fax>33456550</com:Fax>
+					<com:E-Mail>hj@itst.dk</com:E-Mail>
+				</com:Contact>
+				<com:Language>
+					<com:ID>da</com:ID>
+				</com:Language>
+				<com:Address>
+					<com:ID>454333</com:ID>
+					<com:Street>Bredgade</com:Street>
+					<com:AdditionalStreet/>
+					<com:HouseNumber>40</com:HouseNumber>
+					<com:InhouseMail>3. sal</com:InhouseMail>
+					<com:CityName>København K</com:CityName>
+					<com:PostalZone>1260</com:PostalZone>
+					<com:Country>
+						<com:Code>DK</com:Code>
+					</com:Country>
+				</com:Address>
+			</com:DestinationParty>
+			<com:Item>
+				<com:ID>434333</com:ID>
+				<com:Description>Blyanter - kasse m. 10 stk</com:Description>
+				<com:BuyersItemIdentification>
+					<com:ID schemeID="n/a">6565454</com:ID>
+					<com:Description>Rød</com:Description>
+				</com:BuyersItemIdentification>
+				<com:SellersItemIdentification>
+					<com:ID schemeID="n/a">454543</com:ID>
+					<com:Description>Blå</com:Description>
+				</com:SellersItemIdentification>
+				<com:ManufacturersItemIdentification>
+					<com:ID schemeID="EAN-13">5712345780121</com:ID>
+					<com:Description>Gul</com:Description>
+				</com:ManufacturersItemIdentification>
+				<com:StandardItemIdentification>
+					<com:ID schemeID="EAN-13">5712345780121</com:ID>
+					<com:Description>Sort</com:Description>
+				</com:StandardItemIdentification>
+				<com:CatalogueItemIdentification>
+					<com:ID schemeID="n/a">12123</com:ID>
+					<com:Description>Lilla</com:Description>
+				</com:CatalogueItemIdentification>
+				<com:ReferencedCatalogue>
+					<com:CatalogueID>POSTORDRE</com:CatalogueID>
+				</com:ReferencedCatalogue>
+				<com:CommodityClassification>
+					<com:CommodityCode listID="UNSPSC" listVersionID="7.3">4320150114</com:CommodityCode>
+				</com:CommodityClassification>
+				<com:Tax>
+					<com:RateCategoryCodeID>VAT</com:RateCategoryCodeID>
+					<com:TypeCode>VAT</com:TypeCode>
+					<com:RatePercentNumeric>25</com:RatePercentNumeric>
+				</com:Tax>
+				<com:BasePrice>
+					<com:PriceAmount currencyID="DKK">100</com:PriceAmount>
+					<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">5</com:BaseQuantity>
+				</com:BasePrice>
+			</com:Item>
+			<com:DeliveryRequirement>
+				<com:ID>Deliverydate</com:ID>
+				<com:DeliverySchedule>
+					<com:ID>2</com:ID>
+					<com:RequestedDeliveryDateTime>2003-07-07T13:24:55+01:00</com:RequestedDeliveryDateTime>
+				</com:DeliverySchedule>
+			</com:DeliveryRequirement>
+			<com:AllowanceCharge>
+				<com:ID>Told</com:ID>
+				<com:ChargeIndicator>true</com:ChargeIndicator>
+				<com:MultiplierReasonCode>234</com:MultiplierReasonCode>
+				<com:MultiplierFactorQuantity unitCode="promille" unitCodeListAgencyID="n/a">5</com:MultiplierFactorQuantity>
+				<com:AllowanceChargeAmount currencyID="DKK">300</com:AllowanceChargeAmount>
+				<com:BuyersReferenceID>4544-6655</com:BuyersReferenceID>
+			</com:AllowanceCharge>
+		</com:ReferencedOrderLine>
+		<com:AllowanceCharge>
+			<com:ID>Rabat</com:ID>
+			<com:ChargeIndicator>true</com:ChargeIndicator>
+			<com:MultiplierReasonCode>456</com:MultiplierReasonCode>
+			<com:MultiplierFactorQuantity unitCode="promille" unitCodeListAgencyID="n/a">34</com:MultiplierFactorQuantity>
+			<com:AllowanceChargeAmount currencyID="DKK">300</com:AllowanceChargeAmount>
+			<com:BuyersReferenceID>4354-77666</com:BuyersReferenceID>
+		</com:AllowanceCharge>
+		<com:AllowanceCharge>
+			<com:ID>Fragt</com:ID>
+			<com:ChargeIndicator>true</com:ChargeIndicator>
+			<com:MultiplierReasonCode>456</com:MultiplierReasonCode>
+			<com:MultiplierFactorQuantity unitCode="promille" unitCodeListAgencyID="n/a">34</com:MultiplierFactorQuantity>
+			<com:AllowanceChargeAmount currencyID="DKK">300</com:AllowanceChargeAmount>
+		</com:AllowanceCharge>
+		<com:Item>
+			<com:ID schemeID="n/a">434333</com:ID>
+			<com:Description>Blyanter - kasse m. 10 stk</com:Description>
+			<com:BuyersItemIdentification>
+				<com:ID schemeID="n/a">454422</com:ID>
+				<com:Description>100 stk - blå</com:Description>
+			</com:BuyersItemIdentification>
+			<com:SellersItemIdentification>
+				<com:ID schemeID="n/a">12211</com:ID>
+				<com:Description>100 stk - lyseblå</com:Description>
+			</com:SellersItemIdentification>
+			<com:ManufacturersItemIdentification>
+				<com:ID schemeID="n/a">88778</com:ID>
+				<com:Description>10 x 10 stk, blå</com:Description>
+			</com:ManufacturersItemIdentification>
+			<com:StandardItemIdentification>
+				<com:ID schemeID="n/a">44555</com:ID>
+				<com:Description>100, blå</com:Description>
+			</com:StandardItemIdentification>
+			<com:CatalogueItemIdentification>
+				<com:ID schemeID="n/a">7788-dk</com:ID>
+				<com:Description>50+50, blå</com:Description>
+			</com:CatalogueItemIdentification>
+			<com:ReferencedCatalogue>
+				<com:CatalogueID>POSTORDRE</com:CatalogueID>
+			</com:ReferencedCatalogue>
+			<com:CommodityClassification>
+				<com:CommodityCode listID="UNSPSC" listVersionID="7.3">4320150114</com:CommodityCode>
+			</com:CommodityClassification>
+			<com:Tax>
+				<com:RateCategoryCodeID>VAT</com:RateCategoryCodeID>
+				<com:TypeCode>VAT</com:TypeCode>
+				<com:RatePercentNumeric>25</com:RatePercentNumeric>
+			</com:Tax>
+			<com:BasePrice>
+				<com:PriceAmount currencyID="DKK">100</com:PriceAmount>
+				<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">5</com:BaseQuantity>
+			</com:BasePrice>
+		</com:Item>
+		<com:BasePrice>
+			<com:PriceAmount currencyID="DKK">100</com:PriceAmount>
+			<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">5</com:BaseQuantity>
+		</com:BasePrice>
+		<com:ExtensibleContent>
+			<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+		</com:ExtensibleContent>
+	</com:InvoiceLine>
+	<com:ValidatedSignature>
+		<com:SignatureID/>
+		<com:ValidatorID/>
+		<com:ValidationDateTime>2003-04-01T13:01:02</com:ValidationDateTime>
+		<com:Signature/>
+	</com:ValidatedSignature>
+	<com:ExtensibleContent>
+		<h:p>Her er tilføjet xhtml opmærkning. Når ExtensibleContent elementet benyttes skal det indeholde mindst et element udenfor com namespacet.</h:p>
+	</com:ExtensibleContent>
+</Invoice>

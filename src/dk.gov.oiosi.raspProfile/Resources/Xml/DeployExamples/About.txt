@@ -1,0 +1,3 @@
+These are the example xml documents for deployement with the client. The match registrations in UDDI in both the development environment and in production. EAN and other identifiers SHOULD NOT be changed. 
+
+See the document "TestEndpoints_v1.0.xls" in the documentation solution for UDDI, endpoint and endpoint key details.

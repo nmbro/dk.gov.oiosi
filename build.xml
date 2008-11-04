@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="NemHandel" default="all">
+
+  <property name="Revision" value="${build.number}"/>
+  <property name="Dist.dir" value="target\dist"/>
+  <property name="Temp.dir" value="target\temp"/>
+  <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
+  <property name="Root.dir" value="."/>
+  <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
+  <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
+
+  <target name="Clean" description="Remove all build products">
+        <delete dir="${Dist.dir}"  if="${directory::exists('${Dist.dir}')}" />
+    </target>
+
+    <target name="Init" depends="Clean">
+        <mkdir dir="${Dist.dir}" />
+        <mkdir dir="${Temp.dir}" />
+    </target>
+
+    <target name="SetVersion" depends="Init">
+      <asminfo language="CSharp" output="${Oiosi.dir}\Properties\AssemblyInfo.cs">
+        <imports>
+          <import namespace="System.Reflection" />
+        </imports>
+        <attributes>
+          <attribute type="AssemblyVersionAttribute" value="${Revision}" />
+          <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+        </attributes>
+      </asminfo>
+    </target>
+
+    
+   <target name="BuildVisualStudioSolution" depends="SetVersion">
+     <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+       <property name="Configuration" value="Release" />
+       <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
+     </msbuild>
+   </target>
+
+   <target name="RunTests" depends="BuildVisualStudioSolution">
+     <exec program="${teamcity.dotnet.nunitlauncher2.0}">
+       <arg file="${UnitTest.file}"/>
+     </exec>
+   </target>
+
+
+   <target name="Distribute" depends="RunTests">
+     
+     <!-- Executable -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi-${Revision}.zip">
+       <fileset basedir="${Oiosi.dir}\bin\Release">
+         <include name="**/*" />
+       </fileset>
+     </zip>
+
+     <!-- Source -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
+       <fileset basedir="${Root.dir}">
+         <include name="**/*" />
+         <exclude name="**/bin" />
+         <exclude name="**/bin/**" />
+       </fileset>
+     </zip>
+
+   </target>
+
+</project>

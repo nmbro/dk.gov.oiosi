@@ -1,0 +1,106 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{539383C6-A76B-42B7-B611-FE8D72BEC68E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dk.gov.oiosi.samples.httpEndpoint</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.samples.httpEndpoint</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
+      <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
+      <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.exception\dk.gov.oiosi.exception.csproj">
+      <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
+      <Name>dk.gov.oiosi.exception</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+      <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
+      <Name>dk.gov.oiosi.raspProfile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
+      <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
+      <Name>dk.gov.oiosi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OiosiOmniEndpoint.svc" />
+    <Content Include="RaspConfiguration.xml" />
+    <Content Include="Resources\Setting up an IIS hosted RASP service.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Setting up an IIS hosted RASP service.doc" />
+    <None Include="Resources\Setting up an IIS hosted RASP service.pdf" />
+    <None Include="Web.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+            mkdir %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint
+            mkdir %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint\bin
+            copy "$(TargetDir)" %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint\bin
+            copy "$(ProjectDir)OiosiOmniEndpoint.svc" %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint
+            copy "$(ProjectDir)web.config" %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint
+ 
+copy "$(ProjectDir)RaspConfiguration.xml" %25SystemDrive%25\inetpub\wwwroot\RaspTestEndpoint
+        
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

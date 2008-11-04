@@ -1,0 +1,60 @@
+Setting up an IIS hosted RASP service
+-------------------------------------
+
+The dk.gov.oiosi.communication.Listener class only supports hosting mail endpoints, but one might want to host an HTTP endpoint, in which case it is recommended that this endpoint should be hosted by Microsoft Internet Information Services (IIS).
+
+A zip file called RaspHTTPEndpointExample.zip is distributed with the RASP Library and can be found under the Resources folder in the RaspLibrary Visual Studio project. In this zip archive you will find some code and a Web.Config file (which will act as a substitute for the App.Config file while hosting our service in IIS).
+
+To get started, simply unzip the files into C:\Inetpub\wwwroot\ (assuming that you have your Windows installation on the C drive). If you are not deploying this sample to “C:\Inetpub\wwwroot\” you need to manually open the web.config file, find the <appSettings> section and change the path configured there to point to directory you have deployed to.
+
+Then you should open the IIS manager (found under Start->Control Panel->Administrative Tools, alternatively as a subsection of Start->Control Panel->Administrative Tools->Computer Management).
+
+Under local computer\Web sites there should be a default web site with the folder C:\Inetpub\wwwroot\ as it’s home directory. If there is no web sites please refer to Microsoft help for setting a web site up.
+
+As a sub folder of this web site you should see the folder you just unzipped called RaspTestEndpoint. Right click on this folder and select Properties.
+
+In the properties window, under the Directory tab push the Create button. 
+In the properties window, under the ASP.NET tab, select Asp.Net version 2.0
+Under the Directory Security tab, Authentication and access control, make sure anonymous access is enabled.
+
+Now you should be able to see that your service is running by opening "http://localhost/RaspTestEndpoint/OiosiOmniEndpoint.svc"
+in a browser (such as Internet Explorer) .
+ 
+
+
+Tips for solving common issues when hosting in IIS
+--------------------------------------------------
+
+If your endpoint is not working, you may try the following:
+
+•	Go to the IIS application pool property window
+•	Select the “Identity” tab.
+•	Change the account to “local system”
+
+
+If you do not want to elevate permission on the whole of application pool, you can try the following.
+
+- Creating a new application pool, where all web sites are running on the same .Net version (v. 2.0)
+
+
+- If that doesn’t work, perhaps the application pool doesn’t have rights to use the certificate. Try:
+
+	+ Delete the certificate OiosiTestVOCES.pfx from the MMC window.
+
+	+ Run the command line tool WinHttpCertCfg (http://www.microsoft.com/downloads/details.aspx?familyid=c42e27ac-3409-40e9-8667-c748e422833f&displaylang=en)
+
+	+ Re-install the certificate like:
+
+		>WinHttpCertCfg.exe –i NemHandelTest2.pfx –c LOCAL_MACHINE\MY –a “NetworkService” –p Test1234
+		(imports the pfx file to the personal store on local machine, for the NetworkService account, using the password Test1234)
+
+	+ Grant acces to the certificate for asp.net by running 
+
+		>WinHttpCertCfg.exe –c LOCAL_MACHINE\MY –s “NemHandel Test 2” –g –a “aspnet”
+		(where “NemHandel Test 2” is part of the subject string of the certificate you just imported)
+
+	+ In web.config, change the location of the certificate from “Root” to “My” store.
+
+ 
+
+	+ In the IIS manager, right click on the application pool you’re running on (if it is the default, you might want to create a new one) and make sure that under the Identity tab the “Network service” security account is selected

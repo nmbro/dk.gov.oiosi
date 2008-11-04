@@ -1,0 +1,103 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dk.gov.oiosi.test.nunit.library</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.test.nunit.library</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.2.9.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="common\cache\RaspCacheTest.cs" />
+    <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
+    <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
+    <Compile Include="configuration\ConfigurationTest.cs" />
+    <Compile Include="Print.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="security\CertificateSubjectTest.cs" />
+    <Compile Include="security\oces\OcesCertificatePolicyOidTest.cs" />
+    <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
+    <Compile Include="security\oces\OcesX509CertificateTest.cs" />
+    <Compile Include="SetupConfiguration.cs" />
+    <Compile Include="TestConstants.cs" />
+    <Compile Include="uddi\LookupParametersConfigTest.cs" />
+    <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
+    <Compile Include="xml\schematron\SchematronValidationTest.cs" />
+    <Compile Include="xml\schema\SchemaValidationTest.cs" />
+    <Compile Include="xml\xpath\XPathTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
+      <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
+      <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.exception\dk.gov.oiosi.exception.csproj">
+      <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
+      <Name>dk.gov.oiosi.exception</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+      <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
+      <Name>dk.gov.oiosi.raspProfile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
+      <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
+      <Name>dk.gov.oiosi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Certifcates\Device.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certifcates\Employee.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certifcates\Organisation.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certifcates\Root.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
