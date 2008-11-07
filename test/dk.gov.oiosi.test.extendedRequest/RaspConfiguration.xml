@@ -820,10 +820,10 @@
   <ConfigurationSection xsi:type="UddiConfig">
     <ProfileConformanceClaim />
     <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
-    <UddiInquireEndpointURL>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</UddiInquireEndpointURL>
-    <UddiInquireEndpointURLFallback>http://discovery.2.uddi.ehandel.gov.dk/registry/uddi/inquiry</UddiInquireEndpointURLFallback>
-    <UddiPublishEndpointURL>https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc</UddiPublishEndpointURL>
-    <UddiSecurityEndpointURL>http://publish.uddi.ehandel.gov.dk/registry/uddi/security</UddiSecurityEndpointURL>
+    <UddiInquireEndpointURL>http://vtuapp06/registry/uddi/inquiry</UddiInquireEndpointURL>
+    <UddiInquireEndpointURLFallback>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURLFallback>
+    <UddiPublishEndpointURL>https://vtuapp06/UDDIProxy/UDDIProxy.svc</UddiPublishEndpointURL>
+    <UddiSecurityEndpointURL>http://vtuapp06/registry/uddi/security</UddiSecurityEndpointURL>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
