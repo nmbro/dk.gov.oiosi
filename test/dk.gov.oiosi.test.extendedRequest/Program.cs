@@ -1,22 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.ServiceModel.Channels;
-using System.Security.Cryptography.X509Certificates;
-
 using dk.gov.oiosi.communication;
-using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.security.ldap;
-using dk.gov.oiosi.security.lookup;
-using dk.gov.oiosi.security.ocsp;
-using dk.gov.oiosi.security.oces;
-using dk.gov.oiosi.xml.documentType;
-using dk.gov.oiosi.raspProfile;
-using dk.gov.oiosi.extension.wcf.EmailTransport;
-
 using dk.gov.oiosi.test.request;
 
 namespace dk.gov.oiosi.test.extendedRequest {

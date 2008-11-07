@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
 using NUnit.Framework;
-
-using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.security.oces;
 

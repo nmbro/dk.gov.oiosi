@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 
 using NUnit.Framework;
-
-using dk.gov.oiosi;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.raspProfile;
