@@ -27,5 +27,16 @@ namespace dk.gov.oiosi.test.nunit.library.security {
             Assert.AreEqual("SCAN-MED. A/S. DENMARK // CVR:14472800", subject.O);
             Assert.AreEqual("serialNumber=CVR:14472800-FID:1201516183216", subject.SerialNumber);
         }
+
+        [Test]
+        public void _03_SpecificCertificateProblem() {
+            const string certificateSubjectString = "SERIALNUMBER=CVR:82269118-FID:1225461072402 + CN=Navision Stat (funktionscertifikat), O=Dansk Landbrugsmusuem Gl. Estrup // CVR:82269118, C=DK";
+            CertificateSubject subject = new CertificateSubject(certificateSubjectString);
+
+            Assert.AreEqual("DK", subject.C);
+            Assert.AreEqual("Navision Stat (funktionscertifikat)", subject.CN);
+            Assert.AreEqual("Dansk Landbrugsmusuem Gl. Estrup // CVR:82269118", subject.O);
+            Assert.AreEqual("serialNumber=CVR:82269118-FID:1225461072402", subject.SerialNumber);
+        }
     }
 }
