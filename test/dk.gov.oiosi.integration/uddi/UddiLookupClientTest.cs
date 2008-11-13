@@ -34,9 +34,12 @@ namespace dk.gov.oiosi.integration.uddi {
                 processDefinitionIds.Add(new UddiGuidId(SIMPLEORDERPROCESSID, true));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(1, responses.Count);
+                bool anyProcessInformation = false;
                 foreach (UddiProcessInformation process in responses[0].Processes) {
-                    Assert.AreEqual(SIMPLEORDERPROCESSID, process.ProcessDefinitionId);
+                    anyProcessInformation = true;
+                    Assert.AreEqual(SIMPLEORDERPROCESSID, process.ProcessDefinitionId.ID);
                 }
+                Assert.IsTrue(anyProcessInformation);
             }
 
             [Test]
@@ -59,9 +62,12 @@ namespace dk.gov.oiosi.integration.uddi {
                 processDefinitionIds.Add(new UddiGuidId(SIMPLEORDERPROCESSID, true));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(1, responses.Count);
+                bool anyProcessInformation = false;
                 foreach (UddiProcessInformation process in responses[0].Processes) {
-                    Assert.AreEqual(SIMPLEORDERPROCESSID, process.ProcessDefinitionId);
+                    anyProcessInformation = true;
+                    Assert.AreEqual(SIMPLEORDERPROCESSID, process.ProcessDefinitionId.ID);
                 }
+                Assert.IsTrue(anyProcessInformation);
             }
 
 

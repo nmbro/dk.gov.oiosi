@@ -39,21 +39,18 @@ namespace dk.gov.oiosi.uddi.category {
     /// Identifies a type of role identifier. The type indicates the format of a role identifier. 
     /// </summary>
     public class BusinessProcessRoleIdentifierType : ArsCategory {
+        public const string DEFAULTUDDIID = "uddi:8dd0fa3e-be33-47f9-847b-8d974952a8dc";
+        public const string DEFAULTNAME = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/";
+        public const string DEFAULTKEYNAME = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/";
+        public const string DEFAULTKEYVALUE = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/UBL2.0ProcessRole/";
 
         /// <summary>
         /// Static constructor. Sets list of categories and possible values for each.
         /// </summary>
         static BusinessProcessRoleIdentifierType() {
-            // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:8dd0fa3e-be33-47f9-847b-8d974952a8dc", true);
-            _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/";
-            _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/";
-            _defaultKeyValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/UBL2.0ProcessRole/";
-
-            // 2. Set list of categories & possible values for each category
-            string[] values = { "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/UBL2.0ProcessRole/" };
-
-            SetCategoryAndValues("http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/", values);
+            //  Set list of categories & possible values for each category
+            string[] values = { DEFAULTKEYVALUE };
+            SetCategoryAndValues(DEFAULTKEYNAME, values);
         }
 
         /// <summary>
@@ -86,33 +83,33 @@ namespace dk.gov.oiosi.uddi.category {
 
         #region ArsCategory abstract members
 
-        private static UddiId _categoryId;
-
         /// <summary>
         /// Gets the category identifier (uuid)
         /// </summary>
-        public override string CategoryID { get { return _categoryId.ToString(); } }
-
-        private static string _categoryName;
+        public override string CategoryID {
+            get { return DEFAULTUDDIID; }
+        }
 
         /// <summary>
         /// Gets the category name
         /// </summary>
-        public override string CategoryName { get { return _categoryName; } }
-
-        private static string _defaultKeyName;
+        public override string CategoryName {
+            get { return DEFAULTNAME; }
+        }
 
         /// <summary>
         /// Gets the default category name
         /// </summary>
-        public override string DefaultCategory { get { return _defaultKeyName; } }
-
-        private static string _defaultKeyValue;
+        public override string DefaultCategory {
+            get { return DEFAULTKEYNAME; }
+        }
 
         /// <summary>
         /// Gets the default category value
         /// </summary>
-        public override string DefaultCategoryValue { get { return _defaultKeyValue; } }
+        public override string DefaultCategoryValue {
+            get { return DEFAULTKEYVALUE; }
+        }
 
         #endregion
 

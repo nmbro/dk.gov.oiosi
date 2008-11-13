@@ -39,20 +39,17 @@ namespace dk.gov.oiosi.uddi.category {
     /// A reference to the business process definition tModel
     /// </summary>
     public class BusinessProcessDefinitionReference : ArsCategory {
+        public const string DEFAULTUDDIID = "uddi:d474ac8c-ec5d-4679-90b0-a227a517d745";
+        public const string DEFAULTNAME = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/";
+        public const string DEFAULTKEYNAME = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/";
+        public const string DEFAULTKEYVALUE = "";
 
         /// <summary>
         /// Static constructor. Sets list of categories and possible values for each.
         /// </summary>
         static BusinessProcessDefinitionReference() {
-            // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:d474ac8c-ec5d-4679-90b0-a227a517d745", true);
-            _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/";
-            _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/";
-            _defaultKeyValue = "";
-
             string[] values = { };
-
-            SetCategoryAndValues("http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/", values);
+            SetCategoryAndValues(DEFAULTKEYNAME, values);
         }
 
         /// <summary>
@@ -78,33 +75,33 @@ namespace dk.gov.oiosi.uddi.category {
 
         #region ArsCategory abstract members
 
-        private static UddiId _categoryId;
-
         /// <summary>
         /// Gets the category identifier (uuid)
         /// </summary>
-        public override string CategoryID { get { return _categoryId.ToString(); } }
-
-        private static string _categoryName;
+        public override string CategoryID {
+            get { return DEFAULTUDDIID; }
+        }
 
         /// <summary>
         /// Gets the category name
         /// </summary>
-        public override string CategoryName { get { return _categoryName; } }
-
-        private static string _defaultKeyName;
+        public override string CategoryName {
+            get { return DEFAULTNAME; }
+        }
 
         /// <summary>
         /// Gets the default category name
         /// </summary>
-        public override string DefaultCategory { get { return _defaultKeyName; } }
-
-        private static string _defaultKeyValue;
+        public override string DefaultCategory {
+            get { return DEFAULTKEYNAME; }
+        }
 
         /// <summary>
         /// Gets the default category value
         /// </summary>
-        public override string DefaultCategoryValue { get { return _defaultKeyValue; } }
+        public override string DefaultCategoryValue {
+            get { return DEFAULTKEYVALUE; }
+        }
 
         #endregion
     }

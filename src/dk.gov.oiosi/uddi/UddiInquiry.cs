@@ -101,7 +101,7 @@ namespace dk.gov.oiosi.uddi {
                             // Add endpoint if values equals lookup paramteres
                             if (!IsResponseValid(tModels, inquiryParameters, template)) continue;
                             // Also validates tModel parameters
-                            AddResponse(endpointKey, tModels, service, template, result);
+                            AddResponse(endpointKey, tModels, service, template, inquiryParameters, result);
                         }
                     }
                 }
@@ -237,7 +237,7 @@ namespace dk.gov.oiosi.uddi {
         /// Creates endpointinformation, if the category value are as expected,
         /// and adds it to the list of results
         /// </summary>
-        private void AddResponse(IIdentifier endpointKey, TModel[] tmodels, BusinessService service, BindingTemplate binding, List<UddiLookupResponse> results) {
+        private void AddResponse(IIdentifier endpointKey, TModel[] tmodels, BusinessService service, BindingTemplate binding, LookupParameters parameters, List<UddiLookupResponse> results) {
             AccessPoint accessPoint = binding.AccessPoint;
 
             // Make a new endpointaddress
@@ -264,8 +264,28 @@ namespace dk.gov.oiosi.uddi {
 
             // Make a new UddiLookupResponse
             CertificateSubject certificateSubject = new CertificateSubject(cert);
-            //TODO: return the processes here
-            UddiLookupResponse resp = new UddiLookupResponse(endpointKey, endpointAddress, activationUTC, expirationUTC, certificateSubject, termsOfUse, contactMail, version, newerVersion);
+
+            List<UddiProcessInformation> processes = new List<UddiProcessInformation>();
+            foreach (TModel model in tmodels) {
+                if (!IsTModelProcessInstance(model, parameters)) continue;
+                string name = model.Name.Text;
+                string description = model.Descriptions[0].Text;
+                string role = model.IdentifierBag.GetInnerCollectionAsList()[0].KeyValue;
+                string roleType = "";
+                KeyedReference roleTypeReference = model.CategoryBag.GetCategoryByIdentifierAndKeyName(BusinessProcessRoleIdentifierType.DEFAULTUDDIID, BusinessProcessRoleIdentifierType.DEFAULTKEYNAME);
+                if (roleTypeReference != null) {
+                    roleType = roleTypeReference.KeyValue;
+                }
+                UddiId processDefinitionReferenceId = new UddiGuidId(Guid.NewGuid());
+                KeyedReference processDefinitionReference = model.CategoryBag.GetCategoryByIdentifierAndKeyName(BusinessProcessDefinitionReference.DEFAULTUDDIID, BusinessProcessDefinitionReference.DEFAULTKEYNAME); 
+                if (processDefinitionReference != null) {
+                    processDefinitionReferenceId = new UddiGuidId(processDefinitionReference.KeyValue, true);
+                }
+                UddiProcessInformation information = new UddiProcessInformation(name, description, role, roleType, processDefinitionReferenceId);
+                processes.Add(information);
+            }
+
+            UddiLookupResponse resp = new UddiLookupResponse(endpointKey, endpointAddress, activationUTC, expirationUTC, certificateSubject, termsOfUse, contactMail, version, newerVersion, processes);
                 
             // Add the endpointinformation to the result object
             results.Add(resp);
