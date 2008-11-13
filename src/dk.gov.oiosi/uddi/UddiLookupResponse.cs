@@ -48,11 +48,12 @@ namespace dk.gov.oiosi.uddi {
         private EndpointAddress _endpointAddress;
         private System.Net.Mail.MailAddress _ServiceContactEmail;
         private Version _version;
-        private List<UddiProcessInformation> _processes;
+        private List<UddiProcessInformation> _processes = new List<UddiProcessInformation>();
 
         /// <summary>
         /// Default constructor
         /// </summary>
+        [Obsolete]
         public UddiLookupResponse() { }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="serviceContactEmail">Email of the service contact</param>
         /// <param name="version">Version of the endpoint</param>
         /// <param name="newerVersionReference">Possible reference to a newer version</param>
+        [Obsolete]
         public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference) {
             _endpointIdentifierActual = endpointIdentifierActual;
             _endpointAddress = endpointAddress;
@@ -94,9 +96,16 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="version">Version of the endpoint</param>
         /// <param name="newerVersionReference">Possible reference to a newer version</param>
         /// <param name="processes">The processes supported by the endpoint</param>
-        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<UddiProcessInformation> processes)
-            : this(endpointIdentifierActual, endpointAddress, activationDate, expirationDate, certificateSubjectSerialNumber, termsOfUseUrl, serviceContactEmail, version, newerVersionReference) {
-            _processes = processes;
+        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<UddiProcessInformation> processes) {
+            _endpointIdentifierActual = endpointIdentifierActual;
+            _endpointAddress = endpointAddress;
+            _activationDate = activationDate;
+            _expirationDate = expirationDate;
+            _certificateSubjectSerialNumber = certificateSubjectSerialNumber;
+            _termsOfUseUrl = termsOfUseUrl;
+            _ServiceContactEmail = serviceContactEmail;
+            _version = version;
+            _newerVersionReference = newerVersionReference; _processes = processes;
         }
 
         /// <summary>

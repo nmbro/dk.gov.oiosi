@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+  <ConfigurationSection xsi:type="RootCertificateConfig">
+    <RootCertificateLocation>
+      <StoreLocation>LocalMachine</StoreLocation>
+      <StoreName>Root</StoreName>
+      <SerialNumber>403617FC</SerialNumber>
+    </RootCertificateLocation>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcesX509CertificateConfig">
+    <PersonalCertificateOid>
+      <PolicyOidString>1.2.208.169.1.1.1.1.1</PolicyOidString>
+    </PersonalCertificateOid>
+    <EmployeeCertificateOid>
+      <PolicyOidString>1.2.208.169.1.1.1.2.1</PolicyOidString>
+    </EmployeeCertificateOid>
+    <OrganizationCertficateOid>
+      <PolicyOidString>1.2.208.169.1.1.1.3.1</PolicyOidString>
+    </OrganizationCertficateOid>
+    <FunctionCertficateOid>
+      <PolicyOidString>1.2.208.169.1.1.1.4.1</PolicyOidString>
+    </FunctionCertficateOid>
+    <PersonalCertificateSubjectKey>
+      <SubjectKeyString>PID</SubjectKeyString>
+    </PersonalCertificateSubjectKey>
+    <EmployeeCertificateSubjectKey>
+      <SubjectKeyString>RID</SubjectKeyString>
+    </EmployeeCertificateSubjectKey>
+    <OrganizationCertificateSubjectKey>
+      <SubjectKeyString>UID</SubjectKeyString>
+    </OrganizationCertificateSubjectKey>
+    <FunctionCertificateSubjetKey>
+      <SubjectKeyString>DID</SubjectKeyString>
+    </FunctionCertificateSubjetKey>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiConfig">
+    <ProfileConformanceClaim />
+    <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
+    <UddiInquireEndpointURL>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURL>
+    <UddiInquireEndpointURLFallback>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURLFallback>
+    <UddiPublishEndpointURL>https://vtuapp06/UDDIProxy/UDDIProxy.svc</UddiPublishEndpointURL>
+    <UddiSecurityEndpointURL>http://vtuapp06/registry/uddi/security</UddiSecurityEndpointURL>
+    <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
+    <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
+    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
+    <GatewayRange>
+      <RangeStart>5798000000000</RangeStart>
+      <RangeEnd>5798009999999</RangeEnd>
+      <GatewayRegistrationParameters>
+        <GatewayRegistrationKeyEan>5798009811646</GatewayRegistrationKeyEan>
+      </GatewayRegistrationParameters>
+    </GatewayRange>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClientTest</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiLookupClientTestConfig">
+    <EndpointAddress>http://oiositest.dk/interoptest2/oiosiomniendpointa.svc</EndpointAddress>
+    <ActivationDate>2007-10-02T00:00:00+02:00</ActivationDate>
+    <ExpirationDate>2007-10-04T00:00:00+02:00</ExpirationDate>
+    <CertificateSubjectSerialNumber>CN=NemHandel Test 2 + SERIALNUMBER=CVR:26769388-DID:00000002, O=IT- og Telestyrelsen // CVR:26769388, C=DK</CertificateSubjectSerialNumber>
+    <TermsOfUseUrl>http://termsOfUse.com</TermsOfUseUrl>
+    <ServiceContactEmail>admin@this.com</ServiceContactEmail>
+    <Version>1.0.0</Version>
+    <NewerVersionReference />
+    <HasNewerVersion>false</HasNewerVersion>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="LdapCertificateLookupTestConfig">
+    <StoreLocation>CurrentUser</StoreLocation>
+    <StoreName>My</StoreName>
+    <Action>FindCertificate</Action>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="LdapLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookupTest</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcspLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.ocsp.OcspLookupTest</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcspLookupTestConfig">
+    <ReturnPositiveResponse>true</ReturnPositiveResponse>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcspConfig">
+    <ServerUrl>http://localhost/</ServerUrl>
+    <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
+  </ConfigurationSection>
+</RaspConfiguration>

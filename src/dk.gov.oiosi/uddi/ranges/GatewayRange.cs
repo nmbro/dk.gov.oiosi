@@ -92,7 +92,7 @@ namespace dk.gov.oiosi.uddi.ranges {
         public long RangeStartInt {
             get {
                 if (String.IsNullOrEmpty(_rangeStart)) return 0;
-                else return long.Parse(_rangeStart);
+                return long.Parse(_rangeStart);
             }
         }
 
