@@ -66,9 +66,9 @@
     <Reference Include="bccrypto-csharp-b02, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>Resources\External libraries\bccrypto-csharp-b02.dll</HintPath>
     </Reference>
-    <Reference Include="dk.gov.oiosi.uddi, Version=1.0.2965.27359, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="dk.gov.oiosi.uddi, Version=1.0.3239.23397, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\External libraries\dk.gov.oiosi.uddi.dll</HintPath>
+      <HintPath>..\..\lib\dk.gov.oiosi.uddi\dk.gov.oiosi.uddi.dll</HintPath>
     </Reference>
     <Reference Include="Novell.Directory.Ldap, Version=2.1.7.0, Culture=neutral" />
     <Reference Include="OcspClient2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
