@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class LookupKey {
         private List<EndpointAddressTypeCode> _addressTypeFilter;
-        private UddiId _businessProcessDefinitionTModel;
+        private readonly IList<UddiId> _businessProcessDefinitionTModels;
         private IIdentifier _endpointKey;
         private EndpointKeytype _endpointKeyType;
         private ConformanceClaim _profileConformanceClaim;
@@ -58,17 +58,9 @@ namespace dk.gov.oiosi.uddi {
         /// Creates a lookup key.
         /// Usually called from within the LookupParameters class as this is a subset of the properties.
         /// </summary>
-        /// <param name="addressTypeFilter"></param>
-        /// <param name="businessProcessDefinitionTModel"></param>
-        /// <param name="endpointKey"></param>
-        /// <param name="endpointKeyType"></param>
-        /// <param name="profileConformanceClaim"></param>
-        /// <param name="registrationConformanceClaim"></param>
-        /// <param name="roleIdentifier"></param>
-        /// <param name="serviceContractTModel"></param>
         public LookupKey(
             List<EndpointAddressTypeCode> addressTypeFilter,
-            UddiId businessProcessDefinitionTModel,
+            IList<UddiId> businessProcessDefinitionTModels,
             IIdentifier endpointKey,
             EndpointKeytype endpointKeyType,
             ConformanceClaim profileConformanceClaim,
@@ -76,7 +68,7 @@ namespace dk.gov.oiosi.uddi {
             BusinessProcessRoleIdentifier roleIdentifier,
             UddiId serviceContractTModel) {
             _addressTypeFilter = addressTypeFilter;
-            _businessProcessDefinitionTModel = businessProcessDefinitionTModel;
+            _businessProcessDefinitionTModels = businessProcessDefinitionTModels;
             _endpointKey = endpointKey;
             _endpointKeyType = endpointKeyType;
             _profileConformanceClaim = profileConformanceClaim;
@@ -104,8 +96,8 @@ namespace dk.gov.oiosi.uddi {
             if (this.GetType() != obj.GetType()) return false;
             LookupKey other = (LookupKey) obj;
 
-            if (!AreEndpointAddressTypeCodesEqual(_addressTypeFilter, other._addressTypeFilter)) return false;
-            if (!AreEqual<UddiId>(_businessProcessDefinitionTModel, other._businessProcessDefinitionTModel)) return false;
+            if (!AreListsEqual<EndpointAddressTypeCode>(_addressTypeFilter, other._addressTypeFilter)) return false;
+            if (!AreListsEqual<UddiId>(_businessProcessDefinitionTModels, other._businessProcessDefinitionTModels)) return false;
             if (!AreEqual<IIdentifier>(_endpointKey, other._endpointKey)) return false;
             if (!AreEqual<EndpointKeytype>(_endpointKeyType, other._endpointKeyType)) return false;
             if (!AreEqual<ConformanceClaim>(_profileConformanceClaim, other._profileConformanceClaim)) return false;
@@ -125,15 +117,15 @@ namespace dk.gov.oiosi.uddi {
             return true;
         }
 
-        private bool AreEndpointAddressTypeCodesEqual(List<EndpointAddressTypeCode> list1, List<EndpointAddressTypeCode> list2) {
+        private bool AreListsEqual<T>(IList<T> list1, IList<T> list2) {
             if (list1 != null && list2 == null) return false;
             if (list1 == null && list2 != null) return false;
             if (list1 == null && list2 == null) return true;
             if (list1.Count != list2.Count) return false;
-            
+
             int index = 0;
-            foreach (EndpointAddressTypeCode typeCode in list1) {
-                if (typeCode != list2[index]) return false;
+            foreach (T typeCode in list1) {
+                if (!typeCode.Equals(list2[index])) return false;
                 index++;
             }
             return true;

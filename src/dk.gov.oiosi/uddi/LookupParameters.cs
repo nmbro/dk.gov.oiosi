@@ -267,7 +267,7 @@ namespace dk.gov.oiosi.uddi {
         public LookupKey GetLookupKey() {
             LookupKey lookupKey = new LookupKey(
                 _addressTypeFilter,
-                _businessProcessDefinitionTModel,
+                _processDefinitions,
                 _endpointKey,
                 _endpointKeyType,
                 _profileConformanceClaim,
@@ -278,22 +278,5 @@ namespace dk.gov.oiosi.uddi {
             return lookupKey;
         }
 
-        /// <summary>
-        /// Compares the object members that constitutes a look up key and returns true if the two objects have the same key
-        /// </summary>
-        /// <param name="lookupParameters"></param>
-        /// <returns></returns>
-        public bool HasKeyValueEqualTo(LookupParameters lookupParameters) {
-            if (_addressTypeFilter != lookupParameters._addressTypeFilter) return false;
-            if (_businessProcessDefinitionTModel != lookupParameters._businessProcessDefinitionTModel) return false;
-            if (_endpointKey != lookupParameters._endpointKey) return false;
-            if (_endpointKeyType != lookupParameters._endpointKeyType) return false;
-            if (_profileConformanceClaim != lookupParameters._profileConformanceClaim) return false;
-            if (_registrationConformanceClaim != lookupParameters._registrationConformanceClaim) return false;
-            if (_roleIdentifier != lookupParameters._roleIdentifier) return false;
-            if (_serviceContractTModel != lookupParameters._serviceContractTModel) return false;
-
-            return true;
-        }
     }
 }

@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.uddi {
     
@@ -52,10 +53,11 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
         public bool Equals(UddiId other) {
+            if (ID == null) throw new NullArgumentException("ID in UddiId");
             if (other == null) return false;
 
-            if (ID != other.ID) return false;
-            return true;
+            if (ID.Equals(other.ID, StringComparison.CurrentCultureIgnoreCase)) return true;
+            return false;
         }
 
         #endregion
