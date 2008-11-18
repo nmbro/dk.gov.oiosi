@@ -53,13 +53,13 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// UDDI configuration
         /// </summary>
-        protected UddiConfig pConfiguration;
+        protected UddiConfig uddiConfig;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public UddiInquiry(UddiConfig configuration) {
-            pConfiguration = configuration;
+            uddiConfig = configuration;
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace dk.gov.oiosi.uddi {
             //Check whether one of the expected business processes is present
             if (parameters.HasAnyProcessConstraints) {
                 bool foundProcessDefinition = false;
-                foreach (UddiId processDefintion in parameters.ProcessDefintions) {
+                foreach (UddiId processDefintion in parameters.ProcessDefinitions) {
                     BusinessProcessDefinitionReference procRef = new BusinessProcessDefinitionReference();
                     KeyedReference procKeyref = tmodel.CategoryBag.GetCategoryByIdentifierAndKeyName(procRef.CategoryID, procRef.CategoryName);
                     tmodel.CategoryBag.GetCategoryByIdentifier(procRef.CategoryID);
@@ -177,18 +177,18 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Returns true if this TModel represents a valid process instance
         /// </summary>
-        /// <param name="tmodel">The TModel to check</param>
+        /// <param name="tModel">The TModel to check</param>
         /// <param name="parameters">The lookup parameters</param>
         /// <returns>True if valid</returns>
-        private bool IsTModelProcessInstance(TModel tmodel, LookupParameters parameters) {
-            if (tmodel == null) return false;
-            if (tmodel.CategoryBag == null) return false;
-            if (tmodel.CategoryBag.Value == null) return false;
-            if (tmodel.CategoryBag.Value.Items.Length < 1) return false;
+        private bool IsTModelProcessInstance(TModel tModel, LookupParameters parameters) {
+            if (tModel == null) return false;
+            if (tModel.CategoryBag == null) return false;
+            if (tModel.CategoryBag.Value == null) return false;
+            if (tModel.CategoryBag.Value.Items.Length < 1) return false;
 
             // Check registration conformance
             RegistrationConformanceClaim regConfClaim = new RegistrationConformanceClaim();
-            KeyedReference confClaimKeyref = tmodel.CategoryBag.GetCategoryByIdentifierAndKeyName(regConfClaim.CategoryID, regConfClaim.CategoryName);
+            KeyedReference confClaimKeyref = tModel.CategoryBag.GetCategoryByIdentifierAndKeyName(regConfClaim.CategoryID, regConfClaim.CategoryName);
             if (confClaimKeyref == null) return false;
             if (confClaimKeyref.KeyValue != parameters.RegistrationConformanceClaim.Value) {
                 return false;
@@ -196,7 +196,7 @@ namespace dk.gov.oiosi.uddi {
 
             // Check that the businessProcessDefinitionReference category exists:
             BusinessProcessDefinitionReference procRef = new BusinessProcessDefinitionReference();
-            KeyedReference procKeyref = tmodel.CategoryBag.GetCategoryByIdentifierAndKeyName(procRef.CategoryID, procRef.CategoryName);
+            KeyedReference procKeyref = tModel.CategoryBag.GetCategoryByIdentifierAndKeyName(procRef.CategoryID, procRef.CategoryName);
 
             return procKeyref != null;
         }
@@ -206,17 +206,17 @@ namespace dk.gov.oiosi.uddi {
         /// categories are set correctly. At least one process-related tModel must 
         /// meet all the specified criteria.
         /// </summary>
-        /// <param name="tmodels">The tModels for the binding to check</param>
+        /// <param name="tModels">The tModels for the binding to check</param>
         /// <param name="parameters">The lookup parameters specifying the criteria</param>
         /// <returns>True if criteria are met</returns>
-        private bool MeetsTModelCriteria(IEnumerable<TModel> tmodels, LookupParameters parameters) {
+        private bool MeetsTModelCriteria(IEnumerable<TModel> tModels, LookupParameters parameters) {
             // Have any process-related criteria been set?
             if (!parameters.HasAnyProcessConstraints && !parameters.HasAnyProcessRoleConstraints) return true;
 
-            foreach (TModel tm in tmodels) {
-                bool isProcessInstance = IsTModelProcessInstance(tm, parameters);
+            foreach (TModel tModel in tModels) {
+                bool isProcessInstance = IsTModelProcessInstance(tModel, parameters);
                 if (!isProcessInstance) continue;
-                bool isAcceptableProcessInstance = IsAcceptableProcessInstance(tm, parameters);
+                bool isAcceptableProcessInstance = IsAcceptableProcessInstance(tModel, parameters);
                 if (isAcceptableProcessInstance) return true;
             }
             return false;

@@ -228,7 +228,7 @@ namespace dk.gov.oiosi.uddi {
         /// Gets the process defintions that should be supported by the endpoint returned.
         /// The list is or'ed.
         /// </summary>
-        public IEnumerable<UddiId> ProcessDefintions {
+        public IEnumerable<UddiId> ProcessDefinitions {
             get { return _processDefinitions; }
         }
 

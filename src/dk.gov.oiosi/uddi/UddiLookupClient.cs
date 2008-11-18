@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.uddi {
     /// * Extendable configuration model
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
-        private UddiConfig _configuration;
+        private UddiConfig _uddiConfig;
         private object CacheLock = new object();
 
         private void Init() {
@@ -57,12 +57,12 @@ namespace dk.gov.oiosi.uddi {
             if (UddiConnection.DefaultConnection == null) {
                 UddiConnection.DefaultConnection = new UddiConnection(
                     new UddiConnectionNetworkParams(
-                        _configuration.UddiInquireEndpointURL,
-                        _configuration.UddiInquireEndpointURLFallback,
-                        _configuration.UddiPublishEndpointURL,
-                        _configuration.UddiSecurityEndpointURL,
-                        _configuration.FallbackTimeoutMinutes,
-                        _configuration.TryOtherHostsOnFailure)
+                        _uddiConfig.UddiInquireEndpointURL,
+                        _uddiConfig.UddiInquireEndpointURLFallback,
+                        _uddiConfig.UddiPublishEndpointURL,
+                        _uddiConfig.UddiSecurityEndpointURL,
+                        _uddiConfig.FallbackTimeoutMinutes,
+                        _uddiConfig.TryOtherHostsOnFailure)
                 );
             }
         }
@@ -71,7 +71,7 @@ namespace dk.gov.oiosi.uddi {
         /// Constructor
         /// </summary>
         public UddiLookupClient(UddiConfig configuration) {
-            _configuration = configuration;
+            _uddiConfig = configuration;
             Init();
         }
 
@@ -79,7 +79,7 @@ namespace dk.gov.oiosi.uddi {
         /// Default constructor. Attempts to load configuration from file.
         /// </summary>
         public UddiLookupClient() {
-            _configuration = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+            _uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             Init();
         }
 
@@ -99,10 +99,10 @@ namespace dk.gov.oiosi.uddi {
                 // Is the request in the gateway range (if a gateway range exists)?
                 if ((inquiryResult == null || inquiryResult.Count < 1)
                     && (parameters.EndpointKey is IdentifierEan)
-                    && (_configuration.GatewayRange.IsInRange(parameters.EndpointKey.GetAsString())
-                    && _configuration.GatewayRange != null
-                    && _configuration.GatewayRange.GatewayRegistrationParameters != null
-                    && !String.IsNullOrEmpty(_configuration.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan))
+                    && (_uddiConfig.GatewayRange.IsInRange(parameters.EndpointKey.GetAsString())
+                    && _uddiConfig.GatewayRange != null
+                    && _uddiConfig.GatewayRange.GatewayRegistrationParameters != null
+                    && !String.IsNullOrEmpty(_uddiConfig.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan))
                 ) {
                     inquiryResult = GatewayLookup(parameters);
                 }
@@ -133,7 +133,7 @@ namespace dk.gov.oiosi.uddi {
         /// <returns>Returns a collection of matching results</returns>
         private List<UddiLookupResponse> CachedInquire(LookupParameters parameters) {
             List<UddiLookupResponse> inquiryResult;
-            UddiInquiry inquiry = new UddiInquiry(_configuration);
+            UddiInquiry inquiry = new UddiInquiry(_uddiConfig);
             // 1. Perform (pre- and post-filtered) query
 
             // 2. Get result from cache or "live"
@@ -207,7 +207,7 @@ namespace dk.gov.oiosi.uddi {
         private List<UddiLookupResponse> GatewayLookup(LookupParameters parameters) {
             List<UddiLookupResponse> inquiryResult = null;
             // 1. Change the endpoint key to that of the gateway registration:
-            parameters.EndpointKey.Set(_configuration.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan);
+            parameters.EndpointKey.Set(_uddiConfig.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan);
             // 2. Check cache, if not found there, inquire UDDI
             inquiryResult = CachedInquire(parameters);
             return inquiryResult;
