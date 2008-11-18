@@ -49,39 +49,43 @@ namespace dk.gov.oiosi.uddi {
     /// * Extendable configuration model
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
-        private UddiConfig _uddiConfig;
+		private UddiConfig _configuration;
         private object CacheLock = new object();
+    	private Uri _address;
 
-        private void Init() {
+    	private void Init() {
             // 1. If a default connection has not been set, set it
             if (UddiConnection.DefaultConnection == null) {
                 UddiConnection.DefaultConnection = new UddiConnection(
                     new UddiConnectionNetworkParams(
-                        _uddiConfig.UddiInquireEndpointURL,
-                        _uddiConfig.UddiInquireEndpointURLFallback,
-                        _uddiConfig.UddiPublishEndpointURL,
-                        _uddiConfig.UddiSecurityEndpointURL,
-                        _uddiConfig.FallbackTimeoutMinutes,
-                        _uddiConfig.TryOtherHostsOnFailure)
+                        _address.ToString(),
+						null,
+                        _configuration.PublishEndpoint,
+                        _configuration.SecurityEndpoint,
+                        _configuration.FallbackTimeoutMinutes,
+                        false)
                 );
             }
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public UddiLookupClient(UddiConfig configuration) {
-            _uddiConfig = configuration;
-            Init();
-        }
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public UddiLookupClient(Uri address) {
+			_address = address;
+			_configuration = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+			Init();
+		}
 
-        /// <summary>
-        /// Default constructor. Attempts to load configuration from file.
-        /// </summary>
-        public UddiLookupClient() {
-            _uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            Init();
-        }
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		public UddiLookupClient(Uri address, UddiConfig configuration) {
+			_address = address;
+			_configuration = configuration;
+			Init();
+		}
+
 
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
@@ -96,25 +100,11 @@ namespace dk.gov.oiosi.uddi {
                 // Check cache, if not found there, inquire UDDI
                 List<UddiLookupResponse> inquiryResult = CachedInquire(parameters);
 
-                // Is the request in the gateway range (if a gateway range exists)?
-                if ((inquiryResult == null || inquiryResult.Count < 1)
-                    && (parameters.EndpointKey is IdentifierEan)
-                    && (_uddiConfig.GatewayRange.IsInRange(parameters.EndpointKey.GetAsString())
-                    && _uddiConfig.GatewayRange != null
-                    && _uddiConfig.GatewayRange.GatewayRegistrationParameters != null
-                    && !String.IsNullOrEmpty(_uddiConfig.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan))
-                ) {
-                    inquiryResult = GatewayLookup(parameters);
-                }
-
                 // If inquiry result is null, return empty list
                 if (inquiryResult == null) return new List<UddiLookupResponse>();
 
-                // Filter result
-                List<UddiLookupResponse> filteredResult = FilterResponse(parameters, inquiryResult);
-
                 // Return result
-                return filteredResult;
+                return inquiryResult;
             }
             catch (Exception ex) {
                 string endpKey = "NULL";
@@ -133,15 +123,15 @@ namespace dk.gov.oiosi.uddi {
         /// <returns>Returns a collection of matching results</returns>
         private List<UddiLookupResponse> CachedInquire(LookupParameters parameters) {
             List<UddiLookupResponse> inquiryResult;
-            UddiInquiry inquiry = new UddiInquiry(_uddiConfig);
-            // 1. Perform (pre- and post-filtered) query
+			UddiInquiry inquiry = new UddiInquiry(_configuration);
 
-            // 2. Get result from cache or "live"
             LookupKey cacheLookupKey = parameters.GetLookupKey();
-
 
             bool cacheLookupResult = parameters.LookupCache.TryGetValue(cacheLookupKey, out inquiryResult);
             if (!cacheLookupResult) {
+
+                //TODO: Fallback mechanism
+
                 inquiryResult = inquiry.Inquire(
                     parameters.EndpointKey,
                     parameters,
@@ -196,21 +186,5 @@ namespace dk.gov.oiosi.uddi {
             return inquiryResult;
         }
 
-        /// <summary>
-        /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint 
-        /// address (e.g. an URL) for a gateway registration. Performs the same actions as first
-        /// part of Lookup(), but without checking for gateway ranges.
-        /// </summary>
-        /// <param name="parameters">The business level key of the endpoint, e.g. an EAN number
-        /// as well as options of the translation, i.e. address type filters</param>
-        /// <returns>Returns a collection of matching addresses</returns>
-        private List<UddiLookupResponse> GatewayLookup(LookupParameters parameters) {
-            List<UddiLookupResponse> inquiryResult = null;
-            // 1. Change the endpoint key to that of the gateway registration:
-            parameters.EndpointKey.Set(_uddiConfig.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan);
-            // 2. Check cache, if not found there, inquire UDDI
-            inquiryResult = CachedInquire(parameters);
-            return inquiryResult;
-        }
     }
 }

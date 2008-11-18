@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
         static UddiLookupResponse Uddi(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
             
             // Create a uddi client
-            UddiLookupClientFactory uddiClientFactory = new UddiLookupClientFactory();
+            RegistryLookupClientFactory uddiClientFactory = new RegistryLookupClientFactory();
             uddiClient = uddiClientFactory.CreateUddiLookupClient();
 
             // Get the UDDI parameters with which to call the UDDI server

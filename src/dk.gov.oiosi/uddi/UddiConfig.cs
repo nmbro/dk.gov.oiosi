@@ -28,13 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
 
-using dk.gov.oiosi.common;
-using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {
@@ -44,12 +39,17 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class UddiConfig {
+
+        private LookupRegistryFallbackConfig lookupRegistryFallbackConfig;
+
         private string _profileConformanceClaim = "";
         private string _registrationConformanceClaim = "";
+        
         private string _uddiInquireEndpointURL = "";
         private string _uddiInquireEndpointURLFallback = "";
         private string _uddiPublishEndpointURL = "";
         private string _uddiSecurityEndpointURL = "";
+
         private int _fallbackTimeoutMinutes = 0;
         private LookupReturnOptionEnum _lookupReturnOptions = LookupReturnOptionEnum.allResults;
         private bool _tryOtherHostsOnFailure = true;
@@ -93,7 +93,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Gets or sets the default UDDI publish service endpoint
         /// </summary>
-        public string UddiPublishEndpointURL {
+        public string PublishEndpoint {
             get { return _uddiPublishEndpointURL; }
             set { _uddiPublishEndpointURL = value; }
         }
@@ -101,7 +101,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Gets or sets the default UDDI security endpoint
         /// </summary>
-        public string UddiSecurityEndpointURL {
+        public string SecurityEndpoint {
             get { return _uddiSecurityEndpointURL; }
             set { _uddiSecurityEndpointURL = value; }
         }
@@ -137,6 +137,15 @@ namespace dk.gov.oiosi.uddi {
         public ranges.GatewayRange GatewayRange {
             get { return _gatewayRange; }
             set { _gatewayRange = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the list of registries to try lookup with
+        /// </summary>
+        public LookupRegistryFallbackConfig LookupRegistryFallbackConfig
+        {
+            get { return lookupRegistryFallbackConfig; }
+            set { lookupRegistryFallbackConfig = value; }
         }
 
         /// <summary>

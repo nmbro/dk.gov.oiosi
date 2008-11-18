@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Options for the lookup.
     /// </summary>
-    [Obsolete("Use LookupReturnOption instead", false)]
-    public enum LookupReturnOptionEnum {
+    public enum LookupReturnOption {
 
         /// <summary>
         /// Throws an exceptions if not either one or zero results were returned.

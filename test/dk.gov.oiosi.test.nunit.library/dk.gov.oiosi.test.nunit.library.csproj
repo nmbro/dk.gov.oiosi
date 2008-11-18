@@ -54,7 +54,10 @@
     <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
     <Compile Include="TestConstants.cs" />
+    <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
     <Compile Include="uddi\LookupParametersConfigTest.cs" />
+    <Compile Include="uddi\PrioritizedLookupRegistryListTest.cs" />
+    <Compile Include="uddi\RegistryLookupTest.cs" />
     <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
     <Compile Include="xml\schematron\SchematronValidationTest.cs" />
     <Compile Include="xml\schema\SchemaValidationTest.cs" />
@@ -91,6 +94,9 @@
     <None Include="Resources\Certifcates\Root.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\RaspConfiguration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

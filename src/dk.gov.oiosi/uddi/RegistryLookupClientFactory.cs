@@ -39,16 +39,16 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Factory for creating IUddiLookup implementations
     /// </summary>
-    public class UddiLookupClientFactory {
-        private UddiLookupClientFactoryConfig _config;
+    public class RegistryLookupClientFactory {
+        private RegistryLookupClientFactoryConfig _config;
 
         /// <summary>
         /// Creates an IUddiLookup implementation, as set in config.
         /// </summary>
         /// <returns>The IUddiLookup implementation</returns>
-        public IUddiLookupClient CreateUddiLookupClient(Uri address) {
+        public IUddiLookupClient CreateUddiLookupClient() {
             // 1. Get factory config:
-            _config = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
+            _config = ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
 
             // 2. Get the type to load:
             if (_config.ImplementationNamespaceClass == null || _config.ImplementationNamespaceClass == "") { 
@@ -63,8 +63,7 @@ namespace dk.gov.oiosi.uddi {
             }
 
             // 3. Instantiate the type:
-        	object[] parameters = new object[]{address};
-			IUddiLookupClient lookupClient = (IUddiLookupClient)lookupClientType.GetConstructor(new Type[]{typeof(Uri)}).Invoke(parameters);
+            IUddiLookupClient lookupClient = (IUddiLookupClient)lookupClientType.GetConstructor(new Type[0]).Invoke(null);
 
             return lookupClient;
         }

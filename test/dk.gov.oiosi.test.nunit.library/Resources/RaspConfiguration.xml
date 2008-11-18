@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+  <ConfigurationSection xsi:type="RegistryLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.RegistryLookupClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.test.nunit.library.uddi.AdvancedUddiDummyClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.test.nunit.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiConfig">
+    <ProfileConformanceClaim />
+    <RegistrationConformanceClaim />
+    <FallbackTimeoutMinutes>0</FallbackTimeoutMinutes>
+    <LookupReturnOptions>allResults</LookupReturnOptions>
+    <PublishEndpoint>http://test.dk</PublishEndpoint>
+    <SecurityEndpoint>http://test.dk</SecurityEndpoint>
+    <LookupRegistryFallbackConfig>
+      <PrioritizedRegistryList>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://test1.com</Endpoint>
+            <Endpoint>http://fallback1.com</Endpoint>
+          </EndpointCollection>
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://test2.com</Endpoint>
+            <Endpoint>http://fallback2.com</Endpoint>
+          </EndpointCollection>
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://test3.com</Endpoint>
+            <Endpoint>http://fallback3.com</Endpoint>
+          </EndpointCollection>
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://test4.com</Endpoint>
+            <Endpoint>http://fallback41.com</Endpoint>
+            <Endpoint>http://fallback42.com</Endpoint>
+          </EndpointCollection>
+        </Registry>
+      </PrioritizedRegistryList>
+    </LookupRegistryFallbackConfig>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="AdvancedUddiDummyClientConfig" />
+</RaspConfiguration>
