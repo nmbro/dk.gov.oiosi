@@ -30,7 +30,6 @@
   */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -57,6 +56,7 @@ namespace dk.gov.oiosi.communication.configuration {
         private DocumentEndpointInformation _endpointType = new DocumentEndpointInformation();
         private XpathDiscriminatorConfigCollection _identifierDiscriminators = new XpathDiscriminatorConfigCollection();
         private CustomHeaderConfiguration _customHeaderConfiguration = new CustomHeaderConfiguration();
+        private ProfileIdXPath _profileIdXPath = new ProfileIdXPath();
 
         /// <summary>
         /// Constructor
@@ -96,6 +96,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="endpointType">The endpoint type</param>
         /// <param name="identifierDiscriminators">Identifier discriminators</param>
         /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
+        /// <param name="profileIdXPath">XPath expression</param>
         public DocumentTypeConfig(
             string friendlyName,
             string rootName,
@@ -106,7 +107,8 @@ namespace dk.gov.oiosi.communication.configuration {
             string xsltTransformStylesheetPath,
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
-            SchematronValidationConfig schematronValidationConfig
+            SchematronValidationConfig schematronValidationConfig,
+            ProfileIdXPath profileIdXPath
             ) : this(rootName, rootNamespace, identifierDiscriminators) {
             if (friendlyName == null) throw new NullArgumentException("friendlyName");
             if (schemaPath == null) throw new NullArgumentException("schemaPath");
@@ -122,6 +124,7 @@ namespace dk.gov.oiosi.communication.configuration {
             _xsltTransformStylesheetPath = xsltTransformStylesheetPath;
             _endpointType = endpointType;
             _schematronValidationConfig = schematronValidationConfig;
+            _profileIdXPath = profileIdXPath;
         }
 
         /// <summary>
@@ -138,6 +141,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="endpointType">Definition of a RASP endpoint type</param>
         /// <param name="identifierDiscriminators">XPath discriminators used for aditionel identification of document type</param>
         /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
+        /// <param name="profileIdXPath">Xpath expression</param>
         public DocumentTypeConfig(
             string friendlyName,
             string rootName,
@@ -149,10 +153,11 @@ namespace dk.gov.oiosi.communication.configuration {
             List<PrefixedNamespace> namespaces,
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
-            SchematronValidationConfig schematronValidationConfig
+            SchematronValidationConfig schematronValidationConfig,
+            ProfileIdXPath profileIdXPath
         ) : this (friendlyName, rootName, rootNamespace, schemaPath, 
-            stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath, 
-            endpointType, identifierDiscriminators, schematronValidationConfig) {
+            stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath,
+            endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath) {
             if (namespaces == null) throw new NullArgumentException("namespaces");
             _namespaces = namespaces;
         }
@@ -189,7 +194,7 @@ namespace dk.gov.oiosi.communication.configuration {
             set {
                 if (value == null) throw new NullArgumentException("value");
                 _rootNamespace = value;
-            }
+            }   
         }
 
         /// <summary>
@@ -307,6 +312,19 @@ namespace dk.gov.oiosi.communication.configuration {
             set { _customHeaderConfiguration = value; }
         }
 
+
+        /// <summary>
+        /// Name of the document type
+        /// </summary>
+        [XmlElement("ProfileIdXPath")]
+        public ProfileIdXPath ProfileIdXPath
+        {
+            get { return _profileIdXPath; }
+            set {
+                if (value == null) throw new NullArgumentException("ProfileIdXPath value");
+                _profileIdXPath = value;
+            }
+        }
 
         /// <summary>
         /// Adds a namespace

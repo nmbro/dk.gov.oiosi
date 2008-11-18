@@ -30,11 +30,6 @@
   */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Collections;
-using System.Xml.Serialization;
-using System.IO;
-using System.Xml;
 
 
 namespace dk.gov.oiosi.configuration {
@@ -157,7 +152,10 @@ namespace dk.gov.oiosi.configuration {
                 int i = 0;
                 foreach (KeyValuePair<Type, object> pair in _sections) {
                     i = pConfigDocument.IndexOfConfigurationSection(pair.Key);
-                    pConfigDocument.ConfigurationSections[i] = pair.Value;
+                    if (i > -1 && i < pConfigDocument.ConfigurationSections.Count)
+                        pConfigDocument.ConfigurationSections[i] = pair.Value;
+                    else
+                        throw new Exception();
                 }
                 pConfigDocument.SaveToFile();
             }

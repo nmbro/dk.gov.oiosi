@@ -124,12 +124,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_APPLICATIONRESPONSE_DESTINATION_FRIENDLYNAME = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
             string XPATH_APPLICATIONRESPONSE_SENDER_KEY = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
             string XPATH_APPLICATIONRESPONSE_SENDER_FRIENDLYNAME = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            string XPATH_APPLICATIONRESPONSE_PROFILEID = "/root:ApplicationResponse/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_APPLICATIONRESPONSE_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_APPLICATIONRESPONSE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_APPLICATIONRESPONSE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_APPLICATIONRESPONSE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_APPLICATIONRESPONSE_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -137,7 +140,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_APPLICATIONRESPONSE_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_APPLICATIONRESPONSE_XSD, PATH_APPLICATIONRESPONSE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_APPLICATIONRESPONSE_XSD, PATH_APPLICATIONRESPONSE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -161,12 +164,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_CREDITNOTE_DESTINATION_FRIENDLYNAME = "//cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
             string XPATH_CREDITNOTE_SENDER_KEY = "//cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
             string XPATH_CREDITNOTE_SENDER_FRIENDLYNAME = "//cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            string XPATH_CREDITNOTE_PROFILEID = "/root:"+ROOTNAME+"/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_CREDITNOTE_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_CREDITNOTE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_CREDITNOTE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_CREDITNOTE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_CREDITNOTE_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -174,7 +180,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_CREDITNOTE_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_CREDITNOTE_XSD, PATH_CREDITNOTE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_CREDITNOTE_XSD, PATH_CREDITNOTE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -198,12 +204,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_INVOICE_DESTINATION_FRIENDLYNAME = "/root:Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
             string XPATH_INVOICE_SENDER_KEY = "/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
             string XPATH_INVOICE_SENDER_FRIENDLYNAME = "/root:Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            string XPATH_INVOICE_PROFILEID = "/root:" + ROOTNAME + "/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_INVOICE_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_INVOICE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_INVOICE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_INVOICE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_INVOICE_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -211,7 +220,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_INVOICE_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -235,12 +244,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_ORDER_DESTINATION_FRIENDLYNAME = "/root:Order/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
             string XPATH_ORDER_SENDER_KEY = "/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
             string XPATH_ORDER_SENDER_FRIENDLYNAME = "/root:Order/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            string XPATH_ORDER_PROFILEID = "/root:" + ROOTNAME + "/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_ORDER_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_ORDER_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_ORDER_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_ORDER_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Order201Interface/SubmitOrderRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_ORDER_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Order201Interface/SubmitOrderRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -248,7 +260,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_ORDER_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, "urn:oasis:names:specification:ubl:schema:xsd:Order-2", PATH_ORDER_XSD, PATH_ORDER_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, "urn:oasis:names:specification:ubl:schema:xsd:Order-2", PATH_ORDER_XSD, PATH_ORDER_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -272,12 +284,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_ORDERRESPONSESIMPLE_DESTINATION_FRIENDLYNAME = "/root:OrderResponseSimple/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
             string XPATH_ORDERRESPONSESIMPLE_SENDER_KEY = "/root:OrderResponseSimple/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
             string XPATH_ORDERRESPONSESIMPLE_SENDER_FRIENDLYNAME = "/root:OrderResponseSimple/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            string XPATH_ORDERRESPONSESIMPLE_PROFILEID = "/root:" + ROOTNAME + "/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_ORDERRESPONSESIMPLE_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_ORDERRESPONSESIMPLE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_ORDERRESPONSESIMPLE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_ORDERRESPONSESIMPLE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseSimple201Interface/SubmitOrderResponseSimpleRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_ORDERRESPONSESIMPLE_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseSimple201Interface/SubmitOrderResponseSimpleRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -285,7 +300,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_ORDERRESPONSESIMPLE_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_ORDERRESPONSESIMPLE_XSD, PATH_ORDERRESPONSESIMPLE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_ORDERRESPONSESIMPLE_XSD, PATH_ORDERRESPONSESIMPLE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2", "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -309,12 +324,15 @@ namespace dk.gov.oiosi.raspProfile {
             string XPATH_REMINDER_DESTINATION_FRIENDLYNAME = "/root:Reminder/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
             string XPATH_REMINDER_SENDER_KEY = "/root:Reminder/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
             string XPATH_REMINDER_SENDER_FRIENDLYNAME = "/root:Reminder/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            string XPATH_REMINDER_PROFILEID = "/root:" + ROOTNAME + "/cbc:ProfileID";
 
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_REMINDER_DESTINATION_FRIENDLYNAME);
             ServiceEndpointKey key = CreateKey(XPATH_REMINDER_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_REMINDER_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_REMINDER_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitReminderRequest", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_REMINDER_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitReminderRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
@@ -322,7 +340,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_REMINDER_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_REMINDER_XSD, PATH_REMINDER_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_REMINDER_XSD, PATH_REMINDER_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -351,12 +369,13 @@ namespace dk.gov.oiosi.raspProfile {
             ServiceEndpointKey key = CreateKey(XPATH_INVOICE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_INVOICE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_INVOICE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Request", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = null;
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Request", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_INVOICE_XSL, OIOXML_SCHEMATRON_ERROR_XPATH, OIOXML_SCHEMATRON_ERRORMESSAGE_XPATH);
-            
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
 
             List<PrefixedNamespace> namespaces = GetOioxmlNamespaces();
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/pie/", "root"));
@@ -387,11 +406,12 @@ namespace dk.gov.oiosi.raspProfile {
             ServiceEndpointKey key = CreateKey(XPATH_INVOICE_DESTINATION_KEY);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_INVOICE_SENDER_FRIENDLYNAME);
             ServiceEndpointKey senderKey = CreateKey(XPATH_INVOICE_SENDER_KEY);
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request", "*", friendlyName, key, senderFriendlyName, senderKey);
+            ProfileIdXPath profileIdXPath = null;
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_INVOICE_XSL, OIOXML_SCHEMATRON_ERROR_XPATH, OIOXML_SCHEMATRON_ERRORMESSAGE_XPATH);
-            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_INVOICE_XSD, PATH_INVOICE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
 
             List<PrefixedNamespace> namespaces = GetOioxmlNamespaces();
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/", "root"));
@@ -445,5 +465,6 @@ namespace dk.gov.oiosi.raspProfile {
             key.AddMappingExpression(mappingExpression);
             return key;
         }
+
     }
 }

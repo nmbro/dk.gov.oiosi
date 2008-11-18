@@ -60,6 +60,7 @@
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\RaspServiceHostFactory.cs" />
+    <Compile Include="OioublProfileMappingCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

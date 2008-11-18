@@ -30,9 +30,6 @@
   */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.security;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
@@ -137,6 +134,20 @@ namespace dk.gov.oiosi.xml.documentType {
         }
 
         /// <summary>
+        /// Constructor. 
+        /// </summary>
+        /// <param name="endpointKey">The endpoint key of the endpoint, e.g. an EAN number</param>
+        /// <param name="serviceContractTModel">The tModel UDDI ID of the service contract tModel</param>
+        /// <param name="endpointKeyType">The type of the endpoint key (EAN/CVR...)</param>
+        public MessageParameters(
+            IIdentifier endpointKey,
+            EndpointKeytype endpointKeyType,
+            UddiId serviceContractTModel
+        ) {
+            Init(endpointKey, endpointKeyType, serviceContractTModel, null, null, null);
+        }
+
+        /// <summary>
         /// Initializes the object.
         /// </summary>
         /// <param name="endpointKey">The endpoint key of the endpoint, e.g. an EAN number</param>
@@ -173,18 +184,5 @@ namespace dk.gov.oiosi.xml.documentType {
             _roleIdentifier = roleIdentifier;
         }
 
-        /// <summary>
-        /// Constructor. 
-        /// </summary>
-        /// <param name="endpointKey">The endpoint key of the endpoint, e.g. an EAN number</param>
-        /// <param name="serviceContractTModel">The tModel UDDI ID of the service contract tModel</param>
-        /// <param name="endpointKeyType">The type of the endpoint key (EAN/CVR...)</param>
-        public MessageParameters(
-            IIdentifier endpointKey,
-            EndpointKeytype endpointKeyType,
-            UddiId serviceContractTModel
-        ) {
-            Init(endpointKey, endpointKeyType, serviceContractTModel, null, null, null);
-        }
     }
 }

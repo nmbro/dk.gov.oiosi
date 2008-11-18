@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.communication.configuration {
         private ServiceEndpointFriendlyName _senderFriendlyName = new ServiceEndpointFriendlyName();
         private ServiceEndpointKey _key = new ServiceEndpointKey();
         private ServiceEndpointKey _senderKey = new ServiceEndpointKey();
+        private ProfileIdXPath _profileIdXPath = new ProfileIdXPath();
 
         /// <summary>
         /// Constructor
@@ -61,19 +62,22 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="endpointKey">Information about the endpoint unique ID, used for UDDI lookups</param>
         /// <param name="senderFriendlyNameXpath">The xpath to the human reader friendly name of the sender</param>
         /// <param name="senderKey">The endpoint key of the sender</param>
+        /// <param name="profileIdXPath">XPath expression to UBL profile</param>
         public DocumentEndpointInformation(
             string requestAction,
             string replyAction,
             ServiceEndpointFriendlyName friendlyNameXpath,
             ServiceEndpointKey endpointKey,
             ServiceEndpointFriendlyName senderFriendlyNameXpath,
-            ServiceEndpointKey senderKey) {
+            ServiceEndpointKey senderKey,
+            ProfileIdXPath profileIdXPath) {
             _requestAction = requestAction;
             _replyAction = replyAction;
             _endpointFriendlyName = friendlyNameXpath;
             _key = endpointKey;
             _senderFriendlyName = senderFriendlyNameXpath;
             _senderKey = senderKey;
+            _profileIdXPath = profileIdXPath;
         }
 
         /// <summary>
@@ -128,6 +132,15 @@ namespace dk.gov.oiosi.communication.configuration {
         public ServiceEndpointKey SenderKey { 
             get { return _senderKey; } 
             set { _senderKey = value; } 
+        }
+
+        /// <summary>
+        /// XPath expression to OIOUBL Profile
+        /// </summary>
+        [XmlElement("ProfileIdXPath")]
+        public ProfileIdXPath ProfileIdXPath {
+            get { return _profileIdXPath; }
+            set { _profileIdXPath = value; }
         }
     }
 }
