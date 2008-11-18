@@ -36,20 +36,19 @@
   <ConfigurationSection xsi:type="UddiConfig">
     <ProfileConformanceClaim />
     <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
-    <UddiInquireEndpointURL>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURL>
-    <UddiInquireEndpointURLFallback>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURLFallback>
-    <UddiPublishEndpointURL>https://vtuapp06/UDDIProxy/UDDIProxy.svc</UddiPublishEndpointURL>
-    <UddiSecurityEndpointURL>http://vtuapp06/registry/uddi/security</UddiSecurityEndpointURL>
+    <PublishEndpoint>https://vtuapp06/UDDIProxy/UDDIProxy.svc</PublishEndpoint>
+    <SecurityEndpoint>http://vtuapp06/registry/uddi/security</SecurityEndpoint>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
-    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
-    <GatewayRange>
-      <RangeStart>5798000000000</RangeStart>
-      <RangeEnd>5798009999999</RangeEnd>
-      <GatewayRegistrationParameters>
-        <GatewayRegistrationKeyEan>5798009811646</GatewayRegistrationKeyEan>
-      </GatewayRegistrationParameters>
-    </GatewayRange>
+    <LookupRegistryFallbackConfig>
+      <PrioritizedRegistryList>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://vtuapp05/registry/uddi/inquiry</Endpoint>
+          </EndpointCollection>
+        </Registry>
+      </PrioritizedRegistryList>
+    </LookupRegistryFallbackConfig>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClientTest</ImplementationNamespaceClass>

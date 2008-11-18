@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
 using NUnit.Framework;
@@ -72,7 +74,8 @@ namespace dk.gov.oiosi.integration.uddi {
 
 
             private List<UddiLookupResponse> Lookup(IIdentifier identifier, UddiId serviceDefinitionId, IEnumerable<UddiId> processDefinitionIds) {
-                UddiLookupClient lookupClient = new UddiLookupClient();
+                UddiConfig config = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+                UddiLookupClient lookupClient = new UddiLookupClient(new Uri(config.LookupRegistryFallbackConfig.PrioritizedRegistryList[0].Endpoints[0]));
                 EndpointKeytype identifierType;
 
                 if (identifier is IdentifierEan) {
