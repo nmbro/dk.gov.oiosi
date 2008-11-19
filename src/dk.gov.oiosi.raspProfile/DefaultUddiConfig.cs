@@ -85,19 +85,15 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetDefaultUddiConfig() {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            uddiConfig.GatewayRange = new GatewayRange();
-            uddiConfig.GatewayRange.RangeStart = "5798000000000";
-            uddiConfig.GatewayRange.RangeEnd = "5798009999999";
-            uddiConfig.GatewayRange.GatewayRegistrationParameters = new GatewayRegistrationParameters();
-            uddiConfig.GatewayRange.GatewayRegistrationParameters.GatewayRegistrationKeyEan = "5798009811646";
             uddiConfig.LookupReturnOptions = LookupReturnOptionEnum.noMoreThanOneSetOrFail;
             uddiConfig.RegistrationConformanceClaim = new RegistrationConformanceClaim().DefaultCategoryValue;
             uddiConfig.TryOtherHostsOnFailure = true;
-            uddiConfig.UddiInquireEndpointURL = "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry";
-            uddiConfig.UddiInquireEndpointURLFallback = "http://discovery.2.uddi.ehandel.gov.dk/registry/uddi/inquiry";
             uddiConfig.PublishEndpoint = "https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc";
             uddiConfig.SecurityEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/security";
             uddiConfig.FallbackTimeoutMinutes = 15;
+            uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc" }));
         }
 
         private void SetDefaultUddiConfigTest() {

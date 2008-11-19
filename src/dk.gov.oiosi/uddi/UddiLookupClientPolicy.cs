@@ -66,6 +66,7 @@ namespace dk.gov.oiosi.uddi {
         /// if an attempt to connect to a UDDI fails.
         /// </summary>
         private bool _tryOtherHostsOnFailure = config.TryOtherHostsOnFailure;
+
         /// <summary>
         /// 
         /// </summary>

@@ -45,15 +45,12 @@ namespace dk.gov.oiosi.uddi {
         private string _profileConformanceClaim = "";
         private string _registrationConformanceClaim = "";
         
-        private string _uddiInquireEndpointURL = "";
-        private string _uddiInquireEndpointURLFallback = "";
         private string _uddiPublishEndpointURL = "";
         private string _uddiSecurityEndpointURL = "";
 
         private int _fallbackTimeoutMinutes = 0;
         private LookupReturnOptionEnum _lookupReturnOptions = LookupReturnOptionEnum.allResults;
-        private bool _tryOtherHostsOnFailure = true;
-        private ranges.GatewayRange _gatewayRange = null;
+        private bool _tryOtherHostsOnFailure;
 
         /// <summary>
         /// Gets or sets the default service profile claim used when performing
@@ -73,22 +70,6 @@ namespace dk.gov.oiosi.uddi {
             set { _registrationConformanceClaim = value; }
         }
 
-        /// <summary>
-        /// Gets or sets the default UDDI inquiry service endpoint
-        /// </summary>
-        public string UddiInquireEndpointURL {
-            get { return _uddiInquireEndpointURL; }
-            set { _uddiInquireEndpointURL = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the fallback UDDI inquiry service endpoint. This endpoint is used
-        /// if the main inquiry endpoint fails
-        /// </summary>
-        public string UddiInquireEndpointURLFallback {
-            get { return _uddiInquireEndpointURLFallback; }
-            set { _uddiInquireEndpointURLFallback = value; }
-        }
 
         /// <summary>
         /// Gets or sets the default UDDI publish service endpoint
@@ -123,29 +104,17 @@ namespace dk.gov.oiosi.uddi {
         }
 
         /// <summary>
-        /// Gets or sets the 'try other hosts on failure' flag
-        /// </summary>
-        public bool TryOtherHostsOnFailure {
-            get { return _tryOtherHostsOnFailure; }
-            set { _tryOtherHostsOnFailure = value; }
-        }
-
-
-        /// <summary>
-        /// Gets or sets the gateway range configuration
-        /// </summary>
-        public ranges.GatewayRange GatewayRange {
-            get { return _gatewayRange; }
-            set { _gatewayRange = value; }
-        }
-
-        /// <summary>
         /// Gets or sets the list of registries to try lookup with
         /// </summary>
         public LookupRegistryFallbackConfig LookupRegistryFallbackConfig
         {
             get { return lookupRegistryFallbackConfig; }
             set { lookupRegistryFallbackConfig = value; }
+        }
+
+        public bool TryOtherHostsOnFailure{
+            get { return _tryOtherHostsOnFailure; }
+            set { _tryOtherHostsOnFailure = value; }
         }
 
         /// <summary>

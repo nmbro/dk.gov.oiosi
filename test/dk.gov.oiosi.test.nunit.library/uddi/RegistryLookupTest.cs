@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 		private Uri firstFallback = new Uri("http://fallback1.com");
 		private Uri secondRegistry = new Uri("http://test2.com");
 		private Uri thirdRegistry = new Uri("http://test3.com");
+        private Uri secondFallback = new Uri("http://fallback2.com");
 		private Uri fourthRegistry = new Uri("http://test4.com");
 		private Uri fourthFallback1 = new Uri("http://fallback41.com");
 		private Uri fourthFallback2 = new Uri("http://fallback42.com");
@@ -60,26 +61,8 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
     	[SetUp]
         public void SetUp(){
             ConfigurationHandler.ConfigFilePath = "..\\..\\Resources\\RaspConfiguration.xml";
+            SetUpConfiguration();
         }
-
-		private LookupParameters CreateParams(IdentifierEan ean){
-			return new LookupParameters(
-				ean, new EndpointKeytype(EndpointKeyTypeCode.ean),
-				null,
-				PreferredEndpointType.http,
-				LookupReturnOptionEnum.firstResult,
-				null,
-				new BusinessProcessRoleIdentifierType(),
-				new BusinessProcessRoleIdentifier(), new UddiId[0]);
-		}
-
-		private AdvancedUddiDummyClientConfig GetClearDummyConfig(){
-			// Clears the dummy so that all calls return a result
-			AdvancedUddiDummyClientConfig dummyConfig = ConfigurationHandler.GetConfigurationSection<AdvancedUddiDummyClientConfig>();
-			dummyConfig.NonExistingRegistrations.Clear();
-			dummyConfig.ErroneousEndpoints.Clear();
-			return dummyConfig;
-		}
 
         [Test]
         public void _01_TestSuccesfulOnFirstLookup(){
@@ -136,7 +119,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 		}
 
         [Test]
-        public void _05_TestUnsuccesfulOnAllRegistries(){
+        public void _06_TestUnsuccesfulOnAllRegistries(){
 			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier> { endpointInNoRegistry });
 			config.NonExistingRegistrations.Add(secondRegistry, new List<IIdentifier> { endpointInNoRegistry });
@@ -146,6 +129,66 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInNoRegistry));
 			Assert.IsEmpty(result);
+        }
+
+        private LookupParameters CreateParams(IdentifierEan ean)
+        {
+            return new LookupParameters(
+                ean, new EndpointKeytype(EndpointKeyTypeCode.ean),
+                null,
+                PreferredEndpointType.http,
+                LookupReturnOptionEnum.firstResult,
+                null,
+                new BusinessProcessRoleIdentifierType(),
+                new BusinessProcessRoleIdentifier(), new UddiId[0]);
+        }
+
+        private AdvancedUddiDummyClientConfig GetClearDummyConfig()
+        {
+            // Clears the dummy so that all calls return a result
+            AdvancedUddiDummyClientConfig dummyConfig = ConfigurationHandler.GetConfigurationSection<AdvancedUddiDummyClientConfig>();
+            dummyConfig.NonExistingRegistrations.Clear();
+            dummyConfig.ErroneousEndpoints.Clear();
+            return dummyConfig;
+        }
+
+        private void SetUpConfiguration(){
+            // Configures fallback sequence
+            UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+            uddiConfig.FallbackTimeoutMinutes = 1;
+            uddiConfig.PublishEndpoint = uddiConfig.SecurityEndpoint = "http://a.com";
+            uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(
+                new Registry(
+                    new List<string>(){
+                        firstRegistry.ToString(), 
+                        firstFallback.ToString()}));
+
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(
+                new Registry(
+                    new List<string>(){
+                        secondRegistry.ToString(), 
+                        secondFallback.ToString()}));
+
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(
+                new Registry(
+                    new List<string>(){
+                        thirdRegistry.ToString()}));
+
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(
+                new Registry(
+                    new List<string>(){
+                        fourthRegistry.ToString(), 
+                        fourthFallback1.ToString(),
+                        fourthFallback2.ToString()}));
+
+            // Configures factories for UDDI lookup clients used
+            RegistryLookupClientFactoryConfig registryLookupClientFactoryConfig = ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
+            registryLookupClientFactoryConfig.ImplementationNamespaceClass = typeof (RegistryLookupClient).FullName;
+            registryLookupClientFactoryConfig.ImplementationAssembly = typeof(RegistryLookupClient).Assembly.FullName;
+            UddiLookupClientFactoryConfig uddiLookupClientFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
+            uddiLookupClientFactoryConfig.ImplementationNamespaceClass = typeof(AdvancedUddiDummyClient).FullName;
+            uddiLookupClientFactoryConfig.ImplementationAssembly = typeof(AdvancedUddiDummyClient).Assembly.FullName;
         }
 
     }
