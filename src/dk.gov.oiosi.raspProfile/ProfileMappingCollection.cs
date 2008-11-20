@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.raspProfile {
     /// <summary>
     /// Defines all OIOUBL profile mappings
     /// </summary>
-    public class OioublProfileMappingCollection {
+    public class ProfileMappingCollection {
 
         /// <summary>
         /// Adds all the mappings
@@ -92,7 +92,7 @@ namespace dk.gov.oiosi.raspProfile {
 
         private void AddOneMapping(string name, string tModelGuid)
         {
-            OioublProfileMapping profileMapping = new OioublProfileMapping(name, tModelGuid);
+            ProfileMapping profileMapping = new ProfileMapping(name, tModelGuid);
             Add(profileMapping);
         }
 
@@ -109,8 +109,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// Adds a document type definition to the collection
         /// </summary>
         /// <param name="profileMapping"></param>
-        private void Add(OioublProfileMapping profileMapping) {
-            OioublProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<OioublProfileMappingCollectionConfig>();
+        private void Add(ProfileMapping profileMapping) {
+            ProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
             if (!configuration.ContainsProfileMappingByName(profileMapping.Name))
                 configuration.AddProfileMapping(profileMapping);
         }

@@ -110,10 +110,10 @@
     <Compile Include="common\validation\EanValidator.cs" />
     <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromIdException.cs" />
     <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromParametersException.cs" />
-    <Compile Include="communication\configuration\OioublProfileMapping.cs">
+    <Compile Include="communication\configuration\ProfileMapping.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="communication\configuration\OioublProfileMappingCollectionConfig.cs">
+    <Compile Include="communication\configuration\ProfileMappingCollectionConfig.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="communication\configuration\ProfileIdXPath.cs" />

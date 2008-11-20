@@ -40,25 +40,25 @@ namespace dk.gov.oiosi.communication.configuration {
     /// A collection of RaspDocumentTypeConfig
     /// </summary>
     [System.Xml.Serialization.XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-    public class OioublProfileMappingCollectionConfig {
-        private List<OioublProfileMapping> _profileMappings = new List<OioublProfileMapping>();
+    public class ProfileMappingCollectionConfig {
+        private List<ProfileMapping> _profileMappings = new List<ProfileMapping>();
 
         /// <summary>
         /// A list OIOUBL Profiles, and the mapping between unique profile name and the 
         /// corresponding tModel GUID
         /// </summary>
         [XmlArray("ProfileMappingCollection")]
-        public OioublProfileMapping[] ProfileMappings
+        public ProfileMapping[] ProfileMappings
         {
             get { return _profileMappings.ToArray(); }
-            set { _profileMappings = new List<OioublProfileMapping>(value); } 
+            set { _profileMappings = new List<ProfileMapping>(value); } 
         }
 
         /// <summary>
         /// Adds a new RASP document type to the configuration
         /// </summary>
         /// <param name="profileMapping">documenttype to add</param>
-        public void AddProfileMapping(OioublProfileMapping profileMapping) {
+        public void AddProfileMapping(ProfileMapping profileMapping) {
             if (profileMapping == null)
                 throw new NullArgumentException("profileMapping");
             if (ContainsProfileMappingByName(profileMapping.Name))
@@ -82,7 +82,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <returns></returns>
         public bool ContainsProfileMappingByName(string profileMappingName)
         {
-            Predicate<OioublProfileMapping> match = delegate(OioublProfileMapping current) {
+            Predicate<ProfileMapping> match = delegate(ProfileMapping current) {
                 return current.Name.Equals(profileMappingName);
             };
             return _profileMappings.Exists(match);
@@ -93,9 +93,9 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="profileMappingName"></param>
         /// <returns></returns>
-        public OioublProfileMapping GetMapping(string profileMappingName)
+        public ProfileMapping GetMapping(string profileMappingName)
         {
-            Predicate<OioublProfileMapping> match = delegate(OioublProfileMapping current) {
+            Predicate<ProfileMapping> match = delegate(ProfileMapping current) {
                 return current.Name.Equals(profileMappingName);
             };
             if (ContainsProfileMappingByName(profileMappingName))

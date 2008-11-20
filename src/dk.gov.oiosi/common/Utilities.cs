@@ -80,24 +80,6 @@ namespace dk.gov.oiosi.common {
         }
 
         /// <summary>
-        /// From an xpath expression, gets the endpoint key
-        /// </summary>
-        /// <param name="xmlDoc">The xml document to search</param>
-        /// <param name="xpath">The xpath expression to apply</param>
-        /// <param name="prefixedNamespaces">The list of namespaces-prefix pairs used in the xpath expression</param>
-        /// <returns>Returns the endpoint key</returns>
-        public static string GetProfileNameByXpath(
-            XmlDocument xmlDoc,
-            string xpath,
-            PrefixedNamespace[] prefixedNamespaces
-        ) {
-            // 1. Get the endpoint as string:
-            string profileNameString = DocumentXPathResolver.GetElementValueByXpath(xmlDoc, xpath, prefixedNamespaces);
-            return profileNameString;
-        }
-        
-
-        /// <summary>
         /// Extracts the body of a WCF Message and returns it as an XmlDocment
         /// </summary>
         /// <param name="msg">The WCF message</param>

@@ -61,8 +61,8 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile {
                 ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
             Assert.AreEqual(docTypeConfig.DocumentTypes.Length, 8);
 
-            OioublProfileMappingCollectionConfig profileMappingConfig =
-                ConfigurationHandler.GetConfigurationSection<OioublProfileMappingCollectionConfig>();
+            ProfileMappingCollectionConfig profileMappingConfig =
+                ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
             Assert.AreEqual(profileMappingConfig.ProfileMappings.Length, 43);
         }
 
@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile {
         }
 
         private void SetupProfileMappings() {
-            OioublProfileMappingCollection profileMappings = new OioublProfileMappingCollection();
+            ProfileMappingCollection profileMappings = new ProfileMappingCollection();
             profileMappings.AddAll();
         }
 

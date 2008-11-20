@@ -36,14 +36,14 @@ namespace dk.gov.oiosi.communication.configuration {
     /// Represents a mapping between between internal and external endpoint key type codes
     /// </summary>
     [XmlType("ProfileMapping", Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-    public class OioublProfileMapping {
+    public class ProfileMapping {
         private string _name;
         private string _tModelGuid;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public OioublProfileMapping() {
+        public ProfileMapping() {
             _name = "";
             _tModelGuid = "";
         }
@@ -53,7 +53,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="name">Value</param>
         /// <param name="tModelGuid">Value mapping</param>
-        public OioublProfileMapping(string name, string tModelGuid) {
+        public ProfileMapping(string name, string tModelGuid) {
             _name = name;
             _tModelGuid = tModelGuid;
         }
