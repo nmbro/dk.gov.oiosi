@@ -68,8 +68,10 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
 				return new List<UddiLookupResponse>();
 			}
 
-			Console.WriteLine("Dummy UDDI returning " + parameters.EndpointKey.GetAsString() + " from " + _address);	
-			return new List<UddiLookupResponse>{new UddiLookupResponse()};
+			Console.WriteLine("Dummy UDDI returning " + parameters.EndpointKey.GetAsString() + " from " + _address);
+            UddiLookupResponse response = new UddiLookupResponse();
+            response.EndpointAddress = new EndpointAddressHttp(_address);
+			return new List<UddiLookupResponse>{response};
         }
 
         [XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]

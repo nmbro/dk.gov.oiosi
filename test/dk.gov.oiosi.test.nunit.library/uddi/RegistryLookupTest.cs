@@ -41,16 +41,17 @@ using NUnit.Framework;
 namespace dk.gov.oiosi.test.nunit.library.uddi{
     [TestFixture]
     public class RegistryLookupTest {
+        // The fake registries (and fallback servers)
     	private Uri firstRegistry = new Uri("http://test1.com");
 		private Uri firstFallback = new Uri("http://fallback1.com");
-		private Uri secondRegistry = new Uri("http://test2.com");
-		private Uri thirdRegistry = new Uri("http://test3.com");
+        private Uri secondRegistry = new Uri("http://test2.com");
         private Uri secondFallback = new Uri("http://fallback2.com");
+        private Uri thirdRegistry = new Uri("http://test3.com");
 		private Uri fourthRegistry = new Uri("http://test4.com");
 		private Uri fourthFallback1 = new Uri("http://fallback41.com");
 		private Uri fourthFallback2 = new Uri("http://fallback42.com");
 
-
+        // The fake endpoints
 		private IdentifierEan endpointInNoRegistry = new IdentifierEan("5700000000000");
     	private IdentifierEan endpointInFirstRegistry = new IdentifierEan("5700000000001");
     	private IdentifierEan endpointInSecondRegistry = new IdentifierEan("5700000000002");
@@ -70,6 +71,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			List<UddiLookupResponse>result = client.Lookup(CreateParams(endpointInFirstRegistry));
 			Assert.IsNotNull(result);
 			Assert.IsNotEmpty(result);
+            Assert.AreEqual(firstRegistry.ToString(),result[0].EndpointAddress.GetKeyAsString());
         }
 
         [Test]
@@ -80,6 +82,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
 			Assert.IsNotNull(result);
 			Assert.IsNotEmpty(result);
+            Assert.AreEqual(firstFallback.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
 		[Test,ExpectedException(typeof(UddiLookupException))]
@@ -100,6 +103,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInSecondRegistry));
 			Assert.IsNotNull(result);
 			Assert.IsNotEmpty(result);
+            Assert.AreEqual(secondRegistry.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
 		[Test]
@@ -115,6 +119,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFourthRegistry));
 			Assert.IsNotNull(result);
 			Assert.IsNotEmpty(result);
+            Assert.AreEqual(fourthFallback2.ToString(), result[0].EndpointAddress.GetKeyAsString());
 		}
 
         [Test]
