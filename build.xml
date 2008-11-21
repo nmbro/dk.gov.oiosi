@@ -7,6 +7,8 @@
   <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
   <property name="Root.dir" value="."/>
   <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
+  <property name="RaspProfile.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
+  <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.raspProfile"/>
   <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
 
   <target name="Clean" description="Remove all build products">
@@ -57,6 +59,21 @@
      <!-- Executable -->
      <zip zipfile="${Dist.dir}\dk.gov.oiosi-${Revision}.zip">
        <fileset basedir="${Oiosi.dir}\bin\Release">
+         <include name="**/*" />
+       </fileset>
+     </zip>
+     
+     <!-- Lesnikowski Mail Provider -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
+       <fileset basedir="${Lesnikowski.dir}\bin\Release">
+         <include name="**/*" />
+       </fileset>
+     </zip>
+
+
+     <!-- Rasp profile library -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
+       <fileset basedir="${RaspProfile.dir}\bin\Release">
          <include name="**/*" />
        </fileset>
      </zip>
