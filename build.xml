@@ -7,8 +7,8 @@
   <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
   <property name="Root.dir" value="."/>
   <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
-  <property name="RaspProfile.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
-  <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.raspProfile"/>
+  <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
+  <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
   <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
 
   <target name="Clean" description="Remove all build products">
