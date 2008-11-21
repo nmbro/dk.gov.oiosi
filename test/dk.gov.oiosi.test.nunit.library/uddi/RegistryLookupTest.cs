@@ -40,8 +40,7 @@ using NUnit.Framework;
 
 namespace dk.gov.oiosi.test.nunit.library.uddi{
     [TestFixture]
-    public class RegistryLookupTest{
-
+    public class RegistryLookupTest {
     	private Uri firstRegistry = new Uri("http://test1.com");
 		private Uri firstFallback = new Uri("http://fallback1.com");
 		private Uri secondRegistry = new Uri("http://test2.com");
@@ -75,7 +74,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 
         [Test]
         public void _02_TestSuccesfulOnFirstFallback(){
-			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.ErroneousEndpoints.Add(firstRegistry);
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
@@ -85,7 +84,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 
 		[Test,ExpectedException(typeof(UddiLookupException))]
 		public void _03_TestFailureOnFirstRegistry() {
-			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.ErroneousEndpoints.Add(firstRegistry);
 			config.ErroneousEndpoints.Add(firstFallback);
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
@@ -95,7 +94,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 
         [Test]
         public void _04_TestSuccesfulOnSecondRegistry(){
-			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier>{endpointInSecondRegistry});
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInSecondRegistry));
@@ -105,7 +104,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 
 		[Test]
 		public void _05_TestSuccesfulOnLastFallback() {
-			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier> { endpointInFourthRegistry});
 			config.NonExistingRegistrations.Add(secondRegistry, new List<IIdentifier> { endpointInFourthRegistry });
 			config.NonExistingRegistrations.Add(thirdRegistry, new List<IIdentifier> { endpointInFourthRegistry });
@@ -120,7 +119,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 
         [Test]
         public void _06_TestUnsuccesfulOnAllRegistries(){
-			AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier> { endpointInNoRegistry });
 			config.NonExistingRegistrations.Add(secondRegistry, new List<IIdentifier> { endpointInNoRegistry });
 			config.NonExistingRegistrations.Add(thirdRegistry, new List<IIdentifier> { endpointInNoRegistry });
@@ -131,22 +130,21 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			Assert.IsEmpty(result);
         }
 
-        private LookupParameters CreateParams(IdentifierEan ean)
-        {
+        private LookupParameters CreateParams(IdentifierEan ean) {
             return new LookupParameters(
-                ean, new EndpointKeytype(EndpointKeyTypeCode.ean),
+                ean, 
+                new EndpointKeytype(EndpointKeyTypeCode.ean),
                 null,
                 PreferredEndpointType.http,
-                LookupReturnOptionEnum.firstResult,
+                LookupReturnOption.firstResult,
                 null,
                 new BusinessProcessRoleIdentifierType(),
                 new BusinessProcessRoleIdentifier(), new UddiId[0]);
         }
 
-        private AdvancedUddiDummyClientConfig GetClearDummyConfig()
-        {
+        private AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig GetClearDummyConfig() {
             // Clears the dummy so that all calls return a result
-            AdvancedUddiDummyClientConfig dummyConfig = ConfigurationHandler.GetConfigurationSection<AdvancedUddiDummyClientConfig>();
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig dummyConfig = ConfigurationHandler.GetConfigurationSection<AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig>();
             dummyConfig.NonExistingRegistrations.Clear();
             dummyConfig.ErroneousEndpoints.Clear();
             return dummyConfig;
@@ -190,6 +188,5 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
             uddiLookupClientFactoryConfig.ImplementationNamespaceClass = typeof(AdvancedUddiDummyClient).FullName;
             uddiLookupClientFactoryConfig.ImplementationAssembly = typeof(AdvancedUddiDummyClient).Assembly.FullName;
         }
-
     }
 }

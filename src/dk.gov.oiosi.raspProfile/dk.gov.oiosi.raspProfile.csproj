@@ -51,7 +51,6 @@
     <Compile Include="DefaultLdapConfig.cs" />
     <Compile Include="DefaultOcesCertificate.cs" />
     <Compile Include="DefaultOcspConfig.cs" />
-    <Compile Include="DefaultOioUblProfiles.cs" />
     <Compile Include="DefaultRootCertificateConfig.cs" />
     <Compile Include="DefaultUddiConfig.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />

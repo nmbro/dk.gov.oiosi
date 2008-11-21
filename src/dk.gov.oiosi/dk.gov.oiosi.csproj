@@ -204,7 +204,6 @@
     <Compile Include="uddi\RegistryLookupClientFactoryConfig.cs" />
     <Compile Include="uddi\IdentifierMissingException.cs" />
     <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
-    <Compile Include="uddi\LookupParametersConfig.cs" />
     <Compile Include="uddi\LookupReturnOptionEnum.cs" />
     <Compile Include="uddi\PreferredEndpointType.cs" />
     <Compile Include="uddi\Registry.cs" />

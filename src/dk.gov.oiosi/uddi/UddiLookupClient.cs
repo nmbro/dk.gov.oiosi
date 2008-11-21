@@ -53,39 +53,23 @@ namespace dk.gov.oiosi.uddi {
         private object CacheLock = new object();
     	private Uri _address;
 
-    	private void Init() {
-            // 1. If a default connection has not been set, set it
-            if (UddiConnection.DefaultConnection == null) {
-                UddiConnection.DefaultConnection = new UddiConnection(
-                    new UddiConnectionNetworkParams(
-                        _address.ToString(),
-						null,
-                        _configuration.PublishEndpoint,
-                        _configuration.SecurityEndpoint,
-                        _configuration.FallbackTimeoutMinutes,
-                        false)
-                );
-            }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UddiLookupClient(Uri address) {
+            _address = address;
+            _configuration = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+            Init();
         }
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public UddiLookupClient(Uri address) {
-			_address = address;
-			_configuration = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-			Init();
-		}
-
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public UddiLookupClient(Uri address, UddiConfig configuration) {
-			_address = address;
-			_configuration = configuration;
-			Init();
-		}
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public UddiLookupClient(Uri address, UddiConfig configuration) {
+            _address = address;
+            _configuration = configuration;
+            Init();
+        }
 
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
@@ -93,18 +77,14 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="parameters">The business level key of the endpoint, e.g. an EAN number
         /// as well as options of the translation, i.e. address type filters</param>
         /// <returns>Returns a collection of matching addresses</returns>
-        public List<UddiLookupResponse> Lookup(
-           LookupParameters parameters
-        ) {
+        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
             try {
                 // Check cache, if not found there, inquire UDDI
                 List<UddiLookupResponse> inquiryResult = CachedInquire(parameters);
-
                 // If inquiry result is null, return empty list
                 if (inquiryResult == null) return new List<UddiLookupResponse>();
-
-                // Return result
-                return inquiryResult;
+                //return filtered response
+                return FilterResponse(parameters, inquiryResult);
             }
             catch (Exception ex) {
                 string endpKey = "NULL";
@@ -112,6 +92,21 @@ namespace dk.gov.oiosi.uddi {
                     endpKey = parameters.EndpointKey.GetAsString();
                 }
                 throw new UddiLookupException(endpKey, ex);
+            }
+        }
+
+        private void Init() {
+            // 1. If a default connection has not been set, set it
+            if (UddiConnection.DefaultConnection == null) {
+                UddiConnection.DefaultConnection = new UddiConnection(
+                    new UddiConnectionNetworkParams(
+                        _address.ToString(),
+                        null,
+                        _configuration.PublishEndpoint,
+                        _configuration.SecurityEndpoint,
+                        _configuration.FallbackTimeoutMinutes,
+                        false)
+                );
             }
         }
 
@@ -157,12 +152,12 @@ namespace dk.gov.oiosi.uddi {
             // How many endpoints are we expecting?
             if (inquiryResult.Count > 0) {
                 switch (parameters.LookupReturnOption) {
-                    case LookupReturnOptionEnum.allResults:
+                    case LookupReturnOption.allResults:
                         return inquiryResult;
-                    case LookupReturnOptionEnum.firstResult:
+                    case LookupReturnOption.firstResult:
                         newFilteredResult.Add(inquiryResult[0]);
                         return newFilteredResult;
-                    case LookupReturnOptionEnum.noMoreThanOneSetOrFail:
+                    case LookupReturnOption.noMoreThanOneSetOrFail:
                         if (inquiryResult.Count > 2) {
                             throw new UddiMoreThanOneEndpointException();
                         } 

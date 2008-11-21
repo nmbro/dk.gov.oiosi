@@ -55,7 +55,6 @@
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
-    <Compile Include="uddi\LookupParametersConfigTest.cs" />
     <Compile Include="uddi\RegistryLookupTest.cs" />
     <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
     <Compile Include="xml\schematron\SchematronValidationTest.cs" />

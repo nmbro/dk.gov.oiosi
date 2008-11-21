@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.uddi {
         private UddiId _businessProcessDefinitionTModel;
         private BusinessProcessRoleIdentifierType _roleIdentifierType;
         private PreferredEndpointType _preferredEndpointType;
-        private LookupReturnOptionEnum _lookupReturnOption = LookupReturnOptionEnum.allResults;
+        private LookupReturnOption _lookupReturnOption = uddi.LookupReturnOption.allResults;
         private RegistrationConformanceClaim _registrationConformanceClaim = new RegistrationConformanceClaim(RegistrationConformanceClaimCode.oiosi1_1);
         private ConformanceClaim _profileConformanceClaim = new ConformanceClaim(ConformanceClaimCode.secureReliableAsyncProfile1_0);
         private BusinessProcessRoleIdentifier _roleIdentifier;
@@ -89,7 +89,18 @@ namespace dk.gov.oiosi.uddi {
         ) {
             // Note that addressTypeFilter is allowed to be null or empty.
             _addressTypeFilter = addressTypeFilter;
-            _lookupReturnOption = lookupReturnOption;
+            //Enables backwards compability
+            switch (lookupReturnOption) {
+                case LookupReturnOptionEnum.allResults:
+                    _lookupReturnOption = uddi.LookupReturnOption.allResults;
+                    break;
+                case LookupReturnOptionEnum.firstResult:
+                    _lookupReturnOption = uddi.LookupReturnOption.firstResult;
+                    break;
+                case LookupReturnOptionEnum.noMoreThanOneSetOrFail:
+                    _lookupReturnOption = uddi.LookupReturnOption.noMoreThanOneSetOrFail;
+                    break;
+            }
             _endpointKey = endpointKey;
             _endpointKeyType = endpointKeyType;
             _serviceContractTModel = serviceContractTModel;
@@ -124,7 +135,7 @@ namespace dk.gov.oiosi.uddi {
             EndpointKeytype endpointKeyType,
             List<EndpointAddressTypeCode> addressTypeFilter,
             PreferredEndpointType preferredEndpointType,
-            LookupReturnOptionEnum lookupReturnOption,
+            LookupReturnOption lookupReturnOption,
             UddiId serviceContractTModel,
             BusinessProcessRoleIdentifierType roleIdentifierType,
             BusinessProcessRoleIdentifier roleIdentifier,
@@ -141,6 +152,25 @@ namespace dk.gov.oiosi.uddi {
             _processDefinitions.AddRange(processDefinitions);
             _preferredEndpointType = preferredEndpointType;
         }
+
+        /// <summary>
+        /// Shallow copy constructor
+        /// </summary>
+        /// <param name="parameters">The lookupparamters to set</param>
+        public LookupParameters(LookupParameters parameters) {
+            // Note that addressTypeFilter is allowed to be null or empty.
+            _addressTypeFilter = parameters._addressTypeFilter;
+            _lookupReturnOption = parameters._lookupReturnOption;
+            _endpointKey = parameters._endpointKey;
+            _endpointKeyType = parameters._endpointKeyType;
+            _serviceContractTModel = parameters._serviceContractTModel;
+            _roleIdentifierType = parameters._roleIdentifierType;
+            _roleIdentifier = parameters._roleIdentifier;
+            _processDefinitions.AddRange(parameters._processDefinitions);
+            _preferredEndpointType = parameters._preferredEndpointType;
+        }
+
+
 
         /// <summary>
         /// The key of the endpoint.
@@ -213,7 +243,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// The return semantics of the Lookup() operation. See the LookupReturnOptionEnum for details.
         /// </summary>
-        public LookupReturnOptionEnum LookupReturnOption {
+        public LookupReturnOption LookupReturnOption {
             get { return _lookupReturnOption; }
         }
         

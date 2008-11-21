@@ -93,9 +93,9 @@ namespace dk.gov.oiosi.integration.uddi {
                 
                 List<EndpointAddressTypeCode> adressTypeFilter = new List<EndpointAddressTypeCode>();
                 PreferredEndpointType preferredEndpointType = PreferredEndpointType.http;
-                LookupReturnOptionEnum lookupReturnOptionEnum = LookupReturnOptionEnum.allResults;
+                LookupReturnOption lookupReturnOption = LookupReturnOption.allResults;
                 LookupParameters parameters = new LookupParameters(identifier, identifierType, adressTypeFilter,
-                                                                   preferredEndpointType, lookupReturnOptionEnum,
+                                                                   preferredEndpointType, lookupReturnOption,
                                                                    serviceDefinitionId, null, null, processDefinitionIds);
                 return lookupClient.Lookup(parameters);
             }

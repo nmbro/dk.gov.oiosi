@@ -34,37 +34,31 @@ using System.Xml.Serialization;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.test.nunit.library.uddi
-{
-    public class AdvancedUddiDummyClient :IUddiLookupClient
-    {
+namespace dk.gov.oiosi.test.nunit.library.uddi {
+    public class AdvancedUddiDummyClient :IUddiLookupClient {
         private List<Uri> _erroneousEndpoints = new List<Uri>();
         private Dictionary<Uri,List<IIdentifier>> _nonExistingRegistrations = new Dictionary<Uri, List<IIdentifier>>();
     	private Uri _address;
 
     	public AdvancedUddiDummyClient(Uri address){
 			_address = address;
-
 			AdvancedUddiDummyClientConfig config = dk.gov.oiosi.configuration.ConfigurationHandler.GetConfigurationSection<AdvancedUddiDummyClientConfig>();
     		ErroneousEndpoints = config.ErroneousEndpoints;
     		NonExistingRegistrations = config.NonExistingRegistrations;
 		}
 
-    	public List<Uri> ErroneousEndpoints
-        {
+    	public List<Uri> ErroneousEndpoints {
             get { return _erroneousEndpoints; }
             set { _erroneousEndpoints = value; }
         }
 
-        public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations
-        {
+        public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations {
             get { return _nonExistingRegistrations; }
             set { _nonExistingRegistrations = value; }
         }
 
 
-        public List<UddiLookupResponse> Lookup(LookupParameters parameters)
-        {
+        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
 			if (ErroneousEndpoints.Contains(_address)){
 				Console.WriteLine("Dummy UDDI throwing on register " + _address);
 				throw new UddiLookupException(parameters.EndpointKey.GetAsString(), new Exception("Error error"));
@@ -77,23 +71,23 @@ namespace dk.gov.oiosi.test.nunit.library.uddi
 			Console.WriteLine("Dummy UDDI returning " + parameters.EndpointKey.GetAsString() + " from " + _address);	
 			return new List<UddiLookupResponse>{new UddiLookupResponse()};
         }
+
+        [XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
+        public class AdvancedUddiDummyClientConfig {
+            private List<Uri> _erroneousEndpoints = new List<Uri>();
+            private Dictionary<Uri, List<IIdentifier>> _nonExistingRegistrations = new Dictionary<Uri, List<IIdentifier>>();
+
+            [XmlIgnore]
+            public List<Uri> ErroneousEndpoints {
+                get { return _erroneousEndpoints; }
+                set { _erroneousEndpoints = value; }
+            }
+
+            [XmlIgnore]
+            public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations {
+                get { return _nonExistingRegistrations; }
+                set { _nonExistingRegistrations = value; }
+            }
+        }
     }
-
-	[XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-	public class AdvancedUddiDummyClientConfig{
-		private List<Uri> _erroneousEndpoints = new List<Uri>();
-		private Dictionary<Uri,List<IIdentifier>> _nonExistingRegistrations = new Dictionary<Uri, List<IIdentifier>>();
-
-		[XmlIgnore]
-		public List<Uri> ErroneousEndpoints{
-			get { return _erroneousEndpoints; }
-			set { _erroneousEndpoints = value; }
-		}
-
-		[XmlIgnore]
-		public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations{
-			get { return _nonExistingRegistrations; }
-			set { _nonExistingRegistrations = value; }
-		}
-	}
 }
