@@ -57,7 +57,7 @@
    <target name="Distribute" depends="RunTests">
      
      <!-- Executable -->
-     <zip zipfile="${Dist.dir}\dk.gov.oiosi-${Revision}.zip">
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
        <fileset basedir="${Oiosi.dir}\bin\Release">
          <include name="**/*" />
        </fileset>
@@ -78,6 +78,13 @@
        </fileset>
      </zip>
 
+     <!-- Rasp profile resources -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-resources-${Revision}.zip">
+       <fileset basedir="${RaspProfile.dir}\Resources">
+         <include name="**/*" />
+       </fileset>
+     </zip>
+
      <!-- Source -->
      <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
        <fileset basedir="${Root.dir}">
@@ -86,6 +93,7 @@
          <exclude name="**/bin/**" />
        </fileset>
      </zip>
+
 
    </target>
 
