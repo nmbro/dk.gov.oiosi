@@ -79,14 +79,25 @@ namespace dk.gov.oiosi.raspProfile {
         /// Adds all the document types
         /// </summary>
         public void Add() {
-            Add(new GetDocumentType(ApplicationResponse));
-            Add(new GetDocumentType(CreditNote));
-            Add(new GetDocumentType(Invoice));
-            Add(new GetDocumentType(Order));
-            Add(new GetDocumentType(OrderResponseSimple));
-            Add(new GetDocumentType(Reminder));
             Add(new GetDocumentType(InvoiceV07));
             Add(new GetDocumentType(CreditNoteV07));
+            
+            Add(new GetDocumentType(ApplicationResponse));  // Applikationsmeddelelse
+            Add(new GetDocumentType(CreditNote));           // Kreditnota
+            Add(new GetDocumentType(Invoice));              // Faktura
+            Add(new GetDocumentType(Order));                // Ordre
+            Add(new GetDocumentType(OrderResponseSimple));  // Simpel ordrebekræftelse
+            Add(new GetDocumentType(Reminder));             // Rykker
+
+            //Add(Catalogue);                                 // Katalog, uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899
+            //Add(CatalogueRequest);                          // Katalogforespørgsel, uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899
+            //Add(Statement);                                 // KontoUdtog, uddi:4e383840-bcfc-11dc-a81b-bfc65441a808
+            //Add(CatalogueItemSpecificationUpdate);          // Opdatering af katalogelement, uddi:63eab5c0-dfa0-11dc-889b-1a827c218899
+            //Add(CataloguePricingUpdate);                    // Opdatering af katalogpriser, uddi:abdb2720-dfa0-11dc-889b-1a827c218899
+            //Add(OrderCancellation);                         // Ordreannulering, uddi:7ba80590-dfa1-11dc-889b-1a827c218899
+            //Add(OrderResponse);                             // Ordrebekræftelse, uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899
+            //Add(OrderChange);                               // Ordreændring,  uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336
+            //Add(CatalogueDeletion);                         // Sletning af katalog, uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899
         }
 
         /// <summary>
@@ -107,6 +118,46 @@ namespace dk.gov.oiosi.raspProfile {
             DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
             if (!configuration.ContainsDocumentTypeByValue(documentType))
                 configuration.AddDocumentType(documentType);
+        }
+
+        /// <summary>
+        /// The application response document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig OrderCancellation() {
+            string NAME = "Ordreannulering";
+            string ROOTNAME = "OrderCancellation";
+            string ROOTNAMESPACE = "urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2";
+            string PATH_APPLICATIONRESPONSE_XSD = "Resources/Schemas/OIOUBL v2.01/UBL-OrderCancellation-2.0.xsd";
+            string PATH_APPLICATIONRESPONSE_XSL = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_OrderCancellation_Schematron.xsl";
+            string PATH_APPLICATIONRESPONSE_XSL_UI = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            string XPATH_APPLICATIONRESPONSE_DESTINATION_KEY = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            string XPATH_APPLICATIONRESPONSE_DESTINATION_FRIENDLYNAME = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            string XPATH_APPLICATIONRESPONSE_SENDER_KEY = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            string XPATH_APPLICATIONRESPONSE_SENDER_FRIENDLYNAME = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            string XPATH_APPLICATIONRESPONSE_PROFILEID = "/root:ApplicationResponse/cbc:ProfileID";
+
+            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(XPATH_APPLICATIONRESPONSE_DESTINATION_FRIENDLYNAME);
+            ServiceEndpointKey key = CreateKey(XPATH_APPLICATIONRESPONSE_DESTINATION_KEY);
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(XPATH_APPLICATIONRESPONSE_SENDER_FRIENDLYNAME);
+            ServiceEndpointKey senderKey = CreateKey(XPATH_APPLICATIONRESPONSE_SENDER_KEY);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(XPATH_APPLICATIONRESPONSE_PROFILEID);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation("http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest", "*", friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(ROOTNAME);
+            ids.Add(id);
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(PATH_APPLICATIONRESPONSE_XSL, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(NAME, ROOTNAME, ROOTNAMESPACE, PATH_APPLICATIONRESPONSE_XSD, PATH_APPLICATIONRESPONSE_XSL_UI, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
+            List<PrefixedNamespace> namespaces = GetUblNamespaces();
+            namespaces.Add(new PrefixedNamespace(ROOTNAMESPACE, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+            documentType.ServiceContractTModel = "uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5";
+
+            return documentType;
         }
 
         /// <summary>
