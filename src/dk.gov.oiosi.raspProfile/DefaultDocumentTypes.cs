@@ -28,6 +28,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication.configuration;
@@ -44,6 +45,15 @@ namespace dk.gov.oiosi.raspProfile {
         private delegate DocumentTypeConfig GetDocumentType();
 
         /// <summary>
+        /// Adds all the document types from configuration, clears collection first
+        /// </summary>
+        public void CleanAdd() {
+            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+            configuration.Clear();
+            Add();
+        }
+
+        /// <summary>
         /// Adds all the document types
         /// </summary>
         public void Add() {
@@ -57,24 +67,231 @@ namespace dk.gov.oiosi.raspProfile {
             Add(new GetDocumentType(OrderResponseSimple));  // Simpel ordrebekræftelse
             Add(new GetDocumentType(Reminder));             // Rykker
 
-            //Add(Catalogue);                                 // Katalog, uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899
-            //Add(CatalogueRequest);                          // Katalogforespørgsel, uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899
-            //Add(Statement);                                 // KontoUdtog, uddi:4e383840-bcfc-11dc-a81b-bfc65441a808
-            //Add(CatalogueItemSpecificationUpdate);          // Opdatering af katalogelement, uddi:63eab5c0-dfa0-11dc-889b-1a827c218899
-            //Add(CataloguePricingUpdate);                    // Opdatering af katalogpriser, uddi:abdb2720-dfa0-11dc-889b-1a827c218899
-            //Add(OrderCancellation);                         // Ordreannulering, uddi:7ba80590-dfa1-11dc-889b-1a827c218899
-            //Add(OrderResponse);                             // Ordrebekræftelse, uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899
-            //Add(OrderChange);                               // Ordreændring,  uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336
-            //Add(CatalogueDeletion);                         // Sletning af katalog, uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899
+            //Add(Catalogue);                                 // Katalog
+            //Add(CatalogueRequest);                          // Katalogforespørgsel
+            //Add(Statement);                                 // KontoUdtog
+            //Add(CatalogueItemSpecificationUpdate);          // Opdatering af katalogelement
+            //Add(CataloguePricingUpdate);                    // Opdatering af katalogpriser
+            //Add(OrderCancellation);                         // Ordreannulering
+            //Add(OrderResponse);                             // Ordrebekræftelse
+            //Add(OrderChange);                               // Ordreændring
+            //Add(CatalogueDeletion);                         // Sletning af katalog
         }
 
         /// <summary>
-        /// Adds all the document types from configuration, clears collection first
+        /// The catalogue document definition
         /// </summary>
-        public void CleanAdd() {
-            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            configuration.Clear();
-            Add();
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig Catalogue() {
+            const string documentName = "Katalog";
+            const string rootName = "Catalogue";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The catalogue request document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig CatalogueRequest() {
+            const string documentName = "Katalogforespørgsel";
+            const string rootName = "CatalogueRequest";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The statement document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig Statement() {
+            const string documentName = "KontoUdtog";
+            const string rootName = "Statement";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:4e383840-bcfc-11dc-a81b-bfc65441a808";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The catalogue item specification update document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig CatalogueItemSpecificationUpdate() {
+            const string documentName = "Opdatering af katalogelement";
+            const string rootName = "CatalogueItemSpecificationUpdate";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:63eab5c0-dfa0-11dc-889b-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The catalogue pricing update document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig CataloguePricingUpdate() {
+            const string documentName = "Opdatering af katalogpriser";
+            const string rootName = "CataloguePricingUpdate";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:abdb2720-dfa0-11dc-889b-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The order cancellation document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig OrderCancellation() {
+            const string documentName = "Ordreannulering";
+            const string rootName = "OrderCancellation";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:7ba80590-dfa1-11dc-889b-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The order response document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig OrderResponse() {
+            const string documentName = "Ordrebekræftelse";
+            const string rootName = "OrderResponse";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The order change document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig OrderChange() {
+            const string documentName = "Ordreændring";
+            const string rootName = "OrderChange";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// The catalogue deletion definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig CatalogueDeletion() {
+            const string documentName = "Sletning af katalog";
+            const string rootName = "CatalogueDeletion";
+            //const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
+            //const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd";
+            //const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl";
+            //const string xslUIPath = "Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl";
+            //const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
+            //const string destinationFriendlyNameXPath = "/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            //const string senderKeyXPath = "/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID";
+            //const string senderFriendlyNameXPath = "/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name";
+            //const string profileIdXPathStr = "/root:ApplicationResponse/cbc:ProfileID";
+            //const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest";
+            const string serviceContractTModel = "uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899";
+
+            //DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            //return documentTypeConfig;
+            throw new NotImplementedException("");
         }
 
         /// <summary>
