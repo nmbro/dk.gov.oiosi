@@ -51,6 +51,10 @@ namespace dk.gov.oiosi.raspProfile {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.UddiLookupClient";
+
+            RegistryLookupClientFactoryConfig regFactoryConfig = ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
+            regFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
+            uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.RegistryLookupClient";
         }
 
         /// <summary>
@@ -60,6 +64,10 @@ namespace dk.gov.oiosi.raspProfile {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.UddiLookupClientTest";
+
+            RegistryLookupClientFactoryConfig regFactoryConfig = ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
+            regFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
+            uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.RegistryLookupClient";
         }
 
         /// <summary>
