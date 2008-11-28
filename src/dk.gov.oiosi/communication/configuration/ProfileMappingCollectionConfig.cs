@@ -37,7 +37,7 @@ using dk.gov.oiosi.exception;
 namespace dk.gov.oiosi.communication.configuration {
 
     /// <summary>
-    /// A collection of RaspDocumentTypeConfig
+    /// A collection of ProfileMapping
     /// </summary>
     [System.Xml.Serialization.XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
     public class ProfileMappingCollectionConfig {
@@ -55,7 +55,7 @@ namespace dk.gov.oiosi.communication.configuration {
         }
 
         /// <summary>
-        /// Adds a new RASP document type to the configuration
+        /// Adds a new ProfileMapping type to the configuration
         /// </summary>
         /// <param name="profileMapping">documenttype to add</param>
         public void AddProfileMapping(ProfileMapping profileMapping) {
@@ -89,7 +89,7 @@ namespace dk.gov.oiosi.communication.configuration {
         }
 
         /// <summary>
-        /// Get a document type from the id
+        /// Get a ProfileMapping type from the id
         /// </summary>
         /// <param name="profileMappingName"></param>
         /// <returns></returns>
