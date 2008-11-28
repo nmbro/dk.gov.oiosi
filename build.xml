@@ -8,6 +8,7 @@
   <property name="Root.dir" value="."/>
   <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
   <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
+  <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
   <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
   <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
 
@@ -78,6 +79,15 @@
        </fileset>
      </zip>
 
+     
+     <!-- XML shared library -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
+       <fileset basedir="${Xml.dir}\bin\Release">
+         <include name="**/*" />
+       </fileset>
+     </zip>
+
+     
      <!-- Rasp profile resources - input to msi -->
      <zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
        <fileset basedir="${RaspProfile.dir}\Resources">
@@ -91,9 +101,10 @@
          <include name="**/*" />
          <exclude name="**/bin" />
          <exclude name="**/bin/**" />
+         <exclude name="**/obj" />
+         <exclude name="**/obj/**" />
        </fileset>
      </zip>
-
 
    </target>
 

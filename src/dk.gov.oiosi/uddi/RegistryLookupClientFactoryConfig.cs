@@ -31,14 +31,17 @@
 using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {
-
     /// <summary>
     /// Configuration for the UddiLookupClientFactory
     /// </summary>
     [System.Xml.Serialization.XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class RegistryLookupClientFactoryConfig {
         private string _implementationNamespaceClass = "";
-
+        private string _implementationAssembly = "";
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public RegistryLookupClientFactoryConfig() { }
         /// <summary>
         /// The namespace of the IUddiLookup implementation
         /// </summary>
@@ -46,21 +49,12 @@ namespace dk.gov.oiosi.uddi {
             get { return _implementationNamespaceClass; }
             set { _implementationNamespaceClass = value; }
         }
-        private string _implementationAssembly = "";
-
         /// <summary>
         /// The assembly name of the IUddiLookup implementation
         /// </summary>
         public string ImplementationAssembly {
             get { return _implementationAssembly; }
             set { _implementationAssembly = value; }
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RegistryLookupClientFactoryConfig()
-        {
         }
     }
 }
