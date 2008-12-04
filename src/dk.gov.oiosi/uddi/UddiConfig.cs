@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.uddi {
         private string _registrationConformanceClaim = "";
         
         private string _uddiPublishEndpointURL = "";
+        private string _uddiPublishInquiryEndpointURL = "";
         private string _uddiSecurityEndpointURL = "";
 
         private int _fallbackTimeoutMinutes = 0;
@@ -77,6 +78,14 @@ namespace dk.gov.oiosi.uddi {
         public string PublishEndpoint {
             get { return _uddiPublishEndpointURL; }
             set { _uddiPublishEndpointURL = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the default UDDI publish inquiry endpoint
+        /// </summary>
+        public string PublishInquiryEndpoint {
+            get { return _uddiPublishInquiryEndpointURL ; }
+            set { _uddiPublishInquiryEndpointURL = value; }
         }
 
         /// <summary>

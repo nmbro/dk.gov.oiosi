@@ -97,6 +97,7 @@ namespace dk.gov.oiosi.raspProfile {
             uddiConfig.RegistrationConformanceClaim = new RegistrationConformanceClaim().DefaultCategoryValue;
             uddiConfig.TryOtherHostsOnFailure = true;
             uddiConfig.PublishEndpoint = "https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc";
+            uddiConfig.PublishInquiryEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry";
             uddiConfig.SecurityEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/security";
             uddiConfig.FallbackTimeoutMinutes = 15;
             uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
