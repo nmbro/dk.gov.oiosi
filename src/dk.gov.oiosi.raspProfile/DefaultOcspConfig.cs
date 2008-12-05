@@ -84,10 +84,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetTestCertificatesOscpConfig() {
             // Test certificates here
-            string ocspServerUrl = "http://test.ocsp.certifikat.dk/ocsp/status";
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ocspConfig.DefaultTimeoutMsec = 10000;
-            ocspConfig.ServerUrl = ocspServerUrl;
         }
 
         /// <summary>
@@ -95,10 +93,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetOscpConfig() {
             // Live certificates here
-            string ocspServerUrl = "http://ocsp.certifikat.dk/ocsp/status";
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ocspConfig.DefaultTimeoutMsec = 10000;
-            ocspConfig.ServerUrl = ocspServerUrl;
         }
 
         /// <summary>

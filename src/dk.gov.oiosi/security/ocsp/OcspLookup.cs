@@ -38,6 +38,7 @@ using System.Threading;
 using Iloveit.Ocsp.Demo;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.common;
+using System.Text.RegularExpressions;
 
 namespace dk.gov.oiosi.security.ocsp {
 
@@ -146,7 +147,7 @@ namespace dk.gov.oiosi.security.ocsp {
                     req = ocsp.MakeOcspRequest(uiHex.ToString());
 
                     //3. send request
-                    byte[] resp = ocsp.Send(req, _configuration.ServerUrl.ToString());
+                    byte[] resp = ocsp.Send(req, GetServerUriFromCertificate(certificate)); //_configuration.ServerUrl.ToString()
 
                     //4. check result
                     if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString())) {
@@ -171,6 +172,18 @@ namespace dk.gov.oiosi.security.ocsp {
             return response;
         }
 
+        /// <summary>
+        /// Gets the Server URI from certificate
+        /// </summary>
+        /// <param name="certificate"></param>
+        /// <returns>Server URI</returns>
+        public string GetServerUriFromCertificate(X509Certificate2 certificate) {
+            Regex liveOcesOidRegEx = new Regex(@"URL=http://[\w|/\.]*");
+            string extensionDataString = certificate.Extensions["1.3.6.1.5.5.7.1.1"].Format(false);
+            MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
+            return matches[0].ToString().Substring(4);
+        } 
+        
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>
