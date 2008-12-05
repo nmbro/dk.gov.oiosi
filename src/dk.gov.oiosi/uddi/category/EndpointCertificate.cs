@@ -73,8 +73,8 @@ namespace dk.gov.oiosi.uddi.category {
         /// Use this constructor to set a value
         /// </summary>
         /// <param name="endpointCertificate">endpoint certificate serial</param>
-        public EndpointCertificate(string endpointCertificate) {
-            pValue = endpointCertificate;
+        public EndpointCertificate(string endpointCertificateSubject) : this() {
+            pValue = endpointCertificateSubject;
         }
 
         
