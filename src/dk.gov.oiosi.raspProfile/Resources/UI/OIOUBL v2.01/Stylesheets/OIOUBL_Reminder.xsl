@@ -4,13 +4,13 @@
 
 		OIOUBL Transform Documentation	
 
-		title= OIOUBL_Reminder.xsl	
+		title= ReminderHTML2008-01-22.xsl	
 		replaces= OIOUBL_Reminder.xsl	
 		publisher= "IT og Telestyrelsen"
 		Creator= Ole Madsen
 		created= 2007-07-17
-		modified= 2007-07-17
-		issued= 2007-07-17
+		modified= 2008-01-22
+		issued= 2008-01-22
 		conformsTo= UBL-Reminder-2.0.xsd
 		description= "Stylesheet for displaying a OIOUBL-2.01 Reminder"
 		rights= "It can be used following the Common Creative Licence"
@@ -53,7 +53,7 @@
 				<table border="0" width="100%" cellspacing="0" cellpadding="2">
 					<tr>
 						<td colspan="4">
-							<img class="defaultlogo" src="GTADefaultlogo.jpg" width="100%" alt="Logo"/>
+							
 						</td>
 					</tr>
 				</table>

@@ -3,7 +3,6 @@ h2, h1, h3, td, th, tr
 {
 	font-family: arial;
 	font-size: 10pt;
-	valign: top;
 }
 
 h2
@@ -45,6 +44,6 @@ td.UBLLine
 
 hr
 {
-color:#C4D8E2;
-NOSHADE:true;
+color:#CCCCCC;
+
 }

@@ -9,8 +9,8 @@
 		publisher= "IT og Telestyrelsen"
 		Creator= Finn Christensen and Charlotte Dahl Skovhus
 		created= 2006-12-29
-		modified= 2007-07-20
-		issued= 2007-07-20
+		modified= 2008-01-24
+		issued= 2008-01-24
 		conformsTo= UBL-Invoice-2.0.xsd
 		description= "Common templates for displaying OIOUBL-2.01 documents"
 		rights= "It can be used following the Common Creative Licence"
@@ -1623,7 +1623,7 @@
 	
 	<xsl:template match="cac:Attachment | cac:DigitalSignatureAttachment">
 		<xsl:if test="cbc:EmbeddedDocumentBinaryObject !=''">
-			<br/><xsl:value-of select="$moduleDoc/module/document-merge/g-funcs/g[@name='EmbeddedDocumentBinaryObject']"/>&#160; <xsl:apply-templates select="cbc:EmbeddedDocumentBinaryObject"/>
+			
 		</xsl:if>
 		<xsl:if test="cac:ExternalReference !=''">
 			<xsl:apply-templates select="cac:ExternalReference"/>

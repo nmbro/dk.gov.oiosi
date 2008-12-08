@@ -43,9 +43,9 @@
 	</cac:BuyerCustomerParty>
 	<cac:SellerSupplierParty>
 		<cac:Party>
-			<cbc:EndpointID schemeID="DK:CVR">DK18018845</cbc:EndpointID>
+			<cbc:EndpointID schemeID="DK:CVR">DK16356706</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeID="DK:CVR">DK18018845</cbc:ID>
+				<cbc:ID schemeID="DK:CVR">DK16356706</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Tavleverandøren</cbc:Name>
@@ -60,10 +60,6 @@
 					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
-			<cac:PartyLegalEntity>
-				<cbc:RegistrationName>Tavleverandøren</cbc:RegistrationName>
-				<cbc:CompanyID schemeID="DK:CVR">DK16356706</cbc:CompanyID>
-			</cac:PartyLegalEntity>
 			<cac:Contact>
 				<cbc:ID>23456</cbc:ID>
 				<cbc:Name>Hugo Jensen</cbc:Name>

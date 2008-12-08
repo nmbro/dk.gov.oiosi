@@ -33,6 +33,13 @@
 					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
+			<cac:PartyTaxScheme>
+				<cbc:CompanyID schemeID="DK:SE">DK16356706</cbc:CompanyID>
+				<cac:TaxScheme>
+					<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
+					<cbc:Name>Moms</cbc:Name>
+				</cac:TaxScheme>
+			</cac:PartyTaxScheme>
 			<cac:PartyLegalEntity>
 				<cbc:RegistrationName>Tavleleverandøren</cbc:RegistrationName>
 				<cbc:CompanyID schemeID="DK:CVR">DK16356706</cbc:CompanyID>
@@ -47,9 +54,9 @@
 	</cac:SellerSupplierParty>
 	<cac:BuyerCustomerParty>
 		<cac:Party>
-			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:EndpointID>
+			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:ID>
+				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Den Lille Skole</cbc:Name>
@@ -64,10 +71,6 @@
 					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
-			<cac:PartyLegalEntity>
-				<cbc:RegistrationName>Den Lille Skole</cbc:RegistrationName>
-				<cbc:CompanyID schemeID="DK:CVR">DK16356709</cbc:CompanyID>
-			</cac:PartyLegalEntity>
 			<cac:Contact>
 				<cbc:ID>7778</cbc:ID>
 				<cbc:Name>Hans Hansen</cbc:Name>

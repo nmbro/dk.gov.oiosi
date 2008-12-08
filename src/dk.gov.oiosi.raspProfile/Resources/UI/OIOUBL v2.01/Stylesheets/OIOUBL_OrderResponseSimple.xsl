@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 ******************************************************************************************************************
 
 		OIOUBL Instance Documentation	
 
-		title= OIOUBL_OrderResponseSimple.xml	
+		title= OrderResponseSimpleHTML2008-01-22.xsl	
 		replaces=
 		publisher= "IT og Telestyrelsen"
 		Creator= Finn Christensen and Charlotte Dahl Skovhus
 		created= 2006-12-01
-		modified= 2007-07-20
-		issued= 2007-07-20
+		modified= 2008-01-22
+		issued= 2008-01-22
 		conformsTo= UBL-OrderResponseSimple-2.0.xsd
 		description= "Stylesheet for displaying a OIOUBL-2.01 OrderResponseSimple"
 		rights= "It can be used following the Common Creative Licence"
@@ -53,7 +53,7 @@
 				<table border="0" width="100%" cellspacing="0" cellpadding="2">
 					<tr>
 						<td colspan="4">
-							<img class="defaultlogo" src="GTADefaultlogo.jpg" width="100%" alt="Logo"/>
+							
 						</td>
 					</tr>
 				</table>
