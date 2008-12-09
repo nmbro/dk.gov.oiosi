@@ -375,26 +375,54 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueDeletion_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_CataloguePricingUpdate_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueRequest_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_OrderCancellation_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_OrderChange_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponse_v2p1.xml" />
-    <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p1.xml" />
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueDeletion_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CataloguePricingUpdate_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueRequest_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderCancellation_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderChange_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Schemas\OIOXML v0.7\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueDeletion_Schematron.xsl" />
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl" />
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CataloguePricingUpdate_Schematron.xsl" />
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueRequest_Schematron.xsl" />
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Catalogue_Schematron.xsl" />
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueDeletion_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueRequest_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Catalogue_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CreditNote_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -455,16 +483,24 @@
     <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Order.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderCancellation.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderChange.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderResponse.xsl" />
+    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderCancellation.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderChange.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderResponse.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderResponseSimple.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Reminder.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Statement.xsl" />
+    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Statement.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\UI\OIOXML v0.7\HtmlDependencies\finance.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

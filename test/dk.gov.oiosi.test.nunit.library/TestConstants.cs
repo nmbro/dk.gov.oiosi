@@ -1,7 +1,7 @@
 namespace dk.gov.oiosi.test.nunit.library {
     public class TestConstants {
 
-        private const string raspProfileResources = "../../../../src/dk.gov.oiosi.raspProfile/Resources/";
+        private const string raspProfileResources = "Resources/";
 
         public const string PATH_APPLICATIONRESPONSE_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p1.xml";
         public const string PATH_CATALOGUE_XML = raspProfileResources + "Documents/Examples/OIOUBL_Catalogue_v2p1.xml";
