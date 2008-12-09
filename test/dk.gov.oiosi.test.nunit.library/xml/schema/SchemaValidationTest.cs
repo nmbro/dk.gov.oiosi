@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using NUnit.Framework;
 
 using dk.gov.oiosi.xml.schema;
 using dk.gov.oiosi.raspProfile;
-using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.communication.configuration;
 
@@ -16,8 +12,8 @@ namespace dk.gov.oiosi.test.nunit.library.xml.schema {
 
     [TestFixture]
     public class SchemaValidationTest {
-        private SchemaValidator _validator201;
-        private SchemaValidator _validator07;
+        private readonly SchemaValidator _validator201;
+        private readonly SchemaValidator _validator07;
         private DocumentTypeConfigSearcher _searcher;
 
         public SchemaValidationTest() {
@@ -37,37 +33,91 @@ namespace dk.gov.oiosi.test.nunit.library.xml.schema {
 
         [Test]
         public void ApplicationResponseValidationTest() {
-            string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE_XML;
+            const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void CataloguelidationTest() {
+            const string xmlPath = TestConstants.PATH_CATALOGUE_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void CatalogueDeletionValidationTest() {
+            const string xmlPath = TestConstants.PATH_CATALOGUEDELETION_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void CatalogueItemSpecificationUpdateValidationTest() {
+            const string xmlPath = TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void CataloguePricingUpdateValidationTest() {
+            const string xmlPath = TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void CatalogueRequesttValidationTest() {
+            const string xmlPath = TestConstants.PATH_CATALOGUEREQUEST_XML;
             Validate(xmlPath, _validator201);
         }
 
         [Test]
         public void CreditNoteValidationTest() {
-            string xmlPath = TestConstants.PATH_CREDITNOTE_XML;
+            const string xmlPath = TestConstants.PATH_CREDITNOTE_XML;
             Validate(xmlPath, _validator201);
         }
 
         [Test]
         public void InvoiceValidationTest() {
-            string xmlPath = TestConstants.PATH_INVOICE_XML;
+            const string xmlPath = TestConstants.PATH_INVOICE_XML;
             Validate(xmlPath, _validator201);
         }
 
         [Test]
         public void OrderValidationTest() {
-            string xmlPath = TestConstants.PATH_ORDER_XML;
+            const string xmlPath = TestConstants.PATH_ORDER_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void OrderCancellationValidationTest() {
+            const string xmlPath = TestConstants.PATH_ORDERCANCELLATION_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void OrderChangeValidationTest() {
+            const string xmlPath = TestConstants.PATH_ORDERCHANGE_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void OrderResponseValidationTest() {
+            const string xmlPath = TestConstants.PATH_ORDERRESPONSE_XML;
             Validate(xmlPath, _validator201);
         }
 
         [Test]
         public void OrderResponseSimpleValidationTest() {
-            string xmlPath = TestConstants.PATH_ORDERRESPONSESIMPLE_XML;
+            const string xmlPath = TestConstants.PATH_ORDERRESPONSESIMPLE_XML;
             Validate(xmlPath, _validator201);
         }
 
         [Test]
         public void ReminderValidationTest() {
-            string xmlPath = TestConstants.PATH_REMINDER_XML;
+            const string xmlPath = TestConstants.PATH_REMINDER_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void StatementValidationTest() {
+            const string xmlPath = TestConstants.PATH_STATEMENT_XML;
             Validate(xmlPath, _validator201);
         }
 
