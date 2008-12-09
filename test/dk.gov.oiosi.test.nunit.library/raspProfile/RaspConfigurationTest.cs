@@ -59,7 +59,7 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile {
 
             DocumentTypeCollectionConfig docTypeConfig =
                 ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            Assert.AreEqual(docTypeConfig.DocumentTypes.Length, 8);
+            Assert.AreEqual(17, docTypeConfig.DocumentTypes.Length, "Expected number of document types not found.");
 
             ProfileMappingCollectionConfig profileMappingConfig =
                 ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();

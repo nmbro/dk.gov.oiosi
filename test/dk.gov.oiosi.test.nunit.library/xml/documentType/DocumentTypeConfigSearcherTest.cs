@@ -9,7 +9,8 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
 
     [TestFixture]
     public class DocumentTypeConfigSearcherTest {
-        private DocumentTypeConfigSearcher _searcher;
+            
+        private readonly DocumentTypeConfigSearcher _searcher;
 
         public DocumentTypeConfigSearcherTest() {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
@@ -19,73 +20,89 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
 
         [Test]
         public void SearchForApplicationResponseTest() {
-            Print.Started("SearchForApplicationResponseTest");
-            string path = TestConstants.PATH_APPLICATIONRESPONSE_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Applikationsmeddelse", documentType.FriendlyName);
-            Print.Completed("SearchForApplicationResponseTest");
+            AssertFindDocument("Applikationsmeddelse", TestConstants.PATH_APPLICATIONRESPONSE_XML);
+        }
+
+        [Test]
+        public void SearchForCatalogueTest() {
+            AssertFindDocument("Katalog", TestConstants.PATH_CATALOGUE_XML);
+        }
+        
+        [Test]
+        public void SearchForCatalogueDeletionTest() {
+            AssertFindDocument("Sletning af katalog", TestConstants.PATH_CATALOGUEDELETION_XML);
+        }
+
+        [Test]
+        public void SearchForCatalogueItemSpecificationUpdateTest() {
+            AssertFindDocument("Opdatering af katalogelement", TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML);
+        }
+
+        [Test]
+        public void SearchForCataloguePricingUpdateTest() {
+            AssertFindDocument("Opdatering af katalogpriser", TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML);
+        }
+
+        [Test]
+        public void SearchForCatalogueRequestTest() {
+            AssertFindDocument("Katalogforespørgsel", TestConstants.PATH_CATALOGUEREQUEST_XML);
         }
 
         [Test]
         public void SearchForCreditNoteTest() {
-            Print.Started("SearchForCreditNoteTest");
-            string path = TestConstants.PATH_CREDITNOTE_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Kreditnota", documentType.FriendlyName);
-            Print.Completed("SearchForCreditNoteTest");
+            AssertFindDocument("Kreditnota", TestConstants.PATH_CREDITNOTE_XML);
         }
 
         [Test]
         public void SearchForInvoiceTest() {
-            Print.Started("SearchForInvoiceTest");
-            string path = TestConstants.PATH_INVOICE_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Faktura", documentType.FriendlyName);
-            Print.Completed("SearchForInvoiceTest");
+            AssertFindDocument("Faktura", TestConstants.PATH_INVOICE_XML);
         }
 
         public void SearchForOrderTest() {
-            Print.Started("SearchForOrderTest");
-            string path = TestConstants.PATH_ORDER_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Order", documentType.FriendlyName);
-            Print.Completed("SearchForOrderTest");
+            AssertFindDocument("Order", TestConstants.PATH_ORDER_XML);
+        }
+
+        [Test]
+        public void SearchForOrderCancellationTest() {
+            AssertFindDocument("Ordreannulering", TestConstants.PATH_ORDERCANCELLATION_XML);
+        }
+
+        [Test]
+        public void SearchForOrderChangeTest() {
+            AssertFindDocument("Ordreændring", TestConstants.PATH_ORDERCHANGE_XML);
+        }
+
+        [Test]
+        public void SearchForOrderResponseTest() {
+            AssertFindDocument("Ordrebekræftelse", TestConstants.PATH_ORDERRESPONSE_XML);
         }
 
         [Test]
         public void SearchForOrderResponseSimpleTest() {
-            Print.Started("SearchForOrderResponseSimpleTest");
-            string path = TestConstants.PATH_ORDERRESPONSESIMPLE_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Simpel ordrebekræftelse", documentType.FriendlyName);
-            Print.Completed("SearchForOrderResponseSimpleTest");
+            AssertFindDocument("Simpel ordrebekræftelse", TestConstants.PATH_ORDERRESPONSESIMPLE_XML);
         }
 
         [Test]
         public void SearchForReminderTest() {
-            Print.Started("SearchForReminderTest");
-            string path = TestConstants.PATH_REMINDER_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Rykker", documentType.FriendlyName);
-            Print.Completed("SearchForReminderTest");
+            AssertFindDocument("Rykker", TestConstants.PATH_REMINDER_XML);
+        }
+
+        [Test]
+        public void SearchForStatementTest() {
+            AssertFindDocument("KontoUdtog", TestConstants.PATH_STATEMENT_XML);
         }
 
         [Test]
         public void SearchForInvoice07Test() {
-            Print.Started("SearchForInvoice07Test");
-            string path = TestConstants.PATH_INVOICE07_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
-            Assert.AreEqual("Faktura v0.7", documentType.FriendlyName);
-            Print.Completed("SearchForInvoice07Test");
+            AssertFindDocument("Faktura v0.7", TestConstants.PATH_INVOICE07_XML);
         }
 
-        [Test, ExpectedException(typeof(dk.gov.oiosi.xml.documentType.NoDocumentTypeFoundFromXmlDocumentException))]
+        [Test, ExpectedException(typeof(NoDocumentTypeFoundFromXmlDocumentException))]
         public void SearchForUnkownTypeTest() {
-            string path = TestConstants.PATH_UNKNOWNTYPE_XML;
-            DocumentTypeConfig documentType = SearchForDocument(path);
+            AssertFindDocument(null, TestConstants.PATH_UNKNOWNTYPE_XML);
         }
 
-        [Test, ExpectedException(typeof(dk.gov.oiosi.exception.NullArgumentException))]
+        [Test, ExpectedException(typeof(exception.NullArgumentException))]
         public void NullArguementTest() {
             _searcher.FindUniqueDocumentType(null);
         }
@@ -96,5 +113,11 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
             return documentType;
         }
+
+        private void AssertFindDocument(string friendlyName, string documentPath) {
+            DocumentTypeConfig documentType = SearchForDocument(documentPath);
+            Assert.AreEqual(friendlyName, documentType.FriendlyName);
+        }
+
     }
 }
