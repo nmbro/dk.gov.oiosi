@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 
 using NUnit.Framework;
@@ -25,42 +23,35 @@ namespace dk.gov.oiosi.test.nunit.library.xml.xpath {
         }
 
         [Test]
-        public void ApplicationResponseTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_APPLICATIONRESPONSE_XML);
-            Assert.AreEqual("DK16356706", identifier.GetAsString());
+        public void IdentifierTest() {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary[TestConstants.PATH_APPLICATIONRESPONSE_XML] = "DK16356706";
+            dictionary[TestConstants.PATH_CATALOGUE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_CATALOGUEDELETION_XML] = "DK98879887";
+            dictionary[TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML] = "DK98879887";
+            dictionary[TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML] = "DK98879887";
+            dictionary[TestConstants.PATH_CATALOGUEREQUEST_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_CREDITNOTE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_INVOICE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_ORDER_XML] =  "DK16356706";
+            dictionary[TestConstants.PATH_ORDERCANCELLATION_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_ORDERCHANGE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_ORDERRESPONSE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_ORDERRESPONSESIMPLE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_REMINDER_XML] = "5798009811585";
+            dictionary[TestConstants.PATH_STATEMENT_XML] = "5798000416604";
+            CompareIdentifiers(dictionary);
         }
 
-        [Test]
-        public void CreditNoteTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_CREDITNOTE_XML);
-            Assert.AreEqual("5798000416604", identifier.GetAsString());
+
+        private void CompareIdentifiers(Dictionary<string, string> dictionary) {
+            foreach (KeyValuePair<string, string> pair in dictionary) {
+                IIdentifier identifier = GetIdentifierValue(pair.Key);
+                Assert.AreEqual(pair.Value, identifier.GetAsString(), "Error reading correct identifier from document using xpath specified in config: " + pair.Key);
+            }
         }
 
-        [Test]
-        public void InvoiceTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_INVOICE_XML);
-            Assert.AreEqual("5798000416604", identifier.GetAsString());
-        }
-
-        [Test]
-        public void OrderTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_ORDER_XML);
-            Assert.AreEqual("DK16356706", identifier.GetAsString());
-        }
-
-        [Test]
-        public void OrderResponseSimpleTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_ORDERRESPONSESIMPLE_XML);
-            Assert.AreEqual("5798000416604", identifier.GetAsString());
-        }
-
-        [Test]
-        public void ReminderTest() {
-            IIdentifier identifier = Test(TestConstants.PATH_REMINDER_XML);
-            Assert.AreEqual("5798009811585", identifier.GetAsString());
-        }
-
-        private IIdentifier Test(string path) {
+        private IIdentifier GetIdentifierValue(string path) {
             XmlDocument document = new XmlDocument();
             document.Load(path);
             DocumentTypeConfig config = _searcher.FindUniqueDocumentType(document);
