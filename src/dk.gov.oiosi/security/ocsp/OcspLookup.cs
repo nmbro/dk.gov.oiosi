@@ -147,7 +147,7 @@ namespace dk.gov.oiosi.security.ocsp {
                     req = ocsp.MakeOcspRequest(uiHex.ToString());
 
                     //3. send request
-                    byte[] resp = ocsp.Send(req, GetServerUriFromCertificate(certificate)); //_configuration.ServerUrl.ToString()
+                    byte[] resp = ocsp.Send(req, GetServerUriFromCertificate(certificate)); 
 
                     //4. check result
                     if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString())) {
@@ -177,7 +177,7 @@ namespace dk.gov.oiosi.security.ocsp {
         /// </summary>
         /// <param name="certificate"></param>
         /// <returns>Server URI</returns>
-        public string GetServerUriFromCertificate(X509Certificate2 certificate) {
+        private string GetServerUriFromCertificate(X509Certificate2 certificate) {
             Regex liveOcesOidRegEx = new Regex(@"URL=http://[\w|/\.]*");
             string extensionDataString = certificate.Extensions["1.3.6.1.5.5.7.1.1"].Format(false);
             MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
