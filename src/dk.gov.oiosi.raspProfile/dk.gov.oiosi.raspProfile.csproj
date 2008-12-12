@@ -390,7 +390,9 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_v2p1.xml" />
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_OrderCancellation_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
