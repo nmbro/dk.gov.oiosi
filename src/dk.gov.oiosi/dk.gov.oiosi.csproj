@@ -88,6 +88,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addressing\IdentifierDuns.cs" />
+    <Compile Include="addressing\IdentifierIban.cs" />
+    <Compile Include="addressing\IdentifierVans.cs" />
+    <Compile Include="addressing\IdentifierSe.cs" />
+    <Compile Include="addressing\IdentifierP.cs" />
     <Compile Include="addressing\ErrorMessages.Designer.cs">
       <DependentUpon>ErrorMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -169,6 +169,16 @@ namespace dk.gov.oiosi.common {
                     return EndpointKeyTypeCode.ean;
                 case "ovt":
                     return EndpointKeyTypeCode.ovt;
+                case "p":
+                    return EndpointKeyTypeCode.p;
+                case "se":
+                    return EndpointKeyTypeCode.se;
+                case "vans":
+                    return EndpointKeyTypeCode.vans;
+                case "iban":
+                    return EndpointKeyTypeCode.iban;
+                case "duns":
+                    return EndpointKeyTypeCode.duns;
                 default:
                     return EndpointKeyTypeCode.other;
             }

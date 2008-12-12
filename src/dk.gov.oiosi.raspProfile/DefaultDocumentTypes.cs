@@ -553,12 +553,22 @@ namespace dk.gov.oiosi.raspProfile {
             KeyTypeMapping eanMapping = new KeyTypeMapping("GLN", "ean");
             KeyTypeMapping cvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
             KeyTypeMapping ovtMapping = new KeyTypeMapping("ISO 6523", "ovt");
+            KeyTypeMapping pMapping = new KeyTypeMapping("DK:P", "p");
+            KeyTypeMapping seMapping = new KeyTypeMapping("DK:SE", "se");
+            KeyTypeMapping vansMapping = new KeyTypeMapping("DK:VANS", "vans");
+            KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
+            KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
             mappingExpression.AddMapping(deprecatedEanMapping);
             mappingExpression.AddMapping(uppercasedDeprecatedEanMapping);
             mappingExpression.AddMapping(deprecatedCvrMapping);
             mappingExpression.AddMapping(eanMapping);
             mappingExpression.AddMapping(cvrMapping);
             mappingExpression.AddMapping(ovtMapping);
+            mappingExpression.AddMapping(pMapping);
+            mappingExpression.AddMapping(seMapping);
+            mappingExpression.AddMapping(vansMapping);
+            mappingExpression.AddMapping(ibanMapping);
+            mappingExpression.AddMapping(dunsMapping);
             key.AddMappingExpression(mappingExpression);
             return key;
         }

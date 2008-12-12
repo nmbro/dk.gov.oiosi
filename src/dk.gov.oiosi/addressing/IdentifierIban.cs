@@ -28,60 +28,59 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace dk.gov.oiosi.uddi.category {
-    
+using dk.gov.oiosi.exception;
+
+namespace dk.gov.oiosi.addressing {
+
     /// <summary>
-    /// List of endpoint key types
+    /// Represents a IBAN number identifier
     /// </summary>
-    public enum EndpointKeyTypeCode {
+    public class IdentifierIban : IIdentifier {
+        private string _ibanNumber;
 
         /// <summary>
-        /// ean number
+        /// Constructor
         /// </summary>
-        ean,
-        
-        /// <summary>
-        /// ovt number
-        /// </summary>
-        ovt,
-        
-        /// <summary>
-        /// cvr number
-        /// </summary>
-        cvr,
+        /// <param name="ibanNumber">The IBAN identifier</param>
+        public IdentifierIban(string ibanNumber) {
+            Set(ibanNumber);
+        }
 
         /// <summary>
-        /// p number
+        /// Validates and sets the IBAN identifier
         /// </summary>
-        p,
+        /// <param name="ibanNumber">The IBAN number</param>
+        public void Set(string ibanNumber) {
+            if (String.IsNullOrEmpty(ibanNumber)) {
+                throw new NullOrEmptyArgumentException("ibanNumber");
+            }
+            _ibanNumber = ibanNumber;
+        }
 
         /// <summary>
-        /// se number
+        /// Returns the IBAN identifier as a string
         /// </summary>
-        se,
+        /// <returns>Returns the IBAN identifier</returns>
+        public string GetAsString() {
+            return _ibanNumber;
+        }
 
         /// <summary>
-        /// vans number
+        /// Compares the two objects and returns true if they have equal values
         /// </summary>
-        vans,
+        /// <param name="other">The object to compare to</param>
+        /// <returns>Returns true if the two objects have identical values</returns>
+        public bool Equals(IIdentifier other) {
+            if (other == null) return false;
 
-        /// <summary>
-        /// iban number
-        /// </summary>
-        iban,
+            if (GetAsString() != other.GetAsString()) return false;
+            return true;
+        }
 
-        /// <summary>
-        /// duns number
-        /// </summary>
-        duns,
-        
-        /// <summary>
-        /// other
-        /// </summary>
-        other
     }
 }

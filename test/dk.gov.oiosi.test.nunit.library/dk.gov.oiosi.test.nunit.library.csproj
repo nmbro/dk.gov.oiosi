@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common\cache\RaspCacheTest.cs" />
+    <Compile Include="common\UtilitiesTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
     <Compile Include="configuration\ConfigurationTest.cs" />
@@ -94,6 +95,30 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_duns_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_iban_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_vans_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_se_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_p_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_cvr_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ean_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ovt_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\RaspConfiguration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

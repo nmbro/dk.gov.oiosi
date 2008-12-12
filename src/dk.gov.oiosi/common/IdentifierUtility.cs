@@ -89,6 +89,21 @@ namespace dk.gov.oiosi.common {
                 case EndpointKeyTypeCode.ovt:
                     id = new IdentifierOvt(endpointKey);
                     break;
+                case EndpointKeyTypeCode.p:
+                    id = new IdentifierP(endpointKey);
+                    break;
+                case EndpointKeyTypeCode.se:
+                    id = new IdentifierSe(endpointKey);
+                    break;
+                case EndpointKeyTypeCode.vans:
+                    id = new IdentifierOvt(endpointKey);
+                    break;
+                case EndpointKeyTypeCode.iban:
+                    id = new IdentifierIban(endpointKey);
+                    break;
+                case EndpointKeyTypeCode.duns:
+                    id = new IdentifierDuns(endpointKey);
+                    break;
                 default:
                     id = null;
                     throw new UnknownEndpointTypeException(endpointKeyType);

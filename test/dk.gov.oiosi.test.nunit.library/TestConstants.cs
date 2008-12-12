@@ -33,6 +33,15 @@ namespace dk.gov.oiosi.test.nunit.library {
         public const string PATH_CERTIFICATE_DEVICE = "Resources/Certifcates/Device.cer";
         public const string PATH_CERTIFICATE_ROOT = "Resources/Certifcates/Root.cer";
 
+        public const string PATH_INVOICE_XML_IDENTIFIER_EAN = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_OVT = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ovt_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_CVR = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_cvr_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_P = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_p_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_SE = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_se_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_VANS = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_vans_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_IBAN = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_iban_v2p1.xml";
+        public const string PATH_INVOICE_XML_IDENTIFIER_DUNS = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_duns_v2p1.xml";
+
         public const string ITST_CERTIFICATE_SUBJECT = "CN=NemHandel Test 2 + SERIALNUMBER=CVR:26769388-DID:00000002, O=IT- og Telestyrelsen // CVR:26769388, C=DK";
     }
 }
