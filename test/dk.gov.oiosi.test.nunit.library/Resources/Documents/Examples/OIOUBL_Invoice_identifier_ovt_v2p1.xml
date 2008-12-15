@@ -56,9 +56,9 @@
 	</cac:AccountingSupplierParty>
 	<cac:AccountingCustomerParty>
 		<cac:Party>
-			<cbc:EndpointID schemeAgencyID="9" schemeID="ISO 6523">5798000416604</cbc:EndpointID>
+			<cbc:EndpointID schemeAgencyID="9" schemeID="ISO 6523">45454545454545454</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeAgencyID="9" schemeID="ISO 6523">5798000416604</cbc:ID>
+				<cbc:ID schemeAgencyID="9" schemeID="ISO 6523">45454545454545454</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Den Lille Skole</cbc:Name>

@@ -96,7 +96,7 @@ namespace dk.gov.oiosi.common {
                     id = new IdentifierSe(endpointKey);
                     break;
                 case EndpointKeyTypeCode.vans:
-                    id = new IdentifierOvt(endpointKey);
+                    id = new IdentifierVans(endpointKey);
                     break;
                 case EndpointKeyTypeCode.iban:
                     id = new IdentifierIban(endpointKey);
