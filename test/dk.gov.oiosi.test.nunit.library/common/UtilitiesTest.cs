@@ -15,16 +15,16 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         private DocumentTypeConfigSearcher _searcher;
 
-        /*public UtilitiesTest() {
+        public UtilitiesTest() {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
-            //documentTypes.CleanAdd();
+            documentTypes.CleanAdd();
             _searcher = new DocumentTypeConfigSearcher();
-        }*/
+        }
         [Test]
         public void dummy() {
             Assert.IsNotNull(1);
         }
-        /*
+        
         [Test]
         public void TestKeyTypeCodeEAN() {
             //Testing EAN keytypecode
@@ -36,7 +36,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             Assert.AreEqual(EndpointKeyTypeCode.ean, code);
 
         }
-
+        
         [Test]
         public void TestKeyTypeCodeOVT() {
             // Testing OVT keytypecode
@@ -113,6 +113,6 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.duns, code);
         }     
-          */
+          
     }
 }
