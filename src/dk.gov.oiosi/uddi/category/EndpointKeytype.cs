@@ -52,8 +52,13 @@ namespace dk.gov.oiosi.uddi.category {
             // 2. Set list of categories & possible values for each category
             string[] values = { "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/",
                                 "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/ovtNumber/",
-                                "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/"
-            };
+                                "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/dunsNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/ibanNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/pNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/seNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/vansNumber/"
+                              };
 
             //Indicates an EAN number type
             SetCategoryAndValues("http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/", values);
