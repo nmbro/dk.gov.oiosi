@@ -79,6 +79,21 @@ namespace dk.gov.oiosi.uddi.category {
                 case EndpointKeyTypeCode.cvr:
                     pValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/";
                     break;
+                case EndpointKeyTypeCode.duns:
+                    pValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/dunsNumber/";
+                    break;
+                case EndpointKeyTypeCode.iban:
+                    pValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/ibanNumber/";
+                    break;
+                case EndpointKeyTypeCode.p:
+                    pValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/pNumber/";
+                    break;
+                case EndpointKeyTypeCode.se:
+                    pValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/seNumber/";
+                    break;
+                case EndpointKeyTypeCode.vans:
+                    pValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/vansNumber/";
+                    break;
                 default:
                     throw new UnknownEndpointTypeException(endpointKeyType);
             }
@@ -96,6 +111,16 @@ namespace dk.gov.oiosi.uddi.category {
                     return EndpointKeyTypeCode.ovt;
                 case "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/":
                     return EndpointKeyTypeCode.cvr;
+                case "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/dunsNumber/":
+                    return EndpointKeyTypeCode.duns;
+                case "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/ibanNumber/":
+                    return EndpointKeyTypeCode.iban;
+                case "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/pNumber/":
+                    return EndpointKeyTypeCode.p;
+                case "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/seNumber/":
+                    return EndpointKeyTypeCode.se;
+                case "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/vansNumber/":
+                    return EndpointKeyTypeCode.vans;
                 default:
                     throw new UnknownEndpointTypeException(Value);
             }
