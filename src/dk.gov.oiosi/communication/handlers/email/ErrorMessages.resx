@@ -150,4 +150,7 @@
   <data name="dk_gov_oiosi_communication_handlers_email_MessageNotCompliantWithMailBindingException" xml:space="preserve">
     <value>Meddelelsesobjektet indeholder ikke den nødvendige information til at skabe en email som overholder "Smtp/MIME Base64 Transport Binding for SOAP 1.2" protokollen.</value>
   </data>
+  <data name="dk_gov_oiosi_communication_handlers_email_FailedToGetInboxException" xml:space="preserve">
+    <value>Indboksen kunne ikke kontaktes med de indtastede oplysninger. E-mail adresse: [mailaddress]. Bruger: [user].</value>
+  </data>
 </root>
