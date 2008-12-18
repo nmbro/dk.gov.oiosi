@@ -3,7 +3,7 @@
 
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.01</cbc:CustomizationID>
-	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.1">Procurement-OrdAdvR-BilSim-1.0</cbc:ProfileID>
+	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.1">Procurement-OrdAdv-BilSim-1.0</cbc:ProfileID>
 	<cbc:ID>A00095679</cbc:ID>
 	<cbc:CopyIndicator>false</cbc:CopyIndicator>
 	<cbc:UUID>6E09886B-DC6E-439F-82D1-7CCAC7F4E3B2</cbc:UUID>
@@ -82,9 +82,9 @@
 	</cac:SellerSupplierParty>
 	<cac:AccountingCustomerParty>
 		<cac:Party>
-			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
+			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798000417777</cbc:ID>
+				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Myretuen</cbc:Name>
