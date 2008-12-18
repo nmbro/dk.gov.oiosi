@@ -37,9 +37,9 @@
 			</cac:Contact>
 	</cac:SenderParty>
 	<cac:ReceiverParty>
-			<cbc:EndpointID schemeID="DK:CVR">DK16356706</cbc:EndpointID>
+			<cbc:EndpointID schemeID="DK:CVR">DK28186371</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeID="DK:CVR">DK16356706</cbc:ID>
+				<cbc:ID schemeID="DK:CVR">DK28186371</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Tavleverandøren</cbc:Name>
