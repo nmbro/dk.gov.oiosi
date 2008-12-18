@@ -25,21 +25,21 @@ namespace dk.gov.oiosi.test.nunit.library.xml.xpath {
         [Test]
         public void IdentifierTest() {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary[TestConstants.PATH_APPLICATIONRESPONSE_XML] = "DK16356706";
-            dictionary[TestConstants.PATH_CATALOGUE_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_CATALOGUEDELETION_XML] = "DK98879887";
-            dictionary[TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML] = "DK98879887";
-            dictionary[TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML] = "DK98879887";
-            dictionary[TestConstants.PATH_CATALOGUEREQUEST_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_CREDITNOTE_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_INVOICE_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_ORDER_XML] =  "DK16356706";
+            dictionary[TestConstants.PATH_APPLICATIONRESPONSE_XML] = "DK28186371";
+            dictionary[TestConstants.PATH_CATALOGUE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_CATALOGUEDELETION_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_CATALOGUEREQUEST_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_CREDITNOTE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_INVOICE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_ORDER_XML] = "DK18018845";
             dictionary[TestConstants.PATH_ORDERCANCELLATION_XML] = "5798000416604";
             dictionary[TestConstants.PATH_ORDERCHANGE_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_ORDERRESPONSE_XML] = "5798000416604";
-            dictionary[TestConstants.PATH_ORDERRESPONSESIMPLE_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_ORDERRESPONSE_XML] = "5798009811578";
+            dictionary[TestConstants.PATH_ORDERRESPONSESIMPLE_XML] = "5798009811578";
             dictionary[TestConstants.PATH_REMINDER_XML] = "5798009811585";
-            dictionary[TestConstants.PATH_STATEMENT_XML] = "5798000416604";
+            dictionary[TestConstants.PATH_STATEMENT_XML] = "5798009811578";
             CompareIdentifiers(dictionary);
         }
 

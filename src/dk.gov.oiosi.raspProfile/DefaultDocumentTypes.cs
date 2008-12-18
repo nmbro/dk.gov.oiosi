@@ -111,10 +111,10 @@ namespace dk.gov.oiosi.raspProfile {
             const string xsdPath = "Resources/Schemas/OIOUBL v2.01/UBL-CatalogueRequest-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CatalogueRequest_Schematron.xsl";
             const string xslUIPath = "";
-            const string destinationKeyXPath = "/root:CatalogueRequest/cac:ReceiverParty/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:CatalogueRequest/cac:ReceiverParty/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:CatalogueRequest/cac:ProfileParty/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:CatalogueRequest/cac:ProfileParty/cac:PartyName/cbc:Name";
+            const string destinationKeyXPath = "/root:CatalogueRequest/cac:ProviderParty/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:CatalogueRequest/cac:ProviderParty/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:CatalogueRequest/cac:ReceiverParty/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:CatalogueRequest/cac:ReceiverParty/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:CatalogueRequest/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CatalogueRequestResponse201Interface/SubmitCatalogueRequestResponseRequest";
             const string serviceContractTModel = "uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899";
