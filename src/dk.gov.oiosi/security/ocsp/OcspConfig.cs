@@ -43,7 +43,16 @@ namespace dk.gov.oiosi.security.ocsp {
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class OcspConfig {
+        private Uri _serverUrl = new Uri("http://localhost");
         private int _defaultTimeoutMsec = 10000;
+
+        /// <summary>
+        /// Gets or sets the URL of the OCSP server.
+        /// </summary>
+        public string ServerUrl {
+            get { return _serverUrl.ToString(); }
+            set { _serverUrl = new Uri(value); }
+        }
 
         /// <summary>
         /// The default timeout in milliseconds for the OCSP lookup operation.
@@ -56,7 +65,12 @@ namespace dk.gov.oiosi.security.ocsp {
                 _defaultTimeoutMsec = value; 
             }
         }
-                
+
+        /// <summary>
+        /// Default constructor that initializes the OscpConfig with default values
+        /// </summary>
+        public OcspConfig() { }
+
         /// <summary>
         /// Loads the configured OCES default root certificate
         /// </summary>

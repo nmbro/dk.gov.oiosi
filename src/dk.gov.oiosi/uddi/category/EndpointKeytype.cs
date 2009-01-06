@@ -53,11 +53,11 @@ namespace dk.gov.oiosi.uddi.category {
             string[] values = { "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/",
                                 "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/ovtNumber/",
                                 "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/",
-                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/dunsNumber/",
-                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/ibanNumber/",
-                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/pNumber/",
-                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/seNumber/",
-                                "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/Test/vansNumber/"
+                                "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/dunsNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/ibanNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/pNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/seNumber/",
+                                "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/vansNumber/"
                               };
 
             //Indicates an EAN number type

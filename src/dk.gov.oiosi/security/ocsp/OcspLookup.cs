@@ -147,7 +147,15 @@ namespace dk.gov.oiosi.security.ocsp {
                     req = ocsp.MakeOcspRequest(uiHex.ToString());
 
                     //3. send request
-                    byte[] resp = ocsp.Send(req, GetServerUriFromCertificate(certificate)); 
+                    byte[] resp;
+                    if (_configuration.ServerUrl.ToString().Equals("http://localhost/") ){
+                        // Use OCSP server specified in certificate
+                        resp = ocsp.Send(req, GetServerUriFromCertificate(certificate));
+                    }
+                    else {
+                        // Use OCSP server specified in configuration
+                        resp = ocsp.Send(req, _configuration.ServerUrl.ToString());
+                    }
 
                     //4. check result
                     if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString())) {
@@ -178,10 +186,25 @@ namespace dk.gov.oiosi.security.ocsp {
         /// <param name="certificate"></param>
         /// <returns>Server URI</returns>
         private string GetServerUriFromCertificate(X509Certificate2 certificate) {
-            Regex liveOcesOidRegEx = new Regex(@"URL=http://[\w|/\.]*");
-            string extensionDataString = certificate.Extensions["1.3.6.1.5.5.7.1.1"].Format(false);
-            MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
-            return matches[0].ToString().Substring(4);
+            string retval = "";
+            
+            try {
+                Regex liveOcesOidRegEx = new Regex(@"URL=http://[\w|/\.]*");
+                string extensionDataString = certificate.Extensions["1.3.6.1.5.5.7.1.1"].Format(false);
+                MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
+                if (matches.Count == 0 || matches.Count > 1) {
+                    // No or more than one matches
+                    throw new Exception();
+                }
+                else {
+                    retval = matches[0].ToString().Substring(4);
+                }
+            }
+            catch 
+            {
+                throw new InvalidOcesCertificateException(certificate);
+            }
+            return retval;
         } 
         
         /// <summary>
