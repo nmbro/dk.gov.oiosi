@@ -43,14 +43,18 @@ namespace dk.gov.oiosi.security.ocsp {
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class OcspConfig {
-        private Uri _serverUrl = new Uri("http://localhost");
+        private Uri _serverUrl = null;
         private int _defaultTimeoutMsec = 10000;
 
         /// <summary>
         /// Gets or sets the URL of the OCSP server.
         /// </summary>
         public string ServerUrl {
-            get { return _serverUrl.ToString(); }
+            get {
+                if (_serverUrl.Equals(null))
+                    return null;
+                else
+                    return _serverUrl.ToString(); }
             set { _serverUrl = new Uri(value); }
         }
 

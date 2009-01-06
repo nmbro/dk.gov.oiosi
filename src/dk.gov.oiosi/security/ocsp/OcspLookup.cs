@@ -148,7 +148,7 @@ namespace dk.gov.oiosi.security.ocsp {
 
                     //3. send request
                     byte[] resp;
-                    if (_configuration.ServerUrl.ToString().Equals("http://localhost/") ){
+                    if (string.IsNullOrEmpty(_configuration.ServerUrl)){
                         // Use OCSP server specified in certificate
                         resp = ocsp.Send(req, GetServerUriFromCertificate(certificate));
                     }
