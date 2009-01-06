@@ -51,7 +51,7 @@ namespace dk.gov.oiosi.security.ocsp {
         /// </summary>
         public string ServerUrl {
             get {
-                if (_serverUrl.Equals(null))
+                if (_serverUrl == null)
                     return null;
                 else
                     return _serverUrl.ToString(); }
