@@ -21,18 +21,12 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             documentTypes.CleanAdd();
             _searcher = new DocumentTypeConfigSearcher();
         }
-        [Test]
-        public void dummy() {
-            Assert.IsNotNull(1);
-        }
-        
+
         [Test]
         public void TestIdentifierEAN() {
-            //Testing EAN keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_EAN);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.ean, code);
 
@@ -46,11 +40,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
         
         [Test]
         public void TestIdentifierOVT() {
-            // Testing OVT keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_OVT);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.ovt, code);
 
@@ -63,11 +55,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierCVR() {
-            // Testing EAN keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_CVR);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.cvr, code);
 
@@ -80,11 +70,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierP() {
-            // Testing P keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_P);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.p, code);
 
@@ -97,11 +85,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierSE() {
-            // Testing SE keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_SE);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.se, code);
 
@@ -114,11 +100,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierVANS() {
-            // Testing VANS keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_VANS);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.vans, code);
 
@@ -131,11 +115,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierIBAN() {
-            // Testing IBAN keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_IBAN);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.iban, code);
 
@@ -148,11 +130,9 @@ namespace dk.gov.oiosi.test.nunit.library.common {
 
         [Test]
         public void TestIdentifierDUNS() {
-            // Testing DUNS keytypecode
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_DUNS);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            string xmlSchemaPath = documentType.SchemaPath;
             EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
             Assert.AreEqual(EndpointKeyTypeCode.duns, code);
 
