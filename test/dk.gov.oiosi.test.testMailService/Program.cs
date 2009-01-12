@@ -175,12 +175,12 @@ namespace TestMailService
             try {
                 DefaultDocumentTypes docTypes = new DefaultDocumentTypes();
                 DocumentTypeCollectionConfig docs = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-                docs.AddDocumentType(docTypes.ApplicationResponse());
-                docs.AddDocumentType(docTypes.CreditNote());
-                docs.AddDocumentType(docTypes.Invoice());
-                docs.AddDocumentType(docTypes.Order());
-                docs.AddDocumentType(docTypes.OrderResponseSimple());
-                docs.AddDocumentType(docTypes.Reminder());
+                docs.AddDocumentType(docTypes.GetApplicationResponse());
+                docs.AddDocumentType(docTypes.GetCreditNote());
+                docs.AddDocumentType(docTypes.GetInvoice());
+                docs.AddDocumentType(docTypes.GetOrder());
+                docs.AddDocumentType(docTypes.GetOrderResponseSimple());
+                docs.AddDocumentType(docTypes.GetReminder());
                 ConfigurationHandler.SaveToFile();
             }
             catch { }

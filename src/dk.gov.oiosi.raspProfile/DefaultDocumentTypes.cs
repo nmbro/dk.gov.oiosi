@@ -57,31 +57,31 @@ namespace dk.gov.oiosi.raspProfile {
         /// Adds all the document types
         /// </summary>
         public void Add() {
-            Add(InvoiceV07);
-            Add(CreditNoteV07);
+            Add(GetInvoiceV07);
+            Add(GetCreditNoteV07);
             
-            Add(ApplicationResponse);               // Applikationsmeddelelse
-            Add(Catalogue);                         // Katalog
-            Add(CatalogueRequest);                  // Katalogforespørgsel
-            Add(CatalogueItemSpecificationUpdate);  // Opdatering af katalogelement
-            Add(CataloguePricingUpdate);            // Opdatering af katalogpriser
-            Add(CatalogueDeletion);                 // Sletning af katalog
-            Add(CreditNote);                        // Kreditnota
-            Add(Invoice);                           // Faktura
-            Add(Order);                             // Ordre
-            Add(OrderCancellation);                 // Ordreannulering
-            Add(OrderResponse);                     // Ordrebekræftelse
-            Add(OrderChange);                       // Ordreændring
-            Add(OrderResponseSimple);               // Simpel ordrebekræftelse
-            Add(Reminder);                          // Rykker
-            Add(Statement);                         // KontoUdtog
+            Add(GetApplicationResponse);               // Applikationsmeddelelse
+            Add(GetCatalogue);                         // Katalog
+            Add(GetCatalogueRequest);                  // Katalogforespørgsel
+            Add(GetCatalogueItemSpecificationUpdate);  // Opdatering af katalogelement
+            Add(GetCataloguePricingUpdate);            // Opdatering af katalogpriser
+            Add(GetCatalogueDeletion);                 // Sletning af katalog
+            Add(GetCreditNote);                        // Kreditnota
+            Add(GetInvoice);                           // Faktura
+            Add(GetOrder);                             // Ordre
+            Add(GetOrderCancellation);                 // Ordreannulering
+            Add(GetOrderResponse);                     // Ordrebekræftelse
+            Add(GetOrderChange);                       // Ordreændring
+            Add(GetOrderResponseSimple);               // Simpel ordrebekræftelse
+            Add(GetReminder);                          // Rykker
+            Add(GetStatement);                         // KontoUdtog
         }
 
         /// <summary>
         /// The catalogue document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig Catalogue() {
+        public DocumentTypeConfig GetCatalogue() {
             const string documentName = "Katalog";
             const string rootName = "Catalogue";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2";
@@ -104,7 +104,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue request document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CatalogueRequest() {
+        public DocumentTypeConfig GetCatalogueRequest() {
             const string documentName = "Katalogforespørgsel";
             const string rootName = "CatalogueRequest";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2";
@@ -127,7 +127,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The statement document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig Statement() {
+        public DocumentTypeConfig GetStatement() {
             const string documentName = "KontoUdtog";
             const string rootName = "Statement";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Statement-2";
@@ -150,7 +150,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue item specification update document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CatalogueItemSpecificationUpdate() {
+        public DocumentTypeConfig GetCatalogueItemSpecificationUpdate() {
             const string documentName = "Opdatering af katalogelement";
             const string rootName = "CatalogueItemSpecificationUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2";
@@ -173,7 +173,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue pricing update document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CataloguePricingUpdate() {
+        public DocumentTypeConfig GetCataloguePricingUpdate() {
             const string documentName = "Opdatering af katalogpriser";
             const string rootName = "CataloguePricingUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2";
@@ -196,7 +196,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order cancellation document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig OrderCancellation() {
+        public DocumentTypeConfig GetOrderCancellation() {
             const string documentName = "Ordreannulering";
             const string rootName = "OrderCancellation";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2";
@@ -219,7 +219,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order response document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig OrderResponse() {
+        public DocumentTypeConfig GetOrderResponse() {
             const string documentName = "Ordrebekræftelse";
             const string rootName = "OrderResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
@@ -242,7 +242,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order change document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig OrderChange() {
+        public DocumentTypeConfig GetOrderChange() {
             const string documentName = "Ordreændring";
             const string rootName = "OrderChange";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2";
@@ -265,7 +265,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue deletion definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CatalogueDeletion() {
+        public DocumentTypeConfig GetCatalogueDeletion() {
             const string documentName = "Sletning af katalog";
             const string rootName = "CatalogueDeletion";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2";
@@ -288,7 +288,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The application response document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig ApplicationResponse() {
+        public DocumentTypeConfig GetApplicationResponse() {
             const string documentName = "Applikationsmeddelse";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
@@ -311,7 +311,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The credit note document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CreditNote() {
+        public DocumentTypeConfig GetCreditNote() {
             const string documentName = "Kreditnota";
             const string rootName = "CreditNote";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
@@ -334,7 +334,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// Settings for UBL Invoice 2.01
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig Invoice() {
+        public DocumentTypeConfig GetInvoice() {
             const string documentName = "Faktura";
             const string rootName = "Invoice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
@@ -357,7 +357,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig Order() {
+        public DocumentTypeConfig GetOrder() {
             const string documentName = "Ordre";
             const string rootName = "Order";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
@@ -380,7 +380,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order response simple document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig OrderResponseSimple() {
+        public DocumentTypeConfig GetOrderResponseSimple() {
             const string documentName = "Simpel ordrebekræftelse";
             const string rootName = "OrderResponseSimple";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2";
@@ -403,7 +403,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The reminder document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig Reminder() {
+        public DocumentTypeConfig GetReminder() {
             const string documentName = "Rykker";
             const string rootName = "Reminder";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Reminder-2";
@@ -426,7 +426,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The invoice 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig InvoiceV07() {
+        public DocumentTypeConfig GetInvoiceV07() {
             const string documentName = "Faktura v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pie/";
@@ -448,7 +448,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// The credit note 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig CreditNoteV07() {
+        public DocumentTypeConfig GetCreditNoteV07() {
             const string documentName = "Kreditnota v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/";

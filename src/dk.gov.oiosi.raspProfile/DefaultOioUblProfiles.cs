@@ -92,8 +92,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetCustomerOioxmlElektroniskRegningProfile() {
             string profileUddiId = "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6";
-            DocumentTypeConfig invoiceDocumentType = _documentTypes.InvoiceV07();
-            DocumentTypeConfig creditNote07DocumentType = _documentTypes.CreditNoteV07();
+            DocumentTypeConfig invoiceDocumentType = _documentTypes.GetInvoiceV07();
+            DocumentTypeConfig creditNote07DocumentType = _documentTypes.GetCreditNoteV07();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(invoiceDocumentType);
             profileDocumentTypes.Add(creditNote07DocumentType);
@@ -107,7 +107,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetCustomerNesProfil5BasicBilling1_0() {
             string profileUddiId = "uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31";
-            DocumentTypeConfig invoiceDocumentType = _documentTypes.Invoice();
+            DocumentTypeConfig invoiceDocumentType = _documentTypes.GetInvoice();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(invoiceDocumentType);
             OioublProfile profile = new OioublProfile(NesProfil5BasicBilling1_0, profileUddiId, OioublProfileRole.CustomerParty, profileDocumentTypes);
@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetSupplierProcurementBilSim_1_0() {
             string profileUddiId = "uddi:362229AC-B657-452a-B8F8-C93E62C670FF";
-            DocumentTypeConfig applicationResponseDocumentType = _documentTypes.ApplicationResponse();
+            DocumentTypeConfig applicationResponseDocumentType = _documentTypes.GetApplicationResponse();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(applicationResponseDocumentType);
             OioublProfile profile = new OioublProfile(ProcurementBilSim_1_0, profileUddiId, OioublProfileRole.SupplierParty, profileDocumentTypes);
@@ -133,9 +133,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetCustomerProcurementBilSim_1_0() {
             string profileUddiId = "uddi:362229AC-B657-452a-B8F8-C93E62C670FF";
-            DocumentTypeConfig invoiceDocumentType = _documentTypes.Invoice();
-            DocumentTypeConfig creditNoteDocumentType = _documentTypes.CreditNote();
-            DocumentTypeConfig reminderDocumentType = _documentTypes.Reminder();
+            DocumentTypeConfig invoiceDocumentType = _documentTypes.GetInvoice();
+            DocumentTypeConfig creditNoteDocumentType = _documentTypes.GetCreditNote();
+            DocumentTypeConfig reminderDocumentType = _documentTypes.GetReminder();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(invoiceDocumentType);
             profileDocumentTypes.Add(creditNoteDocumentType);
@@ -150,8 +150,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetSupplierProcurementOrdSimRBilSim_1_0() {
             string profileUddiId = "uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855";
-            DocumentTypeConfig orderDocumentType = _documentTypes.Order();
-            DocumentTypeConfig applicationResponseDocumentType = _documentTypes.ApplicationResponse();
+            DocumentTypeConfig orderDocumentType = _documentTypes.GetOrder();
+            DocumentTypeConfig applicationResponseDocumentType = _documentTypes.GetApplicationResponse();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(orderDocumentType);
             profileDocumentTypes.Add(applicationResponseDocumentType);
@@ -165,10 +165,10 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>Returns the profile definition</returns>
         public OioublProfile GetCustomerProcurementOrdSimRBilSim_1_0() {
             string profileUddiId = "uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855";
-            DocumentTypeConfig orderResponseSimpleDocumentType = _documentTypes.OrderResponseSimple();
-            DocumentTypeConfig invoiceDocumentType = _documentTypes.Invoice();
-            DocumentTypeConfig creditNoteDocumentType = _documentTypes.CreditNote();
-            DocumentTypeConfig reminderDocumentType = _documentTypes.Reminder();
+            DocumentTypeConfig orderResponseSimpleDocumentType = _documentTypes.GetOrderResponseSimple();
+            DocumentTypeConfig invoiceDocumentType = _documentTypes.GetInvoice();
+            DocumentTypeConfig creditNoteDocumentType = _documentTypes.GetCreditNote();
+            DocumentTypeConfig reminderDocumentType = _documentTypes.GetReminder();
             List<DocumentTypeConfig> profileDocumentTypes = new List<DocumentTypeConfig>();
             profileDocumentTypes.Add(orderResponseSimpleDocumentType);
             profileDocumentTypes.Add(invoiceDocumentType);
