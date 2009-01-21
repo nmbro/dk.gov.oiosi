@@ -42,7 +42,7 @@ namespace dk.gov.oiosi.security.oces {
 
         private void CheckSubjectKeyString(string subjectKeyString) {
             if (string.IsNullOrEmpty(subjectKeyString)) throw new NullOrEmptyArgumentException("keyString");
-            if (Regex.IsMatch(subjectKeyString, @"(^\\)+"))
+            if (Regex.IsMatch(subjectKeyString, @"(\s)+"))
                 throw new Exception("Invalid subject key string.");
         }
     }

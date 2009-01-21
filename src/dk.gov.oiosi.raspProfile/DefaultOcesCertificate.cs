@@ -47,20 +47,11 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetOcesCertificateConfig() {
             OcesX509CertificateConfig config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-            string personalOcesCertificateOid = "1.2.208.169.1.1.1.1.1";
-            string employeeOcesCertificateOid = "1.2.208.169.1.1.1.2.1";
-            string organizationOcesCertificateOid = "1.2.208.169.1.1.1.3.1";
-            string functionOcesCertificateOid = "1.2.208.169.1.1.1.4.1";
 
             string personalOcesCertificateSubjectKey = "PID";
             string employeeOcesCertificateSubjectKey = "RID";
             string organizationOcesCertificateSubjectKey = "UID";
             string functionOcesCertificateSubjectKey = "FID";
-
-            config.PersonalCertificateOid.PolicyOidString = personalOcesCertificateOid;
-            config.EmployeeCertificateOid.PolicyOidString = employeeOcesCertificateOid;
-            config.OrganizationCertficateOid.PolicyOidString = organizationOcesCertificateOid;
-            config.FunctionCertficateOid.PolicyOidString = functionOcesCertificateOid;
 
             config.PersonalCertificateSubjectKey.SubjectKeyString = personalOcesCertificateSubjectKey;
             config.EmployeeCertificateSubjectKey.SubjectKeyString = employeeOcesCertificateSubjectKey;
@@ -73,20 +64,11 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetTestOcesCertificateConfig() {
             OcesX509CertificateConfig config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-            string personalOcesCertificateOid = "1.2.208.169.1.1.1.1.1";
-            string employeeOcesCertificateOid = "1.2.208.169.1.1.1.2.1";
-            string organizationOcesCertificateOid = "1.2.208.169.1.1.1.3.1";
-            string functionOcesCertificateOid = "1.2.208.169.1.1.1.4.1";
 
             string personalOcesCertificateSubjectKey = "PID";
             string employeeOcesCertificateSubjectKey = "RID";
             string organizationOcesCertificateSubjectKey = "UID";
             string functionOcesCertificateSubjectKey = "DID";
-
-            config.PersonalCertificateOid.PolicyOidString = personalOcesCertificateOid;
-            config.EmployeeCertificateOid.PolicyOidString = employeeOcesCertificateOid;
-            config.OrganizationCertficateOid.PolicyOidString = organizationOcesCertificateOid;
-            config.FunctionCertficateOid.PolicyOidString = functionOcesCertificateOid;
 
             config.PersonalCertificateSubjectKey.SubjectKeyString = personalOcesCertificateSubjectKey;
             config.EmployeeCertificateSubjectKey.SubjectKeyString = employeeOcesCertificateSubjectKey;

@@ -42,10 +42,6 @@ namespace dk.gov.oiosi.security.oces {
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class OcesX509CertificateConfig {
-        private OcesCertificatePolicyOid _personalCertificateOid;
-        private OcesCertificatePolicyOid _employeeCertificateOid;
-        private OcesCertificatePolicyOid _organizationCertficateOid;
-        private OcesCertificatePolicyOid _functionCertficateOid;
         private OcesCertificateSubjectKey _personalCertificateSubjectKey;
         private OcesCertificateSubjectKey _employeeCertificateSubjectKey;
         private OcesCertificateSubjectKey _organizationCertificateSubjectKey;
@@ -55,10 +51,6 @@ namespace dk.gov.oiosi.security.oces {
         /// Default constructor used by XMLSerialization. It should not be used.
         /// </summary>
         public OcesX509CertificateConfig() {
-            _personalCertificateOid = new OcesCertificatePolicyOid();
-            _employeeCertificateOid = new OcesCertificatePolicyOid();
-            _organizationCertficateOid = new OcesCertificatePolicyOid();
-            _functionCertficateOid = new OcesCertificatePolicyOid();
             _personalCertificateSubjectKey = new OcesCertificateSubjectKey();
             _employeeCertificateSubjectKey = new OcesCertificateSubjectKey();
             _organizationCertificateSubjectKey = new OcesCertificateSubjectKey();
@@ -66,84 +58,24 @@ namespace dk.gov.oiosi.security.oces {
         }
 
         /// <summary>
-        /// Constructor that takes the oid for each of the OCES certificate types.
+        /// Constructor that takes the subject key for each of the OCES certificate types.
         /// </summary>
-        /// <param name="personalCertificateOid"></param>
-        /// <param name="employeeCertificateOid"></param>
-        /// <param name="organizationCertficateOid"></param>
-        /// <param name="functionCertficateOid"></param>
         /// <param name="personalCertificateSubjectKey"></param>
         /// <param name="employeeCertificateSubjectKey"></param>
         /// <param name="organizationCertificateSubjectKey"></param>
         /// <param name="functionCertificateSubjectKey"></param>
-        public OcesX509CertificateConfig(OcesCertificatePolicyOid personalCertificateOid,
-                                         OcesCertificatePolicyOid employeeCertificateOid,
-                                         OcesCertificatePolicyOid organizationCertficateOid,
-                                         OcesCertificatePolicyOid functionCertficateOid,
-                                         OcesCertificateSubjectKey personalCertificateSubjectKey,
+        public OcesX509CertificateConfig(OcesCertificateSubjectKey personalCertificateSubjectKey,
                                          OcesCertificateSubjectKey employeeCertificateSubjectKey,
                                          OcesCertificateSubjectKey organizationCertificateSubjectKey,
                                          OcesCertificateSubjectKey functionCertificateSubjectKey) {
-            if (personalCertificateOid == null) throw new NullArgumentException("personalCertificateOid");
-            if (employeeCertificateOid == null) throw new NullArgumentException("employeeCertificateOid");
-            if (organizationCertficateOid == null) throw new NullArgumentException("organizationCertficateOid");
-            if (functionCertficateOid == null) throw new NullArgumentException("deviceCertficateOid");
             if (personalCertificateSubjectKey == null) throw new NullArgumentException("personalCertificateSubjectKey");
             if (employeeCertificateSubjectKey == null) throw new NullArgumentException("employeeCertificateSubjectKey");
             if (organizationCertificateSubjectKey == null) throw new NullArgumentException("organizationCertificateSubjectKey");
             if (functionCertificateSubjectKey == null) throw new NullArgumentException("functionCertificateSubjectKey");
-            _personalCertificateOid = personalCertificateOid;
-            _employeeCertificateOid = employeeCertificateOid;
-            _organizationCertficateOid = organizationCertficateOid;
-            _functionCertficateOid = functionCertficateOid;
             _personalCertificateSubjectKey = personalCertificateSubjectKey;
             _employeeCertificateSubjectKey = employeeCertificateSubjectKey;
             _organizationCertificateSubjectKey = organizationCertificateSubjectKey;
             _functionCertificateSubjectKey = functionCertificateSubjectKey;
-        }
-
-        /// <summary>
-        /// Gets or sets the personal OCES certificate oid.
-        /// </summary>
-        public OcesCertificatePolicyOid PersonalCertificateOid {
-            get { return _personalCertificateOid; }
-            set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.PersonalCertificateOid");
-                _personalCertificateOid = value; 
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the employee OCES certificate oid
-        /// </summary>
-        public OcesCertificatePolicyOid EmployeeCertificateOid {
-            get { return _employeeCertificateOid; }
-            set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.EmployeeCertificateOid");
-                _employeeCertificateOid = value; 
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the organization OCES certificate oid
-        /// </summary>
-        public OcesCertificatePolicyOid OrganizationCertficateOid {
-            get { return _organizationCertficateOid; }
-            set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.OrganizationCertficateOid");
-                _organizationCertficateOid = value; 
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the fucntion OCES certificate oid
-        /// </summary>
-        public OcesCertificatePolicyOid FunctionCertficateOid {
-            get { return _functionCertficateOid; }
-            set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.FunctionCertficateOid");
-                _functionCertficateOid = value; 
-            }
         }
 
         /// <summary>

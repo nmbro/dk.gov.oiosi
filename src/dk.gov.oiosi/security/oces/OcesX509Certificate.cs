@@ -47,7 +47,7 @@ namespace dk.gov.oiosi.security.oces {
     /// Encapsulates an X509Certificate2 object.
     /// </summary>
     public class OcesX509Certificate {
-        private const string TESTCERTIFICATEOIDRULAREXPRESSION = @"\d+\.\d+\.\d+\.\d+\.\d+\.\d+\.\d+\.\d+\.\d+\.\d+";
+        
         private const string POLICYREGULAREXPRESSION = @"Policy Identifier=";
         private X509Certificate2 _x509Certificate;
         private X509CheckStatus _x509CheckStatus = X509CheckStatus.NotChecked;
@@ -213,33 +213,6 @@ namespace dk.gov.oiosi.security.oces {
             if (subject == null) throw new NullArgumentException("subject");
              //The code is using the subject as identifier of the the oces type.
              return GetFromSubject(subject);
-        }
-
-
-        private static OcesCertificateType GetFromExtension(X509Certificate2 certificate, X509Extension extension) {
-            OcesX509CertificateConfig _config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-            string extensionDataString = extension.Format(false);
-            Regex testOcesOidRegEx = new Regex(POLICYREGULAREXPRESSION + TESTCERTIFICATEOIDRULAREXPRESSION);
-            if (testOcesOidRegEx.IsMatch(extensionDataString))
-                return GetFromSubject(certificate);
-            Regex liveOcesOidRegEx = new Regex(POLICYREGULAREXPRESSION + OcesCertificatePolicyOid.OIDREGULAREXPRESSION);
-            MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
-
-            foreach (Match match in matches) {
-                string matchedString = match.Value;
-                int equalsIndex = matchedString.IndexOf('=');
-                string policyIdentifierString = matchedString.Substring(equalsIndex + 1);
-                OcesCertificatePolicyOid currentOid = new OcesCertificatePolicyOid(policyIdentifierString);
-                if (currentOid.NonVersionEquals(_config.PersonalCertificateOid))
-                    return OcesCertificateType.OcesPersonal;
-                if (currentOid.NonVersionEquals(_config.EmployeeCertificateOid))
-                    return OcesCertificateType.OcesEmployee;
-                if (currentOid.NonVersionEquals(_config.OrganizationCertficateOid))
-                    return OcesCertificateType.OcesOrganisation;
-                if (currentOid.NonVersionEquals(_config.FunctionCertficateOid))
-                    return OcesCertificateType.OcesFunction;
-            }
-            return OcesCertificateType.NonOces;
         }
 
         private static OcesCertificateType GetFromSubject(X509Certificate2 certificate) {

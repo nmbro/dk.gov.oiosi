@@ -183,12 +183,10 @@
     <Compile Include="security\lookup\CertificateLoaderMultipleCertificatesFoundException.cs" />
     <Compile Include="security\lookup\CertificateStoreIdentification.cs" />
     <Compile Include="security\oces\FailedGetOcesCertificateTypeException.cs" />
-    <Compile Include="security\oces\InvalidOcesCertificatePolicyOidException.cs" />
     <Compile Include="security\oces\NoSubjectCvrNumberException.cs" />
     <Compile Include="security\oces\InvalidOcesCertificateException.cs" />
     <Compile Include="security\oces\InvalidOcesEmployeeCertificateException.cs" />
     <Compile Include="security\oces\OcesCertificateException.cs" />
-    <Compile Include="security\oces\OcesCertificatePolicyOid.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKey.cs" />
     <Compile Include="security\oces\OcesX509CertificateConfig.cs" />
     <Compile Include="security\ocsp\InvalidOcesCertificateException.cs" />
