@@ -97,7 +97,7 @@
        </fileset>
      </zip>
 
-     <!-- Source -->
+     <!-- Source section -->
      <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
        <fileset basedir="${Root.dir}">
          <include name="**/*" />
