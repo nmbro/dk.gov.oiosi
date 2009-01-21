@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="innerException">The inner exception</param>
         public InterceptorChannelException(Exception innerException) : base(innerException) {
-            pFaultCode = OiosiMessageFault.OiosiFaultCode.Reciever;
+            pFaultCode = OiosiMessageFault.OiosiFaultCode.Receiver;
             pInnerFaultCode = OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault;
         }
 

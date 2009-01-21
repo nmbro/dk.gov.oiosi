@@ -56,7 +56,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
             if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiMessageFault.OiosiFaultCode.Sender;
             if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiFaultCode.Sender;
             if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            return OiosiMessageFault.OiosiFaultCode.Reciever;
+            return OiosiMessageFault.OiosiFaultCode.Receiver;
         }
 
         private static OiosiMessageFault.OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {

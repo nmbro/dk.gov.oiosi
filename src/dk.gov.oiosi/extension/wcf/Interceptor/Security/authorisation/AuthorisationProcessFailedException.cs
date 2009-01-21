@@ -19,6 +19,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.authorisation {
         /// the process fails.
         /// </summary>
         /// <param name="innerException">The inner exception</param>
-        public AuthorisationProcessFailedException(Exception innerException) : base(OiosiMessageFault.OiosiFaultCode.Reciever, OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault, innerException) { }
+        public AuthorisationProcessFailedException(Exception innerException) : base(OiosiMessageFault.OiosiFaultCode.Receiver, OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault, innerException) { }
     }
 }

@@ -52,10 +52,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
 
         
         private static OiosiMessageFault.OiosiFaultCode GetFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiMessageFault.OiosiFaultCode.Reciever;
-            if (innerException.GetType() == typeof(XsltException)) return OiosiMessageFault.OiosiFaultCode.Reciever;
+            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiMessageFault.OiosiFaultCode.Receiver;
+            if (innerException.GetType() == typeof(XsltException)) return OiosiMessageFault.OiosiFaultCode.Receiver;
             if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            return OiosiMessageFault.OiosiFaultCode.Reciever;
+            return OiosiMessageFault.OiosiFaultCode.Receiver;
         }
 
         private static OiosiMessageFault.OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {

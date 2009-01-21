@@ -54,9 +54,9 @@ namespace dk.gov.oiosi.communication.fault {
             /// </summary>
             Sender, 
             /// <summary>
-            /// Reciever fualt source
+            /// Receiver fault source
             /// </summary>
-            Reciever 
+            Receiver 
         };
         
         /// <summary>
@@ -156,7 +156,7 @@ namespace dk.gov.oiosi.communication.fault {
                 case OiosiFaultCode.Sender:
                     FaultCode senderInnerFaultCode = CreateSenderFaultCode(innerFaultCode);
                     return FaultCode.CreateSenderFaultCode(senderInnerFaultCode);
-                case OiosiFaultCode.Reciever:
+                case OiosiFaultCode.Receiver:
                     FaultCode recieverInnerFaultCode = CreateRecieverFaultCode(innerFaultCode);
                     return FaultCode.CreateReceiverFaultCode(recieverInnerFaultCode);
                 default:

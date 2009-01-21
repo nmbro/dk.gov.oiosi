@@ -57,7 +57,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         private static OiosiMessageFault.OiosiFaultCode GetFaultCode(Exception innerException) {
             if (innerException.GetType() == typeof(SchematronErrorException)) return OiosiMessageFault.OiosiFaultCode.Sender;
             if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            return OiosiMessageFault.OiosiFaultCode.Reciever;
+            return OiosiMessageFault.OiosiFaultCode.Receiver;
         }
 
         private static OiosiMessageFault.OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
