@@ -115,5 +115,10 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
         /// Gets and sets inbox implementation
         /// </summary>
         string InboxImplementation { get; set; }
+
+        /// <summary>
+        /// Gets and sets the max size of messages sent
+        /// </summary>
+        long MaxReceivedMessageSize { get; set; }
     }
 }

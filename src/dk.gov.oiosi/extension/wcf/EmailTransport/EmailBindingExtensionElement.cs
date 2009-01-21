@@ -179,6 +179,16 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
         }
 
         /// <summary>
+        /// Gets and sets the address of the sending server
+        /// </summary>
+        [ConfigurationProperty("maxReceivedMessageSize", IsRequired = false)]
+        public long MaxReceivedMessageSize
+        {
+            get { return (long)base["maxReceivedMessageSize"]; }
+            set { base["maxReceivedMessageSize"] = value; }
+        }
+
+        /// <summary>
         /// Gets type of binding element
         /// </summary>
         public override Type BindingElementType {

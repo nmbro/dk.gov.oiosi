@@ -58,6 +58,7 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
         private string _inboxImplementation;
         private TcpPort _receivingPort;
         private TcpPort _sendingPort;
+        private long _maxReceivedMessageSize;
 
 
         /// <summary>
@@ -198,6 +199,9 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
         /// <param name="configurationElement">bindingextension</param>
         public EmailBindingElement(IEmailBindingElementConfiguration configurationElement) {
             CopyConfigurationElement(configurationElement);
+            if (_maxReceivedMessageSize != null)
+                this.MaxReceivedMessageSize = _maxReceivedMessageSize;
+
         }
 
         /// <summary>
@@ -244,6 +248,7 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
             _inboxImplementation = configurationElement.InboxImplementation;
             _receivingPort = (TcpPort)configurationElement.ReceivingPort;
             _sendingPort = (TcpPort)configurationElement.SendingPort;
+            _maxReceivedMessageSize = configurationElement.MaxReceivedMessageSize;
         }
 
 
@@ -266,6 +271,9 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
             _inboxImplementation = original.InboxImplementation;
             _receivingPort = original._receivingPort;
             _sendingPort = original._sendingPort;
+            _maxReceivedMessageSize = original._maxReceivedMessageSize;
+            if (_maxReceivedMessageSize != null)
+                this.MaxReceivedMessageSize = _maxReceivedMessageSize;
         }
 
         /// <summary>
