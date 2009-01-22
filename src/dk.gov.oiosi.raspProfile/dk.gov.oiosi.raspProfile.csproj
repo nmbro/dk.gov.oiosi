@@ -537,17 +537,10 @@
     <Content Include="Resources\UI\OIOUBL v2.01\HtmlDependencies\html\OIOUBL.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Xml\DeployExamples\About.txt" />
     <Content Include="Resources\Documents\Examples\OIOUBL_ApplicationResponse_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_CreditNote_v2p1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Xml\DeployExamples\OIOUBL_Invoice_v2p1_B.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Xml\DeployExamples\OIOUBL_Invoice_v2p1_C.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples Invalid\OIOUBL_Invoice_v2p1_NoId.xml">
@@ -566,9 +559,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_Order_v2p1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Xml\DeployExamples\OIOUBL_Order_v2p1_B.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_Reminder_v2p1.xml">
