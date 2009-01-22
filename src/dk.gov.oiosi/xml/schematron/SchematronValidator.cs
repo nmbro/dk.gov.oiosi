@@ -89,14 +89,15 @@ namespace dk.gov.oiosi.xml.schematron {
         /// <param name="xmlSchematronStylesheet">stylesheet to use</param>
         public void SchematronValidateXmlDocument(XmlDocument xmlDocument, XmlDocument xmlSchematronStylesheet) {
             XmlDocument result = null;
+            bool hasAnyErrors;
             try {
                 result = _xlstUtil.TransformXML(xmlDocument, xmlSchematronStylesheet);
+                PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
+                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, _errorXPath, prefixedNamespaces);
             }
             catch (Exception ex) {
                 throw new SchematronValidationFailedException(xmlDocument, ex);
             }
-            PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
-            bool hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, _errorXPath, prefixedNamespaces);
             if (hasAnyErrors) {
                 string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, _errorMessageXPath, prefixedNamespaces);
                 throw new SchematronErrorException(result, firstErrorMessage);

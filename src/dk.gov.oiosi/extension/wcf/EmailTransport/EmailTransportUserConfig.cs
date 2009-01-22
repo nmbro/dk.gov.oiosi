@@ -108,7 +108,6 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
             set { _receiveOutbox = value; }
         }
 
-
         /// <summary>
         /// Gets and sets the send certificate x509 store indentification
         /// </summary>
