@@ -36,26 +36,6 @@ using System.Text;
 namespace dk.gov.oiosi.uddi {
 
     /// <summary>
-    /// The types of UDDI endpoints
-    /// </summary>
-    public enum UDDIEndpointType {
-        /// <summary>
-        /// UDDI inquiry
-        /// </summary>
-        inquiry,
-
-        /// <summary>
-        /// UDDI publishing
-        /// </summary>
-        publish,
-
-        /// <summary>
-        /// UDDI publish
-        /// </summary>
-        tokenService
-    }
-
-    /// <summary>
     /// This class represents an UDDI inquiry or publish API endpoint.
     /// </summary>
     public class UddiEndpoint {
@@ -79,8 +59,7 @@ namespace dk.gov.oiosi.uddi {
         /// Constructor. 
         /// </summary>
         /// <param name="uddiEndpoint">The URL of the UDDI inquiry or publish API endpoint</param>
-        /// <param name="endpointType">he type of the UDDI endpoint, e.g. inquiry or publish</param>
-        public UddiEndpoint (Uri uddiEndpoint, UDDIEndpointType endpointType) {
+        public UddiEndpoint (Uri uddiEndpoint) {
             _uddiEndpoint = uddiEndpoint;
         }
     }
