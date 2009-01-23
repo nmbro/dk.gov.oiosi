@@ -44,7 +44,7 @@ using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 namespace dk.gov.oiosi.communication.service {
 
     /// <summary>
-    /// The implementation of our service contract
+    /// The implementation of our service contract for use when self hosting services
     /// </summary>
     public class ServiceImplementation: IServiceContract
     {
