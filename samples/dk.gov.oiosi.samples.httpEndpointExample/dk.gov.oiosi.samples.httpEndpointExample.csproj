@@ -67,11 +67,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
+    <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
       <Name>dk.gov.oiosi</Name>
     </ProjectReference>
