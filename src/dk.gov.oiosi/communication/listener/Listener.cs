@@ -137,7 +137,12 @@ namespace dk.gov.oiosi.communication.listener {
 
             Listener listener = null;
             lock (pHostList) {
-                listener = pHostList[currentServiceHost];
+                try {
+                    listener = pHostList[currentServiceHost];
+                } catch (KeyNotFoundException e) {
+                    // The listener was not found!
+                }
+                
                 if (listener == null)
                     throw new WcfListenerSearchFailedException(currentServiceHost);
             }
