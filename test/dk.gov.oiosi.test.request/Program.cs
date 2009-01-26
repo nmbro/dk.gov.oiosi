@@ -117,6 +117,8 @@ namespace dk.gov.oiosi.test.request {
             
             // Add it to our OIOSI Message
             msg.MessageHeaders.Add(headerName, header);
+
+            msg.RequestAction = "http://rep.oio.dk/oiosi/ping";
         }
 
 
