@@ -11,7 +11,7 @@
   <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
   <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
   <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
-  <property name="IntegrationTest.file" value="test/dk.gov.oiosi.integration/bin/release/dk.gov.oiosi.integration.dll"/>
+  <property name="IntegrationTest.file" value="test/dk.gov.oiosi.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
   
   <target name="Clean" description="Remove all build products">
         <delete dir="${Dist.dir}"  if="${directory::exists('${Dist.dir}')}" />
