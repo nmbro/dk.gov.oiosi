@@ -8,8 +8,8 @@
     <ProjectGuid>{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.integration</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.integration</AssemblyName>
+    <RootNamespace>dk.gov.oiosi.test.integration</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.test.integration</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,9 +37,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="communication\RequestTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="security\ocsp\OcspLookupTest.cs" />
     <Compile Include="uddi\UddiLookupClientTest.cs" />
@@ -48,6 +52,10 @@
     <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
       <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
       <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+      <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
+      <Name>dk.gov.oiosi.raspProfile</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
@@ -68,6 +76,7 @@
     <Content Include="RaspConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\Invoice.2.01.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
