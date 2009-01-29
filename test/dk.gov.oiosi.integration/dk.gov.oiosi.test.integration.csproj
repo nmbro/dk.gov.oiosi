@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="communication\RequestTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="security\ocsp\OcspLookupTest.cs" />
+    <Compile Include="security\revocation\CrlLookupTest.cs" />
+    <Compile Include="security\revocation\OcspLookupTest.cs" />
     <Compile Include="uddi\UddiLookupClientTest.cs" />
   </ItemGroup>
   <ItemGroup>

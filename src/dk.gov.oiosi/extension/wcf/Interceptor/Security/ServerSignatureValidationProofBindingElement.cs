@@ -37,10 +37,10 @@ using System.Text;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.ldap;
-using dk.gov.oiosi.security.ocsp;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.extension.wcf.Interceptor.Security.Header;
+using dk.gov.oiosi.security.revocation;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// <summary>
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// </summary>
     public class ServerSignatureValidationProofBindingElement : CommonBindingElement {
         private ServerSignatureValidationProofBindingExtensionElement _configuration;
-        private IOcspLookup _ocspLookup;
+        private IRevocationLookup revocationLookup;
         private SignatureValidationStackCheck _stackCheck;
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <param name="configuration"></param>
         public ServerSignatureValidationProofBindingElement(ServerSignatureValidationProofBindingExtensionElement configuration) {
             _configuration = configuration;
-            OcspLookupFactory ocspLookupFactory = new OcspLookupFactory();
-            _ocspLookup = ocspLookupFactory.CreateOcspLookupClient();
+            RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
+            revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
             _stackCheck = new SignatureValidationStackCheck(GetType());
         }
 
@@ -99,9 +99,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
             }
 
             OcesX509Certificate ocesCertificate = new OcesX509Certificate(certificate);
-            OcspCheckStatus status = ocesCertificate.CheckOcspStatus(_ocspLookup);
+            RevocationCheckStatus status = ocesCertificate.CheckRevocationStatus(revocationLookup);
             
-            if (status != OcspCheckStatus.AllChecksPassed) 
+            if (status != RevocationCheckStatus.AllChecksPassed) 
                 throw new Exception();
             SignatureValidationProof signatureValidationProof = new SignatureValidationProof(certificate.Subject);
             interceptorMessage.AddProperty(ServerSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey, signatureValidationProof);

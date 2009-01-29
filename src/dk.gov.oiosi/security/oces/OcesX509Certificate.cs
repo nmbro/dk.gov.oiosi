@@ -38,7 +38,9 @@ using System.Text.RegularExpressions;
 
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.exception;
-using dk.gov.oiosi.security.ocsp;
+using IRevocationLookup=dk.gov.oiosi.security.revocation.IRevocationLookup;
+using RevocationResponse=dk.gov.oiosi.security.revocation.RevocationResponse;
+using dk.gov.oiosi.security.revocation;
 
 namespace dk.gov.oiosi.security.oces {
 
@@ -51,7 +53,7 @@ namespace dk.gov.oiosi.security.oces {
         private const string POLICYREGULAREXPRESSION = @"Policy Identifier=";
         private X509Certificate2 _x509Certificate;
         private X509CheckStatus _x509CheckStatus = X509CheckStatus.NotChecked;
-        private OcspCheckStatus _ocspCheckStatus = OcspCheckStatus.NotChecked;
+        private RevocationCheckStatus revocationCheckStatus = RevocationCheckStatus.NotChecked;
         private OcesCertificateType _ocesCertificateType = OcesCertificateType.NonOces;
         private CertificateSubject _subject;
 
@@ -74,23 +76,23 @@ namespace dk.gov.oiosi.security.oces {
         /// Checks the status of the certificate against an OCSP server.
         /// Updates the internal state with the result.
         /// </summary>
-        /// <param name="ocspLookupClient">The OCSP client to use for the request</param>
+        /// <param name="revocationLookupClient">The OCSP client to use for the request</param>
         /// <returns>Returns the check status</returns>
-        public OcspCheckStatus CheckOcspStatus(IOcspLookup ocspLookupClient) {
-            OcspResponse response;
+        public revocation.RevocationCheckStatus CheckRevocationStatus(IRevocationLookup revocationLookupClient) {
+            RevocationResponse response;
             try {
-                response = ocspLookupClient.CheckCertificate(_x509Certificate);
+                response = revocationLookupClient.CheckCertificate(_x509Certificate);
             } catch {
-                _ocspCheckStatus = OcspCheckStatus.UnknownIssue;
+                revocationCheckStatus = RevocationCheckStatus.UnknownIssue;
                 throw;
             }
 
             if (response.IsValid)
-                _ocspCheckStatus = OcspCheckStatus.AllChecksPassed;
+                revocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
             else
-                _ocspCheckStatus = OcspCheckStatus.CertificateRevoked;
+                revocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
             
-            return _ocspCheckStatus;
+            return revocationCheckStatus;
         }
 
         /// <summary>
@@ -117,8 +119,8 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Gets the ocsp check status
         /// </summary>
-        public OcspCheckStatus OcspCheckStatus {
-            get { return _ocspCheckStatus; }
+        public RevocationCheckStatus RevocationCheckStatus {
+            get { return revocationCheckStatus; }
         }
         
         /// <summary>

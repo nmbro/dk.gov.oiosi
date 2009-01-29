@@ -32,17 +32,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace dk.gov.oiosi.security.ocsp {
+namespace dk.gov.oiosi.security {
 
     /// <summary>
-    /// Custom exception used when checking if a certificate throws an unexpected exception
+    /// Custom exception used when an unexpected exception is thrown during a check to see if
+    /// the certificate is valid
     /// </summary>
-    public class CheckCertificateValidUnexpectedException : OcspException{
+    public class CheckCertificateActivatedUnexpectedException : CertificateHandlingException {
         
         /// <summary>
         /// Constructor with innerexception
         /// </summary>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public CheckCertificateValidUnexpectedException(Exception innerException) : base(innerException) { }
+        public CheckCertificateActivatedUnexpectedException(Exception innerException) : base(innerException) { }
     }
 }

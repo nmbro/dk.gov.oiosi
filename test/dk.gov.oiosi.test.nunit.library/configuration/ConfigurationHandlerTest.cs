@@ -4,7 +4,7 @@ using System.Xml;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
-using dk.gov.oiosi.security.ocsp;
+using dk.gov.oiosi.security.revocation;
 using NUnit.Framework;
 
 namespace dk.gov.oiosi.test.nunit.library.configuration {
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFile.FullName;
 
-            OcspLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<OcspLookupFactoryConfig>();
+            RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ocsp.OcspLookup";
 

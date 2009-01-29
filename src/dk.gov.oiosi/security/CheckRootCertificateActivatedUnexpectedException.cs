@@ -1,4 +1,4 @@
-﻿/*
+/*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
   * file except in compliance with the License. You may obtain
@@ -21,7 +21,7 @@
   *   Gert Sylvest (gerts@avanade.com)
   *   Patrik Johansson (p.johansson@accenture.com)
   *   Michael Nielsen (michaelni@avanade.com)
-  *   Dennis Søgaard (dennis.j.sogaard@accenture.com)
+  *   Dennis S�gaard (dennis.j.sogaard@accenture.com)
   *   Ramzi Fadel (ramzif@avanade.com)
   *   Mikkel Hippe Brun (mhb@itst.dk)
   *   Finn Hartmann Jordal (fhj@itst.dk)
@@ -29,25 +29,21 @@
   *
   */
 using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
+using System.Text;
 
-namespace dk.gov.oiosi.security.ocsp {
+namespace dk.gov.oiosi.security {
 
     /// <summary>
-    /// Interface for an OCSP lookup
+    /// Custom exception used when checking if a certificate has an activated root certificate 
+    /// throws an unexpected exception
     /// </summary>
-    public interface IOcspLookup {
-
+    public class CheckRootCertificateActivatedUnexpectedException : CertificateHandlingException {
+        
         /// <summary>
-        /// Checks the certificate status against an OCSP server
+        /// Constructor with innerexception
         /// </summary>
-        /// <param name="certificate">The certificate to check</param>
-        /// <returns>Returns the check status</returns>
-        OcspResponse CheckCertificate(X509Certificate2 certificate);
-
-        /// <summary>
-        /// Gets the configuration for the OCSP client
-        /// </summary>
-        OcspConfig Configuration { get; }
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public CheckRootCertificateActivatedUnexpectedException(Exception innerException) : base(innerException) { }
     }
 }

@@ -31,25 +31,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using dk.gov.oiosi.configuration;
 
-namespace dk.gov.oiosi.security.ocsp {
-    
+namespace dk.gov.oiosi.security {
+
     /// <summary>
-    /// Configuration for the OcspLookupTest class
+    /// Custom exception thrown when an unexpected exception is thrown during a check to see
+    /// if the certificate chain is valid
     /// </summary>
-    [System.Xml.Serialization.XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class OcspLookupTestConfig {
-        private bool _returnPositiveResponse = false;
-
+    public class CheckCertificateChainUnexpectedException : CertificateHandlingException {
+        
         /// <summary>
-        /// If set to true, the test ocsp lookup always replies that the certificate
-        /// is valid (i.e. not revoked). If false, it always responds that the certificate
-        /// has been revoked.
+        /// Constructor with innerexception
         /// </summary>
-        public bool ReturnPositiveResponse {
-            get { return _returnPositiveResponse; }
-            set { _returnPositiveResponse = value; }
-        }
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public CheckCertificateChainUnexpectedException(Exception innerException) : base(innerException) { }
     }
 }

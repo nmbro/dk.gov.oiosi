@@ -33,7 +33,7 @@ using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.security.oces;
 
-namespace dk.gov.oiosi.security.ocsp {
+namespace dk.gov.oiosi.security {
     /// <summary>
     /// This class' public properties are used to store the result of a certification validation
     /// </summary>

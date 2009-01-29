@@ -5,12 +5,12 @@ using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.ldap;
 using dk.gov.oiosi.security.lookup;
-using dk.gov.oiosi.security.ocsp;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.test.request;
@@ -20,7 +20,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
     /// <summary>
     /// Extended Request example
     /// 
-    /// This example demonstrates how to perform the UDDI, LDAP and OCSP lookups needed
+    /// This example demonstrates how to perform the UDDI, LDAP and OCSP/CRL lookups needed
     /// to make a full OIOSI RASP service call.
     /// 
     /// Lessons
@@ -33,9 +33,9 @@ namespace dk.gov.oiosi.test.extendedRequest {
     ///     LDAP Lookup - region 2
     ///         We use LDAP to download the certificate returned by the UDDI registry
     /// 
-    ///     OCSP Lookup - region 3
+    ///     Revocation Lookup - region 3
     ///         We make sure that the certificate we downloaded is valid by looking it up
-    ///         on an OCSP server
+    ///         on an OCSP server or a CRL
     /// 
     /// </summary>
     public class Preparation {
@@ -53,7 +53,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
             X509Certificate2 serverCert = Ldap(uddiResponse.CertificateSubjectSerialNumber);
 
             // 3. Check the validity status of the certificate using OCSP
-            Ocsp(serverCert);
+            Revocation(serverCert);
 
 
             // Let the user configure the client certificate
@@ -178,25 +178,25 @@ namespace dk.gov.oiosi.test.extendedRequest {
         }
         #endregion
 
-        #region 3 - OCSP
-        static void Ocsp(X509Certificate2 certificate) {
+        #region 3 - Revocation
+        static void Revocation(X509Certificate2 certificate) {
             
             // Create the OCSP client
-            OcspLookupFactory ocspLookupFactory = new OcspLookupFactory();
-            IOcspLookup ocspClient = ocspLookupFactory.CreateOcspLookupClient();
+            RevocationLookupFactory revocationLookupFactory = new RevocationLookupFactory();
+            IRevocationLookup revocationClient = revocationLookupFactory.CreateRevocationLookupClient();
 
             // Check the validity status of the certificate using OCSP
-            OcspResponse ocspResponse = ocspClient.CheckCertificate(certificate);
+            RevocationResponse revocationResponse = revocationClient.CheckCertificate(certificate);
 
             // Print out info
-            Console.Write("  3. Certificate status returned by OCSP.\n       Is valid: ");
+            Console.Write("  3. Certificate status returned by RevocationLookup.\n       Is valid: ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(ocspResponse.IsValid.ToString());
+            Console.WriteLine(revocationResponse.IsValid.ToString());
             Console.ForegroundColor = ConsoleColor.White;
 
             // Make sure the cert was valid
-            if (!ocspResponse.IsValid)
-                throw new Exception("The certificate returned by OCSP was not valid");
+            if (!revocationResponse.IsValid)
+                throw new Exception("The certificate returned by RevocationLookup was not valid");
         }
         #endregion
     }

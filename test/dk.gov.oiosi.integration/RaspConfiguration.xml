@@ -74,8 +74,8 @@
     <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookupTest</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="OcspLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.ocsp.OcspLookupTest</ImplementationNamespaceClass>
+<ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspLookupTestConfig">

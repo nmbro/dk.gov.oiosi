@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="RootCertificateConfig">
     <RootCertificateLocation>
@@ -848,8 +848,8 @@
     <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookupTest</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="OcspLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.ocsp.OcspLookupTest</ImplementationNamespaceClass>
+  <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspLookupTestConfig">

@@ -64,7 +64,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="bccrypto-csharp-b02, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\External libraries\bccrypto-csharp-b02.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\External libraries\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="dk.gov.oiosi.uddi, Version=1.0.3239.23397, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -191,8 +196,10 @@
     <Compile Include="security\oces\OcesCertificateException.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKey.cs" />
     <Compile Include="security\oces\OcesX509CertificateConfig.cs" />
-    <Compile Include="security\ocsp\InvalidOcesCertificateException.cs" />
-    <Compile Include="security\ocsp\InvalidOcspTimeoutValueException.cs" />
+    <Compile Include="security\revocation\crl\CrlCache.cs" />
+    <Compile Include="security\revocation\crl\CrlLookup.cs" />
+    <Compile Include="security\InvalidOcesCertificateException.cs" />
+    <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\RootCertificateConfig.cs" />
     <Compile Include="uddi\ars\ArsBindingType.cs" />
     <Compile Include="uddi\ars\ArsLookupExtended.cs" />
@@ -273,9 +280,9 @@
     <Compile Include="communication\handlers\email\InboxFactory.cs" />
     <Compile Include="communication\handlers\email\MailboxExceptionThrown.cs" />
     <Compile Include="communication\handlers\email\MailHandlerConfiguration.cs" />
-    <Compile Include="security\ocsp\FailedToLoadLookupTypeException.cs" />
-    <Compile Include="security\ocsp\OcspNoImplementingAssemblyException.cs" />
-    <Compile Include="security\ocsp\OcspNoImplementingClassException.cs" />
+    <Compile Include="security\revocation\FailedToLoadLookupTypeException.cs" />
+    <Compile Include="security\revocation\RevocationNoImplementingAssemblyException.cs" />
+    <Compile Include="security\revocation\RevocationNoImplementingClassException.cs" />
     <Compile Include="common\cache\TimedCache.cs" />
     <Compile Include="uddi\ars\ArsBinding.cs" />
     <Compile Include="uddi\ars\ArsBindingSet.cs" />
@@ -372,14 +379,14 @@
     <Compile Include="communication\handlers\email\MailboxClosedException.cs" />
     <Compile Include="communication\handlers\email\MailServerConfigurationMissingException.cs" />
     <Compile Include="communication\handlers\email\MailServerPollingPatternNotSupportedException.cs" />
-    <Compile Include="security\ocsp\CertificateRevokedException.cs" />
-    <Compile Include="security\ocsp\IOcspLookup.cs" />
-    <Compile Include="security\ocsp\OcspConfig.cs" />
+    <Compile Include="security\revocation\CertificateRevokedException.cs" />
+    <Compile Include="security\revocation\IRevocationLookup.cs" />
+    <Compile Include="security\revocation\ocsp\OcspConfig.cs" />
     <Compile Include="extension\wcf\EmailTransport\CommonChannelBase.cs" />
-    <Compile Include="security\ocsp\OcspLookupFactory.cs" />
-    <Compile Include="security\ocsp\OcspLookupFactoryConfig.cs" />
-    <Compile Include="security\ocsp\OcspLookupTest.cs" />
-    <Compile Include="security\ocsp\OcspLookupTestConfig.cs" />
+    <Compile Include="security\revocation\RevocationLookupFactory.cs" />
+    <Compile Include="security\revocation\RevocationLookupFactoryConfig.cs" />
+    <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
+    <Compile Include="security\revocation\ocsp\OcspLookupTestConfig.cs" />
     <Compile Include="common\Utilities.cs" />
     <Compile Include="uddi\category\AuthenticationRequiredCode.cs" />
     <Compile Include="uddi\category\ConformanceClaimCode.cs" />
@@ -560,7 +567,7 @@
     <Compile Include="security\lookup\SearchFailedException.cs" />
     <Compile Include="security\oces\OcesCertificateType.cs" />
     <Compile Include="security\oces\OcesX509Certificate.cs" />
-    <Compile Include="security\OcspCheckStatus.cs" />
+    <Compile Include="security\revocation\RevocationCheckStatus.cs" />
     <Compile Include="security\validation\CertificateExpiredException.cs" />
     <Compile Include="security\validation\CertificateFailedChainValidationException.cs" />
     <Compile Include="security\validation\CertificateNotActiveException.cs" />
@@ -609,24 +616,24 @@
     <Compile Include="security\ldap\PatternsDoesNotMatchException.cs" />
     <Compile Include="security\ldap\StoringCertificateFailedException.cs" />
     <Compile Include="security\CertificateChecker.cs" />
-    <Compile Include="security\ocsp\CertificateCheckResult.cs" />
-    <Compile Include="security\ocsp\CertificateRevokedTimeoutException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateActivatedUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateChainUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateOcspUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateRevokedUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateTypeUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckCertificateValidUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckRootCertificateActivatedUnexpectedException.cs" />
-    <Compile Include="security\ocsp\CheckRootCertificateValidUnexpectedException.cs" />
-    <Compile Include="security\ocsp\ErrorMessages.Designer.cs">
+    <Compile Include="security\CertificateCheckResult.cs" />
+    <Compile Include="security\revocation\ocsp\CertificateRevokedTimeoutException.cs" />
+    <Compile Include="security\CheckCertificateActivatedUnexpectedException.cs" />
+    <Compile Include="security\CheckCertificateChainUnexpectedException.cs" />
+    <Compile Include="security\revocation\ocsp\CheckCertificateOcspUnexpectedException.cs" />
+    <Compile Include="security\revocation\CheckCertificateRevokedUnexpectedException.cs" />
+    <Compile Include="security\CheckCertificateTypeUnexpectedException.cs" />
+    <Compile Include="security\CheckCertificateValidUnexpectedException.cs" />
+    <Compile Include="security\CheckRootCertificateActivatedUnexpectedException.cs" />
+    <Compile Include="security\CheckRootCertificateValidUnexpectedException.cs" />
+    <Compile Include="security\revocation\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\ocsp\OcspException.cs" />
-    <Compile Include="security\ocsp\OcspResponse.cs" />
-    <Compile Include="security\ocsp\OcspLookup.cs" />
+    <Compile Include="security\revocation\RevocationException.cs" />
+    <Compile Include="security\revocation\RevocationResponse.cs" />
+    <Compile Include="security\revocation\ocsp\OcspLookup.cs" />
     <Compile Include="xml\schema\ErrorMessages.Designer.cs" />
     <Compile Include="xml\schema\SchemaValidator.cs" />
     <Compile Include="xml\schema\SchemaValidationException.cs" />
@@ -727,7 +734,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="security\ocsp\ErrorMessages.resx">
+    <EmbeddedResource Include="security\revocation\ErrorMessages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>

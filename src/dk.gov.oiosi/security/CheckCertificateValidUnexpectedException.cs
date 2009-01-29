@@ -31,18 +31,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Resources;
-using dk.gov.oiosi.exception;
 
-namespace dk.gov.oiosi.security.ocsp
-{
+namespace dk.gov.oiosi.security {
+
     /// <summary>
-    /// Exception type that explains that no assembly for implementation was given in OCSP config
+    /// Custom exception used when checking if a certificate throws an unexpected exception
     /// </summary>
-    public class OcspNoImplementingAssemblyException : OcspException {
+    public class CheckCertificateValidUnexpectedException : CertificateHandlingException{
+        
         /// <summary>
-        /// Constructor
+        /// Constructor with innerexception
         /// </summary>
-        public OcspNoImplementingAssemblyException() : base() { }
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public CheckCertificateValidUnexpectedException(Exception innerException) : base(innerException) { }
     }
 }

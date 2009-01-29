@@ -30,27 +30,20 @@
   */
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using dk.gov.oiosi.security;
 
-namespace dk.gov.oiosi.security.ocsp {
+namespace dk.gov.oiosi.security {
 
     /// <summary>
-    /// Custom exception used when the certificate being checked is revoked
+    /// Custom exception used when checking if a certificate has an valid root certificate 
+    /// throws an unexpected exception
     /// </summary>
-    public class CertificateRevokedException : OcspException {
+    public class CheckRootCertificateValidUnexpectedException : CertificateHandlingException {
         
         /// <summary>
-        /// Constructor with serialnumber as keyword
+        /// Constructor with innerexception
         /// </summary>
-        /// <param name="subjectSN">serialnumber of the certificate being checked</param>
-        public CertificateRevokedException(CertificateSubject subjectSN) : base(GetKeywords(subjectSN)) { }
-
-        private static Dictionary<string, string> GetKeywords(CertificateSubject subjectSN) {
-            Dictionary<string, string> keywords = new Dictionary<string, string>();
-            keywords.Add("serialnumber", subjectSN.SubjectString);
-            return keywords;
-        }
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public CheckRootCertificateValidUnexpectedException(Exception innerException) : base(innerException) { }
     }
 }

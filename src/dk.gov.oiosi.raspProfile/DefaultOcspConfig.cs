@@ -30,7 +30,8 @@
   */
 
 using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.security.ocsp;
+using dk.gov.oiosi.security.revocation;
+using dk.gov.oiosi.security.revocation.ocsp;
 
 namespace dk.gov.oiosi.raspProfile {
 
@@ -43,7 +44,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// Set default, live Ocsp factory 
         /// </summary>
         public void SetOcspLookupFactoryConfig() {
-            OcspLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<OcspLookupFactoryConfig>();
+            RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ocsp.OcspLookup";
         }
@@ -52,7 +53,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// Set default, test Ocsp factory
         /// </summary>
         public void SetTestOcspLookupFactoryConfig() {
-            OcspLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<OcspLookupFactoryConfig>();
+            RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ocsp.OcspLookupTest";
         }
@@ -61,7 +62,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// Use default live factory as default 
         /// </summary>
         public void SetIfNotExistsOcspLookupFactoryConfig() {
-            if (ConfigurationHandler.HasConfigurationSection<OcspLookupFactoryConfig>())
+            if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
             SetOcspLookupFactoryConfig();
         }
@@ -70,7 +71,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// Use default test factory as default
         /// </summary>
         public void SetIfNotExistsTestOcspLookupFactoryConfig() {
-            if (ConfigurationHandler.HasConfigurationSection<OcspLookupFactoryConfig>())
+            if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
             SetTestOcspLookupFactoryConfig();
         }

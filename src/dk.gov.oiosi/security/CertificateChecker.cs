@@ -33,8 +33,9 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using dk.gov.oiosi.security.revocation;
+using dk.gov.oiosi.security.revocation.ocsp;
 using dk.gov.oiosi.security.validation;
-using dk.gov.oiosi.security.ocsp;
 using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.security {
@@ -45,19 +46,19 @@ namespace dk.gov.oiosi.security {
     /// </summary>
     public class CertificateChecker {
         private X509Certificate2 _defaultOCESrootCertificate;
-        private OcspLookup _ocsp;
+        private IRevocationLookup _lookup;
 
         /// <summary>
         /// Instantiates CertificateChecker
         /// </summary>
-        /// <param name="ocspLookupConfiguration">The ocsp server configuration</param>
         /// <param name="defaultRootCertificate">default OCES root certificate</param>
-        public CertificateChecker(OcspConfig ocspLookupConfiguration, X509Certificate2 defaultRootCertificate) {
+        public CertificateChecker(X509Certificate2 defaultRootCertificate) {
             try {
                 _defaultOCESrootCertificate = defaultRootCertificate;
 
                 //Initializes the component, that will do the actual ocsp lookup
-                _ocsp = new OcspLookup(ocspLookupConfiguration, defaultRootCertificate);
+                RevocationLookupFactory lookupFactory = new RevocationLookupFactory();
+                _lookup = lookupFactory.CreateRevocationLookupClient();
             } catch (UriFormatException) {
                 throw;
             } catch (ArgumentNullException) {
@@ -120,7 +121,7 @@ namespace dk.gov.oiosi.security {
                 }
 
                 //4. check if the certificate is revoked async
-                OcspResponse response = CheckCertificateRevocation(certificate);
+                RevocationResponse response = CheckCertificateRevocation(certificate);
                 if (!response.IsValid) {
                     result.AllTestsPassed = false;
                     result.CertificateRevoked = true;
@@ -292,15 +293,15 @@ namespace dk.gov.oiosi.security {
         /// Check if the certificate is revoced against ocsp server
         /// </summary>
         /// <param name="certificate">the certificate to check</param>
-        /// <returns>OcspResponse object to store the result</returns>
+        /// <returns>RevocationResponse object to store the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
         /// <exception cref="CertificateRevokedTimeoutException">This exception is thrown, if the call to Ocsp server takes longer time than the allowed timeout</exception>
         /// <exception cref="CheckCertificateRevokedUnexpectedException">Thrown if an unexpected error occured</exception>
-        private OcspResponse CheckCertificateRevocation(X509Certificate2 certificate) {
-            OcspResponse validityCheck = null;
+        private RevocationResponse CheckCertificateRevocation(X509Certificate2 certificate) {
+            RevocationResponse validityCheck = null;
             try {
                 // Checks the certificate
-                validityCheck = _ocsp.CheckCertificate(certificate);
+                validityCheck = _lookup.CheckCertificate(certificate);
             } catch (ArgumentNullException) {
                 throw;
             } catch (CryptographicUnexpectedOperationException) {
