@@ -68,7 +68,7 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             ConfigurationHandler.SaveToFile();
 
             var rootNode = GetRaspConfigurationNode(configFile);
-            AssertNodeHasConfigurationSectionWithName(rootNode, "OcspLookupFactoryConfig");
+            AssertNodeHasConfigurationSectionWithName(rootNode, "RevocationLookupFactoryConfig");
         }
 
         [Test]
