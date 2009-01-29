@@ -12,6 +12,7 @@ namespace dk.gov.oiosi.integration.communication
     public class RequestTest
     {
         [Test]
+        [Ignore]
         public void TestHttpRequest()
         {
             XmlDocument xdoc = new XmlDocument();
