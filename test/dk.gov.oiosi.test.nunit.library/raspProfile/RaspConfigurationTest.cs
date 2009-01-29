@@ -89,9 +89,9 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile {
         /// Setup default OSCP settings
         /// </summary>
         private void SetupDefaultOscpConfig() {
-            DefaultOcspConfig ocspConfig = new DefaultOcspConfig();
-            ocspConfig.SetIfNotExistsOcspLookupFactoryConfig();
-            ocspConfig.SetIfNotExistsOscpConfig();
+            DefaultRevocationConfig revocationConfig = new DefaultRevocationConfig();
+            revocationConfig.SetIfNotExistsRevocationLookupFactoryConfig();
+            revocationConfig.SetIfNotExistsOscpConfig();
         }
 
         /// <summary>

@@ -193,9 +193,9 @@ namespace TestMailService
             catch { }
 
             try {
-                DefaultOcspConfig ocsp = new DefaultOcspConfig();
-                ocsp.SetTestOcspLookupFactoryConfig();
-                ocsp.SetTestOscpConfig();
+                DefaultRevocationConfig revocation = new DefaultRevocationConfig();
+                revocation.SetTestRevocationLookupFactoryConfig();
+                revocation.SetTestOscpConfig();
             }
             catch { }
 

@@ -38,42 +38,42 @@ namespace dk.gov.oiosi.raspProfile {
     /// <summary>
     /// Default Ocsp values class
     /// </summary>
-    public class DefaultOcspConfig {
+    public class DefaultRevocationConfig {
 
         /// <summary>
         /// Set default, live Ocsp factory 
         /// </summary>
-        public void SetOcspLookupFactoryConfig() {
+        public void SetRevocationLookupFactoryConfig() {
             RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ocsp.OcspLookup";
+            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookup";
         }
 
         /// <summary>
         /// Set default, test Ocsp factory
         /// </summary>
-        public void SetTestOcspLookupFactoryConfig() {
+        public void SetTestRevocationLookupFactoryConfig() {
             RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ocsp.OcspLookupTest";
+            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookupTest";
         }
 
         /// <summary>
         /// Use default live factory as default 
         /// </summary>
-        public void SetIfNotExistsOcspLookupFactoryConfig() {
+        public void SetIfNotExistsRevocationLookupFactoryConfig() {
             if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
-            SetOcspLookupFactoryConfig();
+            SetRevocationLookupFactoryConfig();
         }
 
         /// <summary>
         /// Use default test factory as default
         /// </summary>
-        public void SetIfNotExistsTestOcspLookupFactoryConfig() {
+        public void SetIfNotExistsTestRevocationLookupFactoryConfig() {
             if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
-            SetTestOcspLookupFactoryConfig();
+            SetTestRevocationLookupFactoryConfig();
         }
 
         /// <summary>
