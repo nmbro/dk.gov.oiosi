@@ -28,11 +28,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.ldap;
 
@@ -125,22 +121,5 @@ namespace dk.gov.oiosi.raspProfile {
             SetDefaultLdapConfig();
         }
 
-        /// <summary>
-        /// Use default, test certificate values
-        /// </summary>
-        public void SetIfNotExistsTestCertificateDefaultLdapConfig() {
-            if (ConfigurationHandler.HasConfigurationSection<LdapSettings>())
-                return;
-            SetTestCertificateDefaultLdapConfig();
-        }
-
-        /// <summary>
-        /// Use default, test values
-        /// </summary>
-        public void SetIfNotExistsDefaultLdapConfigTest() {
-            if (ConfigurationHandler.HasConfigurationSection<LdapCertificateLookupTestConfig>())
-                return;
-            SetDefaultLdapConfigTest();
-        }
     }
 }

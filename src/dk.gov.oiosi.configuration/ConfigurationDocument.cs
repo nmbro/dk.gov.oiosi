@@ -31,7 +31,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
 using System.Xml.Serialization;
 using System.Collections;
 using System.IO;
@@ -47,12 +46,11 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Contains all the types of configuration sections currently used
         /// </summary>
-        protected static List<Type> pTypes = new List<Type>();
+        protected static List<Type> configurationTypes = new List<Type>();
         /// <summary>
         /// A list of all the configuration sections in this config file
         /// </summary>
-        protected ArrayList pConfigurationSections = new ArrayList();
-
+        protected ArrayList configurationSections = new ArrayList();
 
         static ConfigurationDocument() {
             _configFilePath = ConfigurationManager.AppSettings["RaspConfigurationFile"];
@@ -65,8 +63,16 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         [XmlElement("ConfigurationSection")]
         public ArrayList ConfigurationSections {
-            get { return pConfigurationSections; }
-            set { pConfigurationSections = value; }
+            get { return configurationSections; }
+            set { configurationSections = value; }
+        }
+
+        private ArrayList GetConfigurationSectionsCopy() {
+            ArrayList sections = new ArrayList();
+            foreach (var section in configurationSections) {
+                sections.Add(section);
+            }
+            return sections;
         }
 
         /// <summary>
@@ -84,7 +90,7 @@ namespace dk.gov.oiosi.configuration {
         public void SaveToFile() {
             StreamWriter streamWriter = null;
             try {
-                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), pTypes.ToArray());
+                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), configurationTypes.ToArray());
                 streamWriter = new StreamWriter(ConfigFilePath);
                 xmlSerializer.Serialize(streamWriter, this);
                 streamWriter.Flush();
@@ -101,16 +107,14 @@ namespace dk.gov.oiosi.configuration {
         /// Reads generic RASP configuration from a file
         /// </summary>
         public ConfigurationDocument GetFromFile() {
-            // Check if a config file exists, if not create an empty config
             if (!File.Exists(ConfigFilePath)) {
-                //new RaspConfigurationDocument();
-                return new ConfigurationDocument();
+                return this;
             }
+
             StreamReader streamReader = null;
             try {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationDocument), pTypes.ToArray());
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationDocument), configurationTypes.ToArray());
                 streamReader = new StreamReader(ConfigFilePath);
-                pConfigurationSections.Clear();
                 ConfigurationDocument newDoc = (ConfigurationDocument)xmlSerializer.Deserialize(streamReader);
                 return newDoc;
             }
@@ -122,14 +126,48 @@ namespace dk.gov.oiosi.configuration {
             }
         }
 
+        ///// <summary>
+        ///// Reads generic RASP configuration from a file
+        ///// </summary>
+        //public ConfigurationDocument GetFromFile() {
+        //    // Check if a config file exists, if not create an empty config
+        //    if (!File.Exists(ConfigFilePath)) {
+        //        //new RaspConfigurationDocument();
+        //        return new ConfigurationDocument();
+        //    }
+        //    StreamReader streamReader = null;
+        //    try {
+        //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationDocument), pTypes.ToArray());
+        //        streamReader = new StreamReader(ConfigFilePath);
+        //        ConfigurationDocument newDoc = (ConfigurationDocument)xmlSerializer.Deserialize(streamReader);
+        //        return newDoc;
+        //    }
+        //    catch (Exception e) {
+        //        throw new ConfigurationCouldNotBeReadFromFileException(ConfigFilePath, e);
+        //    }
+        //    finally {
+        //        if (streamReader != null) streamReader.Close();
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Registers a new configuration section type with the configuration handler
+        ///// </summary>
+        ///// <param name="t">The type to be registered</param>
+        //public void RegisterType(Type t) {
+        //    if (!pTypes.Contains(t)) {
+        //        pTypes.Add(t);
+        //    }
+        //}
+
         /// <summary>
         /// Registers a new configuration section type with the configuration handler
         /// </summary>
-        /// <param name="t">The type to be registered</param>
-        public void RegisterType(Type t) {
-            if (!pTypes.Contains(t)) {
-                pTypes.Add(t);
-            }
+        public void RegisterType<T>() where T: new() {
+            Type configSectionType = typeof (T);
+            if (configurationTypes.Contains(configSectionType)) return;
+
+            configurationTypes.Add(configSectionType);
         }
 
         /// <summary>
@@ -140,7 +178,7 @@ namespace dk.gov.oiosi.configuration {
             StreamWriter streamWriter = null;
 
             try {
-                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), pTypes.ToArray());
+                XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), configurationTypes.ToArray());
                 streamWriter = new StreamWriter(memoryStream);
                 xmlSerializer.Serialize(streamWriter, this);
                 streamWriter.Flush();
@@ -161,11 +199,99 @@ namespace dk.gov.oiosi.configuration {
         /// <param name="t">Type to be found</param>
         /// <returns>Index in the configuration section table</returns>
         public int IndexOfConfigurationSection(Type t) {
-            for (int i = 0; i < pConfigurationSections.Count; i++) {
-                if (pConfigurationSections[i].GetType() == t)
+            for (int i = 0; i < configurationSections.Count; i++) {
+                if (configurationSections[i].GetType() == t)
                     return i;
             }
             return -1;
         }
+
+        public bool HasConfigurationSection(Type configSectionType) {
+            int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
+            if (indexOfConfigurationSection == -1) return false;
+            return true;
+        }
+
+        public T GetConfigurationSection<T>(Type configSectionType) where T : new() {
+            int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
+            return (T)configurationSections[indexOfConfigurationSection];    
+        }
+
+       
+        public T AddNewConfigurationSection<T>(Type configSectionType) where T : new() {
+            T configSection = GetNewConfigSection<T>(configSectionType);
+            AddConfigurationSection(configSection);
+            return configSection;
+        }
+
+        public void AddReplaceConfigurationSection(object configurationSection) {
+            Type configSectionType = configurationSection.GetType();
+            int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
+            if (indexOfConfigurationSection == -1) {
+                AddConfigurationSection(configurationSection);
+            }
+            else {
+                configurationSections[indexOfConfigurationSection] = configurationSection;    
+            }
+        }
+
+        public void ReloadConfigurationFile() {
+            ConfigurationDocument configurationDocumentFromFile = GetFromFile();
+            var configurationsSectionsFromFile = configurationDocumentFromFile.GetConfigurationSectionsCopy();
+            foreach (var configurationSection in configurationsSectionsFromFile) {
+                if (configurationTypes.Contains(configurationSection.GetType())) {
+                    AddReplaceConfigurationSection(configurationSection);
+                }
+            }
+        }
+
+        public T ReloadConfigSectionFromFile<T>(Type configSectionType) where T: new() {
+            RegisterType<T>();
+            ConfigurationDocument configurationDocumentFromFile = GetFromFile();
+            if (configurationDocumentFromFile.HasConfigurationSection(configSectionType)) {
+                T configSection = configurationDocumentFromFile.GetConfigurationSection<T>(configSectionType);
+                AddReplaceConfigurationSection(configSection);
+                return configSection;
+            }
+            return AddNewConfigurationSection<T>(configSectionType);
+        }
+
+        /// <summary>
+        /// Adds all configuration sections from the configuration file, that hasn't been loaded/modified in the session
+        /// </summary>
+        public void AddUnrecognizedSectionsFromFile() {
+            ConfigurationDocument configurationFromFile = GetFromFile();
+            foreach (var configurationSection in configurationFromFile.ConfigurationSections) {
+                if (HasConfigurationSection(configurationSection.GetType()) == false) {
+                    AddConfigurationSection(configurationSection);
+                }
+            }
+        }
+
+        private void AddConfigurationSection(object configSection) {
+            configurationSections.Add(configSection);
+        }
+
+        private T GetNewConfigSection<T>(Type configSectionType) where T : new() {
+            object[] attributes = configSectionType.GetCustomAttributes(typeof(XmlRootAttribute), true);
+            if (attributes.Length != 1) throw new ConfigurationSectionMissingXmlRootAttributeException();
+
+            XmlRootAttribute rootAttribute = (XmlRootAttribute)attributes[0];
+            if (String.IsNullOrEmpty(rootAttribute.Namespace)) {
+                throw new ConfigurationSectionMissingXmlRootAttributeException();
+            }
+
+            if (configSectionType.GetConstructor(Type.EmptyTypes) == null)
+                throw new ConfigurationTypeHasNoDefaultConstructorException();
+            RegisterType<T>();
+            int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
+            if (indexOfConfigurationSection >= 0) {
+                throw new ConfigurationSectionAlreadyExistsException();
+            }
+
+            T newConfigSection = new T();
+            return newConfigSection;
+        }
+
     }
 }

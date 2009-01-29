@@ -29,6 +29,7 @@
   *
   */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -42,7 +43,7 @@ namespace dk.gov.oiosi.configuration {
     /// <code>
     /// // MyConfigurationSection can be a random configuration storage class that MUST be XML serializable and have a default constructor
     /// MyConfigurationSection myConfig = new MyConfigurationSection(...);
-    /// RaspConfigurationSection.AddConfigurationSection(myConfig);
+    /// RaspConfigurationSection.AddNewConfigurationSection(myConfig);
     /// 
     /// // Read the same config section
     /// <![CDATA[
@@ -57,8 +58,10 @@ namespace dk.gov.oiosi.configuration {
     /// </example>
     /// <remarks>Always make sure your configuration sections have a constructor that takes no arguments</remarks>
     public class ConfigurationHandler {
-        private static Dictionary<Type, object> _sections = new Dictionary<Type, object>();
+        
+        private static Dictionary<Type, object> _configSectionsCache = new Dictionary<Type, object>();
         private static object lockObject = new object();
+
         /// <summary>
         /// The default rasp namespace url
         /// </summary>
@@ -69,19 +72,23 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         public static string ConfigFilePath { 
             get { return ConfigurationDocument.ConfigFilePath; }
-            set { 
-                ConfigurationDocument.ConfigFilePath = value;
-                pConfigDocument = pConfigDocument.GetFromFile();
-            }
+            set { ConfigurationDocument.ConfigFilePath = value; }
         }
 
         /// <summary>
         /// The config document
         /// </summary>
-        protected static ConfigurationDocument pConfigDocument = new ConfigurationDocument();
+        protected static ConfigurationDocument configurationDocument = new ConfigurationDocument();
 
         static ConfigurationHandler() {
-            pConfigDocument = pConfigDocument.GetFromFile();
+            configurationDocument = configurationDocument.GetFromFile();
+        }
+
+        public static void Reset() {
+            ConfigurationDocument.ConfigFilePath = null;
+            _configSectionsCache = new Dictionary<Type, object>();
+            configurationDocument = configurationDocument.GetFromFile();
+            configurationDocument.ConfigurationSections = new ArrayList();
         }
 
         /// <summary>
@@ -90,26 +97,15 @@ namespace dk.gov.oiosi.configuration {
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static bool HasConfigurationSection<T>() where T : new() {
+            Type configSectionType = typeof(T);
             lock (lockObject) {
-                // Check to see if we already have the section in memory
-                object section = null;
-                if (_sections.TryGetValue(typeof(T), out section)) 
-                    return true;
-                int i = pConfigDocument.IndexOfConfigurationSection(typeof(T));
-                if (i < 0) {
-                    pConfigDocument.RegisterType(typeof(T));
-                    pConfigDocument = pConfigDocument.GetFromFile();
-                    i = pConfigDocument.IndexOfConfigurationSection(typeof(T));
-                }
-                // See if the section can be found
-                if (i < 0) {
-                    // If not, create a new one and add to memory and file
-                    return false;
-                }
-                // If the section was in file, get it in memory
-                section = pConfigDocument.ConfigurationSections[i];
-                _sections.Add(typeof(T), section);
-                return true;
+                bool sectionExistsInCache = _configSectionsCache.ContainsKey(typeof(T));
+                if (sectionExistsInCache) return true;
+
+                bool sectionExistsInConfigurationDocument = configurationDocument.HasConfigurationSection(configSectionType);
+                if (sectionExistsInConfigurationDocument) return true;
+
+                return false;
             }
         }
 
@@ -117,30 +113,26 @@ namespace dk.gov.oiosi.configuration {
         /// Gets the first configuration section of the type T
         /// </summary>
         /// <typeparam name="T">A serializable class type with a default constructor</typeparam>
-        /// <returns>A configuraion section. If the configuration section was not found a new instance of the configuration section class is returned.</returns>
+        /// <returns>A configuration section. If the configuration section is not found a new instance of the configuration section class is returned.</returns>
         public static T GetConfigurationSection<T>() where T : new() {
+            Type configSectionType = typeof (T);
             lock (lockObject) {
-                // Check to see if we already have the section in memory
-                object section = null;
-                if (_sections.TryGetValue(typeof(T), out section)) return (T)section;
-                int i = pConfigDocument.IndexOfConfigurationSection(typeof(T));
-                if (i < 0) {
-                    pConfigDocument.RegisterType(typeof(T));
-                    pConfigDocument = pConfigDocument.GetFromFile();
-                    i = pConfigDocument.IndexOfConfigurationSection(typeof(T));
+                object section;
+                bool sectionExistsInCache = _configSectionsCache.TryGetValue(typeof (T), out section);
+                if (sectionExistsInCache) {
+                    return (T) section;
                 }
-                // See if the section can be found
-                if (i < 0) {
-                    // If not, create a new one and add to memory and file
-                    T newConfigSection = new T();
-                    AddConfigurationSection(newConfigSection);
-                    _sections.Add(typeof(T), newConfigSection);
-                    return newConfigSection;
+
+                bool sectionExistsInConfigurationDocument = configurationDocument.HasConfigurationSection(configSectionType);
+                if (sectionExistsInConfigurationDocument) {
+                    section = configurationDocument.GetConfigurationSection<T>(configSectionType);
+                    _configSectionsCache.Add(configSectionType, section);
+                    return (T) section;
                 }
-                // If the section was in file, get it in memory
-                section = pConfigDocument.ConfigurationSections[i];
-                _sections.Add(typeof(T), section);
-                return (T)section;
+
+                section = configurationDocument.ReloadConfigSectionFromFile<T>(configSectionType);
+                _configSectionsCache.Add(configSectionType, section);
+                return (T) section;
             }
         }
 
@@ -149,47 +141,25 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         public static void SaveToFile() {
             lock (lockObject) {
-                int i = 0;
-                foreach (KeyValuePair<Type, object> pair in _sections) {
-                    i = pConfigDocument.IndexOfConfigurationSection(pair.Key);
-                    if (i > -1 && i < pConfigDocument.ConfigurationSections.Count)
-                        pConfigDocument.ConfigurationSections[i] = pair.Value;
-                    else
-                        throw new Exception();
-                }
-                pConfigDocument.SaveToFile();
+                configurationDocument.AddUnrecognizedSectionsFromFile();
+                configurationDocument.SaveToFile();
             }
         }
 
         /// <summary>
-        /// Updates a configuration section. If the section is not already present it will be created.
+        /// Register a configuration section.
+        /// By registering configuration sections up front, the load time is improved.
         /// </summary>
-        /// <param name="configSection">The configuration section to be updated or added (Must have a default constructor and be XML serializable)</param>
-        private static void AddConfigurationSection(object configSection) {
-            object[] attributes = configSection.GetType().GetCustomAttributes(typeof(System.Xml.Serialization.XmlRootAttribute), true);
-            if (attributes.Length != 1) {
-                throw new ConfigurationSectionMissingXmlRootAttributeException();
-            }
-            System.Xml.Serialization.XmlRootAttribute rootAttribute =
-                (System.Xml.Serialization.XmlRootAttribute)attributes[0];
-
-            if (String.IsNullOrEmpty(rootAttribute.Namespace)) {
-                throw new ConfigurationSectionMissingXmlRootAttributeException();
-            }
-
-            lock (lockObject) {
-                Type t = configSection.GetType();
-                if (t.GetConstructor(Type.EmptyTypes) == null)
-                    throw new ConfigurationTypeHasNoDefaultConstructorException();
-                pConfigDocument.RegisterType(t);
-                int j = pConfigDocument.IndexOfConfigurationSection(t);
-                if (j >= 0) {
-                    throw new ConfigurationSectionAlreadyExistsException();
-                }
-                // If no section from before was found, add the updated section
-                pConfigDocument.ConfigurationSections.Add(configSection);
-                SaveToFile();
-            }
+        /// <typeparam name="T"></typeparam>
+        public static void RegisterConfigurationSection<T>() where T: new() {
+            configurationDocument.AddNewConfigurationSection<T>(typeof(T));
         }
-   }
+
+        /// <summary>
+        /// Preloads all registered configuration sections in order to speed up load time of the configuration file
+        /// </summary>
+        public static void PreloadRegisteredConfigurationSections() {
+            configurationDocument.ReloadConfigurationFile();
+        }
+    }
 }

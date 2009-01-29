@@ -42,7 +42,7 @@ namespace dk.gov.oiosi.raspProfile {
     /// </summary>
     public class DefaultDocumentTypes {
 
-        private delegate DocumentTypeConfig GetDocumentType();
+        private delegate DocumentTypeConfig DocumentTypeConfigDelegate();
 
         /// <summary>
         /// Adds all the document types from configuration, clears collection first
@@ -576,9 +576,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Adds a document type definition to the collection
         /// </summary>
-        /// <param name="getDocumentType"></param>
-        private void Add(GetDocumentType getDocumentType) {
-            DocumentTypeConfig documentType = getDocumentType();
+        /// <param name="documentTypeConfigDelegate"></param>
+        private void Add(DocumentTypeConfigDelegate documentTypeConfigDelegate) {
+            DocumentTypeConfig documentType = documentTypeConfigDelegate();
             DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
             if (!configuration.ContainsDocumentTypeByValue(documentType))
                 configuration.AddDocumentType(documentType);

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="SchematronStylesheets, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\tools\SchematronStylesheets.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -47,6 +51,7 @@
     <Compile Include="common\UtilitiesTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
+    <Compile Include="configuration\ConfigurationHandlerTest.cs" />
     <Compile Include="configuration\ConfigurationTest.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
     <Compile Include="Print.cs" />
@@ -55,6 +60,7 @@
     <Compile Include="security\CertificateSubjectTest.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
     <Compile Include="uddi\RegistryLookupTest.cs" />
@@ -96,6 +102,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\RaspConfigurationWithOnlyOneDocumentType.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_duns_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -120,7 +129,7 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ovt_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\RaspConfiguration.xml" />
+    <Content Include="Resources\RaspConfigurationUddi.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
