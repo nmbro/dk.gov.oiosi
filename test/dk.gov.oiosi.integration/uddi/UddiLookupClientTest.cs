@@ -8,6 +8,8 @@ using dk.gov.oiosi.uddi.category;
 using NUnit.Framework;
 
 namespace dk.gov.oiosi.integration.uddi {
+    
+    [Ignore]
     [TestFixture]
     public class UddiLookupClientTest {
 
