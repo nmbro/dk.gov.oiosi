@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using dk.gov.oiosi.communication;
 using System.Xml;
 using System.ServiceModel.Channels;
 
-namespace dk.gov.oiosi.integration.communication
-{
+namespace dk.gov.oiosi.test.integration.communication {
     [TestFixture]
     public class RequestTest
     {

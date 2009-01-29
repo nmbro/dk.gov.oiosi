@@ -155,7 +155,8 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public static void RegisterConfigurationSection<T>() where T: new() {
-            configurationDocument.AddNewConfigurationSection<T>(typeof(T));
+            //configurationDocument.AddNewConfigurationSection<T>(typeof(T));
+            configurationDocument.RegisterType<T>();
         }
 
         /// <summary>

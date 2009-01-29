@@ -17,7 +17,7 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         /// one time for each section. This improves performance.
         /// </summary>
         [Test]
-        public void ConfigurationFileCanBeCreatedByAddingConfigurationSectionsUpFront() {
+        public void ConfigurationFileCanBeCreatedByRegisteringConfigurationSectionsUpFront() {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
 
@@ -36,7 +36,24 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             var rootNode = GetRaspConfigurationNode(configFile);
             AssertNodeHasConfigurationSectionWithName(rootNode, "DocumentTypeCollectionConfig");
         }
-        
+
+        [Test]
+        public void RegisteredSectionsMustOnlyBeAddedToConfigFileIfTheyAlreadyExistInFileOrAreModifiedInMemory() {
+            var configFile = Settings.CreateRandomPath("RaspConfig.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+
+            ConfigurationHandler.Reset();
+            ConfigurationHandler.ConfigFilePath = configFile.FullName;
+
+            ConfigurationHandler.RegisterConfigurationSection<DocumentTypeCollectionConfig>();
+            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+
+            ConfigurationHandler.SaveToFile();
+
+            var rootNode = GetRaspConfigurationNode(configFile);
+            AssertNodeDoesNotHaveConfigurationSectionWithName(rootNode, "DocumentTypeCollectionConfig");
+        }
+
         [Test]
         public void AnyXmlSerializableObjectCanBeAddedToConfiguration() {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
@@ -109,6 +126,16 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
                 if (nodeConfigSectionName == configurationSectionName) nameFound = true;
             }
             Assert.IsTrue(nameFound, "ConfigurationSection not found: " + configurationSectionName);
+        }
+
+        private void AssertNodeDoesNotHaveConfigurationSectionWithName(XmlNode node, string configurationSectionName) {
+            bool nameFound = false;
+            foreach (XmlNode childNode in node.ChildNodes) {
+                var nodeConfigSectionName = GetConfigSectionName(childNode);
+                if (nodeConfigSectionName == configurationSectionName) nameFound = true;
+            }
+            Assert.IsFalse(nameFound, "ConfigurationSection found (not expected): " + configurationSectionName);
+
         }
 
         private void AssertDocumentTypesCount(XmlNode node, int expectedDocumentTypeCount) {
