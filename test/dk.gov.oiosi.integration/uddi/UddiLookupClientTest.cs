@@ -9,11 +9,12 @@ using NUnit.Framework;
 
 namespace dk.gov.oiosi.integration.uddi {
     
-    [Ignore]
     [TestFixture]
+    [Ignore]
     public class UddiLookupClientTest {
 
         [TestFixture]
+        [Ignore]
         public class Processes {
             public const string SERVICEIDENTIFIER = "5798009811578";
             public const string ORDERSERVICETYPEID = "uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a";
