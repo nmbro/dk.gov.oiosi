@@ -29,7 +29,7 @@ namespace dk.gov.oiosi.uddi {
         public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
             List<UddiLookupResponse> response = null;
             //Uses different parameters for the lookup mechanism below.
-            LookupParameters subParams = new LookupParameters(parameters.EndpointKey, parameters.EndpointKeyType, parameters.AddressTypeFilter, parameters.PreferredEndpointType, LookupReturnOption.allResults, parameters.ServiceContractTModel, parameters.RoleIdentifierType, parameters.RoleIdentifier, parameters.ProcessDefinitions);
+            LookupParameters subParams = new LookupParameters(parameters.EndpointKey, parameters.EndpointKeyType, parameters.AddressTypeFilter, parameters.PreferredEndpointType, LookupReturnOption.allResults, parameters.ServiceContractTModel, parameters.RoleIdentifierType, parameters.RoleIdentifier, parameters.ProcessDefinitions, parameters.LookupCache);
             foreach (Registry registry in _configuration.PrioritizedRegistryList) {
 				IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
                 response = uddiLookupClient.Lookup(subParams);

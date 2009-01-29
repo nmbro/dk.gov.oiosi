@@ -130,6 +130,7 @@ namespace dk.gov.oiosi.uddi {
         /// If this value is null, the roleIdentifierType must also be null</param>
         /// <param name="processDefinitions">A list of process definitions id's where one
         /// of them must be in the endpoint returned. An empty one means all is good.</param>
+        /// <param name="lookupCache">The UDDI lookup cache</param>
         public LookupParameters(
             IIdentifier endpointKey,
             EndpointKeytype endpointKeyType,
@@ -139,7 +140,8 @@ namespace dk.gov.oiosi.uddi {
             UddiId serviceContractTModel,
             BusinessProcessRoleIdentifierType roleIdentifierType,
             BusinessProcessRoleIdentifier roleIdentifier,
-            IEnumerable<UddiId> processDefinitions
+            IEnumerable<UddiId> processDefinitions,
+            ITimedCache<LookupKey, List<UddiLookupResponse>> lookupCache
         ) {
             // Note that addressTypeFilter is allowed to be null or empty.
             _addressTypeFilter = addressTypeFilter;
@@ -151,6 +153,7 @@ namespace dk.gov.oiosi.uddi {
             _roleIdentifier = roleIdentifier;
             _processDefinitions.AddRange(processDefinitions);
             _preferredEndpointType = preferredEndpointType;
+            _lookupCache = lookupCache;
         }
 
         /// <summary>
@@ -168,6 +171,7 @@ namespace dk.gov.oiosi.uddi {
             _roleIdentifier = parameters._roleIdentifier;
             _processDefinitions.AddRange(parameters._processDefinitions);
             _preferredEndpointType = parameters._preferredEndpointType;
+            _lookupCache = parameters._lookupCache;
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
@@ -96,7 +97,7 @@ namespace dk.gov.oiosi.integration.uddi {
                 LookupReturnOption lookupReturnOption = LookupReturnOption.allResults;
                 LookupParameters parameters = new LookupParameters(identifier, identifierType, adressTypeFilter,
                                                                    preferredEndpointType, lookupReturnOption,
-                                                                   serviceDefinitionId, null, null, processDefinitionIds);
+                                                                   serviceDefinitionId, null, null, processDefinitionIds, new TimedNullCache<LookupKey, List<UddiLookupResponse>>());
                 return lookupClient.Lookup(parameters);
             }
         }

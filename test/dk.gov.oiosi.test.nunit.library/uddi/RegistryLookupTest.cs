@@ -37,6 +37,7 @@ using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.uddi.identifier;
 using NUnit.Framework;
+using dk.gov.oiosi.common.cache;
 
 namespace dk.gov.oiosi.test.nunit.library.uddi{
     [TestFixture]
@@ -144,7 +145,8 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
                 LookupReturnOption.firstResult,
                 null,
                 new BusinessProcessRoleIdentifierType(),
-                new BusinessProcessRoleIdentifier(), new UddiId[0]);
+                new BusinessProcessRoleIdentifier(), new UddiId[0],
+                new TimedNullCache<LookupKey, List<UddiLookupResponse>>());
         }
 
         private AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig GetClearDummyConfig() {

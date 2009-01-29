@@ -55,7 +55,6 @@ namespace dk.gov.oiosi.uddi {
         public bool Equals(UddiId other) {
             if (ID == null) throw new NullArgumentException("ID in UddiId");
             if (other == null) return false;
-
             if (ID.Equals(other.ID, StringComparison.CurrentCultureIgnoreCase)) return true;
             return false;
         }

@@ -37,6 +37,7 @@ using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.uddi.identifier;
 
+
 namespace dk.gov.oiosi.uddi {
 
     /// <summary>
@@ -97,7 +98,7 @@ namespace dk.gov.oiosi.uddi {
             LookupKey other = (LookupKey) obj;
 
             if (!AreListsEqual<EndpointAddressTypeCode>(_addressTypeFilter, other._addressTypeFilter)) return false;
-            if (!AreListsEqual<UddiId>(_businessProcessDefinitionTModels, other._businessProcessDefinitionTModels)) return false;
+            if (!AreListsEquatable<UddiId>(_businessProcessDefinitionTModels, other._businessProcessDefinitionTModels)) return false;
             if (!AreEqual<IIdentifier>(_endpointKey, other._endpointKey)) return false;
             if (!AreEqual<EndpointKeytype>(_endpointKeyType, other._endpointKeyType)) return false;
             if (!AreEqual<ConformanceClaim>(_profileConformanceClaim, other._profileConformanceClaim)) return false;
@@ -117,15 +118,40 @@ namespace dk.gov.oiosi.uddi {
             return true;
         }
 
-        private bool AreListsEqual<T>(IList<T> list1, IList<T> list2) {
+        private bool AreListsEqual<T>(IList<T> list1, IList<T> list2)
+        {
             if (list1 != null && list2 == null) return false;
             if (list1 == null && list2 != null) return false;
             if (list1 == null && list2 == null) return true;
             if (list1.Count != list2.Count) return false;
 
             int index = 0;
-            foreach (T typeCode in list1) {
-                if (!typeCode.Equals(list2[index])) return false;
+            foreach (T e1 in list1)
+            {
+                T e2 = list2[index];
+                bool equals = e1.Equals(e2);
+
+                if (!equals) return false;
+
+                index++;
+            }
+            return true;
+        }
+
+        private bool AreListsEquatable<T>(IList<T> list1, IList<T> list2) where T : IEquatable<T> {
+            if (list1 != null && list2 == null) return false;
+            if (list1 == null && list2 != null) return false;
+            if (list1 == null && list2 == null) return true;
+            if (list1.Count != list2.Count) return false;
+
+            int index = 0;
+            foreach (T e1 in list1) 
+            {
+                T e2 = list2[index];
+                bool equals = e1.Equals(e2);
+
+                if (!equals) return false;
+
                 index++;
             }
             return true;
