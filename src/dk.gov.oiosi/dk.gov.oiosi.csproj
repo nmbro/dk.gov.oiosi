@@ -98,7 +98,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="common\cache\ICache.cs" />
     <Compile Include="common\cache\ITimedCache.cs" />
+    <Compile Include="common\cache\QuantityCache.cs" />
     <Compile Include="common\cache\TimedNullCache.cs" />
     <Compile Include="common\CreateInstanceFailedException.cs" />
     <Compile Include="common\Definitions.cs" />
@@ -397,6 +399,11 @@
     <Compile Include="common\UtilityException.cs" />
     <Compile Include="communication\configuration\NoDocumentTypeFoundFromIdException.cs" />
     <Compile Include="xml\documentType\SearchForDocumentTypeFromXmlDocumentFailedException.cs" />
+    <Compile Include="xml\schematron\SchematronStore.cs" />
+    <Compile Include="xml\schematron\ISchematronStoreConfig.cs" />
+    <Compile Include="xml\schematron\SchematronStoreAppConfig.cs" />
+    <Compile Include="xml\schematron\SchematronStoreConfig.cs" />
+    <Compile Include="xml\schematron\SchematronStoreFactory.cs" />
     <Compile Include="xml\schematron\SchematronValidationConfig.cs" />
     <Compile Include="xml\XmlDocumentKeywords.cs" />
     <Compile Include="xml\xpath\discriminator\XPathDiscriminator.cs" />

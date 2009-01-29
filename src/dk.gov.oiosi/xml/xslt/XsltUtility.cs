@@ -46,29 +46,47 @@ namespace dk.gov.oiosi.xml.xslt {
         /// <param name="stylesheet">The xslt to transform xml document with</param>
         /// <returns>The transformed xml document</returns>
         public XmlDocument TransformXML(XmlDocument xmlDoc, XmlDocument stylesheet) {
+            return TransformXml(xmlDoc, stylesheet);
+        }
 
+        /// <summary>
+        /// Method to transform any xmldocument with a given xslt
+        /// </summary>
+        /// <param name="xmlDoc">The xml document to transform</param>
+        /// <param name="stylesheet">The xslt to transform xml document with</param>
+        /// <returns>The transformed xml document</returns>
+        public XmlDocument TransformXml(XmlDocument xmlDoc, XmlDocument stylesheet) {
+            XslCompiledTransform transform;
+            transform = PrecompiledStyleSheet(stylesheet);
+            return TransformXml(xmlDoc, transform);
+        }
+
+        /// <summary>
+        /// Method that returns the precompiled XSLT stylesheet from the given XML document.
+        /// 
+        /// document() function and embedded script blocks is disabled
+        /// it doesn't resolve external XML resources
+        /// </summary>
+        /// <param name="stylesheet"></param>
+        /// <returns></returns>
+        public XslCompiledTransform PrecompiledStyleSheet(XmlDocument stylesheet) {
             XslCompiledTransform transform = new XslCompiledTransform();
+            transform.Load(stylesheet, XsltSettings.Default, null);
+            return transform;
+        }
+
+        /// <summary>
+        /// Method that transforms the XML document from a precompiled XSLT stylesheet
+        /// 
+        /// no namespace-qualified arguments is used
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public XmlDocument TransformXml(XmlDocument document, XslCompiledTransform transform) {
             XmlDocument transformedXml = new XmlDocument();
-
-            try {
-                //document() function and embedded script blocks is disabled
-                //it doesn't resolve external XML resources
-                transform.Load(stylesheet, XsltSettings.Default, null);
-
-                //no namespace-qualified arguments is used
-                using (XmlWriter writer = transformedXml.CreateNavigator().AppendChild()) {
-                    transform.Transform(xmlDoc, (XsltArgumentList)null, writer);
-                }
-            } catch (ArgumentNullException) {
-                throw;
-            } catch (XsltCompileException) {
-                throw;
-            } catch (XsltException) {
-                throw;
-            } catch (XmlException) {
-                throw;
-            } catch (Exception) {
-                throw;
+            using (XmlWriter writer = transformedXml.CreateNavigator().AppendChild()) {
+                transform.Transform(document, (XsltArgumentList)null, writer);
             }
             return transformedXml;
         }

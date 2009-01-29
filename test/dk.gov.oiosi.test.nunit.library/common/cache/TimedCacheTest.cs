@@ -11,7 +11,7 @@ using dk.gov.oiosi.common.cache;
 namespace dk.gov.oiosi.test.nunit.library.common.cache {
 
     [TestFixture]
-    public class RaspCacheTest {
+    public class TimedCacheTest {
         private TimedCache<string, string> _cache;
 
         [Test]

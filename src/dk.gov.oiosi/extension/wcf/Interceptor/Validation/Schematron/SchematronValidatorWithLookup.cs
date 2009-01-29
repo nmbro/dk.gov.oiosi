@@ -38,16 +38,18 @@ using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schematron;
+using System.Xml.Xsl;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
 
     /// <summary>
     /// Schematron validator with lookup
     /// </summary>
-    class SchematronValidatorWithLookup {
+    public class SchematronValidatorWithLookup {
         private DocumentTypeConfigSearcher _searcher;
         private SchematronValidator _validator;
         private DocumentTypeConfig _documentType;
+        private XslCompiledTransform _compiledStylesheet;
 
         /// <summary>
         /// Constructor
@@ -67,9 +69,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
                 if (_documentType == null || !documentType.Equals(_documentType)) {
                     _documentType = documentType;
                     SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
-                    _validator = new SchematronValidator(schematronValidationConfig);
+                    SchematronStore store = SchematronStoreFactory.GetSchematronStore();
+                    _compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    _validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
                 }
-                _validator.SchematronValidateXmlDocument(document);
+                _validator.SchematronValidateXmlDocument(document, _compiledStylesheet);
             }
             catch (Exception ex) {
                 throw new SchematronValidateDocumentFailedException(ex);

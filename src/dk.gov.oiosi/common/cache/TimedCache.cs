@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.common.cache {
             DateTime timeOut = DateTime.UtcNow.Add(_timeOut);
             TimedCacheValue cacheValue = new TimedCacheValue(timeOut, value);
             lock (_cache) {
-                CheckExpired();
+                Expire();
                 _cache.Add(key, cacheValue);
             }
         }
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.common.cache {
         /// <returns></returns>
         public bool TryGetValue(TKey key, out TValue value) {
             lock (_cache) {
-                CheckExpired();
+                Expire();
                 TimedCacheValue cacheValue = null;
                 value = default(TValue);
                 if (!_cache.TryGetValue(key, out cacheValue)) return false;
@@ -96,7 +96,7 @@ namespace dk.gov.oiosi.common.cache {
         /// <returns></returns>
         public bool ContainsKey(TKey key) {
             lock (_cache) {
-                CheckExpired();
+                Expire();
                 return _cache.ContainsKey(key);
             }
         }
@@ -107,12 +107,12 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="key"></param>
         public void Remove(TKey key) {
             lock (_cache) {
-                CheckExpired();
+                Expire();
                 _cache.Remove(key);
             }
         }
 
-        private void CheckExpired() {
+        private void Expire() {
             DateTime now = DateTime.UtcNow;
             List<TKey> expiredList = new List<TKey>();
             foreach (KeyValuePair<TKey, TimedCacheValue> pair in _cache) {

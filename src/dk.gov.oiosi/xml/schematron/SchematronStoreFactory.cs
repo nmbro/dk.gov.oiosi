@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using dk.gov.oiosi.configuration;
+using System.Configuration;
+
+namespace dk.gov.oiosi.xml.schematron {
+    public class SchematronStoreFactory {
+        private static object _lockObject = new object();
+        private static SchematronStore _instance;
+
+        /// <summary>
+        /// Gets the single instance of the schematron store
+        /// </summary>
+        /// <returns></returns>
+        public static SchematronStore GetSchematronStore() {
+            lock (_lockObject) {
+                if (_instance == null) {
+                    ISchematronStoreConfig config;
+                    if (ConfigurationHandler.HasConfigurationSection<SchematronStoreConfig>()) {
+                        config = ConfigurationHandler.GetConfigurationSection<SchematronStoreConfig>();
+                    }
+                    else {
+                        config = (SchematronStoreConfig)ConfigurationManager.GetSection(SchematronStoreAppConfig.SCHEMATRONSTOREAPPCONFIGNAME);
+                    }
+                    if (config == null) {
+                        _instance = new SchematronStore();
+                    }
+                    else {
+                        _instance = new SchematronStore(config);
+                    }
+                }
+                return _instance;
+            }
+        }
+    }
+}

@@ -115,21 +115,14 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Gets or sets the list of registries to try lookup with
         /// </summary>
-        public LookupRegistryFallbackConfig LookupRegistryFallbackConfig
-        {
+        public LookupRegistryFallbackConfig LookupRegistryFallbackConfig {
             get { return lookupRegistryFallbackConfig; }
             set { lookupRegistryFallbackConfig = value; }
         }
 
-        public bool TryOtherHostsOnFailure{
+        public bool TryOtherHostsOnFailure {
             get { return _tryOtherHostsOnFailure; }
             set { _tryOtherHostsOnFailure = value; }
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public UddiConfig() {
         }
     }
 }
