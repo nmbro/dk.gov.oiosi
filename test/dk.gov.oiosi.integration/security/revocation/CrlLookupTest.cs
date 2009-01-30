@@ -22,7 +22,6 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         }
 
         [Test]
-        [Ignore]
         public void LookupTestRevokedCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();

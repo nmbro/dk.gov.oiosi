@@ -71,6 +71,9 @@
     <None Include="resources\ocesca.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="resources\Revoked.cer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="resources\TDCOCESSTEST2.cer" />
   </ItemGroup>
   <ItemGroup>
