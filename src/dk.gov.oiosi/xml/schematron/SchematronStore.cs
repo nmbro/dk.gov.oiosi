@@ -46,9 +46,10 @@ namespace dk.gov.oiosi.xml.schematron {
             FileInfo fileInfo = new FileInfo(path);
             XslCompiledTransform compiledSchematron = null;
             lock (_lockObject) {
-                if (_cache.TryGetValue(fileInfo.FullName, out compiledSchematron)) return compiledSchematron;
+                string cacheKey = fileInfo.FullName;
+                if (_cache.TryGetValue(cacheKey, out compiledSchematron)) return compiledSchematron;
                 compiledSchematron = LoadCompiledSchematron(fileInfo);
-                _cache.Add(path, compiledSchematron);
+                _cache.Add(cacheKey, compiledSchematron);
                 return compiledSchematron;
             }
         }
@@ -59,7 +60,6 @@ namespace dk.gov.oiosi.xml.schematron {
         }
 
         private XslCompiledTransform LoadCompiledSchematron(FileInfo fileInfo) {
-            XslCompiledTransform compiledSchematron = null;
             XmlDocument xmlStylesheet = new XmlDocument();
             XsltUtility xsltUtility = new XsltUtility();
             try {
