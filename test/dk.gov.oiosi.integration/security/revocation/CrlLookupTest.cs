@@ -15,9 +15,9 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         [Test]
         public void LookupTestValidCertificate()
         {
-            CrlLookup ocspLookup = new CrlLookup();
+            CrlLookup crlLookup = new CrlLookup();
             X509Certificate2 certificate = new X509Certificate2("resources/NemHandel test service.cer");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+            RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
 
@@ -25,10 +25,10 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         [Ignore]
         public void LookupTestRevokedCertificate()
         {
-            CrlLookup ocspLookup = new CrlLookup();
+            CrlLookup crlLookup = new CrlLookup();
             X509Certificate2 certificate = new X509Certificate2("resources/Revoked.cer");
             try {
-                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                RevocationResponse response = crlLookup.CheckCertificate(certificate);
                 Assert.IsTrue(!response.IsValid);
             }
             catch (Exception e)

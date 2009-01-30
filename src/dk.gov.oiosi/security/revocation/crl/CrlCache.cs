@@ -41,111 +41,36 @@ using Org.BouncyCastle.X509;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
+    /// <summary>
+    /// Class used for storing CRLs retrieved from URL's in X509 certificates.
+    /// </summary>
     class CrlCache
     {
         private readonly X509CrlParser crlParser;
-	    private readonly Dictionary<Uri, CRLInstance> table;
+	    private readonly Dictionary<Uri, CrlInstance> table;
     	
 	    public CrlCache()
 	    {
 		    crlParser = new X509CrlParser();
-		    table = new Dictionary<Uri, CRLInstance>();
+		    table = new Dictionary<Uri, CrlInstance>();
 	    }
     	
+        /// <summary>
+        /// Retrieves the CRL located at key.
+        /// </summary>
+        /// <param name="key">Get the CRL located at the URL "key"</param>
+        /// <returns>An instance of a CRL</returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
-	    public CRLInstance getCRL(Uri key)
+	    public CrlInstance getCRL(Uri key)
 	    {
-            CRLInstance instance;
+            CrlInstance instance;
 		    if (!table.TryGetValue(key, out instance))
 		    {
-			    instance = new CRLInstance(crlParser, key);
+			    instance = new CrlInstance(crlParser, key);
                 table.Add(key, instance);
 		    }
 
             return instance;
-	    }
-    }
-
-    class CRLInstance
-    {
-        private readonly X509CrlParser crlParser;
-        private X509Crl data;
-	    private readonly Uri url;
-
-	    private readonly ReaderWriterLock rwl = new ReaderWriterLock();
-        private readonly X509CertificateParser cp = new X509CertificateParser();
-
-        public CRLInstance(X509CrlParser crlParser, Uri url)
-	    {
-            this.crlParser = crlParser;
-		    this.data = null;
-		    this.url = url;
-	    }
-    	   
-	    public bool IsRevoked(X509Certificate2 cert)
-	    {
-	        rwl.AcquireReaderLock(0);
-		    if (!cacheValid())
-		    {
-			    // upgrade lock manually
-		        LockCookie cookie = rwl.UpgradeToWriterLock(0);   // must unlock first to obtain writelock
-			    if (!cacheValid()) // recheck
-			    { 
-				    try 
-				    {
-					    upgradeData();
-				    } catch (CheckCertificateRevokedUnexpectedException e) {
-					    rwl.ReleaseLock();
-					    throw e;
-				    }
-			    }
-
-                rwl.DowngradeFromWriterLock(ref cookie);
-		    }
-            
-		    bool isRevoked = data.IsRevoked(cp.ReadCertificate(cert.RawData));
-            rwl.ReleaseLock(); 
-		    return isRevoked;
-	    }
-    	   
-	    private void upgradeData()
-	    {
-		    try 
-		    {
-		        WebRequest request = WebRequest.Create(url);
-		        HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-    			
-			    // Only download .crl file if it is present on the server.
-                if (response.StatusCode == HttpStatusCode.OK)
-			    {
-                    Stream stream = response.GetResponseStream();
-    				
-				    // Downloads the .crl file into an X509CRL object.
-                    data = crlParser.ReadCrl(stream);
-
-				    stream.Close();
-    				
-				    return; // Everything went well.
-			    }
-
-                throw new CheckCertificateRevokedUnexpectedException(new Exception("CRL could not be downloaded: " + response.StatusDescription));
-		    } catch (IOException e) {
-			    // Could not download new crl
-			    throw new CheckCertificateRevokedUnexpectedException(e);
-		    }
-	    }
-    	   
-	    private bool cacheValid()
-	    {
-		    return data != null && data.NextUpdate.Value > DateTime.Now;
-	    }
-
-	    public DateTime getNextUpdate() 
-	    {
-		    rwl.AcquireReaderLock(0);
-		    DateTime date = data != null ? data.NextUpdate.Value : new DateTime(0);
-		    rwl.ReleaseReaderLock();
-		    return date;
 	    }
     }
 }

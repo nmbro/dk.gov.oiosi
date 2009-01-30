@@ -37,7 +37,7 @@ using dk.gov.oiosi.exception;
 namespace dk.gov.oiosi.security.revocation {
     
     /// <summary>
-    /// General ocsp exception class
+    /// General revocation exception class
     /// </summary>
     public abstract class RevocationException : MainException {
         private static ResourceManager resourceManager = new ResourceManager(typeof(ErrorMessages));

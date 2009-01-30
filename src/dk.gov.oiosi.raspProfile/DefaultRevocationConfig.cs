@@ -36,7 +36,7 @@ using dk.gov.oiosi.security.revocation.ocsp;
 namespace dk.gov.oiosi.raspProfile {
 
     /// <summary>
-    /// Default Ocsp values class
+    /// Default revocation values class
     /// </summary>
     public class DefaultRevocationConfig {
 
@@ -44,18 +44,18 @@ namespace dk.gov.oiosi.raspProfile {
         /// Set default, live Ocsp factory 
         /// </summary>
         public void SetRevocationLookupFactoryConfig() {
-            RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
-            ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookup";
+            RevocationLookupFactoryConfig revoFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
+            revoFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
+            revoFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookup";
         }
 
         /// <summary>
         /// Set default, test Ocsp factory
         /// </summary>
         public void SetTestRevocationLookupFactoryConfig() {
-            RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
-            ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            ocspFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookupTest";
+            RevocationLookupFactoryConfig revoFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
+            revoFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
+            revoFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookupTest";
         }
 
         /// <summary>

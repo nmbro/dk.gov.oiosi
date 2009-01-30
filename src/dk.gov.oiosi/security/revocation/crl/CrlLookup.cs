@@ -39,14 +39,33 @@ using Org.BouncyCastle.Asn1.X509;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
+    /// <summary>
+    /// Class for checking certificate revocation status against a CRL.
+    /// 
+    /// Makes use of a cache for storing CRLs
+    /// </summary>
     public class CrlLookup : IRevocationLookup
     {
+        /// <summary>
+        /// Cache used for storing CRLs
+        /// </summary>
         private readonly static CrlCache cache = new CrlCache();
 
         #region IRevocationLookup Members
+        
+        /// <summary>
+        /// Checks a certificate status in a CRL.
+        /// </summary>
+        /// <param name="certificate">The certificate to check</param>
+        /// <returns>The RevocationResponse object that contains the result</returns>
+        public RevocationResponse CheckCertificate(X509Certificate2 certificate) {
 
-        public RevocationResponse CheckCertificate(X509Certificate2 certificate)
-        {
+            /*
+             * Assumptions:
+             * - Certificate has an CRL Distribution Points extension value.
+             * - An HTTP distribution point is present.
+             */
+
             RevocationResponse response = new RevocationResponse();
 		
     	    if (certificate != null)
@@ -56,7 +75,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         		
     		    foreach (Uri url in URLs)
     		    {
-    			    CRLInstance crl = cache.getCRL(url);
+    			    CrlInstance crl = cache.getCRL(url);
         			
     			    try 
     			    {
@@ -84,16 +103,25 @@ namespace dk.gov.oiosi.security.revocation.crl
 
         #endregion
 
+        /// <summary>
+        /// Gets a list of URLs from the specified certificate.
+        /// </summary>
+        /// <param name="cert">The certificate to find the URLs in.</param>
+        /// <returns>A list of CRL URLs in the certificate</returns>
         private List<Uri> GetURLs(X509Certificate2 cert) {
+
 		    List<Uri> urls = new List<Uri>(); 
     		
 	        foreach (System.Security.Cryptography.X509Certificates.X509Extension extension in cert.Extensions) {
+                
                 if (extension.Oid.Value == X509Extensions.CrlDistributionPoints.Id) {
+                    // Retrieves the raw ASN1 data of the CRL Dist Points X509 extension, and wraps it in a container class
                     CrlDistPoint crldp = CrlDistPoint.GetInstance(Asn1Object.FromByteArray(extension.RawData));
 
                     DistributionPoint[] distPoints = crldp.GetDistributionPoints();
 
                     foreach (DistributionPoint dp in crldp.GetDistributionPoints()) {
+                        // Only use the "General name" data in the distribution point entry.
                         GeneralNames gns = (GeneralNames) dp.DistributionPointName.Name;
 
                         foreach (GeneralName name in gns.GetNames()) {
