@@ -187,5 +187,29 @@ namespace dk.gov.oiosi.security {
             string[] assignmentParts = text.Split('=');
             return assignmentParts[1];
         }
+
+        /// <summary>
+        /// Returns the hashcode of the certificate subject string
+        /// </summary>
+        /// <returns>The computed hashcode</returns>
+        public override int GetHashCode()
+        {
+            return _subjectString.GetHashCode();
+        }
+
+        /// <summary>
+        /// Compares two instances of a certificate subject.
+        /// The subject string is compared.
+        /// </summary>
+        /// <param name="obj">The object to compare against "this"</param>
+        /// <returns>True if equal</returns>
+        public override bool Equals(object obj) {
+            if (obj == null) return false;
+
+            if (this.GetType() != obj.GetType()) return false;
+            CertificateSubject other = (CertificateSubject)obj;
+
+            return other._subjectString.Equals(_subjectString);
+        }
     }
 }

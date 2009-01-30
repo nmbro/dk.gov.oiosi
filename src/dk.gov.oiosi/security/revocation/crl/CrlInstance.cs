@@ -18,6 +18,10 @@ namespace dk.gov.oiosi.security.revocation.crl
         private X509Crl data;
         private readonly Uri url;
 
+        /*
+         * TODO:
+         * Update ReaderWriterLock to ReaderWriterLockSlim when upgrading to .NET 3.5
+         */
         private readonly ReaderWriterLock rwl = new ReaderWriterLock();
         private readonly X509CertificateParser cp = new X509CertificateParser();
 

@@ -35,6 +35,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+using dk.gov.oiosi.common.cache;
 using Iloveit.Ocsp.Demo;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.common;
@@ -49,6 +50,8 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
         OcspConfig _configuration;
         X509Certificate2 _defaultOcesRootCertificate;
+
+        private static readonly ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(new TimeSpan(1, 0, 0));
 
         /// <summary>
         /// Gets the configuration of the lookup client
@@ -216,22 +219,36 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         public RevocationResponse CheckCertificate(X509Certificate2 certificate)
         {
             //To call the CheckCertificate asynchronously, we initialize the delegate and call it with IAsyncResult
-            RevocationResponse response = null;
-            try {
+            RevocationResponse response;
 
-                AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
-                IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
+            if (!ocspCache.TryGetValue(certificate.SubjectName.Name, out response)) {
+                
+                try
+                {
+                    AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
+                    IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
 
-                if (!asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false)) {
-                    throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
-                } else {
-                    response = asyncOcspCall.EndInvoke(asyncResult);
+                    if (!asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false))
+                    {
+                        throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
+                    }
+                    else
+                    {
+                        response = asyncOcspCall.EndInvoke(asyncResult);
+                    }
                 }
-            } catch (CheckCertificateOcspUnexpectedException) {
-                throw;
-            } catch (Exception) {
-                throw;
+                catch (CheckCertificateOcspUnexpectedException)
+                {
+                    throw;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                ocspCache.Add(certificate.SubjectName.Name, response);
             }
+            
             return response;
         }
     }

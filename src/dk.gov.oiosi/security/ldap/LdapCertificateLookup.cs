@@ -35,7 +35,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
-
+using dk.gov.oiosi.common.cache;
 using Novell.Directory.Ldap;
 
 using dk.gov.oiosi.security.lookup;
@@ -55,6 +55,8 @@ namespace dk.gov.oiosi.security.ldap {
     public class LdapCertificateLookup : ICertificateLookup {
         private LdapSettings _settings;
 
+        private static ICache<CertificateSubject, X509Certificate2> certCache = new TimedCache<CertificateSubject, X509Certificate2>(new TimeSpan(14, 0, 0, 0));
+
         /// <summary>
         /// The LdapCertificateLookup constructor takes an ldap settings object 
         /// as a paramter. The setting object is used everytime a lookup is done
@@ -68,8 +70,10 @@ namespace dk.gov.oiosi.security.ldap {
         /// <summary>
         /// Default constructor. Attempts to read configuration settings from configuration file
         /// </summary>
-        public LdapCertificateLookup() {
-            _settings = ConfigurationHandler.GetConfigurationSection<LdapSettings>();
+        public LdapCertificateLookup()
+            : this(ConfigurationHandler.GetConfigurationSection<LdapSettings>())
+        {
+            
         }
 
         #region ICetificateLookup Members
@@ -79,6 +83,8 @@ namespace dk.gov.oiosi.security.ldap {
         /// 
         /// It takes the subject string and queries the ldap server for a certificate
         /// that satifies the condition in the subject string.
+        /// 
+        /// Also implements a certificate cache, which removes unused certificates after 14 days.
         /// </summary>
         /// <param name="subject">The subject string of an OCES certificate.</param>
         /// <returns>The certificate that satifies the conditions of the subject string.</returns>
@@ -86,17 +92,30 @@ namespace dk.gov.oiosi.security.ldap {
             if (subject == null)
                 throw new ArgumentNullException("subjectSerialNumber");
 
-            LdapConnection ldapConnection = null;
-            try {
-                ldapConnection = ConnectToServer();
-                LdapSearchResults results = Search(ldapConnection, subject);
-                X509Certificate2 certificate = GetCertificate(results, subject);
-                CertificateValidator.ValidateCertificate(certificate);
-                return certificate;
+            X509Certificate2 certificateToBeReturned;
+
+            if (!certCache.TryGetValue(subject, out certificateToBeReturned)) {
+                
+                LdapConnection ldapConnection = null;
+                try
+                {
+                    ldapConnection = ConnectToServer();
+                    LdapSearchResults results = Search(ldapConnection, subject);
+                    certificateToBeReturned = GetCertificate(results, subject);
+                }
+                finally
+                {
+                    if (ldapConnection != null) ldapConnection.Disconnect();
+                }
+
+                CertificateValidator.ValidateCertificate(certificateToBeReturned);
+                certCache.Add(subject, certificateToBeReturned);
             }
-            finally {
-                if (ldapConnection != null) ldapConnection.Disconnect();
+            else {
+                CertificateValidator.ValidateCertificate(certificateToBeReturned);
             }
+
+            return certificateToBeReturned;
         }
 
         #endregion
