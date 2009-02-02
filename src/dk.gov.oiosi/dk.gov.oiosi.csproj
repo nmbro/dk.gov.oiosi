@@ -794,7 +794,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\Certificates\isb.oio.dk.cer" />
     <None Include="Resources\Certificates\NemHandelTest1.pfx" />
     <None Include="Resources\Certificates\NemHandelTest2.pfx" />
