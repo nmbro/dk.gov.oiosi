@@ -88,10 +88,10 @@ namespace dk.gov.oiosi.configuration {
         /// Used by the Unit Test to reset the static information.
         /// </summary>
         public static void Reset() {
-            ConfigurationDocument.ConfigFilePath = null;
+            //ConfigurationDocument.ConfigFilePath = null;
             _configSectionsCache = new Dictionary<Type, object>();
-            configurationDocument = configurationDocument.GetFromFile();
             configurationDocument.ConfigurationSections = new ArrayList();
+            configurationDocument = configurationDocument.GetFromFile();
         }
 
         /// <summary>
@@ -155,15 +155,18 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public static void RegisterConfigurationSection<T>() where T: new() {
-            //configurationDocument.AddNewConfigurationSection<T>(typeof(T));
-            configurationDocument.RegisterType<T>();
+            lock (lockObject) {
+                configurationDocument.RegisterType<T>();
+            }
         }
 
         /// <summary>
         /// Preloads all registered configuration sections in order to speed up load time of the configuration file
         /// </summary>
         public static void PreloadRegisteredConfigurationSections() {
-            configurationDocument.ReloadConfigurationFile();
+            lock (lockObject) {
+                configurationDocument.ReloadConfigurationFile();
+            }
         }
     }
 }

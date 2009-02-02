@@ -246,6 +246,7 @@ namespace dk.gov.oiosi.configuration {
         }
 
         public T ReloadConfigSectionFromFile<T>(Type configSectionType) where T: new() {
+            DeleteUnrecognizedConfigurationSections();
             RegisterType<T>();
             ConfigurationDocument configurationDocumentFromFile = GetFromFile();
             if (configurationDocumentFromFile.HasConfigurationSection(configSectionType)) {
@@ -254,6 +255,20 @@ namespace dk.gov.oiosi.configuration {
                 return configSection;
             }
             return AddNewConfigurationSection<T>(configSectionType);
+        }
+
+        private void DeleteUnrecognizedConfigurationSections() {
+            var sectionsToDelete = new List<object>();
+            foreach (var configurationSection in configurationSections) {
+                Type configSectionType = configurationSection.GetType();
+                if (configurationTypes.Contains(configSectionType) == false) {
+                    sectionsToDelete.Add(configurationSection);
+                }
+            }
+
+            foreach (var indexToDelete in sectionsToDelete) {
+                configurationSections.Remove(indexToDelete);
+            }
         }
 
         /// <summary>

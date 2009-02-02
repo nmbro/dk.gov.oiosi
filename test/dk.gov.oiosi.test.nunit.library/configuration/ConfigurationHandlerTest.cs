@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.security.revocation;
 using NUnit.Framework;
@@ -21,8 +22,8 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
 
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
 
             ConfigurationHandler.RegisterConfigurationSection<DocumentTypeCollectionConfig>();
             ConfigurationHandler.RegisterConfigurationSection<ProfileMappingCollectionConfig>();
@@ -38,12 +39,27 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         }
 
         [Test]
+        public void ConfigurationFileMustContainExactlyOneSectionOfEachTypeAccessedEvenIfTheSectionIsNotPreloaded() {
+            var configFileWithEmailSection = GetConfigFileWithEmailTransportConfigSectionWithOnlyCertificatesSet();
+            ConfigurationHandler.ConfigFilePath = configFileWithEmailSection.FullName;
+            ConfigurationHandler.Reset();
+            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+            ConfigurationHandler.SaveToFile();
+
+            ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
+            ConfigurationHandler.SaveToFile();
+
+            var rootNode = GetRaspConfigurationNode(configFileWithEmailSection);
+            AssertNodeHasExactlyOneConfigurationSectionWithName(rootNode, "EmailTransportUserConfig");
+        }
+
+        [Test]
         public void RegisteredSectionsMustOnlyBeAddedToConfigFileIfTheyAlreadyExistInFileOrAreModifiedInMemory() {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
 
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
 
             ConfigurationHandler.RegisterConfigurationSection<DocumentTypeCollectionConfig>();
             ConfigurationHandler.PreloadRegisteredConfigurationSections();
@@ -58,8 +74,8 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         public void AnyXmlSerializableObjectCanBeAddedToConfiguration() {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
 
             RevocationLookupFactoryConfig ocspFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ocspFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
@@ -74,8 +90,8 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         [Test]
         public void ConfigurationSectionsReadFromDiskCanBeEditedAndTheChangesSaved() {
             var configFileWithOnlyOneDocumentType = GetConfigFileWithDocumentSectionWithOnlyOneDocumentType();
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFileWithOnlyOneDocumentType.FullName;
+            ConfigurationHandler.Reset();
 
             var documentTypeCollectionConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
             documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetCatalogue());
@@ -93,8 +109,8 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         [Test]
         public void SectionsMissingInExistingConfigurationFileShouldBeAddedFromTheDefaultConfiguration() {
             FileInfo configFileWithOnlyOneDocumentType = GetConfigFileWithDocumentSectionWithOnlyOneDocumentType();
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFileWithOnlyOneDocumentType.FullName;
+            ConfigurationHandler.Reset();
 
             DefaultLdapConfig ldapConfig = new DefaultLdapConfig();
             ldapConfig.SetIfNotExistsLdapLookupFactoryConfig();
@@ -109,8 +125,8 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
         [Test]
         public void UnrecognizedAndUnusedSectionsInConfigurationFileOnDiskMustBeKeptInConfigurationFile() {
             FileInfo configFileWithOnlyOneDocumentType = GetConfigFileWithDocumentSectionWithOnlyOneDocumentType();
-            ConfigurationHandler.Reset();
             ConfigurationHandler.ConfigFilePath = configFileWithOnlyOneDocumentType.FullName;
+            ConfigurationHandler.Reset();
             ConfigurationHandler.SaveToFile();
 
             XmlNode rootNode = GetRaspConfigurationNode(configFileWithOnlyOneDocumentType);
@@ -138,6 +154,15 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
 
         }
 
+        private void AssertNodeHasExactlyOneConfigurationSectionWithName(XmlNode node, string configurationSectionName) {
+            int nameFoundCount = 0;
+            foreach (XmlNode childNode in node.ChildNodes) {
+                var nodeConfigSectionName = GetConfigSectionName(childNode);
+                if (nodeConfigSectionName == configurationSectionName) nameFoundCount++;
+            }
+            Assert.IsTrue(nameFoundCount == 1, "Configuration section found more than one time: " + nameFoundCount);
+       }
+
         private void AssertDocumentTypesCount(XmlNode node, int expectedDocumentTypeCount) {
             XmlNode documentTypesNode = node.ChildNodes[0].ChildNodes[0];
             int documentTypeCount = documentTypesNode.ChildNodes.Count;
@@ -152,8 +177,12 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             return configFile;
         }
 
-        private void AssertOnlyOneDocumentTypeExistsInConfigurationFile(int documentTypeConfigNodeCount) {
-            Assert.AreEqual(1, documentTypeConfigNodeCount);
+        private FileInfo GetConfigFileWithEmailTransportConfigSectionWithOnlyCertificatesSet() {
+            var sourceFile = new FileInfo("Resources\\RaspConfigurationWithEmailTransportConfigSectionWithOnlyCertificatesSet.xml");
+            var configFile = Settings.CreateRandomPath("RaspConfiguration.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+            File.Copy(sourceFile.FullName, configFile.FullName);
+            return configFile;
         }
 
         private string GetConfigSectionName(XmlNode node) {
