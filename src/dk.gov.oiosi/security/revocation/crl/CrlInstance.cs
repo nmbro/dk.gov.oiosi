@@ -17,12 +17,6 @@ namespace dk.gov.oiosi.security.revocation.crl
         private readonly X509CrlParser crlParser;
         private X509Crl data;
         private readonly Uri url;
-
-        /*
-         * TODO:
-         * Update ReaderWriterLock to ReaderWriterLockSlim when upgrading to .NET 3.5
-         */
-        private readonly ReaderWriterLock rwl = new ReaderWriterLock();
         private readonly X509CertificateParser cp = new X509CertificateParser();
 
         /// <summary>
@@ -45,31 +39,16 @@ namespace dk.gov.oiosi.security.revocation.crl
         public bool IsRevoked(X509Certificate2 cert)
         {
             // Looks the data for reading.
-            rwl.AcquireReaderLock(0);
-            if (!cacheValid())
+            lock (this)
             {
-                // Upgrades lock since data is not valid.
-                LockCookie cookie = rwl.UpgradeToWriterLock(0);
-                if (!cacheValid()) // Recheck, since another thread might have updated the cache.
+                if (!cacheValid())
                 {
-                    try
-                    {
-                        upgradeData();
-                    }
-                    catch (CheckCertificateRevokedUnexpectedException e)
-                    {
-                        rwl.ReleaseLock();
-                        throw e;
-                    }
+                    upgradeData();
                 }
-
-                // Downgrade lock
-                rwl.DowngradeFromWriterLock(ref cookie);
             }
 
             // Reads the data and unlocks.
             bool isRevoked = data.IsRevoked(cp.ReadCertificate(cert.RawData));
-            rwl.ReleaseLock();
             return isRevoked;
         }
 
@@ -111,7 +90,9 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>Returns true if CRL is still valid, false otherwise.</returns>
         private bool cacheValid()
         {
-            return data != null && data.NextUpdate.Value > DateTime.Now;
+            lock(this){
+                return data != null && data.NextUpdate.Value > DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -120,10 +101,10 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>The NextUpdate value from the CRL</returns>
         public DateTime getNextUpdate()
         {
-            rwl.AcquireReaderLock(0);
-            DateTime date = data != null ? data.NextUpdate.Value : new DateTime(0);
-            rwl.ReleaseReaderLock();
-            return date;
+            lock (this)
+            {
+                return data != null ? data.NextUpdate.Value : new DateTime(0);
+            }
         }
     }
 }
