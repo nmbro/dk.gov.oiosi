@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace dk.gov.oiosi.common.cache {
+    /// <summary>
+    /// A cache implementation that stores a defined number of results in
+    /// memory
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     public class QuantityCache<TKey, TValue> : ICache<TKey, TValue> {
         private List<TKey> _indexSortedKeys;
         private Dictionary<TKey, TValue> _keyedDictionary;
         private int _maxSize;
         private static object _lockObject = new object();
 
+        /// <summary>
+        /// Constructor that takes the max size of the cache
+        /// </summary>
+        /// <param name="maxSize"></param>
         public QuantityCache(int maxSize) {
             if (maxSize < 0) throw new ArgumentOutOfRangeException("maxSize");
             _maxSize = maxSize;
