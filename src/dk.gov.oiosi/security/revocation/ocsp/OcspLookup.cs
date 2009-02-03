@@ -216,40 +216,26 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <param name="certificate">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
-        public RevocationResponse CheckCertificate(X509Certificate2 certificate)
-        {
+        public RevocationResponse CheckCertificate(X509Certificate2 certificate) {
             //To call the CheckCertificate asynchronously, we initialize the delegate and call it with IAsyncResult
             RevocationResponse response;
 
-            if (!ocspCache.TryGetValue(certificate.SubjectName.Name, out response)) {
-                
-                try
-                {
-                    AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
-                    IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
-
-                    if (!asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false))
-                    {
-                        throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
-                    }
-                    else
-                    {
-                        response = asyncOcspCall.EndInvoke(asyncResult);
-                    }
-                }
-                catch (CheckCertificateOcspUnexpectedException)
-                {
-                    throw;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                ocspCache.Add(certificate.SubjectName.Name, response);
+            bool ocspResponseExistsInCache = ocspCache.TryGetValue(certificate.SubjectName.Name, out response);
+            if (ocspResponseExistsInCache) {
+                return response;
             }
-            
-            return response;
+
+            AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
+            IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
+
+            bool ocspRepliedInTime = asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false);
+            if (ocspRepliedInTime) {
+                response = asyncOcspCall.EndInvoke(asyncResult);
+                ocspCache.Add(certificate.SubjectName.Name, response);
+                return response;
+            }
+
+            throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
         }
     }
 }
