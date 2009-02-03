@@ -95,19 +95,20 @@ namespace dk.gov.oiosi.uddi {
             }
         }
 
+
+        /// <summary>
+        /// Sets up the low level communication stuff for the UDDI call
+        /// </summary>
         private void Init() {
-            // 1. If a default connection has not been set, set it
-            if (UddiConnection.DefaultConnection == null) {
-                UddiConnection.DefaultConnection = new UddiConnection(
-                    new UddiConnectionNetworkParams(
-                        _address.ToString(),
-                        null,
-                        _configuration.PublishEndpoint,
-                        _configuration.SecurityEndpoint,
-                        _configuration.FallbackTimeoutMinutes,
-                        false)
-                );
-            }
+            UddiConnection.DefaultConnection = new UddiConnection(
+                new UddiConnectionNetworkParams(
+                    _address.ToString(),
+                    null,
+                    _configuration.PublishEndpoint,
+                    _configuration.SecurityEndpoint,
+                    _configuration.FallbackTimeoutMinutes,
+                    false)
+            );
         }
 
         /// <summary>
