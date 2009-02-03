@@ -5,6 +5,9 @@ using dk.gov.oiosi.configuration;
 using System.Configuration;
 
 namespace dk.gov.oiosi.xml.schematron {
+    /// <summary>
+    /// Factory class for the schematron store. It has a single instance that is used.
+    /// </summary>
     public class SchematronStoreFactory {
         private static object _lockObject = new object();
         private static SchematronStore _instance;

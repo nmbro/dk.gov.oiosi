@@ -53,6 +53,7 @@
     <Compile Include="DefaultRevocationConfig.cs" />
     <Compile Include="DefaultOioUblProfiles.cs" />
     <Compile Include="DefaultRootCertificateConfig.cs" />
+    <Compile Include="DefaultSchematronConfig.cs" />
     <Compile Include="DefaultUddiConfig.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingExtensionElement.cs" />
