@@ -8,18 +8,6 @@
     </RootCertificateLocation>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
-    <PersonalCertificateOid>
-      <PolicyOidString>1.2.208.169.1.1.1.1.1</PolicyOidString>
-    </PersonalCertificateOid>
-    <EmployeeCertificateOid>
-      <PolicyOidString>1.2.208.169.1.1.1.2.1</PolicyOidString>
-    </EmployeeCertificateOid>
-    <OrganizationCertficateOid>
-      <PolicyOidString>1.2.208.169.1.1.1.3.1</PolicyOidString>
-    </OrganizationCertficateOid>
-    <FunctionCertficateOid>
-      <PolicyOidString>1.2.208.169.1.1.1.4.1</PolicyOidString>
-    </FunctionCertficateOid>
     <PersonalCertificateSubjectKey>
       <SubjectKeyString>PID</SubjectKeyString>
     </PersonalCertificateSubjectKey>
@@ -827,13 +815,6 @@
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
-    <GatewayRange>
-      <RangeStart>5798000000000</RangeStart>
-      <RangeEnd>5798009999999</RangeEnd>
-      <GatewayRegistrationParameters>
-        <GatewayRegistrationKeyEan>5798009811646</GatewayRegistrationKeyEan>
-      </GatewayRegistrationParameters>
-    </GatewayRange>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClientTest</ImplementationNamespaceClass>

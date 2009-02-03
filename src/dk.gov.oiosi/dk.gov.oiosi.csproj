@@ -225,8 +225,6 @@
     <Compile Include="uddi\UddiFallbackClient.cs" />
     <Compile Include="uddi\UddiLookupException.cs" />
     <Compile Include="uddi\LookupKey.cs" />
-    <Compile Include="uddi\ranges\GatewayRange.cs" />
-    <Compile Include="uddi\ranges\GatewayRegistrationParameters.cs" />
     <Compile Include="uddi\UddiProcessInformation.cs" />
     <Compile Include="uddi\UddiProcessInformationFactory.cs" />
     <Compile Include="xml\documentType\MessageParameters.cs" />

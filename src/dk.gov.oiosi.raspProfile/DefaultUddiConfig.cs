@@ -34,7 +34,6 @@ using System.Text;
 
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.ranges;
 using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.raspProfile {
