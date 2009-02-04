@@ -47,31 +47,7 @@ namespace dk.gov.oiosi.communication {
     /// </summary>
     public class OiosiMessage {
 
-
         #region Constructors
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="xml">the message</param>
-        /// <param name="guid">message id</param>
-        /// <param name="relatesTo">relates to id</param>
-        public OiosiMessage(XmlDocument xml, Guid guid, Guid relatesTo) 
-        {
-            _messageXml = xml;
-            _messageId = guid;
-            _messageRelatesToId = relatesTo;
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="xml">the message</param>
-        /// <param name="guid">message id</param>
-        public OiosiMessage(XmlDocument xml, Guid guid) {
-            _messageXml = xml;
-            _messageId = guid;
-        }
 
         /// <summary>
         /// Constructor
@@ -79,7 +55,6 @@ namespace dk.gov.oiosi.communication {
         /// <param name="xml">the message</param>
         public OiosiMessage(XmlDocument xml) 
         {   _messageXml = xml;
-            _messageId = Guid.NewGuid();
         }
 
         /// <summary>
@@ -152,24 +127,7 @@ namespace dk.gov.oiosi.communication {
         public bool HasBody {
             get { return (_messageXml != null && _messageXml.DocumentElement != null); }
         }
-
-        /// <summary>
-        /// The user-defined ID of the message. Use for message request/response correlation
-        /// </summary>
-        public Guid MessageId {
-            get { return _messageId; }
-        }
-        private Guid _messageId;
-
-        private Guid _messageRelatesToId;
         
-        /// <summary>
-        /// Id of a message to which this message relates. Only used for incoming messages.
-        /// </summary>
-        public Guid MessageRelatesToId {
-            get { return _messageRelatesToId; }
-        }
-
         /// <summary>
         /// Returns an XmlReader that can read the message xml
         /// </summary>
@@ -178,8 +136,5 @@ namespace dk.gov.oiosi.communication {
             XmlNodeReader xnr = new XmlNodeReader(_messageXml.DocumentElement);
             return (XmlReader)xnr;
         }
-
-        
-
     }
 }

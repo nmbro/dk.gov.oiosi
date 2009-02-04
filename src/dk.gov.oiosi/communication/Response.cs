@@ -51,17 +51,7 @@ namespace dk.gov.oiosi.communication {
             // Get the xml body
             XmlDocument messageXml = ExtractXmlFromWcfMessage(msg);
 
-            // Check if the WCF Message.MessageId is a guid, if not, use a new one
-            Guid messageId;
-            if (msg.Headers.MessageId == null || !msg.Headers.MessageId.TryGetGuid(out messageId))
-                messageId = Guid.NewGuid();
-
-            // Check if the WCF Message.RelatesTo is a guid, if not, use a new one
-            Guid relatesTo;
-            if (msg.Headers.RelatesTo != null && !msg.Headers.RelatesTo.TryGetGuid(out relatesTo))
-                _responseMessage = new OiosiMessage(messageXml, messageId, relatesTo);
-            else
-                _responseMessage = new OiosiMessage(messageXml, messageId);
+            _responseMessage = new OiosiMessage(messageXml);
 
             // Who was the response from?
             if (msg.Headers.From != null)

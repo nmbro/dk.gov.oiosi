@@ -59,8 +59,7 @@ namespace Interoptest
 
         #region Messages
         public static OiosiMessage GetMessageWithEmptyBody() { 
-            OiosiMessage m = new OiosiMessage(null, Guid.NewGuid());
-            m.RequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest";
+            OiosiMessage m = new OiosiMessage(Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest"));
             XmlQualifiedName headerName = new XmlQualifiedName("MessageIdentifier", dk.gov.oiosi.common.Definitions.DefaultOiosiNamespace2007);
             m.MessageHeaders.Add(headerName, 
                 MessageHeader.CreateHeader(headerName.Name, headerName.Namespace, "1234567890"));

@@ -306,7 +306,6 @@ namespace dk.gov.oiosi.communication {
         /// </example>
         /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
         /// <param name="request">Request message</param>
-        /// <returns>Response message</returns>
         public void GetResponse(OiosiMessage request, out Response response) {
 
             response = null;

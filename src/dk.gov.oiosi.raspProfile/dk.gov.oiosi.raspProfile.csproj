@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="communication\IRaspRequest.cs" />
+    <Compile Include="communication\RaspRequest.cs" />
     <Compile Include="communication\service\RaspServiceImplementation.cs" />
     <Compile Include="DefaultDocumentTypes.cs" />
     <Compile Include="DefaultLdapConfig.cs" />

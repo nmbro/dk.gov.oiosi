@@ -22,7 +22,6 @@ namespace dk.gov.oiosi.test.integration.communication {
             request.GetResponse(message, out response);
             Assert.IsNotNull(response);
             Assert.IsNotNull(response.ResponseMessage);
-            Assert.IsNotNull(response.ResponseMessage.MessageId);
         }
        
 
