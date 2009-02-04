@@ -625,11 +625,6 @@
     <Compile Include="security\CheckCertificateValidUnexpectedException.cs" />
     <Compile Include="security\CheckRootCertificateActivatedUnexpectedException.cs" />
     <Compile Include="security\CheckRootCertificateValidUnexpectedException.cs" />
-    <Compile Include="security\revocation\ErrorMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorMessages.resx</DependentUpon>
-    </Compile>
     <Compile Include="security\revocation\RevocationException.cs" />
     <Compile Include="security\revocation\RevocationResponse.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookup.cs" />
@@ -729,11 +724,6 @@
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="communication\handlers\email\ErrorMessages.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="security\revocation\ErrorMessages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>

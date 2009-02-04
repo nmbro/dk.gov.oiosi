@@ -176,4 +176,50 @@
   <data name="dk_gov_oiosi_security_SignatureValidationProofAllreadyCompletedException" xml:space="preserve">
     <value>Signaturbeviset kan ikke færdiggøres da det allerede er processeret.</value>
   </data>
+  <data name="dk_gov_oiosi_security_CheckCertificateChainUnexpectedException" xml:space="preserve">
+    <value>Uventet fejl opstod i kæde-validering af certifikat</value>
+  </data>
+  <data name="dk_gov_oiosi_security_CheckCertificateTypeUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under check af certifikat typen.</value>
+  </data>
+  <data name="dk_gov_oiosi_security_CheckCertificateValidUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under valideringen af certifikatet.</value>
+  </data>
+  <data name="dk_gov_oiosi_security_CheckRootCertificateActivatedUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under check af om rod-certifikatet er aktiveret</value>
+  </data>
+  <data name="dk_gov_oiosi_security_CheckRootCertificateValidUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under check af om rod-certifikatet er gyldigt</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_CertificateRevokedException" xml:space="preserve">
+    <value>Certifikatet '[serialnumber]' er spærret og er defor ikke pålideligt</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_CheckCertificateActivatedUnexpectedException" xml:space="preserve">
+    <value>Uventet fejl opstod i check af om certifikatet er gyldigt</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_CheckCertificateRevokedUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under kædevalidering af certifikatet</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_FailedToLoadLookupTypeException" xml:space="preserve">
+    <value>Kunne ikke loade lookup typen "[lookuptype]". Dette skyldes sandssynligvis en fejlkonfiguration</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_ocsp_CertificateRevokedTimeoutException" xml:space="preserve">
+    <value>Certifikat checket mod OCSP timede ud efter "[ocsptimeout]"</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_ocsp_CheckCertificateOcspUnexpectedException" xml:space="preserve">
+    <value>Der opstod en uventet fejl under selve kaldet til OCSP serveren</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_ocsp_InvalidOcspTimeoutValueException" xml:space="preserve">
+    <value>Timeout værdien "[timeoutvalue]" er ikke gyldig. Den skal være imellem "[minvalue]" og "[maxvalue]".</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_RevocationException" xml:space="preserve">
+    <value>Der er sket en general revocation fejl</value>
+    <comment>This message should not be shown.</comment>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_RevocationNoImplementingAssemblyException" xml:space="preserve">
+    <value>Ikke angivet nogen implementerende assembly i revocation konfigurationen</value>
+  </data>
+  <data name="dk_gov_oiosi_security_revocation_RevocationNoImplementingClassException" xml:space="preserve">
+    <value>Ikke angivet nogen implementerende klasse i revocation konfigurationen</value>
+  </data>
 </root>
