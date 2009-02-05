@@ -10,7 +10,6 @@ namespace dk.gov.oiosi.test.nunit.library.common.cache {
 
     [TestFixture]
     public class QuantityCacheTest {
-
         private QuantityCache<string, string> _cache;
 
         [Test]
