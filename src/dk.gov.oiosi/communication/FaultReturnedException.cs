@@ -34,18 +34,32 @@ using System.Text;
 using System.Resources;
 
 using dk.gov.oiosi.exception.Keyword;
+using System.ServiceModel;
 
 namespace dk.gov.oiosi.communication {
     /// <summary>
     /// Thrown when a SOAP fault is received in response to a request
     /// </summary>
     public class FaultReturnedException : OiosiCommunicationException {
+        private FaultException _fault;
+
+        /// <summary>
+        /// The SOAP fault that caused this exception to be thrown
+        /// </summary>
+        public FaultException Fault
+        {
+            get { return _fault; }
+        }
+
+        
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="fault">The fault message</param>
         /// <param name="source">Sender/Receiver</param>
-        public FaultReturnedException(string fault, string source) : base(GetKeywords(fault, source)) { }
+        public FaultReturnedException(FaultException fault, string source) : base(GetKeywords(fault.Reason.ToString(), source)) {
+            _fault = fault;    
+        }
 
         private static Dictionary<string, string> GetKeywords(string fault, string source) {
             Dictionary<string, string> d = new Dictionary<string, string>();

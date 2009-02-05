@@ -495,11 +495,11 @@ namespace dk.gov.oiosi.communication {
         private Exception CreateFaultWasReceivedException(FaultException e) { 
             // Time for blaming. Who's fault was it?
             if (e.Code.IsSenderFault) {
-                return new FaultReturnedException(e.Reason.ToString(), "dig");
+                return new FaultReturnedException(e, "dig");
 
             }
             else {
-                return new FaultReturnedException(e.Reason.ToString(), "serveren");
+                return new FaultReturnedException(e, "serveren");
             }
         }
 
