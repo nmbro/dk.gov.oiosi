@@ -52,18 +52,18 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
         /// <param name="innerException">innerexception of the thrown exception</param>
         public SchemaValidateDocumentFailedException(System.Exception innerException) : base(GetFaultCode(innerException), GetInnerFaultCode(innerException), innerException) { }
 
-        private static OiosiMessageFault.OiosiFaultCode GetFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            return OiosiMessageFault.OiosiFaultCode.Receiver;
+        private static OiosiFaultCode GetFaultCode(Exception innerException) {
+            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiFaultCode.Sender;
+            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiFaultCode.Sender;
+            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiFaultCode.Sender;
+            return OiosiFaultCode.Receiver;
         }
 
-        private static OiosiMessageFault.OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiMessageFault.OiosiInnerFaultCode.SchemaValidationFault;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiMessageFault.OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            return OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault;
+        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
+            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiInnerFaultCode.SchemaValidationFault;
+            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            return OiosiInnerFaultCode.InternalSystemFailureFault;
         }
     }
 }

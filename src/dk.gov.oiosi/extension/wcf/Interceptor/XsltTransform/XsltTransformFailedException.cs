@@ -51,18 +51,18 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
         public XsltTransformFailedException(Exception innerException) : base(GetFaultCode(innerException), GetInnerFaultCode(innerException), innerException) { }
 
         
-        private static OiosiMessageFault.OiosiFaultCode GetFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiMessageFault.OiosiFaultCode.Receiver;
-            if (innerException.GetType() == typeof(XsltException)) return OiosiMessageFault.OiosiFaultCode.Receiver;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiFaultCode.Sender;
-            return OiosiMessageFault.OiosiFaultCode.Receiver;
+        private static OiosiFaultCode GetFaultCode(Exception innerException) {
+            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiFaultCode.Receiver;
+            if (innerException.GetType() == typeof(XsltException)) return OiosiFaultCode.Receiver;
+            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiFaultCode.Sender;
+            return OiosiFaultCode.Receiver;
         }
 
-        private static OiosiMessageFault.OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiMessageFault.OiosiInnerFaultCode.XsltTransformationFault;
-            if (innerException.GetType() == typeof(XsltException)) return OiosiMessageFault.OiosiInnerFaultCode.XsltTransformationFault;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiMessageFault.OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            return OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault;
+        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
+            if (innerException.GetType() == typeof(XsltCompileException)) return OiosiInnerFaultCode.XsltTransformationFault;
+            if (innerException.GetType() == typeof(XsltException)) return OiosiInnerFaultCode.XsltTransformationFault;
+            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            return OiosiInnerFaultCode.InternalSystemFailureFault;
         }
     }
 }

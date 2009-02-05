@@ -47,12 +47,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <summary>
         /// The fault code of the corresponding fault
         /// </summary>
-        protected OiosiMessageFault.OiosiFaultCode pFaultCode;
+        protected OiosiFaultCode pFaultCode;
 
         /// <summary>
         /// The inner fault code of the corresponding fault
         /// </summary>
-        protected OiosiMessageFault.OiosiInnerFaultCode pInnerFaultCode;
+        protected OiosiInnerFaultCode pInnerFaultCode;
 
         /// <summary>
         /// Receives a message fault
@@ -67,8 +67,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="innerException">The inner exception</param>
         public InterceptorChannelException(Exception innerException) : base(innerException) {
-            pFaultCode = OiosiMessageFault.OiosiFaultCode.Receiver;
-            pInnerFaultCode = OiosiMessageFault.OiosiInnerFaultCode.InternalSystemFailureFault;
+            pFaultCode = OiosiFaultCode.Receiver;
+            pInnerFaultCode = OiosiInnerFaultCode.InternalSystemFailureFault;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="faultCode">rasp message fault code</param>
         /// <param name="innerFaultCode">rasp message innerfault code</param>
-        public InterceptorChannelException(OiosiMessageFault.OiosiFaultCode faultCode, OiosiMessageFault.OiosiInnerFaultCode innerFaultCode)
+        public InterceptorChannelException(OiosiFaultCode faultCode, OiosiInnerFaultCode innerFaultCode)
             : base() { 
             pFaultCode = faultCode;
             pInnerFaultCode = innerFaultCode;
@@ -88,7 +88,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="faultCode">rasp message fault code</param>
         /// <param name="innerFaultCode">rasp message innerfault code</param>
         /// <param name="keywords">keywords for the message</param>
-        public InterceptorChannelException(OiosiMessageFault.OiosiFaultCode faultCode, OiosiMessageFault.OiosiInnerFaultCode innerFaultCode, System.Collections.Generic.Dictionary<string, string> keywords)
+        public InterceptorChannelException(OiosiFaultCode faultCode, OiosiInnerFaultCode innerFaultCode, System.Collections.Generic.Dictionary<string, string> keywords)
             : base(keywords) {
             pFaultCode = faultCode;
             pInnerFaultCode = innerFaultCode;
@@ -100,7 +100,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="faultCode">rasp message fault code</param>
         /// <param name="innerFaultCode">rasp message innerfault code</param>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public InterceptorChannelException(OiosiMessageFault.OiosiFaultCode faultCode, OiosiMessageFault.OiosiInnerFaultCode innerFaultCode, System.Exception innerException)
+        public InterceptorChannelException(OiosiFaultCode faultCode, OiosiInnerFaultCode innerFaultCode, System.Exception innerException)
             : base(innerException) {
             pFaultCode = faultCode;
             pInnerFaultCode = innerFaultCode;
@@ -113,7 +113,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="innerFaultCode">rasp message innerfault code</param>
         /// <param name="keywords">keywords for the message</param>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public InterceptorChannelException(OiosiMessageFault.OiosiFaultCode faultCode, OiosiMessageFault.OiosiInnerFaultCode innerFaultCode, System.Collections.Generic.Dictionary<string, string> keywords, System.Exception innerException)
+        public InterceptorChannelException(OiosiFaultCode faultCode, OiosiInnerFaultCode innerFaultCode, System.Collections.Generic.Dictionary<string, string> keywords, System.Exception innerException)
             : base(keywords, innerException) {
             pFaultCode = faultCode;
             pInnerFaultCode = innerFaultCode;

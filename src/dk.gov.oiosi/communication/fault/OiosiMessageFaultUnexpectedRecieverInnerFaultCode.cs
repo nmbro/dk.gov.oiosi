@@ -38,6 +38,6 @@ namespace dk.gov.oiosi.communication.fault {
 
     [Obsolete("Not thrown by any part of the library any longer", false)]
     class OiosiMessageFaultUnexpectedRecieverInnerFaultCode : OiosiCommunicationException {
-        public OiosiMessageFaultUnexpectedRecieverInnerFaultCode(OiosiMessageFault.OiosiInnerFaultCode innerFaultCode) : base(KeywordFromString.GetKeyword("innerfaultcode", innerFaultCode.ToString())) { }
+        public OiosiMessageFaultUnexpectedRecieverInnerFaultCode(OiosiInnerFaultCode innerFaultCode) : base(KeywordFromString.GetKeyword("innerfaultcode", innerFaultCode.ToString())) { }
     }
 }

@@ -45,6 +45,6 @@ namespace dk.gov.oiosi.communication.fault {
         /// Constructor
         /// </summary>
         /// <param name="innerFaultCode"></param>
-        public OiosiMessageFaultUnexpectedSenderInnerFaultCode(OiosiMessageFault.OiosiInnerFaultCode innerFaultCode) : base(KeywordFromString.GetKeyword("innerfaultcode", innerFaultCode.ToString())) { }
+        public OiosiMessageFaultUnexpectedSenderInnerFaultCode(OiosiInnerFaultCode innerFaultCode) : base(KeywordFromString.GetKeyword("innerfaultcode", innerFaultCode.ToString())) { }
     }
 }

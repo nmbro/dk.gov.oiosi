@@ -65,9 +65,9 @@ namespace dk.gov.oiosi.raspProfile.communication.service {
                 if (request.Headers.FindHeader(MandatoryCustomHeaders[i, 0], MandatoryCustomHeaders[i, 1]) < 0) {
                     return System.ServiceModel.Channels.Message.CreateMessage(MessageVersion.Soap12WSAddressing10,
                         new OiosiMessageFault(new Exception("Missing mandatory header " + MandatoryCustomHeaders[i, 1] + ":" + MandatoryCustomHeaders[i, 0]),
-                        OiosiMessageFault.OiosiFaultCode.Sender,
-                        OiosiMessageFault.OiosiInnerFaultCode.MissingHeaderFault),
-                        common.Definitions.DefaultOiosiNamespace2007 + OiosiMessageFault.OiosiInnerFaultCode.MissingHeaderFault.ToString());
+                        OiosiFaultCode.Sender,
+                        OiosiInnerFaultCode.MissingHeaderFault),
+                        common.Definitions.DefaultOiosiNamespace2007 + OiosiInnerFaultCode.MissingHeaderFault.ToString());
                 }
             }
 

@@ -108,8 +108,8 @@ namespace dk.gov.oiosi.communication.service {
             }
             catch (Exception exception) {
                 return System.ServiceModel.Channels.Message.CreateMessage(MessageVersion.Soap12WSAddressing10,
-                    new OiosiMessageFault(exception, OiosiMessageFault.OiosiFaultCode.Receiver, OiosiMessageFault.OiosiInnerFaultCode.MessagePersistencyFault),
-                    common.Definitions.DefaultOiosiNamespace2007 + OiosiMessageFault.OiosiInnerFaultCode.MessagePersistencyFault.ToString());
+                    new OiosiMessageFault(exception, OiosiFaultCode.Receiver, OiosiInnerFaultCode.MessagePersistencyFault),
+                    common.Definitions.DefaultOiosiNamespace2007 + OiosiInnerFaultCode.MessagePersistencyFault.ToString());
             }
 
 

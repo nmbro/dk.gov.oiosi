@@ -20,6 +20,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.authorisation {
         /// <param name="certificate"></param>
         /// <param name="xmlDocument"></param>
         /// <param name="documentType"></param>
-        public NotAuthorisedException(X509Certificate2 certificate, XmlDocument xmlDocument, DocumentTypeConfig documentType) : base(OiosiMessageFault.OiosiFaultCode.Sender, OiosiMessageFault.OiosiInnerFaultCode.NotAuthorizedFault, Keywords.GetKeywords(certificate, xmlDocument, documentType)) { }
+        public NotAuthorisedException(X509Certificate2 certificate, XmlDocument xmlDocument, DocumentTypeConfig documentType) : base(OiosiFaultCode.Sender, OiosiInnerFaultCode.NotAuthorizedFault, Keywords.GetKeywords(certificate, xmlDocument, documentType)) { }
     }
 }

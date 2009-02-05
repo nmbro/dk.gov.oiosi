@@ -109,7 +109,7 @@ namespace dk.gov.oiosi.communication.fault {
         }
 
         private FaultCode CreateSenderFaultCode(OiosiInnerFaultCode innerFaultCode) {
-            return new FaultCode( (innerFaultCode.ToString());
+            return new FaultCode( (innerFaultCode.ToString()));
         }
 
         private FaultCode CreateRecieverFaultCode(OiosiInnerFaultCode innerFaultCode) {
