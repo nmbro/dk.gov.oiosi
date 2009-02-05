@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -384,7 +384,6 @@
     <Compile Include="extension\wcf\EmailTransport\CommonChannelBase.cs" />
     <Compile Include="security\revocation\RevocationLookupFactory.cs" />
     <Compile Include="security\revocation\RevocationLookupFactoryConfig.cs" />
-    <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTestConfig.cs" />
     <Compile Include="common\Utilities.cs" />
     <Compile Include="uddi\category\AuthenticationRequiredCode.cs" />

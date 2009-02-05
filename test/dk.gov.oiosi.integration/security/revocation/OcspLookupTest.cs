@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.security.revocation;
+﻿using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security.revocation.ocsp;
 using NUnit.Framework;
 using System.Security.Cryptography.X509Certificates;

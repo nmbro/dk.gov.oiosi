@@ -47,6 +47,7 @@ namespace dk.gov.oiosi.configuration {
         /// Contains all the types of configuration sections currently used
         /// </summary>
         protected static List<Type> configurationTypes = new List<Type>();
+
         /// <summary>
         /// A list of all the configuration sections in this config file
         /// </summary>
@@ -65,14 +66,6 @@ namespace dk.gov.oiosi.configuration {
         public ArrayList ConfigurationSections {
             get { return configurationSections; }
             set { configurationSections = value; }
-        }
-
-        private ArrayList GetConfigurationSectionsCopy() {
-            ArrayList sections = new ArrayList();
-            foreach (var section in configurationSections) {
-                sections.Add(section);
-            }
-            return sections;
         }
 
         /// <summary>
@@ -126,44 +119,11 @@ namespace dk.gov.oiosi.configuration {
             }
         }
 
-        ///// <summary>
-        ///// Reads generic RASP configuration from a file
-        ///// </summary>
-        //public ConfigurationDocument GetFromFile() {
-        //    // Check if a config file exists, if not create an empty config
-        //    if (!File.Exists(ConfigFilePath)) {
-        //        //new RaspConfigurationDocument();
-        //        return new ConfigurationDocument();
-        //    }
-        //    StreamReader streamReader = null;
-        //    try {
-        //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationDocument), pTypes.ToArray());
-        //        streamReader = new StreamReader(ConfigFilePath);
-        //        ConfigurationDocument newDoc = (ConfigurationDocument)xmlSerializer.Deserialize(streamReader);
-        //        return newDoc;
-        //    }
-        //    catch (Exception e) {
-        //        throw new ConfigurationCouldNotBeReadFromFileException(ConfigFilePath, e);
-        //    }
-        //    finally {
-        //        if (streamReader != null) streamReader.Close();
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Registers a new configuration section type with the configuration handler
-        ///// </summary>
-        ///// <param name="t">The type to be registered</param>
-        //public void RegisterType(Type t) {
-        //    if (!pTypes.Contains(t)) {
-        //        pTypes.Add(t);
-        //    }
-        //}
 
         /// <summary>
         /// Registers a new configuration section type with the configuration handler
         /// </summary>
-        public void RegisterType<T>() where T: new() {
+        internal void RegisterType<T>() where T: new() {
             Type configSectionType = typeof (T);
             if (configurationTypes.Contains(configSectionType)) return;
 
@@ -198,7 +158,7 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <param name="t">Type to be found</param>
         /// <returns>Index in the configuration section table</returns>
-        public int IndexOfConfigurationSection(Type t) {
+        internal int IndexOfConfigurationSection(Type t) {
             for (int i = 0; i < configurationSections.Count; i++) {
                 if (configurationSections[i].GetType() == t)
                     return i;
@@ -206,25 +166,25 @@ namespace dk.gov.oiosi.configuration {
             return -1;
         }
 
-        public bool HasConfigurationSection(Type configSectionType) {
+        internal bool HasConfigurationSection(Type configSectionType) {
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
             if (indexOfConfigurationSection == -1) return false;
             return true;
         }
 
-        public T GetConfigurationSection<T>(Type configSectionType) where T : new() {
+        internal T GetConfigurationSection<T>(Type configSectionType) where T : new() {
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
             return (T)configurationSections[indexOfConfigurationSection];    
         }
 
-       
-        public T AddNewConfigurationSection<T>(Type configSectionType) where T : new() {
+
+        internal T AddNewConfigurationSection<T>(Type configSectionType) where T : new() {
             T configSection = GetNewConfigSection<T>(configSectionType);
             AddConfigurationSection(configSection);
             return configSection;
         }
 
-        public void AddReplaceConfigurationSection(object configurationSection) {
+        internal void AddReplaceConfigurationSection(object configurationSection) {
             Type configSectionType = configurationSection.GetType();
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
             if (indexOfConfigurationSection == -1) {
@@ -235,7 +195,7 @@ namespace dk.gov.oiosi.configuration {
             }
         }
 
-        public void ReloadConfigurationFile() {
+        internal void ReloadConfigurationFile() {
             ConfigurationDocument configurationDocumentFromFile = GetFromFile();
             var configurationsSectionsFromFile = configurationDocumentFromFile.GetConfigurationSectionsCopy();
             foreach (var configurationSection in configurationsSectionsFromFile) {
@@ -245,7 +205,7 @@ namespace dk.gov.oiosi.configuration {
             }
         }
 
-        public T ReloadConfigSectionFromFile<T>(Type configSectionType) where T: new() {
+        internal T ReloadConfigSectionFromFile<T>(Type configSectionType) where T: new() {
             DeleteUnrecognizedConfigurationSections();
             RegisterType<T>();
             ConfigurationDocument configurationDocumentFromFile = GetFromFile();
@@ -257,24 +217,10 @@ namespace dk.gov.oiosi.configuration {
             return AddNewConfigurationSection<T>(configSectionType);
         }
 
-        private void DeleteUnrecognizedConfigurationSections() {
-            var sectionsToDelete = new List<object>();
-            foreach (var configurationSection in configurationSections) {
-                Type configSectionType = configurationSection.GetType();
-                if (configurationTypes.Contains(configSectionType) == false) {
-                    sectionsToDelete.Add(configurationSection);
-                }
-            }
-
-            foreach (var indexToDelete in sectionsToDelete) {
-                configurationSections.Remove(indexToDelete);
-            }
-        }
-
         /// <summary>
         /// Adds all configuration sections from the configuration file, that hasn't been loaded/modified in the session
         /// </summary>
-        public void AddUnrecognizedSectionsFromFile() {
+        internal void AddUnrecognizedSectionsFromFile() {
             ConfigurationDocument configurationFromFile = GetFromFile();
             foreach (var configurationSection in configurationFromFile.ConfigurationSections) {
                 if (HasConfigurationSection(configurationSection.GetType()) == false) {
@@ -306,6 +252,28 @@ namespace dk.gov.oiosi.configuration {
 
             T newConfigSection = new T();
             return newConfigSection;
+        }
+
+        private void DeleteUnrecognizedConfigurationSections() {
+            var sectionsToDelete = new List<object>();
+            foreach (var configurationSection in configurationSections) {
+                Type configSectionType = configurationSection.GetType();
+                if (configurationTypes.Contains(configSectionType) == false) {
+                    sectionsToDelete.Add(configurationSection);
+                }
+            }
+
+            foreach (var indexToDelete in sectionsToDelete) {
+                configurationSections.Remove(indexToDelete);
+            }
+        }
+
+        private ArrayList GetConfigurationSectionsCopy() {
+            ArrayList sections = new ArrayList();
+            foreach (var section in configurationSections) {
+                sections.Add(section);
+            }
+            return sections;
         }
 
     }
