@@ -445,6 +445,28 @@ namespace dk.gov.oiosi.raspProfile {
         }
 
         /// <summary>
+        /// The scanned invoice 0.7 document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig GetScanInvoiceV07() {
+            const string documentName = "Faktura v0.7 - Læs ind";
+            const string rootName = "Invoice";
+            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pip/";
+            const string xsdPath = "Resources/Schemas/OIOXML v0.7/pipstrict.xsd";
+            const string xslPath = "Resources/SchematronStylesheets/OIOXML v0.7/ublinvoice.xsl";
+            const string xslUIPath = "Resources/UI/OIOXML v0.7/StyleSheets/html.xsl";
+            const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
+            const string destinationFriendlyNameXPath = "/root:Invoice/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
+            const string senderKeyXPath = "/root:Invoice/com:SellerParty/com:ID";
+            const string senderFriendlyNameXPath = "/root:Invoice/com:SellerParty/com:PartyName/com:Name";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Request";
+            const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
+
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
         /// The credit note 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
@@ -466,6 +488,27 @@ namespace dk.gov.oiosi.raspProfile {
             return documentTypeConfig;
         }
 
+        /// <summary>
+        /// The credit note 0.7 document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig GetScanCreditNoteV07() {
+            const string documentName = "Kreditnota v0.7 - Læs ind";
+            const string rootName = "Invoice";
+            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
+            const string xsdPath = "Resources/Schemas/OIOXML v0.7/pcpstrict.xsd";
+            const string xslPath = "Resources/SchematronStylesheets/OIOXML v0.7/ublinvoice.xsl";
+            const string xslUIPath = "Resources/UI/OIOXML v0.7/StyleSheets/html.xsl";
+            const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
+            const string destinationFriendlyNameXPath = "/root:Invoice/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
+            const string senderKeyXPath = "/root:Invoice/com:SellerParty/com:ID";
+            const string senderFriendlyNameXPath = "/root:Invoice/com:SellerParty/com:PartyName/com:Name";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request";
+            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
+
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            return documentTypeConfig;
+        }
 
         private DocumentTypeConfig GetDocumentTypeConfigOioublV2(string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string rootName, string xslPath, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel) {
 
@@ -583,6 +626,5 @@ namespace dk.gov.oiosi.raspProfile {
             if (!configuration.ContainsDocumentTypeByValue(documentType))
                 configuration.AddDocumentType(documentType);
         }
-
     }
 }
