@@ -34,12 +34,14 @@ using System.Text;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.communication;
+using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.communication.listener;
 using dk.gov.oiosi.extension.wcf;
 
 
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
+using dk.gov.oiosi.xml.documentType;
 
 namespace dk.gov.oiosi.communication.service {
 
@@ -74,7 +76,6 @@ namespace dk.gov.oiosi.communication.service {
         /// <returns>Message</returns>
         public virtual Message RequestRespond(Message request) 
         {
-
             // The incoming message + metadata
             ListenerRequest listenerReq = new ListenerRequest(new OiosiMessage(request));
 
@@ -112,9 +113,11 @@ namespace dk.gov.oiosi.communication.service {
                     common.Definitions.DefaultOiosiNamespace2007 + OiosiInnerFaultCode.MessagePersistencyFault.ToString());
             }
 
+            var typeSearcher = new DocumentTypeConfigSearcher();
+            DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(listenerReq.RequestMessage.MessageXml);
 
             // Reply with an empty message
-            return Message.CreateMessage(MessageVersion.Soap12WSAddressing10, request.Headers.Action + "Response");
+            return Message.CreateMessage(MessageVersion.Soap12WSAddressing10, docTypeConfig.EndpointType.ReplyAction);
         }
 
         /// <summary>

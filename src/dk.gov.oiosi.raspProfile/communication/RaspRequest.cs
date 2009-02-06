@@ -95,6 +95,7 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// Asynchronously starts sending a request
         /// </summary>
         /// <param name="message">Request message</param>
+        /// <param name="documentId">The document Id used for the custom headers</param>
         /// <param name="callback">The asynchronous callback</param>
         /// <returns>Returns an IAsyncResult object</returns>
         public IAsyncResult BeginGetResponse(OiosiMessage message, string documentId, AsyncCallback callback)
