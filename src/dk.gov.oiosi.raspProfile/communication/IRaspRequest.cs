@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using dk.gov.oiosi.communication;
 using OiosiMessage=dk.gov.oiosi.communication.OiosiMessage;
 using Response=dk.gov.oiosi.communication.Response;
 
 namespace dk.gov.oiosi.raspProfile.communication {
-    interface IRaspRequest {
+
+    /// <summary>
+    /// Extends Request's functionailty by adding Rasp custom headers to the message in the GetResponse and BeginGetResponse methods.
+    /// </summary>
+    public interface IRaspRequest {
 
         #region Methods
 
