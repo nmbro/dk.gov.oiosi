@@ -5,7 +5,12 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.ServiceModel.Channels;
+using dk.gov.oiosi.communication;
+using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.communication.service;
+using dk.gov.oiosi.raspProfile.communication.service;
+using dk.gov.oiosi.xml.documentType;
 
 namespace dk.gov.oiosi.samples.httpEndpointExample
 {
@@ -18,8 +23,13 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
     {
         public Message RequestRespond(Message request)
         {
-            // Return the same message you got
-            return request;
+            DocumentTypeConfigSearcher typeSearcher = new DocumentTypeConfigSearcher();
+            DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(new OiosiMessage(request).MessageXml);
+
+            // Create the reply message
+            string body = "Request was received " + DateTime.Now.ToString();
+            return Message.CreateMessage(MessageVersion.Soap12WSAddressing10,
+                docTypeConfig.EndpointType.ReplyAction, body);
         }
     }
 }
