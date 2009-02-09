@@ -28,8 +28,9 @@
           <import namespace="System.Reflection" />
         </imports>
         <attributes>
-          <attribute type="AssemblyVersionAttribute" value="${Revision}" />
+          <attribute type="AssemblyVersionAttribute" value="1.1.0.0" />
           <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+		  <attribute type="AssemblyDescription" value="dk.gov.oiosi.library ${Revision}" />
         </attributes>
       </asminfo>
     </target>
