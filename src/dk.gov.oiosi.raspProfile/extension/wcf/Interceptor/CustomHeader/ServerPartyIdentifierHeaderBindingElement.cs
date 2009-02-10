@@ -36,6 +36,7 @@ using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 {
@@ -53,11 +54,16 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         /// The default value of the Receiver Party ID header
         /// </summary>
         public const string DefaultReceiverPartyIdentifier = Definitions.DefaultOiosiNamespace2007 + "anonymous";
-
+        
         string _senderPartyIdentifier = DefaultSenderPartyIdentifier;
         string _receiverPartyIdentifier = DefaultReceiverPartyIdentifier;
+        string _senderPartyIdentifierType = EndpointKeyTypeCode.other.ToString();
+        string _receiverPartyIdentifierType = EndpointKeyTypeCode.other.ToString();
+
         XmlQualifiedName _senderPartyIdentifierHeaderName;
         XmlQualifiedName _receiverPartyIdentifierHeaderName;
+        XmlQualifiedName _senderPartyIdentifierTypeHeaderName;
+        XmlQualifiedName _receiverPartyIdentifierTypeHeaderName;
 
 
         /// <summary>
@@ -65,32 +71,35 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         /// </summary>
         /// <param name="senderPartyIdentifierHeaderName">The header name that </param>
         /// <param name="receiverPartyIdentifierHeaderName"></param>
-        public ServerPartyIdentifierHeaderBindingElement(XmlQualifiedName senderPartyIdentifierHeaderName, XmlQualifiedName receiverPartyIdentifierHeaderName)
+        public ServerPartyIdentifierHeaderBindingElement(ServerPartyIdentifierHeaderBindingExtensionElement config)
         {
-            _senderPartyIdentifierHeaderName = senderPartyIdentifierHeaderName;
-            _receiverPartyIdentifierHeaderName = receiverPartyIdentifierHeaderName;
+            _senderPartyIdentifierHeaderName = new XmlQualifiedName(config.SenderPartyIdentifierHeaderName, config.Namespace);
+            _senderPartyIdentifierTypeHeaderName = new XmlQualifiedName(config.SenderPartyIdentifierTypeHeaderName, config.Namespace);
+            _receiverPartyIdentifierHeaderName = new XmlQualifiedName(config.ReceiverPartyIdentifierHeaderName, config.Namespace);
+            _receiverPartyIdentifierTypeHeaderName = new XmlQualifiedName(config.ReceiverPartyIdentifierTypeHeaderName, config.Namespace);
 
         }
+
+        private ServerPartyIdentifierHeaderBindingElement(){ }
 
         public override void InterceptRequest(InterceptorMessage interceptorMessage)
         {
             // Get the message, uncopied
             Message msg = interceptorMessage.GetMessage();
 
-                // Save the Sender Party ID
-                string header = msg.Headers.GetHeader<string>(_senderPartyIdentifierHeaderName.Name, _senderPartyIdentifierHeaderName.Namespace);
+            _receiverPartyIdentifier = ExtractHeaderValue(msg, _receiverPartyIdentifierHeaderName.Name, _receiverPartyIdentifierHeaderName.Namespace, DefaultReceiverPartyIdentifier);
+            _receiverPartyIdentifierType = ExtractHeaderValue(msg, _receiverPartyIdentifierTypeHeaderName.Name, _receiverPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
+            _senderPartyIdentifier = ExtractHeaderValue(msg, _senderPartyIdentifierHeaderName.Name, _senderPartyIdentifierHeaderName.Namespace, DefaultSenderPartyIdentifier);
+            _senderPartyIdentifierType = ExtractHeaderValue(msg, _senderPartyIdentifierTypeHeaderName.Name, _senderPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
 
-                if (header == null || header == "")
-                    _receiverPartyIdentifier = DefaultReceiverPartyIdentifier;
-                else
-                    _receiverPartyIdentifier = header;
+        }
 
-            // Save the Receiver Party ID
-            header = msg.Headers.GetHeader<string>(_receiverPartyIdentifierHeaderName.Name, _receiverPartyIdentifierHeaderName.Namespace);
+        private string ExtractHeaderValue(Message msg, string name, string ns, string defaultValue){
+            string header = msg.Headers.GetHeader<string>(name,ns);
             if (header == null || header == "")
-                _senderPartyIdentifier = DefaultSenderPartyIdentifier;
+                return defaultValue;
             else
-                _senderPartyIdentifier = header;
+                return header;
         }
 
         public override void InterceptResponse(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage)
@@ -106,9 +115,20 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
                 _senderPartyIdentifier));
 
             msg.Headers.Add(MessageHeader.CreateHeader(
+                _senderPartyIdentifierTypeHeaderName.Name,
+                _senderPartyIdentifierTypeHeaderName.Namespace,
+                _senderPartyIdentifierType));
+
+
+            msg.Headers.Add(MessageHeader.CreateHeader(
                 _receiverPartyIdentifierHeaderName.Name,
                 _receiverPartyIdentifierHeaderName.Namespace,
                 _receiverPartyIdentifier));
+            
+            msg.Headers.Add(MessageHeader.CreateHeader(
+                _receiverPartyIdentifierTypeHeaderName.Name,
+                _receiverPartyIdentifierTypeHeaderName.Namespace,
+                _receiverPartyIdentifierType));
 
         }
 
@@ -140,7 +160,16 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 
         public override System.ServiceModel.Channels.BindingElement Clone()
         {
-            ServerPartyIdentifierHeaderBindingElement clone = new ServerPartyIdentifierHeaderBindingElement(_senderPartyIdentifierHeaderName, _receiverPartyIdentifierHeaderName);
+            ServerPartyIdentifierHeaderBindingElement clone = new ServerPartyIdentifierHeaderBindingElement();
+            clone._receiverPartyIdentifier = _receiverPartyIdentifier;
+            clone._receiverPartyIdentifierHeaderName = _receiverPartyIdentifierHeaderName;
+            clone._receiverPartyIdentifierType = _receiverPartyIdentifierType;
+            clone._receiverPartyIdentifierTypeHeaderName = _receiverPartyIdentifierTypeHeaderName;
+
+            clone._senderPartyIdentifier = _senderPartyIdentifier;
+            clone._senderPartyIdentifierHeaderName = _senderPartyIdentifierHeaderName;
+            clone._senderPartyIdentifierType = _senderPartyIdentifierType;
+            clone._senderPartyIdentifierTypeHeaderName = _senderPartyIdentifierTypeHeaderName;
             return clone;
         }
     }
