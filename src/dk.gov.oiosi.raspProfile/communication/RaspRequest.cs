@@ -47,8 +47,10 @@ namespace dk.gov.oiosi.raspProfile.communication
                 docTypeConfig.EndpointType.Key.XPath,
                 docTypeConfig.Namespaces);
             string key = PartyIdentifierHeaderSettings.MessagePropertyKey;
-            var partyIdentifierSetting = new PartyIdentifierHeaderSettings(senderID, receiverID);
+            var senderKeyType = Utilities.GetSenderKeyTypeCode(message.MessageXml, docTypeConfig);
+            var receiverKeyType = Utilities.GetEndpointKeyTypeCode(message.MessageXml, docTypeConfig);
 
+            var partyIdentifierSetting = new PartyIdentifierHeaderSettings(senderID, senderKeyType, receiverID, receiverKeyType);
             message.UbiquitousProperties[key] = partyIdentifierSetting;
 
             foreach (CustomHeaderXPathConfiguration xpath in docTypeConfig.CustomHeaderConfiguration.XPaths)
