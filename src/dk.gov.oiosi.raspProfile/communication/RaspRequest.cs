@@ -53,6 +53,7 @@ namespace dk.gov.oiosi.raspProfile.communication
             var partyIdentifierSetting = new PartyIdentifierHeaderSettings(senderID, senderKeyType, receiverID, receiverKeyType);
             message.UbiquitousProperties[key] = partyIdentifierSetting;
 
+            // Adds custom headers by xpaths
             foreach (CustomHeaderXPathConfiguration xpath in docTypeConfig.CustomHeaderConfiguration.XPaths)
             {
                 string value = DocumentXPathResolver.GetElementValueByXpath(
