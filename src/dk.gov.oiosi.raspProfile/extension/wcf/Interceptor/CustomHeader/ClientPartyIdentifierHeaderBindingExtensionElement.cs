@@ -67,6 +67,27 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         }
 
         /// <summary>
+        /// The sender party identifier header name
+        /// </summary>
+        [ConfigurationProperty("senderPartyIdentifierTypeHeaderName", IsRequired = false, DefaultValue = "SenderPartyIdentifierType")]
+        public string SenderPartyIdentifierTypeHeaderName
+        {
+            get { return (string)base["senderPartyIdentifierTypeHeaderName"]; }
+            set { base["senderPartyIdentifierTypeHeaderName"] = value; }
+        }
+
+        /// <summary>
+        /// The receiver party identitier header name
+        /// </summary>
+        [ConfigurationProperty("receiverPartyIdentifierTypeHeaderName", IsRequired = false, DefaultValue = "ReceiverPartyIdentifierType")]
+        public string ReceiverPartyIdentifierTypeHeaderName
+        {
+            get { return (string)base["receiverPartyIdentifierTypeHeaderName"]; }
+            set { base["receiverPartyIdentifierTypeHeaderName"] = value; }
+        }
+
+
+        /// <summary>
         /// The header namespace
         /// </summary>
         [ConfigurationProperty("namespace", IsRequired = false, DefaultValue = Definitions.DefaultOiosiNamespace2007)]
@@ -90,9 +111,7 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         /// <returns>The binding element</returns>
         protected override BindingElement CreateBindingElement()
         {
-            return new ClientPartyIdentifierHeaderBindingElement(
-                new XmlQualifiedName(SenderPartyIdentifierHeaderName, Namespace),
-                new XmlQualifiedName(ReceiverPartyIdentifierHeaderName, Namespace));
+            return new ClientPartyIdentifierHeaderBindingElement(this);
         }
     }
 }

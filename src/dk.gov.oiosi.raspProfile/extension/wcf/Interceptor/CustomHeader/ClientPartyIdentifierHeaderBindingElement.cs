@@ -36,6 +36,8 @@ using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
+using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
     /// <summary>
@@ -52,38 +54,36 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         /// </summary>
         public const string DefaultReceiverPartyIdentifier = Definitions.DefaultOiosiNamespace2007 + "anonymous";
 
-        /// <summary>
-        /// The value of the Sender Party ID header
-        /// </summary>
-        public string SenderPartyIdentifier {
-            get { return _senderPartyIdentifier; }
-            set { _senderPartyIdentifier = value; }
-        }
-
-        /// <summary>
-        /// The value of the Receiver Party ID header
-        /// </summary>
-        public string ReceiverPartyIdentifier {
-            get { return _receiverPartyIdentifier; }
-            set { _receiverPartyIdentifier = value; }
-        }
-
 
         string _senderPartyIdentifier = DefaultSenderPartyIdentifier;
         string _receiverPartyIdentifier = DefaultReceiverPartyIdentifier;
+        EndpointKeyTypeCode _senderPartyIdentifierType = EndpointKeyTypeCode.other;
+        EndpointKeyTypeCode _receiverPartyIdentifierType = EndpointKeyTypeCode.other;
+
         XmlQualifiedName _senderPartyIdentifierHeaderName;
         XmlQualifiedName _receiverPartyIdentifierHeaderName;
+        XmlQualifiedName _senderPartyIdentifierTypeHeaderName;
+        XmlQualifiedName _receiverPartyIdentifierTypeHeaderName;
 
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="senderPartyIdentifierHeaderName">The header name that </param>
-        /// <param name="receiverPartyIdentifierHeaderName"></param>
-        public ClientPartyIdentifierHeaderBindingElement(XmlQualifiedName senderPartyIdentifierHeaderName, XmlQualifiedName receiverPartyIdentifierHeaderName) {
-            _senderPartyIdentifierHeaderName = senderPartyIdentifierHeaderName;
-            _receiverPartyIdentifierHeaderName = receiverPartyIdentifierHeaderName;
+        public ClientPartyIdentifierHeaderBindingElement(ClientPartyIdentifierHeaderBindingExtensionElement config)
+        {
+            _senderPartyIdentifierHeaderName = new XmlQualifiedName(config.SenderPartyIdentifierHeaderName, config.Namespace);
+            _senderPartyIdentifierTypeHeaderName = new XmlQualifiedName(config.SenderPartyIdentifierTypeHeaderName, config.Namespace);
+            _receiverPartyIdentifierHeaderName = new XmlQualifiedName(config.ReceiverPartyIdentifierHeaderName, config.Namespace);
+            _receiverPartyIdentifierTypeHeaderName = new XmlQualifiedName(config.ReceiverPartyIdentifierTypeHeaderName, config.Namespace);
 
+        }
+
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        private ClientPartyIdentifierHeaderBindingElement()
+        {
         }
 
         public override void InterceptRequest(InterceptorMessage interceptorMessage) {
@@ -99,6 +99,10 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
                     _senderPartyIdentifier = settings.SenderPartyHeaderValue;
                 if (settings.ReceiverPartyHeaderValue != "" && settings.ReceiverPartyHeaderValue != null)
                     _receiverPartyIdentifier = settings.ReceiverPartyHeaderValue;
+                if (settings.SenderPartyKeyType !=  null)
+                    _senderPartyIdentifierType = settings.SenderPartyKeyType;
+                if (settings.ReceiverPartyKeyType !=  null)
+                    _receiverPartyIdentifierType = settings.ReceiverPartyKeyType;
             }
 
             // Add the headers
@@ -106,11 +110,19 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
                 _senderPartyIdentifierHeaderName.Name,
                 _senderPartyIdentifierHeaderName.Namespace,
                 _senderPartyIdentifier));
+            msg.Headers.Add(MessageHeader.CreateHeader(
+                _senderPartyIdentifierTypeHeaderName.Name,
+                _senderPartyIdentifierTypeHeaderName.Namespace,
+                _senderPartyIdentifierType));
 
             msg.Headers.Add(MessageHeader.CreateHeader(
                 _receiverPartyIdentifierHeaderName.Name,
                 _receiverPartyIdentifierHeaderName.Namespace,
                 _receiverPartyIdentifier));
+            msg.Headers.Add(MessageHeader.CreateHeader(
+                _receiverPartyIdentifierTypeHeaderName.Name,
+                _receiverPartyIdentifierTypeHeaderName.Namespace,
+                _receiverPartyIdentifierType));
 
         }
 
@@ -140,7 +152,17 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         }
 
         public override System.ServiceModel.Channels.BindingElement Clone() {
-            ClientPartyIdentifierHeaderBindingElement clone = new ClientPartyIdentifierHeaderBindingElement(_senderPartyIdentifierHeaderName, _receiverPartyIdentifierHeaderName);
+            ClientPartyIdentifierHeaderBindingElement clone = new ClientPartyIdentifierHeaderBindingElement();
+            clone._receiverPartyIdentifier = _receiverPartyIdentifier;
+            clone._receiverPartyIdentifierHeaderName = _receiverPartyIdentifierHeaderName;
+            clone._receiverPartyIdentifierType = _receiverPartyIdentifierType;
+            clone._receiverPartyIdentifierTypeHeaderName = _receiverPartyIdentifierTypeHeaderName;
+
+            clone._senderPartyIdentifier = _senderPartyIdentifier;
+            clone._senderPartyIdentifierHeaderName = _senderPartyIdentifierHeaderName;
+            clone._senderPartyIdentifierType = _senderPartyIdentifierType;
+            clone._senderPartyIdentifierTypeHeaderName = _senderPartyIdentifierTypeHeaderName;
+
             return clone;
         }
     }

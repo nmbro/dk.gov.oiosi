@@ -32,6 +32,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
     
@@ -48,15 +50,22 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
 
         private string _senderPartyHeaderValue;
         private string _receiverPartyHeaderValue;
+        private EndpointKeyTypeCode _senderPartyKeyType;
+        private EndpointKeyTypeCode _receiverPartyKeyType;
+
+
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="senderPartyHeaderValue">The value of the Sender party ID header</param>
         /// <param name="receiverPartyHeaderValue">The value of the Receiver party ID header</param>
-        public PartyIdentifierHeaderSettings(string senderPartyHeaderValue, string receiverPartyHeaderValue) {
+        public PartyIdentifierHeaderSettings(string senderPartyHeaderValue, EndpointKeyTypeCode senderPartyKeyType, string receiverPartyHeaderValue, EndpointKeyTypeCode receiverPartyKeyType)
+        {
             _senderPartyHeaderValue = senderPartyHeaderValue;
+            _senderPartyKeyType = senderPartyKeyType;
             _receiverPartyHeaderValue = receiverPartyHeaderValue;
+            _receiverPartyKeyType = receiverPartyKeyType;
         }
 
         /// <summary>
@@ -73,6 +82,24 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         public string ReceiverPartyHeaderValue {
             get { return _receiverPartyHeaderValue; }
             set { _receiverPartyHeaderValue = value; }
+        }
+
+        /// <summary>
+        /// The type of the Receiver party ID
+        /// </summary>
+        public EndpointKeyTypeCode ReceiverPartyKeyType
+        {
+            get { return _receiverPartyKeyType; }
+            set { _receiverPartyKeyType = value; }
+        }
+
+        /// <summary>
+        /// The type of the Sender party ID
+        /// </summary>
+        public EndpointKeyTypeCode SenderPartyKeyType
+        {
+            get { return _senderPartyKeyType; }
+            set { _senderPartyKeyType = value; }
         }
     }
 }
