@@ -3,6 +3,7 @@ using System.Xml;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.test.request;
+using dk.gov.oiosi.raspProfile.communication;
 
 namespace dk.gov.oiosi.test.extendedRequest {
 
@@ -17,7 +18,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
     public class Program {
 
         // The request object used for sending
-        static Request request;
+        static IRaspRequest request;
      
         static void Main(string[] args) {
             while (true) {
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
                     // Use the OIOSI library class Request to send the document
                     Console.WriteLine("Starting to send...");
                     Response response;
-                    request.GetResponse(message, out response);
+                    request.GetResponse(message,Guid.NewGuid().ToString(), out response);
 
                     // Print out the reply
                     GUI.PrintResponse(response);

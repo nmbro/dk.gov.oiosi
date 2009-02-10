@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
+using dk.gov.oiosi.raspProfile.communication;
 
 namespace dk.gov.oiosi.test.request {
     
@@ -17,7 +18,7 @@ namespace dk.gov.oiosi.test.request {
         /// <summary>
         /// Configures the mail account used for sending
         /// </summary>
-        public static void GetMailSettings(Request request) {
+        public static void GetMailSettings(IRaspRequest request) {
 
             // Read the settings from the console
             Console.WriteLine("\nPlease configure the mail account used for sending");

@@ -14,6 +14,7 @@ using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.test.request;
+using dk.gov.oiosi.raspProfile.communication;
 
 namespace dk.gov.oiosi.test.extendedRequest {
 
@@ -40,7 +41,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
     /// </summary>
     public class Preparation {
 
-        public static Request PrepareRequest(OiosiMessage message) {
+        public static IRaspRequest PrepareRequest(OiosiMessage message) {
 
             // First we need to find out what type of object we are sending
             DocumentTypeConfigSearcher typeSearcher = new DocumentTypeConfigSearcher();
@@ -62,7 +63,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
             Credentials credentials = new Credentials(new OcesX509Certificate(clientCert), new OcesX509Certificate(serverCert));
 
             // Create request
-            return new Request(uddiResponse.EndpointAddress.GetAsUri(), credentials);
+            return new RaspRequest(new Request(uddiResponse.EndpointAddress.GetAsUri(), credentials));
         }
 
 

@@ -59,7 +59,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseResponse</ReplyAction>
+          <ReplyAction/>
           <EndpointFriendlyName>
             <XPath>/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -189,7 +189,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteResponse</ReplyAction>
+          <ReplyAction/>
           <EndpointFriendlyName>
             <XPath>//cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -319,7 +319,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceResponse</ReplyAction>
+          <ReplyAction />
           <EndpointFriendlyName>
             <XPath>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -449,7 +449,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Order201Interface/SubmitOrderRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Order201Interface/SubmitOrderResponse</ReplyAction>
+          <ReplyAction/>
           <EndpointFriendlyName>
             <XPath>/root:Order/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -579,7 +579,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseSimple201Interface/SubmitOrderResponseSimpleRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseSimple201Interface/SubmitOrderResponseSimpleResponse</ReplyAction>
+          <ReplyAction/>
           <EndpointFriendlyName>
             <XPath>/root:OrderResponseSimple/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -709,7 +709,7 @@
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitReminderRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitReminderResponse</ReplyAction>
+          <ReplyAction/>
           <EndpointFriendlyName>
             <XPath>/root:Reminder/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>

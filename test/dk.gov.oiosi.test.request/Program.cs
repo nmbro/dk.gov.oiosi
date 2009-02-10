@@ -11,6 +11,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.security.oces;
+using dk.gov.oiosi.raspProfile.communication;
 
 namespace dk.gov.oiosi.test.request {
 
@@ -27,7 +28,7 @@ namespace dk.gov.oiosi.test.request {
     public class Program {
 
         // The request object used for sending
-        static Request request;
+        static IRaspRequest request;
 
         static void Main(string[] args) {
 
@@ -43,7 +44,6 @@ namespace dk.gov.oiosi.test.request {
 
                     // Create the OIOSI message object to send, and add the mandatory MessageIdentifier header
                     OiosiMessage message = new OiosiMessage(xdoc);
-                    AddMandatoryRaspHeaders(message);
 
                     // If the user would like to set proxy config programatically
                     if (mode == GUI.MenuChoice.Custom) {
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.test.request {
                         Credentials credentials = new Credentials(new OcesX509Certificate(clientCert), new OcesX509Certificate(serverCert));
                         
                         // Create the Request object
-                        request = new Request(endpoint, credentials);
+                        request = new RaspRequest(new Request(endpoint, credentials));
 
                         // Let the user configure his mail account
                         if (endpoint.Scheme == "mailto")
@@ -69,7 +69,7 @@ namespace dk.gov.oiosi.test.request {
 
                         // Use the OIOSI library class Request to send the document
                         Console.WriteLine("Starting to send...");
-                        request.GetResponse(message, out response);
+                        request.GetResponse(message, Guid.NewGuid().ToString(), out response);
                         
                         #endregion
                     }
@@ -81,8 +81,8 @@ namespace dk.gov.oiosi.test.request {
 
                         // Use the OIOSI library class Request to send the document
                         Console.WriteLine("Starting to send...");
-                        request = new Request("OiosiHttpEndpoint");
-                        request.GetResponse(message, out response);
+                        request = new RaspRequest(new Request("OiosiHttpEndpoint"));
+                        request.GetResponse(message, Guid.NewGuid().ToString(), out response);
 
                         #endregion
                     }
@@ -103,26 +103,6 @@ namespace dk.gov.oiosi.test.request {
                 Console.WriteLine("\n");
             }
         }
-
-        /// <summary>
-        /// Adds the MessageIdentifier
-        /// </summary>
-        /// <param name="msg"></param>
-        public static void AddMandatoryRaspHeaders(OiosiMessage msg) { 
-            // Set the name of the header
-            XmlQualifiedName headerName = new XmlQualifiedName("MessageIdentifier", common.Definitions.DefaultOiosiNamespace2007);
-
-            // Create a WCF header
-            MessageHeader header = MessageHeader.CreateHeader(headerName.Name, headerName.Namespace, "1234567890");
-            
-            // Add it to our OIOSI Message
-            msg.MessageHeaders.Add(headerName, header);
-
-            msg.RequestAction = "http://rep.oio.dk/oiosi/ping";
-        }
-
-
-    
 
     }
 }

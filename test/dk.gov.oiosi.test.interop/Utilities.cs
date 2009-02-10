@@ -5,6 +5,7 @@ using System.Xml;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader;
+using dk.gov.oiosi.uddi.category;
 
 
 namespace Interoptest
@@ -63,7 +64,7 @@ namespace Interoptest
             XmlQualifiedName headerName = new XmlQualifiedName("MessageIdentifier", dk.gov.oiosi.common.Definitions.DefaultOiosiNamespace2007);
             m.MessageHeaders.Add(headerName, 
                 MessageHeader.CreateHeader(headerName.Name, headerName.Namespace, "1234567890"));
-            m.UbiquitousProperties.Add(PartyIdentifierHeaderSettings.MessagePropertyKey, new PartyIdentifierHeaderSettings("12345","54321"));
+            m.UbiquitousProperties.Add(PartyIdentifierHeaderSettings.MessagePropertyKey, new PartyIdentifierHeaderSettings("1230000000001", EndpointKeyTypeCode.ean, "1230000000002", EndpointKeyTypeCode.ean));
             return m;
         }
         #endregion
