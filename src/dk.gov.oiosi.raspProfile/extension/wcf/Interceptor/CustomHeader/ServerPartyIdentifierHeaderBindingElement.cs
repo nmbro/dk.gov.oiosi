@@ -87,10 +87,11 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
             // Get the message, uncopied
             Message msg = interceptorMessage.GetMessage();
 
-            _receiverPartyIdentifier = ExtractHeaderValue(msg, _receiverPartyIdentifierHeaderName.Name, _receiverPartyIdentifierHeaderName.Namespace, DefaultReceiverPartyIdentifier);
-            _receiverPartyIdentifierType = ExtractHeaderValue(msg, _receiverPartyIdentifierTypeHeaderName.Name, _receiverPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
-            _senderPartyIdentifier = ExtractHeaderValue(msg, _senderPartyIdentifierHeaderName.Name, _senderPartyIdentifierHeaderName.Namespace, DefaultSenderPartyIdentifier);
-            _senderPartyIdentifierType = ExtractHeaderValue(msg, _senderPartyIdentifierTypeHeaderName.Name, _senderPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
+            // Extract headers and switch sender for receiver
+            _senderPartyIdentifier = ExtractHeaderValue(msg, _receiverPartyIdentifierHeaderName.Name, _receiverPartyIdentifierHeaderName.Namespace, DefaultReceiverPartyIdentifier);
+            _senderPartyIdentifierType = ExtractHeaderValue(msg, _receiverPartyIdentifierTypeHeaderName.Name, _receiverPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
+            _receiverPartyIdentifier = ExtractHeaderValue(msg, _senderPartyIdentifierHeaderName.Name, _senderPartyIdentifierHeaderName.Namespace, DefaultSenderPartyIdentifier);
+            _receiverPartyIdentifierType = ExtractHeaderValue(msg, _senderPartyIdentifierTypeHeaderName.Name, _senderPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
 
         }
 
