@@ -146,9 +146,6 @@ namespace dk.gov.oiosi.common {
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        /// <param name="xmlDocument"></param>
-        /// <param name="documentType"></param>
-        /// <returns></returns>
         public static EndpointKeyTypeCode GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType) {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
@@ -161,8 +158,32 @@ namespace dk.gov.oiosi.common {
                     xpathExpression,
                     documentType.Namespaces);
             KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
-            //Statically maps the mapsto to a code
-            switch (mapping.MapsTo) {
+            return ParseKeyTypeCode(mapping.MapsTo);
+        }
+
+        /// <summary>
+        /// Gets the endpoint key type code from a Message and a 
+        /// DocumentTypeConfig.
+        /// </summary>
+        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
+        {
+            //Finds all mapping expressions with the name "EndpointKeyType"
+            DocumentEndpointInformation endpointType = documentType.EndpointType;
+            KeyTypeMappingExpression mappingExpression = endpointType.SenderKey.GetMappingExpression("EndpointKeyType");
+            //Finds the endpoint key type value from the given xpath
+            string xpathExpression = mappingExpression.XPathExpression;
+            string endPointKeyTypeValue =
+                DocumentXPathResolver.GetElementValueByXpath(
+                    xmlDocument,
+                    xpathExpression,
+                    documentType.Namespaces);
+            KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
+            return ParseKeyTypeCode(mapping.MapsTo);
+        }
+
+        private static EndpointKeyTypeCode ParseKeyTypeCode(string code) {
+            switch (code)
+            {
                 case "cvr":
                     return EndpointKeyTypeCode.cvr;
                 case "ean":
