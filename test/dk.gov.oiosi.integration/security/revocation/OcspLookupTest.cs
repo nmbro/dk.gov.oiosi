@@ -12,9 +12,9 @@ namespace dk.gov.oiosi.test.integration.security.revocation {
         public void LookupTestWithoutOcspServerFromCertificate(){
             OcspConfig ocspConfig = new OcspConfig();
             ocspConfig.DefaultTimeoutMsec = 10000;
-            X509Certificate2 rootcert = new X509Certificate2("resources/ocesca.cer");
+            X509Certificate2 rootcert = new X509Certificate2("Resources/Certificates/ocesca.cer");
             OcspLookup ocspLookup = new OcspLookup(ocspConfig, rootcert);
-            X509Certificate2 certificate = new X509Certificate2("resources/NemHandel test service.cer");
+            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/NemHandel test service.cer");
             RevocationResponse response = ocspLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
@@ -24,9 +24,9 @@ namespace dk.gov.oiosi.test.integration.security.revocation {
             OcspConfig ocspConfig = new OcspConfig();
             ocspConfig.DefaultTimeoutMsec = 10000;
             ocspConfig.ServerUrl = "http://ocsp.certifikat.dk/ocsp/status";
-            X509Certificate2 rootcert = new X509Certificate2("resources/ocesca.cer");
+            X509Certificate2 rootcert = new X509Certificate2("Resources/Certificates/ocesca.cer");
             OcspLookup ocspLookup = new OcspLookup(ocspConfig, rootcert);
-            X509Certificate2 certificate = new X509Certificate2("resources/NemHandel test service.cer");
+            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/NemHandel test service.cer");
             RevocationResponse response = ocspLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }

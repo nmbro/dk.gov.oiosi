@@ -26,11 +26,12 @@ namespace dk.gov.oiosi.test.integration.communication {
     [TestFixture]
     public class RaspRequestTest {
 
-        private const string serialNumber = "456CD66A";
+        private string clientCertificateSerialNumber;
 
         [TestFixtureSetUp]
-        public void SetupConfigurationFile() {
+        public void Setup() {
             SetupConfiguration();
+            SetupCertificate();
         }
 
         [Test]
@@ -58,6 +59,13 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
         
         # region Private methods
+
+        private void SetupCertificate() {
+            var certificateFile = "Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx";
+            var certificatePassword = "Test1234";
+            CertificateUtil.EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
+            clientCertificateSerialNumber = "40 36 d8 5e"; // Testendpoint (funktionscertifikat)
+        }
 
         private Response SendRequestAndGetResponse(FileInfo file) {
             var documentId = "12345";
@@ -113,7 +121,7 @@ namespace dk.gov.oiosi.test.integration.communication {
 
         private OcesX509Certificate GetClientCertificate() {
             
-            CertificateStoreIdentification sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, serialNumber);
+            CertificateStoreIdentification sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, clientCertificateSerialNumber);
            
             X509Certificate2 cert = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
             return new OcesX509Certificate(cert);

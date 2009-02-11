@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security.revocation.crl;
 using NUnit.Framework;
@@ -16,7 +14,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         public void LookupTestValidCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2("resources/NemHandel test service.cer");
+            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx", "Test1234");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
@@ -25,7 +23,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         public void LookupTestRevokedCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2("resources/Revoked.cer");
+            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/Revoked.cer");
             try {
                 RevocationResponse response = crlLookup.CheckCertificate(certificate);
                 Assert.IsTrue(!response.IsValid);
