@@ -90,7 +90,7 @@ namespace dk.gov.oiosi.security.ldap {
         /// <returns>The certificate that satifies the conditions of the subject string.</returns>
         public X509Certificate2 GetCertificate(CertificateSubject subject) {
             if (subject == null)
-                throw new ArgumentNullException("subjectSerialNumber");
+                throw new ArgumentNullException("subject");
 
             X509Certificate2 certificateToBeReturned;
 
@@ -130,8 +130,7 @@ namespace dk.gov.oiosi.security.ldap {
                 LdapConnection ldapConnection = new LdapConnection();
                 //A time limit on the connection to the server is added.
                 ldapConnection.Constraints.TimeLimit = _settings.ConnectionTimeoutMsec;
-                //Connecting to the server.
-                ldapConnection.Connect(_settings.Host.ToString(), _settings.Port);
+                ldapConnection.Connect(_settings.Host, _settings.Port);
                 return ldapConnection;
             } 
             catch (Exception e) {
@@ -176,10 +175,12 @@ namespace dk.gov.oiosi.security.ldap {
         /// <returns>Returns the fetched certificate</returns>
         private X509Certificate2 GetCertificate(LdapSearchResults ldapSearchResults, CertificateSubject subject) {
             //The search failed to find a certificate.
-            if (!ldapSearchResults.hasMore()) throw new LdapCertificateNotFoundException(subject);
+            bool searchResultFound = ldapSearchResults.hasMore();
+            if (searchResultFound == false) throw new LdapCertificateNotFoundException(subject);
+            
             LdapEntry ldapEntry = ldapSearchResults.next();
-            //The search found mutiple certificates
-            if (ldapSearchResults.hasMore()) throw new LdapMultipleCertificatesFoundException(subject);
+            bool moreThanOneSearchResultFound = ldapSearchResults.hasMore();
+            if (moreThanOneSearchResultFound) throw new LdapMultipleCertificatesFoundException(subject);
 
             try {
                 LdapAttribute ldapAttribute = ldapEntry.getAttribute("userCertificate;binary");

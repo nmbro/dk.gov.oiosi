@@ -43,6 +43,7 @@ using System.IO;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.extension.wcf;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
+using dk.gov.oiosi.logging;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.extension.wcf.Behavior;
@@ -393,11 +394,6 @@ namespace dk.gov.oiosi.communication {
                 // Make sure we dind't receive a fault
                 if (wcfMessageResponse.IsFault)
                     throw CreateFaultWasReceivedException(new FaultException(MessageFault.CreateFault(wcfMessageResponse, int.MaxValue)));
-
-                // Check that we got back the expected reply action
-                if(!string.IsNullOrEmpty(message.ReplyAction) && message.ReplyAction != "*")
-                    if(wcfMessageResponse.Headers.Action != message.ReplyAction)
-                        throw new UnexpectedReplyActionException(message.ReplyAction, wcfMessageResponse.Headers.Action);
 
                 // Convert back to oiosi message
                 response = new Response(wcfMessageResponse);

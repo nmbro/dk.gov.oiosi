@@ -123,7 +123,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                 messageId = headers.MessageId.ToString();
                 UnfinishedSignatureValidationProof unfinishedSignature = new UnfinishedSignatureValidationProof(headers);
 
-                System.Diagnostics.Debug.WriteLine("\n\n\nAdding unfinished signature - id:" + messageId + ";unfinished signature validation proof: " + unfinishedSignature.SignatureValidationProof + "\n\n\n");
+                //System.Diagnostics.Debug.WriteLine("\n\n\nAdding unfinished signature - id:" + messageId + ";unfinished signature validation proof: " + unfinishedSignature.SignatureValidationProof + "\n\n\n");
                 _unfinishedSignatures.Add(messageId, sequenceHeader, unfinishedSignature);
             }
             catch (Exception ex) {
@@ -138,7 +138,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <param name="message"></param>
         public override void InterceptResponse(InterceptorMessage message) {
             try {
-                System.Diagnostics.Debug.Write("Intercepting the response - ");
+                //System.Diagnostics.Debug.Write("Intercepting the response - ");
                 Headers headers = new Headers(message);
                 SequenceAcknowledgementHeader sequenceAcknowledgement = headers.SequenceAcknowledgement;
                 if (message.IsFault) return;
@@ -159,7 +159,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
             UnfinishedSignatureValidationProof unfinishedSignatureValidationProof = null;
             if (!_unfinishedSignatures.TryGetValueFromMessageId(relatesTo, out unfinishedSignatureValidationProof))
                 return;
-            System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
+            //System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
             SignatureValidationProof signatureValidationProof = unfinishedSignatureValidationProof.SignatureValidationProof;
             string signatureValidationProofKey = ClientSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey;
             message.AddProperty(signatureValidationProofKey, signatureValidationProof);
@@ -172,7 +172,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
             string certificateSubject = identityName.Substring(0, index);
             //Try to get the messages that have been acked in the RM session. If none exists return.
             List<UnfinishedSignatureValidationProof> ackedMessages = null;
-            System.Diagnostics.Debug.WriteLine("InterceptedAcknowledgementResponse sequenceID" + sequenceAcknowledgementHeader.SequenceId);
+            //System.Diagnostics.Debug.WriteLine("InterceptedAcknowledgementResponse sequenceID" + sequenceAcknowledgementHeader.SequenceId);
             if (!_unfinishedSignatures.TryGetValueFromSequenceAcknowledgementHeader(sequenceAcknowledgementHeader, out ackedMessages))
                 return;
             foreach (UnfinishedSignatureValidationProof ackedMessage in ackedMessages) {

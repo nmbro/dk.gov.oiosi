@@ -49,7 +49,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
 
         public void Add(string messageId, SequenceHeader header, UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) {
             string sequenceId = header.SequenceId;
-            long messageNumber = header.MessageNumber;
             List<UnfinishedSignatureValidationProof> sequenceUnfinishedSignatureValidationProofs = null;
             lock (lockObject) {
 
@@ -88,7 +87,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         }
 
         public bool TryGetValueFromSequenceAcknowledgementHeader(SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs) {
-            System.Diagnostics.Debug.WriteLine("SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs");
+            //System.Diagnostics.Debug.WriteLine("SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs");
             string sequenceId = header.SequenceId;
             unfinishedSignatureValidationProofs = null;
             List<UnfinishedSignatureValidationProof> sequenceUnfinishedSignatureValidationProofs = null;
