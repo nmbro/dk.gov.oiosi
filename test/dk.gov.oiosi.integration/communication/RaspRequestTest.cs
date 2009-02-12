@@ -15,6 +15,7 @@ using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.ldap;
 using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.oces;
+using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.xml.documentType;
@@ -101,6 +102,12 @@ namespace dk.gov.oiosi.test.integration.communication {
 
             DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
             ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
+
+            DefaultRevocationConfig defaultRevocationConfig = new DefaultRevocationConfig();
+            defaultRevocationConfig.SetTestRevocationLookupFactoryConfig();
+            //defaultRevocationConfig.SetIfNotExistsRevocationLookupFactoryConfig();
+            //defaultRevocationConfig.SetIfNotExistsOscpConfig();
+            //defaultRevocationConfig.SetOcspConfigToUseTestOcspServer();
         }
 
         private RaspRequest GetRaspRequest(OiosiMessage oiosiMessage) {
@@ -111,12 +118,24 @@ namespace dk.gov.oiosi.test.integration.communication {
             var endpointAddressUri = uddiResponse.EndpointAddress.GetAsUri();
 
             var endpointCertificate = GetEndpointCertificateFromLdap(uddiResponse.CertificateSubjectSerialNumber);
+            ValidateEndpointCertificate(endpointCertificate);
             var clientCertificate = GetClientCertificate();
 
             var credentials = new Credentials(clientCertificate, endpointCertificate);
             var request = new Request(endpointAddressUri, credentials);
             var raspRequest = new RaspRequest(request);
             return raspRequest;
+        }
+
+        private void ValidateEndpointCertificate(OcesX509Certificate endpointOcesCertificate) {
+            var ocspLookupFactory = new RevocationLookupFactory();
+            IRevocationLookup ocspClient = ocspLookupFactory.CreateRevocationLookupClient();
+            
+            RevocationCheckStatus ocspStatus = endpointOcesCertificate.CheckRevocationStatus(ocspClient);
+            if (ocspStatus == RevocationCheckStatus.AllChecksPassed) return;
+
+            throw new Exception("Certificate validation error");
+
         }
 
         private OcesX509Certificate GetClientCertificate() {

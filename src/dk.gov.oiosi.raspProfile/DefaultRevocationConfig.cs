@@ -128,5 +128,10 @@ namespace dk.gov.oiosi.raspProfile {
                 return;
             SetTestOscpConfig();
         }
+
+        public void SetOcspConfigToUseTestOcspServer() {
+            var ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
+            ocspConfig.ServerUrl = "http://test.ocsp.certifikat.dk/ocsp/status";
+        }
     }
 }

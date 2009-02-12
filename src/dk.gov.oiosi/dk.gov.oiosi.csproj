@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -203,6 +203,7 @@
     <Compile Include="security\revocation\crl\CrlLookup.cs" />
     <Compile Include="security\InvalidOcesCertificateException.cs" />
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
+    <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\RootCertificateConfig.cs" />
     <Compile Include="uddi\ars\ArsBindingType.cs" />
     <Compile Include="uddi\ars\ArsLookupExtended.cs" />
