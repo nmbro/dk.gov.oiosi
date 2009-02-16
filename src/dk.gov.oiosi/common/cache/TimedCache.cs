@@ -72,6 +72,17 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        public void Set(TKey key, TValue value)
+        {
+            DateTime timeOut = DateTime.UtcNow.Add(_timeOut);
+            TimedCacheValue cacheValue = new TimedCacheValue(timeOut, value);
+            lock (_cache) {
+                Expire();
+                _cache.Remove(key);
+                _cache.Add(key, cacheValue);
+            }
+        }
+
         /// <summary>
         /// Get from cache
         /// </summary>

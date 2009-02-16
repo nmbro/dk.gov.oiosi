@@ -48,6 +48,8 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="value"></param>
         public void Add(TKey key, TValue value) { }
 
+        public void Set(TKey key, TValue value) { }
+
         /// <summary>
         /// Returns false.
         /// </summary>

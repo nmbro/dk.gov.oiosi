@@ -15,6 +15,14 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="key"></param>
         /// <param name="value"></param>
         void Add(TKey key, TValue value);
+
+        /// <summary>
+        /// Sets the value for the given key in the cache. Overwrites already present values.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        void Set(TKey key, TValue value);
+
         /// <summary>
         /// Lookup whether a given key is represented in the cache.
         /// </summary>

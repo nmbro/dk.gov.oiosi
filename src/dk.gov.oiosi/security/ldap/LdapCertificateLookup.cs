@@ -109,7 +109,7 @@ namespace dk.gov.oiosi.security.ldap {
                 }
 
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);
-                certCache.Add(subject, certificateToBeReturned);
+                certCache.Set(subject, certificateToBeReturned);
             }
             else {
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);

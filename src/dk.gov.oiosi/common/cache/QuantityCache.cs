@@ -38,6 +38,19 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        public void Set(TKey key, TValue value)
+        {
+            if (key == null) throw new ArgumentNullException("key");
+            if (_maxSize == 0) return;
+            lock (_lockObject)
+            {
+                Expire();
+                _indexSortedKeys.Add(key);
+                _keyedDictionary.Remove(key);
+                _keyedDictionary.Add(key, value);
+            }
+        }
+
         public bool ContainsKey(TKey key) {
             if (key == null) throw new ArgumentNullException("key");
             if (_maxSize == 0) return false;

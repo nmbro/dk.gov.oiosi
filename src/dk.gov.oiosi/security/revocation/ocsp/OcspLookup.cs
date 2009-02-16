@@ -231,7 +231,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             bool ocspRepliedInTime = asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false);
             if (ocspRepliedInTime) {
                 response = asyncOcspCall.EndInvoke(asyncResult);
-                ocspCache.Add(certificate.SubjectName.Name, response);
+                ocspCache.Set(certificate.SubjectName.Name, response);
                 return response;
             }
 

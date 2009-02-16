@@ -50,7 +50,6 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
 		private UddiConfig _configuration;
-        private object CacheLock = new object();
     	private Uri _address;
 
         /// <summary>
@@ -136,11 +135,10 @@ namespace dk.gov.oiosi.uddi {
             }
 
             // 3. Add result to cache, if relevant
-            lock (CacheLock) {
-                if (!parameters.LookupCache.ContainsKey(cacheLookupKey) && inquiryResult != null && inquiryResult.Count != 0) {
-                    parameters.LookupCache.Add(cacheLookupKey, inquiryResult);
-                }
+            if (!parameters.LookupCache.ContainsKey(cacheLookupKey) && inquiryResult != null && inquiryResult.Count != 0) {
+                parameters.LookupCache.Set(cacheLookupKey, inquiryResult);
             }
+
             return inquiryResult;
         }
 
