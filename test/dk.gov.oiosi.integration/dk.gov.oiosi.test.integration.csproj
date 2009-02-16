@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
+    <Compile Include="communication\listener\ListenerTest.cs" />
     <Compile Include="communication\RaspRequestTest.cs" />
     <Compile Include="communication\RequestTest.cs" />
+    <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="security\revocation\CrlLookupTest.cs" />
     <Compile Include="security\revocation\OcspLookupTest.cs" />
@@ -55,6 +57,10 @@
     <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
       <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
       <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.exception\dk.gov.oiosi.exception.csproj">
+      <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
+      <Name>dk.gov.oiosi.exception</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>

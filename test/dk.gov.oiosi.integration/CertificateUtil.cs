@@ -1,8 +1,22 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.test.integration {
     public class CertificateUtil
     {
+
+        public static X509Certificate2 InstallAndGetFunctionCertificateFromCertificateStore() {
+            const string certificateSerialNumber = "40 36 d8 5e";
+
+            var certificateFile = "Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx";
+            var certificatePassword = "Test1234";
+            EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
+            var sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);
+            X509Certificate2 certificate = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
+            return certificate;
+        }
+
+
         public static void EnsureCertCertificate(StoreName storeName, StoreLocation storeLocation,
                                                  string certFileName) {
             X509Certificate2 certificate = new X509Certificate2(certFileName);

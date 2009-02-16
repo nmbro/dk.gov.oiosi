@@ -9,11 +9,9 @@ using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.raspProfile.communication;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.ldap;
-using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.uddi;
@@ -27,12 +25,9 @@ namespace dk.gov.oiosi.test.integration.communication {
     [TestFixture]
     public class RaspRequestTest {
 
-        private string clientCertificateSerialNumber;
-
         [TestFixtureSetUp]
         public void Setup() {
-            SetupConfiguration();
-            SetupCertificate();
+            ConfigurationUtil.SetupConfiguration();
         }
 
         [Test]
@@ -61,13 +56,6 @@ namespace dk.gov.oiosi.test.integration.communication {
         
         # region Private methods
 
-        private void SetupCertificate() {
-            var certificateFile = "Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx";
-            var certificatePassword = "Test1234";
-            CertificateUtil.EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
-            clientCertificateSerialNumber = "40 36 d8 5e"; // Testendpoint (funktionscertifikat)
-        }
-
         private Response SendRequestAndGetResponse(FileInfo file) {
             var documentId = "12345";
             var xmlDocument = new XmlDocument();
@@ -79,37 +67,6 @@ namespace dk.gov.oiosi.test.integration.communication {
             return response;
         }
 
-        private void SetupConfiguration() {
-            DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
-            documentTypes.Add();
-
-            ProfileMappingCollection profileMappings = new ProfileMappingCollection();
-            profileMappings.AddAll();
-
-            DefaultLdapConfig ldapConfig = new DefaultLdapConfig();
-            ldapConfig.SetIfNotExistsLdapLookupFactoryConfig();
-            ldapConfig.SetIfNotExistsDefaultLdapConfig();
-
-            DefaultUddiConfig uddiConfig = new DefaultUddiConfig();
-            uddiConfig.SetIfNotExistsUddiLookupFactoryConfig();
-            uddiConfig.SetIfNotExistsDefaultUddiConfig();
-
-            DefaultRootCertificateConfig rootCertificateConfig = new DefaultRootCertificateConfig();
-            rootCertificateConfig.SetIfNotExistsProductionDefaultRootCertificateConfig();
-
-            DefaultSchematronConfig schematronConfig = new DefaultSchematronConfig();
-            schematronConfig.SetIfNotExistsOcesCertificateConfig();
-
-            DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
-            ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
-
-            DefaultRevocationConfig defaultRevocationConfig = new DefaultRevocationConfig();
-            defaultRevocationConfig.SetTestRevocationLookupFactoryConfig();
-            //defaultRevocationConfig.SetIfNotExistsRevocationLookupFactoryConfig();
-            //defaultRevocationConfig.SetIfNotExistsOscpConfig();
-            //defaultRevocationConfig.SetOcspConfigToUseTestOcspServer();
-        }
-
         private RaspRequest GetRaspRequest(OiosiMessage oiosiMessage) {
             var documentTypeConfigSearcher = new DocumentTypeConfigSearcher();
             var documentTypeConfig = documentTypeConfigSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
@@ -119,9 +76,9 @@ namespace dk.gov.oiosi.test.integration.communication {
 
             var endpointCertificate = GetEndpointCertificateFromLdap(uddiResponse.CertificateSubjectSerialNumber);
             ValidateEndpointCertificate(endpointCertificate);
-            var clientCertificate = GetClientCertificate();
+            var clientCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
 
-            var credentials = new Credentials(clientCertificate, endpointCertificate);
+            var credentials = new Credentials(new OcesX509Certificate(clientCertificate), endpointCertificate);
             var request = new Request(endpointAddressUri, credentials);
             var raspRequest = new RaspRequest(request);
             return raspRequest;
@@ -136,14 +93,6 @@ namespace dk.gov.oiosi.test.integration.communication {
 
             throw new Exception("Certificate validation error");
 
-        }
-
-        private OcesX509Certificate GetClientCertificate() {
-            
-            CertificateStoreIdentification sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, clientCertificateSerialNumber);
-           
-            X509Certificate2 cert = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
-            return new OcesX509Certificate(cert);
         }
 
         private OcesX509Certificate GetEndpointCertificateFromLdap(CertificateSubject certificateSubject) {

@@ -209,8 +209,6 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Get the OCES certificate type from a given certificate subject.
         /// </summary>
-        /// <param name="certificate"></param>
-        /// <returns></returns>
         public static OcesCertificateType GetOcesCertificateType(CertificateSubject subject) {
             if (subject == null) throw new NullArgumentException("subject");
              //The code is using the subject as identifier of the the oces type.
