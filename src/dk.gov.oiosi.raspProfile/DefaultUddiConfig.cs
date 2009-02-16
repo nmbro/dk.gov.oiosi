@@ -101,7 +101,7 @@ namespace dk.gov.oiosi.raspProfile {
             uddiConfig.FallbackTimeoutMinutes = 15;
             uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));
-            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc" }));
+            uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://oiosi2vans.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc" }));
         }
 
         private void SetDefaultUddiConfigTest() {
