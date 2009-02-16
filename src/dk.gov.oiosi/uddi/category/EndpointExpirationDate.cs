@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.uddi.ars;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -46,7 +47,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static EndpointExpirationDate() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:2a8d2edc-cd1e-453f-9777-b623c80aaba5", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:2a8d2edc-cd1e-453f-9777-b623c80aaba5");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointExpirationDate/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointExpirationDate/";
             _defaultKeyValue = "";

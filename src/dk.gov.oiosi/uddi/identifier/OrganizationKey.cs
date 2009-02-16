@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.identifier {
 
@@ -51,7 +52,7 @@ namespace dk.gov.oiosi.uddi.identifier {
         /// Static constructor. Initializes name, id and default valute of the identifier
         /// </summary>
         static OrganizationKey() {
-            _identifierId = new UddiGuidId("uddi:FA297F93-E9C8-4e22-88D5-CED0A40E3A42", true);
+            _identifierId = IdentifierUtility.GetUddiIDFromString("uddi:FA297F93-E9C8-4e22-88D5-CED0A40E3A42");
             _identifierName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/organizationKey/";
             _defaultValueExists = false;
             _fixedValueListExists = false;

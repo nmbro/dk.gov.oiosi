@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.common {
 
         /// <summary>
         /// Returns an UDDI identifier (e.g. a tModel key) as an UddiId object 
-        /// (e.g. UddiGuidId or UddiNonGuidId). Throws an exception if the format
+        /// (e.g. UddiGuidId or UddiStringId). Throws an exception if the format
         /// is not right.
         /// </summary>
         /// <param name="uddiIdentifier">The UDDI identifier to convert</param>
@@ -54,14 +54,20 @@ namespace dk.gov.oiosi.common {
         public static UddiId GetUddiIDFromString(string uddiIdentifier) {
             UddiId idObject;
             if (uddiIdentifier.ToLower().StartsWith("uddi:")) {
-                idObject = new UddiGuidId(uddiIdentifier, true);
-                return idObject;
+                if (UddiGuidId.IsValidGuidId(uddiIdentifier, true)) {
+                    idObject = new UddiGuidId(uddiIdentifier, true);
+                    return idObject;
+                }
+                else {
+                    idObject = new UddiStringId(uddiIdentifier, true);
+                    return idObject;
+                }
             } else {
                 if (UddiGuidId.IsValidGuidId(uddiIdentifier, false)) {
                     idObject = new UddiGuidId(uddiIdentifier, false);
                     return idObject;
                 } else {
-                    idObject = new UddiNonGuidId(uddiIdentifier);
+                    idObject = new UddiStringId(uddiIdentifier, false);
                     return idObject;
                 }
             }

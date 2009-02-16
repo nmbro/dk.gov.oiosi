@@ -69,7 +69,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// Use this constructor to set a value
         /// </summary>
         /// <param name="businessProcessDefinitionTModel">UDDI identifier for the business process definition tModel</param>
-        public BusinessProcessDefinitionReference(UddiGuidId businessProcessDefinitionTModel) {
+        public BusinessProcessDefinitionReference(UddiId businessProcessDefinitionTModel) {
             pValue = businessProcessDefinitionTModel.ID;
         }
 

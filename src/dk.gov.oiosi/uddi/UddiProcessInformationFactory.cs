@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.uddi.TModels;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -36,7 +37,7 @@ namespace dk.gov.oiosi.uddi {
                 return false;
             }
             string businessProcessDefinitionKeyValue = businessProcessReference.KeyValue;
-            UddiId processDefinitionId = new UddiGuidId(businessProcessDefinitionKeyValue, true);
+            UddiId processDefinitionId = IdentifierUtility.GetUddiIDFromString(businessProcessDefinitionKeyValue);
             string name = tmodel.Name.Text;
             string description = tmodel.Descriptions[0].Text;
 

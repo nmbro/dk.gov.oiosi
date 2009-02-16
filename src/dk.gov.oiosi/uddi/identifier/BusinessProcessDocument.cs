@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.identifier {
 
@@ -52,7 +53,7 @@ namespace dk.gov.oiosi.uddi.identifier {
         /// Static constructor. Initializes name, id and default valute of the identifier
         /// </summary>
         static BusinessProcessDocument() {
-            _identifierId = new UddiGuidId("uddi:9111dd24-6734-407f-b949-d601ab427520", true);
+            _identifierId = IdentifierUtility.GetUddiIDFromString("uddi:9111dd24-6734-407f-b949-d601ab427520");
             _identifierName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/businessProcessIdentifier/";
             _defaultValueExists = false;
             _fixedValueListExists = false;

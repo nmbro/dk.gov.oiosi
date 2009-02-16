@@ -276,10 +276,10 @@ namespace dk.gov.oiosi.uddi {
                 if (roleTypeReference != null) {
                     roleType = roleTypeReference.KeyValue;
                 }
-                UddiId processDefinitionReferenceId = new UddiGuidId(Guid.NewGuid());
+                UddiId processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(Guid.NewGuid().ToString());
                 KeyedReference processDefinitionReference = model.CategoryBag.GetCategoryByIdentifierAndKeyName(BusinessProcessDefinitionReference.DEFAULTUDDIID, BusinessProcessDefinitionReference.DEFAULTKEYNAME); 
                 if (processDefinitionReference != null) {
-                    processDefinitionReferenceId = new UddiGuidId(processDefinitionReference.KeyValue, true);
+                    processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(processDefinitionReference.KeyValue);
                 }
                 UddiProcessInformation information = new UddiProcessInformation(name, description, role, roleType, processDefinitionReferenceId);
                 processes.Add(information);

@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -44,7 +45,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static EndpointKeytype() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:182a4a2b-3717-4283-b97c-55cc3b684dae", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:182a4a2b-3717-4283-b97c-55cc3b684dae");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/";
             _defaultKeyValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/";

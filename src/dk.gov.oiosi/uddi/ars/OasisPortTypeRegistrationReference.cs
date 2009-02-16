@@ -34,6 +34,7 @@ using System.Text;
 
 using dk.gov.oiosi.uddi.TModels;
 using dk.gov.oiosi.uddi.Validation;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.ars {
 
@@ -65,7 +66,7 @@ namespace dk.gov.oiosi.uddi.ars {
         /// Constructor with porttype reference
         /// </summary>
         /// <param name="portTypeTModelKey">tmodelkey of porttype registration tmodel</param>
-        public OasisPortTypeRegistrationReference(UddiGuidId portTypeTModelKey) {
+        public OasisPortTypeRegistrationReference(UddiId portTypeTModelKey) {
 
             try {
                 SetPortTypeReference(portTypeTModelKey);
@@ -83,7 +84,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// </summary>
         public UddiId ID {
             get {
-                return new UddiGuidId(_portTypeReference.Value.tModelKey, true);
+                string idString = _portTypeReference.Value.tModelKey;
+                return IdentifierUtility.GetUddiIDFromString(idString);
             }
             set {
                 _portTypeReference.Value.tModelKey = value.ID;
@@ -104,8 +106,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// <summary>
         /// Adds the reference to the porttype centralservice definition
         /// </summary>
-        /// <param name="portTypeTModelKey">UddiGuidId of porttype registration tmodel</param>
-        public void SetPortTypeReference(UddiGuidId portTypeTModelKey) {
+        /// <param name="portTypeTModelKey">UddiId of porttype registration tmodel</param>
+        public void SetPortTypeReference(UddiId portTypeTModelKey) {
 
             try {
                 //1. set tmodelkey attribute to the tmodelkey

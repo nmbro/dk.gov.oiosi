@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.identifier {
 
@@ -51,7 +52,7 @@ namespace dk.gov.oiosi.uddi.identifier {
         /// Static constructor. Initializes name, id and default valute of the identifier
         /// </summary>
         static ServiceContactEmail() {
-            _identifierId = new UddiGuidId("uddi:576cc1f0-5adc-4aea-b9f9-4bda309f622a", true);
+            _identifierId = IdentifierUtility.GetUddiIDFromString("uddi:576cc1f0-5adc-4aea-b9f9-4bda309f622a");
             _identifierName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/serviceContactEmail/";
             _defaultValueExists = false;
             _fixedValueListExists = false;

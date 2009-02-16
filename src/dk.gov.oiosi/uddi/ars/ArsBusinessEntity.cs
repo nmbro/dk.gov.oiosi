@@ -40,6 +40,7 @@ using dk.gov.oiosi.uddi.ars;
 using dk.gov.oiosi.uddi.Services;
 using dk.gov.oiosi.common.validation;
 using dk.gov.oiosi.uddi.Validation;
+using dk.gov.oiosi.common;
 
 namespace  dk.gov.oiosi.uddi.ars {
 
@@ -444,8 +445,10 @@ namespace  dk.gov.oiosi.uddi.ars {
         public UddiId ID {
             get {
                 if (_businessEntity!= null && _businessEntity.Provider.businessKey != null && 
-                    _businessEntity.Provider.businessKey.Length > 0)
-                    return new UddiGuidId(_businessEntity.Provider.businessKey, true);
+                    _businessEntity.Provider.businessKey.Length > 0) {
+                    string idString = _businessEntity.Provider.businessKey;
+                    return IdentifierUtility.GetUddiIDFromString(idString);
+                }
                 else {
                     return null;
                 }

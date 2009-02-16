@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -47,7 +48,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static EndpointAddressType() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:14248882-f226-4caa-92ed-0a2ec40d3112", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:14248882-f226-4caa-92ed-0a2ec40d3112");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointAddressType/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointAddressType/";
             _defaultKeyValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/http/";

@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -46,7 +47,8 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static ArsEndpointKey() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:e733684d-9f40-40ff-8807-1d80abc7c665", true);
+
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:e733684d-9f40-40ff-8807-1d80abc7c665");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKey/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKey/";
             _defaultKeyValue = "";

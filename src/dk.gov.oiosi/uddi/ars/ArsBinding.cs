@@ -162,16 +162,14 @@ namespace dk.gov.oiosi.uddi.ars {
                             {
                                 RegistrationConformanceClaim conformanceClaimInstance =
                                     new RegistrationConformanceClaim();
-                                if (regConfClaim.KeyValue == conformanceClaimInstance.DefaultCategoryValue)
-                                {
-                                    if (wsdlTypes.KeyValue == "binding")
-                                    {
+                                if (regConfClaim.KeyValue == conformanceClaimInstance.DefaultCategoryValue) {
+                                    if (wsdlTypes.KeyValue == "binding") {
                                         bindingRef = new OasisBindingRegistrationReference(instanceInfo);
                                         _serviceRegistration.BindingRegistrationRef = bindingRef;
                                     }
-                                    else if (wsdlTypes.KeyValue == "portType")
-                                    {
-                                        portTypeRef = new OasisPortTypeRegistrationReference(new UddiGuidId(instanceInfo.Value.tModelKey, true));
+                                    else if (wsdlTypes.KeyValue == "portType") {
+                                        UddiId id = IdentifierUtility.GetUddiIDFromString(instanceInfo.Value.tModelKey);
+                                        portTypeRef = new OasisPortTypeRegistrationReference(id);
                                         _serviceRegistration.PortTypeRegistrationRef = portTypeRef;
                                     }
                                 }
@@ -248,7 +246,7 @@ namespace dk.gov.oiosi.uddi.ars {
         public UddiId ServiceKey {
             get {
                 if (_bindingTemplate != null && _bindingTemplate.ServiceKey!= null && _bindingTemplate.ServiceKey.Length > 0)
-                    return new UddiGuidId(_bindingTemplate.ServiceKey, true);
+                    return IdentifierUtility.GetUddiIDFromString(_bindingTemplate.ServiceKey);
                 else {
                     return null;
                 }
@@ -272,7 +270,8 @@ namespace dk.gov.oiosi.uddi.ars {
         public UddiId BindingKey {
             get {
                 if (_bindingTemplate != null && _bindingTemplate.Value != null && !String.IsNullOrEmpty(_bindingTemplate.Value.bindingKey)) {
-                    return new UddiGuidId(_bindingTemplate.Value.bindingKey, true);
+                    string idString = _bindingTemplate.Value.bindingKey;
+                    return IdentifierUtility.GetUddiIDFromString(idString);
                 }  else {
                     return null;
                 }
@@ -297,8 +296,10 @@ namespace dk.gov.oiosi.uddi.ars {
         /// </summary>
         public UddiId ID {
             get {
-                if (_bindingTemplate != null && _bindingTemplate.Value.bindingKey != null && _bindingTemplate.Value.bindingKey.Length > 0)
-                    return new UddiGuidId(_bindingTemplate.Value.bindingKey, true);
+                if (_bindingTemplate != null && _bindingTemplate.Value.bindingKey != null && _bindingTemplate.Value.bindingKey.Length > 0) {
+                    string idString = _bindingTemplate.Value.bindingKey;
+                    return IdentifierUtility.GetUddiIDFromString(idString);
+                }
                 else {
                     return null;
                 }

@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -49,8 +50,7 @@ namespace dk.gov.oiosi.uddi.category {
         static UddiOrgWsdlCategorizationTransport() {
             // 1. Set baseclass default values:
             // Systinent UDDI does not use the uddi: convention for these taxonomies
-            //_categoryId = new UddiGuidId("uddi:e5c43936-86e4-37bf-8196-1d04b35c0099", true);
-            _categoryId = new UddiNonGuidId("uddi:uddi.org:wsdl:categorization:transport");
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:uddi.org:wsdl:categorization:transport");
             _categoryName = "uddi-org:wsdl:categorization:transport";
             _defaultKeyName = "uddi-org:wsdl:categorization:transport";
             _defaultKeyValue = "uddi:uddi.org:transport:http";

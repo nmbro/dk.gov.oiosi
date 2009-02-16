@@ -99,7 +99,7 @@ namespace dk.gov.oiosi.uddi.ars {
         /// </summary>
         /// <param name="bindingReferenceTModelKey">the tmodelkey to check</param>
         /// <returns>returns true if the tmodelkey exists</returns>
-        public bool ReferenceExists(UddiGuidId bindingReferenceTModelKey) {
+        public bool ReferenceExists(UddiId bindingReferenceTModelKey) {
 
             bool _tempExists = false;
 

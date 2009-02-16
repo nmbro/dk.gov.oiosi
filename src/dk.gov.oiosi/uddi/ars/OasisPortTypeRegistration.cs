@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.uddi.ars {
         /// Constructor that initializes a OasisPortTypeRegistration with a specific porttype
         /// </summary>
         /// <param name="portTypeRegistrationTModelKey">porttype registration tmodel</param>
-        public OasisPortTypeRegistration(UddiGuidId portTypeRegistrationTModelKey) {
+        public OasisPortTypeRegistration(UddiId portTypeRegistrationTModelKey) {
             Init();
             SetDefaultProperties();
 

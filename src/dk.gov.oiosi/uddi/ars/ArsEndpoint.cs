@@ -237,7 +237,8 @@ namespace dk.gov.oiosi.uddi.ars {
         public UddiId ID {
             get {
                 if (_businessService != null && _businessService.Value.serviceKey != null && _businessService.Value.serviceKey.Length > 0) {
-                    return new UddiGuidId(_businessService.Value.serviceKey, true);
+                    string idString = _businessService.Value.serviceKey;
+                    return IdentifierUtility.GetUddiIDFromString(idString);
                 }
                 else {
                     return null;

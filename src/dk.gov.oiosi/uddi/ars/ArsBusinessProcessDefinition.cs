@@ -111,7 +111,7 @@ namespace dk.gov.oiosi.uddi.ars {
         /// Constructor that initializes a BusinessProcessDefinition with a specific porttype
         /// </summary>
         /// <param name="portTypeRegistrationTModelKey">porttype registration tmodel</param>
-        public ArsBusinessProcessDefinition(UddiGuidId portTypeRegistrationTModelKey) {
+        public ArsBusinessProcessDefinition(UddiId portTypeRegistrationTModelKey) {
             Init();
             
             //1. set the tmodelkey attribute on the tmodel

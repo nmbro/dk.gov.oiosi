@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dk.gov.oiosi - HotFix")]
-[assembly: AssemblyDescription("The OIOSI open source library - HotFix CertificateSubject")]
+[assembly: AssemblyTitle("dk.gov.oiosi")]
+[assembly: AssemblyDescription("The OIOSI open source library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ITST")]
 [assembly: AssemblyProduct("dk.gov.oiosi")]

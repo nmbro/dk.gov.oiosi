@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static OrganizationKeyType() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:0debdbf2-1a1b-46e8-b7fe-7263dc939242", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:0debdbf2-1a1b-46e8-b7fe-7263dc939242");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/organizationKeyType/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/organizationKeyType/";
             _defaultKeyValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/";

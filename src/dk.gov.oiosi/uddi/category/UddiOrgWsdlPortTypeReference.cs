@@ -53,7 +53,6 @@ namespace dk.gov.oiosi.uddi.category {
         static UddiOrgWsdlPortTypeReference() {
             // 1. Set baseclass default values:
             // Systinent UDDI does not use the uddi: convention for these taxonomies
-            //_categoryId = new UddiGuidId("uddi:082b0851-25d8-303c-b332-f24a6d53e38e", true);
             _categoryId = new UddiNonGuidId("uddi:uddi.org:wsdl:porttypereference");
             _categoryName = "uddi-org:wsdl:portTypeReference";
             _defaultKeyName = "uddi-org:wsdl:portTypeReference";

@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.uddi.Validation;
 using dk.gov.oiosi.common.validation;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -64,7 +65,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// Default constructor. Sets to default.
         /// </summary>
         public EndpointCertificate() {
-            _categoryId = new UddiGuidId(DEFAULTCATEGORYID, true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString(DEFAULTCATEGORYID);
             _categoryName = DEFAULTCATEGORYNAME;
 
         }

@@ -86,7 +86,7 @@ namespace dk.gov.oiosi.uddi.ars {
         /// </summary>
         /// <param name="PortTypeReferenceTModelKey">the tmodelkey to check</param>
         /// <returns>returns true if the tmodelkey exists</returns>
-        public bool ReferenceExists(UddiGuidId PortTypeReferenceTModelKey) {
+        public bool ReferenceExists(UddiId PortTypeReferenceTModelKey) {
 
             bool _tempExists = false;
 

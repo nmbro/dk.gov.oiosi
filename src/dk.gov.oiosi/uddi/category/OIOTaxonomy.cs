@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.exception;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static OIOTaxonomy() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:f699264c-384d-47a2-bb46-c6a476242e55", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:f699264c-384d-47a2-bb46-c6a476242e55");
             _categoryName = "OIO subject scheme";
             _defaultKeyName = "OIO subject scheme / TRADE AND INDUSTRY / E-COMMERCE /";
             _defaultKeyValue = "uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336";

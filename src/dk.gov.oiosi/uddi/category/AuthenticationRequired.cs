@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -44,7 +45,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static AuthenticationRequired() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:d688686a-afc1-4f12-be74-a0cce020302d", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:d688686a-afc1-4f12-be74-a0cce020302d");
             _categoryName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/AuthenticationRequirement/";
             _defaultKeyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/AuthenticationRequirement/";
             _defaultKeyValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/authenticationRequired/";

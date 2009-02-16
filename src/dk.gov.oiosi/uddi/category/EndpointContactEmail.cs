@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static EndpointContactEmail() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:5194201c-fc02-4d2e-8224-910939ac384d", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:5194201c-fc02-4d2e-8224-910939ac384d");
             _categoryName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/endpointContactEmail/";
             _defaultKeyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/endpointContactEmail/";
             _defaultKeyValue = "";

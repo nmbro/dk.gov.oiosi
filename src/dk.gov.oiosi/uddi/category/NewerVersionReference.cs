@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -44,7 +45,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static NewerVersionReference() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:23c1ed31-ee5c-4a13-983e-92a0815e6120", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:23c1ed31-ee5c-4a13-983e-92a0815e6120");
             _categoryName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/newerVersionReference/";
             _defaultKeyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/newerVersionReference/";
             _defaultKeyValue = "";

@@ -4,6 +4,7 @@ using System.Text;
 
 using dk.gov.oiosi.uddi.TModels;
 using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.ars {
     /// <summary>
@@ -43,7 +44,8 @@ namespace dk.gov.oiosi.uddi.ars {
         public UddiId ID {
             get {
                 if (_tmodel.Value.tModelKey == null) return null;
-                return new UddiGuidId(_tmodel.Value.tModelKey, true);
+                string idString = _tmodel.Value.tModelKey;
+                return IdentifierUtility.GetUddiIDFromString(idString);
             }
         }
 
@@ -62,7 +64,8 @@ namespace dk.gov.oiosi.uddi.ars {
             if (_tmodel.CategoryBag == null) return null;
             
             KeyedReference category = _tmodel.CategoryBag.GetCategoryByIdentifierAndKeyName(UddiOrgWsdlPortTypeReference.CATEGORYID, UddiOrgWsdlPortTypeReference.DEFAULTCATEGORYKEYNAME);
-            UddiGuidId referenceId = new UddiGuidId(category.KeyValue, true);
+            string idString = category.KeyValue;
+            UddiId referenceId = IdentifierUtility.GetUddiIDFromString(idString);
             OasisPortTypeRegistrationReference portTypeReference = new OasisPortTypeRegistrationReference(referenceId);
             return portTypeReference;
         }
@@ -73,9 +76,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// <returns></returns>
         public OasisBindingRegistrationReference GetBindingRegistrationReference() {
             if (_tmodel.CategoryBag == null) return null;
-
-            
-            UddiGuidId referenceId = new UddiGuidId(_tmodel.Value.tModelKey, true);
+            string idString = _tmodel.Value.tModelKey;
+            UddiId referenceId = IdentifierUtility.GetUddiIDFromString(idString);
             OasisBindingRegistrationReference reference = new OasisBindingRegistrationReference(referenceId);
             return reference;
         }

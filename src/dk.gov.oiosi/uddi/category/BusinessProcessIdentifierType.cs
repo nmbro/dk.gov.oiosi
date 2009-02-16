@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -46,7 +47,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static BusinessProcessIdentifierType() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:e03ae1dd-634f-4c6b-abd2-814c165ab5bf", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:e03ae1dd-634f-4c6b-abd2-814c165ab5bf");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessIdentifierType/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessIdentifierType/";
             _defaultKeyValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/UBL2.0Process/";

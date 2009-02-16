@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static TermsOfUseUrl() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:8cc1e1c1-d0f4-4bbe-90e0-90cd1976d944", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:8cc1e1c1-d0f4-4bbe-90e0-90cd1976d944");
             _categoryName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/termsOfUse/";
             _defaultKeyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/termsOfUse/";
             _defaultKeyValue = "";

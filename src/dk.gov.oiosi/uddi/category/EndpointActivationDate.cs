@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using dk.gov.oiosi.uddi.ars;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -47,7 +48,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static EndpointActivationDate() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:B5449299-B951-4266-9952-4C4470970782", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:B5449299-B951-4266-9952-4C4470970782");
             _categoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointActivationDate/";
             _defaultKeyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointActivationDate/";
             _defaultKeyValue = "";

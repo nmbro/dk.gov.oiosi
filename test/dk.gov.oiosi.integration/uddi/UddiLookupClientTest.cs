@@ -6,6 +6,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.category;
 using NUnit.Framework;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.integration.uddi {
     
@@ -25,9 +26,9 @@ namespace dk.gov.oiosi.integration.uddi {
             [Test]
             public void _01_OneProcessNoResultsLookup() {
                 IIdentifier identifier = new IdentifierEan(SERVICEIDENTIFIER);
-                UddiId serviceDefinitionId = new UddiGuidId(ORDERSERVICETYPEID, true);
+                UddiId serviceDefinitionId = IdentifierUtility.GetUddiIDFromString(ORDERSERVICETYPEID);
                 List<UddiId> processDefinitionIds = new List<UddiId>();
-                processDefinitionIds.Add(new UddiGuidId(SIMPLEBILLINGPROCESSID, true));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(SIMPLEBILLINGPROCESSID));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(0, responses.Count);
             }
@@ -35,9 +36,9 @@ namespace dk.gov.oiosi.integration.uddi {
             [Test]
             public void _02_OneProcessOneResultLookup() {
                 IIdentifier identifier = new IdentifierEan(SERVICEIDENTIFIER);
-                UddiId serviceDefinitionId = new UddiGuidId(ORDERSERVICETYPEID, true);
+                UddiId serviceDefinitionId = IdentifierUtility.GetUddiIDFromString(ORDERSERVICETYPEID);
                 List<UddiId> processDefinitionIds = new List<UddiId>();
-                processDefinitionIds.Add(new UddiGuidId(SIMPLEORDERPROCESSID, true));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(SIMPLEORDERPROCESSID));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(1, responses.Count);
                 bool foundProcessInformation = false;
@@ -51,10 +52,10 @@ namespace dk.gov.oiosi.integration.uddi {
             [Test]
             public void _03_MultipleProcessesNoResultsLookup() {
                 IIdentifier identifier = new IdentifierEan(SERVICEIDENTIFIER);
-                UddiId serviceDefinitionId = new UddiGuidId(ORDERSERVICETYPEID, true);
+                UddiId serviceDefinitionId = IdentifierUtility.GetUddiIDFromString(ORDERSERVICETYPEID);
                 List<UddiId> processDefinitionIds = new List<UddiId>();
-                processDefinitionIds.Add(new UddiGuidId(SIMPLEBILLINGPROCESSID, true));
-                processDefinitionIds.Add(new UddiGuidId(NESPROFILE5PROCESSID, true));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(SIMPLEBILLINGPROCESSID));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(NESPROFILE5PROCESSID));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(0, responses.Count);
             }
@@ -62,10 +63,10 @@ namespace dk.gov.oiosi.integration.uddi {
             [Test]
             public void _04_MultipleProcessesOneResultLookup() {
                 IIdentifier identifier = new IdentifierEan(SERVICEIDENTIFIER);
-                UddiId serviceDefinitionId = new UddiGuidId(ORDERSERVICETYPEID, true);
+                UddiId serviceDefinitionId = IdentifierUtility.GetUddiIDFromString(ORDERSERVICETYPEID);
                 List<UddiId> processDefinitionIds = new List<UddiId>();
-                processDefinitionIds.Add(new UddiGuidId(SIMPLEBILLINGPROCESSID, true));
-                processDefinitionIds.Add(new UddiGuidId(SIMPLEORDERPROCESSID, true));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(SIMPLEBILLINGPROCESSID));
+                processDefinitionIds.Add(IdentifierUtility.GetUddiIDFromString(SIMPLEORDERPROCESSID));
                 List<UddiLookupResponse> responses = Lookup(identifier, serviceDefinitionId, processDefinitionIds);
                 Assert.AreEqual(1, responses.Count);
                 bool foundProcessInformation = false;

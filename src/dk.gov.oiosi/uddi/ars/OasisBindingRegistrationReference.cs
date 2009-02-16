@@ -36,6 +36,7 @@ using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.uddi.TModels;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.uddi.Validation;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.ars {
 
@@ -74,8 +75,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// <summary>
         /// Constructor with porttype reference
         /// </summary>
-        /// <param name="bindingTModelKey">UddiGuidId of porttype registration tmodel</param>
-        public OasisBindingRegistrationReference(UddiGuidId bindingTModelKey) {
+        /// <param name="bindingTModelKey">UddiId of porttype registration tmodel</param>
+        public OasisBindingRegistrationReference(UddiId bindingTModelKey) {
 
             try {
                 SetBindingReference(bindingTModelKey);
@@ -94,7 +95,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// </summary>
         public UddiId ID {
             get {
-                return new UddiGuidId(_bindingReference.Value.tModelKey, true);
+                string idString = _bindingReference.Value.tModelKey;
+                return IdentifierUtility.GetUddiIDFromString(idString);
             }
             set {
                 _bindingReference.Value.tModelKey = value.ID;
@@ -115,8 +117,8 @@ namespace dk.gov.oiosi.uddi.ars {
         /// <summary>
         /// Adds the reference to the binding centralservice definition
         /// </summary>
-        /// <param name="bindingTModelKey">UddiGuidId of binding registration tmodel</param>
-        public void SetBindingReference(UddiGuidId bindingTModelKey) {
+        /// <param name="bindingTModelKey">UddiId of binding registration tmodel</param>
+        public void SetBindingReference(UddiId bindingTModelKey) {
 
             try {
                 //1. set tmodelkey attribute to the tmodelkey

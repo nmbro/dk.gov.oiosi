@@ -37,6 +37,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.ars {
 
@@ -143,7 +144,8 @@ namespace dk.gov.oiosi.uddi.ars {
                     if (Id.Length > 0 && ArsLookupType != LookupType.procesDefinitionReference) {
                         OasisBindingRegistration binding = null;
                         try {
-                            binding = OasisBindingRegistration.Get(new UddiGuidId(Id, true));
+                            UddiId uddiId = IdentifierUtility.GetUddiIDFromString(Id);
+                            binding = OasisBindingRegistration.Get(uddiId);
                             return binding.PortTypeDefinitionReference.Value;
                         }
                         catch {

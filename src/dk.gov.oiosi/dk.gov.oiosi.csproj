@@ -230,6 +230,7 @@
     <Compile Include="uddi\LookupKey.cs" />
     <Compile Include="uddi\UddiProcessInformation.cs" />
     <Compile Include="uddi\UddiProcessInformationFactory.cs" />
+    <Compile Include="uddi\UddiStringId.cs" />
     <Compile Include="xml\documentType\MessageParameters.cs" />
     <Compile Include="communication\CurrentServiceHostSearchFailedException.cs" />
     <Compile Include="addressing\IncorrectBusinessIdentifierException.cs" />

@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,7 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// </summary>
         static ConformanceClaim() {
             // 1. Set baseclass default values:
-            _categoryId = new UddiGuidId("uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7", true);
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7");
             _categoryName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
             _defaultKeyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
             _defaultKeyValue = "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/";

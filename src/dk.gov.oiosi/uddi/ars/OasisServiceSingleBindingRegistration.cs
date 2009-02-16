@@ -77,15 +77,15 @@ namespace dk.gov.oiosi.uddi.ars {
 
                 _portTypeRegistrationRef =
                     new OasisPortTypeRegistrationReference(
-                        (UddiGuidId)IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoicePortTypeUddiId));
+                        IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoicePortTypeUddiId));
 
                 _bindingRegistrationRef =
                     new OasisBindingRegistrationReference(
-                        (UddiGuidId)IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoiceBindingHttpUddiId));
+                        IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoiceBindingHttpUddiId));
 
                 /*_smtpBindingRegistrationRef =
                     new OasisBindingRegistrationReference(
-                        (UddiGuidId)IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoiceBindingSmtpUddiId));
+                        IdentifierUtility.GetUddiIDFromString(ArsDefaultInstances.InvoiceBindingSmtpUddiId));
                  */
             } catch {
                 throw;

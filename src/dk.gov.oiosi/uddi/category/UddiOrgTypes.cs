@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi.category {
 
@@ -45,8 +46,7 @@ namespace dk.gov.oiosi.uddi.category {
         static UddiOrgTypes() {
             // 1. Set baseclass default values:
             // Systinent UDDI does not use the uddi: convention for these taxonomies
-            //_categoryId = new UddiGuidId("uddi:c1acf26d-9672-4404-9d70-39b756e62ab4", true);
-            _categoryId = new UddiNonGuidId("uddi:uddi.org:categorization:types");
+            _categoryId = IdentifierUtility.GetUddiIDFromString("uddi:uddi.org:categorization:types");
             _categoryName = "uddi-org:types";
             _defaultKeyName = "uddi-org:types";
             _defaultKeyValue = "wsdlSpec";
