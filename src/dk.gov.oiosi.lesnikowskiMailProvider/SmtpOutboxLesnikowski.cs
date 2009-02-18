@@ -69,7 +69,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         protected override void SendViaServer(dk.gov.oiosi.communication.handlers.email.MailSoap12TransportBinding mail) {
             try {
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
-                SmtpMail lesnikowskiMail = CreateLesnikowskiMail(mail);
+                ISmtpMail lesnikowskiMail = CreateLesnikowskiMail(mail);
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
                 _proxy.SendMessage(lesnikowskiMail);
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
@@ -176,33 +176,33 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         }
 
         // Creates an SmtpMail from a MailSOAP12TransportBindingObject
-        private Lesnikowski.Client.SmtpMail CreateLesnikowskiMail(dk.gov.oiosi.communication.handlers.email.MailSoap12TransportBinding mailSoap12Binding) {
-            // 1. Create a MailMessage with an empty body to send
-            Lesnikowski.Mail.SimpleMailMessage simpleMail = new Lesnikowski.Mail.SimpleMailMessage();
-            simpleMail.Subject = mailSoap12Binding.Subject;
-            simpleMail.TextDataString = mailSoap12Binding.Body;
-            simpleMail.From.Add(new MailBox(mailSoap12Binding.From, ""));
-            simpleMail.To.Add(new MailBox(mailSoap12Binding.To, ""));
-            
+        private SmtpMail CreateLesnikowskiMail(dk.gov.oiosi.communication.handlers.email.MailSoap12TransportBinding mailSoap12Binding) {
 
-            // 2. Create the attachment
-            MimeData mime = new MimeData();
-            mime.Headers.Add("content-type", mailSoap12Binding.Attachment.ContentType);
-            mime.Headers.Add("content-description", mailSoap12Binding.Attachment.ContentDescription);
+            // 1. Create the attachment
+            HeaderCollection headerCollection = new HeaderCollection();
+            headerCollection.Add("content-type", mailSoap12Binding.Attachment.ContentType);
+            headerCollection.Add("content-description", mailSoap12Binding.Attachment.ContentDescription);
+            MimeData mime = new MimeData(headerCollection);
             mime.Data = mailSoap12Binding.Attachment.Data;
-
             mime.ContentTransferEncoding = Lesnikowski.Mail.Headers.Constants.MimeEncoding.Base64;
-            simpleMail.Attachments.Add(mime);
-            MailMessage mailMsg = simpleMail.CreateMail();
 
-            // Add the ID header
-            mailMsg.Mime.Headers.Add("Message-Id", mailSoap12Binding.MessageId);
+            // 2. Create a MailMessage with an empty body to send
+            SimpleMailMessageBuilder mailBuilder = new SimpleMailMessageBuilder();
+            mailBuilder.SetTextData(mailSoap12Binding.Body);
+            mailBuilder.Subject = mailSoap12Binding.Subject;
+            mailBuilder.MessageID = mailSoap12Binding.MessageId;
+            mailBuilder.From.Add(new MailBox(mailSoap12Binding.From, ""));
+            mailBuilder.To.Add(new MailBox(mailSoap12Binding.To, ""));
+            if (mailSoap12Binding.InReplyTo != null) { // If an In-Reply-To has been set, use it
+                mailBuilder.InReplyTo = mailSoap12Binding.InReplyTo;
+            }
+            mailBuilder.AddAttachment(mime);
+            ISimpleMailMessage simpleMail = mailBuilder.Create();
+            
+            List<string> toList = new List<string>();
+            toList.Add(mailSoap12Binding.To);
 
-            // If an In-Reply-To has been set, use it
-            if (mailSoap12Binding.InReplyTo != null)
-                mailMsg.InReplyTo = mailSoap12Binding.InReplyTo;
-
-            return new SmtpMail(mailMsg);
+            return new SmtpMail(mailSoap12Binding.From, toList, simpleMail.GetSmtpData());
         }
     }
 }

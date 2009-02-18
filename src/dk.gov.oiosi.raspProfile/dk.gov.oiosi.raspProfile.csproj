@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="dk.gov.oiosi.oioublProfileLibrary, Version=1.0.2966.26038, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\External libraries\dk.gov.oiosi.oioublProfileLibrary.dll</HintPath>
+      <HintPath>..\..\lib\dk.gov.oiosi.oioublProfileLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

@@ -1,0 +1,2890 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mail</name>
+    </assembly>
+    <members>
+        <member name="T:Lesnikowski.Client.ServerException">
+            <summary>
+            Thrown on server errors.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.ServerException.#ctor">
+            <summary>
+            Creates new empty ServerException object.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.ServerException.#ctor(System.String)">
+            <summary>
+            Creates new ServerException object with specified message.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.ServerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates new ServerException object with specified message.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.ServerCertificateValidateEventHandler">
+            <summary>
+            Handler for ServerCertificateValidateEventHandler.
+            </summary>
+            <param name="sender">An object that contains state information for this validation.</param>
+            <param name="e">Event args. Use <see cref="P:Lesnikowski.Client.ServerCertificateValidateEventArgs.IsValid"/> to validate the certificate.</param>
+        </member>
+        <member name="T:Lesnikowski.Client.TcpTextClient">
+            <summary>
+            Implements simple TCP/IP text client.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.TcpTextClient.host">
+            <summary>
+            Host name or IP address to which we are connected.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.TcpTextClient.Reader">
+            <summary>
+            StreamReader used for reading from network stream or SSL stream.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.TcpTextClient.Writer">
+            <summary>
+            StringWriter used for writing to network stream or SSL stream.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.#ctor">
+            <summary>
+            Creates new TcpTextClient object.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.GetServerGreeting">
+            <summary>
+            Override this function to get server's greeting.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.SetStreams">
+            <summary>
+            Creates new <see cref="F:Lesnikowski.Client.TcpTextClient.Reader">Reader</see> and 
+            <see cref="F:Lesnikowski.Client.TcpTextClient.Writer">Writer</see> objects.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.GetStream">
+            <summary>
+            Gets SslStream or NetworkStream for current connection.
+            </summary>
+            <returns>SslStream or NetworkStream</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.CreateSSLStream(System.String)">
+            <summary>
+            Creates SSL stream.
+            and authenticates client.
+            </summary>
+            <param name="host"></param>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Connect(System.String,System.Int32)">
+            <summary>
+            Connects to server.
+            Without SSL.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <param name="port">Port number.</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Connect(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Connects to server.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <param name="port">Port number.</param>
+            <param name="useSSL">if true creates SSL connection</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Connect(System.Net.IPEndPoint)">
+            <summary>
+            Connects to server.
+            </summary>
+            <param name="iPEndPoint">End point of the connection.</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Connect(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Connects to server.
+            </summary>
+            <param name="iPAddress">Address.</param>
+            <param name="port">Port number.</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Send(System.String)">
+            <summary>
+            Sends the text command to server.
+            Adds "\r\n" to the command.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            An error occurred when accessing the socket.
+            -or-
+            The NetworkStream is closed.
+            -or-
+            There is a failure reading from the network.
+            </exception>
+            <param name="command">Text command to send.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.ReceiveLine">
+            <summary>
+            Reads data from server until gets "\r\n" string.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            An error occurred when accessing the socket.
+            -or-
+            The NetworkStream is closed.
+            -or-
+            There is a failure reading from the network.
+            </exception>
+            <returns>Response: single-line string (\r\n excluded).</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.CloseCommand">
+            <summary>
+            Derived classes should overide this method to
+            perform specific closing action.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Close">
+            <summary>
+            Equal to calling 'Close(false);'.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.Close(System.Boolean)">
+            <summary>
+            Runs <see cref="M:Lesnikowski.Client.TcpTextClient.CloseCommand"/> method
+            Closes Connection
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Socket errors (only if 'throwExceptions==true').
+            Closes connection anyway.
+            </exception>
+            <param name="throwExceptions">If false does NOT throw exceptions.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.TcpTextClient.EndsWith(System.Text.StringBuilder,System.String)">
+            <summary>
+            Checks if StringBuider object (b) ends with specified string (s)?
+            </summary>
+            <param name="b">StringBuilder to check.</param>
+            <param name="s">String.</param>
+        </member>
+        <member name="P:Lesnikowski.Client.TcpTextClient.SSLStream">
+            <summary>
+            Returns used SslStream or null if SSL is not enbled.
+            </summary>
+        </member>
+        <member name="E:Lesnikowski.Client.TcpTextClient.ServerCertificateValidate">
+            <summary>
+            Event which is called for custom server validation.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.ProgressArgs">
+            <summary>
+            Arguments for progress event.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.ProgressArgs.Bytes">
+            <summary>
+            Number of bytes bytes recived/sent.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.ProgressArgs.Total">
+            <summary>
+            Target number of bytes.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.ProgressArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates new ProgressArgs object
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.ProgressHandler">
+            <summary>
+            Handler for Progress events.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.Pop3">
+            <summary>
+            Class used for connecting to POP3 server.
+            It allows downloading, deleting emails and so on.
+            </summary>
+            <example>
+            <code>
+//Pop3 example
+		
+Pop3 pop3=new Pop3();
+pop3.User="lesnikowski";
+pop3.Password="password";
+
+try
+{
+	pop3.Connect("mail.host.com");
+	if (pop3.HasTimeStamp==true)
+		pop3.APOPLogin();
+	else
+		pop3.Login();
+	pop3.GetAccountStat();
+
+	for(int i=1;i&lt;=pop3.MessageCount;i++)
+	{
+		try
+		{
+			//Use MailMessage class to get real mail structure or 
+			//SimpleMailMessage to get simple interface.
+			//MailMessage mail=MailMessage.ParseHeader(pop3.GetMessageHeader(i));
+			MailMessage mail=MailMessage.Parse(pop3.GetMessage(i));
+
+			// Write out received message
+			Console.WriteLine( "-- email {0} --", i);
+            Console.WriteLine( simpleMail.Subject );
+            Console.WriteLine( simpleMail.TextDataString );
+		}
+		catch(MailException ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
+	}
+}							
+catch(ServerException ex)
+{
+	Console.WriteLine(ex.Message);	
+}
+finally
+{
+	pop3.Close(false);
+}
+			</code>
+            </example>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.User">
+            <summary>
+            User name.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.Password">
+            <summary>
+            User's password.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.timeStampParser">
+            <summary>
+            For parsing server's greeting in order to retrive timestamp value.
+            Used by GetTimeStamp.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.timeStamp">
+            <summary>
+            RFC 1939:
+            A POP3 server which implements the APOP command will
+            include a timestamp in its banner greeting.
+            The syntax of the timestamp corresponds 
+            to the `msg-id' in [RFC822] ("&lt;12214.123@ad12&gt;")
+            Filled by Connect method.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.ProgressThreshold">
+            <summary>
+            Says how often ReceiveProgress event will be raised.
+            In bytes.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.messageCount">
+            <summary>
+            Number of messages on server.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3.mailboxSize">
+            <summary>
+            Size of the mail massages on server in octets.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.SetStreams">
+            <summary>
+            Creates new <see cref="F:Lesnikowski.Client.TcpTextClient.Reader">Reader</see> and 
+            <see cref="F:Lesnikowski.Client.TcpTextClient.Writer">Writer</see> objects.
+            With specified encoding.
+            Reader: Default Encoding;
+            Writer: ASCII Encoding.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.#ctor">
+            <summary>
+            Creates new Pop3 client object.
+            Sets ReceiveTimeout to 5 sec.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.GetTimeStamp(System.String)">
+            <summary>
+            Parses response - get's timestamp if any, and fills timeStamp property.
+            If there is no timestamp, timeStamp remains unchaged.
+            </summary>
+            <param name="response">String containing server's greeting.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.GetServerGreeting">
+            <summary>
+            Receives server's greeting.
+            Get's timestamp.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.Connect(System.String)">
+            <summary>
+            Connects to POP3 server on port 110.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <seealso cref="M:Lesnikowski.Client.Pop3.ConnectSSL(System.String)"/>        
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ConnectSSL(System.String)">
+            <summary>
+            Connects to POP3 server using SSL port 995.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <seealso cref="M:Lesnikowski.Client.TcpTextClient.Connect(System.String,System.Int32,System.Boolean)"/>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.STLS">
+            <summary>
+            Sends 'STLS' command and initializes SSL connection.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.SendCommand(System.String,System.Boolean)">
+            <summary>
+            Sends command which expects to recive single-line response e.g. "STAT".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response (if 'throwException' param is set to true).
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            </remarks>
+            <param name="command">Command e.g. "STAT".</param>
+            <param name="throwException">If true throws ServerException on -ERR response</param>
+            <returns>Single-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.SendCommand(System.String)">
+            <summary>
+            Sends command which expects to recive single-line response e.g. "STAT".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response.
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            This is equal to 'SendCommand(command,true);'.
+            </remarks>
+            <param name="command">Command e.g. "STAT".</param>
+            <returns>Single-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.SendMultiLineCommand(System.String,System.Boolean)">
+            <summary>
+            Sends command which expects to recive multi-line response e.g. "RETR".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response (if 'throwException' param is set to true).
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            </remarks>
+            <param name="command">Command to send e.g. "RETR".</param>
+            <param name="throwException">If true throws ServerException on -ERR response</param>
+            <returns>Multi-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.SendMultiLineCommnad(System.String)">
+            <summary>
+            Sends command which expects to recive multi-line response e.g. "RETR".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response (if 'throwException' param is set to true).
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            This is equal to 'SendMultiLineCommand(command,true);'.
+            </remarks>
+            <param name="command">Command to send e.g. "RETR".</param>
+            <returns>Multi-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.OnReceiveProgress(System.Object,System.Int32)">
+            <summary>
+            Raises the <see cref="E:Lesnikowski.Client.Pop3.ReceiveProgress">ReceiveProgress</see> event.
+            </summary>
+            <param name="sender">Event sender</param>
+            <param name="bytesReceived">Number of bytes recived</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ReceiveMultiLine">
+            <summary>
+            Recives mult-line response from server.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">Incorrect data, should end with "\r\n.\r\n".</exception>
+            <returns>Response: multi-line string.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.Login">
+            <summary>
+            Logs user in using USER, PASS commands. 
+            Uses <see cref="F:Lesnikowski.Client.Pop3.User"/> and <see cref="F:Lesnikowski.Client.Pop3.Password"/> properties.
+            This method sends the password in clear text.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.APOPLogin">
+            <summary>
+            Logs user in using APOP command. 
+            Uses <see cref="F:Lesnikowski.Client.Pop3.User"/> and <see cref="F:Lesnikowski.Client.Pop3.Password"/> properties.
+            This method does NOT send the password in clear text.
+            </summary>
+            <remarks>
+            APOP is optional command and a POP3 server does NOT need to support it.
+            A POP3 server which implements the APOP command will
+            include a timestamp in its banner greeting. 
+            Check <see cref="P:Lesnikowski.Client.Pop3.HasTimeStamp"/> property in order to know 
+            if server included the timestamp.
+            Some servers include timestamp, but do NOT support APOP command.
+            This command is unnessesary if you are using SSL, use <see cref="M:Lesnikowski.Client.Pop3.Login"/> method instead.
+            </remarks>
+            <seealso cref="M:Lesnikowski.Client.Pop3.ConnectSSL(System.String)"/>
+            <seealso cref="M:Lesnikowski.Client.Pop3.Login"/>
+            <seealso cref="P:Lesnikowski.Client.Pop3.HasTimeStamp"/>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response.
+            Throws ServerException when there is no timestamp 
+            (<see cref="P:Lesnikowski.Client.Pop3.HasTimeStamp"/>==false).
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.GetAccountStat">
+            <summary>
+            Gets stat information from server.
+            Fills <see cref="P:Lesnikowski.Client.Pop3.MessageCount"/> and <see cref="P:Lesnikowski.Client.Pop3.MailboxSize"/> property.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.DeleteMessage(System.Int32)">
+            <summary>
+            Marks specified message for deletion.
+            The POP3 server does not actually delete the message 
+            until the POP3 session enters the UPDATE state - 
+            succesful QUIT command.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.GetMessageHeader(System.Int32)">
+            <summary>
+            Gets specified mail message containing only headers.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response or corrupted response.
+            </exception>
+            <param name="messageNumber">Number of message to get (starts from 1)</param>
+            <returns>String containing mail message which contains only headers.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.GetMessage(System.Int32)">
+            <summary>
+            Gets specified mail message form server.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response or corrupted response.
+            </exception>
+            <param name="messageNumber">Number of message to get (starts from 1)</param>
+            <returns>String containing mail message</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ListUniqueID">
+            <summary>
+            Sends UIDL command to the pop3 server.
+            Returns a key value collection.
+            Keys are message numbers (starting from 1)
+            value is a unique-id of the message.
+            </summary>
+            <returns>Key value collection, with message number as key and unique-id as a value</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ListUniqueID(System.Int32)">
+            <summary>
+            Sends UIDL command to the pop3 server.
+            Returns line with the unique-id for that message.
+            </summary>
+            <param name="messageNumber">Message number</param>
+            <returns>Line unique-id for that message</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ListSize">
+            <summary>
+            Returns the size (in bytes) of every message in bytes.
+            Returns a key value collection.
+            Keys are message numbers (starting from 1)
+            value is size of the message.
+            </summary>
+            <returns>Key value collection, with message number as key and size as a value</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.ListSize(System.Int32)">
+            <summary>
+            Returns the size (in bytes) of specified message in bytes.
+            </summary>
+            <param name="messageNumber">Number of message to get (starts from 1)</param>
+            <returns>Size of the message</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3.CloseCommand">
+            <summary>
+            Sends the Quit command. And gets server response.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response on Quit command 
+            </exception>
+        </member>
+        <member name="P:Lesnikowski.Client.Pop3.HasTimeStamp">
+            <summary>
+            True if there was a timestamp in server's greeting
+            (usually it means that APOP command is supported, but not always).
+            Filled by Connect method.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.Pop3.MessageCount">
+            <summary>
+            Number of messages on server.
+            Filled by <see cref="M:Lesnikowski.Client.Pop3.GetAccountStat"/>.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.Pop3.MailboxSize">
+            <summary>
+            Size of the mail massages on server in octets.
+            Filled by <see cref="M:Lesnikowski.Client.Pop3.GetAccountStat"/>.
+            </summary>
+        </member>
+        <member name="E:Lesnikowski.Client.Pop3.ReceiveProgress">
+            <summary>
+            Event fired by ReciveMultiLine method.
+            You can obtain how many bytes where already recieved.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.Pop3MultiLineResponse">
+            <summary>
+            Class implementing Pop3 server's multi line response.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.Pop3Response">
+            <summary>
+            Class implementing POP3 server's single line response.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.OkResponse">
+            <summary>
+            String which starts positive respone.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.ErrResponse">
+            <summary>
+            String which starts negative respone.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.status">
+            <summary>
+            Response status (positive, negative, unknown).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.Message">
+            <summary>
+            String that holds response without "-ERR", or "+OK" strings.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3Response.#ctor">
+            <summary>
+            Defaut constructor, does nothing.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3Response.#ctor(System.String)">
+            <summary>
+            Parses the response.
+            Runs <see cref="M:Lesnikowski.Client.Pop3Response.Parse(System.String)"/> method.
+            Fills <see cref="F:Lesnikowski.Client.Pop3Response.Message"/> and <see cref="P:Lesnikowski.Client.Pop3Response.Status"/> properties.
+            </summary>
+            <param name="response">Response recived from server.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3Response.Parse(System.String)">
+            <summary>
+            Parses the response.
+            Removes "+OK" and "-ERR" from begining.
+            Fills <see cref="F:Lesnikowski.Client.Pop3Response.Message"/> and <see cref="P:Lesnikowski.Client.Pop3Response.Status"/> properties.
+            </summary>
+            <param name="response">Response recived from server.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3Response.ToString">
+            <summary>
+            Returns the <see cref="F:Lesnikowski.Client.Pop3Response.Message"/> property.
+            </summary>
+            <returns><see cref="F:Lesnikowski.Client.Pop3Response.Message"/> property.</returns>
+        </member>
+        <member name="P:Lesnikowski.Client.Pop3Response.Status">
+            <summary>
+            Response status (positive, negative, unknown).
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.Pop3Response.StatusCode">
+            <summary>
+            Status of response.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.StatusCode.Negative">
+            <summary> Received "-ERR" response. </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.StatusCode.Positive">
+            <summary> Received "+OK" response. </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Pop3Response.StatusCode.Error">
+            <summary> Unknown, error. </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3MultiLineResponse.#ctor">
+            <summary>
+            Defaut constructor.
+            Executes Pop3Response default constructor.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Pop3MultiLineResponse.#ctor(System.String)">
+            <summary>
+            Replaces "\r\n.." with "\r\n." (RFC 1939).
+            Removes 5 last chars ("\r\n.\r\n").
+            Runs <see cref="M:Lesnikowski.Client.Pop3Response.Parse(System.String)">base.Parse</see> method.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Response is not ending with "\r\n."
+            </exception>
+            <param name="response">Response recived from server</param>
+        </member>
+        <member name="T:Lesnikowski.Client.HeloType">
+            <summary>
+            Helo types for <see cref="M:Lesnikowski.Client.Smtp.Ehlo(Lesnikowski.Client.HeloType,System.String)"/> method.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.HeloType.Helo">
+            <summary>
+            HELO command.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.HeloType.Ehlo">
+            <summary>
+            EHLO command.
+            (Extended helo).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.HeloType.EhloHelo">
+            <summary>
+            First try EHLO then fallback
+            to HELO.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.Smtp">
+            <summary>
+            SMTP Client implementation.
+            </summary>
+            <example>
+            <code>
+//Smtp example
+	
+//create new email message
+SimpleMailMessage sm=new SimpleMailMessage();
+
+sm.From.Add(new MailBox("alice@mail.com","Alice"));
+sm.To.Add(new MailBox("bob@mail.com","Bob"));
+sm.Subject="Test";
+sm.TextDataString="This is plain text message.";
+sm.HtmlDataString="This is &lt;B&gt;Html&lt;/B&gt; text message:&lt;BR&gt; &lt;img src='cid:picture1'&gt;&lt;/img&gt;.";
+
+//add picture to it
+MimeData image=new MimeData();
+image.ContentType=new ContentType(MimeType.Image,MimeSubtype.Jpeg);
+image.ContentId="picture1";
+image.LoadFromFile(@"../../image.jpg");
+sm.Visuals.Add(image);
+
+//write email to disk, just to see how it looks.
+string str=sm.CreateMail().CreateString();
+string fileName="c:\\mail.eml";
+StreamWriter sw=File.CreateText(fileName);
+sw.Write(str);
+sw.Close();
+Console.WriteLine("Email saved in {0}.",fileName);
+
+//send it
+Smtp smtp=new Smtp();
+smtp.User="lesnikowski";
+smtp.Password="password";
+try
+{
+	smtp.Connect("mail.host.com");
+	SmtpResponse r=smtp.Ehlo(HeloType.EhloHelo,"Me");
+
+	smtp.Login();
+
+	SmtpMail smtpMail=new SmtpMail(sm.CreateMail());
+	smtp.SendMessage(smtpMail);
+
+}							
+catch(ServerException ex)
+{
+	Console.WriteLine(ex.Message);	
+}
+finally
+{
+	smtp.Close(false);
+}		
+		</code>
+            </example>
+        </member>
+        <member name="F:Lesnikowski.Client.Smtp.User">
+            <summary>
+            User name.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Smtp.Password">
+            <summary>
+            User's password.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Smtp.ProgressThreshold">
+            <summary>
+            Says how often ReceiveProgress event will be raised.
+            In bytes.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Smtp.total">
+            <summary>
+            Total number of bytes to be send.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.Smtp.isTotalSet">
+            <summary>
+            True during sending many messages
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SetTotal(System.Int32)">
+            <summary>
+            Set's total number of bytes to be send.
+            </summary>
+            <param name="total">Total number of bytes to be send.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.ClearTotal">
+            <summary>
+            Clears total number of bytes to be send.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.#ctor">
+            <summary>
+            Creates new Smtp client object.
+            Sets ReceiveTimeout to 5 sec.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SetStreams">
+            <summary>
+            Creates new <see cref="F:Lesnikowski.Client.TcpTextClient.Reader">Reader</see> and 
+            <see cref="F:Lesnikowski.Client.TcpTextClient.Writer">Writer</see> objects.
+            With specified encoding.
+            Reader: Default Encoding;
+            Writer: ASCII Encoding.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.GetServerGreeting">
+            <summary>
+            Receives server's greeting.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Connect(System.String)">
+            <summary>
+            Connects to SMTP server on port 25.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <seealso cref="M:Lesnikowski.Client.Smtp.ConnectSSL(System.String)"/>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response,
+            DNS resolving error,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.ConnectSSL(System.String)">
+            <summary>
+            Connects to SMTP server using SSL on port 465.
+            </summary>
+            <param name="host">Host name or IP address.</param>
+            <seealso cref="M:Lesnikowski.Client.TcpTextClient.Connect(System.String,System.Int32,System.Boolean)"/>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            -ERR response,
+            Connecting error.
+             </exception>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.StartTLS">
+            <summary>
+            Sends 'STARTTLS' command and initializes SSL connection.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.ReceiveMultiLine">
+            <summary>
+            Recives mult-line response from server.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">Incorrect data, should end with "\r\n.\r\n".</exception>
+            <returns>Response: multi-line string.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SendCommand(System.String,System.Boolean)">
+            <summary>
+            Sends command which expects to recive multi-line response e.g. "EHLO".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response (if 'throwException' param is set to true).
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            </remarks>
+            <param name="command">Command to send e.g. "EHLO".</param>
+            <param name="throwException">If true throws ServerException on error response</param>
+            <returns>Multi-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SendCommand(System.String)">
+            <summary>
+            Sends command which expects to recive multi-line response e.g. "EHLO".
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response.
+            </exception>
+            <remarks>
+            Some commands have their own specialized methods in this class, 
+            you should probably use them insted.
+            This is equal to 'SendMultiLineCommand(command,true);'.
+            </remarks>
+            <param name="command">Command to send e.g. "EHLO".</param>
+            <returns>Multi-line response object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Helo(System.String)">
+            <summary>
+            Sends HELO to the server.
+            </summary>
+            <param name="domain">May be null, but rejected by some servers.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Ehlo(System.String)">
+            <summary>
+            Sends EHLO to the server.
+            </summary>
+            <param name="domain">May be null, but rejected by some servers.</param>
+            <returns>Server's response.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Ehlo(Lesnikowski.Client.HeloType,System.String)">
+            <summary>
+            Says hello to the server.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">On error response</exception>
+            <param name="heloType">HELO type (EHLO,HELO,Both)</param>
+            <param name="domain">May be null, but rejected by some servers.</param>
+            <returns>Server's response.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Login">
+            <summary>
+            Logs user in.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.MailFrom(System.String)">
+            <summary>
+            Sends "MAIL FROM:" command.
+            </summary>
+            <param name="from">From address.</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response.
+            </exception>
+            <returns>Response from server.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.RcptTo(System.String)">
+            <summary>
+            Sends "RCPT TO:" command.
+            </summary>
+            <param name="to">To address.</param>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response.
+            </exception>
+            <returns>Response from server.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.Data">
+            <summary>
+            Sends "DATA" command.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response.
+            </exception>
+            <returns>Response from server.</returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.OnSendProgress(System.Object,System.Int32)">
+            <summary>
+            Raises the <see cref="E:Lesnikowski.Client.Smtp.SendProgress">SendProgress</see> event.
+            </summary>
+            <param name="bytesSent">How many bytes was sent.</param>
+            <param name="sender">Event sender</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SendMessage(Lesnikowski.Client.SmtpMail)">
+            <summary>
+            Sends single message.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on error response.
+             </exception>
+            <param name="smtpMail">SmtpMail message to send.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.SendMessage(System.Collections.Generic.IList{Lesnikowski.Client.SmtpMail})">
+            <summary>
+            Send many messages.
+            </summary>
+            <param name="mailList">List of SmtpMail message object to send.</param>
+            <returns>
+            Array of server exceptions or nulls if no error occurred.
+            Each SmtpMail object has it's entry in this array.
+            </returns>
+        </member>
+        <member name="M:Lesnikowski.Client.Smtp.CloseCommand">
+            <summary>
+            Sends the Quit command. And gets server response.
+            </summary>
+            <exception cref="T:Lesnikowski.Client.ServerException">
+            Throws ServerException on -ERR response on Quit command 
+            </exception>
+        </member>
+        <member name="P:Lesnikowski.Client.Smtp.Total">
+            <summary>
+            Total number of bytes to be send.
+            </summary>
+        </member>
+        <member name="E:Lesnikowski.Client.Smtp.SendProgress">
+            <summary>
+            Event fired by ReciveMultiLine method.
+            You can obtain how many bytes where already recieved.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.SmtpMail">
+            <summary>
+            Simple class for creating mail messages.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.SmtpResponse">
+            <summary>
+            Class implementing Smtp server's response
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.SmtpResponse.Code">
+            <summary>
+            Status code.
+            2yz   Positive Completion reply.
+            3yz   Positive Intermediate reply.
+            Other - Negative
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Client.SmtpResponse.Lines">
+            <summary>
+            Lines returned from server.
+            Every line is striped off of Code and '-' char at the beginig
+            and without '\r\n' at the end.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.SmtpResponse.#ctor">
+            <summary>
+            Defaut constructor, does nothing.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Client.SmtpResponse.#ctor(System.String[])">
+            <summary>
+            Parses the response.
+            Removes Codes from begining of every line.
+            Runs <see cref="M:Lesnikowski.Client.SmtpResponse.Parse(System.String[])"/> method.
+            Fills <see cref="P:Lesnikowski.Client.SmtpResponse.Message"/> and <see cref="F:Lesnikowski.Client.SmtpResponse.Code"/> 
+            and <see cref="F:Lesnikowski.Client.SmtpResponse.Lines"/>properties.
+            </summary>
+            <param name="response">Response recived from server.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.SmtpResponse.Parse(System.String[])">
+            <summary>
+            Parses the response.
+            Removes Codes from begining of every line.
+            Fills <see cref="P:Lesnikowski.Client.SmtpResponse.Message"/> and <see cref="F:Lesnikowski.Client.SmtpResponse.Code"/> 
+            and <see cref="F:Lesnikowski.Client.SmtpResponse.Lines"/>properties.
+            </summary>
+            <param name="response">Response recived from server.</param>
+        </member>
+        <member name="M:Lesnikowski.Client.SmtpResponse.ToString">
+            <summary>
+            Returns the <see cref="P:Lesnikowski.Client.SmtpResponse.Message"/> property.
+            </summary>
+            <returns><see cref="P:Lesnikowski.Client.SmtpResponse.Message"/> property.</returns>
+        </member>
+        <member name="P:Lesnikowski.Client.SmtpResponse.IsPositive">
+            <summary>
+            Gets the status of <see cref="F:Lesnikowski.Client.SmtpResponse.Code"/>.
+            True if <see cref="F:Lesnikowski.Client.SmtpResponse.Code"/> is between 200 and 399.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MailBox">
+            <summary>
+            Simple mail box with address and name.
+            </summary>
+            <remarks>
+            RFC 2822 says, that name can be null.
+            </remarks>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBox.Address">
+            <summary>
+            E-mail address e.g. "mail@lesnikowski.com".
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBox.Name">
+            <summary>
+            Display name e.g. "Pawel Lesnikowski".
+            May be null.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBox.emailAddressParser">
+            <summary>
+            Parser string used for parsing email addresses.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBox.parserString">
+            <summary>
+            Parser string used for parsing name and address
+            <list type="bullet">
+            <item>Group '1' = namel;</item>
+            <item>Group '2' = address.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBox.parser">
+            <summary>
+            Parser used for parsing name and address by static Parse method.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBox.#ctor(System.String,System.String)">
+            <summary>
+            Creates new MailBox object.
+            Fills <see cref="F:Lesnikowski.Mail.MailBox.Name"/> and <see cref="F:Lesnikowski.Mail.MailBox.Address"/> properties.
+            </summary>
+            <param name="address">E-mail address.</param>
+            <param name="name">Display name.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBox.#ctor">
+            <summary>
+            Default constructor:
+            Address=null;
+            Name=null.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBox.Parse(System.String)">
+            <summary>
+            Parses s, and creates new MailBox object.
+            Replaces escape sequences in mailbox's display-name,
+            and decodes Quoted-Printable and Base64 fragments.
+            </summary>
+            <param name="s">
+            String to parse.
+            <list type="bullet">
+            	<listheader>Format:</listheader>
+            	<item>"name" &lt;address&gt;		 </item>
+            	<item>name &lt;address&gt;			 </item>
+            	<item>&lt;address&gt;	//name==null </item>
+            	<item>address			//name==null </item>
+            </list>
+            </param>
+            <returns>New MailBox object or null if s==null.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBox.ToString">
+            <summary>
+            Returns string containing only <see cref="F:Lesnikowski.Mail.MailBox.Name">Name</see> if it exists
+            or <see cref="F:Lesnikowski.Mail.MailBox.Address">Address</see>
+            </summary>
+            <returns>
+            <see cref="F:Lesnikowski.Mail.MailBox.Name">Name</see> if it exists or <see cref="F:Lesnikowski.Mail.MailBox.Address">Address</see>
+            </returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MailBoxList">
+            <summary>
+            <see cref="T:System.Collections.ArrayList"/> of <see cref="T:Lesnikowski.Mail.MailBox"/> objects.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBoxList.parserString">
+            <summary>
+            Parser string.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailBoxList.parser">
+            <summary>
+            Parser used by static Parse method.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBoxList.#ctor">
+            <summary>
+            Default constructor.
+            Runs base default constructor.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBoxList.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="count">Initial size.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBoxList.ToString">
+            <summary>
+            String containing all mailboxes in this collection:
+            "[mailBox0.ToString()], [mailBox1.ToString()], (...)".
+            </summary>
+            <returns>"[mailBox0.ToString()], [mailBox1.ToString()], (...)"</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailBoxList.Parse(System.String)">
+            <summary>
+            Parses s, and creates new MailBoxList object.
+            Replaces escape sequences in mailbox's display-name,
+            and decodes Quoted-Printable and Base64 fragments.
+            </summary>
+            <param name="s">
+            String to parse.
+            <list type="bullet">
+            <listheader>Format:</listheader>
+            	<item>
+            	MailBox, MailBox,MailBox, ...
+            	see <see cref="M:Lesnikowski.Mail.MailBox.Parse(System.String)">MailBox.Parse</see>.
+            	</item>
+            </list>
+            </param>
+            <returns>New MailBox object.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeDisposition">
+            <summary>
+            Types of actions which mail user agent should take to 
+            present the specified data to the user.
+            It simply says what you should do with the data.
+            (RFC 2183)
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeDisposition.Inline">
+            <summary>
+            Data should be displayed to the user.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeDisposition.Attachment">
+            <summary>
+            This is attachment.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeDisposition.None">
+            <summary>
+            Content-disposition field is not present.
+            Mail user agent may use whatever presentation method it deems suitable (RFC 2183).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeDisposition.Other">
+            <summary>
+            Unknown Content-disposition type.
+            Unrecognized disposition types should be treated as `attachment' (RFC 2183).
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.ContentDisposition">
+            <summary>
+            Class implementing header's 'content-disposition' field (RFC 2183).
+            Giving simple access to disposition name as string and as enum,
+            and all other options.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentDisposition.MimeDisposition">
+            <summary>
+            Disposition of content.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentDisposition.DispositionName">
+            <summary>
+            'Content-disposition' name.
+            Null only if <see cref="F:Lesnikowski.Mail.ContentDisposition.MimeDisposition"/>=='MimeDisposition.None'.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentDisposition.FileName">
+            <summary>
+            ContentDisposition's filename parameter, suggested filename.
+            May be null.
+            </summary>
+            <remarks>
+              It is important that you should not blindly use the suggested
+              filename.  The suggested filename SHOULD be checked (and possibly
+              changed) to see that it conforms to local filesystem conventions,
+              does not overwrite an existing file, and does not present a security
+              problem.
+            </remarks>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentDisposition.Options">
+            <summary>
+            All options.
+            Null only if <see cref="F:Lesnikowski.Mail.ContentDisposition.MimeDisposition"/>=='MimeDisposition.None'.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.ContentDisposition.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new ContentDisposition object describing 'mimeBase'.
+            </summary>
+            <remarks>
+            If there is no 'content-type' field in mimeBase:
+            <list type="bullet">
+            	<item>MimeDisposition=MimeDisposition.None;</item>
+            	<item>DispositionName=null;</item>
+            	<item>Options=null.</item>
+            </list>
+            </remarks>
+            <param name="mimeBase">MimeBase object to read from.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.ContentDisposition.ToString">
+            <summary>
+            Returns <see cref="F:Lesnikowski.Mail.ContentDisposition.DispositionName"/> property or "none" if it's null.
+            </summary>
+            <returns><see cref="F:Lesnikowski.Mail.ContentDisposition.DispositionName"/> property or "none" if it's null.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.ContentEncoding">
+            <summary>
+            Class implementing header's 'content-transfer-encoding' field. 
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.ContentEncoding.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeType">
+            <summary>
+            Enum representing content's type (RFC 2045).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Text">
+            <summary>
+            'text/?' type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Multipart">
+            <summary>
+            'multipart/?' type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Image">
+            <summary>
+            'image/?' type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Application">
+            <summary>
+            'application/?' type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Message">
+            <summary>
+            'message/?' type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.Other">
+            <summary>
+            Some other type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeType.None">
+            <summary>
+            No 'content-type' field was found.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeSubtype">
+            <summary>
+            Enum representing content's subtype (RFC 2045).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Plain">
+            <summary>
+            '?/plain' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Html">
+            <summary>
+            '?/html' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Related">
+            <summary>
+            '?/related' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Mixed">
+            <summary>
+            '?/mixed' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Alternative">
+            <summary>
+            '?/alternative' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Digest">
+            <summary>
+            '?/digest' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Report">
+            <summary>
+            '?/report' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Rfc822">
+            <summary>
+            '?/rfc822' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.DeliveryStatus">
+            <summary>
+            '?/delivery-status' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Jpeg">
+            <summary>
+            '?/jpeg' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Gif">
+            <summary>
+            '?/gif' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.XZipCompressed">
+            <summary>
+            '?/x-zip-compressed' subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.Other">
+            <summary>
+            Some other subtype.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeSubtype.None">
+            <summary>
+            No 'content-type' field was found.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.ContentType">
+            <summary>
+            Class implementing header's 'content-type' field (RFC 2045).
+            Giving simple access to type/subtype properties as strings and
+            as enum ('type', 'subtype' property),
+            and all other options.
+            </summary>
+            <remarks>
+            Messages without a MIME Content-Type header are taken
+            to be plain text in the US-ASCII character set,
+            which can be explicitly specified as:
+            Content-type: text/plain; charset=us-ascii
+            Each part in "multipart/digest" has a default type of "message/rfc822".
+            </remarks>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentType.MimeType">
+            <summary>
+            Type of content.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentType.MimeSubtype">
+            <summary>
+            Subype of content.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentType.TypeName">
+            <summary>
+            Type name of content. Always in lower case.
+            May be null.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentType.SubtypeName">
+            <summary>
+            Subtype name of content. Always in lower case.
+            May be null.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ContentType.Options">
+            <summary>
+            All options.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.ContentType.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new ContentType object describing 'mimeBase'.
+            </summary>
+            <remarks>
+            If there is no 'content-type' field:
+            <list type="bullet">
+            	<item>mimeType=MimeType.None;</item>
+            	<item>mimeSubtype=MimeSubtype.None;</item>
+            	<item>typeName=null;</item>
+            	<item>subtypeName=null;</item>
+            	<item>options=null.</item>
+            </list>
+            </remarks>
+            <param name="mimeBase">MimeBase object to read from.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.ContentType.ToString">
+            <summary>
+            Returns <see cref="F:Lesnikowski.Mail.ContentType.TypeName"/>+'/'+<see cref="F:Lesnikowski.Mail.ContentType.SubtypeName"/> properties or "none/none" if it's null.
+            </summary>
+            <returns><see cref="F:Lesnikowski.Mail.ContentType.TypeName"/>+'/'+<see cref="F:Lesnikowski.Mail.ContentType.SubtypeName"/> properties or "none/none" if it's null.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.HeaderCoding">
+            <summary>
+            Class allowing:
+             'Base64' and 'Quoted-Printable' header string decoding (RFC 2047),
+             removing comments and 
+             replacing escape sequences.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.HeaderCoding.ReplaceEvaluator(System.Text.RegularExpressions.Match)">
+            <summary>
+            The evaluator for regex class.
+            </summary>
+            <param name="match"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.HeaderCoding.Decode(System.String)">
+            <summary>
+            Decodes Base64 and Quoted-Printable strings (RFC 2047).
+            </summary>
+            <param name="s">"Tom and =?iso-8859-2?Q?Pawe=B3_Le=B6nikowski?= are..."</param>
+            <returns>"Tom and Paweł Leśnikowski are..."</returns>
+            <exception cref="T:Lesnikowski.Mail.MailException">
+            The charset is not supported by the current 
+            regional options of the computer executing this method.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.Mail.HeaderCoding.RemoveComments(System.String)">
+            <summary>
+            Some header fields can contain comments - text
+            between 2 parentheses '(' , ')'.
+            This method removes comments from specified string. 
+            </summary>
+            <param name="s">String to remove comments from.</param>
+            <returns>String s with no comments.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.HeaderCoding.ReplaceEscape(System.String)">
+            <summary>
+            Replaces escape sequences in specified string.
+            E.g. changes '\?' -> '?'.
+            </summary>
+            <param name="s">String with escape sequences to replace.</param>
+            <returns>String with replaced escape sequences.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.HeaderCoding.Encode(System.String,System.Text.Encoding)">
+            <summary>
+            For strings "iso-8859-2"
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.HeaderFormat">
+            <summary>
+            Header format.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.HeaderFormat.Base64">
+            <summary>
+            Base64 encoding.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.HeaderFormat.Bit7">
+            <summary>
+            7 bit encoding.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.HeaderFormat.QuotedPrintable">
+            <summary>
+            Quoted Printable encoding.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MailException">
+            <summary>
+            Thrown on e-mail parsing errors.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailException.#ctor">
+            <summary>
+            Creates new empty MailException object.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailException.#ctor(System.String)">
+            <summary>
+            Creates new empty MailException object with specified message.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MailMessage">
+            <summary>
+            Class representing e-mail message.
+            It represents real mail structure.
+            Use <see cref="T:Lesnikowski.Mail.SimpleMailMessage">SimpleMailMessage</see> class if you want to have simple interface.
+            </summary>
+            <example>
+            <code>
+//Pop3 example
+		
+Pop3 pop3=new Pop3();
+pop3.User="lesnikowski";
+pop3.Password="password";
+
+try
+{
+	pop3.Connect("mail.host.com");
+	if (pop3.HasTimeStamp==true)
+		pop3.APOPLogin();
+	else
+		pop3.Login();
+	pop3.GetAccountStat();
+
+	for(int i=1;i&lt;=pop3.MessageCount;i++)
+	{
+		try
+		{
+			//Use MailMessage class to get real mail structure or 
+			//SimpleMailMessage to get simple interface.
+			//MailMessage mail=MailMessage.ParseHeader(pop3.GetMessageHeader(i));
+			MailMessage mail=MailMessage.Parse(pop3.GetMessage(i));
+
+			// Write out received message
+			Console.WriteLine( "-- email {0} --", i);
+            Console.WriteLine( simpleMail.Subject );
+            Console.WriteLine( simpleMail.TextDataString );
+		}
+		catch(MailException ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
+	}
+}							
+catch(ServerException ex)
+{
+	Console.WriteLine(ex.Message);	
+}
+finally
+{
+	pop3.Close(false);
+}
+			</code>
+            </example>
+            <example>
+            <code>
+//Smtp example
+	
+//create new email message
+SimpleMailMessage sm=new SimpleMailMessage();
+
+sm.From.Add(new MailBox("alice@mail.com","Alice"));
+sm.To.Add(new MailBox("bob@mail.com","Bob"));
+sm.Subject="Test";
+sm.TextDataString="This is plain text message.";
+sm.HtmlDataString="This is &lt;B&gt;Html&lt;/B&gt; text message:&lt;BR&gt; &lt;img src='cid:picture1'&gt;&lt;/img&gt;.";
+
+//add picture to it
+MimeData image=new MimeData();
+image.ContentType=new ContentType(MimeType.Image,MimeSubtype.Jpeg);
+image.ContentId="picture1";
+image.LoadFromFile(@"../../image.jpg");
+sm.Visuals.Add(image);
+
+//write email to disk, just to see how it looks.
+string str=sm.CreateMail().CreateString();
+string fileName="c:\\mail.eml";
+StreamWriter sw=File.CreateText(fileName);
+sw.Write(str);
+sw.Close();
+Console.WriteLine("Email saved in {0}.",fileName);
+
+//send it
+Smtp smtp=new Smtp();
+smtp.User="lesnikowski";
+smtp.Password="password";
+try
+{
+	smtp.Connect("mail.host.com");
+	SmtpResponse r=smtp.Ehlo(HeloType.EhloHelo,"Me");
+
+	smtp.Login();
+
+	SmtpMail smtpMail=new SmtpMail(sm.CreateMail());
+	smtp.SendMessage(smtpMail);
+
+}							
+catch(ServerException ex)
+{
+	Console.WriteLine(ex.Message);	
+}
+finally
+{
+	smtp.Close(false);
+}		
+		</code>
+            </example>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailMessage.Mime">
+            <summary>
+            Object representing mail's body.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailMessage.errorList">
+            <summary>
+            List conatining all errors encountered during parsing.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MailMessage.dateFormats">
+            <summary>
+            Recognized date-time formats.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.ParseMailHeaders">
+            <summary>
+            Fills: 
+            <see cref="F:Lesnikowski.Mail.MailMessage.Mime"/>,
+            <see cref="P:Lesnikowski.Mail.MailMessage.Subject"/>,
+            <see cref="P:Lesnikowski.Mail.MailMessage.From"/>, 
+            <see cref="P:Lesnikowski.Mail.MailMessage.Sender"/>, 
+            <see cref="P:Lesnikowski.Mail.MailMessage.ReplyTo"/>,
+            <see cref="P:Lesnikowski.Mail.MailMessage.To"/>, 
+            <see cref="P:Lesnikowski.Mail.MailMessage.Cc"/>,
+            <see cref="F:Lesnikowski.Mail.MailMessage.notificationTo"/>
+            <see cref="P:Lesnikowski.Mail.MailMessage.Importance"/>
+            and <see cref="P:Lesnikowski.Mail.MailMessage.Date"/> 
+            properties.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.ParseDate(System.String)">
+            <summary>
+            Parses the date.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            	<listheader>Formats:</listheader>
+            	<item>"ddd, %d MMM yyyy HH:mm:ss zzzz",</item>
+            	<item>"ddd, %d MMM yyyy HH:mm zzzz",</item>
+            	<item>"ddd, %d MMM yyyy HH:mm:ss GMT" //incompatible with RFC 2822,</item>
+            	<item>"ddd, %d MMM yyyy HH:mm:ss UT" //incompatible with RFC 2822,</item>
+            	<item>"ddd, %d MMM yyyy HH:mm GMT" //incompatible with RFC 2822,</item>
+            	<item>"ddd, %d MMM yyyy HH:mm UT" //incompatible with RFC 2822,</item>
+            	<item>"ddd, MMM %d yyyy HH:mm:ss zzzz" //incompatible with RFC 2822, but used by MsPassport,</item>
+            </list>
+            </remarks>
+            <param name="dateString">String containing date.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.#ctor">
+            <summary>
+            Creates new MailMessage object.
+            All properties are null's.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.Parse(System.String)">
+            <summary>
+            Creates MailMessage object from string.
+            </summary>
+            <exception cref="T:Lesnikowski.Mail.MailException">Parsing error.</exception>
+            <param name="message">String containing the message.</param>
+            <returns>New MailMessage object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.ParseHeader(System.String)">
+            <summary>
+            Creates MailMessage object 
+            (containing only headers and MailBase type object in 
+            <see cref="F:Lesnikowski.Mail.MailMessage.Mime">Mime</see> field) from string.
+            </summary>
+            <param name="message">String containing the message.</param>
+            <returns>New MailMessage object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.Parse(Lesnikowski.Client.Pop3MultiLineResponse)">
+            <summary>
+            Creates MailMessage object from Pop3 server response object.
+            </summary>
+            <exception cref="T:Lesnikowski.Mail.MailException">
+            Negative response status or
+            Parsing error.
+            </exception>
+            <param name="response">Response containing the message.</param>
+            <returns>New MailMessage object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MailMessage.ToString">
+            <summary>
+            Returns string describing this message.
+            </summary>
+            <returns>String describing this message.</returns>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Subject">
+            <summary>
+            Mail's subject. May be null.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.From">
+            <summary>
+            'From' field. 
+            Specifies the author(s) of the message.
+            If empty, email-message is NOT RFC 2822 compliant.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Sender">
+            <summary>
+            'Sender' field.
+            Specifies the mailbox of the agent responsible for the actual transmission.
+            May be null.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.ReplyTo">
+            <summary>
+            'Reply-to' field. 
+            Mailbox(es) to which the author of the message suggests	that replies be sent.
+            May be empty.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.To">
+            <summary>
+            'To' field. 
+            Contains the address(es) of the primary recipient(s) of the message.
+            May be empty.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Cc">
+            <summary>
+            'Cc' field (Carbon copy).
+            Addresses of others who are to receive the message, 
+            tough the content of the message may not be directed at them. 
+            May be empty.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Bcc">
+            <summary>
+            'Bcc' field (Blind Carbon copy).
+            Addresses of others who are to receive the message, 
+            tough the content of the message may not be directed at them. 
+            May be empty.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.NotificationTo">
+            <summary>
+            'disposition-notification-to' field.
+            May be empty.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Date">
+            <summary>
+            Send date.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Importance">
+            <summary>
+            Mail's importance
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MailMessage.Priority">
+            <summary>
+            Mail's importance
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeBase">
+            <summary>
+            Class for basic mime entity parsing.
+            All mime classes, created by MimeFactory
+            inherit from this class.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.mailMessage">
+            <summary>
+            Mail message object to which this object belongs.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.unfoldParse">
+            <summary>
+            For unfolding:
+            "param: very long\r\n        value" in to "param: very long value"
+            (RFC 2822)
+            Used by constructor.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.headersParse">
+            <summary>
+            For extracting param and value.
+            Used by ParseHeaders.
+            (RFC 2822)
+            field       =  field-name ":" field-body CRLF 
+            field-name  =  1*&lt;any printable char (33-126, HEX 21-7E) excluding ":" (HEX 3A)&gt; 
+            field-body  =  1*&lt;any char excluding CR and LF&gt; //"unstructured"
+            Used by ParseHeaders
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.optionsParse">
+            <summary>
+            For extracting multiple options from single entry.
+            Used by GetOptions.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.ContentType">
+            <summary>
+            Content type of the body.
+            </summary>
+            <remarks>
+            Content-type "text/plain" should be assumed if
+            there is no ContentType (none/none) or it is unknown.
+            </remarks>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.body">
+            <summary>
+            Body of the mime entity.
+            This property may contain unprintable chars
+            (e.g. if 'content-type: application/x-zip-compressed').
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeBase.Headers">
+            <summary>
+            Collection of mime headers.
+            Keys are always in lower case.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBase.#ctor(System.String,Lesnikowski.Mail.MailMessage)">
+            <summary>
+            Creates new MimeBase object from string.
+            Creates and fills <see cref="F:Lesnikowski.Mail.MimeBase.Headers"/> property.
+            Fills <see cref="P:Lesnikowski.Mail.MimeBase.Body"/> property.
+            </summary>
+            <remarks>
+            Content-type "text/plain" should be assumed if
+            there is no ContentType (none/none) or it is unknown.
+            </remarks>
+            <param name="message">MimeBase string.</param>
+            <param name="mailMessage">Object to which MimeBase should belong.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBase.#ctor(System.String,System.Int32,System.Int32,Lesnikowski.Mail.MailMessage)">
+            <summary>
+            Creates new MimeBase object from string.
+            Creates and fills <see cref="F:Lesnikowski.Mail.MimeBase.Headers"/> property.
+            Fills <see cref="P:Lesnikowski.Mail.MimeBase.Body"/> property.
+            </summary>
+            <remarks>
+            Content-type "text/plain" should be assumed if
+            there is no ContentType (none/none) or it is unknown.
+            </remarks>
+            <param name="message">MimeBase string.</param>
+            <param name="startIndex">Start index.</param>
+            <param name="count">Char count.</param>
+            <param name="mailMessage">Object to which MimeBase should belong.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBase.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Copies references to all properties from source object.
+            </summary>
+            <param name="mimeBase">Source object.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBase.ParseHeaders(System.String)">
+            <summary>
+            Unfolds headerString (RFC 2822).
+            Fills <see cref="F:Lesnikowski.Mail.MimeBase.Headers"/> property.
+            </summary>
+            <param name="headerString">
+            String containing headers. With last "\r\n" included.
+            </param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBase.GetOptions(System.String,System.Boolean)">
+            <summary>
+            Creates new StringOptions object.
+            Fills it with options from 'headers[name]' string.
+            Removes comments.
+            <seealso cref="F:Lesnikowski.Mail.MimeBase.Headers"/>
+            </summary>
+            <remarks>
+            e.g.:
+            'content-type: text/plain;  charset="iso-8859-2"; (comment) a=b'
+            <list type="table">
+            	<listheader>
+            		<term>Key:</term>
+            		<description>Value:</description>
+            	</listheader>
+            	<item>
+            		<term>content-type</term>
+            		<description>text/plain</description>
+            	</item>
+            	<item>
+            		<term>charset</term>
+            		<description>iso-8859-2</description>
+            	</item>
+            	<item>
+            		<term>a</term>
+            		<description>b</description>
+            	</item>
+            </list>
+            </remarks>
+            <param name="name">
+            Key value for option string in headers property.
+            </param>
+            <param name="keysToLower">
+            If true all keys in returned object will be converted to lower case.
+            </param>
+            <returns>Object containing  all options</returns>
+        </member>
+        <member name="P:Lesnikowski.Mail.MimeBase.ErrorList">
+            <summary>
+            List conatining all errors encountered during parsing for MailMessage object
+            to which this object belongs.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MimeBase.Body">
+            <summary>
+            Body of the mime entity.
+            This property may contain unprintable chars
+            (e.g. if 'content-type: application/x-zip-compressed').
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeBaseList">
+            <summary>
+            <see cref="T:System.Collections.ArrayList"/> of <see cref="T:Lesnikowski.Mail.MimeBase"/> objects.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBaseList.Add(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Adds mime object to the end of the collection.
+            </summary>
+            <param name="mime">MimeBase object to add.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBaseList.AddRange(Lesnikowski.Mail.MimeBaseList)">
+            <summary>
+            Adds objectes from mimeList to the end of the collection.
+            </summary>
+            <param name="mimeList">List of MimeBase objects to add.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBaseList.AddRange(Lesnikowski.Mail.MimeDataList)">
+            <summary>
+            Adds objectes from mimeList to the end of the collection.
+            </summary>
+            <param name="mimeList">List of MimeBase objects to add.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeBaseList.#ctor">
+            <summary>
+            Default constructor.
+            Runs base's default constructor.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeData">
+            <summary>
+            Class representing mime entity containing data.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeData.IsDataAvilable">
+            <summary>
+            Flag indicating, if encoding was changed, and Data field is 
+            available. 
+            First access to Body or Data field set this flag to true.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeData.data">
+            <summary>
+            Byte array containing data.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeData.FileName">
+            <summary>
+            Sugested file name.
+            May be null.
+            </summary>
+            <remarks>
+              It is important that you should not blindly use the suggested
+              filename.  The suggested filename SHOULD be checked (and possibly
+              changed) to see that it conforms to local filesystem conventions,
+              does not overwrite an existing file, and does not present a security
+              problem.
+            </remarks>		
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeData.ContentDisposition">
+            <summary>
+            'Content-Disposition' of the data.
+            This object provides information on what you should do with the data.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeData.ContentId">
+            <summary>
+            Content-ID of this entity.
+            Without enclosing '&lt;' and '&gt;'.
+            </summary>
+            <remarks>E.g. 01@mobile</remarks>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.ParseContentId">
+            <summary>
+            Fills <see cref="F:Lesnikowski.Mail.MimeData.ContentId"/> property.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Constructor.
+            Fills <see cref="F:Lesnikowski.Mail.MimeData.ContentDisposition"/>, 
+            <see cref="F:Lesnikowski.Mail.MimeData.FileName"/>, <see cref="P:Lesnikowski.Mail.MimeData.Data"/> properties.
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.Save(System.String)">
+            <summary>
+            Creates new file with the specified name 
+            and saves <see cref="P:Lesnikowski.Mail.MimeData.Data"/> to it.
+            </summary>
+            <param name="fileName">File name</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.Save(System.IO.Stream)">
+            <summary>
+            Writes <see cref="P:Lesnikowski.Mail.MimeData.Data"/> to specified stream.
+            Stream should be opened.
+            </summary>
+            <param name="stream">Stream to which <see cref="P:Lesnikowski.Mail.MimeData.Data"/> will be written.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.SaveText(System.String)">
+            <summary>
+            Creates new file with the specified name 
+            and saves <see cref="P:Lesnikowski.Mail.MimeData.Body"/> to it.
+            </summary>
+            <param name="fileName">File name</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.SaveText(System.IO.Stream)">
+            <summary>
+            Writes <see cref="P:Lesnikowski.Mail.MimeData.Body"/> to specified stream.
+            Stream should be opened.
+            </summary>
+            <param name="stream">Stream to which <see cref="P:Lesnikowski.Mail.MimeData.Body"/> will be written.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.GetMemoryStream">
+            <summary>
+            Creates new MemoryStream for accessing <see cref="P:Lesnikowski.Mail.MimeData.Data"/> property.
+            </summary>
+            <returns>New MemoryStream Object</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.LoadFromFile(System.String)">
+            <summary>
+            Uploads data from specified file into this MimeData entity.
+            </summary>
+            <param name="fileName">Path</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.DecodeContentId(System.String)">
+            <summary>
+            Decodes "cid" in URL ('a%25b@c') method returns.
+            corresponding Content-ID message header ('a%b@c').
+            Converts %hh hex- escaped characters to their ASCII 
+            equivalents.
+            </summary>
+            <param name="cid">Cid for decoding.</param>
+            <returns>
+            Decoded cid.
+            </returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeData.GetContentId(System.String)">
+            <summary>
+            If url is "cid" URL ('cid:a%25b@c') method returns.
+            corresponding Content-ID message header ('a%b@c').
+            </summary>
+            <remarks>
+            Converts %hh hex- escaped characters to their ASCII 
+            equivalents.
+            </remarks>
+            <param name="href"></param>
+            <returns>
+            Content-ID message header or null 
+            if url is NOT "cid" URL.
+            </returns>
+        </member>
+        <member name="P:Lesnikowski.Mail.MimeData.Body">
+            <summary>
+            Body of the mime entity.
+            This property may contain unprintable chars
+            (e.g. if 'content-type: application/x-zip-compressed').
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.MimeData.Data">
+            <summary>
+            Byte array containing data received from server.
+            No charset decoding was applied to this array.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeDataList">
+            <summary>
+            <see cref="T:System.Collections.ArrayList"/> of <see cref="T:Lesnikowski.Mail.MimeData"/> objects.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeDataList.Add(Lesnikowski.Mail.MimeData)">
+            <summary>
+            Adds mime object to the end of the collection.
+            </summary>
+            <param name="mime">MimeData object to add.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeDataList.#ctor">
+            <summary>
+            Default constructor.
+            Runs base's default constructor.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeDataList.#ctor(System.Boolean)">
+            <summary>
+            Runs base's default constructor.
+            </summary>
+            <param name="contentIdSupport">
+            If true, this[cidString] will be available.
+            </param>
+        </member>
+        <member name="P:Lesnikowski.Mail.MimeDataList.Item(System.String)">
+            <summary>
+            Gets or set MimeData object at specified index.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeError">
+            <summary>
+            Describes an error encountered during parsing.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeError.Message">
+            <summary>
+            Text describing this error.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeError.MimeBase">
+            <summary>
+            MimeBase object in which the error occured.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeError.#ctor(System.String,Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new MimeError.
+            </summary>
+            <param name="message">Text describing this error</param>
+            <param name="mimeBase">MimeBase object in which the error occured</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeError.ToString">
+            <summary>
+            Returns <see cref="F:Lesnikowski.Mail.MimeError.Message"/> string.
+            </summary>
+            <returns><see cref="F:Lesnikowski.Mail.MimeError.Message"/> string.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeErrorList">
+            <summary>
+            List of MimeError's.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeErrorList.Add(System.String,Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Adds error to the end of the collection.
+            </summary>
+            <param name="message">Text describing this error</param>
+            <param name="mimeBase">MimeBase object in which the error occured</param>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeFactory">
+            <summary>
+            MimeFactory is factory class for all mime classes.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeFactory.Create(System.String,Lesnikowski.Mail.MailMessage)">
+            <summary>
+            Creates new mime object, with appropriate type.
+            </summary>
+            <remarks>
+            You can convert returned object into appropriate class type
+            by using <see cref="M:System.Object.GetType"/> and type casting.
+            </remarks>
+            <param name="mimeString">String to parse.</param>
+            <param name="mailMessage">Object to which created mime object should belong.</param>
+            <returns>New mime object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeFactory.Create(System.String,System.Int32,System.Int32,Lesnikowski.Mail.MailMessage)">
+            <summary>
+            Creates new mime object, with appropriate type.
+            </summary>
+            <remarks>
+            You can convert returned object into appropriate class type
+            by using <see cref="M:System.Object.GetType"/> and type casting.
+            </remarks>
+            <param name="mimeString">String to parse.</param>
+            <param name="startIndex">Start index.</param>
+            <param name="count">Char count.</param>
+            <param name="mailMessage">Object to which created mime object should belong.</param>
+            <returns>New mime object.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeMultipart">
+            <summary>
+            Class implementing 'Multipart/?' mime entity.
+            </summary>
+            <remarks>
+            There are specialized classes for diffrent subtypes which
+            derive from this class.
+            </remarks>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeMultipart.Parts">
+            <summary>
+            Parts of the etity.
+            In 'Multipart/?' e-mail parts are separated
+            by boundary delimiter (<see cref="F:Lesnikowski.Mail.MimeMultipart.Boundary"/> property).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeMultipart.Boundary">
+            <summary>
+            Boundary delimiter. 
+            String which is separating parts of the Multipart entity.
+            It already contains additional '--' at the beggining.
+            E.g. '------=_NextPart_000_0020_01C36F64.F2562350'.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeMultipart.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new object from MimeBase object.
+            Runs base (MimeBase) constructor.
+            Creates and fills <see cref="F:Lesnikowski.Mail.MimeMultipart.Parts"/> collection.
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeMultipart.ToString">
+            <summary>
+            Returns string describing this entity.
+            </summary>
+            <returns>String describing this entity.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeMixed">
+            <summary>
+            Class implementing 'Multipart/Mixed' mime entity.
+            E.g. Mail with attachments.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeMixed.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Runs base (MimeMultipart) constructor. 
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeMixed.#ctor">
+            <summary>
+            Creates new object with <see cref="F:Lesnikowski.Mail.MimeBase.ContentType"/>
+            set to "Multipart/Mixed"
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeAlternative">
+            <summary>
+            Class implementing 'Multipart/Alternative' mime entity.
+            E.g. E-mail containing 'Text/HTML' and 'Text/Plain' representations
+            of the same information. (RFC2046)
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeAlternative.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new MimeAlternative object from MimeBase object.
+            Runs base (MimeMultipart) constructor.
+            </summary>
+            <param name="mimeBase">MimeBase object to read from.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeAlternative.#ctor">
+            <summary>
+            Creates new object with <see cref="F:Lesnikowski.Mail.MimeBase.ContentType"/>
+            set to "Multipart/Alternative"
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeAlternative.GetSimpliestData">
+            <summary>
+            Gets simpliest data representation.
+            </summary>
+            <returns>'parts[0]' or null if 'parts.Count==0'.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeAlternative.GetBestData">
+            <summary>
+            Gets most complicated data representation.
+            </summary>
+            <returns>'Parts[Parts.Count-1]' or null if 'parts.Count==0'.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeRelated">
+            <summary>
+            Class implementing 'Multipart/Related' mime entity;
+            E.g. HTML e-mail with embedded pictures; (RFC 2387).
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeRelated.Root">
+             <summary>
+             Root mime object.
+             This element should be process first.
+             The 'parts' collection does NOT contain this element.
+             </summary>
+             <remarks>
+             E.g. if E-mail is HTML e-mail with embedded picures,
+             root will contain html body.
+             All images will be placed in the 'parts' collection.
+            </remarks>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeRelated.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new MimeRelated object from MimeBase object.
+            Runs base (MimeMultipart) constructor.
+            Finds root element, removes it from 'parts' collection and places
+            it in 'root' propery.
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeRelated.#ctor">
+            <summary>
+            Creates new object with <see cref="F:Lesnikowski.Mail.MimeBase.ContentType"/>
+            set to "Multipart/Related"
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeRelated.ToString">
+            <summary>
+            Returns string describing this entity.
+            </summary>
+            <returns>String describing this entity.</returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeDigest">
+            <summary>
+            Class implementing 'Multipart/Digest' mime entity (RFC 2046).
+            E.g. multiple mail messages.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeDigest.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Runs base (MimeMultipart) constructor. 
+            Sets default Content-Type for each part to "Message/rfc822".
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeDigest.GetMailMessage(System.Int32)">
+            <summary>
+            Creates new MailMessage object from specified part in 
+            <see cref="F:Lesnikowski.Mail.MimeMultipart.Parts"/> collection.
+            If Content-Type for specified part is  different than 
+            "message/rfc822" it returns null.
+            </summary>
+            <param name="index">Part index in <see cref="F:Lesnikowski.Mail.MimeMultipart.Parts"/> collection</param>
+            <returns>
+            New MailMessage object or null if Content-Type for 
+            specified part is different than "message/rfc822".
+            </returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeReport">
+            <summary>
+            Class implementing 'Multipart/Digest' mime entity (RFC 3462).
+            E.g. multiple mail messages.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeReport.reportType">
+            <summary>
+            [Required]
+            Type of report.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeReport.description">
+            <summary>
+            [Required]
+            Human readable description of error.
+            It may be in any MIME standards-track content-type, charset, or language.
+            Where a description of the erroris desired in several languages
+            or several media, a Multipart/Alternative construct may be used.(RFC 3462)
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeReport.status">
+            <summary>
+            [Required]
+            A machine parsable body part containing an account of
+            the reported message handling event.		
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeReport.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Runs base (MimeMultipart) constructor. 
+            Fills <see cref="F:Lesnikowski.Mail.MimeReport.description"/> and <see cref="F:Lesnikowski.Mail.MimeReport.status"/> properties.
+            </summary>
+            <param name="mimeBase">MimeBase object to wrap.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.MimeReport.GetMailMessage">
+            <summary>
+            Creates new MailMessage object from parts[3] in 
+            <see cref="F:Lesnikowski.Mail.MimeMultipart.Parts"/> collection.
+            </summary>
+            <returns>
+            New MailMessage object or null if ther was no attached mail message.
+            </returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.NamespaceDoc">
+            <summary>
+            Mail parsing namespace.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Client.NamespaceDoc">
+            <summary>
+            Network clients namespace.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.StringCoding.NamespaceDoc">
+            <summary>
+            Encoding/decoding namespace.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.Importance">
+            <summary>
+            Importance of email message.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.Priority">
+            <summary>
+            Prority of email message.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.MimeReportType">
+            <summary>
+            Enum representing report type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeReportType.DeliveryStatus">
+            <summary>
+            "delivery-status" type.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.MimeReportType.Other">
+            <summary>
+            Some other type.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.ReportType">
+            <summary>
+            Class implementing 'report-type'.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ReportType.MimeReportType">
+            <summary>
+            Type of content.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.ReportType.ReportTypeName">
+            <summary>
+            Type name of report. Always in lower case.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.ReportType.#ctor(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Creates new ReportType object.
+            </summary>
+            <param name="mimeBase">MimeBase object to read from.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.ReportType.ToString">
+            <summary>
+            Returns <see cref="F:Lesnikowski.Mail.ReportType.ReportTypeName"/> property.
+            </summary>
+            <returns><see cref="F:Lesnikowski.Mail.ReportType.ReportTypeName"/> property.</returns>
+        </member>
+        <member name="T:Lesnikowski.Client.ServerCertificateValidateEventArgs">
+            <summary>
+            Event args for ServerCertificateValidateEventHandler and ServerCertificateValidate event.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.ServerCertificateValidateEventArgs.Certificate">
+            <summary>
+            The certificate used to authenticate the remote party.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.ServerCertificateValidateEventArgs.Chain">
+            <summary>
+            The chain of certificate authorities associated with the remote certificate.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.ServerCertificateValidateEventArgs.SslPolicyErrors">
+            <summary>
+            One or more errors associated with the remote certificate.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Client.ServerCertificateValidateEventArgs.IsValid">
+            <summary>
+            Set this field to indicate validness of server's certificate.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.Mail.SimpleMailMessage">
+            <summary>
+            This class implements simple interface wraper for
+            accesing <see cref="T:Lesnikowski.Mail.MailMessage"/> object.
+            </summary>
+            <example>
+            <code>
+//Pop3, SimpleMailMessage example
+Pop3 pop3=new Pop3();
+pop3.User="lesnikowski";
+pop3.Password="password";
+
+try
+{
+	pop3.Connect("mail.host.com");
+	if (pop3.HasTimeStamp==true)
+		pop3.APOPLogin();
+	else
+		pop3.Login();
+	pop3.GetAccountStat();
+
+	for(int i=1;i&lt;=pop3.MessageCount;i++)
+	{
+		try
+		{
+			//SimpleMailMessage mail=SimpleMailMessage.ParseHeader(pop3.GetMessageHeader(i));
+			SimpleMailMessage mail=SimpleMailMessage.Parse(pop3.GetMessage(i));
+
+			// Write out received message
+			Console.WriteLine( "-- email {0} --", i);
+            Console.WriteLine( simpleMail.Subject );
+            Console.WriteLine( simpleMail.TextDataString );
+		}
+		catch(MailException ex)
+		{
+			Console.WriteLine(ex.Message);
+		}
+	}
+}							
+catch(ServerException ex)
+{
+	Console.WriteLine(ex.Message);	
+}
+finally
+{
+	pop3.Close(false);
+}
+			</code>
+            </example>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Mail">
+            <summary>
+            MailMessage object containing real e-mail structure.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Subject">
+            <summary>
+            Mail's subject. May be null.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.From">
+            <summary>
+            Specifies the author(s) of the message.
+            If empty mail-message is NOT RFC 2822 compliant.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Sender">
+            <summary>
+            Specifies the mailbox of the agent 
+            responsible for the actual transmission.
+            May be null.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.ReplyTo">
+            <summary>
+            Mailbox(es) to which the author of the message suggests	
+            that replies be sent. May be empty.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.To">
+            <summary>
+            Contains the address(es) of the primary recipient(s) of the message.
+            May be empty.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Cc">
+            <summary>
+            Addresses of others who are to receive the message, 
+            tough the content of the message may not be directed at them. 
+            May be empty.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Bcc">
+            <summary>
+            Blind Carbon copy.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.NotificationTo">
+            <summary>
+            'disposition-notification-to' field.
+            May be empty.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Date">
+            <summary>
+            Send date.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Importance">
+            <summary>
+            Mail's Importance
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Priority">
+            <summary>
+            Mail's Importance
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.TextData">
+            <summary>
+            Object representing 'text/plain' body.
+            Null if not present.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.HtmlData">
+            <summary>
+            Object representing 'text/html' body.
+            Null if not present.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Attachments">
+            <summary>
+            List of all attachment objects.
+            </summary>
+        </member>
+        <member name="F:Lesnikowski.Mail.SimpleMailMessage.Visuals">
+            <summary>
+            List of all visual elements.
+            Iterate through this collection to find
+            picture embedded in html body with specifed content-id
+            ('content-id' header field).
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.ProcessData(Lesnikowski.Mail.MimeData)">
+            <summary>
+            If <see cref="F:Lesnikowski.Mail.MimeData.ContentDisposition">contentDisposition</see> of 'mime' object is:
+            'inline' or 'none':
+            	if 'type' is 'text/html' or 'none': textData property is filled with it.
+            	if 'type' is 'text/plain': htmlData property is filled with it.
+            	else: object is added to 'visuals' collection.
+            'attachment':
+            		object is added to 'attachments' collection.
+            </summary>
+            <param name="mime">MimeData object to process.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.ProcessMime(Lesnikowski.Mail.MimeBase)">
+            <summary>
+            Process 'mime' object and all its children recursively.
+            Runs 'ProcessData' if 'mime' is 'MimeData' object.
+            </summary>
+            <param name="mime">Mime object to process.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.#ctor(Lesnikowski.Mail.MailMessage)">
+            <summary>
+            Creates new SimpleMailMessage object.
+            </summary>
+            <remarks>
+            It does NOT copy 'mail' parameter, so you should NOT use it
+            after creating the object.
+            Process 'mail.mime' object recursively.
+            </remarks>
+            <param name="mail">MailMessage object.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.Parse(System.String)">
+            <summary>
+            Creates new SimpleMailMessage object from string.
+            </summary>
+            <remarks>
+            Creates internal <see cref="T:Lesnikowski.Mail.MailMessage"/> object from 'mailString' parameter.
+            </remarks>
+            <param name="mailString">String containing mail message.</param>
+            <returns>New SimpleMail object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.ParseHeader(System.String)">
+            <summary>
+            Creates new SimpleMailMessage object
+            (containing only headers and MailBase type object in 
+            <see cref="F:Lesnikowski.Mail.MailMessage.Mime">Mail.Mime</see> field) from string.
+            </summary>
+            <remarks>
+            Creates internal <see cref="T:Lesnikowski.Mail.MailMessage"/> object from 'mailString' parameter.
+            </remarks>
+            <param name="mailString">String containing mail message.</param>
+            <returns>New SimpleMail object.</returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.SimpleMailMessage.ToString">
+            <summary>
+            Returns string describing this message.
+            </summary>
+            <returns><see cref="M:Lesnikowski.Mail.MailMessage.ToString">mail.ToString</see>.</returns>
+        </member>
+        <member name="P:Lesnikowski.Mail.SimpleMailMessage.TextDataString">
+            <summary>
+            Plain text data.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.SimpleMailMessage.HtmlDataString">
+            <summary>
+            Html data.
+            </summary>
+        </member>
+        <member name="T:Lesnikowski.StringCoding.Coding">
+            <summary>
+            Class allowing 'Base64' and 'QuotedPrintable' string decoding.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.GetEscapedHexString(System.String,System.Char)">
+            <summary>
+            Decodes escaped chars from hex.
+            Changes 3 chars '[escape]A9' into one char with value A9 HEX.
+            </summary>
+            <param name="s">String e.g. "Pawe=B3 Le=B6nikowski"</param>
+            <param name="escape">Escaping char. e.g '='</param>
+            <returns>Paweł Leśnikowski".</returns>
+            <exception cref="T:System.Exception">On error in encoded string.</exception>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.GetQuotedPrintableByteArray(System.String,System.Boolean)">
+            <summary>
+            Changes Quoted-printable to byte array.
+            Changes 3 chars '=A9' into one byte with value A9 HEX.
+            If 'convertUnderScore' is set to true changes '_' into space ' ' (20 HEX).
+            </summary>
+            <param name="s">Quoted-printable string e.g. "Pawe=B3_Le=B6nikowski"</param>
+            <param name="convertUnderscore">if true converts underscore ('_') into space (' ')</param>
+            <returns>Byte array.</returns>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.GetBase64ByteArray(System.String)">
+            <summary>
+            Changes Base64 string to byte array.
+            </summary>
+            <param name="s">Base64 coded string.</param>
+            <returns>Byte array.</returns>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.GetEncoding(System.String)">
+            <summary>
+            Returns Encoding for passed charset.
+            If charset is not supported return default Encoding.
+            </summary>
+            <param name="charset">The name of an Encoding.</param>
+            <returns>Encoding for charset or default encoding.</returns>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.DecodeQuotedPrintable(System.String,System.String,System.Boolean)">
+            <summary>
+            Decodes Quoted-printable string.
+            </summary>
+            <param name="s">"Pawe=B3_Le=B6nikowski"</param>
+            <param name="charset">charset e.g. "iso-8859-1"</param>
+            <param name="convertUnderscore">if true converts underscore ('_') into space (' ')</param>
+            <returns>"Paweł Leśnikowski"</returns>
+            <exception cref="T:System.NotSupportedException">
+            The charset is not supported by the current 
+            regional options of the computer executing this method
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.DecodeBase64(System.String,System.String)">
+            <summary>
+            Decodes Base64 string
+            </summary>
+            <param name="s"></param>
+            <param name="charset">charset e.g. "iso-8859-1"</param>
+            <returns></returns>
+            <exception cref="T:System.NotSupportedException">
+            The charset is not supported by the current 
+            regional options of the computer executing this method
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.EncodeBase64(System.String,System.String)">
+            <summary>
+            Encodes string into Base64 form
+            </summary>
+            <param name="s">String</param>
+            <param name="charset">charset e.g. "iso-8859-1"</param>
+            <returns>Base64 string</returns>
+            <exception cref="T:System.NotSupportedException">
+            The charset is not supported by the current 
+            regional options of the computer executing this method.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.EncodeBase64(System.String,System.Text.Encoding)">
+            <summary>
+            Encodes string into Base64 form.
+            </summary>
+            <param name="s">String</param>
+            <param name="encoding">Encoding</param>
+            <returns>Base64 string</returns>
+            <exception cref="T:System.NotSupportedException">
+            The charset is not supported by the current 
+            regional options of the computer executing this method.
+            </exception>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.EncodeBase64(System.Byte[],System.Int32)">
+            <summary>
+            Encodes byte array in to Base64 string.
+            </summary>
+            <param name="data">data do encode</param>
+            <param name="lineLength">Maximum length of each line. -1=no limit.</param>
+            <returns>Base64 string</returns>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.EncodeBase64(System.Byte[])">
+            <summary>
+            Encodes byte array in to Base64 string.
+            </summary>
+            <param name="data">data do encode</param>
+            <returns>Base64 string</returns>
+        </member>
+        <member name="M:Lesnikowski.StringCoding.Coding.Encode(System.Byte[],Lesnikowski.StringCoding.MimeEncoding)">
+            <summary>
+            For strings "iso-8859-2"
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Lesnikowski.Mail.StringOptions">
+            <summary>
+            This is a simple implementation of IDictionary 
+            using a singly linked list (for string values). 
+            It is smaller and faster than a Hashtable 
+            if the number of elements is 10 or less. 
+            This should not be used if performance is 
+            important for large numbers of elements.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.StringOptions.GetHeaderValue(System.String)">
+            <summary>
+            Gets string value under specified string.
+            If it is not present returns null.
+            </summary>
+            <remarks>
+            Equivalent to: HeaderCoding.Decode(this.Options["key"])
+            </remarks>
+            <param name="key">option name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Lesnikowski.Mail.StringOptions.Add(System.String,System.String)">
+            <summary>
+            Adds option to the collection.
+            </summary>
+            <param name="key">option name.</param>
+            <param name="value">option value.</param>
+        </member>
+        <member name="M:Lesnikowski.Mail.StringOptions.#ctor">
+            <summary>
+            Creates new, empty StringOptions object.
+            </summary>
+        </member>
+        <member name="M:Lesnikowski.Mail.StringOptions.#ctor(System.Boolean)">
+            <summary>
+            Creates new Stringoptions object.
+            </summary>
+            <param name="keysToLower">
+            If true all keys added to collection will be converted to lower case.
+            </param>
+        </member>
+        <member name="P:Lesnikowski.Mail.StringOptions.KeysToLower">
+            <summary>
+            If set to true all keys added to collection 
+            will be converted to lower case.
+            </summary>
+        </member>
+        <member name="P:Lesnikowski.Mail.StringOptions.Item(System.String)">
+            <summary>
+            Gets or Sets string value under specified string key.
+            </summary>
+            <param name="key">Key</param>
+            <returns>
+            value 
+            -or-
+            null when key is not present in collection.
+            </returns>
+        </member>
+    </members>
+</doc>

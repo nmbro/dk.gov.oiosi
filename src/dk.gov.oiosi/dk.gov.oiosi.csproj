@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -65,20 +65,23 @@
   <ItemGroup>
     <Reference Include="bccrypto-csharp-b02, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\External libraries\bccrypto-csharp-b02.dll</HintPath>
+      <HintPath>..\..\lib\bccrypto-csharp-b02.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\External libraries\BouncyCastle.Crypto.dll</HintPath>
+      <HintPath>..\..\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="dk.gov.oiosi.uddi, Version=1.0.3239.23397, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="dk.gov.oiosi.uddi, Version=1.0.3244.20990, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\dk.gov.oiosi.uddi\dk.gov.oiosi.uddi.dll</HintPath>
+      <HintPath>..\..\lib\dk.gov.oiosi.uddi.dll</HintPath>
     </Reference>
-    <Reference Include="Novell.Directory.Ldap, Version=2.1.7.0, Culture=neutral" />
+    <Reference Include="Novell.Directory.Ldap, Version=2.1.10.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Novell.Directory.Ldap.dll</HintPath>
+    </Reference>
     <Reference Include="OcspClient2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\External libraries\OcspClient2.dll</HintPath>
+      <HintPath>..\..\lib\OcspClient2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

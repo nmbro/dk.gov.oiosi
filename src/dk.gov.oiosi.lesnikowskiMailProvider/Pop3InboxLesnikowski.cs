@@ -224,7 +224,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
                 MailSoap12TransportBinding msg = null;
 
                 // Get the place of the last message
-                int currentMail = _proxy.MessageCount;
+                long currentMail = _proxy.MessageCount;
 
                 // As long as there are messages on the server and we havent gotten one yet
                 while (_proxy.MessageCount > 0 && currentMail > 0 && msg == null) {
@@ -248,11 +248,11 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// </summary>
         private MailSoap12TransportBinding ConvertStringToMail(string mail) {
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox converting mail to SOAP...");
-            SimpleMailMessage mailMessage = null;
+            ISimpleMailMessage mailMessage = null;
 
             // Parse the raw mail data and structure it in a MailMessage 
             try {
-                mailMessage = SimpleMailMessage.Parse(mail);
+                mailMessage = (new SimpleMailMessageBuilder()).CreateFromEml(mail); // TODO Updated
                 MimeData attachment = GetAttachment(mailMessage);
                 Message wcfMessage = DecodeToWcfMessage(attachment);
                 MailSoap12TransportBinding mailBinding = GetMailBinding(mailMessage, wcfMessage);
@@ -273,10 +273,10 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// </summary>
         /// <param name="mailMessage"></param>
         /// <returns></returns>
-        private MimeData GetAttachment(SimpleMailMessage mailMessage) {
+        private MimeData GetAttachment(ISimpleMailMessage mailMessage) {
             MimeData attachment = mailMessage.Attachments[0];
             MimeType mimeType = attachment.ContentType.MimeType;
-            string mimeSubtypeName = attachment.ContentType.MimeSubtypeName;
+            string mimeSubtypeName = attachment.ContentType.MimeSubtype.ToString(); // TODO Check this
             if (mimeType != MimeType.Application || mimeSubtypeName != "soap+xml")
                 throw new LesnikowskiInvalidMimeTypeException(mimeType, mimeSubtypeName);
             string encoding = attachment.Headers["content-transfer-encoding"];
@@ -297,7 +297,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             return message;
         }
 
-        private MailSoap12TransportBinding GetMailBinding(SimpleMailMessage mailMessage, Message wcfMessage) {
+        private MailSoap12TransportBinding GetMailBinding(ISimpleMailMessage mailMessage, Message wcfMessage) {
             string from = "";
             string to = "";
             string replyTo = "";

@@ -138,6 +138,18 @@ namespace dk.gov.oiosi.test.nunit.library.common.cache {
             Console.WriteLine("{0} Multiple Timeout Removal Test Completed", DateTime.Now);
         }
 
+        [Test]
+        public void SetTest() {
+            string a = "a";
+            string b = "b";
+            string c = "c";
+            TestSet(a, b);
+            TestSet(a, c);
+            TestElement(a, c);
+            TestRemove(a);
+            TestDoNotExists(a);
+        }
+
         private void NTest(int n) {
             for (int i = 0; i < n; i++) {
                 string iString = i.ToString();
@@ -169,6 +181,13 @@ namespace dk.gov.oiosi.test.nunit.library.common.cache {
 
         private void TestAdd(string key, string value) {
             _cache.Add(key, value);
+            TestExists(key);
+            TestElement(key, value);
+        }
+
+        private void TestSet(string key, string value)
+        {
+            _cache.Set(key, value);
             TestExists(key);
             TestElement(key, value);
         }
