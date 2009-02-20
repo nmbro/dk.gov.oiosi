@@ -30,11 +30,8 @@
   */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.security.oces;
-using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication.transport;
+using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.communication.listener {
 

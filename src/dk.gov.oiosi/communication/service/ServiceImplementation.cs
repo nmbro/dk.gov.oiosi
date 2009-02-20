@@ -28,18 +28,15 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
+
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
 using System.Xml;
-using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.communication.listener;
 using dk.gov.oiosi.extension.wcf;
-
-
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.xml.documentType;
 

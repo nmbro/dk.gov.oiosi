@@ -29,14 +29,12 @@
   *
   */
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security.revocation.ocsp;
 using dk.gov.oiosi.security.validation;
-using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.security {
 

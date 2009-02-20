@@ -28,7 +28,6 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Configuration;
 using System.ServiceModel.Configuration;
 

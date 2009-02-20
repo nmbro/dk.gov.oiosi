@@ -1,11 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Xml;
-
-using dk.gov.oiosi.exception.Keyword;
-using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 

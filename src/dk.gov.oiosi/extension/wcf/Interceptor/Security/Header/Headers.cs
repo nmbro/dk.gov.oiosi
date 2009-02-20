@@ -28,12 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Xml;
 
+using System.ServiceModel.Channels;
+using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.Header {

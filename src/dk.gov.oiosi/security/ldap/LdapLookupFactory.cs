@@ -29,10 +29,8 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.security.ldap {
 

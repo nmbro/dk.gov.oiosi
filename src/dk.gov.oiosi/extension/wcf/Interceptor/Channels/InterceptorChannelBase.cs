@@ -27,12 +27,11 @@
   *   Finn Hartmann Jordal (fhj@itst.dk)
   *   Christian Lanng (chl@itst.dk)
   *
-  */ 
+  */
+
 using System;
 using System.Diagnostics;
-using System.ServiceModel;
 using System.ServiceModel.Channels;
-
 using dk.gov.oiosi.exception;
 using dk.gov.oiosi.logging;
 

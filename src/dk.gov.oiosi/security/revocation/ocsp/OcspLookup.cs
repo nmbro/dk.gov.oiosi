@@ -29,17 +29,13 @@
   *
   */
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using dk.gov.oiosi.common.cache;
-using Iloveit.Ocsp.Demo;
-using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.common;
 using System.Text.RegularExpressions;
+using dk.gov.oiosi.common;
+using dk.gov.oiosi.common.cache;
+using dk.gov.oiosi.configuration;
+using Iloveit.Ocsp.Demo;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 

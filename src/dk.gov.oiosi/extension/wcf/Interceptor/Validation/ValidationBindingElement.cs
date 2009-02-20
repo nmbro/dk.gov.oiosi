@@ -28,10 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.ServiceModel.Channels;
 
-using dk.gov.oiosi.xml.schema;
+using System.ServiceModel.Channels;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {

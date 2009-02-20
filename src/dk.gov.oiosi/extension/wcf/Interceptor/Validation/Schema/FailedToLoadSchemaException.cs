@@ -28,11 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
-
 using dk.gov.oiosi.exception.Keyword;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {

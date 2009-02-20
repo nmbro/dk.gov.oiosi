@@ -28,12 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.Validation;
 using dk.gov.oiosi.common.validation;
+using dk.gov.oiosi.uddi.Validation;
 
 namespace dk.gov.oiosi.uddi.identifier {
 

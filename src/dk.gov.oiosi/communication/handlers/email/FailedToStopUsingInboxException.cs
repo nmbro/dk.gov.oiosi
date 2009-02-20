@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using dk.gov.oiosi.exception.Keyword;
 
 namespace dk.gov.oiosi.communication.handlers.email {

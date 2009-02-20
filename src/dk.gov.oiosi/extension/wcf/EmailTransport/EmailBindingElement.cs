@@ -28,14 +28,12 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ServiceModel.Channels;
 
-using dk.gov.oiosi.exception;
+using System;
+using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.handlers.email;
+using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.extension.wcf.EmailTransport 
 {

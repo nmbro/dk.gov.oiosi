@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Xml;
-
 using dk.gov.oiosi.communication.configuration;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.authorisation {

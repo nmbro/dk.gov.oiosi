@@ -28,11 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Serialization;
 
 namespace dk.gov.oiosi
 {

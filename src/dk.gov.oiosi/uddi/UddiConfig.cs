@@ -28,8 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System.Xml.Serialization;
 
+using System.Xml.Serialization;
 using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {

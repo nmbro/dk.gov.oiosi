@@ -28,11 +28,10 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml.Serialization;
-
 using dk.gov.oiosi.exception;
 using dk.gov.oiosi.xml.xpath.discriminator;
 

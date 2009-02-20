@@ -31,8 +31,6 @@
 using System;
 using System.Collections.Generic;
 using System.Resources;
-using System.Text;
-using System.Xml;
 
 namespace dk.gov.oiosi.communication.configuration {
     /// <summary>

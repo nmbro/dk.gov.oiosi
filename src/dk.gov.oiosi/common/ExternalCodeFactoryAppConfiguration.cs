@@ -1,7 +1,4 @@
-using System;
 using System.Configuration;
-using System.Collections.Generic;
-using System.Text;
 
 namespace dk.gov.oiosi.common {
     public class ExternalCodeFactoryAppConfiguration : ConfigurationElement, IExternalCodeFactoryConfiguration {

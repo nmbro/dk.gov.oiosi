@@ -28,13 +28,11 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 
-using dk.gov.oiosi.extension.wcf;
+using System;
+using System.Xml.Serialization;
 using dk.gov.oiosi.common;
+using dk.gov.oiosi.extension.wcf;
 
 namespace dk.gov.oiosi.security {
     /// <summary>

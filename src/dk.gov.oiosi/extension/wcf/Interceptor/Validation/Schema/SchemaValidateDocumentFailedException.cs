@@ -28,16 +28,12 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Resources;
 
-using dk.gov.oiosi.communication;
-using dk.gov.oiosi.communication.fault;
+using System;
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.xml.schema;
+using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
+using dk.gov.oiosi.xml.schema;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
 {

@@ -28,15 +28,13 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Xml;
 using System.Security.Cryptography.X509Certificates;
-
+using System.ServiceModel.Channels;
+using System.Xml;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.logging;
 

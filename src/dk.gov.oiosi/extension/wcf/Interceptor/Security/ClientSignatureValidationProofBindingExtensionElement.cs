@@ -29,9 +29,6 @@
   *
   */
 using System;
-using System.Configuration;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.ServiceModel.Configuration;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {

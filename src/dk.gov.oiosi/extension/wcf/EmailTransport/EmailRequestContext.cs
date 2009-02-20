@@ -29,13 +29,9 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
-using System.ServiceModel;
 using dk.gov.oiosi.communication.handlers.email;
 using dk.gov.oiosi.logging;
-
 
 namespace dk.gov.oiosi.extension.wcf.EmailTransport {
 

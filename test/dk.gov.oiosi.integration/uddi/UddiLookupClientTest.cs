@@ -8,11 +8,17 @@ using dk.gov.oiosi.uddi.category;
 using NUnit.Framework;
 using dk.gov.oiosi.common;
 
-namespace dk.gov.oiosi.integration.uddi {
-    
+namespace dk.gov.oiosi.test.integration.uddi {
     [TestFixture]
     [Ignore]
     public class UddiLookupClientTest {
+
+
+
+        [Test]
+        public void LookingUpNonexistingServiceShouldReturnEmptyResponse() {
+            
+        }
 
         [TestFixture]
         [Ignore]
@@ -23,6 +29,7 @@ namespace dk.gov.oiosi.integration.uddi {
             public const string SIMPLEORDERPROCESSID = "uddi:142c4188-3d53-440d-a64f-68d7c3b9a59b";
             public const string NESPROFILE5PROCESSID = "uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31";
             
+
             [Test]
             public void _01_OneProcessNoResultsLookup() {
                 IIdentifier identifier = new IdentifierEan(SERVICEIDENTIFIER);

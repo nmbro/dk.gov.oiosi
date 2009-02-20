@@ -29,11 +29,8 @@
   *
   */
 
-using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-
 using dk.gov.oiosi.exception.Keyword;
 
 namespace dk.gov.oiosi.communication {

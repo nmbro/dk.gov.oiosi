@@ -31,18 +31,12 @@
 //#define SAVECERTIFICATE
 
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.RegularExpressions;
 using dk.gov.oiosi.common.cache;
-using Novell.Directory.Ldap;
-
+using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.validation;
-using dk.gov.oiosi.security;
-
-using dk.gov.oiosi.configuration;
+using Novell.Directory.Ldap;
 
 namespace dk.gov.oiosi.security.ldap {
     /// <summary>

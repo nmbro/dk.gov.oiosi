@@ -28,7 +28,6 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Xml;
 using System.Xml.Xsl;
 

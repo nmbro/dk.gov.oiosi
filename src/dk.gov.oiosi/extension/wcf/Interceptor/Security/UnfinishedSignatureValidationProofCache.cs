@@ -28,11 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
-using System.Text;
-
-using dk.gov.oiosi.common;
 using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.extension.wcf.Interceptor.Security.Header;
 

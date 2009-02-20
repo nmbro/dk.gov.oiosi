@@ -28,10 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
+using System;
 using dk.gov.oiosi.communication.handlers.email;
 
 namespace dk.gov.oiosi.extension.wcf.EmailTransport {

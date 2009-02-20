@@ -28,10 +28,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace dk.gov.oiosi.security.oces {

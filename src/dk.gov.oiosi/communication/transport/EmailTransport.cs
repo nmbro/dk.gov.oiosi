@@ -29,12 +29,8 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
-using dk.gov.oiosi.communication.listener;
 
 namespace dk.gov.oiosi.communication.transport {
 

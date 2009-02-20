@@ -31,23 +31,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using dk.gov.oiosi.communication.client;
-using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
+using System.Text;
 using System.Xml;
-using System.IO;
-
-using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.extension.wcf;
-using dk.gov.oiosi.extension.wcf.EmailTransport;
-using dk.gov.oiosi.logging;
-using dk.gov.oiosi.security;
-using dk.gov.oiosi.security.oces;
+using dk.gov.oiosi.communication.client;
 using dk.gov.oiosi.extension.wcf.Behavior;
+using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties;
+using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.communication {
 

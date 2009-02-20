@@ -28,10 +28,6 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace dk.gov.oiosi.security.revocation {
 
     /// <summary>

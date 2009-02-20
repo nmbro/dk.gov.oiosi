@@ -28,17 +28,13 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 
+using System;
+using System.Xml;
+using System.Xml.Xsl;
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.xml;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schematron;
-using System.Xml.Xsl;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
 

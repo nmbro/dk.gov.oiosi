@@ -30,7 +30,6 @@
   */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties {

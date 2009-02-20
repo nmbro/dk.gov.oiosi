@@ -29,10 +29,6 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.security.revocation {

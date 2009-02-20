@@ -29,10 +29,8 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.common;
+using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {
 

@@ -28,12 +28,10 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Diagnostics;
 
+using System;
+using System.Diagnostics;
+using System.ServiceModel.Channels;
 using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {

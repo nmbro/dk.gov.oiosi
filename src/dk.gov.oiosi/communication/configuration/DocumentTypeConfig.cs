@@ -28,14 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-
 using dk.gov.oiosi.exception;
-using dk.gov.oiosi.xml.xpath.discriminator;
 using dk.gov.oiosi.xml.schematron;
+using dk.gov.oiosi.xml.xpath.discriminator;
 
 namespace dk.gov.oiosi.communication.configuration {
     /// <summary>

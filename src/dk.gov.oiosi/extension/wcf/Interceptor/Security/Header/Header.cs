@@ -29,9 +29,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.Header {

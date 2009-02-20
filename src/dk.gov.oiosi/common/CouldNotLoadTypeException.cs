@@ -29,13 +29,7 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Resources;
-
 using dk.gov.oiosi.exception.Keyword;
-using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.common {
 

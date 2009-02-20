@@ -31,17 +31,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using dk.gov.oiosi.communication.handlers.email;
 using dk.gov.oiosi.communication.service;
+using dk.gov.oiosi.communication.transport;
 using dk.gov.oiosi.exception;
 using dk.gov.oiosi.extension.wcf.Behavior;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
-using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.oces;
-using dk.gov.oiosi.communication.handlers.email;
-using dk.gov.oiosi.communication.transport;
 
 namespace dk.gov.oiosi.communication.listener {
     

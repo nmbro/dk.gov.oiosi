@@ -28,12 +28,11 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Resources;
-using System.Text;
 using System.ServiceModel;
-
 using dk.gov.oiosi.exception.MessageStore;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor {

@@ -28,10 +28,10 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-
 using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.communication.configuration {

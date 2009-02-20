@@ -29,12 +29,10 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
-using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 

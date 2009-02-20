@@ -29,10 +29,6 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using dk.gov.oiosi.communication;
-using System.Text;
 using dk.gov.oiosi.communication.listener;
 
 namespace dk.gov.oiosi.communication {

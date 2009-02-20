@@ -28,11 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
+using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.security.lookup {

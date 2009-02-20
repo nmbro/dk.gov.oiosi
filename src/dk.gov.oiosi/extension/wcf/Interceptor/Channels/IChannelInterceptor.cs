@@ -28,9 +28,6 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.ServiceModel.Channels;
-
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// <summary>
     /// Interface that describes the methods an interceptor on a reply channel should implement.

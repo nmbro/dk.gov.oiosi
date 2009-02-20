@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using dk.gov.oiosi.common.cache;
-using System.Xml.Xsl;
-using dk.gov.oiosi.xml.xslt;
-using System.Xml;
+using System;
 using System.IO;
+using System.Xml;
+using System.Xml.Xsl;
+using dk.gov.oiosi.common.cache;
+using dk.gov.oiosi.xml.xslt;
 
 namespace dk.gov.oiosi.xml.schematron {
     

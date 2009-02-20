@@ -28,12 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using System.Text;
 
-using dk.gov.oiosi.exception;
+using System;
+using System.ServiceModel;
 
 namespace dk.gov.oiosi.communication.listener {
     /// <summary>

@@ -29,9 +29,6 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ServiceModel.Channels;
 using System.Threading;
 
 namespace dk.gov.oiosi.communication.handlers.email {

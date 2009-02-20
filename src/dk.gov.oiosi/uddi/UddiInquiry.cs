@@ -32,12 +32,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.uddi.identifier;
 using dk.gov.oiosi.uddi.Services;
 using dk.gov.oiosi.uddi.TModels;
-using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi {
 

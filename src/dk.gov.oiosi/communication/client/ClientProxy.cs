@@ -29,16 +29,12 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace dk.gov.oiosi.communication.client {
 
     /// <summary>
     /// Core proxy class for sending XML messages to services.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "3.0.0.0")]
     public partial class ClientProxy : System.ServiceModel.ClientBase<IClientProxyContract>, IClientProxyContract {
 
         #region Constructors

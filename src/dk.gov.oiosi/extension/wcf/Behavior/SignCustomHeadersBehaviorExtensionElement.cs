@@ -29,12 +29,9 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.Configuration;
 using System.ServiceModel.Configuration;
-using dk.gov.oiosi;
+using System.Xml;
 
 namespace dk.gov.oiosi.extension.wcf.Behavior {
 

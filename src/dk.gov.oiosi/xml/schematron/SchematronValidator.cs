@@ -28,16 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-
-using dk.gov.oiosi.xml.xslt;
-using dk.gov.oiosi.xml.xpath;
-using dk.gov.oiosi.configuration;
 using System.Xml.Xsl;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.xml.xpath;
+using dk.gov.oiosi.xml.xslt;
 
 namespace dk.gov.oiosi.xml.schematron {
 

@@ -29,15 +29,9 @@
   *
   */
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.ServiceModel.Channels;
-using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.exception;
-using dk.gov.oiosi.xml;
-using System.IO;
+using System.Xml;
 using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.communication {

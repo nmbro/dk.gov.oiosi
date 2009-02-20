@@ -1,4 +1,4 @@
-﻿/*
+/*
  * The contents of this file are subject to the Mozilla Public
  * License Version 1.1 (the "License"); you may not use this
  * file except in compliance with the License. You may obtain
@@ -21,7 +21,7 @@
  *   Gert Sylvest (gerts@avanade.com)
  *   Patrik Johansson (p.johansson@accenture.com)
  *   Michael Nielsen (michaelni@avanade.com)
- *   Dennis Søgaard (dennis.j.sogaard@accenture.com)
+ *   Dennis S�gaard (dennis.j.sogaard@accenture.com)
  *   Ramzi Fadel (ramzif@avanade.com)
  *   Mikkel Hippe Brun (mhb@itst.dk)
  *   Finn Hartmann Jordal (fhj@itst.dk)
@@ -32,10 +32,8 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
-
 
 namespace dk.gov.oiosi.security.revocation.crl
 {

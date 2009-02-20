@@ -28,18 +28,12 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.RegularExpressions;
 
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.exception;
-using IRevocationLookup=dk.gov.oiosi.security.revocation.IRevocationLookup;
-using RevocationResponse=dk.gov.oiosi.security.revocation.RevocationResponse;
 using dk.gov.oiosi.security.revocation;
 
 namespace dk.gov.oiosi.security.oces {

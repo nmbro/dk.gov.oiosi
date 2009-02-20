@@ -28,12 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Configuration;
 using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.uddi {
 

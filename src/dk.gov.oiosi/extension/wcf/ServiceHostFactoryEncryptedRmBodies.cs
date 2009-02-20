@@ -29,10 +29,7 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel;
-using System.ServiceModel.Activation;
 using dk.gov.oiosi.extension.wcf.Behavior;
 
 namespace dk.gov.oiosi.extension.wcf

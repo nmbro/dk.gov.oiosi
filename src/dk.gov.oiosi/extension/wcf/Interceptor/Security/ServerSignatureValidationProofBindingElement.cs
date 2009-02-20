@@ -28,18 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.ServiceModel.Channels;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
-using dk.gov.oiosi.security;
-using dk.gov.oiosi.security.lookup;
-using dk.gov.oiosi.security.ldap;
-using dk.gov.oiosi.security.oces;
+using System;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel.Channels;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.extension.wcf.Interceptor.Security.Header;
+using dk.gov.oiosi.security;
+using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.security.revocation;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {

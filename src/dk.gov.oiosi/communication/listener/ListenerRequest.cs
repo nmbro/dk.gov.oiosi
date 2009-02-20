@@ -31,11 +31,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.Collections;
 using System.ServiceModel.Channels;
-
+using System.Xml;
 using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.communication.listener {

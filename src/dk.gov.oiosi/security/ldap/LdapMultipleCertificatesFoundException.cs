@@ -28,12 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
+
 using System.Collections.Generic;
 using System.Resources;
-using System.Text;
-
-using dk.gov.oiosi.security;
 
 namespace dk.gov.oiosi.security.ldap {
 

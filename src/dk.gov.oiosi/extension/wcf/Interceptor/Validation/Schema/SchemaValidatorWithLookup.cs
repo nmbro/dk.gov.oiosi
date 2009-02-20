@@ -28,15 +28,12 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Xml.Schema;
-
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schema;
 

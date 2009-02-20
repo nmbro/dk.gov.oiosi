@@ -30,9 +30,7 @@
   */
 using System;
 using System.Collections.Generic;
-using System.ServiceModel.Channels;
 using System.Text;
-using System.Resources;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor {
     /// <summary>

@@ -28,11 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 
+using System;
+using System.Xml;
 using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.xml.xpath {

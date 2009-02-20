@@ -29,10 +29,6 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace dk.gov.oiosi.communication {
     /// <summary>
     /// RASP Communication exception with the description: A communication channel could not be created.

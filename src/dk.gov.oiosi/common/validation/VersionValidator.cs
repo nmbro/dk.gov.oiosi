@@ -28,17 +28,10 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.communication;
-using System.Text.RegularExpressions;
 
-using dk.gov.oiosi.uddi.category;
-using dk.gov.oiosi.uddi.identifier;
+using System;
+using System.Text.RegularExpressions;
 using dk.gov.oiosi.uddi.Validation;
-using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.common.validation;
 
 namespace dk.gov.oiosi.common.validation {
 

@@ -31,12 +31,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.ServiceModel.Channels;
-using System.Threading;
 using System.Diagnostics;
-
-using dk.gov.oiosi.logging;
+using System.Threading;
 using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.communication.handlers.email {

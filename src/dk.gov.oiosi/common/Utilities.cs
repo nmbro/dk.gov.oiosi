@@ -29,16 +29,13 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.ServiceModel.Channels;
-using dk.gov.oiosi.xml.xpath;
+using System.Xml;
 using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.exception;
-using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.xml.xpath;
 
 namespace dk.gov.oiosi.common {
     

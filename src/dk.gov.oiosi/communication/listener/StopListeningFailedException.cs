@@ -29,9 +29,7 @@
   *
   */
 using System;
-using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 
 namespace dk.gov.oiosi.communication.listener {
     /// <summary>

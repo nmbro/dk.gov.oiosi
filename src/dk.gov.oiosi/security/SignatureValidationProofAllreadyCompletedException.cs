@@ -28,12 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 using dk.gov.oiosi.exception.Keyword;
-using dk.gov.oiosi.security;
 
 namespace dk.gov.oiosi.security {
 

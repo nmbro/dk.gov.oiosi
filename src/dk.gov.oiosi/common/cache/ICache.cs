@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace dk.gov.oiosi.common.cache {
     /// <summary>
     /// Interface that represents a simple cache

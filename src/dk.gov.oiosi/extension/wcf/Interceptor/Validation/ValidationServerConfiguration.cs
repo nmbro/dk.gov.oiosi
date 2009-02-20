@@ -28,9 +28,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Configuration;
-using System.ServiceModel.Configuration;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
 

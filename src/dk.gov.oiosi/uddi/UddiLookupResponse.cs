@@ -30,8 +30,8 @@
   */
 using System;
 using System.Collections.Generic;
-using dk.gov.oiosi.security;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.security;
 
 namespace dk.gov.oiosi.uddi {
     

@@ -1,4 +1,4 @@
-ï»¿/*
+/*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
   * file except in compliance with the License. You may obtain
@@ -21,7 +21,7 @@
   *   Gert Sylvest (gerts@avanade.com)
   *   Patrik Johansson (p.johansson@accenture.com)
   *   Michael Nielsen (michaelni@avanade.com)
-  *   Dennis SÃ¸gaard (dennis.j.sogaard@accenture.com)
+  *   Dennis Søgaard (dennis.j.sogaard@accenture.com)
   *   Ramzi Fadel (ramzif@avanade.com)
   *   Mikkel Hippe Brun (mhb@itst.dk)
   *   Finn Hartmann Jordal (fhj@itst.dk)
@@ -29,9 +29,6 @@
   *
   */
 namespace dk.gov.oiosi.security.lookup {
-    using System;
-    
-    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,23 +36,23 @@ namespace dk.gov.oiosi.security.lookup {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
+    [global::System.Diagnostics.DebuggerNonUserCode()]
+    [global::System.Runtime.CompilerServices.CompilerGenerated()]
     internal class ErrorMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal ErrorMessages() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
@@ -70,7 +67,7 @@ namespace dk.gov.oiosi.security.lookup {
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
@@ -81,7 +78,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunne ikke finde det tilhÃ¸rende certifikat.
+        ///   Looks up a localized string similar to Kunne ikke finde det tilhørende certifikat.
         /// </summary>
         internal static string RASP_CertificateLookup_CertificateNotFoundException {
             get {
@@ -90,7 +87,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunne ikke forbinde til LDAP serveren pÃ¥ adressen &quot;[address]&quot; og port &quot;[port]&quot;.
+        ///   Looks up a localized string similar to Kunne ikke forbinde til LDAP serveren på adressen &quot;[address]&quot; og port &quot;[port]&quot;.
         /// </summary>
         internal static string RASP_CertificateLookup_Ldap_ConnectingToLdapServerFailedException {
             get {
@@ -108,7 +105,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunne ikke finde et eller flere korrekte match til det regulÃ¦re udtryk &quot;[patterns]&quot; i subject strengen &quot;[subject]&quot;..
+        ///   Looks up a localized string similar to Kunne ikke finde et eller flere korrekte match til det regulære udtryk &quot;[patterns]&quot; i subject strengen &quot;[subject]&quot;..
         /// </summary>
         internal static string RASP_CertificateLookup_Ldap_PatternsDoesNotMatchException {
             get {
@@ -126,7 +123,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SÃ¸gningen efter et certifikat fejlede.
+        ///   Looks up a localized string similar to Søgningen efter et certifikat fejlede.
         /// </summary>
         internal static string RASP_CertificateLookup_SearchFailedException {
             get {
@@ -135,7 +132,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certifikatet er udlÃ¸bet den &quot;[expiredate]&quot;.
+        ///   Looks up a localized string similar to Certifikatet er udløbet den &quot;[expiredate]&quot;.
         /// </summary>
         internal static string RASP_CertificateLookup_Validation_CertificateExpiredException {
             get {
@@ -144,7 +141,7 @@ namespace dk.gov.oiosi.security.lookup {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Certifikatet fejlede kÃ¦devalideringen med status &quot;[chainstatus]&quot;.
+        ///   Looks up a localized string similar to Certifikatet fejlede kædevalideringen med status &quot;[chainstatus]&quot;.
         /// </summary>
         internal static string RASP_CertificateLookup_Validation_CertificateFailedChainValidationException {
             get {

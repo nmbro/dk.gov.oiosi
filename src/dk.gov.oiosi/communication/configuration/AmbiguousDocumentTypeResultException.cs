@@ -28,14 +28,9 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Resources;
-using System.Xml;
 
-using dk.gov.oiosi.exception.Keyword;
-using dk.gov.oiosi.xml.xpath.discriminator;
+using System.Collections.Generic;
+using System.Resources;
 
 namespace dk.gov.oiosi.communication.configuration {
     /// <summary>

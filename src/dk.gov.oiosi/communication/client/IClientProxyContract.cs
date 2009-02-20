@@ -35,8 +35,8 @@ namespace dk.gov.oiosi.communication.client {
     /// <summary>
     /// Message handler interface. A generic xml proxy must implement this interface. Extends the IServiceContract with async methods.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace = "http://rep.oio.dk/oiosi/")]
+    [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.ServiceContract(Namespace = "http://rep.oio.dk/oiosi/")]
     public interface IClientProxyContract : IServiceContract {
 
 
@@ -47,7 +47,7 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="callback">callback object</param>
         /// <param name="asyncState">async state</param>
         /// <returns></returns>
-        [System.ServiceModel.OperationContractAttribute(Action = "*", ReplyAction = "*", AsyncPattern = true)]
+        [System.ServiceModel.OperationContract(Action = "*", ReplyAction = "*", AsyncPattern = true)]
         System.IAsyncResult BeginRequestRespond(System.ServiceModel.Channels.Message request, System.AsyncCallback callback, object asyncState);
 
         /// <summary>

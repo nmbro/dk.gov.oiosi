@@ -28,10 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
+using System.Collections.Generic;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {

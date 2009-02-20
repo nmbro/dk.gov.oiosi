@@ -28,14 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.ServiceModel.Channels;
 using System.Xml;
-
 using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.xslt;
-using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
     /// <summary>

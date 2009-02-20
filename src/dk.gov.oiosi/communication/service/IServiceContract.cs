@@ -34,8 +34,8 @@ namespace dk.gov.oiosi.communication.service {
     /// <summary>
     /// Message handler interface. A generic xml proxy must implement this interface.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace = "http://rep.oio.dk/oiosi/")]
+    [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.ServiceContract(Namespace = "http://rep.oio.dk/oiosi/")]
     public interface IServiceContract {
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.communication.service {
         /// </summary>
         /// <param name="request">The request</param>
         /// <returns>The response</returns>
-        [System.ServiceModel.OperationContractAttribute(Action = "*", ReplyAction = "*")]
+        [System.ServiceModel.OperationContract(Action = "*", ReplyAction = "*")]
         System.ServiceModel.Channels.Message RequestRespond(System.ServiceModel.Channels.Message request);
     }
 }

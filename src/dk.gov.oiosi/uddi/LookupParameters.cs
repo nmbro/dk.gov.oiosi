@@ -28,15 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+
 using System;
 using System.Collections.Generic;
-
-using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common.cache;
+using dk.gov.oiosi.exception;
 using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.uddi.identifier;
-using dk.gov.oiosi.exception;
-
 
 namespace dk.gov.oiosi.uddi {
     /// <summary>

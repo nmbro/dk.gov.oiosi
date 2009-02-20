@@ -30,7 +30,6 @@
   */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Resources;
 using dk.gov.oiosi.uddi.ExceptionHandling.Uddi;
 

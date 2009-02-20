@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.ServiceModel.Configuration;
-using System.Text;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.authorisation {
     /// <summary>

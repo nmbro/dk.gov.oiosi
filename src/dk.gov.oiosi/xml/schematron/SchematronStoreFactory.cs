@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.configuration;
 using System.Configuration;
+using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.xml.schematron {
     /// <summary>

@@ -28,16 +28,14 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// <summary>
     /// Collection that contains channel interceptor exceptions throw by
     /// the interceptors.
     /// </summary>
-    [OiosiMessagePropertyAttribute]
+    [OiosiMessageProperty]
     public class InterceptorChannelExceptionCollection {
         private List<InterceptorChannelException> _exceptions;
 

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -208,13 +208,134 @@
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\RootCertificateConfig.cs" />
-    <Compile Include="uddi\ars\ArsBindingType.cs" />
-    <Compile Include="uddi\ars\ArsLookupExtended.cs" />
-    <Compile Include="uddi\ars\CreateArsEndpointFailedException.cs" />
-    <Compile Include="uddi\ars\MissingServiceDefinitionBindingFailure.cs" />
-    <Compile Include="uddi\ars\MissingEndpointBindingFailure.cs" />
-    <Compile Include="uddi\ars\SaveArsEndpointFailedException.cs" />
-    <Compile Include="uddi\ars\UpdateArsEndpointFailedException.cs" />
+    <Compile Include="uddi\ars\ArsBinding.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBindingSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBindingSetUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBindingType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBindingUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBusinessEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBusinessEntityUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBusinessProcessDefinition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsBusinessProcessDefinitionUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsDefaultInstances.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsEndpoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsEndpointSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsEndpointSetUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsEndpointUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsLookup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsLookupExtended.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsLookupUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsProcessInstance.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsProcessInstanceSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsProcessInstanceSetUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsProcessInstanceUnexpectedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ArsValidatorFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\BindingRegistrationReferenceSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\CreateArsEndpointFailedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\DeleteEntityException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\ErrorMessages.Designer.cs">
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="uddi\ars\IArsValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\LookupTModelComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\LookupTModelComboBox.Designer.cs">
+      <DependentUpon>LookupTModelComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uddi\ars\MissingEndpointBindingFailure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\MissingServiceDefinitionBindingFailure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\OasisBindingRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\OasisBindingRegistrationReference.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\OasisPortTypeRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\OasisPortTypeRegistrationReference.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\OasisServiceSingleBindingRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\PortTypeRegistrationReferenceSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\RegistrationEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\SaveArsEndpointFailedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uddi\ars\UpdateArsEndpointFailedException.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="uddi\CategoryMissingException.cs" />
     <Compile Include="uddi\category\EndpointActivationDate.cs" />
     <Compile Include="uddi\category\UnknownEndpointTypeException.cs" />
@@ -290,41 +411,6 @@
     <Compile Include="security\revocation\RevocationNoImplementingAssemblyException.cs" />
     <Compile Include="security\revocation\RevocationNoImplementingClassException.cs" />
     <Compile Include="common\cache\TimedCache.cs" />
-    <Compile Include="uddi\ars\ArsBinding.cs" />
-    <Compile Include="uddi\ars\ArsBindingSet.cs" />
-    <Compile Include="uddi\ars\ArsBindingSetUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsBindingUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsBusinessEntityUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsBusinessProcessDefinition.cs" />
-    <Compile Include="uddi\ars\ArsBusinessProcessDefinitionUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsDefaultInstances.cs" />
-    <Compile Include="uddi\ars\ArsEndpointSetUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsEndpointUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsException.cs" />
-    <Compile Include="uddi\ars\ArsLookup.cs" />
-    <Compile Include="uddi\ars\ArsLookupUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsProcessInstanceSetUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsProcessInstanceUnexpectedException.cs" />
-    <Compile Include="uddi\ars\ArsValidator.cs" />
-    <Compile Include="uddi\ars\BindingRegistrationReferenceSet.cs" />
-    <Compile Include="uddi\ars\DeleteEntityException.cs" />
-    <Compile Include="uddi\ars\ErrorMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="uddi\ars\LookupTModelComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\LookupTModelComboBox.Designer.cs">
-      <DependentUpon>LookupTModelComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="uddi\ars\OasisBindingRegistrationReference.cs" />
-    <Compile Include="uddi\ars\OasisPortTypeRegistrationReference.cs" />
-    <Compile Include="uddi\ars\PortTypeRegistrationReferenceSet.cs" />
-    <Compile Include="uddi\ars\RegistrationEntity.cs" />
-    <Compile Include="uddi\ars\IArsValidator.cs" />
-    <Compile Include="uddi\ars\ArsValidatorFactory.cs" />
     <Compile Include="uddi\category\BusinessProcessDefinitionReference.cs" />
     <Compile Include="uddi\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -435,14 +521,6 @@
     <Compile Include="xml\schematron\SchematronValidationFailedException.cs" />
     <Compile Include="xml\schematron\SchematronValidator.cs" />
     <Compile Include="xml\schema\SchemaValidationFailedException.cs" />
-    <Compile Include="uddi\ars\ArsBusinessEntity.cs" />
-    <Compile Include="uddi\ars\ArsEndpoint.cs" />
-    <Compile Include="uddi\ars\ArsEndpointSet.cs" />
-    <Compile Include="uddi\ars\ArsProcessInstance.cs" />
-    <Compile Include="uddi\ars\ArsProcessInstanceSet.cs" />
-    <Compile Include="uddi\ars\OasisBindingRegistration.cs" />
-    <Compile Include="uddi\ars\OasisPortTypeRegistration.cs" />
-    <Compile Include="uddi\ars\OasisServiceSingleBindingRegistration.cs" />
     <Compile Include="uddi\category\ArsCategory.cs" />
     <Compile Include="uddi\category\AuthenticationRequired.cs" />
     <Compile Include="uddi\category\BusinessProcessIdentifierType.cs" />
@@ -740,8 +818,8 @@
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="uddi\ars\LookupTModelComboBox.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>LookupTModelComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="uddi\ErrorMessages.resx">
       <SubType>Designer</SubType>

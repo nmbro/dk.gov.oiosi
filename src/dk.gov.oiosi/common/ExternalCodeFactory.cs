@@ -1,8 +1,4 @@
 using System;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Text;
-
 using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.common {

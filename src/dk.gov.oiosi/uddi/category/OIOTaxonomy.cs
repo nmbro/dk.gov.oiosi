@@ -28,11 +28,8 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.exception;
 using dk.gov.oiosi.common;
+using dk.gov.oiosi.exception;
 
 namespace dk.gov.oiosi.uddi.category {
 

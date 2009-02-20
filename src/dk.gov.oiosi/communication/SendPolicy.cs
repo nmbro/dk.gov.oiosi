@@ -28,9 +28,6 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using dk.gov.oiosi.communication.handlers.email;
 
 namespace dk.gov.oiosi.communication {
