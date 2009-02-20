@@ -201,4 +201,7 @@
   <data name="dk_gov_oiosi_communication_UnexpectedReplyActionException" xml:space="preserve">
     <value>SOAP action '[expected]' var forventet på svaret men action '[gotten]' blev modtaget</value>
   </data>
+  <data name="dk_gov_oiosi_communication_WcfListenerSearchFailedException" xml:space="preserve">
+    <value>Der findes ingen der lytter til inkomne beskeder.</value>
+  </data>
 </root>
