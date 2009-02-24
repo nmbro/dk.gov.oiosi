@@ -40,6 +40,10 @@ namespace dk.gov.oiosi.uddi
             set { _endpoints = value; }
         }
 
+        /// <summary>
+        /// Return the list of endpoints as Uri's
+        /// </summary>
+        /// <returns>The list of Uri's</returns>
 		public List<Uri> GetAsUris()
 		{
 			List<Uri> result = new List<Uri>();

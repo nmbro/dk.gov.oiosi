@@ -49,6 +49,9 @@ namespace dk.gov.oiosi.xml.schematron {
         private XmlDocument _schematronDocument;
         private XsltUtility _xlstUtil;
 
+        /// <summary>
+        /// Constructs a new schematron validator
+        /// </summary>
         public SchematronValidator() {
             _xlstUtil = new XsltUtility();
         }

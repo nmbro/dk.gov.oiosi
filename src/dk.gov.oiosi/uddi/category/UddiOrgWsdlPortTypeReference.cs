@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.uddi.category {
         /// <summary>
         /// Use this constructor to set a value
         /// </summary>
-        /// <param name="portTypeReference">Guid to the porttype</param>
+        /// <param name="portTypeReferenceId">Guid to the porttype</param>
         public UddiOrgWsdlPortTypeReference(UddiId portTypeReferenceId) {
             pValue = portTypeReferenceId.ID;
         }

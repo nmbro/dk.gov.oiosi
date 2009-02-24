@@ -8,7 +8,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Returns a new dictionary with keywords from the lookup parameters.
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="lookupParameters"></param>
         /// <returns></returns>
         public static Dictionary<string, string> GetKeywords(LookupParameters lookupParameters) {
             Dictionary<string, string> keywords = new Dictionary<string, string>();
@@ -21,7 +21,7 @@ namespace dk.gov.oiosi.uddi {
         /// dictionary.
         /// </summary>
         /// <param name="keywords"></param>
-        /// <param name="configuration"></param>
+        /// <param name="lookupParameters"></param>
         public static void GetKeywords(Dictionary<string, string> keywords, LookupParameters lookupParameters) {
             string endpointKey = lookupParameters.EndpointKey.GetAsString();
             string endpointKeyType = lookupParameters.EndpointKeyType.Value;

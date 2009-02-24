@@ -5,7 +5,15 @@ namespace dk.gov.oiosi.xml.schematron {
     /// Configuration in app.config/web.config for the schematron store config.
     /// </summary>
     public class SchematronStoreAppConfig : ConfigurationSection, ISchematronStoreConfig {
+        
+        /// <summary>
+        /// The name of the xml element in the configuration for the schematron store
+        /// </summary>
         public const string SCHEMATRONSTOREAPPCONFIGNAME = "schematronStoreAppConfig";
+        
+        /// <summary>
+        /// The maximum stylesheets to keep in memory for schematron validation
+        /// </summary>
         public const string MAXCOMPILEDSTYLESHEETSINMEMORYNAME = "maxCompiledStylesheetsInMemory";
 
         #region ISchematronStoreConfig Members

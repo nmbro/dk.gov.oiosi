@@ -137,7 +137,7 @@ namespace dk.gov.oiosi.communication.listener {
             lock (pHostList) {
                 try {
                     listener = pHostList[currentServiceHost];
-                } catch (KeyNotFoundException e) {
+                } catch (KeyNotFoundException) {
                     // The listener was not found!
                 }
                 
