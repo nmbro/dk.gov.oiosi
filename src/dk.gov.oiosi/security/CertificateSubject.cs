@@ -127,7 +127,7 @@ namespace dk.gov.oiosi.security {
                 throw new EmptyStringException("SubjectSerialNumber");
             }
 
-            _subjectString = subjectString;
+            _subjectString = subjectString.Trim();
 
             // 1. Get DNS base:
             GetBase();
