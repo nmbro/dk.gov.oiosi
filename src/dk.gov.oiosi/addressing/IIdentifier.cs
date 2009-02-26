@@ -39,6 +39,13 @@ namespace dk.gov.oiosi.addressing {
     public interface IIdentifier: IEquatable<IIdentifier> {
 
         /// <summary>
+        /// Gets the KeyTypeValue of the IIdentifier
+        /// </summary>
+        string KeyTypeValue {
+            get;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

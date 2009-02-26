@@ -180,5 +180,112 @@ namespace dk.gov.oiosi.uddi {
             return inquiryResult;
         }
 
+        public List<UddiLookupResponse> Lookup(IIdentifier companyIdentifier, UddiId serviceUddiId, UddiId profileUddiId, string profileRoleIdentifier) {
+            if (companyIdentifier == null) throw new ArgumentNullException("companyIdentifier");
+            if (serviceUddiId == null) throw new ArgumentNullException("serviceUddiId");
+            if (profileUddiId == null) throw new ArgumentNullException("profileUddiId");
+            if (profileRoleIdentifier == null) throw new ArgumentNullException("profileRoleIdentifier");
+
+            List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
+
+            foreach (UddiService uddiService in GetUddiServices(companyIdentifier, serviceUddiId)) {
+                IEnumerable<UddiBinding> supportedBindings = uddiService.GetBindingsSupportingProfileAndRole(profileUddiId, profileRoleIdentifier);
+
+                foreach (UddiBinding uddiBinding in supportedBindings) {
+                    lookupResponses.Add(new UddiLookupResponse(
+                                            companyIdentifier,
+                                            uddiBinding.EndpointAddress,
+                                            uddiService.ActivationDate,
+                                            uddiService.ExpirationDate,
+                                            uddiService.CertificateSubject,
+                                            uddiService.TermsOfUseUri,
+                                            uddiService.ContactMail,
+                                            uddiService.Version,
+                                            uddiService.NewerVersion,
+                                            uddiBinding.Processes
+                                            ));
+                }
+            }
+
+            return lookupResponses;
+        }
+
+        private List<UddiService> GetUddiServices(IIdentifier companyIdentifier, UddiId serviceUddiId) {
+            UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
+            _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(_address);
+
+            keyedReference profileConformanceClaim = new keyedReference();
+            profileConformanceClaim.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";
+            profileConformanceClaim.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
+            profileConformanceClaim.keyValue = "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/";
+            
+            keyedReference registrationConformanceClaim = new keyedReference();
+            registrationConformanceClaim.tModelKey = "uddi:80496ef5-4d24-4788-a3f8-12fb54a75106";
+            registrationConformanceClaim.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/registrationConformanceClaim/";
+            registrationConformanceClaim.keyValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
+
+            keyedReference endpointKeyType = new keyedReference();
+            endpointKeyType.tModelKey = "uddi:182a4a2b-3717-4283-b97c-55cc3b684dae";
+            endpointKeyType.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/";
+            endpointKeyType.keyValue = companyIdentifier.KeyTypeValue;
+            
+            keyedReference endpointKey = new keyedReference();
+            endpointKey.tModelKey = "uddi:e733684d-9f40-40ff-8807-1d80abc7c665";
+            endpointKey.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKey/";
+            endpointKey.keyValue = companyIdentifier.GetAsString();
+
+            keyedReference[] categories = new[] {profileConformanceClaim, registrationConformanceClaim, endpointKeyType, endpointKey};
+
+            categoryBag serviceCategories = new categoryBag {Items = categories};
+
+            find_service findService = new find_service();
+            findService.findQualifiers = new[] { FindQualifers.andAllKeys.ToString() };
+            findService.tModelBag = new[] { serviceUddiId.ID };
+            findService.categoryBag = serviceCategories;
+
+            serviceList listOfServices = _uddiProxy.find_service(findService);
+
+            List<string> endPointUddiIds = new List<string>();
+
+            if (listOfServices.serviceInfos == null) return new List<UddiService>();
+            foreach (serviceInfo service in listOfServices.serviceInfos) {
+                endPointUddiIds.Add(service.serviceKey);
+            }
+
+            // Har uddiid på service endpoint, skal finde endpoint uri
+            get_serviceDetail getServiceDetail = new get_serviceDetail();
+            getServiceDetail.serviceKey = endPointUddiIds.ToArray();
+            serviceDetail detail = _uddiProxy.get_serviceDetail(getServiceDetail);
+
+            List<UddiService> uddiServices = new List<UddiService>();
+            foreach (businessService businessServiceItem in detail.businessService) {
+                List<UddiBinding> uddiBindings = new List<UddiBinding>();
+                foreach (bindingTemplate bindingTemplate in  businessServiceItem.bindingTemplates) {
+                    
+                    // TODO Lav tModel opslag på alt, og vælg derefter udfra key
+                    List<string> tModelKeys = new List<string>();
+                    foreach (tModelInstanceInfo tModel in bindingTemplate.tModelInstanceDetails) {
+                        tModelKeys.Add(tModel.tModelKey);
+                    }
+                    // Get the tModel details:
+                    get_tModelDetail tModelDetail = new get_tModelDetail();
+                    tModelDetail.tModelKey = tModelKeys.ToArray();
+                    tModelDetail modelDetail = _uddiProxy.get_tModelDetail(tModelDetail);
+
+                    List<tModel> uddiTModels = new List<tModel>();
+                    foreach (tModel tModelItem in modelDetail.tModel) {
+                        uddiTModels.Add(tModelItem);
+                    }
+                    
+                    UddiBinding uddiBinding = new UddiBinding(bindingTemplate, uddiTModels);
+                    uddiBindings.Add(uddiBinding);
+                }
+     
+                UddiService uddiService = new UddiService(businessServiceItem, uddiBindings);
+                uddiServices.Add(uddiService);
+            }
+
+            return uddiServices;
+        }
     }
 }

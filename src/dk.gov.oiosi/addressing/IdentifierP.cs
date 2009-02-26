@@ -39,7 +39,15 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class IdentifierP : IIdentifier {
         private string _pNumber;
+        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/pNumber/";
 
+        /// <summary>
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
+        
         /// <summary>
         /// Constructor
         /// </summary>

@@ -40,6 +40,15 @@ namespace dk.gov.oiosi.addressing {
     public class IdentifierOvt : IIdentifier {
         private string _countryCode;
 
+        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/ovtNumber/";
+
+        /// <summary>
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
+
         /// <summary>
         /// property for countrycode
         /// </summary>

@@ -39,6 +39,14 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class IdentifierEan : IIdentifier {
         private string _eanNumber;
+        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/";
+
+        /// <summary>
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
 
         /// <summary>
         /// Constructor

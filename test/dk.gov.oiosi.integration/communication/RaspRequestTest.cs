@@ -39,8 +39,8 @@ namespace dk.gov.oiosi.test.integration.communication {
 
         [Test]
         public void OioublInvoiceMustBeSendableByRaspRequest() {
-            var oioxmlInvoiceFile = new FileInfo("Resources/Documents/Examples/OIOUBL_Invoice_v2p1.xml");
-            var response = SendRequestAndGetResponse(oioxmlInvoiceFile);
+            var oioublInvoiceFile = new FileInfo("Resources/Documents/Examples/OIOUBL_Invoice_v2p1.xml");
+            var response = SendRequestAndGetResponse(oioublInvoiceFile);
             Assert.IsNotNull(response);
         }
         

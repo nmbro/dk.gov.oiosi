@@ -40,6 +40,15 @@ namespace dk.gov.oiosi.addressing {
     public class IdentifierDuns : IIdentifier {
         private string _dunsNumber;
 
+        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/dunsNumber/";
+
+        /// <summary>
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>

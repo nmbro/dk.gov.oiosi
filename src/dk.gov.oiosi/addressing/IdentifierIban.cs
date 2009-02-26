@@ -39,6 +39,14 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class IdentifierIban : IIdentifier {
         private string _ibanNumber;
+        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/ibanNumber/";
+
+        /// <summary>
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
 
         /// <summary>
         /// Constructor

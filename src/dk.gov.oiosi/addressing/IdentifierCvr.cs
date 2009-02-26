@@ -43,9 +43,17 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class IdentifierCvr : IIdentifier {
         private string _cvrNumber;
+        private const string keyTypeValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/";
 
         /// <summary>
-        /// Constructor. Acc
+        /// Identifier key type value
+        /// </summary>
+        public string KeyTypeValue {
+            get { return keyTypeValue; }
+        }
+
+        /// <summary>
+        /// Constructor.
         /// </summary>
         /// <param name="cvrNumber">A CVR number</param>
         public IdentifierCvr(string cvrNumber) {
