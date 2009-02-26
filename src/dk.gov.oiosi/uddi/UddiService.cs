@@ -34,7 +34,7 @@ namespace dk.gov.oiosi.uddi
             get { return bindings; }
         }
 
-        public DateTime ActivationDate {
+        public DateTime ActivationDateUTC {
             get { return GetActivationDateUTC(); }
         }
 
@@ -42,7 +42,7 @@ namespace dk.gov.oiosi.uddi
             get { return GetCertificateSubject(); }
         }
 
-        public DateTime ExpirationDate {
+        public DateTime ExpirationDateUTC {
             get { return GetExpirationDateUtcFormat(); }
         }
 
@@ -129,7 +129,16 @@ namespace dk.gov.oiosi.uddi
             }
         }
 
+        /// <summary>
+        /// Returns true if this service is inactive or expired, according to its UDDI registration.
+        /// All registrations on the UDDI are assumed to follow danish time zone conventions
+        /// </summary>
+        /// <returns>Returns true if this service is inactive or expired, according to its UDDI registration.</returns>
+        public bool IsInactiveOrExpired() {
+            DateTime nowUTC = DateTime.UtcNow;
 
+            return !(nowUTC > ActivationDateUTC && nowUTC < ExpirationDateUTC);
+        }
 
         /// <summary>
         /// Returns a DateTime representation of either an endpoint expiration

@@ -206,14 +206,16 @@ namespace dk.gov.oiosi.uddi {
 
             var uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
             foreach (UddiService uddiService in uddiServices) {
+                
+                if(uddiService.IsInactiveOrExpired()) continue;
+                
                 IEnumerable<UddiBinding> supportedBindings = uddiService.GetBindingsSupportingAnyProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
-
                 foreach (UddiBinding uddiBinding in supportedBindings) {
                     lookupResponses.Add(new UddiLookupResponse(
                                             lookupParameters.Identifier,
                                             uddiBinding.EndpointAddress,
-                                            uddiService.ActivationDate,
-                                            uddiService.ExpirationDate,
+                                            uddiService.ActivationDateUTC,
+                                            uddiService.ExpirationDateUTC,
                                             uddiService.CertificateSubject,
                                             uddiService.TermsOfUseUri,
                                             uddiService.ContactMail,
