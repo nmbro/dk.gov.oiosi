@@ -43,16 +43,16 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class LookupParameters {
         private IIdentifier _endpointKey;
-        private EndpointKeytype _endpointKeyType;
+        private EndpointKeytype _endpointKeyType; //?
         private UddiId _serviceContractTModel;
-        private UddiId _businessProcessDefinitionTModel;
-        private BusinessProcessRoleIdentifierType _roleIdentifierType;
-        private PreferredEndpointType _preferredEndpointType;
-        private LookupReturnOption _lookupReturnOption = uddi.LookupReturnOption.allResults;
-        private RegistrationConformanceClaim _registrationConformanceClaim = new RegistrationConformanceClaim(RegistrationConformanceClaimCode.oiosi1_1);
-        private ConformanceClaim _profileConformanceClaim = new ConformanceClaim(ConformanceClaimCode.secureReliableAsyncProfile1_0);
+        private UddiId _businessProcessDefinitionTModel; //?
+        private BusinessProcessRoleIdentifierType _roleIdentifierType; // ?
+        private PreferredEndpointType _preferredEndpointType; // ?
+        private LookupReturnOption _lookupReturnOption = uddi.LookupReturnOption.allResults; //?
+        private RegistrationConformanceClaim _registrationConformanceClaim = new RegistrationConformanceClaim(RegistrationConformanceClaimCode.oiosi1_1); // ?
+        private ConformanceClaim _profileConformanceClaim = new ConformanceClaim(ConformanceClaimCode.secureReliableAsyncProfile1_0); //?
         private BusinessProcessRoleIdentifier _roleIdentifier;
-        private List<EndpointAddressTypeCode> _addressTypeFilter;
+        private List<EndpointAddressTypeCode> _addressTypeFilter; 
         private List<UddiId> _processDefinitions = new List<UddiId>();
         private ITimedCache<LookupKey, List<UddiLookupResponse>> _lookupCache = new TimedNullCache<LookupKey, List<UddiLookupResponse>>();
 

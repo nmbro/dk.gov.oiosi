@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -180,20 +181,36 @@ namespace dk.gov.oiosi.uddi {
             return inquiryResult;
         }
 
-        public List<UddiLookupResponse> Lookup(IIdentifier companyIdentifier, UddiId serviceUddiId, UddiId profileUddiId, string profileRoleIdentifier) {
-            if (companyIdentifier == null) throw new ArgumentNullException("companyIdentifier");
-            if (serviceUddiId == null) throw new ArgumentNullException("serviceUddiId");
-            if (profileUddiId == null) throw new ArgumentNullException("profileUddiId");
-            if (profileRoleIdentifier == null) throw new ArgumentNullException("profileRoleIdentifier");
+        public List<UddiLookupResponse> Lookup(UddiLookupParameters lookupParameters) {
+            if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
 
+            List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
+            var uddiLookupResponses = GetUddiResponses(lookupParameters);
+            foreach (var uddiLookupResponse in uddiLookupResponses) {
+                bool hasSupportedTransportProtocol = HasSupportedTransportProtocol(uddiLookupResponse, lookupParameters);
+                if (hasSupportedTransportProtocol) {
+                    supportedResponses.Add(uddiLookupResponse);
+                }
+            }
+
+            return supportedResponses;
+        }
+
+        private bool HasSupportedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
+            var address = uddiLookupResponse.EndpointAddress;
+            return lookupParameters.IncludedTransportProtocols.Contains(address.EndpointAddressTypeCode);
+        }
+
+        private List<UddiLookupResponse> GetUddiResponses(UddiLookupParameters lookupParameters) {
             List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
 
-            foreach (UddiService uddiService in GetUddiServices(companyIdentifier, serviceUddiId)) {
-                IEnumerable<UddiBinding> supportedBindings = uddiService.GetBindingsSupportingProfileAndRole(profileUddiId, profileRoleIdentifier);
+            var uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
+            foreach (UddiService uddiService in uddiServices) {
+                IEnumerable<UddiBinding> supportedBindings = uddiService.GetBindingsSupportingAnyProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
 
                 foreach (UddiBinding uddiBinding in supportedBindings) {
                     lookupResponses.Add(new UddiLookupResponse(
-                                            companyIdentifier,
+                                            lookupParameters.Identifier,
                                             uddiBinding.EndpointAddress,
                                             uddiService.ActivationDate,
                                             uddiService.ExpirationDate,
@@ -210,7 +227,7 @@ namespace dk.gov.oiosi.uddi {
             return lookupResponses;
         }
 
-        private List<UddiService> GetUddiServices(IIdentifier companyIdentifier, UddiId serviceUddiId) {
+        private List<UddiService> GetUddiServices(IIdentifier organizationIdentifier, UddiId serviceUddiId) {
             UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(_address);
 
@@ -227,12 +244,12 @@ namespace dk.gov.oiosi.uddi {
             keyedReference endpointKeyType = new keyedReference();
             endpointKeyType.tModelKey = "uddi:182a4a2b-3717-4283-b97c-55cc3b684dae";
             endpointKeyType.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/";
-            endpointKeyType.keyValue = companyIdentifier.KeyTypeValue;
+            endpointKeyType.keyValue = organizationIdentifier.KeyTypeValue;
             
             keyedReference endpointKey = new keyedReference();
             endpointKey.tModelKey = "uddi:e733684d-9f40-40ff-8807-1d80abc7c665";
             endpointKey.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKey/";
-            endpointKey.keyValue = companyIdentifier.GetAsString();
+            endpointKey.keyValue = organizationIdentifier.GetAsString();
 
             keyedReference[] categories = new[] {profileConformanceClaim, registrationConformanceClaim, endpointKeyType, endpointKey};
 

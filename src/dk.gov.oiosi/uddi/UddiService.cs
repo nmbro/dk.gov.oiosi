@@ -121,9 +121,9 @@ namespace dk.gov.oiosi.uddi
             return new Version(majorInt, minorInt, revisionInt);
         }
 
-        public IEnumerable<UddiBinding> GetBindingsSupportingProfileAndRole(UddiId profileUddiId, string roleIdentifier) {
+        public IEnumerable<UddiBinding> GetBindingsSupportingAnyProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
             foreach (UddiBinding binding in bindings) {
-                if (binding.SupportsProfile(profileUddiId, roleIdentifier)) {
+                if (binding.SupportsAnyProfileAndRole(profileUddiIds, roleIdentifier)) {
                     yield return binding;
                 }
             }

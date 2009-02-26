@@ -31,6 +31,7 @@
 
 using System;
 using System.Net.Mail;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.addressing {
     /// <summary>
@@ -38,6 +39,10 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class EndpointAddressSMTP : EndpointAddress {
         private MailAddress _endpointSmtp;
+
+        public override EndpointAddressTypeCode EndpointAddressTypeCode {
+            get { return EndpointAddressTypeCode.email; }
+        }
 
         /// <summary>
         /// Hide the default constructor

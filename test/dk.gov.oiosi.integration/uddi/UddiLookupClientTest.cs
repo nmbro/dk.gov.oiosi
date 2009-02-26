@@ -15,6 +15,24 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         private Uri uddiServerUri;
 
+        private readonly IIdentifier eanIdentifier = new IdentifierEan("5798009811578");
+        private readonly IIdentifier dunsIdentifier = new IdentifierDuns("1234567890");
+
+        private readonly UddiId nonExistingServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true);
+        private readonly UddiId orderServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);
+        private readonly UddiId invoiceServiceId = new UddiGuidId("uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47", true);
+
+        private readonly UddiId nonExistingProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c1111", true);
+        private readonly UddiId procurementOrdAdvBilSimProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true);
+        private readonly UddiId nesublProfilesProfile5 = new UddiGuidId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true);
+
+        private const string nonExistingRoleIdentifier = "NonExistingSellerParty";
+        private const string sellerPartyRoleIdentifier = "SellerParty";
+        private const string buyerPartyRoleIdentifier = "BuyerParty";
+
+        private List<EndpointAddressTypeCode> acceptHttpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.http };
+        private List<EndpointAddressTypeCode> acceptSmtpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.email };
+        
         [TestFixtureSetUp]
         public void SetupUddi() {
             ConfigurationUtil.SetupConfiguration();
@@ -24,7 +42,10 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookupExistingServiceMustReturnEndpoint() {
-            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddiWithDefaultValues();
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
+
+            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(1, lookupResponses.Count, "Exactly 1 endpoint expected.");
             
             var expectedEndpoint = "http://193.163.141.141/TestEndpoint/OiosiOmniEndpointA.svc";
@@ -34,7 +55,9 @@ namespace dk.gov.oiosi.test.integration.uddi {
         
         [Test]
         public void LookingUpExistingServiceMustReturnCertificateSubjectString() {
-            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddiWithDefaultValues();
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
+            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             
             Assert.Greater(lookupResponses.Count, 0);
 
@@ -45,59 +68,77 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpNonExistingServiceShouldReturnEmptyResponse() {
-            string eanIdentifier = "5798009811578";
-            string nonExistingServiceId = "uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111";
-            string procurementOrdAdvBilSimProfileUddiId = "uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69";
-            string sellerPartyRoleIdentifier = "SellerParty";
-
-            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(eanIdentifier, nonExistingServiceId, procurementOrdAdvBilSimProfileUddiId, sellerPartyRoleIdentifier);
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, nonExistingServiceId, profileIds, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
         [Test]
         public void LookingUpExistingServiceWithoutProfileMustReturnEmptyResponseList() {
-            string eanIdentifier = "5798009811578";
-            string orderServiceId = "uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a";
-            string nonExistingProfileUddiId = "uddi:88fbd6d5-6a25-4c08-91cc-5344c73c1111";
-            string sellerPartyRoleIdentifier = "SellerParty";
+            List<UddiId> profileIds = new List<UddiId>() { nonExistingProfileUddiId };
 
-            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(eanIdentifier, orderServiceId, nonExistingProfileUddiId, sellerPartyRoleIdentifier);
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
         [Test]
         public void LookingUpExistingServiceWithoutRoleMustReturnEmptyResponseList() {
-            string eanIdentifier = "5798009811578";
-            string orderServiceId = "uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a";
-            string procurementOrdAdvBilSimProfileUddiId = "uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69";
-            string nonExistingRoleIdentifier = "NonExistingSellerParty";
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
 
-            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(eanIdentifier, orderServiceId, procurementOrdAdvBilSimProfileUddiId, nonExistingRoleIdentifier);
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol, nonExistingRoleIdentifier);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
-        private List<UddiLookupResponse> GetEndpointsWithProfileFromUddiWithDefaultValues() {
-            string eanIdentifier = "5798009811578";
-            string orderServiceId = "uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a";
-            string procurementOrdAdvBilSimProfileUddiId = "uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69";
-            string sellerPartyRoleIdentifier = "SellerParty";
+        [Test]
+        public void LookingUpExistingServiceTwoProfilesBothExistingMustReturnResponse() {
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId, nesublProfilesProfile5 };
 
-            return GetEndpointsWithProfileFromUddi(eanIdentifier, orderServiceId, procurementOrdAdvBilSimProfileUddiId, sellerPartyRoleIdentifier);
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(1, lookupResponses.Count);
         }
 
-        private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(string identifierId, string serviceId, string profileId, string profileRoleIdentifier) {
+        [Test]
+        public void LookingUpExistingServiceTwoProfilesOneExistingMustReturnResponse() {
+            List<UddiId> profileIds = new List<UddiId> { nonExistingProfileUddiId, nesublProfilesProfile5 };
 
-            UddiId procurementOrdAdvBilSimProfileUddiId = new UddiGuidId(profileId, true);
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(1, lookupResponses.Count);
+        }
 
-            IIdentifier identifier = new IdentifierEan(identifierId);
-            UddiId existingServiceUddiId = IdentifierUtility.GetUddiIDFromString(serviceId);
+        [Test]
+        public void LookingUpExistingServiceWithDunsIdentifierShouldReturnResponse() {
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId };
 
+            var lookupParameters = new UddiLookupParameters(dunsIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(1, lookupResponses.Count);
+        }
+
+        [Test]
+        public void LookingUpHttpOnlyServiceWithAcceptedProtocolTypeSetToSmtpShouldReturnEmptyResponse() {
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId };
+
+            var lookupParameters = new UddiLookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptSmtpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(0, lookupResponses.Count);
+        }
+
+        # region Helper methods
+
+        private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(UddiLookupParameters lookupParameters) {
             UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri);
-            return lookupClient.Lookup(identifier, existingServiceUddiId, procurementOrdAdvBilSimProfileUddiId, profileRoleIdentifier);
+            return lookupClient.Lookup(lookupParameters);
         }
 
+        # endregion
 
-//        [Test]
+        //        [Test]
 //        public void LookingUpNonexistingServiceShouldReturnEmptyResponse()
 //        {
 //            ConfigurationUtil.SetupConfiguration();

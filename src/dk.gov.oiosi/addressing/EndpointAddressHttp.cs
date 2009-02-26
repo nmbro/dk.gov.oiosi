@@ -30,6 +30,7 @@
   */
 
 using System;
+using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.addressing {
 
@@ -38,6 +39,10 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public class EndpointAddressHttp : EndpointAddress{
         private Uri _endpointUrl;
+
+        public override EndpointAddressTypeCode EndpointAddressTypeCode {
+            get { return EndpointAddressTypeCode.http; }
+        }
 
         /// <summary>
         /// Hide the default constructor

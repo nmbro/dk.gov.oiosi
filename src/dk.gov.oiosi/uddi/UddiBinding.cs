@@ -91,25 +91,42 @@ namespace dk.gov.oiosi.uddi
             return procKeyref != null;
         }
 
-        internal bool SupportsProfile(UddiId profileUddiId, string roleIdentifier) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="profileUddiIds">A list of profiles of which only one needs to be found in order for the binding to support the profiles</param>
+        /// <param name="roleIdentifier">If set to null non role check is performed and all roles are accepted.</param>
+        /// <returns></returns>
+        internal bool SupportsAnyProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
             foreach (tModel tModelItem in GetTModelProfiles()) {
                 keyedReference profileCategory = UddiCategory.GetOptionalCategoryByIdentifier(tModelItem.categoryBag, businessProcessDefinitionReferenceId);
                 keyedReference roleCategory = UddiCategory.GetOptionalCategoryByIdentifier(tModelItem.identifierBag, businessProcessRoleIdentifierId);
-                bool hasProfileAndRole = HasProfileAndRole(profileCategory, roleCategory, profileUddiId, roleIdentifier);
+                bool hasProfileAndRole = HasAnyProfileAndRole(profileCategory, roleCategory, profileUddiIds, roleIdentifier);
                 if (hasProfileAndRole) return true;
             }
 
             return false;
         }
 
-        private bool HasProfileAndRole(keyedReference profileCategory, keyedReference roleCategory, UddiId profileUddiId, string roleIdentifier) {
+        private bool HasAnyProfileAndRole(keyedReference profileCategory, keyedReference roleCategory, List<UddiId> profileUddiIds, string roleIdentifier) {
             if (profileCategory == null) return false;
             if (roleCategory == null) return false;
 
-            bool hasProfile = profileCategory.keyValue.Equals(profileUddiId.ID, StringComparison.CurrentCultureIgnoreCase);
-            bool hasRole = roleCategory.keyValue.ToLower() == roleIdentifier.ToLower();
-            if (hasProfile && hasRole) return true;
+            bool hasProfile = false;
+            foreach (UddiId profileUddiId in profileUddiIds) {
+                hasProfile = profileCategory.keyValue.Equals(profileUddiId.ID, StringComparison.CurrentCultureIgnoreCase);
+                if (hasProfile) break;
+            }
 
+            bool hasRole;
+            if (roleIdentifier == null) {
+                hasRole = true;
+            }
+            else {
+                hasRole = roleCategory.keyValue.ToLower() == roleIdentifier.ToLower();
+            }
+            
+            if (hasProfile && hasRole) return true;
             return false;
         }
 
