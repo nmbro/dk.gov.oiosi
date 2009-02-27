@@ -95,8 +95,8 @@ namespace dk.gov.oiosi.uddi {
             List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
             var uddiLookupResponses = GetUddiResponses(lookupParameters);
             foreach (var uddiLookupResponse in uddiLookupResponses) {
-                bool hasSupportedTransportProtocol = HasSupportedTransportProtocol(uddiLookupResponse, lookupParameters);
-                if (hasSupportedTransportProtocol) {
+                bool hasAcceptedTransportProtocol = HasAcceptedTransportProtocol(uddiLookupResponse, lookupParameters);
+                if (hasAcceptedTransportProtocol) {
                     supportedResponses.Add(uddiLookupResponse);
                 }
             }
@@ -189,7 +189,7 @@ namespace dk.gov.oiosi.uddi {
             return inquiryResult;
         }
 
-        private bool HasSupportedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
+        private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
             return lookupParameters.AcceptedTransportProtocols.Contains(address.EndpointAddressTypeCode);
         }
