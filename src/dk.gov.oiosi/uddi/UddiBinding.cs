@@ -32,7 +32,7 @@ namespace dk.gov.oiosi.uddi
             get { return GetEndpointAddress(); }
         }
 
-        public List<UddiProcessInformation> Processes {
+        public List<ProcessRoleDefinition> Processes {
             get { return GetProcesses(); }
         }
 
@@ -42,8 +42,8 @@ namespace dk.gov.oiosi.uddi
             return IdentifierUtility.GetEndpointAddressFromString(accessPointItem.Value);
         }
 
-        private List<UddiProcessInformation> GetProcesses() {
-            List<UddiProcessInformation> processes = new List<UddiProcessInformation>();
+        private List<ProcessRoleDefinition> GetProcesses() {
+            List<ProcessRoleDefinition> processes = new List<ProcessRoleDefinition>();
             foreach (tModel model in tModels)
             {
                 if (!IsProfile(model)) continue;
@@ -62,8 +62,8 @@ namespace dk.gov.oiosi.uddi
                 {
                     processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(processDefinitionReference.keyValue);
                 }
-                UddiProcessInformation information = new UddiProcessInformation(name, description, role, roleType, processDefinitionReferenceId);
-                processes.Add(information);
+                ProcessRoleDefinition roleDefinition = new ProcessRoleDefinition(name, description, role, roleType, processDefinitionReferenceId);
+                processes.Add(roleDefinition);
             }
 
             return processes;

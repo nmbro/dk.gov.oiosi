@@ -358,8 +358,8 @@
     <Compile Include="uddi\UddiLookupException.cs" />
     <Compile Include="uddi\LookupKey.cs" />
     <Compile Include="uddi\UddiLookupParameters.cs" />
-    <Compile Include="uddi\UddiProcessInformation.cs" />
-    <Compile Include="uddi\UddiProcessInformationFactory.cs" />
+    <Compile Include="uddi\ProcessRoleDefinition.cs" />
+    <Compile Include="uddi\ProcessRoleDefinitionFactory.cs" />
     <Compile Include="uddi\UddiService.cs" />
     <Compile Include="uddi\UddiStringId.cs" />
     <Compile Include="xml\documentType\MessageParameters.cs" />

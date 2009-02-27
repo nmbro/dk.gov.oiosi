@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.uddi {
         private EndpointAddress _endpointAddress;
         private System.Net.Mail.MailAddress _ServiceContactEmail;
         private Version _version;
-        private List<UddiProcessInformation> _processes = new List<UddiProcessInformation>();
+        private List<ProcessRoleDefinition> _processes = new List<ProcessRoleDefinition>();
 
         /// <summary>
         /// Default constructor
@@ -96,7 +96,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="version">Version of the endpoint</param>
         /// <param name="newerVersionReference">Possible reference to a newer version</param>
         /// <param name="processes">The processes supported by the endpoint</param>
-        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<UddiProcessInformation> processes) {
+        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<ProcessRoleDefinition> processes) {
             _endpointIdentifierActual = endpointIdentifierActual;
             _endpointAddress = endpointAddress;
             _activationDate = activationDate;
@@ -193,7 +193,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Gets a i enumerable over the processes in the response
         /// </summary>
-        public IEnumerable<UddiProcessInformation> Processes {
+        public IEnumerable<ProcessRoleDefinition> Processes {
             get { return _processes; }
         }
     }

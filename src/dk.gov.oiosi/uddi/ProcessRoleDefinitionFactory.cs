@@ -6,11 +6,11 @@ using dk.gov.oiosi.uddi.TModels;
 namespace dk.gov.oiosi.uddi {
 
     /// <summary>
-    /// Factory to create UddiProcessInformation.
+    /// Factory to create ProcessRoleDefinition.
     /// </summary>
-    public class UddiProcessInformationFactory {
+    public class ProcessRoleDefinitionFactory {
         /// <summary>
-        /// Attempts to parse a TModel into a UddiProcessInformation.
+        /// Attempts to parse a TModel into a ProcessRoleDefinition.
         /// 
         /// If the tmodel is of the correct type then the result parameter will be the 
         /// uddi process information and it will return true.
@@ -24,7 +24,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="tmodel">The tmodel to get the values from</param>
         /// <param name="result">The resulting uddi process information</param>
         /// <returns>Whether the tmodel was of the correct type</returns>
-        public bool TryParseTModel(TModel tmodel, out UddiProcessInformation result) {
+        public bool TryParseTModel(TModel tmodel, out ProcessRoleDefinition result) {
             const string businessProcessDefinitionCategoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessDefinitionReference/";
             const string businessProcessRoleTypeCategoryName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/businessProcessRoleIdentifierType/";
             const string businessProcessRoleName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/businessProcessRoleIdentifier/";
@@ -52,7 +52,7 @@ namespace dk.gov.oiosi.uddi {
             if (businessProcessRole == null) throw new IdentifierMissingException(businessProcessRoleName);
             string role = businessProcessRole.KeyValue;
 
-            result = new UddiProcessInformation(name, description, role, roleType, processDefinitionId);
+            result = new ProcessRoleDefinition(name, description, role, roleType, processDefinitionId);
             return true;
         }
     }

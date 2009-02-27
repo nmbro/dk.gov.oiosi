@@ -38,18 +38,17 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
-        public void LookingUpExistingServiceMustReturnEndpoint() {
+        public void LookingUpExistingServiceMustReturnResponseWithValidProperties() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             var lookupParameters = new UddiLookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
 
             List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(1, lookupResponses.Count, "Exactly 1 endpoint expected.");
-            
-            var expectedEndpoint = "http://193.163.141.141/TestEndpoint/OiosiOmniEndpointA.svc";
-            var actualEndpoint = lookupResponses[0].EndpointAddress.GetAsUri().AbsoluteUri;
-            Assert.AreEqual(expectedEndpoint, actualEndpoint);
+
+            var response = lookupResponses[0];
+            AssertReponsePropertiesAreSetCorrectly(response);
         }
-        
+
         [Test]
         public void LookingUpExistingServiceMustReturnCertificateSubjectString() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
@@ -143,6 +142,39 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         # region Helper methods
+
+        private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {
+            var expectedActivationDate = new DateTime(2008, 1, 19, 16, 0, 42);
+            Assert.AreEqual(expectedActivationDate, response.ActivationDate);
+
+            var expectedEndpoint = "http://193.163.141.141/TestEndpoint/OiosiOmniEndpointA.svc";
+            Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
+
+            var expectedIdentifierActual = "5798009811578";
+            Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
+
+            var expectedExpirationDate = new DateTime(2018, 01, 21, 16, 0, 42);
+            Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
+
+            Assert.AreEqual(false, response.HasNewerVersion);
+
+            // TODO: This property is not present on any of the services in uddi and has not been tested
+            Assert.AreEqual(null, response.NewerVersionReference);
+
+            foreach (var processRoleDefinition in response.Processes) {
+                Assert.AreEqual("Procurement-OrdAdv-BilSim-1.0 SellerParty", processRoleDefinition.Name);
+                break;
+            }
+
+            // TODO: This property is not present on any of the services in uddi and has not been tested
+            Assert.AreEqual(null, response.ServiceContactEmail);
+
+            // TODO: This property is not present on any of the services in uddi and has not been tested
+            Assert.AreEqual(null, response.TermsOfUseUrl);
+
+            var expectedVersion = new Version(1, 0, 0);
+            Assert.AreEqual(expectedVersion, response.Version);
+        }
 
         private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(UddiLookupParameters lookupParameters) {
             UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri);

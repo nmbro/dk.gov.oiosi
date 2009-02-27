@@ -3,12 +3,9 @@
 namespace dk.gov.oiosi.uddi {
 
     /// <summary>
-    /// Represents the process information in the UDDI structure.
-    /// 
-    /// Note that the process information is depricated and is now called the 
-    /// process role definition.
+    /// Represents the process role definition in the UDDI structure.
     /// </summary>
-    public class UddiProcessInformation {
+    public class ProcessRoleDefinition {
         private string _name;
         private string _description;
         private string _role;
@@ -27,7 +24,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="role">Role of the process information</param>
         /// <param name="roleType">Role type of the process information</param>
         /// <param name="processDefinitionId">Identifier of the process information</param>
-        public UddiProcessInformation(string name, string description, string role, string roleType, UddiId processDefinitionId) {
+        public ProcessRoleDefinition(string name, string description, string role, string roleType, UddiId processDefinitionId) {
             if (string.IsNullOrEmpty(name)) throw new NullOrEmptyArgumentException("name");
             if (description == null) throw new NullArgumentException("description");
             if (role == null) throw new NullArgumentException("role");

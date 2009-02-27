@@ -51,6 +51,7 @@ namespace dk.gov.oiosi.uddi {
             Init();
         }
 
+/*
         /// <summary>
         /// Constructor
         /// </summary>
@@ -59,6 +60,7 @@ namespace dk.gov.oiosi.uddi {
             _configuration = configuration;
             Init();
         }
+*/
 
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
@@ -84,6 +86,9 @@ namespace dk.gov.oiosi.uddi {
             }
         }
 
+        /// <summary>
+        /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
+        /// </summary>
         public List<UddiLookupResponse> Lookup(UddiLookupParameters lookupParameters) {
             if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
 

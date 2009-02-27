@@ -265,7 +265,7 @@ namespace dk.gov.oiosi.uddi {
             // Make a new UddiLookupResponse
             CertificateSubject certificateSubject = new CertificateSubject(cert);
 
-            List<UddiProcessInformation> processes = new List<UddiProcessInformation>();
+            List<ProcessRoleDefinition> processes = new List<ProcessRoleDefinition>();
             foreach (TModel model in tmodels) {
                 if (!IsTModelProcessInstance(model, parameters)) continue;
                 string name = model.Name.Text;
@@ -281,8 +281,8 @@ namespace dk.gov.oiosi.uddi {
                 if (processDefinitionReference != null) {
                     processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(processDefinitionReference.KeyValue);
                 }
-                UddiProcessInformation information = new UddiProcessInformation(name, description, role, roleType, processDefinitionReferenceId);
-                processes.Add(information);
+                ProcessRoleDefinition roleDefinition = new ProcessRoleDefinition(name, description, role, roleType, processDefinitionReferenceId);
+                processes.Add(roleDefinition);
             }
 
             UddiLookupResponse resp = new UddiLookupResponse(endpointKey, endpointAddress, activationUTC, expirationUTC, certificateSubject, termsOfUse, contactMail, version, newerVersion, processes);
