@@ -34,15 +34,17 @@ using System.Xml;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.xml.xpath;
 
-namespace dk.gov.oiosi.common {
-    
+namespace dk.gov.oiosi.common
+{
+
     /// <summary>
     /// Utilities that can be used for 
     /// </summary>
-    public class Utilities {
+    public class Utilities
+    {
         /// <summary>
         /// Converts the number of milliseconds a TimeSpan into an Int32. In case the number is too large to be represented by an Int32, Int32.MaxValue is returned
         /// </summary>
@@ -97,8 +99,7 @@ namespace dk.gov.oiosi.common {
                 reader.Close();
                 msg = bufferCopy.CreateMessage();
                 bufferCopy.Close();
-            }
-            else {
+            } else {
                 XmlDictionaryReader reader = msg.GetReaderAtBodyContents();
                 messageXml.Load(reader);
                 reader.Close();
@@ -112,8 +113,8 @@ namespace dk.gov.oiosi.common {
         /// </summary>
         /// <param name="msg">The WCF message</param>
         /// <returns>The body of the Message as an XmlDocument</returns>
-        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg) { 
-            return GetMessageBodyAsXmlDocument(msg, true); 
+        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg) {
+            return GetMessageBodyAsXmlDocument(msg, true);
         }
 
 
@@ -162,8 +163,7 @@ namespace dk.gov.oiosi.common {
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
-        {
+        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType) {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
             KeyTypeMappingExpression mappingExpression = endpointType.SenderKey.GetMappingExpression("EndpointKeyType");
@@ -179,8 +179,7 @@ namespace dk.gov.oiosi.common {
         }
 
         private static EndpointKeyTypeCode ParseKeyTypeCode(string code) {
-            switch (code)
-            {
+            switch (code) {
                 case "cvr":
                     return EndpointKeyTypeCode.cvr;
                 case "ean":

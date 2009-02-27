@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.uddi {
     public class UddiLookupParameters {

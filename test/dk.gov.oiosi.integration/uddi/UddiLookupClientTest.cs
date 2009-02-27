@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
 using NUnit.Framework;
 
 namespace dk.gov.oiosi.test.integration.uddi {
@@ -12,6 +11,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
     public class UddiLookupClientTest {
 
         private Uri uddiServerUri;
+        private string clientEndpointName = "OiosiClientEndpointInquiry";
 
         private readonly IIdentifier eanIdentifier = new IdentifierEan("5798009811578");
         private readonly IIdentifier dunsIdentifier = new IdentifierDuns("1234567890");
@@ -177,7 +177,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(UddiLookupParameters lookupParameters) {
-            UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri);
+            UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri, clientEndpointName);
             return lookupClient.Lookup(lookupParameters);
         }
 

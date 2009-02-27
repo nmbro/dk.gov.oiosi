@@ -9,8 +9,7 @@ namespace dk.gov.oiosi.uddi
     /// Representation of a service lookup registry (often, but not necessarily, a UDDI registry)
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class 
-        Registry
+    public class Registry
     {
         private List<string> _endpoints;
 

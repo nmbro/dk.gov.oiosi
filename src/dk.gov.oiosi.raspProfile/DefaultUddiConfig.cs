@@ -34,7 +34,6 @@ using System.Text;
 
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.raspProfile {
 
@@ -92,8 +91,6 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void SetDefaultUddiConfig() {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            uddiConfig.LookupReturnOptions = LookupReturnOptionEnum.noMoreThanOneSetOrFail;
-            uddiConfig.RegistrationConformanceClaim = new RegistrationConformanceClaim().DefaultCategoryValue;
             uddiConfig.TryOtherHostsOnFailure = true;
             uddiConfig.PublishEndpoint = "https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc";
             uddiConfig.PublishInquiryEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry";                                                 

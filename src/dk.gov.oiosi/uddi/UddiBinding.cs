@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.common;
-using dk.gov.oiosi.uddi.identifier;
 
 namespace dk.gov.oiosi.uddi
 {
@@ -39,6 +37,7 @@ namespace dk.gov.oiosi.uddi
         private EndpointAddress GetEndpointAddress() {
             accessPoint accessPointItem = template.Item as accessPoint;
             if (accessPointItem == null) throw new Exception("accessPoint type expected");
+            // TODO: Can this be done smarter?
             return IdentifierUtility.GetEndpointAddressFromString(accessPointItem.Value);
         }
 

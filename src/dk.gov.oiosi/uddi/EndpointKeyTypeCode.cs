@@ -28,46 +28,55 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-
-using System;
-using dk.gov.oiosi.exception;
-
 namespace dk.gov.oiosi.uddi {
-    
     /// <summary>
-    /// Represents a non-guid UDDI ID (i.e. uddi v.3 ID's apart from ID's of the format
-    /// 'uddi:d01987d1-ab2e-3013-9be2-2a66eb99d824').
+    /// List of endpoint key types
     /// </summary>
-    public class UddiNonGuidId : UddiId {
+    public enum EndpointKeyTypeCode {
 
         /// <summary>
-        /// The UDDI 3.0 format key
+        /// ean number
         /// </summary>
-        protected string pId;
+        ean,
+        
+        /// <summary>
+        /// ovt number
+        /// </summary>
+        ovt,
+        
+        /// <summary>
+        /// cvr number
+        /// </summary>
+        cvr,
 
         /// <summary>
-        /// Constructor
+        /// p number
         /// </summary>
-        /// <param name="id">guid</param>
-        public UddiNonGuidId(string id) {
-            if (String.IsNullOrEmpty(id)) throw new NullOrEmptyArgumentException("id");
-            pId = id;
-        }
+        p,
 
         /// <summary>
-        /// Gets the guid
+        /// se number
         /// </summary>
-        public override string ID {
-            get { return pId; }
-        }
+        se,
 
         /// <summary>
-        /// Gets guid as string
+        /// vans number
         /// </summary>
-        /// <returns></returns>
-        public override string ToString() {
-            return ID;
-        }
+        vans,
 
+        /// <summary>
+        /// iban number
+        /// </summary>
+        iban,
+
+        /// <summary>
+        /// duns number
+        /// </summary>
+        duns,
+        
+        /// <summary>
+        /// other
+        /// </summary>
+        other
     }
 }

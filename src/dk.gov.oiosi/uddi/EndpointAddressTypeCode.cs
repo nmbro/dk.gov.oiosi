@@ -28,18 +28,34 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-namespace dk.gov.oiosi.common.validation {
+namespace dk.gov.oiosi.uddi {
     /// <summary>
-    /// InvalidCertificateValueFailure
+    /// Enumeration of endpoint address type codes used in the context of UDDI.
     /// </summary>
-    public class InvalidCertificateValueFailure : MainFailure {
+    public enum EndpointAddressTypeCode {
         /// <summary>
-        /// The failure message
+        /// Represents an http endpoint address type
         /// </summary>
-        /// <param name="CertificateSubject">Certificate subject</param>
-        /// <returns>Returns the failure message</returns>
-        public static string Message(string CertificateSubject) {
-            return GetReplacedMessage("CertificateSubject", CertificateSubject, typeof(InvalidCertificateValueFailure));
-        }
+        http,
+
+        /// <summary>
+        /// Represents an https endpoint address type
+        /// </summary>
+        https,
+
+        /// <summary>
+        /// Represents an email endpoint address type
+        /// </summary>
+        email,
+
+        /// <summary>
+        /// Represents an ftp endpoint address type
+        /// </summary>
+        ftp,
+
+        /// <summary>
+        /// Represents other endpoint address type
+        /// </summary>
+        other
     }
 }

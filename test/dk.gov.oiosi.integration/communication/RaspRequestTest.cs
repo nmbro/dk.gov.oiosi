@@ -15,7 +15,6 @@ using dk.gov.oiosi.security.ldap;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.xpath;
 using NUnit.Framework;
@@ -103,7 +102,7 @@ namespace dk.gov.oiosi.test.integration.communication {
             return endpointOcesCertificate;
         }
 
-        private MessageParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
+        private UddiLookupParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
             EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
 
             IIdentifier endpointKey = Utilities.GetEndpointKeyByXpath(
@@ -119,16 +118,13 @@ namespace dk.gov.oiosi.test.integration.communication {
             UddiId serviceContractTModel;
             serviceContractTModel = IdentifierUtility.GetUddiIDFromString(docTypeConfig.ServiceContractTModel);
 
-            var endpointKeytype = new EndpointKeytype(endpointKeyTypeCode);
-            var msgParams = new MessageParameters(
+            UddiLookupParameters uddiLookupParameters = new UddiLookupParameters(
                 endpointKey,
-                endpointKeytype,
                 serviceContractTModel,
-                profileTModelId,
-                null,
-                null);
+                new List<UddiId>() {profileTModelId},
+                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
 
-            return msgParams;
+            return uddiLookupParameters;
         }
 
         private UddiId GetProfileTModelId(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
@@ -157,26 +153,10 @@ namespace dk.gov.oiosi.test.integration.communication {
         /// Performs a lookup in the UDDI and validates the response.
         /// </summary>
         /// <returns>Returns the UDDI response</returns>
-        private UddiLookupResponse PerformUddiLookup(MessageParameters messageParameters) {
-
-            var profiles = new List<UddiId>();
-            if (messageParameters.ProcessTModel != null) profiles.Add(messageParameters.ProcessTModel);
-
-            var lookupParameters = new LookupParameters(
-                messageParameters.EndpointKey,
-                messageParameters.EndpointKeyType,
-                null,
-                PreferredEndpointType.http,
-                LookupReturnOption.noMoreThanOneSetOrFail,
-                messageParameters.ServiceContractTModel,
-                messageParameters.RoleIdentifierType,
-                messageParameters.RoleIdentifier,
-                profiles,
-                new TimedCache<LookupKey, List<UddiLookupResponse>>(new TimeSpan(1)));
-
+        private UddiLookupResponse PerformUddiLookup(UddiLookupParameters uddiLookupParameters) {
             var uddiClientFactory = new RegistryLookupClientFactory();
             var uddiClient = uddiClientFactory.CreateUddiLookupClient();
-            var uddiResponses = uddiClient.Lookup(lookupParameters);
+            var uddiResponses = uddiClient.Lookup(uddiLookupParameters);
             var selectedUddiResponse = uddiResponses[0];
             return selectedUddiResponse;
         }

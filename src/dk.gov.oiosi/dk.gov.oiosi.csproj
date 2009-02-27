@@ -71,10 +71,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="dk.gov.oiosi.uddi, Version=1.0.3244.20990, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\dk.gov.oiosi.uddi.dll</HintPath>
-    </Reference>
     <Reference Include="Novell.Directory.Ldap, Version=2.1.10.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Novell.Directory.Ldap.dll</HintPath>
@@ -118,14 +114,7 @@
     <Compile Include="common\ExternalCodeFactory.cs" />
     <Compile Include="common\ExternalCodeFactoryAppConfiguration.cs" />
     <Compile Include="common\IExternalCodeFactoryConfiguration.cs" />
-    <Compile Include="common\validation\InvalidOvtFailure.cs" />
-    <Compile Include="common\validation\OvtValidator.cs" />
-    <Compile Include="common\validation\InvalidCertificateValueFailure.cs" />
-    <Compile Include="common\validation\InvalidVersionFailure.cs" />
-    <Compile Include="common\validation\MainFailure.cs" />
-    <Compile Include="common\validation\VersionValidator.cs" />
-    <Compile Include="common\validation\InvalidEanFailure.cs" />
-    <Compile Include="common\validation\EanValidator.cs" />
+    <Compile Include="common\UnknownEndpointTypeException.cs" />
     <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromIdException.cs" />
     <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromParametersException.cs" />
     <Compile Include="communication\configuration\ProfileMapping.cs">
@@ -211,158 +200,23 @@
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\RootCertificateConfig.cs" />
-    <Compile Include="uddi\ars\ArsBinding.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBindingSet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBindingSetUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBindingType.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBindingUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBusinessEntity.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBusinessEntityUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBusinessProcessDefinition.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsBusinessProcessDefinitionUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsDefaultInstances.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsEndpoint.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsEndpointSet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsEndpointSetUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsEndpointUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsLookup.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsLookupExtended.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsLookupUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsProcessInstance.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsProcessInstanceSet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsProcessInstanceSetUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsProcessInstanceUnexpectedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsValidator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ArsValidatorFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\BindingRegistrationReferenceSet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\CreateArsEndpointFailedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\DeleteEntityException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\ErrorMessages.Designer.cs">
-      <DependentUpon>ErrorMessages.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="uddi\ars\IArsValidator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\LookupTModelComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\LookupTModelComboBox.Designer.cs">
-      <DependentUpon>LookupTModelComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="uddi\ars\MissingEndpointBindingFailure.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\MissingServiceDefinitionBindingFailure.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\OasisBindingRegistration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\OasisBindingRegistrationReference.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\OasisPortTypeRegistration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\OasisPortTypeRegistrationReference.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\OasisServiceSingleBindingRegistration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\PortTypeRegistrationReferenceSet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\RegistrationEntity.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\SaveArsEndpointFailedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\ars\UpdateArsEndpointFailedException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="uddi\CategoryMissingException.cs" />
-    <Compile Include="uddi\category\EndpointActivationDate.cs" />
-    <Compile Include="uddi\category\UnknownEndpointTypeException.cs" />
-    <Compile Include="uddi\LookupReturnOption.cs" />
+    <Compile Include="uddi\EndpointAddressTypeCode.cs" />
+    <Compile Include="uddi\EndpointKeyTypeCode.cs" />
+    <Compile Include="uddi\FindQualifiers.cs" />
     <Compile Include="uddi\RegistryLookupClientFactory.cs" />
     <Compile Include="uddi\RegistryLookupClientFactoryConfig.cs" />
-    <Compile Include="uddi\IdentifierMissingException.cs" />
-    <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
-    <Compile Include="uddi\LookupReturnOptionEnum.cs" />
-    <Compile Include="uddi\PreferredEndpointType.cs" />
     <Compile Include="uddi\Registry.cs" />
     <Compile Include="uddi\LookupRegistryFallbackConfig.cs" />
     <Compile Include="uddi\RegistryLookupClient.cs" />
+    <Compile Include="uddi\UddiProxy.cs" />
     <Compile Include="uddi\UddiBinding.cs" />
     <Compile Include="uddi\UddiCategory.cs" />
+    <Compile Include="uddi\UddiConfig.cs" />
     <Compile Include="uddi\UddiFallbackClient.cs" />
-    <Compile Include="uddi\UddiLookupException.cs" />
-    <Compile Include="uddi\LookupKey.cs" />
     <Compile Include="uddi\UddiLookupParameters.cs" />
     <Compile Include="uddi\ProcessRoleDefinition.cs" />
-    <Compile Include="uddi\ProcessRoleDefinitionFactory.cs" />
     <Compile Include="uddi\UddiService.cs" />
     <Compile Include="uddi\UddiStringId.cs" />
-    <Compile Include="xml\documentType\MessageParameters.cs" />
     <Compile Include="communication\CurrentServiceHostSearchFailedException.cs" />
     <Compile Include="addressing\IncorrectBusinessIdentifierException.cs" />
     <Compile Include="addressing\IncorrectCountryCodeException.cs" />
@@ -418,7 +272,6 @@
     <Compile Include="security\revocation\RevocationNoImplementingAssemblyException.cs" />
     <Compile Include="security\revocation\RevocationNoImplementingClassException.cs" />
     <Compile Include="common\cache\TimedCache.cs" />
-    <Compile Include="uddi\category\BusinessProcessDefinitionReference.cs" />
     <Compile Include="uddi\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -426,12 +279,9 @@
     </Compile>
     <Compile Include="uddi\UddiNoImplementingClassException.cs" />
     <Compile Include="uddi\UddiNoImplementingAssemblyException.cs" />
-    <Compile Include="uddi\UddiTwoEqualEndpointsException.cs" />
     <Compile Include="uddi\UddiEmptyGuidException.cs" />
     <Compile Include="uddi\UddiException.cs" />
-    <Compile Include="uddi\UddiMoreThanOneEndpointException.cs" />
     <Compile Include="uddi\UddiWrongGuidFormatException.cs" />
-    <Compile Include="common\UnknownEndpointTypeException.cs" />
     <Compile Include="communication\MissingCredentialsException.cs" />
     <Compile Include="xml\documentType\AmbiguousDocumentTypeFoundFromXmlDocumentException.cs" />
     <Compile Include="xml\documentType\NoDocumentTypeFoundFromXmlDocumentException.cs" />
@@ -439,9 +289,6 @@
     <Compile Include="security\CertificateConfig.cs" />
     <Compile Include="security\lookup\CertificateLoader.cs" />
     <Compile Include="security\ldap\FailedToLoadLookupTypeException.cs" />
-    <Compile Include="uddi\category\BusinessProcessIdentifierTypeCode.cs" />
-    <Compile Include="uddi\category\BusinessProcessRoleIdentifierTypeCode.cs" />
-    <Compile Include="uddi\category\OrganizationKeyTypeCode.cs" />
     <Compile Include="security\ldap\LdapCertificateLookupTest.cs" />
     <Compile Include="security\ldap\LdapCertificateLookupTestConfig.cs" />
     <Compile Include="security\ldap\LdapLookupFactory.cs" />
@@ -486,18 +333,7 @@
     <Compile Include="security\revocation\RevocationLookupFactoryConfig.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTestConfig.cs" />
     <Compile Include="common\Utilities.cs" />
-    <Compile Include="uddi\category\AuthenticationRequiredCode.cs" />
-    <Compile Include="uddi\category\ConformanceClaimCode.cs" />
-    <Compile Include="uddi\category\RegistrationConformanceClaimCode.cs" />
-    <Compile Include="uddi\category\UddiOrgTypesCode.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlCategorizationProtocol.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlCategorizationProtocolCode.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlCategorizationTransport.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlCategorizationTransportCode.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlPortTypeReference.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlTypeCode.cs" />
     <Compile Include="common\IdentifierUtility.cs" />
-    <Compile Include="uddi\UddiConfig.cs" />
     <Compile Include="uddi\UddiLookupClientFactory.cs" />
     <Compile Include="uddi\UddiLookupClientFactoryConfig.cs" />
     <Compile Include="uddi\UddiLookupClientTestConfig.cs" />
@@ -528,40 +364,8 @@
     <Compile Include="xml\schematron\SchematronValidationFailedException.cs" />
     <Compile Include="xml\schematron\SchematronValidator.cs" />
     <Compile Include="xml\schema\SchemaValidationFailedException.cs" />
-    <Compile Include="uddi\category\ArsCategory.cs" />
-    <Compile Include="uddi\category\AuthenticationRequired.cs" />
-    <Compile Include="uddi\category\BusinessProcessIdentifierType.cs" />
-    <Compile Include="uddi\category\BusinessProcessRoleIdentifierType.cs" />
-    <Compile Include="uddi\category\ConformanceClaim.cs" />
-    <Compile Include="uddi\category\EndpointAddressType.cs" />
-    <Compile Include="uddi\category\EndpointAddressTypeCode.cs" />
-    <Compile Include="uddi\category\EndpointCertificate.cs" />
-    <Compile Include="uddi\category\EndpointContactEmail.cs" />
-    <Compile Include="uddi\category\EndpointExpirationDate.cs" />
-    <Compile Include="uddi\category\ArsEndpointKey.cs" />
-    <Compile Include="uddi\category\EndpointKeytype.cs" />
-    <Compile Include="uddi\category\EndpointKeyTypeCode.cs" />
-    <Compile Include="uddi\category\NewerVersionReference.cs" />
-    <Compile Include="uddi\category\OIOTaxonomy.cs" />
-    <Compile Include="uddi\category\OrganizationKeyType.cs" />
-    <Compile Include="uddi\category\RegistrationConformanceClaim.cs" />
-    <Compile Include="uddi\category\TermsOfUseUrl.cs" />
-    <Compile Include="uddi\category\UddiOrgTypes.cs" />
-    <Compile Include="uddi\category\UddiOrgWsdlTypes.cs" />
-    <Compile Include="uddi\category\UddiOrgXmlNamespace.cs" />
-    <Compile Include="uddi\category\VersionMajor.cs" />
-    <Compile Include="uddi\category\VersionMinor.cs" />
-    <Compile Include="uddi\category\VersionRevision.cs" />
-    <Compile Include="uddi\identifier\ArsIdentifier.cs" />
-    <Compile Include="uddi\identifier\BusinessProcessDocument.cs" />
-    <Compile Include="uddi\identifier\BusinessProcessRoleIdentifier.cs" />
-    <Compile Include="uddi\identifier\OrganizationKey.cs" />
-    <Compile Include="uddi\identifier\ServiceContactEmail.cs" />
-    <Compile Include="uddi\identifier\ServiceDocumentationUrl.cs" />
-    <Compile Include="uddi\IRegistrationEntity.cs" />
     <Compile Include="uddi\UddiGuidId.cs" />
     <Compile Include="uddi\UddiId.cs" />
-    <Compile Include="uddi\UddiNonGuidId.cs" />
     <Compile Include="xml\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -572,15 +376,6 @@
     <Compile Include="xml\XmlException.cs" />
     <Compile Include="xml\xpath\XPathSizeTooSmallException.cs" />
     <Compile Include="xml\xpath\DocumentXPathResolver.cs" />
-    <Compile Include="common\validation\InvalidIdentifierValueFailure.cs" />
-    <Compile Include="common\validation\CvrValidator.cs" />
-    <Compile Include="common\validation\ErrorMessages.Designer.cs">
-      <DependentUpon>ErrorMessages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="common\validation\InvalidCategoryValueFailure.cs" />
-    <Compile Include="common\validation\InvalidCvrFailure.cs" />
     <Compile Include="extension\wcf\Interceptor\BindingElementNotInStackException.cs" />
     <Compile Include="extension\wcf\Interceptor\BindingElementOrderChecker.cs" />
     <Compile Include="extension\wcf\Interceptor\BindingElementOrderMismatchException.cs" />
@@ -723,17 +518,12 @@
     <Compile Include="xml\schema\SchemaValidator.cs" />
     <Compile Include="xml\schema\SchemaValidationException.cs" />
     <Compile Include="xml\schema\UnexpectedNamespaceException.cs" />
-    <Compile Include="uddi\UddiLookupClientTest.cs" />
     <Compile Include="uddi\UddiLookupClient.cs" />
-    <Compile Include="uddi\UddiLookupClientPolicy.cs" />
     <Compile Include="uddi\UddiLookupConfigurationSection.cs" />
     <Compile Include="uddi\IUddiLookupClient.cs" />
     <Compile Include="addressing\EndpointAddress.cs" />
     <Compile Include="addressing\EndpointAddressSMTP.cs" />
     <Compile Include="addressing\EndpointAddressHttp.cs" />
-    <Compile Include="uddi\UddiEndpoint.cs" />
-    <Compile Include="uddi\UddiInquiry.cs" />
-    <Compile Include="uddi\LookupParameters.cs" />
     <Compile Include="uddi\UddiLookupResponse.cs" />
     <Compile Include="xml\xslt\XsltUtility.cs" />
     <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelBase.cs" />
@@ -819,15 +609,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="uddi\ars\ErrorMessages.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="uddi\ars\LookupTModelComboBox.resx">
-      <DependentUpon>LookupTModelComboBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="uddi\ErrorMessages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -845,11 +626,6 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="common\validation\ErrorMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="extension\wcf\EmailTransport\ErrorMessages.resx">
       <SubType>Designer</SubType>

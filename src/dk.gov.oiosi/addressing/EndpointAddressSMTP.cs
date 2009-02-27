@@ -31,7 +31,7 @@
 
 using System;
 using System.Net.Mail;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.addressing {
     /// <summary>

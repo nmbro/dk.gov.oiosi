@@ -5,11 +5,11 @@ using System.Xml;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
+using Interoptest;
 
 
-namespace Interoptest
-{
+namespace dk.gov.oiosi.test.nunit.interop {
     public class Utilities
     {
         #region Services
@@ -63,7 +63,7 @@ namespace Interoptest
             OiosiMessage m = new OiosiMessage(Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest"));
             XmlQualifiedName headerName = new XmlQualifiedName("MessageIdentifier", dk.gov.oiosi.common.Definitions.DefaultOiosiNamespace2007);
             m.MessageHeaders.Add(headerName, 
-                MessageHeader.CreateHeader(headerName.Name, headerName.Namespace, "1234567890"));
+                                 MessageHeader.CreateHeader(headerName.Name, headerName.Namespace, "1234567890"));
             m.UbiquitousProperties.Add(PartyIdentifierHeaderSettings.MessagePropertyKey, new PartyIdentifierHeaderSettings("1230000000001", EndpointKeyTypeCode.ean, "1230000000002", EndpointKeyTypeCode.ean));
             return m;
         }

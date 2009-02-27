@@ -28,12 +28,7 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
     

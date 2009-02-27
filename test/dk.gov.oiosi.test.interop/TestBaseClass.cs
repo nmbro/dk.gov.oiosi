@@ -6,7 +6,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.handlers.email;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
-
+using dk.gov.oiosi.test.nunit.interop;
 using NUnit.Framework;
 
 namespace Interoptest

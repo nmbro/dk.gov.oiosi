@@ -29,15 +29,12 @@
   *
   */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
-using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
     /// <summary>
@@ -135,10 +132,6 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
             return listener;
         }
 
-        public override bool CanBuildChannelFactory<TChannel>(BindingContext context) {
-            return base.CanBuildChannelFactory<TChannel>(context);
-        }
-
         public override bool DoesRequestIntercept {
             get { return true; }
         }
@@ -151,7 +144,7 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
             get { return false; }
         }
 
-        public override System.ServiceModel.Channels.BindingElement Clone() {
+        public override BindingElement Clone() {
             ClientPartyIdentifierHeaderBindingElement clone = new ClientPartyIdentifierHeaderBindingElement();
             clone._receiverPartyIdentifier = _receiverPartyIdentifier;
             clone._receiverPartyIdentifierHeaderName = _receiverPartyIdentifierHeaderName;

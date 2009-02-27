@@ -58,17 +58,17 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
         }
 
 
-        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
+        public List<UddiLookupResponse> Lookup(UddiLookupParameters parameters) {
 			if (ErroneousEndpoints.Contains(_address)){
 				Console.WriteLine("Dummy UDDI throwing on register " + _address);
-				throw new UddiLookupException(parameters.EndpointKey.GetAsString(), new Exception("Error error"));
+				throw new UddiException();
 			}
-			if (NonExistingRegistrations.ContainsKey(_address) && NonExistingRegistrations[_address].Contains(parameters.EndpointKey)){
+			if (NonExistingRegistrations.ContainsKey(_address) && NonExistingRegistrations[_address].Contains(parameters.Identifier)){
 				Console.WriteLine("Dummy UDDI returning empty from register " + _address);	
 				return new List<UddiLookupResponse>();
 			}
 
-			Console.WriteLine("Dummy UDDI returning " + parameters.EndpointKey.GetAsString() + " from " + _address);
+			Console.WriteLine("Dummy UDDI returning " + parameters.Identifier.GetAsString() + " from " + _address);
             UddiLookupResponse response = new UddiLookupResponse();
             response.EndpointAddress = new EndpointAddressHttp(_address);
 			return new List<UddiLookupResponse>{response};

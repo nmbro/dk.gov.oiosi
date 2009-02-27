@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using dk.gov.oiosi.test.nunit.interop;
 using NUnit.Framework;
 using dk.gov.oiosi.communication;
 

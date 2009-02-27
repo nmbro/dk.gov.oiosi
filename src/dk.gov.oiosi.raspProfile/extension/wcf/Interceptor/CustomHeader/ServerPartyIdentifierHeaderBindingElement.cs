@@ -28,15 +28,12 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 {
@@ -69,8 +66,6 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="senderPartyIdentifierHeaderName">The header name that </param>
-        /// <param name="receiverPartyIdentifierHeaderName"></param>
         public ServerPartyIdentifierHeaderBindingElement(ServerPartyIdentifierHeaderBindingExtensionElement config)
         {
             _senderPartyIdentifierHeaderName = new XmlQualifiedName(config.SenderPartyIdentifierHeaderName, config.Namespace);
@@ -139,11 +134,6 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
             return listener;
         }
 
-        public override bool CanBuildChannelFactory<TChannel>(BindingContext context)
-        {
-            return base.CanBuildChannelFactory<TChannel>(context);
-        }
-
         public override bool DoesRequestIntercept
         {
             get { return true; }
@@ -159,7 +149,7 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
             get { return false; }
         }
 
-        public override System.ServiceModel.Channels.BindingElement Clone()
+        public override BindingElement Clone()
         {
             ServerPartyIdentifierHeaderBindingElement clone = new ServerPartyIdentifierHeaderBindingElement();
             clone._receiverPartyIdentifier = _receiverPartyIdentifier;

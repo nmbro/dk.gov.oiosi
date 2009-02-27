@@ -31,14 +31,15 @@
 using System;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
 
-namespace dk.gov.oiosi.common {
-    
+namespace dk.gov.oiosi.common
+{
+
     /// <summary>
     /// Utilities for converting identifiers between strings and other types
     /// </summary>
-    public class IdentifierUtility {
+    public class IdentifierUtility
+    {
 
 
         /// <summary>
@@ -54,8 +55,7 @@ namespace dk.gov.oiosi.common {
                 if (UddiGuidId.IsValidGuidId(uddiIdentifier, true)) {
                     idObject = new UddiGuidId(uddiIdentifier, true);
                     return idObject;
-                }
-                else {
+                } else {
                     idObject = new UddiStringId(uddiIdentifier, true);
                     return idObject;
                 }
@@ -77,8 +77,8 @@ namespace dk.gov.oiosi.common {
         /// <param name="endpointKey">The endpoint key as string</param>
         /// <param name="endpointKeyType">The type of the key</param>
         /// <returns>Returns the relevant IIdentifier subclass</returns>
-        public static IIdentifier GetIdentifierFromKeyType (
-            string endpointKey, 
+        public static IIdentifier GetIdentifierFromKeyType(
+            string endpointKey,
             EndpointKeyTypeCode endpointKeyType
         ) {
             IIdentifier id;
@@ -108,7 +108,6 @@ namespace dk.gov.oiosi.common {
                     id = new IdentifierDuns(endpointKey);
                     break;
                 default:
-                    id = null;
                     throw new UnknownEndpointTypeException(endpointKeyType);
             }
 

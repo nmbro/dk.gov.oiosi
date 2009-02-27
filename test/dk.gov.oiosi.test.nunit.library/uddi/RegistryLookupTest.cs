@@ -34,8 +34,6 @@ using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
-using dk.gov.oiosi.uddi.identifier;
 using NUnit.Framework;
 using dk.gov.oiosi.common.cache;
 
@@ -86,7 +84,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
             Assert.AreEqual(firstFallback.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
-		[Test,ExpectedException(typeof(UddiLookupException))]
+		[Test,ExpectedException(typeof(UddiException))]
 		public void _03_TestFailureOnFirstRegistry() {
 			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
 			config.ErroneousEndpoints.Add(firstRegistry);
@@ -136,17 +134,11 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			Assert.IsEmpty(result);
         }
 
-        private LookupParameters CreateParams(IdentifierEan ean) {
-            return new LookupParameters(
-                ean, 
-                new EndpointKeytype(EndpointKeyTypeCode.ean),
-                null,
-                PreferredEndpointType.http,
-                LookupReturnOption.firstResult,
-                null,
-                new BusinessProcessRoleIdentifierType(),
-                new BusinessProcessRoleIdentifier(), new UddiId[0],
-                new TimedNullCache<LookupKey, List<UddiLookupResponse>>());
+        private UddiLookupParameters CreateParams(IdentifierEan ean) {
+            return new UddiLookupParameters(
+                ean,
+                new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true),
+                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
         }
 
         private AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig GetClearDummyConfig() {

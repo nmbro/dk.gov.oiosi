@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using dk.gov.oiosi.uddi;
 using NUnit.Framework;
 using System.Xml;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.test.nunit.library.common {

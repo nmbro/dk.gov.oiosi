@@ -31,7 +31,6 @@
 using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
-using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -39,51 +38,17 @@ namespace dk.gov.oiosi.uddi {
     /// Class for resolving endpoints on the UDDI-based Address Resolution Service (ARS).
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
-		private UddiConfig _configuration;
-    	private Uri _address;
+        
+        private UDDI_Inquiry_PortTypeClient _uddiProxy;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public UddiLookupClient(Uri address) {
-            _address = address;
-            _configuration = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            Init();
-        }
+        public UddiLookupClient(Uri address, string clientEndpointName) {
+            //UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
+            _uddiProxy = new UDDI_Inquiry_PortTypeClient(clientEndpointName);
+            _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
 
-/*
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public UddiLookupClient(Uri address, UddiConfig configuration) {
-            _address = address;
-            _configuration = configuration;
-            Init();
-        }
-*/
-
-        /// <summary>
-        /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
-        /// </summary>
-        /// <param name="parameters">The business level key of the endpoint, e.g. an EAN number
-        /// as well as options of the translation, i.e. address type filters</param>
-        /// <returns>Returns a collection of matching addresses</returns>
-        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
-            try {
-                // Check cache, if not found there, inquire UDDI
-                List<UddiLookupResponse> inquiryResult = CachedInquire(parameters);
-                // If inquiry result is null, return empty list
-                if (inquiryResult == null) return new List<UddiLookupResponse>();
-                //return filtered response
-                return FilterResponse(parameters, inquiryResult);
-            }
-            catch (Exception ex) {
-                string endpKey = "NULL";
-                if (parameters != null && parameters.EndpointKey != null) {
-                    endpKey = parameters.EndpointKey.GetAsString();
-                }
-                throw new UddiLookupException(endpKey, ex);
-            }
         }
 
         /// <summary>
@@ -103,91 +68,6 @@ namespace dk.gov.oiosi.uddi {
             return supportedResponses;
         }
 
-
-        /// <summary>
-        /// Sets up the low level communication stuff for the UDDI call
-        /// </summary>
-        private void Init() {
-            UddiConnection.DefaultConnection = new UddiConnection(
-                new UddiConnectionNetworkParams(
-                    _address.ToString(),
-                    null,
-                    _configuration.PublishEndpoint,
-                    _configuration.SecurityEndpoint,
-                    _configuration.FallbackTimeoutMinutes,
-                    false)
-            );
-        }
-
-        /// <summary>
-        /// Check cache, if not found there, inquire UDDI
-        /// </summary>
-        /// <param name="parameters">The business level key of the endpoint, e.g. an EAN number
-        /// as well as options of the translation, i.e. address type filters</param>
-        /// <returns>Returns a collection of matching results</returns>
-        private List<UddiLookupResponse> CachedInquire(LookupParameters parameters) {
-            List<UddiLookupResponse> inquiryResult;
-			UddiInquiry inquiry = new UddiInquiry(_configuration);
-
-            LookupKey cacheLookupKey = parameters.GetLookupKey();
-
-            bool cacheLookupResult = parameters.LookupCache.TryGetValue(cacheLookupKey, out inquiryResult);
-            if (!cacheLookupResult) {
-
-                //TODO: Fallback mechanism
-
-                inquiryResult = inquiry.Inquire(
-                    parameters.EndpointKey,
-                    parameters,
-                    UddiLookupClientPolicy.Default
-                );
-            }
-
-            // 3. Add result to cache, if relevant
-            if (!parameters.LookupCache.ContainsKey(cacheLookupKey) && inquiryResult != null && inquiryResult.Count != 0) {
-                parameters.LookupCache.Set(cacheLookupKey, inquiryResult);
-            }
-
-            return inquiryResult;
-        }
-
-        /// <summary>
-        /// Filters the response 
-        /// </summary>
-        /// <returns></returns>
-        private List<UddiLookupResponse> FilterResponse(LookupParameters parameters, List<UddiLookupResponse> inquiryResult) {
-            List<UddiLookupResponse> newFilteredResult = new List<UddiLookupResponse>();
-            // How many endpoints are we expecting?
-            if (inquiryResult.Count > 0) {
-                switch (parameters.LookupReturnOption) {
-                    case LookupReturnOption.allResults:
-                        return inquiryResult;
-                    case LookupReturnOption.firstResult:
-                        newFilteredResult.Add(inquiryResult[0]);
-                        return newFilteredResult;
-                    case LookupReturnOption.noMoreThanOneSetOrFail:
-                        if (inquiryResult.Count > 2) {
-                            throw new UddiMoreThanOneEndpointException();
-                        } 
-                        if (inquiryResult.Count == 2) {
-                            if (inquiryResult[0].EndpointAddress.GetType() == inquiryResult[1].EndpointAddress.GetType()) throw new UddiTwoEqualEndpointsException();
-                            int preferredIndex;
-                            if (inquiryResult[0].EndpointAddress is EndpointAddressSMTP) {
-                                preferredIndex = parameters.PreferredEndpointType == PreferredEndpointType.mailto ? 0 : 1;
-                            } else {
-                                preferredIndex = parameters.PreferredEndpointType == PreferredEndpointType.http ? 0 : 1;
-                            }
-                            newFilteredResult.Add(inquiryResult[preferredIndex]);
-                            return newFilteredResult;
-                        } 
-                        newFilteredResult.Add(inquiryResult[0]);
-                        return newFilteredResult;
-                    default:
-                        return inquiryResult;
-                }
-            }
-            return inquiryResult;
-        }
 
         private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
@@ -232,8 +112,6 @@ namespace dk.gov.oiosi.uddi {
         }
 
         private List<UddiService> GetUddiServices(IIdentifier organizationIdentifier, UddiId serviceUddiId) {
-            UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
-            _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(_address);
 
             keyedReference profileConformanceClaim = new keyedReference();
             profileConformanceClaim.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";

@@ -50,7 +50,6 @@ namespace dk.gov.oiosi.uddi {
         private string _uddiSecurityEndpointURL = "";
 
         private int _fallbackTimeoutMinutes = 0;
-        private LookupReturnOptionEnum _lookupReturnOptions = LookupReturnOptionEnum.allResults;
         private bool _tryOtherHostsOnFailure;
 
         /// <summary>
@@ -102,14 +101,6 @@ namespace dk.gov.oiosi.uddi {
         public int FallbackTimeoutMinutes {
             get { return _fallbackTimeoutMinutes; }
             set { _fallbackTimeoutMinutes = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the lookup return options
-        /// </summary>
-        public LookupReturnOptionEnum LookupReturnOptions {
-            get { return _lookupReturnOptions; }
-            set { _lookupReturnOptions = value; }
         }
 
         /// <summary>

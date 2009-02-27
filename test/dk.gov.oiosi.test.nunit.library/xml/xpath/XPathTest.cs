@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Xml;
-
+using dk.gov.oiosi.uddi;
 using NUnit.Framework;
 
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.common;
-using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.raspProfile;
 

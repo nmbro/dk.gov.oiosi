@@ -50,37 +50,7 @@ namespace dk.gov.oiosi.uddi {
         private Version _version;
         private List<ProcessRoleDefinition> _processes = new List<ProcessRoleDefinition>();
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        [Obsolete]
-        public UddiLookupResponse() { }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="endpointIdentifierActual">The actual endpoint identifier of the request. This may 
-        /// be different from what the user/client specified, e.g. it may be a gateway range EAN.</param>
-        /// <param name="endpointAddress">Address of the endpoint</param>
-        /// <param name="activationDate">Activation date of the endpoint registration</param>
-        /// <param name="expirationDate">Expiration date of the endpoint registration</param>
-        /// <param name="certificateSubjectSerialNumber">Subject of the certificate</param>
-        /// <param name="termsOfUseUrl">URL to a file describing the terms of use</param>
-        /// <param name="serviceContactEmail">Email of the service contact</param>
-        /// <param name="version">Version of the endpoint</param>
-        /// <param name="newerVersionReference">Possible reference to a newer version</param>
-        [Obsolete]
-        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference) {
-            _endpointIdentifierActual = endpointIdentifierActual;
-            _endpointAddress = endpointAddress;
-            _activationDate = activationDate;
-            _expirationDate = expirationDate;
-            _certificateSubjectSerialNumber = certificateSubjectSerialNumber;
-            _termsOfUseUrl = termsOfUseUrl;
-            _ServiceContactEmail = serviceContactEmail;
-            _version = version;
-            _newerVersionReference = newerVersionReference;
-        }
+        public UddiLookupResponse() {}
 
         /// <summary>
         /// Constructor

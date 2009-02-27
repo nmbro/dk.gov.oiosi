@@ -7,7 +7,6 @@ using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.uddi.category;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.ldap;
 using dk.gov.oiosi.security.lookup;
@@ -77,7 +76,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
             uddiClient = uddiClientFactory.CreateUddiLookupClient();
 
             // Get the UDDI parameters with which to call the UDDI server
-            MessageParameters parameters = GetUddiParameters(message, docTypeConfig);
+            UddiLookupParameters parameters = GetUddiParameters(message, docTypeConfig);
 
             // Perform the actual UDDI lookup
             UddiLookupResponse uddiResponse = PerformUddiLookup(parameters);
@@ -92,7 +91,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
         }
 
 
-        static MessageParameters GetUddiParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
+        static UddiLookupParameters GetUddiParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
 
             // Use an OIOSI utility to find the endpoint type in the XML document to be sent
             EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
@@ -115,33 +114,18 @@ namespace dk.gov.oiosi.test.extendedRequest {
                 throw new Exception("Could not find the service contract TModel for the UDDI lookup");
             }
 
-            //  Build MessageParameters class
-            EndpointKeytype endpointKeytype = new EndpointKeytype(endpointKeyTypeCode);
-            MessageParameters msgParams = new MessageParameters(
+           UddiLookupParameters uddiLookupParameters = new UddiLookupParameters(
                 endpointKey,
-                endpointKeytype,
-                serviceContractTModel);
-
-            return msgParams;
+                serviceContractTModel,
+                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
+            return uddiLookupParameters;
         }
 
 
-        static UddiLookupResponse PerformUddiLookup(MessageParameters messageParameters) {
-
-            // Prepare lookup parameters
-            LookupParameters lookupParameters = new LookupParameters(
-                messageParameters.EndpointKey,
-                messageParameters.EndpointKeyType,
-                null,
-                PreferredEndpointType.http,
-                LookupReturnOptionEnum.noMoreThanOneSetOrFail,
-                messageParameters.ServiceContractTModel,
-                messageParameters.RoleIdentifierType,
-                messageParameters.RoleIdentifier,
-                messageParameters.ProcessTModel);
+        static UddiLookupResponse PerformUddiLookup(UddiLookupParameters uddiLookupParameters) {
 
             // Do the actual UDDI call
-            List<UddiLookupResponse> uddiResponses = uddiClient.Lookup(lookupParameters);
+            List<UddiLookupResponse> uddiResponses = uddiClient.Lookup(uddiLookupParameters);
 
             // Pick the first response gotten
             UddiLookupResponse selectedUddiResponse = uddiResponses[0];

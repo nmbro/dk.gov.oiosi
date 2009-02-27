@@ -35,7 +35,7 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Base class Uddi exceptions
     /// </summary>
-    public class UddiException : dk.gov.oiosi.exception.MainException {
+    public class UddiException : exception.MainException {
 
         private static ResourceManager resourceManager = new ResourceManager(typeof(ErrorMessages));
 

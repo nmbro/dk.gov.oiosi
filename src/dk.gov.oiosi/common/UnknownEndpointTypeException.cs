@@ -30,7 +30,7 @@
   */
 
 using dk.gov.oiosi.exception.Keyword;
-using dk.gov.oiosi.uddi.category;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.common {
 
