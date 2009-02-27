@@ -32,22 +32,11 @@ using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.configuration;
-using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.uddi {
 
     /// <summary>
     /// Class for resolving endpoints on the UDDI-based Address Resolution Service (ARS).
-    /// Features of this class:
-    ///
-    /// * Resolves a business level endpoint to a service endpoint, using the UDDI 2.0 inquiry API
-    /// * Performs automatic caching of resolving attempts
-    /// * Supports caching policies based on call result feedback
-    /// 
-    /// Extension points:
-    /// 
-    /// * Extension mechanism for adding additional key types for resolving
-    /// * Extendable configuration model
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
 		private UddiConfig _configuration;
@@ -93,6 +82,20 @@ namespace dk.gov.oiosi.uddi {
                 }
                 throw new UddiLookupException(endpKey, ex);
             }
+        }
+
+        public List<UddiLookupResponse> Lookup(UddiLookupParameters lookupParameters) {
+            if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
+
+            List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
+            var uddiLookupResponses = GetUddiResponses(lookupParameters);
+            foreach (var uddiLookupResponse in uddiLookupResponses) {
+                bool hasSupportedTransportProtocol = HasSupportedTransportProtocol(uddiLookupResponse, lookupParameters);
+                if (hasSupportedTransportProtocol) {
+                    supportedResponses.Add(uddiLookupResponse);
+                }
+            }
+            return supportedResponses;
         }
 
 
@@ -181,52 +184,46 @@ namespace dk.gov.oiosi.uddi {
             return inquiryResult;
         }
 
-        public List<UddiLookupResponse> Lookup(UddiLookupParameters lookupParameters) {
-            if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
-
-            List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
-            var uddiLookupResponses = GetUddiResponses(lookupParameters);
-            foreach (var uddiLookupResponse in uddiLookupResponses) {
-                bool hasSupportedTransportProtocol = HasSupportedTransportProtocol(uddiLookupResponse, lookupParameters);
-                if (hasSupportedTransportProtocol) {
-                    supportedResponses.Add(uddiLookupResponse);
-                }
-            }
-
-            return supportedResponses;
-        }
-
         private bool HasSupportedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
-            return lookupParameters.IncludedTransportProtocols.Contains(address.EndpointAddressTypeCode);
+            return lookupParameters.AcceptedTransportProtocols.Contains(address.EndpointAddressTypeCode);
         }
 
         private List<UddiLookupResponse> GetUddiResponses(UddiLookupParameters lookupParameters) {
-            List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
-
+            bool filterResponseByProfile = lookupParameters.ProfileIds != null;
+            
+            var lookupResponses = new List<UddiLookupResponse>();
             var uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
             foreach (UddiService uddiService in uddiServices) {
-                
                 if(uddiService.IsInactiveOrExpired()) continue;
+
+                IEnumerable<UddiBinding> supportedBindings = uddiService.Bindings;
+                if (filterResponseByProfile) {
+                    supportedBindings = uddiService.GetBindingsSupportingOneOrMoreProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
+                }
                 
-                IEnumerable<UddiBinding> supportedBindings = uddiService.GetBindingsSupportingAnyProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
                 foreach (UddiBinding uddiBinding in supportedBindings) {
-                    lookupResponses.Add(new UddiLookupResponse(
-                                            lookupParameters.Identifier,
-                                            uddiBinding.EndpointAddress,
-                                            uddiService.ActivationDateUTC,
-                                            uddiService.ExpirationDateUTC,
-                                            uddiService.CertificateSubject,
-                                            uddiService.TermsOfUseUri,
-                                            uddiService.ContactMail,
-                                            uddiService.Version,
-                                            uddiService.NewerVersion,
-                                            uddiBinding.Processes
-                                            ));
+                    var lookupResponse = GetLookupResponse(lookupParameters, uddiService, uddiBinding);
+                    lookupResponses.Add(lookupResponse);
                 }
             }
 
             return lookupResponses;
+        }
+
+        private UddiLookupResponse GetLookupResponse(UddiLookupParameters lookupParameters, UddiService uddiService, UddiBinding uddiBinding) {
+            return new UddiLookupResponse(
+                lookupParameters.Identifier,
+                uddiBinding.EndpointAddress,
+                uddiService.ActivationDateUTC,
+                uddiService.ExpirationDateUTC,
+                uddiService.CertificateSubject,
+                uddiService.TermsOfUseUri,
+                uddiService.ContactMail,
+                uddiService.Version,
+                uddiService.NewerVersion,
+                uddiBinding.Processes
+                );
         }
 
         private List<UddiService> GetUddiServices(IIdentifier organizationIdentifier, UddiId serviceUddiId) {

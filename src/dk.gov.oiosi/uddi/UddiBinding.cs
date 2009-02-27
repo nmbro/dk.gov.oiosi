@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.uddi
             List<UddiProcessInformation> processes = new List<UddiProcessInformation>();
             foreach (tModel model in tModels)
             {
-                if (!IsTModelProcessInstance(model)) continue;
+                if (!IsProfile(model)) continue;
                 string name = model.name.Value;
                 string description = model.description[0].Value;
                 string role = model.identifierBag[0].keyValue;
@@ -74,7 +74,7 @@ namespace dk.gov.oiosi.uddi
         /// </summary>
         /// <param name="tModel">The TModel to check</param>
         /// <returns>True if valid</returns>
-        private bool IsTModelProcessInstance(tModel tModel) {
+        private bool IsProfile(tModel tModel) {
             if (tModel == null) return false;
             if (tModel.categoryBag == null) return false;
             if (tModel.categoryBag.Items.Length < 1) return false;
@@ -97,18 +97,18 @@ namespace dk.gov.oiosi.uddi
         /// <param name="profileUddiIds">A list of profiles of which only one needs to be found in order for the binding to support the profiles</param>
         /// <param name="roleIdentifier">If set to null non role check is performed and all roles are accepted.</param>
         /// <returns></returns>
-        internal bool SupportsAnyProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
+        internal bool SupportsOneOrMoreProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
             foreach (tModel tModelItem in GetTModelProfiles()) {
                 keyedReference profileCategory = UddiCategory.GetOptionalCategoryByIdentifier(tModelItem.categoryBag, businessProcessDefinitionReferenceId);
                 keyedReference roleCategory = UddiCategory.GetOptionalCategoryByIdentifier(tModelItem.identifierBag, businessProcessRoleIdentifierId);
-                bool hasProfileAndRole = HasAnyProfileAndRole(profileCategory, roleCategory, profileUddiIds, roleIdentifier);
+                bool hasProfileAndRole = HasOneOrMoreProfileAndRole(profileCategory, roleCategory, profileUddiIds, roleIdentifier);
                 if (hasProfileAndRole) return true;
             }
 
             return false;
         }
 
-        private bool HasAnyProfileAndRole(keyedReference profileCategory, keyedReference roleCategory, List<UddiId> profileUddiIds, string roleIdentifier) {
+        private bool HasOneOrMoreProfileAndRole(keyedReference profileCategory, keyedReference roleCategory, List<UddiId> profileUddiIds, string roleIdentifier) {
             if (profileCategory == null) return false;
             if (roleCategory == null) return false;
 

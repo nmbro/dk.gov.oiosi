@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.security;
-using dk.gov.oiosi.uddi.category;
 
 namespace dk.gov.oiosi.uddi
 {
@@ -61,6 +60,26 @@ namespace dk.gov.oiosi.uddi
         public Version Version {
             get { return GetVersion(); }
         }
+
+        public IEnumerable<UddiBinding> GetBindingsSupportingOneOrMoreProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
+            foreach (UddiBinding binding in bindings) {
+                if (binding.SupportsOneOrMoreProfileAndRole(profileUddiIds, roleIdentifier)) {
+                    yield return binding;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns true if this service is inactive or expired, according to its UDDI registration.
+        /// All registrations on the UDDI are assumed to follow danish time zone conventions
+        /// </summary>
+        /// <returns>Returns true if this service is inactive or expired, according to its UDDI registration.</returns>
+        public bool IsInactiveOrExpired() {
+            DateTime nowUTC = DateTime.UtcNow;
+            return !(nowUTC > ActivationDateUTC && nowUTC < ExpirationDateUTC);
+        }
+
+        # region Private methods
 
         private DateTime GetActivationDateUTC() {
             keyedReference activationDate = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, activationDateId);
@@ -121,25 +140,6 @@ namespace dk.gov.oiosi.uddi
             return new Version(majorInt, minorInt, revisionInt);
         }
 
-        public IEnumerable<UddiBinding> GetBindingsSupportingAnyProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
-            foreach (UddiBinding binding in bindings) {
-                if (binding.SupportsAnyProfileAndRole(profileUddiIds, roleIdentifier)) {
-                    yield return binding;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Returns true if this service is inactive or expired, according to its UDDI registration.
-        /// All registrations on the UDDI are assumed to follow danish time zone conventions
-        /// </summary>
-        /// <returns>Returns true if this service is inactive or expired, according to its UDDI registration.</returns>
-        public bool IsInactiveOrExpired() {
-            DateTime nowUTC = DateTime.UtcNow;
-
-            return !(nowUTC > ActivationDateUTC && nowUTC < ExpirationDateUTC);
-        }
-
         /// <summary>
         /// Returns a DateTime representation of either an endpoint expiration
         /// or activation date, in UTC
@@ -169,6 +169,7 @@ namespace dk.gov.oiosi.uddi
             return DateTime.Parse(datestring, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal);
         }
 
- 
+        # endregion
+
     }
 }
