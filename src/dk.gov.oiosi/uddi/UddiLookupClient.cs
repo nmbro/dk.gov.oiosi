@@ -47,9 +47,9 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Constructor
         /// </summary>
-        public UddiLookupClient(Uri address, string clientEndpointName) {
+        public UddiLookupClient(Uri address) {
             //UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
-            _uddiProxy = new UDDI_Inquiry_PortTypeClient(clientEndpointName);
+            _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
 
         }

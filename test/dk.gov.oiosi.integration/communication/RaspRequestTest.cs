@@ -118,11 +118,19 @@ namespace dk.gov.oiosi.test.integration.communication {
             UddiId serviceContractTModel;
             serviceContractTModel = IdentifierUtility.GetUddiIDFromString(docTypeConfig.ServiceContractTModel);
 
-            UddiLookupParameters uddiLookupParameters = new UddiLookupParameters(
-                endpointKey,
-                serviceContractTModel,
-                new List<UddiId>() {profileTModelId},
-                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
+            UddiLookupParameters uddiLookupParameters;
+            if (profileTModelId == null) {
+                uddiLookupParameters = new UddiLookupParameters(
+                    endpointKey,
+                    serviceContractTModel,
+                    new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
+            } else {
+                uddiLookupParameters = new UddiLookupParameters(
+                    endpointKey,
+                    serviceContractTModel,
+                    new List<UddiId>() { profileTModelId },
+                    new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.http });
+            }
 
             return uddiLookupParameters;
         }

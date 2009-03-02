@@ -177,7 +177,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(UddiLookupParameters lookupParameters) {
-            UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri, clientEndpointName);
+            UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri);
             return lookupClient.Lookup(lookupParameters);
         }
 
