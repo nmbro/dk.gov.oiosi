@@ -37,14 +37,14 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a P number identifier
     /// </summary>
-    public class IdentifierP : IIdentifier {
+    public class IdentifierP : Identifier {
         private string _pNumber;
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/pNumber/";
 
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
         
@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the P identifier
         /// </summary>
         /// <param name="pNumber">The P number</param>
-        public void Set(string pNumber) {
+        public override void Set(string pNumber) {
             if (String.IsNullOrEmpty(pNumber)) {
                 throw new NullOrEmptyArgumentException("pNumber");
             }
@@ -71,7 +71,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the P identifier as a string
         /// </summary>
         /// <returns>Returns the P identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _pNumber;
         }
 
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

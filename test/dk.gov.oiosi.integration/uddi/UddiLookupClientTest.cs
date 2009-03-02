@@ -13,8 +13,8 @@ namespace dk.gov.oiosi.test.integration.uddi {
         private Uri uddiServerUri;
         private string clientEndpointName = "OiosiClientEndpointInquiry";
 
-        private readonly IIdentifier eanIdentifier = new IdentifierEan("5798009811578");
-        private readonly IIdentifier dunsIdentifier = new IdentifierDuns("1234567890");
+        private readonly Identifier eanIdentifier = new IdentifierEan("5798009811578");
+        private readonly Identifier dunsIdentifier = new IdentifierDuns("1234567890");
 
         private readonly UddiId nonExistingServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true);
         private readonly UddiId orderServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);

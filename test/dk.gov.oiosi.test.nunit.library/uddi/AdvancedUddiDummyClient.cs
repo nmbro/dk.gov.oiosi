@@ -37,7 +37,7 @@ using dk.gov.oiosi.uddi;
 namespace dk.gov.oiosi.test.nunit.library.uddi {
     public class AdvancedUddiDummyClient :IUddiLookupClient {
         private List<Uri> _erroneousEndpoints = new List<Uri>();
-        private Dictionary<Uri,List<IIdentifier>> _nonExistingRegistrations = new Dictionary<Uri, List<IIdentifier>>();
+        private Dictionary<Uri,List<Identifier>> _nonExistingRegistrations = new Dictionary<Uri, List<Identifier>>();
     	private Uri _address;
 
     	public AdvancedUddiDummyClient(Uri address){
@@ -52,7 +52,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
             set { _erroneousEndpoints = value; }
         }
 
-        public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations {
+        public Dictionary<Uri, List<Identifier>> NonExistingRegistrations {
             get { return _nonExistingRegistrations; }
             set { _nonExistingRegistrations = value; }
         }
@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
         [XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
         public class AdvancedUddiDummyClientConfig {
             private List<Uri> _erroneousEndpoints = new List<Uri>();
-            private Dictionary<Uri, List<IIdentifier>> _nonExistingRegistrations = new Dictionary<Uri, List<IIdentifier>>();
+            private Dictionary<Uri, List<Identifier>> _nonExistingRegistrations = new Dictionary<Uri, List<Identifier>>();
 
             [XmlIgnore]
             public List<Uri> ErroneousEndpoints {
@@ -86,7 +86,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
             }
 
             [XmlIgnore]
-            public Dictionary<Uri, List<IIdentifier>> NonExistingRegistrations {
+            public Dictionary<Uri, List<Identifier>> NonExistingRegistrations {
                 get { return _nonExistingRegistrations; }
                 set { _nonExistingRegistrations = value; }
             }

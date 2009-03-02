@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.common.cache;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -38,7 +39,9 @@ namespace dk.gov.oiosi.uddi {
     /// Class for resolving endpoints on the UDDI-based Address Resolution Service (ARS).
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
-        
+
+        private static readonly ICache<UddiLookupKey, List<UddiService>> uddiCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(14, 0, 0, 0));
+
         private UDDI_Inquiry_PortTypeClient _uddiProxy;
 
         /// <summary>
@@ -77,8 +80,15 @@ namespace dk.gov.oiosi.uddi {
         private List<UddiLookupResponse> GetUddiResponses(UddiLookupParameters lookupParameters) {
             bool filterResponseByProfile = lookupParameters.ProfileIds != null;
             
-            var lookupResponses = new List<UddiLookupResponse>();
-            var uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
+            List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
+            UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId);
+
+            List<UddiService> uddiServices;
+            if (!uddiCache.TryGetValue(key, out uddiServices)) {
+                uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
+                uddiCache.Set(key, uddiServices);
+            }
+            
             foreach (UddiService uddiService in uddiServices) {
                 if(uddiService.IsInactiveOrExpired()) continue;
 
@@ -111,7 +121,7 @@ namespace dk.gov.oiosi.uddi {
                 );
         }
 
-        private List<UddiService> GetUddiServices(IIdentifier organizationIdentifier, UddiId serviceUddiId) {
+        private List<UddiService> GetUddiServices(Identifier organizationIdentifier, UddiId serviceUddiId) {
 
             keyedReference profileConformanceClaim = new keyedReference();
             profileConformanceClaim.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";
@@ -185,6 +195,41 @@ namespace dk.gov.oiosi.uddi {
             }
 
             return uddiServices;
+        }
+
+        private class UddiLookupKey
+        {
+    	    private Identifier identifier;
+    	    private UddiId serviceId;
+        	
+    	    public UddiLookupKey(Identifier identifier, UddiId serviceId) {
+    		    this.identifier = identifier;
+    		    this.serviceId = serviceId;
+    	    }
+
+		    public override int GetHashCode() {
+                return identifier.GetHashCode() + serviceId.GetHashCode();
+		    }
+
+		    public override bool Equals(Object obj) {
+			    if (obj == null)
+				    return false;
+			    if (this.GetType() != obj.GetType())
+				    return false;
+			    UddiLookupKey other = (UddiLookupKey) obj;
+
+			    if (identifier == null) {
+				    if (other.identifier != null)
+					    return false;
+			    } else if (!identifier.Equals(other.identifier))
+				    return false;
+			    if (serviceId == null) {
+				    if (other.serviceId != null)
+					    return false;
+			    } else if (!serviceId.Equals(other.serviceId))
+				    return false;
+			    return true;
+		    }
         }
     }
 }

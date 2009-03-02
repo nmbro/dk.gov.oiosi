@@ -36,12 +36,12 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents and endpoint or businesEntity type identifier
     /// </summary>
-    public interface IIdentifier: IEquatable<IIdentifier> {
+    public abstract class Identifier: IEquatable<Identifier> {
 
         /// <summary>
         /// Gets the KeyTypeValue of the IIdentifier
         /// </summary>
-        string KeyTypeValue {
+        public abstract string KeyTypeValue {
             get;
         }
 
@@ -49,14 +49,29 @@ namespace dk.gov.oiosi.addressing {
         /// 
         /// </summary>
         /// <returns></returns>
-        string GetAsString();
+        public abstract string GetAsString();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="identifier"></param>
-        void Set(string identifier);
+        public abstract void Set(string identifier);
 
+        public abstract bool Equals(Identifier other);
 
+        public override bool Equals(object obj) {
+            if (obj == null)
+                return false;
+            if (GetType() != obj.GetType())
+                return false;
+            Identifier other = (Identifier)obj;
+
+            return this.GetAsString().Equals(other.GetAsString());
+        }
+
+        public override int GetHashCode()
+        {
+            return GetAsString().GetHashCode();
+        }
     }
 }

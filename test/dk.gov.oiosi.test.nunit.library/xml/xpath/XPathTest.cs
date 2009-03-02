@@ -45,19 +45,19 @@ namespace dk.gov.oiosi.test.nunit.library.xml.xpath {
 
         private void CompareIdentifiers(Dictionary<string, string> dictionary) {
             foreach (KeyValuePair<string, string> pair in dictionary) {
-                IIdentifier identifier = GetIdentifierValue(pair.Key);
+                Identifier identifier = GetIdentifierValue(pair.Key);
                 Assert.AreEqual(pair.Value, identifier.GetAsString(), "Error reading correct identifier from document using xpath specified in config: " + pair.Key);
             }
         }
 
-        private IIdentifier GetIdentifierValue(string path) {
+        private Identifier GetIdentifierValue(string path) {
             XmlDocument document = new XmlDocument();
             document.Load(path);
             DocumentTypeConfig config = _searcher.FindUniqueDocumentType(document);
             string keyXpath = config.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = config.Namespaces;
             EndpointKeyTypeCode code = EndpointKeyTypeCode.ean;
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             return identifier;
         }
     }

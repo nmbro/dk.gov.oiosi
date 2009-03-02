@@ -77,11 +77,11 @@ namespace dk.gov.oiosi.common
         /// <param name="endpointKey">The endpoint key as string</param>
         /// <param name="endpointKeyType">The type of the key</param>
         /// <returns>Returns the relevant IIdentifier subclass</returns>
-        public static IIdentifier GetIdentifierFromKeyType(
+        public static Identifier GetIdentifierFromKeyType(
             string endpointKey,
             EndpointKeyTypeCode endpointKeyType
         ) {
-            IIdentifier id;
+            Identifier id;
             switch (endpointKeyType) {
                 case EndpointKeyTypeCode.cvr:
                     id = new IdentifierCvr(endpointKey);

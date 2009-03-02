@@ -37,14 +37,14 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a IBAN number identifier
     /// </summary>
-    public class IdentifierIban : IIdentifier {
+    public class IdentifierIban : Identifier {
         private string _ibanNumber;
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/ibanNumber/";
 
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the IBAN identifier
         /// </summary>
         /// <param name="ibanNumber">The IBAN number</param>
-        public void Set(string ibanNumber) {
+        public override void Set(string ibanNumber) {
             if (String.IsNullOrEmpty(ibanNumber)) {
                 throw new NullOrEmptyArgumentException("ibanNumber");
             }
@@ -71,7 +71,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the IBAN identifier as a string
         /// </summary>
         /// <returns>Returns the IBAN identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _ibanNumber;
         }
 
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

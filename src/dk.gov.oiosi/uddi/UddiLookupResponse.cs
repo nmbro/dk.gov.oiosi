@@ -40,7 +40,7 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class UddiLookupResponse {
         private UddiId _newerVersionReference;
-        private IIdentifier _endpointIdentifierActual;
+        private Identifier _endpointIdentifierActual;
         private CertificateSubject _certificateSubjectSerialNumber;
         private DateTime _activationDate;
         private DateTime _expirationDate;
@@ -66,7 +66,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="version">Version of the endpoint</param>
         /// <param name="newerVersionReference">Possible reference to a newer version</param>
         /// <param name="processes">The processes supported by the endpoint</param>
-        public UddiLookupResponse(IIdentifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<ProcessRoleDefinition> processes) {
+        public UddiLookupResponse(Identifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<ProcessRoleDefinition> processes) {
             _endpointIdentifierActual = endpointIdentifierActual;
             _endpointAddress = endpointAddress;
             _activationDate = activationDate;
@@ -84,7 +84,7 @@ namespace dk.gov.oiosi.uddi {
         /// configuration, and if no individual UDDI registration matching the client search criteria
         /// was found on the UDDI. In this case this property holds the value of the gateway identifier.
         /// </summary>
-        public IIdentifier EndpointIdentifierActual {
+        public Identifier EndpointIdentifierActual {
             get { return _endpointIdentifierActual; }
             set { _endpointIdentifierActual = value; }
         }

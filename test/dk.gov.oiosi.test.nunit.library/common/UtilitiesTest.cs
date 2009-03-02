@@ -33,7 +33,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierEan), identifier.GetType());
 
         }
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierOvt), identifier.GetType());
         }
 
@@ -64,7 +64,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierCvr),identifier.GetType());
         }
 
@@ -79,7 +79,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierP), identifier.GetType());
         }
 
@@ -94,7 +94,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierSe), identifier.GetType());
         }
 
@@ -109,7 +109,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierVans), identifier.GetType());
         }
 
@@ -124,7 +124,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierIban), identifier.GetType());
         }
 
@@ -139,7 +139,7 @@ namespace dk.gov.oiosi.test.nunit.library.common {
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
-            IIdentifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
+            Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             Assert.AreEqual(typeof(IdentifierDuns), identifier.GetType());
         }     
           

@@ -37,7 +37,7 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a ovt number
     /// </summary>
-    public class IdentifierOvt : IIdentifier {
+    public class IdentifierOvt : Identifier {
         private string _countryCode;
 
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/ovtNumber/";
@@ -45,7 +45,7 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -157,7 +157,8 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets ovt number
         /// </summary>
         /// <param name="ovtNumber"></param>
-        public void Set(string ovtNumber) {
+        public override void Set(string ovtNumber)
+        {
             try {
                 if (String.IsNullOrEmpty(ovtNumber)) throw new NullOrEmptyArgumentException("ovtNumber");
                 // 1. Check length:
@@ -181,7 +182,7 @@ namespace dk.gov.oiosi.addressing {
         /// returns ovt number as a string
         /// </summary>
         /// <returns></returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _countryCode + _businessIdentifier + _serialNumber;
         }
 
@@ -190,7 +191,8 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other)
+        {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

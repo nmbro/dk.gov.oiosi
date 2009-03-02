@@ -37,7 +37,7 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a SE identifier
     /// </summary>
-    public class IdentifierSe : IIdentifier {
+    public class IdentifierSe : Identifier {
         private string _seNumber;
 
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/seNumber/";
@@ -45,7 +45,7 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the Se identifier
         /// </summary>
         /// <param name="seNumber">The SE number</param>
-        public void Set(string seNumber) {
+        public override void Set(string seNumber) {
             if (String.IsNullOrEmpty(seNumber)) {
                 throw new NullOrEmptyArgumentException("seNumber");
             }
@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the SE identifier as a string
         /// </summary>
         /// <returns>Returns the SE identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _seNumber;
         }
 
@@ -81,7 +81,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

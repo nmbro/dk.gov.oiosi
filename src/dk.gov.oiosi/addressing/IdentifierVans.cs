@@ -37,7 +37,7 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a VANS identifier
     /// </summary>
-    public class IdentifierVans : IIdentifier {
+    public class IdentifierVans : Identifier {
         private string _vansNumber;
 
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/vansNumber/";
@@ -45,7 +45,7 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the VANS identifier
         /// </summary>
         /// <param name="pNumber">The VANS number</param>
-        public void Set(string vansNumber) {
+        public override void Set(string vansNumber) {
             if (String.IsNullOrEmpty(vansNumber)) {
                 throw new NullOrEmptyArgumentException("vansNumber");
             }
@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the VANS identifier as a string
         /// </summary>
         /// <returns>Returns the VANS identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _vansNumber;
         }
 
@@ -81,7 +81,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

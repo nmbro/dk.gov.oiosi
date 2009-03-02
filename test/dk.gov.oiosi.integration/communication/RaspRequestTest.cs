@@ -105,7 +105,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         private UddiLookupParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
             EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
 
-            IIdentifier endpointKey = Utilities.GetEndpointKeyByXpath(
+            Identifier endpointKey = Utilities.GetEndpointKeyByXpath(
                 message.MessageXml,
                 docTypeConfig.EndpointType.Key.XPath,
                 docTypeConfig.Namespaces,

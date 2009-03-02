@@ -98,7 +98,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
 
             // Use the XPath expression from the UBL type configuration (found in the RaspConfiguration.xml file) 
             // to find the endpoint identifier in the XML document to be sent
-            dk.gov.oiosi.addressing.IIdentifier endpointKey = Utilities.GetEndpointKeyByXpath(
+            dk.gov.oiosi.addressing.Identifier endpointKey = Utilities.GetEndpointKeyByXpath(
                 message.MessageXml,
                 docTypeConfig.EndpointType.Key.XPath,
                 docTypeConfig.Namespaces,

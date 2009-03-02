@@ -37,7 +37,7 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents a DUNS identifier
     /// </summary>
-    public class IdentifierDuns : IIdentifier {
+    public class IdentifierDuns : Identifier {
         private string _dunsNumber;
 
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/dunsNumber/";
@@ -45,7 +45,7 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the DUNS identifier
         /// </summary>
         /// <param name="dunsNumber">The DUNS number</param>
-        public void Set(string dunsNumber) {
+        public override void Set(string dunsNumber) {
             if (String.IsNullOrEmpty(dunsNumber)) {
                 throw new NullOrEmptyArgumentException("dunsNumber");
             }
@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the DUNS identifier as a string
         /// </summary>
         /// <returns>Returns the DUNS identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _dunsNumber;
         }
 
@@ -81,7 +81,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

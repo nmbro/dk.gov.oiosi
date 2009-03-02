@@ -63,7 +63,7 @@ namespace dk.gov.oiosi.common
         /// <param name="keyType">The type of key to return</param>
         /// <param name="prefixedNamespaces">The list of namespaces-prefix pairs used in the xpath expression</param>
         /// <returns>Returns the endpoint key</returns>
-        public static IIdentifier GetEndpointKeyByXpath(
+        public static Identifier GetEndpointKeyByXpath(
             XmlDocument xmlDoc,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces,
@@ -73,7 +73,7 @@ namespace dk.gov.oiosi.common
             string endpointKeyString = DocumentXPathResolver.GetElementValueByXpath(xmlDoc, xpath, prefixedNamespaces);
 
             // 2. Convert to the correct IIdentifierType:
-            IIdentifier id = IdentifierUtility.GetIdentifierFromKeyType(endpointKeyString, keyType);
+            Identifier id = IdentifierUtility.GetIdentifierFromKeyType(endpointKeyString, keyType);
 
             return id;
         }

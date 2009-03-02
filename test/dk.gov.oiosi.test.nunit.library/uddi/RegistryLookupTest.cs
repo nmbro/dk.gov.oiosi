@@ -97,7 +97,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
         [Test]
         public void _04_TestSuccesfulOnSecondRegistry(){
 			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier>{endpointInSecondRegistry});
+			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier>{endpointInSecondRegistry});
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInSecondRegistry));
 			Assert.IsNotNull(result);
@@ -108,9 +108,9 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 		[Test]
 		public void _05_TestSuccesfulOnLastFallback() {
 			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier> { endpointInFourthRegistry});
-			config.NonExistingRegistrations.Add(secondRegistry, new List<IIdentifier> { endpointInFourthRegistry });
-			config.NonExistingRegistrations.Add(thirdRegistry, new List<IIdentifier> { endpointInFourthRegistry });
+			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInFourthRegistry});
+			config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInFourthRegistry });
+			config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInFourthRegistry });
 			config.ErroneousEndpoints.Add(fourthRegistry);
 			config.ErroneousEndpoints.Add(fourthFallback1);
 
@@ -124,10 +124,10 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
         [Test]
         public void _06_TestUnsuccesfulOnAllRegistries(){
 			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<IIdentifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(secondRegistry, new List<IIdentifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(thirdRegistry, new List<IIdentifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(fourthRegistry, new List<IIdentifier> { endpointInNoRegistry });
+			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInNoRegistry });
+			config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInNoRegistry });
+			config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInNoRegistry });
+			config.NonExistingRegistrations.Add(fourthRegistry, new List<Identifier> { endpointInNoRegistry });
 
 			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
 			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInNoRegistry));

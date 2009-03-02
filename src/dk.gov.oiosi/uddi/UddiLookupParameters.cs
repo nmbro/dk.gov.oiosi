@@ -4,14 +4,14 @@ using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.uddi {
     public class UddiLookupParameters {
-        public IIdentifier Identifier { get; private set; }
+        public Identifier Identifier { get; private set; }
         public UddiId ServiceId { get; private set; }
         public List<UddiId> ProfileIds { get; private set; }
         public string ProfileRoleIdentifier { get; private set; }
         public List<EndpointAddressTypeCode> AcceptedTransportProtocols { get; private set; }
 
         public UddiLookupParameters(
-            IIdentifier identifier,
+            Identifier identifier,
             UddiId serviceId,
             List<UddiId> profileIds,
             List<EndpointAddressTypeCode> acceptedTransportProtocols,
@@ -32,7 +32,7 @@ namespace dk.gov.oiosi.uddi {
         }
 
         public UddiLookupParameters(
-            IIdentifier identifier,
+            Identifier identifier,
             UddiId serviceId,
             List<UddiId> profileIds,
             List<EndpointAddressTypeCode> acceptedTransportProtocols) {
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.uddi {
             AcceptedTransportProtocols = acceptedTransportProtocols;
         }
 
-        public UddiLookupParameters(IIdentifier identifier, UddiId serviceId, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+        public UddiLookupParameters(Identifier identifier, UddiId serviceId, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
             if (identifier == null) throw new ArgumentNullException("identifier");
             if (serviceId == null) throw new ArgumentNullException("serviceId");
             if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");

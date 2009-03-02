@@ -37,14 +37,14 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents an EAN identifier
     /// </summary>
-    public class IdentifierEan : IIdentifier {
+    public class IdentifierEan : Identifier {
         private string _eanNumber;
         private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/";
 
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.addressing {
         /// Validates and sets the EAN identifier
         /// </summary>
         /// <param name="eanNumber">The EAN number</param>
-        public void Set(string eanNumber) {
+        public override void Set(string eanNumber) {
             if (String.IsNullOrEmpty(eanNumber)) {
                 throw new NullOrEmptyArgumentException("eanNumber");
             }
@@ -71,7 +71,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the EAN identifier as a string
         /// </summary>
         /// <returns>Returns the EAN identifier</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _eanNumber;
         }
 
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;

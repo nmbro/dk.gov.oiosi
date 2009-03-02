@@ -41,14 +41,14 @@ namespace dk.gov.oiosi.addressing {
     /// 
     /// If the "DK"-format is used, "DK" is stripped off during construction.
     /// </summary>
-    public class IdentifierCvr : IIdentifier {
+    public class IdentifierCvr : Identifier {
         private string _cvrNumber;
         private const string keyTypeValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/";
 
         /// <summary>
         /// Identifier key type value
         /// </summary>
-        public string KeyTypeValue {
+        public override string KeyTypeValue {
             get { return keyTypeValue; }
         }
 
@@ -64,7 +64,7 @@ namespace dk.gov.oiosi.addressing {
         /// Sets the CVR number
         /// </summary>
         /// <param name="cvrNumber">The CVR number</param>
-        public void Set(string cvrNumber) {
+        public override void Set(string cvrNumber) {
             if (String.IsNullOrEmpty(cvrNumber)) throw new NullOrEmptyArgumentException("cvrNumber");
             // If string starts with "dk", strip it away
             if (cvrNumber.ToLower().StartsWith("dk") && cvrNumber.Length > 2) {
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.addressing {
         /// Returns the CVR number as string
         /// </summary>
         /// <returns>Returns the CVR number as string</returns>
-        public string GetAsString() {
+        public override string GetAsString() {
             return _cvrNumber;
         }
 
@@ -89,7 +89,7 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="other">The object to compare to</param>
         /// <returns>Returns true if the two objects have identical values</returns>
-        public bool Equals(IIdentifier other) {
+        public override bool Equals(Identifier other) {
             if (other == null) return false;
 
             if (GetAsString() != other.GetAsString()) return false;
