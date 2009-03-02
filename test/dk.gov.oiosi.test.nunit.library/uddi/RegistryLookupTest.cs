@@ -134,8 +134,8 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
 			Assert.IsEmpty(result);
         }
 
-        private UddiLookupParameters CreateParams(IdentifierEan ean) {
-            return new UddiLookupParameters(
+        private LookupParameters CreateParams(IdentifierEan ean) {
+            return new LookupParameters(
                 ean,
                 new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true),
                 new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});

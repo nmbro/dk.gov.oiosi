@@ -76,7 +76,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
             uddiClient = uddiClientFactory.CreateUddiLookupClient();
 
             // Get the UDDI parameters with which to call the UDDI server
-            UddiLookupParameters parameters = GetUddiParameters(message, docTypeConfig);
+            LookupParameters parameters = GetUddiParameters(message, docTypeConfig);
 
             // Perform the actual UDDI lookup
             UddiLookupResponse uddiResponse = PerformUddiLookup(parameters);
@@ -91,7 +91,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
         }
 
 
-        static UddiLookupParameters GetUddiParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
+        static LookupParameters GetUddiParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
 
             // Use an OIOSI utility to find the endpoint type in the XML document to be sent
             EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
@@ -114,7 +114,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
                 throw new Exception("Could not find the service contract TModel for the UDDI lookup");
             }
 
-           UddiLookupParameters uddiLookupParameters = new UddiLookupParameters(
+           LookupParameters uddiLookupParameters = new LookupParameters(
                 endpointKey,
                 serviceContractTModel,
                 new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
@@ -122,7 +122,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
         }
 
 
-        static UddiLookupResponse PerformUddiLookup(UddiLookupParameters uddiLookupParameters) {
+        static UddiLookupResponse PerformUddiLookup(LookupParameters uddiLookupParameters) {
 
             // Do the actual UDDI call
             List<UddiLookupResponse> uddiResponses = uddiClient.Lookup(uddiLookupParameters);

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.uddi {
-    public class UddiLookupParameters {
+    public class LookupParameters {
         public Identifier Identifier { get; private set; }
         public UddiId ServiceId { get; private set; }
         public List<UddiId> ProfileIds { get; private set; }
         public string ProfileRoleIdentifier { get; private set; }
         public List<EndpointAddressTypeCode> AcceptedTransportProtocols { get; private set; }
 
-        public UddiLookupParameters(
+        public LookupParameters(
             Identifier identifier,
             UddiId serviceId,
             List<UddiId> profileIds,
@@ -31,7 +31,7 @@ namespace dk.gov.oiosi.uddi {
             ProfileRoleIdentifier = profileRoleIdentifier;
         }
 
-        public UddiLookupParameters(
+        public LookupParameters(
             Identifier identifier,
             UddiId serviceId,
             List<UddiId> profileIds,
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.uddi {
             AcceptedTransportProtocols = acceptedTransportProtocols;
         }
 
-        public UddiLookupParameters(Identifier identifier, UddiId serviceId, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+        public LookupParameters(Identifier identifier, UddiId serviceId, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
             if (identifier == null) throw new ArgumentNullException("identifier");
             if (serviceId == null) throw new ArgumentNullException("serviceId");
             if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");

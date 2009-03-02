@@ -23,7 +23,7 @@ namespace dk.gov.oiosi.uddi{
         /// </summary>
         /// <param name="parameters">The parameters used to make a lookup</param>
         /// <returns></returns>
-		public List<UddiLookupResponse> Lookup(UddiLookupParameters parameters) {
+		public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
 		    List<UddiLookupResponse> result;
 
 			Exception exception = null;

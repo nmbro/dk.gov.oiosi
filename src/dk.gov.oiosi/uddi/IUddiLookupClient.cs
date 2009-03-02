@@ -42,6 +42,6 @@ namespace dk.gov.oiosi.uddi {
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        List<UddiLookupResponse> Lookup(UddiLookupParameters parameters);
+        List<UddiLookupResponse> Lookup(LookupParameters parameters);
     }
 }

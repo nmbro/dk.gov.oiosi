@@ -25,7 +25,7 @@ namespace dk.gov.oiosi.uddi {
             _configuration = configuration;
         }
 
-        public List<UddiLookupResponse> Lookup(UddiLookupParameters parameters) {
+        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
             List<UddiLookupResponse> response = null;
             foreach (Registry registry in _configuration.PrioritizedRegistryList) {
                 IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());

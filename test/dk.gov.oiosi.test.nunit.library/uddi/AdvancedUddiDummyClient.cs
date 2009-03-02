@@ -58,7 +58,7 @@ namespace dk.gov.oiosi.test.nunit.library.uddi {
         }
 
 
-        public List<UddiLookupResponse> Lookup(UddiLookupParameters parameters) {
+        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
 			if (ErroneousEndpoints.Contains(_address)){
 				Console.WriteLine("Dummy UDDI throwing on register " + _address);
 				throw new UddiException();

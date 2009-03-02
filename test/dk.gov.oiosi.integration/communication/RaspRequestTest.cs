@@ -102,7 +102,7 @@ namespace dk.gov.oiosi.test.integration.communication {
             return endpointOcesCertificate;
         }
 
-        private UddiLookupParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
+        private LookupParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
             EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
 
             Identifier endpointKey = Utilities.GetEndpointKeyByXpath(
@@ -118,14 +118,14 @@ namespace dk.gov.oiosi.test.integration.communication {
             UddiId serviceContractTModel;
             serviceContractTModel = IdentifierUtility.GetUddiIDFromString(docTypeConfig.ServiceContractTModel);
 
-            UddiLookupParameters uddiLookupParameters;
+            LookupParameters uddiLookupParameters;
             if (profileTModelId == null) {
-                uddiLookupParameters = new UddiLookupParameters(
+                uddiLookupParameters = new LookupParameters(
                     endpointKey,
                     serviceContractTModel,
                     new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
             } else {
-                uddiLookupParameters = new UddiLookupParameters(
+                uddiLookupParameters = new LookupParameters(
                     endpointKey,
                     serviceContractTModel,
                     new List<UddiId>() { profileTModelId },
@@ -161,7 +161,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         /// Performs a lookup in the UDDI and validates the response.
         /// </summary>
         /// <returns>Returns the UDDI response</returns>
-        private UddiLookupResponse PerformUddiLookup(UddiLookupParameters uddiLookupParameters) {
+        private UddiLookupResponse PerformUddiLookup(LookupParameters uddiLookupParameters) {
             var uddiClientFactory = new RegistryLookupClientFactory();
             var uddiClient = uddiClientFactory.CreateUddiLookupClient();
             var uddiResponses = uddiClient.Lookup(uddiLookupParameters);

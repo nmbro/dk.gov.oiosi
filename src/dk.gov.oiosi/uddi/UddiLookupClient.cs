@@ -57,7 +57,7 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
         /// </summary>
-        public List<UddiLookupResponse> Lookup(UddiLookupParameters lookupParameters) {
+        public List<UddiLookupResponse> Lookup(LookupParameters lookupParameters) {
             if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
 
             List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
@@ -72,12 +72,12 @@ namespace dk.gov.oiosi.uddi {
         }
 
 
-        private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, UddiLookupParameters lookupParameters) {
+        private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, LookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
             return lookupParameters.AcceptedTransportProtocols.Contains(address.EndpointAddressTypeCode);
         }
 
-        private List<UddiLookupResponse> GetUddiResponses(UddiLookupParameters lookupParameters) {
+        private List<UddiLookupResponse> GetUddiResponses(LookupParameters lookupParameters) {
             bool filterResponseByProfile = lookupParameters.ProfileIds != null;
             
             List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
@@ -106,7 +106,7 @@ namespace dk.gov.oiosi.uddi {
             return lookupResponses;
         }
 
-        private UddiLookupResponse GetLookupResponse(UddiLookupParameters lookupParameters, UddiService uddiService, UddiBinding uddiBinding) {
+        private UddiLookupResponse GetLookupResponse(LookupParameters lookupParameters, UddiService uddiService, UddiBinding uddiBinding) {
             return new UddiLookupResponse(
                 lookupParameters.Identifier,
                 uddiBinding.EndpointAddress,
