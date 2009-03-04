@@ -60,13 +60,16 @@ namespace dk.gov.oiosi.addressing {
         public abstract bool Equals(Identifier other);
 
         public override bool Equals(object obj) {
-            if (obj == null)
-                return false;
-            if (GetType() != obj.GetType())
-                return false;
+            if (obj == null) return false;
+
+            if (GetType() != obj.GetType()) return false;
             Identifier other = (Identifier)obj;
 
-            return this.GetAsString().Equals(other.GetAsString());
+            if (!GetAsString().Equals(other.GetAsString())) return false;
+
+            if (!KeyTypeValue.Equals(other.KeyTypeValue)) return false;
+
+            return true;
         }
 
         public override int GetHashCode()

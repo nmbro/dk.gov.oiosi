@@ -196,40 +196,36 @@ namespace dk.gov.oiosi.uddi {
 
             return uddiServices;
         }
+    }
 
-        private class UddiLookupKey
+    class UddiLookupKey
+    {
+        private Identifier identifier;
+        private UddiId serviceId;
+
+        public UddiLookupKey(Identifier identifier, UddiId serviceId)
         {
-    	    private Identifier identifier;
-    	    private UddiId serviceId;
-        	
-    	    public UddiLookupKey(Identifier identifier, UddiId serviceId) {
-    		    this.identifier = identifier;
-    		    this.serviceId = serviceId;
-    	    }
+            this.identifier = identifier;
+            this.serviceId = serviceId;
+        }
 
-		    public override int GetHashCode() {
-                return identifier.GetHashCode() + serviceId.GetHashCode();
-		    }
+        public override int GetHashCode()
+        {
+            return identifier.GetHashCode();
+        }
 
-		    public override bool Equals(Object obj) {
-			    if (obj == null)
-				    return false;
-			    if (this.GetType() != obj.GetType())
-				    return false;
-			    UddiLookupKey other = (UddiLookupKey) obj;
+        public override bool Equals(Object obj)
+        {
+            if (obj == null) return false;
 
-			    if (identifier == null) {
-				    if (other.identifier != null)
-					    return false;
-			    } else if (!identifier.Equals(other.identifier))
-				    return false;
-			    if (serviceId == null) {
-				    if (other.serviceId != null)
-					    return false;
-			    } else if (!serviceId.Equals(other.serviceId))
-				    return false;
-			    return true;
-		    }
+            if (this.GetType() != obj.GetType()) return false;
+            UddiLookupKey other = (UddiLookupKey)obj;
+
+            if (!identifier.Equals(other.identifier)) return false;
+            
+            if (!serviceId.Equals(other.serviceId)) return false;
+            
+            return true;
         }
     }
 }

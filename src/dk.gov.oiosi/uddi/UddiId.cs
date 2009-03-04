@@ -58,5 +58,20 @@ namespace dk.gov.oiosi.uddi {
         }
 
         #endregion
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+
+            if (GetType() != obj.GetType()) return false;
+            UddiId other = (UddiId)obj;
+
+            return ID.Equals(other.ID);
+        }
+
+        public override int GetHashCode()
+        {
+            return ID.GetHashCode();
+        }
     }
 }

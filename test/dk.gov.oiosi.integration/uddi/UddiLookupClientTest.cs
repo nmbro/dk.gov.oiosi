@@ -38,6 +38,23 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
+        [Ignore]
+        public void CacheTest() {
+            List<UddiId> profileIds = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
+            var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
+
+            List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+
+            List<UddiId> profileIds2 = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
+            Identifier eanIdentifier2 = new IdentifierEan("5798009811578");
+            UddiId orderServiceId2 = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);
+
+            var lookupParameters2 = new LookupParameters(eanIdentifier2, orderServiceId2, profileIds2, acceptHttpProtocol);
+
+            List<UddiLookupResponse> lookupResponses2 = GetEndpointsWithProfileFromUddi(lookupParameters2);
+        }
+
+        [Test]
         public void LookingUpExistingServiceMustReturnResponseWithValidProperties() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
