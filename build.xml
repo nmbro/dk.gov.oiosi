@@ -109,6 +109,12 @@
        </fileset>
      </zip>
 
+	<!-- Source with bin folder - input to help file -->
+     <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
+       <fileset basedir="${Root.dir}">
+         <include name="**/*" />
+       </fileset>
+     </zip>
    </target>
 
 </project>
