@@ -40,7 +40,7 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
 
-        private static readonly ICache<UddiLookupKey, List<UddiService>> uddiCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(14, 0, 0, 0));
+        private static readonly ICache<UddiLookupKey, List<UddiService>> uddiCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(1, 0, 0, 0));
 
         private UDDI_Inquiry_PortTypeClient _uddiProxy;
 
@@ -86,7 +86,10 @@ namespace dk.gov.oiosi.uddi {
             List<UddiService> uddiServices;
             if (!uddiCache.TryGetValue(key, out uddiServices)) {
                 uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
-                uddiCache.Set(key, uddiServices);
+                
+                if (uddiServices.Count > 0) {
+                    uddiCache.Set(key, uddiServices);
+                }
             }
             
             foreach (UddiService uddiService in uddiServices) {
