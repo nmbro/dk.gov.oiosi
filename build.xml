@@ -34,17 +34,14 @@
         </attributes>
       </asminfo>
     </target>
-
-    
-   <target name="BuildVisualStudioSolutionNet30" depends="SetVersion">
-     <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
-       <property name="Configuration" value="Release" />
-       <property name="teamcity_dotnet_use_msbuild_v30" value="true" />
-     </msbuild>
-   </target>
-
+   
    <target name="BuildVisualStudioSolutionNet35" depends="SetVersion">
      <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+       <property name="Configuration" value="Debug" />
+       <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
+     </msbuild>
+
+    <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
        <property name="Configuration" value="Release" />
        <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
      </msbuild>
