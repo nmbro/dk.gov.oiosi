@@ -53,6 +53,7 @@ namespace dk.gov.oiosi.extension.wcf.Behavior {
                 "http://schemas.xmlsoap.org/ws/2005/02/rm/TerminateSequence",
                 "http://schemas.xmlsoap.org/ws/2005/02/rm/LastMessage",
                 "http://schemas.xmlsoap.org/ws/2005/02/rm/AckRequested",
+                "http://www.w3.org/2005/08/addressing/soap/fault",
                 "*"
             };
 
