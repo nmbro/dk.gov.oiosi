@@ -28,13 +28,15 @@
   *   Christian Lanng (chl@itst.dk)
   *
   */
+using System;
+using System.Diagnostics;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.uddi;
-using System.Diagnostics;
+
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 {
