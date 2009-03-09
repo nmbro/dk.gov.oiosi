@@ -36,6 +36,7 @@ using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.uddi;
+using System.ServiceModel;
 
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
@@ -98,16 +99,18 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
             string header = null;
             try
             {
-                msg.Headers.GetHeader<string>(name, ns);
+                header = msg.Headers.GetHeader<string>(name, ns);
             }
-            catch(Exception e){
-                logging.WCFLogger.Write(TraceEventType.Information, e.Message); 
+            catch (Exception e)
+            {
+                logging.WCFLogger.Write(TraceEventType.Information, e.Message);
             }
 
             if (header == null || header == "")
                 return defaultValue;
             else
                 return header;
+
         }
 
         public override void InterceptResponse(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage)
