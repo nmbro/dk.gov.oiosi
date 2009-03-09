@@ -34,6 +34,7 @@ using dk.gov.oiosi.extension.wcf.Interceptor;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.uddi;
+using System.Diagnostics;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 {
@@ -91,7 +92,16 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         }
 
         private string ExtractHeaderValue(Message msg, string name, string ns, string defaultValue){
-            string header = msg.Headers.GetHeader<string>(name,ns);
+
+            string header = null;
+            try
+            {
+                msg.Headers.GetHeader<string>(name, ns);
+            }
+            catch(Exception e){
+                logging.WCFLogger.Write(TraceEventType.Information, e.Message); 
+            }
+
             if (header == null || header == "")
                 return defaultValue;
             else
