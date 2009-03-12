@@ -32,7 +32,7 @@ namespace dk.gov.oiosi.uddi
             List<keyedReference> keyedReferenceList = new List<keyedReference>();
             foreach (object category in keyedReferences) {
                 //if the category is a keyed reference group ignore it.
-                if (category is keyedReferenceGroup) continue;
+                if (!(category is keyedReference)) continue;
                 keyedReference keyRef = (keyedReference)category;
                 if (keyRef.tModelKey.ToLower() == categoryIdentifier.ToLower()) {
                     keyedReferenceList.Add(keyRef);
