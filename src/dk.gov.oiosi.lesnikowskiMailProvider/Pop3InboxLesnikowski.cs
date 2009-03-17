@@ -252,7 +252,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
 
             // Parse the raw mail data and structure it in a MailMessage 
             try {
-                mailMessage = (new SimpleMailMessageBuilder()).CreateFromEml(mail); // TODO Updated
+                mailMessage = (new SimpleMailMessageBuilder()).CreateFromEml(mail);
                 MimeData attachment = GetAttachment(mailMessage);
                 Message wcfMessage = DecodeToWcfMessage(attachment);
                 MailSoap12TransportBinding mailBinding = GetMailBinding(mailMessage, wcfMessage);
@@ -276,7 +276,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         private MimeData GetAttachment(ISimpleMailMessage mailMessage) {
             MimeData attachment = mailMessage.Attachments[0];
             MimeType mimeType = attachment.ContentType.MimeType;
-            string mimeSubtypeName = attachment.ContentType.MimeSubtype.ToString(); // TODO Check this
+            string mimeSubtypeName = attachment.ContentType.MimeSubtype.ToString();
             if (mimeType != MimeType.Application || mimeSubtypeName != "soap+xml")
                 throw new LesnikowskiInvalidMimeTypeException(mimeType, mimeSubtypeName);
             string encoding = attachment.Headers["content-transfer-encoding"];

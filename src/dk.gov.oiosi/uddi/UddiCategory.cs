@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace dk.gov.oiosi.uddi
 {
-    // TODO: Could be refactored to use only one method - mandatory is only called by one other method
     internal class UddiCategory
     {
         public static keyedReference GetMandatoryCategoryByIdentifier(categoryBag bag, string categoryIdentifier) {

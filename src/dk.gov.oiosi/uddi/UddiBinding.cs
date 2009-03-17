@@ -37,7 +37,6 @@ namespace dk.gov.oiosi.uddi
         private EndpointAddress GetEndpointAddress() {
             accessPoint accessPointItem = template.Item as accessPoint;
             if (accessPointItem == null) throw new Exception("accessPoint type expected");
-            // TODO: Can this be done smarter?
             return IdentifierUtility.GetEndpointAddressFromString(accessPointItem.Value);
         }
 

@@ -172,8 +172,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
 
             Assert.AreEqual(false, response.HasNewerVersion);
-
-            // TODO: This property is not present on any of the services in uddi and has not been tested
             Assert.AreEqual(null, response.NewerVersionReference);
 
             foreach (var processRoleDefinition in response.Processes) {
@@ -181,10 +179,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
                 break;
             }
 
-            // TODO: This property is not present on any of the services in uddi and has not been tested
             Assert.AreEqual(null, response.ServiceContactEmail);
-
-            // TODO: This property is not present on any of the services in uddi and has not been tested
             Assert.AreEqual(null, response.TermsOfUseUrl);
 
             var expectedVersion = new Version(1, 0, 0);

@@ -174,7 +174,6 @@ namespace dk.gov.oiosi.uddi {
                 List<UddiBinding> uddiBindings = new List<UddiBinding>();
                 foreach (bindingTemplate bindingTemplate in  businessServiceItem.bindingTemplates) {
                     
-                    // TODO Lav tModel opslag på alt, og vælg derefter udfra key
                     List<string> tModelKeys = new List<string>();
                     foreach (tModelInstanceInfo tModel in bindingTemplate.tModelInstanceDetails) {
                         tModelKeys.Add(tModel.tModelKey);
