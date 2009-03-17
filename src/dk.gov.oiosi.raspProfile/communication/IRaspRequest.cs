@@ -23,8 +23,6 @@ namespace dk.gov.oiosi.raspProfile.communication {
         /// <summary>
         /// Asynchronously starts sending a request
         /// </summary>
-        /// <param name="message">Request message</param>
-        /// <param name="callback">Callback delegate</param>
         IAsyncResult BeginGetResponse (OiosiMessage message, string documentId, AsyncCallback callback);
        
         /// <summary>

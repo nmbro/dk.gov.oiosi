@@ -40,6 +40,9 @@ namespace dk.gov.oiosi.addressing {
     public class EndpointAddressSMTP : EndpointAddress {
         private MailAddress _endpointSmtp;
 
+        /// <summary>
+        /// Endpoint address type code for smtp
+        /// </summary>
         public override EndpointAddressTypeCode EndpointAddressTypeCode {
             get { return EndpointAddressTypeCode.email; }
         }

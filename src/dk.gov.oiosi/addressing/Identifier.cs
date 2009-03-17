@@ -57,8 +57,18 @@ namespace dk.gov.oiosi.addressing {
         /// <param name="identifier"></param>
         public abstract void Set(string identifier);
 
+        /// <summary>
+        /// Compares the value of this instance with another instance of the same type
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public abstract bool Equals(Identifier other);
 
+        /// <summary>
+        /// Equals values
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj) {
             if (obj == null) return false;
 
@@ -72,6 +82,10 @@ namespace dk.gov.oiosi.addressing {
             return true;
         }
 
+        /// <summary>
+        /// Returns hash code
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return GetAsString().GetHashCode();

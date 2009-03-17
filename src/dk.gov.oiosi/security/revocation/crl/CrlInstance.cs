@@ -16,7 +16,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         private X509Crl data;
         private readonly Uri url;
 
-        private readonly ReaderWriterLockSlim rwl = new ReaderWriterLockSlim();
+        private readonly ReaderWriterLock rwl = new ReaderWriterLock();
         private readonly X509CertificateParser cp = new X509CertificateParser();
 
         /// <summary>

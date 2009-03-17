@@ -72,6 +72,11 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        /// <summary>
+        /// Sets a cache key/value pair
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Set(TKey key, TValue value)
         {
             DateTime timeOut = DateTime.UtcNow.Add(_timeOut);

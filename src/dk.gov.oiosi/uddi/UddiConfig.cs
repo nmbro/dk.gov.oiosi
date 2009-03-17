@@ -111,6 +111,9 @@ namespace dk.gov.oiosi.uddi {
             set { lookupRegistryFallbackConfig = value; }
         }
 
+        /// <summary>
+        /// Should other hosts be tried on failure
+        /// </summary>
         public bool TryOtherHostsOnFailure {
             get { return _tryOtherHostsOnFailure; }
             set { _tryOtherHostsOnFailure = value; }

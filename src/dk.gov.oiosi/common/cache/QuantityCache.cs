@@ -27,6 +27,11 @@ namespace dk.gov.oiosi.common.cache {
 
         #region ICache<TKey,TValue> Members
 
+        /// <summary>
+        /// Adds item to cache
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(TKey key, TValue value) {
             if (key == null) throw new ArgumentNullException("key");
             if (_maxSize == 0) return;
@@ -37,6 +42,11 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        /// <summary>
+        /// Sets item in cachem by removing the old value and adding the new value
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Set(TKey key, TValue value)
         {
             if (key == null) throw new ArgumentNullException("key");
@@ -50,6 +60,11 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        /// <summary>
+        /// Returns true if the key is found in the cache
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public bool ContainsKey(TKey key) {
             if (key == null) throw new ArgumentNullException("key");
             if (_maxSize == 0) return false;
@@ -60,6 +75,10 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        /// <summary>
+        /// Removes item from cache
+        /// </summary>
+        /// <param name="key"></param>
         public void Remove(TKey key) {
             if (key == null) throw new ArgumentNullException("key");
             if (_maxSize == 0) return;
@@ -70,6 +89,12 @@ namespace dk.gov.oiosi.common.cache {
             }
         }
 
+        /// <summary>
+        /// Tries to get item from cache
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool TryGetValue(TKey key, out TValue value) {
             if (key == null) throw new ArgumentNullException("key");
             value = default(TValue);

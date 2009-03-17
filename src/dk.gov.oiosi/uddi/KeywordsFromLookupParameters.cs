@@ -21,7 +21,6 @@ namespace dk.gov.oiosi.uddi {
         /// Adds the keywords from the lookup parameters to the given keyword 
         /// dictionary.
         /// </summary>
-        /// <param name="keywords"></param>
         public static void GetKeywords(Dictionary<string, string> keywords, LookupParameters lookupParameters) {
             string endpointKey = lookupParameters.Identifier.GetAsString();
             string serviceContractId = lookupParameters.ServiceId.ID;

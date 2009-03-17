@@ -42,6 +42,9 @@ namespace dk.gov.oiosi.uddi
     {
         private List<Registry> _registries = new List<Registry>();
 
+        /// <summary>
+        /// List of registries in prioritized order
+        /// </summary>
         [XmlArrayItem("Registry")]
         public List<Registry> PrioritizedRegistryList
         {

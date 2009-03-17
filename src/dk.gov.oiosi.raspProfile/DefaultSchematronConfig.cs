@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using dk.gov.oiosi.xml.schematron;
+﻿using dk.gov.oiosi.xml.schematron;
 using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.raspProfile {
+
+    /// <summary>
+    /// Default schematron config
+    /// </summary>
     public class DefaultSchematronConfig {
         /// <summary>
         /// Set default, live values

@@ -43,58 +43,36 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         /// </summary>
         public const string MessagePropertyKey = "partyIdentifierHeaderSettings";
 
-        private string _senderPartyHeaderValue;
-        private string _receiverPartyHeaderValue;
-        private EndpointKeyTypeCode _senderPartyKeyType;
-        private EndpointKeyTypeCode _receiverPartyKeyType;
-
-
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="senderPartyHeaderValue">The value of the Sender party ID header</param>
-        /// <param name="receiverPartyHeaderValue">The value of the Receiver party ID header</param>
         public PartyIdentifierHeaderSettings(string senderPartyHeaderValue, EndpointKeyTypeCode senderPartyKeyType, string receiverPartyHeaderValue, EndpointKeyTypeCode receiverPartyKeyType)
         {
-            _senderPartyHeaderValue = senderPartyHeaderValue;
-            _senderPartyKeyType = senderPartyKeyType;
-            _receiverPartyHeaderValue = receiverPartyHeaderValue;
-            _receiverPartyKeyType = receiverPartyKeyType;
+            SenderPartyHeaderValue = senderPartyHeaderValue;
+            SenderPartyKeyType = senderPartyKeyType;
+            ReceiverPartyHeaderValue = receiverPartyHeaderValue;
+            ReceiverPartyKeyType = receiverPartyKeyType;
         }
 
         /// <summary>
         /// The value of the Sender party ID header
         /// </summary>
-        public string SenderPartyHeaderValue {
-            get { return _senderPartyHeaderValue; }
-            set { _senderPartyHeaderValue = value; }
-        }
+        public string SenderPartyHeaderValue { get; set; }
 
         /// <summary>
         /// The value of the Receiver party ID header
         /// </summary>
-        public string ReceiverPartyHeaderValue {
-            get { return _receiverPartyHeaderValue; }
-            set { _receiverPartyHeaderValue = value; }
-        }
+        public string ReceiverPartyHeaderValue { get; set; }
 
         /// <summary>
         /// The type of the Receiver party ID
         /// </summary>
-        public EndpointKeyTypeCode ReceiverPartyKeyType
-        {
-            get { return _receiverPartyKeyType; }
-            set { _receiverPartyKeyType = value; }
-        }
+        public EndpointKeyTypeCode ReceiverPartyKeyType { get; set; }
 
         /// <summary>
         /// The type of the Sender party ID
         /// </summary>
-        public EndpointKeyTypeCode SenderPartyKeyType
-        {
-            get { return _senderPartyKeyType; }
-            set { _senderPartyKeyType = value; }
-        }
+        public EndpointKeyTypeCode SenderPartyKeyType { get; set; }
     }
 }

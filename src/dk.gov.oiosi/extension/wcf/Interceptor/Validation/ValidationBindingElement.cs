@@ -38,6 +38,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     /// </summary>
     public abstract class ValidationBindingElement : BindingElement, IChannelInterceptor {
         
+        /// <summary>
+        /// Configuration for validation binding
+        /// </summary>
         public ValidationConfiguration Configuration { get; private set; }
 
         /// <summary>

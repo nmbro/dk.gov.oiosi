@@ -25,6 +25,11 @@ namespace dk.gov.oiosi.uddi {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Service lookup
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
             List<UddiLookupResponse> response = null;
             foreach (Registry registry in _configuration.PrioritizedRegistryList) {

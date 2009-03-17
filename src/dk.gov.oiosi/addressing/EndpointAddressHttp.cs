@@ -40,6 +40,9 @@ namespace dk.gov.oiosi.addressing {
     public class EndpointAddressHttp : EndpointAddress{
         private Uri _endpointUrl;
 
+        /// <summary>
+        /// Endpoint address type code
+        /// </summary>
         public override EndpointAddressTypeCode EndpointAddressTypeCode {
             get { return EndpointAddressTypeCode.http; }
         }

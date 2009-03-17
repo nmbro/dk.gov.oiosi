@@ -40,6 +40,9 @@ namespace dk.gov.oiosi.addressing {
     /// </summary>
     public abstract class EndpointAddress {
         
+        /// <summary>
+        /// Endoint address type code
+        /// </summary>
         public abstract EndpointAddressTypeCode EndpointAddressTypeCode { get; }
 
         /// <summary>

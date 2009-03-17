@@ -50,6 +50,9 @@ namespace dk.gov.oiosi.uddi {
         private Version _version;
         private List<ProcessRoleDefinition> _processes = new List<ProcessRoleDefinition>();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public UddiLookupResponse() {}
 
         /// <summary>

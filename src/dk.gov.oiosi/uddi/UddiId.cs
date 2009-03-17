@@ -59,6 +59,11 @@ namespace dk.gov.oiosi.uddi {
 
         #endregion
 
+        /// <summary>
+        /// Equals values
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -69,6 +74,10 @@ namespace dk.gov.oiosi.uddi {
             return ID.Equals(other.ID);
         }
 
+        /// <summary>
+        /// Hashcode
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return ID.GetHashCode();

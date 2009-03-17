@@ -171,7 +171,6 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Try to get the cvr number as a string value from the certificate, if such exists
         /// </summary>
-        /// <param name="cvrNumberString">The resulting cvr string</param>
         /// <returns>Whether a cvr number string value could be parsed.</returns>
         public static bool TryGetCvrNumberString(CertificateSubject subject, out string cvrNumberString) {
             cvrNumberString = null;
