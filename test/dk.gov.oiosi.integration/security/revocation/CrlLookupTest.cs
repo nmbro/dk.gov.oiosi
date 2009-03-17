@@ -28,7 +28,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
                 RevocationResponse response = crlLookup.CheckCertificate(certificate);
                 Assert.IsTrue(!response.IsValid);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Certificate is revoked. How do we catch the CertificateRevokedException here?
                 Assert.IsTrue(true);

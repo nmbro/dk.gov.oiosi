@@ -40,7 +40,8 @@ namespace Interoptest.HTTP {
             request = new Request("OiosiOmniEndpoint60SecDelay");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 003.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -58,7 +59,8 @@ namespace Interoptest.Mail {
             request = new Request("OiosiEmailEndpoint120SecDelay");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Mail: 003.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");

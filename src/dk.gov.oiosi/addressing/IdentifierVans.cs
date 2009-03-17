@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Validates and sets the VANS identifier
         /// </summary>
-        /// <param name="pNumber">The VANS number</param>
+        /// <param name="vansNumber">The VANS number</param>
         public override void Set(string vansNumber) {
             if (String.IsNullOrEmpty(vansNumber)) {
                 throw new NullOrEmptyArgumentException("vansNumber");

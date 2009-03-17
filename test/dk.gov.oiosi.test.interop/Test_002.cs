@@ -42,7 +42,9 @@ namespace Interoptest.HTTP {
             Utilities.StartTiming();
 
             OiosiMessage m = Utilities.GetMessageWithEmptyBody();
-            Response response = request.GetResponse(m);
+            Response response;
+            request.GetResponse(m, out response);
+
             Assert.IsNotNull(response);
 
             int i = 0;
@@ -73,7 +75,9 @@ namespace Interoptest.Mail {
             Utilities.StartTiming();
 
             OiosiMessage m = Utilities.GetMessageWithEmptyBody();
-            Response response = request.GetResponse(m);
+            Response response;
+            request.GetResponse(m, out response);
+
             Assert.IsNotNull(response);
 
             int i = 0;

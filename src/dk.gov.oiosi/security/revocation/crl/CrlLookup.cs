@@ -87,7 +87,7 @@ namespace dk.gov.oiosi.security.revocation.crl
 					    {
 						    throw new CertificateRevokedException(new CertificateSubject(certificate.Subject));
 					    }
-				    } catch (CheckCertificateRevokedUnexpectedException e) 
+				    } catch (CheckCertificateRevokedUnexpectedException) 
 				    {
 					    // There was an error in checking the certificate. Try the next url.
 				    }

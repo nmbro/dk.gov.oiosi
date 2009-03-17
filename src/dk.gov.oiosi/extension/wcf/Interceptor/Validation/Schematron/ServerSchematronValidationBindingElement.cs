@@ -70,7 +70,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// </summary>
         /// <returns></returns>
         public override BindingElement Clone() {
-            return new ServerSchematronValidationBindingElement(_configuration);
+            return new ServerSchematronValidationBindingElement(ValidationServerConfiguration);
         }
     }
 }

@@ -46,7 +46,8 @@ namespace Interoptest.Mail
             Utilities.StartTiming();
 
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Mail: 007.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -58,7 +59,8 @@ namespace Interoptest.Mail
             request = new Request("OiosiEmailEndpointWrongEncoding");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Mail: 007.02 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");

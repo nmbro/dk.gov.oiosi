@@ -11,8 +11,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
     public class UddiLookupClientTest {
 
         private Uri uddiServerUri;
-        private string clientEndpointName = "OiosiClientEndpointInquiry";
-
         private readonly Identifier eanIdentifier = new IdentifierEan("5798009811578");
         private readonly Identifier dunsIdentifier = new IdentifierDuns("1234567890");
 

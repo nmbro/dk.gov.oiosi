@@ -34,24 +34,29 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     /// Abstract class for server validation binding element
     /// </summary>
     public abstract class ValidationServerBindingElement : ValidationBindingElement {
+        private readonly ValidationServerConfiguration _validationServerConfiguration;
+
         /// <summary>
         /// The configuration for the validation server binding element
         /// </summary>
-        protected new ValidationServerConfiguration _configuration;
+        public ValidationServerConfiguration ValidationServerConfiguration {
+            get { return _validationServerConfiguration; }
+        }
+
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration">server configuration</param>
         public ValidationServerBindingElement(ValidationServerConfiguration configuration) : base(configuration) {
-            _configuration = configuration;
+            _validationServerConfiguration = configuration;
         }
 
         /// <summary>
         /// Gets whether it should fault if the validation throws an exception
         /// </summary>
         public override bool DoesFaultOnRequestException {
-            get { return _configuration.FaultOnRequestValidationException; }
+            get { return _validationServerConfiguration.FaultOnRequestValidationException; }
         }
     }
 }

@@ -92,14 +92,13 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
             if (msg.Properties.ContainsKey(PartyIdentifierHeaderSettings.MessagePropertyKey)) {
                 PartyIdentifierHeaderSettings settings = (PartyIdentifierHeaderSettings)msg.Properties[PartyIdentifierHeaderSettings.MessagePropertyKey];
 
-                if (settings.SenderPartyHeaderValue != "" && settings.SenderPartyHeaderValue != null)
+                if (!string.IsNullOrEmpty(settings.SenderPartyHeaderValue))
                     _senderPartyIdentifier = settings.SenderPartyHeaderValue;
-                if (settings.ReceiverPartyHeaderValue != "" && settings.ReceiverPartyHeaderValue != null)
+                if (!string.IsNullOrEmpty(settings.ReceiverPartyHeaderValue))
                     _receiverPartyIdentifier = settings.ReceiverPartyHeaderValue;
-                if (settings.SenderPartyKeyType !=  null)
-                    _senderPartyIdentifierType = settings.SenderPartyKeyType;
-                if (settings.ReceiverPartyKeyType !=  null)
-                    _receiverPartyIdentifierType = settings.ReceiverPartyKeyType;
+                
+                _senderPartyIdentifierType = settings.SenderPartyKeyType;
+                _receiverPartyIdentifierType = settings.ReceiverPartyKeyType;
             }
 
             // Add the headers

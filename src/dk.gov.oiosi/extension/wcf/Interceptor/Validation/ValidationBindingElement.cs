@@ -37,18 +37,15 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     /// Abstract class that is used by validation binding elements.
     /// </summary>
     public abstract class ValidationBindingElement : BindingElement, IChannelInterceptor {
-
-        /// <summary>
-        /// The validation configuration
-        /// </summary>
-        protected ValidationConfiguration _configuration;
+        
+        public ValidationConfiguration Configuration { get; private set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration">validation configuration</param>
         public ValidationBindingElement(ValidationConfiguration configuration) {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         /// <summary>
@@ -132,14 +129,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
         /// True if configured to intercept the request
         /// </summary>
         public bool DoesRequestIntercept {
-            get { return _configuration.ValidateRequest; }
+            get { return Configuration.ValidateRequest; }
         }
 
         /// <summary>
         /// True if configured to intercept the response
         /// </summary>
         public bool DoesResponseIntercept {
-            get { return _configuration.ValidateResponse; }
+            get { return Configuration.ValidateResponse; }
         }
 
         /// <summary>

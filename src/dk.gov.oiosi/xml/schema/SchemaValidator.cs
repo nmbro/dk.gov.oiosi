@@ -63,6 +63,7 @@ namespace dk.gov.oiosi.xml.schema {
                 CheckNamespace(xmlDocument, xmlSchema);
                 // Note: This code uses an obsolete method and should be updated.
                 xmlSchema.Compile(null, urlResolver);
+
                 XmlDocument clonedDocument = (XmlDocument)xmlDocument.Clone();
                 clonedDocument.Schemas.Add(xmlSchema);
                 clonedDocument.Validate(null);

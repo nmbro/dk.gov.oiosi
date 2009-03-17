@@ -44,19 +44,8 @@ namespace dk.gov.oiosi.xml.xslt {
         /// <param name="xmlDoc">The xml document to transform</param>
         /// <param name="stylesheet">The xslt to transform xml document with</param>
         /// <returns>The transformed xml document</returns>
-        public XmlDocument TransformXML(XmlDocument xmlDoc, XmlDocument stylesheet) {
-            return TransformXml(xmlDoc, stylesheet);
-        }
-
-        /// <summary>
-        /// Method to transform any xmldocument with a given xslt
-        /// </summary>
-        /// <param name="xmlDoc">The xml document to transform</param>
-        /// <param name="stylesheet">The xslt to transform xml document with</param>
-        /// <returns>The transformed xml document</returns>
         public XmlDocument TransformXml(XmlDocument xmlDoc, XmlDocument stylesheet) {
-            XslCompiledTransform transform;
-            transform = PrecompiledStyleSheet(stylesheet);
+            XslCompiledTransform transform = PrecompiledStyleSheet(stylesheet);
             return TransformXml(xmlDoc, transform);
         }
 

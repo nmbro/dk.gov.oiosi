@@ -56,7 +56,8 @@ namespace Interoptest.HTTP {
         public override void SendToEndpoint(string configurationName, string testName) {
             request = new Request(configurationName);
             Utilities.StartTiming();
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine(testName + " - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -195,7 +196,8 @@ namespace Interoptest.Mail {
             request = new Request(configurationName);
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine(testName + " - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");

@@ -102,7 +102,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
             try {
                 XmlDocument body = message.GetBody();
                 XmlDocument styleSheet = LoadStyleSheet(body);
-                XmlDocument transformedBody = _xsltUtility.TransformXML(body, styleSheet);
+                XmlDocument transformedBody = _xsltUtility.TransformXml(body, styleSheet);
                 message.SetBody(transformedBody);
                 if (_configuration.PropagateOriginalMessage) {
                     OriginalBody orgBody = new OriginalBody(body);

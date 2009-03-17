@@ -54,7 +54,9 @@ namespace Interoptest.HTTP
             request = new Request("OiosiOmniEndpointA");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
+
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -70,7 +72,9 @@ namespace Interoptest.HTTP
             request = new Request("OiosiOmniEndpointA");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
+
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.02 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -85,7 +89,8 @@ namespace Interoptest.HTTP
             request = new Request("OiosiOmniEndpointNoRm");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -100,7 +105,8 @@ namespace Interoptest.HTTP
             request = new Request("OiosiOmniEndpointNoRm");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.02 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -125,7 +131,8 @@ namespace Interoptest.Mail
             request = new Request("OiosiEmailEndpoint");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Mail: 005.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -141,7 +148,8 @@ namespace Interoptest.Mail
             request = new Request("OiosiEmailEndpoint");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Mail: 005.02 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -156,7 +164,8 @@ namespace Interoptest.Mail
             request = new Request("MailWSSToWSS");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");
@@ -171,7 +180,8 @@ namespace Interoptest.Mail
             request = new Request("MailWSSToWSS");
             Utilities.StartTiming();
 
-            Response response = request.GetResponse(Utilities.GetMessageWithEmptyBody());
+            Response response;
+            request.GetResponse(Utilities.GetMessageWithEmptyBody(), out response);
             Assert.IsNotNull(response);
 
             Console.WriteLine("Http: 005.01 - Requesting took " + Utilities.EndTiming().TotalSeconds + " seconds.\n\n");

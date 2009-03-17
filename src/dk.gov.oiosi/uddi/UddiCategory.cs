@@ -15,7 +15,7 @@ namespace dk.gov.oiosi.uddi
                 var category = GetCategoryByIdentifier(bag, categoryIdentifier);
                 return category;
             }
-            catch(Exception ex) {
+            catch(Exception) {
                 return null;
             }
         }

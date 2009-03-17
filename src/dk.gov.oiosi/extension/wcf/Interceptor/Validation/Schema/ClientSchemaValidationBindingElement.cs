@@ -55,7 +55,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// </summary>
         /// <returns>binding element</returns>
         public override BindingElement Clone() {
-            return new ClientSchemaValidationBindingElement(_configuration);
+            return new ClientSchemaValidationBindingElement(Configuration);
         }
 
         /// <summary>

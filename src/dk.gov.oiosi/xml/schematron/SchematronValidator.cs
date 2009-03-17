@@ -97,7 +97,7 @@ namespace dk.gov.oiosi.xml.schematron {
             PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
             bool hasAnyErrors;
             try {
-                result = _xlstUtil.TransformXML(xmlDocument, xmlSchematronStylesheet);
+                result = _xlstUtil.TransformXml(xmlDocument, xmlSchematronStylesheet);
                 hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, _errorXPath, prefixedNamespaces);
             }
             catch (Exception ex) {
