@@ -234,8 +234,6 @@
     <Compile Include="communication\listener\NoUniqueEndpointException.cs" />
     <Compile Include="communication\FaultReturnedException.cs" />
     <Compile Include="communication\fault\OiosiMessageFault.cs" />
-    <Compile Include="communication\fault\OiosiMessageFaultUnexpectedRecieverInnerFaultCode.cs" />
-    <Compile Include="communication\fault\OiosiMessageFaultUnexpectedSenderInnerFaultCode.cs" />
     <Compile Include="communication\NoEndpointGivenException.cs" />
     <Compile Include="communication\NotSupportedSchemeException.cs" />
     <Compile Include="communication\fault\OiosiMessageFaultUnexpectedFaultCode.cs" />

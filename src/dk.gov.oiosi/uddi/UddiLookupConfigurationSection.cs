@@ -36,39 +36,6 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Configuration section attributes
     /// </summary>
-    [Obsolete]
-    public class UddiLookupPropertyConfigurationSection : ConfigurationSection {
-        
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public UddiLookupPropertyConfigurationSection() {
-        }
-
-        /// <summary>
-        /// Profile conformance claim
-        /// </summary>
-        [ConfigurationProperty("profileConformanceClaim",
-                    IsRequired = true, IsKey = false)]
-        public string ProfileConformanceClaim {
-            get { return (string)this["profileConformanceClaim"]; }
-            set { this["profileConformanceClaim"] = value; }
-        }
-
-        /// <summary>
-        /// RegistrationConformanceClaim 
-        /// </summary>
-        [ConfigurationProperty("registrationConformanceClaim",
-                    IsRequired = true, IsKey = false)]
-        public string RegistrationConformanceClaim {
-            get { return (string)this["registrationConformanceClaim"]; }
-            set { this["registrationConformanceClaim"] = value; }
-        }
-    }
-    
-    /// <summary>
-    /// Configuration section attributes
-    /// </summary>
     public class UddiLookupUddiInquireEndpointURLConfigurationSection : ConfigurationSection {
         
         /// <summary>

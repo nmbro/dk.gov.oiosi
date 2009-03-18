@@ -45,28 +45,12 @@ namespace dk.gov.oiosi.communication.listener {
         private Dictionary<Type, object> _properties = new Dictionary<Type, object>();
         
         /// <summary>
-        /// The URI of the original request
-        /// </summary>
-        [Obsolete("Property is obsolete and should not be used", false)]
-        public Uri RequestUri { get { throw new NotImplementedException("Not implemented"); } }
-
-        /// <summary>
-        /// The identity of the requester
-        /// </summary>
-        [Obsolete("Property is obsolete and should not be used", false)]
-        public OcesX509Certificate RequestIdentity {
-            get {
-                throw new NotImplementedException("Not implemented");
-            }
-        }
-
-        /// <summary>
         /// Returns the request message from the remote party
         /// </summary>
         public OiosiMessage RequestMessage {
             get { return _requestMessage; }
         }
-        private OiosiMessage _requestMessage;
+        private readonly OiosiMessage _requestMessage;
 
 
         /// <summary>
