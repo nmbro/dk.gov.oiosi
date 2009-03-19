@@ -103,6 +103,10 @@
          <exclude name="**/bin/**" />
          <exclude name="**/obj" />
          <exclude name="**/obj/**" />
+		 <exclude name="target/**" />
+		 <exclude name="*.resharper" />
+		 <exclude name="*.cache" />
+		 <exclude name="build.xml" />
        </fileset>
      </zip>
 
