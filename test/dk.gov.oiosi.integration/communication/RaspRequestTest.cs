@@ -42,7 +42,14 @@ namespace dk.gov.oiosi.test.integration.communication {
             var response = SendRequestAndGetResponse(oioublInvoiceFile);
             Assert.IsNotNull(response);
         }
-        
+
+        [Test]
+        public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
+            var oioublFile = new FileInfo("Resources/Documents/Examples/OIOUBL_ApplicationResponse_v2p2.xml");
+            var response = SendRequestAndGetResponse(oioublFile);
+            Assert.IsNotNull(response);
+        }
+
         [Test]
         public void AllExampleDocumentsMustBeSendableByRaspRequest() {
             var documentsToSendDirectory = new DirectoryInfo("Resources/Documents/Examples");
