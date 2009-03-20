@@ -19,9 +19,15 @@ namespace dk.gov.oiosi.test.nunit.library.xml.schematron {
         }
 
         [Test]
-        public void OioublApplicationResponseValidation() {
+        public void OioublApplicationResponse201Validation() {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetApplicationResponse();
-            Validate(TestConstants.PATH_APPLICATIONRESPONSE_XML, documentType);
+            Validate(TestConstants.PATH_APPLICATIONRESPONSE201_XML, documentType);
+        }
+
+        [Test]
+        public void OioublApplicationResponse202Validation() {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetApplicationResponse();
+            Validate(TestConstants.PATH_APPLICATIONRESPONSE202_XML, documentType);
         }
 
         [Test]

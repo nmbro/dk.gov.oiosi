@@ -3,7 +3,8 @@ namespace dk.gov.oiosi.test.nunit.library {
 
         private const string raspProfileResources = "Resources/";
 
-        public const string PATH_APPLICATIONRESPONSE_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p1.xml";
+        public const string PATH_APPLICATIONRESPONSE201_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p1.xml";
+        public const string PATH_APPLICATIONRESPONSE202_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p2.xml";
         public const string PATH_CATALOGUE_XML = raspProfileResources + "Documents/Examples/OIOUBL_Catalogue_v2p1.xml";
         public const string PATH_CATALOGUEDELETION_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueDeletion_v2p1.xml";
         public const string PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml";

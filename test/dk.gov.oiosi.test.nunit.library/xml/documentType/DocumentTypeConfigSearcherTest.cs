@@ -19,8 +19,13 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
         }
 
         [Test]
-        public void SearchForApplicationResponseTest() {
-            AssertFindDocument("Applikationsmeddelse", TestConstants.PATH_APPLICATIONRESPONSE_XML);
+        public void SearchForApplicationResponse201Test() {
+            AssertFindDocument("Applikationsmeddelse", TestConstants.PATH_APPLICATIONRESPONSE201_XML);
+        }
+
+        [Test]
+        public void SearchForApplicationResponse202Test() {
+            AssertFindDocument("Applikationsmeddelse", TestConstants.PATH_APPLICATIONRESPONSE202_XML);
         }
 
         [Test]

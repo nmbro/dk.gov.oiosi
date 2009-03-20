@@ -32,8 +32,14 @@ namespace dk.gov.oiosi.test.nunit.library.xml.schema {
         }
 
         [Test]
-        public void ApplicationResponseValidationTest() {
-            const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE_XML;
+        public void ApplicationResponse201ValidationTest() {
+            const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE201_XML;
+            Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void ApplicationResponse202ValidationTest() {
+            const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE202_XML;
             Validate(xmlPath, _validator201);
         }
 

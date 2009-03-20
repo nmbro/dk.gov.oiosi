@@ -373,6 +373,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Documents\Examples\OIOUBL_ApplicationResponse_v2p2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueDeletion_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
