@@ -120,6 +120,7 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
                 _receiverPartyIdentifierTypeHeaderName.Namespace,
                 _receiverPartyIdentifierType));
 
+            // TODO: Why add headers when msg is never used for anything?
         }
 
         public override void InterceptResponse(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage) {

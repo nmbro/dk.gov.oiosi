@@ -169,6 +169,8 @@ namespace dk.gov.oiosi.uddi {
             getServiceDetail.serviceKey = endPointUddiIds.ToArray();
             serviceDetail detail = _uddiProxy.get_serviceDetail(getServiceDetail);
 
+            if (detail.businessService == null) return new List<UddiService>();
+
             List<UddiService> uddiServices = new List<UddiService>();
             foreach (businessService businessServiceItem in detail.businessService) {
                 List<UddiBinding> uddiBindings = new List<UddiBinding>();
