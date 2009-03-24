@@ -85,7 +85,8 @@ namespace dk.gov.oiosi.security.revocation.crl
 					    }
 					    else
 					    {
-						    throw new CertificateRevokedException(new CertificateSubject(certificate.Subject));
+                            response.IsValid = false;
+                            return response;
 					    }
 				    } catch (CheckCertificateRevokedUnexpectedException) 
 				    {
