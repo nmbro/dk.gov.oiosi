@@ -65,7 +65,8 @@ namespace dk.gov.oiosi.security.revocation.crl
              */
 
             RevocationResponse response = new RevocationResponse();
-		
+            RevocationException innerException = null;
+
     	    if (certificate != null)
     	    {
     		    // Retrieve URL distribution points
@@ -88,16 +89,23 @@ namespace dk.gov.oiosi.security.revocation.crl
                             response.IsValid = false;
                             return response;
 					    }
-				    } catch (CheckCertificateRevokedUnexpectedException) 
+				    } catch (CheckCertificateRevokedUnexpectedException e) 
 				    {
 					    // There was an error in checking the certificate. Try the next url.
+                        innerException = e;
 				    }
     		    }
             }
 
             // If any errors happen during CRL check, then abort the processing of the message.
-            response.IsValid = false;
-		    return response;
+            if (innerException != null)
+            {
+                throw innerException;
+            }
+            else
+            {
+                throw new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
+            }
         }
 
         #endregion

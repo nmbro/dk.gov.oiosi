@@ -22,8 +22,8 @@ namespace dk.gov.oiosi.xml.schematron {
         /// Gets the maximum number of compiled stylesheet to have in the memory
         /// </summary>
         [ConfigurationProperty(MAXCOMPILEDSTYLESHEETSINMEMORYNAME, IsRequired=false, DefaultValue=2)]
-        public ushort MaxCompiledStylesheetsInMemory {
-            get { return (ushort)this[MAXCOMPILEDSTYLESHEETSINMEMORYNAME]; }
+        public int MaxCompiledStylesheetsInMemory {
+            get { return (int)this[MAXCOMPILEDSTYLESHEETSINMEMORYNAME]; }
         }
 
         #endregion

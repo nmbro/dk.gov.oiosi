@@ -7,6 +7,6 @@ namespace dk.gov.oiosi.xml.schematron {
         /// <summary>
         /// Gets the maximum number of compiled stylesheet to have in the memory
         /// </summary>
-        ushort MaxCompiledStylesheetsInMemory { get; }
+        int MaxCompiledStylesheetsInMemory { get; }
     }
 }
