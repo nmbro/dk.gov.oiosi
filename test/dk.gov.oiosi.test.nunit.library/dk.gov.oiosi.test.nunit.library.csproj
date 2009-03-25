@@ -107,6 +107,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\RaspConfigurationWithVersion1117.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\RaspConfigurationWithEmailTransportConfigSectionWithOnlyCertificatesSet.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -133,6 +133,39 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             AssertNodeHasConfigurationSectionWithName(rootNode, "DocumentTypeCollectionConfig");
         }
 
+        [Test]
+        public void VersionNumberMustBeAddedToXmlFileWhenSerializing() {
+            var configFile = Settings.CreateRandomPath("RaspConfig.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+            ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
+
+            string expectedVersion = "1.1.1.4";
+            ConfigurationHandler.Version = expectedVersion;
+
+            ConfigurationHandler.SaveToFile();
+
+            XmlNode rootNode = GetRaspConfigurationNode(configFile);
+            string actualVersion = rootNode.Attributes["Version"].Value;
+            Assert.AreEqual(expectedVersion, actualVersion);
+        }
+
+        [Test]
+        public void VersionNumberMustBeNullIfNotPresentInXmlFile() {
+            FileInfo configFileWithOnlyOneDocumentType = GetConfigFileWithDocumentSectionWithOnlyOneDocumentType();
+            ConfigurationHandler.ConfigFilePath = configFileWithOnlyOneDocumentType.FullName;
+            ConfigurationHandler.Reset();
+            Assert.AreEqual(null, ConfigurationHandler.Version);
+        }
+
+        [Test]
+        public void VersionNumberMustBeReadFromXmlFile() {
+            FileInfo configWithVersion1117 = GetConfigFileWithVersion1117();
+            ConfigurationHandler.ConfigFilePath = configWithVersion1117.FullName;
+            ConfigurationHandler.Reset();
+            Assert.AreEqual("1.1.1.7", ConfigurationHandler.Version);
+        }
+
         # region Helper methods
 
         private void AssertNodeHasConfigurationSectionWithName(XmlNode node, string configurationSectionName) {
@@ -171,6 +204,14 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
 
         private FileInfo GetConfigFileWithDocumentSectionWithOnlyOneDocumentType() {
             var sourceFile = new FileInfo("Resources\\RaspConfigurationWithOnlyOneDocumentType.xml");
+            var configFile = Settings.CreateRandomPath("RaspConfiguration.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+            File.Copy(sourceFile.FullName, configFile.FullName);
+            return configFile;
+        }
+
+        private FileInfo GetConfigFileWithVersion1117() {
+            var sourceFile = new FileInfo("Resources\\RaspConfigurationWithVersion1117.xml");
             var configFile = Settings.CreateRandomPath("RaspConfiguration.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
             File.Copy(sourceFile.FullName, configFile.FullName);

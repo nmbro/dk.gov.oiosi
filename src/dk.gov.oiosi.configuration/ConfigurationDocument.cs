@@ -43,6 +43,10 @@ namespace dk.gov.oiosi.configuration {
     public class ConfigurationDocument {
         private static string _configFilePath = null;
 
+        [XmlAttribute("Version")]
+        public string Version;
+
+
         /// <summary>
         /// Contains all the types of configuration sections currently used
         /// </summary>
