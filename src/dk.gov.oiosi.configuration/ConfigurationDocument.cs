@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.configuration {
     public class ConfigurationDocument {
         private static string _configFilePath = null;
 
-        [XmlAttribute("Version")]
+        [XmlAttribute("version")]
         public string Version;
 
 
