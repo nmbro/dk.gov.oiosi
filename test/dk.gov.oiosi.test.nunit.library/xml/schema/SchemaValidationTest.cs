@@ -20,7 +20,7 @@ namespace dk.gov.oiosi.test.nunit.library.xml.schema {
             DirectoryInfo schema07Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS07);
             _validator07 = new SchemaValidator(schema07Directory);
 
-            DirectoryInfo schema201Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS201);
+            DirectoryInfo schema201Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS20);
             _validator201 = new SchemaValidator(schema201Directory);
         }
 

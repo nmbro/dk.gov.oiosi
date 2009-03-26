@@ -26,7 +26,7 @@ namespace dk.gov.oiosi.test.nunit.library {
         public const string PATH_STATEMENT_XML = raspProfileResources + "Documents/Examples/OIOUBL_Statement_v2p1.xml";
         public const string PATH_UNKNOWNTYPE_XML = raspProfileResources + "Documents/Examples Invalid/UnknownType.xml";
 
-        public const string PATH_SCHEMAS201 = raspProfileResources + "Schemas/OIOUBL v2.0/";
+        public const string PATH_SCHEMAS20 = raspProfileResources + "Schemas/OIOUBL v2.0/";
         public const string PATH_SCHEMAS07 = raspProfileResources + "Schemas/OIOXML v0.7/";
 
         public const string PATH_CERTIFICATE_ORGANISATION = "Resources/Certifcates/Organisation.cer";
