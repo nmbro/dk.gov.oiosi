@@ -146,7 +146,7 @@ namespace dk.gov.oiosi.test.nunit.library.configuration {
             ConfigurationHandler.SaveToFile();
 
             XmlNode rootNode = GetRaspConfigurationNode(configFile);
-            string actualVersion = rootNode.Attributes["Version"].Value;
+            string actualVersion = rootNode.Attributes["version"].Value;
             Assert.AreEqual(expectedVersion, actualVersion);
         }
 
