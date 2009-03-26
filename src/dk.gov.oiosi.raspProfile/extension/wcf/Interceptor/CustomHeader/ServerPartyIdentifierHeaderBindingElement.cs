@@ -99,7 +99,10 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
             string header = null;
             try
             {
-                header = msg.Headers.GetHeader<string>(name, ns);
+                int i = msg.Headers.FindHeader(name, ns);
+                if(i >= 0)
+                    header = msg.Headers.GetHeader<string>(i);
+                
             }
             catch (Exception e)
             {
