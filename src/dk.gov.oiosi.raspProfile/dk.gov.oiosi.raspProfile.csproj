@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -156,217 +156,217 @@
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\CCTS_CCT_SchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\CCTS_CCT_SchemaModule-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\CodeList_CurrencyCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\CodeList_CurrencyCode_ISO_7_04.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\CodeList_LanguageCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\CodeList_LanguageCode_ISO_7_04.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\CodeList_UnitCode_UNECE_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\CodeList_UnitCode_UNECE_7_04.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-ApplicationResponse-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-ApplicationResponse-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-AttachedDocument-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-AttachedDocument-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-BillOfLading-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-BillOfLading-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Catalogue-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Catalogue-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CatalogueDeletion-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CatalogueDeletion-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CatalogueItemSpecificationUpdate-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CatalogueItemSpecificationUpdate-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CataloguePricingUpdate-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CataloguePricingUpdate-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CatalogueRequest-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CatalogueRequest-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CertificateOfOrigin-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CertificateOfOrigin-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CommonAggregateComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CommonAggregateComponents-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CommonBasicComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CommonBasicComponents-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CommonExtensionComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CommonExtensionComponents-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CoreComponentParameters-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CoreComponentParameters-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-CreditNote-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-CreditNote-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-DebitNote-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-DebitNote-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-DespatchAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-DespatchAdvice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-ExtensionContentDatatype-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-ExtensionContentDatatype-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-ForwardingInstructions-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-ForwardingInstructions-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-FreightInvoice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-FreightInvoice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Invoice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Invoice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Order-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Order-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-OrderCancellation-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-OrderCancellation-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-OrderChange-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-OrderChange-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-OrderResponse-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-OrderResponse-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-OrderResponseSimple-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-OrderResponseSimple-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-PackingList-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-PackingList-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-QualifiedDatatypes-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-QualifiedDatatypes-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Quotation-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Quotation-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-ReceiptAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-ReceiptAdvice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Reminder-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Reminder-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-RemittanceAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-RemittanceAdvice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-RequestForQuotation-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-RequestForQuotation-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-SelfBilledCreditNote-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-SelfBilledCreditNote-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-SelfBilledInvoice-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-SelfBilledInvoice-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Statement-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Statement-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-TransportationStatus-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-TransportationStatus-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UBL-Waybill-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UBL-Waybill-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.01\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL v2.0\UnqualifiedDataTypeSchemaModule-2.0.xsd">
       <SubType>
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -409,49 +409,49 @@
     <Content Include="Resources\Schemas\OIOXML v0.7\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_ApplicationResponse_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueDeletion_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CatalogueRequest_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CatalogueRequest_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Catalogue_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Catalogue_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_CreditNote_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CreditNote_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Invoice_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Invoice_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_OrderCancellation_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_OrderCancellation_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_OrderChange_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_OrderChange_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_OrderResponseSimple_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_OrderResponse_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_OrderResponse_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Order_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Order_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Reminder_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Reminder_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.01\OIOUBL_Statement_Schematron.xsl">
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Statement_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SchematronStylesheets\OIOXML v0.7\ublinvoice.xsl">
@@ -463,46 +463,46 @@
     <Content Include="Resources\UI\errorss.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_ApplicationResponse.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_ApplicationResponse.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_CommonTemplates.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_CommonTemplates2.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates2.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_CreditNote.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CreditNote.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Headlines.xml">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Headlines2.xml">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Invoice.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Invoice.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Order.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Order.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderCancellation.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderCancellation.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderChange.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderChange.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderResponse.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderResponse.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_OrderResponseSimple.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderResponseSimple.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Reminder.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Reminder.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\Stylesheets\OIOUBL_Statement.xsl">
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Statement.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\UI\OIOXML v0.7\HtmlDependencies\finance.css">
@@ -532,10 +532,10 @@
     <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\HtmlDependencies\html\GTADefaultLogo.JPG">
+    <Content Include="Resources\UI\OIOUBL v2.0\HtmlDependencies\html\GTADefaultLogo.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\OIOUBL v2.01\HtmlDependencies\html\OIOUBL.css">
+    <Content Include="Resources\UI\OIOUBL v2.0\HtmlDependencies\html\OIOUBL.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_ApplicationResponse_v2p1.xml">
