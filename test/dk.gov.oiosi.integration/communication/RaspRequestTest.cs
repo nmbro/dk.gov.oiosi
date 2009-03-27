@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Xml;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.common;
@@ -51,13 +52,32 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
+        public void OioublCatalogue202MustBeSendableByRaspRequest() {
+            var oioublFile = new FileInfo("Resources/Documents/Examples/OIOUBL_Catalogue_v2p2.xml");
+            var response = SendRequestAndGetResponse(oioublFile);
+            Assert.IsNotNull(response);
+        }
+
+        [Test]
         public void AllExampleDocumentsMustBeSendableByRaspRequest() {
+            bool errorsFound = false;
             var documentsToSendDirectory = new DirectoryInfo("Resources/Documents/Examples");
             foreach (var file in documentsToSendDirectory.GetFiles()) {
-                Console.WriteLine("Sending document: " + file.Name);
-                var response = SendRequestAndGetResponse(file);
-                Assert.IsNotNull(response);
+                Response response;
+                try {
+                    response = SendRequestAndGetResponse(file);
+                    if (response != null) Console.WriteLine("Success: " + file.Name);
+                    if (response == null) {
+                        errorsFound = true;
+                        Console.WriteLine("Failure: " + file.Name);
+                    }
+                }
+                catch {
+                    errorsFound = true;
+                    Console.WriteLine("Failure: " + file.Name);
+                }
             }
+            //Assert.IsFalse(errorsFound, "One or more documents had failures.");
         }
         
         # region Private methods
