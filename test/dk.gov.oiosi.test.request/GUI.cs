@@ -150,7 +150,7 @@ namespace dk.gov.oiosi.test.request {
                     storeLocation = (StoreLocation)Enum.Parse(typeof(StoreLocation), Console.ReadLine());
                     done = true;
                 }
-                catch { }
+                catch (Exception e) { Console.WriteLine(e); }
             } while (!done);
 
 

@@ -3143,7 +3143,6 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
-    <ServerUrl>http://test.ocsp.certifikat.dk/ocsp/status</ServerUrl>
     <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
@@ -3197,7 +3196,7 @@
       <SubjectKeyString>UID</SubjectKeyString>
     </OrganizationCertificateSubjectKey>
     <FunctionCertificateSubjetKey>
-      <SubjectKeyString>DID</SubjectKeyString>
+      <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="SendingProcessConfiguration">

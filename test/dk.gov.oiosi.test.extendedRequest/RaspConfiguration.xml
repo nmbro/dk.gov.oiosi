@@ -18,7 +18,7 @@
       <SubjectKeyString>UID</SubjectKeyString>
     </OrganizationCertificateSubjectKey>
     <FunctionCertificateSubjetKey>
-      <SubjectKeyString>DID</SubjectKeyString>
+      <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
@@ -806,49 +806,53 @@
     </DocumentTypes>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiConfig">
-    <ProfileConformanceClaim />
+    <ProfileConformanceClaim/>
     <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
-    <UddiInquireEndpointURL>http://vtuapp06/registry/uddi/inquiry</UddiInquireEndpointURL>
-    <UddiInquireEndpointURLFallback>http://vtuapp05/registry/uddi/inquiry</UddiInquireEndpointURLFallback>
-    <UddiPublishEndpointURL>https://vtuapp06/UDDIProxy/UDDIProxy.svc</UddiPublishEndpointURL>
-    <UddiSecurityEndpointURL>http://vtuapp06/registry/uddi/security</UddiSecurityEndpointURL>
+    <PublishEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/publishing</PublishEndpoint>
+    <SecurityEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/security</SecurityEndpoint>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
-    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
+    <LookupRegistryFallbackConfig>
+      <PrioritizedRegistryList>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
+            <Endpoint>http://discovery.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
+          </EndpointCollection>
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://oiosi2vans.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
+          </EndpointCollection>
+        </Registry>
+      </PrioritizedRegistryList>
+    </LookupRegistryFallbackConfig>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="RegistryLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.RegistryLookupClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClientTest</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClient</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="UddiLookupClientTestConfig">
-    <EndpointAddress>http://oiositest.dk/interoptest2/oiosiomniendpointa.svc</EndpointAddress>
-    <ActivationDate>2007-10-02T00:00:00+02:00</ActivationDate>
-    <ExpirationDate>2007-10-04T00:00:00+02:00</ExpirationDate>
-    <CertificateSubjectSerialNumber>CN=NemHandel Test 2 + SERIALNUMBER=CVR:26769388-DID:00000002, O=IT- og Telestyrelsen // CVR:26769388, C=DK</CertificateSubjectSerialNumber>
-    <TermsOfUseUrl>http://termsOfUse.com</TermsOfUseUrl>
-    <ServiceContactEmail>admin@this.com</ServiceContactEmail>
-    <Version>1.0.0</Version>
-    <NewerVersionReference />
-    <HasNewerVersion>false</HasNewerVersion>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="LdapCertificateLookupTestConfig">
-    <StoreLocation>CurrentUser</StoreLocation>
-    <StoreName>My</StoreName>
-    <Action>FindCertificate</Action>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookupTest</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="LdapSettings">
+    <Host>dir.certifikat.dk</Host>
+    <Port>389</Port>
+    <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
+    <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
+    <SearchClientTimeoutMsec>5000</SearchClientTimeoutMsec>
+    <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="OcspLookupTestConfig">
-    <ReturnPositiveResponse>true</ReturnPositiveResponse>
-  </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
-    <ServerUrl>http://localhost/</ServerUrl>
     <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
   </ConfigurationSection>
 </RaspConfiguration>

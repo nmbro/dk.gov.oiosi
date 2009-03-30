@@ -155,7 +155,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
             // Print out info
             Console.Write("  2. Downloaded certificate with LDAP\n       ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(certificate.FriendlyName);
+            Console.WriteLine(certificate.Subject);
             Console.ForegroundColor = ConsoleColor.White;
 
             return certificate;

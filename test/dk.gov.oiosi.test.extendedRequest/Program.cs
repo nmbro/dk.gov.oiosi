@@ -34,8 +34,7 @@ namespace dk.gov.oiosi.test.extendedRequest {
 
                     // Create the OIOSI message object to send, and add the mandatory MessageIdentifier header
                     OiosiMessage message = new OiosiMessage(xdoc);
-                    AddMandatoryRaspHeaders(message);
-                    
+
                     // Prepare the request
                     request = Preparation.PrepareRequest(message);
 

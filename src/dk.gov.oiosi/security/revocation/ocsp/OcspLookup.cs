@@ -146,15 +146,17 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                     req = ocsp.MakeOcspRequest(uiHex.ToString());
 
                     //3. send request
-                    byte[] resp;
+                    String serverURL;
                     if (string.IsNullOrEmpty(_configuration.ServerUrl)){
                         // Use OCSP server specified in certificate
-                        resp = ocsp.Send(req, GetServerUriFromCertificate(certificate));
+                        serverURL = GetServerUriFromCertificate(certificate);
                     }
                     else {
                         // Use OCSP server specified in configuration
-                        resp = ocsp.Send(req, _configuration.ServerUrl.ToString());
+                        serverURL = _configuration.ServerUrl.ToString();
                     }
+
+                    byte[] resp = ocsp.Send(req, serverURL);
 
                     //4. check result
                     if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString())) {
