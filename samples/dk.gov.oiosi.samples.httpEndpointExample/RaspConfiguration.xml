@@ -3176,7 +3176,6 @@
         </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
-    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateConfig">
     <RootCertificateLocation>
