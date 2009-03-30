@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("dk.gov.oiosi.test.request")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("accenture")]
+[assembly: AssemblyCompany("ITST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.test.request")]
-[assembly: AssemblyCopyright("Copyright © accenture 2007")]
+[assembly: AssemblyCopyright("Copyright © ITST 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyVersion("1.2.0.*")]

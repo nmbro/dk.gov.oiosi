@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TestMailService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Accenture")]
+[assembly: AssemblyCompany("ITST")]
 [assembly: AssemblyProduct("TestMailService")]
-[assembly: AssemblyCopyright("Copyright © Accenture 2007")]
+[assembly: AssemblyCopyright("Copyright © ITST 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyVersion("1.2.0.*")]
