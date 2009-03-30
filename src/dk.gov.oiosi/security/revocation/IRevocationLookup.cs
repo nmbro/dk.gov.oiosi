@@ -35,12 +35,12 @@ using System.Security.Cryptography.X509Certificates;
 namespace dk.gov.oiosi.security.revocation {
 
     /// <summary>
-    /// Interface for an OCSP lookup
+    /// Interface for an Revocation lookup
     /// </summary>
     public interface IRevocationLookup {
 
         /// <summary>
-        /// Checks the certificate status against an OCSP server
+        /// Checks the certificate status against an OCSP server or CRL
         /// </summary>
         /// <param name="certificate">The certificate to check</param>
         /// <returns>Returns the check status</returns>
