@@ -13,19 +13,21 @@
   * The Original Code is .NET RASP toolkit.
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
-  * Portions created by Accenture and Avanade are Copyright (C) 2007
+  * Portions created by Accenture and Avanade are Copyright (C) 2009
   * Danish National IT and Telecom Agency (http://www.itst.dk). 
   * All Rights Reserved.
   *
   * Contributor(s):
-  *   Gert Sylvest (gerts@avanade.com)
-  *   Patrik Johansson (p.johansson@accenture.com)
-  *   Michael Nielsen (michaelni@avanade.com)
-  *   Dennis Søgaard (dennis.j.sogaard@accenture.com)
-  *   Ramzi Fadel (ramzif@avanade.com)
-  *   Mikkel Hippe Brun (mhb@itst.dk)
-  *   Finn Hartmann Jordal (fhj@itst.dk)
-  *   Christian Lanng (chl@itst.dk)
+  *   Gert Sylvest, Avanade
+  *   Jesper Jensen, Avanade
+  *   Ramzi Fadel, Avanade
+  *   Patrik Johansson, Accenture
+  *   Dennis Søgaard, Accenture
+  *   Christian Pedersen, Accenture
+  *   Martin Bentzen, Accenture
+  *   Mikkel Hippe Brun, ITST
+  *   Finn Hartmann Jordal, ITST
+  *   Christian Lanng, ITST
   *
   */
 namespace dk.gov.oiosi.uddi
