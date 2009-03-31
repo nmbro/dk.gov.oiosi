@@ -654,20 +654,10 @@
     <None Include="Resources\Certificates\TDCLiveOcesRoot.cer" />
     <None Include="Resources\Certificates\TDCRootSSL.cer" />
     <None Include="Resources\Certificates\TDCTestRoot.cer" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net 1.01 Component Overview.pdf" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net Component Overview.doc">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Resources\Documents\OIOSI Uddi Library for .Net 1.0 API Documentation.chm" />
-    <None Include="Resources\Documents\RASP Library for .Net 1.01 API Documentation.chm" />
     <None Include="Resources\Licenses\License.rtf" />
-    <None Include="Resources\Documents\OIOSI RASP API.chm" />
     <None Include="Resources\Documents\OIOSI RASP Library for .Net Installation Guide.doc" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net 1.01 Installation Guide.pdf" />
     <None Include="Resources\Documents\OIOSI RASP Library for .Net Release Notes.doc" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net 1.01 Release Notes.pdf" />
     <None Include="Resources\Documents\OIOSI RASP Library for .Net Tutorials.doc" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net 1.01 Tutorials.pdf" />
     <None Include="Resources\Http Endpoint Example\RaspHTTPEndpointExample.zip" />
   </ItemGroup>
   <ItemGroup>
