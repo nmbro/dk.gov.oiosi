@@ -31,6 +31,7 @@
   *
   */
 using dk.gov.oiosi.uddi;
+using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
     
@@ -49,12 +50,12 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         /// <summary>
         /// Constructor
         /// </summary>
-        public PartyIdentifierHeaderSettings(string senderPartyHeaderValue, EndpointKeyTypeCode senderPartyKeyType, string receiverPartyHeaderValue, EndpointKeyTypeCode receiverPartyKeyType)
+        public PartyIdentifierHeaderSettings(Identifier senderParty, Identifier receiverParty)
         {
-            SenderPartyHeaderValue = senderPartyHeaderValue;
-            SenderPartyKeyType = senderPartyKeyType;
-            ReceiverPartyHeaderValue = receiverPartyHeaderValue;
-            ReceiverPartyKeyType = receiverPartyKeyType;
+            SenderPartyHeaderValue = senderParty.GetAsString();
+            SenderPartyKeyType = senderParty.KeyTypeCode;
+            ReceiverPartyHeaderValue = receiverParty.GetAsString();
+            ReceiverPartyKeyType = receiverParty.KeyTypeCode;
         }
 
         /// <summary>

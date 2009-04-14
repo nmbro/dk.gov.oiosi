@@ -3,6 +3,10 @@ using System.Xml;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.raspProfile.communication;
 using NUnit.Framework;
+using System;
+using System.Reflection;
+using dk.gov.oiosi.security.oces;
+using System.Security.Cryptography.X509Certificates;
 
 namespace dk.gov.oiosi.test.nunit.library.raspProfile.communication {
     
@@ -14,7 +18,12 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile.communication {
             var documentId = "678";
             OiosiMessage oiosiMessage = GetInvoiceOiosiMessage();
 
-            RaspRequest.AddCustomHeaders(oiosiMessage, documentId);
+            // Call private method
+            Type raspRequestType = typeof(RaspRequest);
+            MethodInfo addCustomHeadersMethod = raspRequestType.GetMethod("AddCustomHeaders", BindingFlags.NonPublic | BindingFlags.Instance);
+            RaspRequest raspRequest = new RaspRequest(new Request(new Uri("http://test.dk"), new Credentials(new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE)), new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE)))));
+            addCustomHeadersMethod.Invoke(raspRequest, new object[] { oiosiMessage, documentId });
+
             bool headerValueAdded = false;
             foreach (var messageHeader in oiosiMessage.MessageHeaders) {
                 var headerValue = messageHeader.Value.ToString();

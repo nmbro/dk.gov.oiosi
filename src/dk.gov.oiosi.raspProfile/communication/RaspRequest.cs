@@ -7,6 +7,7 @@ using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.xpath;
+using dk.gov.oiosi.addressing;
 
 namespace dk.gov.oiosi.raspProfile.communication
 {
@@ -32,25 +33,16 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// </summary>
         /// <param name="message">The message on which the headers should be added</param>
         /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
-        public static void AddCustomHeaders(OiosiMessage message, string documentId) {
+        private void AddCustomHeaders(OiosiMessage message, string documentId) {
             var typeSearcher = new DocumentTypeConfigSearcher();
             DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(message.MessageXml);
 
             // Add custom headers to the message
-            string senderID = DocumentXPathResolver.GetElementValueByXpath(
-                message.MessageXml,
-                docTypeConfig.EndpointType.SenderKey.XPath,
-                docTypeConfig.Namespaces);
+            Identifier senderIdentifier = getSenderID(message, docTypeConfig);
+            Identifier receiverIdentifier = GetReceiverID(message, docTypeConfig);
 
-            string receiverID = DocumentXPathResolver.GetElementValueByXpath(
-                message.MessageXml,
-                docTypeConfig.EndpointType.Key.XPath,
-                docTypeConfig.Namespaces);
             string key = PartyIdentifierHeaderSettings.MessagePropertyKey;
-            var senderKeyType = Utilities.GetSenderKeyTypeCode(message.MessageXml, docTypeConfig);
-            var receiverKeyType = Utilities.GetEndpointKeyTypeCode(message.MessageXml, docTypeConfig);
-
-            var partyIdentifierSetting = new PartyIdentifierHeaderSettings(senderID, senderKeyType, receiverID, receiverKeyType);
+            var partyIdentifierSetting = new PartyIdentifierHeaderSettings(senderIdentifier, receiverIdentifier);
             message.UbiquitousProperties[key] = partyIdentifierSetting;
 
             // Adds custom headers by xpaths
@@ -78,6 +70,56 @@ namespace dk.gov.oiosi.raspProfile.communication
                 message.RequestAction = docTypeConfig.EndpointType.RequestAction;
             if (!string.IsNullOrEmpty(docTypeConfig.EndpointType.ReplyAction))
                 message.ReplyAction = docTypeConfig.EndpointType.ReplyAction;
+        }
+
+        private Identifier GetReceiverID(OiosiMessage message, DocumentTypeConfig docTypeConfig)
+        {
+            string receiverID = DocumentXPathResolver.GetElementValueByXpath(
+                            message.MessageXml,
+                            docTypeConfig.EndpointType.Key.XPath,
+                            docTypeConfig.Namespaces);
+            var receiverKeyType = Utilities.GetEndpointKeyTypeCode(message.MessageXml, docTypeConfig);
+            Identifier id = IdentifierUtility.GetIdentifierFromKeyType(receiverID, receiverKeyType);
+
+            if (!id.IsAllowedInPublic)
+            {
+                string cvrNumberString;
+                if (Credentials.ServerCertificate.TryGetCvrNumberString(out cvrNumberString))
+                {
+                    id = new IdentifierCvr(cvrNumberString);
+                }
+                else
+                {
+                    throw new Exception("Receiver ID is not allowed to be added to header. It was not possible to retreive ID from certificate");
+                }
+            }
+
+            return id;
+        }
+
+        private Identifier getSenderID(OiosiMessage message, DocumentTypeConfig docTypeConfig)
+        {
+            string senderID = DocumentXPathResolver.GetElementValueByXpath(
+                            message.MessageXml,
+                            docTypeConfig.EndpointType.SenderKey.XPath,
+                            docTypeConfig.Namespaces);
+            var senderKeyType = Utilities.GetSenderKeyTypeCode(message.MessageXml, docTypeConfig);
+            Identifier id = IdentifierUtility.GetIdentifierFromKeyType(senderID, senderKeyType);
+
+            if (!id.IsAllowedInPublic)
+            {
+                string cvrNumberString;
+                if (Credentials.ClientCertificate.TryGetCvrNumberString(out cvrNumberString))
+                {
+                    id = new IdentifierCvr(cvrNumberString);
+                }
+                else
+                {
+                    throw new Exception("Sender ID is not allowed to be added to header. It was not possible to retreive ID from certificate");
+                }
+            }
+
+            return id;
         }
 
         #region IRaspRequest Members

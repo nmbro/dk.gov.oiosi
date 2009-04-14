@@ -75,6 +75,11 @@ namespace dk.gov.oiosi.uddi {
         /// duns number
         /// </summary>
         duns,
+
+        /// <summary>
+        /// cpr number
+        /// </summary>
+        cpr,
         
         /// <summary>
         /// other

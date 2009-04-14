@@ -32,6 +32,7 @@
   */
 
 using System;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.addressing {
     
@@ -41,9 +42,24 @@ namespace dk.gov.oiosi.addressing {
     public abstract class Identifier: IEquatable<Identifier> {
 
         /// <summary>
-        /// Gets the KeyTypeValue of the IIdentifier
+        /// Gets the KeyTypeValue of the Identifier
         /// </summary>
         public abstract string KeyTypeValue {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the Type of the IIdentifier. E.g. "CPR"
+        /// </summary>
+        public abstract EndpointKeyTypeCode KeyTypeCode
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Determines whether the type of identifier is allowed in the custom rasp headers.
+        /// </summary>
+        public abstract bool IsAllowedInPublic {
             get;
         }
 

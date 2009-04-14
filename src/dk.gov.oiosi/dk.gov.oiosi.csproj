@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addressing\IdentifierCpr.cs" />
     <Compile Include="addressing\IdentifierDuns.cs" />
     <Compile Include="addressing\IdentifierIban.cs" />
     <Compile Include="addressing\IdentifierVans.cs" />

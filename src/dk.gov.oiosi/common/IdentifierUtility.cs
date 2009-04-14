@@ -109,6 +109,9 @@ namespace dk.gov.oiosi.common
                 case EndpointKeyTypeCode.duns:
                     id = new IdentifierDuns(endpointKey);
                     break;
+                case EndpointKeyTypeCode.cpr:
+                    id = new IdentifierCpr(endpointKey);
+                    break;
                 default:
                     throw new UnknownEndpointTypeException(endpointKeyType);
             }

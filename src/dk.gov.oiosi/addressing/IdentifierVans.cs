@@ -33,6 +33,7 @@
 
 using System;
 using dk.gov.oiosi.exception;
+using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.addressing {
 
@@ -49,6 +50,16 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         public override string KeyTypeValue {
             get { return keyTypeValue; }
+        }
+
+        public override EndpointKeyTypeCode KeyTypeCode
+        {
+            get { return EndpointKeyTypeCode.vans; }
+        }
+
+        public override bool IsAllowedInPublic
+        {
+            get { return true; }
         }
 
         /// <summary>

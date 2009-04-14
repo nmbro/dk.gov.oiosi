@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.test.integration.communication {
                     Console.WriteLine("Failure: " + file.Name);
                 }
             }
-            //Assert.IsFalse(errorsFound, "One or more documents had failures.");
+            Assert.IsFalse(errorsFound, "One or more documents had failures.");
         }
         
         # region Private methods
