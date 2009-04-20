@@ -108,5 +108,10 @@ namespace dk.gov.oiosi.addressing {
         {
             return GetAsString().GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return GetAsString();
+        }
     }
 }

@@ -197,16 +197,18 @@ namespace dk.gov.oiosi.communication {
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Credentials added programatically. Starting to override proxy settings.");
 
                 // Override client cert
-                if (_credentials.ClientCertificate == null)
-                    throw new MissingCredentialsException();
-                _proxy.ClientCredentials.ClientCertificate.Certificate = _credentials.ClientCertificate.Certificate;
-                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Client certificate overridden with '" + _credentials.ClientCertificate.Certificate.FriendlyName + "'");
-
+                if (_credentials.ClientCertificate != null)
+                {
+                    _proxy.ClientCredentials.ClientCertificate.Certificate = _credentials.ClientCertificate.Certificate;
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Client certificate overridden with '" + _credentials.ClientCertificate.Certificate.FriendlyName + "'");
+                }
+               
                 // Override server cert
-                if (_credentials.ServerCertificate == null)
-                    throw new MissingCredentialsException();
-                _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate = _credentials.ServerCertificate.Certificate;
-                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Server certificate overridden with '" + _credentials.ServerCertificate.Certificate.FriendlyName + "'");
+                if (_credentials.ServerCertificate != null)
+                {
+                    _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate = _credentials.ServerCertificate.Certificate;
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Server certificate overridden with '" + _credentials.ServerCertificate.Certificate.FriendlyName + "'");
+                }
 
                 // Get the endpoint DNS Identity
                 dnsId = _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.DnsName, false);
