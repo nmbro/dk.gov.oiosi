@@ -19,6 +19,7 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
     /// The service implementation
     /// Implements the general RASP contract and takes any form of SOAP (hence the Message object as a parameter)
     /// </summary>
+    [ServiceBehavior(IncludeExceptionDetailInFaults=true)]
     public class TestService : IServiceContract
     {
         public Message RequestRespond(Message request)
