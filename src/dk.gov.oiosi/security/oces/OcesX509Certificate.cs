@@ -216,7 +216,8 @@ namespace dk.gov.oiosi.security.oces {
         }
 
         private static OcesCertificateType GetFromSubject(CertificateSubject subject) {
-                        OcesX509CertificateConfig _config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
+            OcesX509CertificateConfig _config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
+           
             string ssn = subject.SerialNumberValue;
             if (ssn == null)
                 return OcesCertificateType.NonOces;

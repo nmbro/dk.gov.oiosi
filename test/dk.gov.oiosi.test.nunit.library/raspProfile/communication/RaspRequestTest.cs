@@ -7,12 +7,35 @@ using System;
 using System.Reflection;
 using dk.gov.oiosi.security.oces;
 using System.Security.Cryptography.X509Certificates;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.raspProfile;
 
 namespace dk.gov.oiosi.test.nunit.library.raspProfile.communication {
     
     [TestFixture]
     public class RaspRequestTest {
-        
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            var configFile = Settings.CreateRandomPath("RaspConfig.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+
+            ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
+
+            ConfigurationHandler.RegisterConfigurationSection<DocumentTypeCollectionConfig>();
+            ConfigurationHandler.RegisterConfigurationSection<OcesX509CertificateConfig>();
+            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+
+            DocumentTypeCollectionConfig documentTypeCollectionConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetInvoice());
+            new DefaultOcesCertificate().SetIfNotExistsOcesCertificateConfig();
+
+            ConfigurationHandler.SaveToFile();
+        }
+
         [Test]
         public void DocumentIdMustBeAddedAsCustomHeader() {
             var documentId = "678";
