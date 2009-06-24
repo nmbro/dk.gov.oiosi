@@ -83,7 +83,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         # region Private methods
 
         private Response SendRequestAndGetResponse(FileInfo file) {
-            var documentId = "12345";
+            var documentId = "TEST:" + Guid.NewGuid();
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(file.FullName);
             var oiosiMessage = new OiosiMessage(xmlDocument);

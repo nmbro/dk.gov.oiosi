@@ -1899,7 +1899,7 @@
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-OrderCancellation-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderCancellation.xsls</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>

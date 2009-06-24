@@ -162,7 +162,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             var expectedActivationDate = new DateTime(2008, 1, 19, 16, 0, 42);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
-            var expectedEndpoint = "http://193.163.141.141/TestEndpoint/OiosiOmniEndpointA.svc";
+            var expectedEndpoint = "http://test.ehandel.gov.dk:8080/NemHandel-2009-05-27/services/TestService";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
             var expectedIdentifierActual = "5798009811578";

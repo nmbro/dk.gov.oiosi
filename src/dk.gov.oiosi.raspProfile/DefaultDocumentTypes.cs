@@ -209,7 +209,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2";
             const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-OrderCancellation-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderCancellation_Schematron.xsl";
-            const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderCancellation.xsls";
+            const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl";
             const string destinationKeyXPath = "/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
             const string destinationFriendlyNameXPath = "/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
             const string senderKeyXPath = "/root:OrderCancellation/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
