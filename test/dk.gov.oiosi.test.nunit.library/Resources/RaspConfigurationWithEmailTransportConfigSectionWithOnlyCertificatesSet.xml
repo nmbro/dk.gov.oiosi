@@ -1769,7 +1769,7 @@
             <XPath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
           <SenderFriendlyName>
-            <XPath>/root:OrderCancellation/cac:Party/cac:BuyerCustomerParty/cac:PartyName/cbc:Name</XPath>
+            <XPath>/root:OrderCancellation/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </SenderFriendlyName>
           <Key>
             <Xpath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
