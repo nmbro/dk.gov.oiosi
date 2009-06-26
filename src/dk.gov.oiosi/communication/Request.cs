@@ -46,6 +46,7 @@ using dk.gov.oiosi.extension.wcf.Behavior;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties;
 using dk.gov.oiosi.security.oces;
+using dk.gov.oiosi.communication.handlers.email;
 
 namespace dk.gov.oiosi.communication {
 
@@ -250,17 +251,22 @@ namespace dk.gov.oiosi.communication {
                 EmailBindingElement binding = ((CustomBinding)_proxy.Endpoint.Binding).Elements.Find<EmailBindingElement>();
                 // If we had an email binding element
                 if (binding != null) {
-                    if (_policy.InboxMailConfiguration != null) {
-                        binding.ReceivingServerAddress = _policy.InboxMailConfiguration.ServerAddress;
-                        binding.ReceivingUserName = _policy.InboxMailConfiguration.UserName;
-                        binding.ReceivingPassword = _policy.InboxMailConfiguration.Password;
-                        binding.ReplyAddress = _policy.OutboxMailConfiguration.ReplyAddress;
+                    IMailServerConfiguration inboxConfiguration = _policy.InboxMailConfiguration;
+                    IMailServerConfiguration outboxConfiguration = _policy.OutboxMailConfiguration;
+                    if (inboxConfiguration != null) {
+                        binding.ReceivingServerAddress = inboxConfiguration.ServerAddress;
+                        binding.ReceivingUserName = inboxConfiguration.UserName;
+                        binding.ReceivingPassword = inboxConfiguration.Password;
+                        binding.ReceivingPort = inboxConfiguration.ConnectionPolicy.Port;
+                        binding.ReceivingAuthenticationMode = inboxConfiguration.ConnectionPolicy.AuthenticationMode;
                     }
                     if (_policy.OutboxMailConfiguration != null) {
-                        binding.SendingServerAddress = _policy.OutboxMailConfiguration.ServerAddress;
-                        binding.SendingUserName = _policy.OutboxMailConfiguration.UserName;
-                        binding.SendingPassword = _policy.OutboxMailConfiguration.Password;
-                        binding.ReplyAddress = _policy.OutboxMailConfiguration.ReplyAddress;
+                        binding.SendingServerAddress = outboxConfiguration.ServerAddress;
+                        binding.SendingUserName = outboxConfiguration.UserName;
+                        binding.SendingPassword = outboxConfiguration.Password;
+                        binding.ReplyAddress = outboxConfiguration.ReplyAddress;
+                        binding.SendingPort = outboxConfiguration.ConnectionPolicy.Port;
+                        binding.SendingAuthenticationMode = outboxConfiguration.ConnectionPolicy.AuthenticationMode;
                     }
                 }
             }

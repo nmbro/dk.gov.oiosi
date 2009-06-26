@@ -153,6 +153,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             _proxy.Connect(InboxServerConfiguration.ServerAddress, port, true);
 
             try {
+                _proxy.STLS();
                 _proxy.Login();
             }
             catch {

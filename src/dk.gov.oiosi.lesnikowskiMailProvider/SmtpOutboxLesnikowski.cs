@@ -144,6 +144,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             _proxy.Ehlo(HeloType.EhloHelo, hostName);
 
             try {
+                _proxy.StartTLS();
                 _proxy.Login();
             }
             catch {

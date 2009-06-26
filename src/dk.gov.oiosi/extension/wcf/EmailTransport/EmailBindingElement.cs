@@ -374,7 +374,6 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
             Type inBoxImplementationType = Type.GetType(mailBinding.InboxImplementation);
             if (inBoxImplementationType == null)
                 throw new MailboxImplementationCouldNotBeFoundException("inbox");
-
             
             // Read the connection policy from config
             MailServerConnectionPolicy inboxConnectionPolicy = new MailServerConnectionPolicy();
@@ -388,7 +387,6 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport
             outboxConnectionPolicy.PollingInterval = inboxConnectionPolicy.PollingInterval;
             outboxConnectionPolicy.AuthenticationMode = mailBinding.SendingAuthenticationMode;
             outboxConnectionPolicy.Port = mailBinding.SendingPort;
-
 
             MailServerConfiguration recievingServerConfiguration = new MailServerConfiguration(
                         mailBinding.ReceivingServerAddress,
