@@ -52,7 +52,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
     /// <remarks>Supports only the Login_PollOnce_Logout polling pattern</remarks>
     public class Pop3InboxLesnikowski : Inbox {
 
-        private Pop3 _proxy = new Pop3();
+        private Pop3 _pop3 = new Pop3();
 
         /// <summary>
         /// Constructor
@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         }
 
         private void WaitForPreviousConnectionsToClose() {
-            while (_proxy.Connected && InboxState != InboxState.Faulted && InboxState != InboxState.Closed)
+            while (_pop3.Connected && InboxState != InboxState.Faulted && InboxState != InboxState.Closed)
                 System.Threading.Thread.Sleep(250);
         }
 
@@ -95,10 +95,10 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
                 if (InboxServerConfiguration.UserName == "" || InboxServerConfiguration.Password == "" || InboxServerConfiguration.ServerAddress == "")
                     throw new LesnikowskiMissingSettingsException();
 
-                _proxy.User = InboxServerConfiguration.UserName;
-                _proxy.Password = InboxServerConfiguration.Password;
+                _pop3.User = InboxServerConfiguration.UserName;
+                _pop3.Password = InboxServerConfiguration.Password;
 
-                WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox starting to log on to account " + _proxy.User);
+                WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox starting to log on to account " + _pop3.User);
                 
                 // Log on using the type of authentication configured
                 switch (InboxServerConfiguration.ConnectionPolicy.AuthenticationMode) {
@@ -130,16 +130,16 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// Logs on with username and password sent as plain text
         /// </summary>
         private void LogOnPlainText() {
-            WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox sending username " + _proxy.User + " and pass " + _proxy.Password + " in plain text");
+            WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox sending username " + _pop3.User + " and pass " + _pop3.Password + " in plain text");
             int port = InboxServerConfiguration.ConnectionPolicy.Port;
-            _proxy.Connect(InboxServerConfiguration.ServerAddress, port);
+            _pop3.Connect(InboxServerConfiguration.ServerAddress, port);
             
             try {
-                _proxy.Login();
+                _pop3.Login();
             }
             catch {
-                _proxy.Close();
-                _proxy = new Pop3();
+                _pop3.Close();
+                _pop3 = new Pop3();
                 throw;
             }
         }
@@ -150,15 +150,14 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         private void LogOnSSL() {
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox logging on using SSL");
             int port = InboxServerConfiguration.ConnectionPolicy.Port;
-            _proxy.Connect(InboxServerConfiguration.ServerAddress, port, true);
+            _pop3.Connect(InboxServerConfiguration.ServerAddress, port, true);
 
             try {
-                _proxy.STLS();
-                _proxy.Login();
+                _pop3.Login();
             }
             catch {
-                _proxy.Close();
-                _proxy = new Pop3();
+                _pop3.Close();
+                _pop3 = new Pop3();
                 throw;
             }
         }
@@ -168,14 +167,15 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// </summary>
         private void LogOnAPOP() {
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox logging on using APOP");
-            _proxy.Connect(InboxServerConfiguration.ServerAddress);
+            int port = InboxServerConfiguration.ConnectionPolicy.Port;
+            _pop3.Connect(InboxServerConfiguration.ServerAddress, port);
 
             try {
-                _proxy.APOPLogin(); 
+                _pop3.APOPLogin(); 
             }
             catch {
-                _proxy.Close();
-                _proxy = new Pop3();
+                _pop3.Close();
+                _pop3 = new Pop3();
                 throw;
             }
         }
@@ -184,9 +184,9 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// Logs off from the mail server using the Lesnikowski mail library
         /// </summary>
         protected override void LogOff() {
-            if (_proxy != null)
-                _proxy.Close();
-            _proxy = new Pop3();
+            if (_pop3 != null)
+                _pop3.Close();
+            _pop3 = new Pop3();
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox logged off");
         }
 
@@ -198,11 +198,11 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox peeking on server...");
             try {
                 // Get the account stats and see if there were any mails
-                _proxy.GetAccountStat();
+                _pop3.GetAccountStat();
 
-                if (_proxy.MessageCount > 0) {
-                    WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox found "+_proxy.MessageCount+" mails");
-                    string mail = _proxy.GetMessage(1);
+                if (_pop3.MessageCount > 0) {
+                    WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox found "+_pop3.MessageCount+" mails");
+                    string mail = _pop3.GetMessage(1);
                     return ConvertStringToMail(mail);
                 }
                 else {
@@ -223,21 +223,21 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox polling server...");
             try {
                 // Get the account stats and see if there were any mails
-                _proxy.GetAccountStat();
+                _pop3.GetAccountStat();
                 MailSoap12TransportBinding msg = null;
 
                 // Get the place of the last message
-                long currentMail = _proxy.MessageCount;
+                long currentMail = _pop3.MessageCount;
 
                 // As long as there are messages on the server and we havent gotten one yet
-                while (_proxy.MessageCount > 0 && currentMail > 0 && msg == null) {
+                while (_pop3.MessageCount > 0 && currentMail > 0 && msg == null) {
                     WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox getting mail...");
-                    string mail = _proxy.GetMessage(currentMail);
-                    _proxy.DeleteMessage(currentMail--);
+                    string mail = _pop3.GetMessage(currentMail);
+                    _pop3.DeleteMessage(currentMail--);
                     msg = ConvertStringToMail(mail);
 
                     // Get the updated account stats
-                    _proxy.GetAccountStat();
+                    _pop3.GetAccountStat();
                 }
                 return msg;
             }

@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
     /// Represents an smtp outbox based on the Lesnikowski mail library implementation
     /// </summary>
     public class SmtpOutboxLesnikowski: Outbox {
-        private Smtp _proxy = new Smtp();
+        private Smtp _smtp = new Smtp();
 
         /// <summary>
         /// Constructs the outbox from configuration
@@ -73,7 +73,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
                 ISmtpMail lesnikowskiMail = CreateLesnikowskiMail(mail);
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
-                _proxy.SendMessage(lesnikowskiMail);
+                _smtp.SendMessage(lesnikowskiMail);
                 WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox starting to send mail...");
             }
             catch (Exception e) {
@@ -83,7 +83,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
 
 
         private void WaitForPreviousConnectionsToClose() {
-            while(_proxy.Connected)
+            while(_smtp.Connected)
                 System.Threading.Thread.Sleep(250);
         }
 
@@ -99,8 +99,8 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
                 if (OutboxServerConfiguration.ServerAddress == "")
                     throw new LesnikowskiMissingSettingsException();
 
-                _proxy.User = OutboxServerConfiguration.UserName;
-                _proxy.Password = OutboxServerConfiguration.Password;
+                _smtp.User = OutboxServerConfiguration.UserName;
+                _smtp.Password = OutboxServerConfiguration.Password;
 
 
                 switch (OutboxServerConfiguration.ConnectionPolicy.AuthenticationMode) {
@@ -131,21 +131,21 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
 
         private void LogOnWithoutAuthentication() {
             int port = OutboxServerConfiguration.ConnectionPolicy.Port;
-            _proxy.Connect(OutboxServerConfiguration.ServerAddress, port);
+            _smtp.Connect(OutboxServerConfiguration.ServerAddress, port);
             string hostName = System.Net.Dns.GetHostName();
-            _proxy.Ehlo(HeloType.EhloHelo, hostName);
+            _smtp.Ehlo(HeloType.EhloHelo, hostName);
             WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Outbox connected to the mail server '" + OutboxServerConfiguration.ServerAddress + "' without authentication");
         }
 
         private void LogOnSSL(){
             int port = OutboxServerConfiguration.ConnectionPolicy.Port;
-            _proxy.Connect(OutboxServerConfiguration.ServerAddress, port, true);
+            _smtp.Connect(OutboxServerConfiguration.ServerAddress, port, true);
             string hostName = System.Net.Dns.GetHostName();
-            _proxy.Ehlo(HeloType.EhloHelo, hostName);
+            _smtp.Ehlo(HeloType.EhloHelo, hostName);
 
             try {
-                _proxy.StartTLS();
-                _proxy.Login();
+                _smtp.StartTLS();
+                _smtp.Login();
             }
             catch {
                 LogOff();
@@ -156,12 +156,12 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
 
         private void LogOnPlainText() {
             int port = OutboxServerConfiguration.ConnectionPolicy.Port;
-            _proxy.Connect(OutboxServerConfiguration.ServerAddress, port);
+            _smtp.Connect(OutboxServerConfiguration.ServerAddress, port);
             string hostName = System.Net.Dns.GetHostName();
-            _proxy.Ehlo(HeloType.EhloHelo, hostName);
+            _smtp.Ehlo(HeloType.EhloHelo, hostName);
 
             try {
-                _proxy.Login();
+                _smtp.Login();
             }
             catch {
                 LogOff();
@@ -174,8 +174,8 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
         /// Performs an smtp logoff.
         /// </summary>
         protected override void LogOff() {
-            _proxy.Close();
-            _proxy = new Smtp();
+            _smtp.Close();
+            _smtp = new Smtp();
         }
 
         // Creates an SmtpMail from a MailSOAP12TransportBindingObject
