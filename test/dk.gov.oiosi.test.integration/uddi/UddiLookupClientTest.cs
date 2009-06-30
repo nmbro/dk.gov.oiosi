@@ -4,6 +4,8 @@ using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
 using NUnit.Framework;
+using uddiorg.api_v3;
+using System.ServiceModel;
 
 namespace dk.gov.oiosi.test.integration.uddi {
 
@@ -95,13 +97,13 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
-        [Test]
-        public void LookingUpExistingServiceProvidingNonExistingRoleMustReturnEmptyResponseList() {
+        [Test, ExpectedException(typeof(FaultException<DispositionReport>))]
+        public void LookingUpExistingServiceProvidingNonExistingRoleMustReturnError() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol, nonExistingRoleIdentifier);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
-            Assert.AreEqual(0, lookupResponses.Count);
+            
         }
 
         [Test]
