@@ -15,7 +15,7 @@ using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.test.request;
 using dk.gov.oiosi.raspProfile.communication;
 
-namespace dk.gov.oiosi.test.extendedRequest {
+namespace dk.gov.oiosi.samples.consoleClientExample {
 
     /// <summary>
     /// Extended Request example

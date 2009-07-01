@@ -18,7 +18,7 @@
       <SubjectKeyString>UID</SubjectKeyString>
     </OrganizationCertificateSubjectKey>
     <FunctionCertificateSubjetKey>
-      <SubjectKeyString>DID</SubjectKeyString>
+      <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">

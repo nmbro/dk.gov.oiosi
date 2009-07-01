@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.lesnikowskiMai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.raspProfile", "src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj", "{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.extendedRequest", "test\dk.gov.oiosi.test.extendedRequest\dk.gov.oiosi.test.extendedRequest.csproj", "{85D7677F-F564-49BB-90FC-498D6DFEBF81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.consoleClientExample", "test\dk.gov.oiosi.test.extendedRequest\dk.gov.oiosi.samples.consoleClientExample.csproj", "{85D7677F-F564-49BB-90FC-498D6DFEBF81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.interceptors", "test\dk.gov.oiosi.test.interceptors\dk.gov.oiosi.test.interceptors.csproj", "{E3543EED-B932-40FE-9986-1877DCEF3934}"
 EndProject

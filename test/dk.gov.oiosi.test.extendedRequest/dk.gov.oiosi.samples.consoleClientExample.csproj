@@ -2,13 +2,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{85D7677F-F564-49BB-90FC-498D6DFEBF81}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.test.extendedRequest</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.test.extendedRequest</AssemblyName>
+    <RootNamespace>dk.gov.oiosi.samples.consoleClientExample</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.samples.consoleClientExample</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
