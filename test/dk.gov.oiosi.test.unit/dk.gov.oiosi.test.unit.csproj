@@ -7,8 +7,8 @@
     <ProjectGuid>{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.test.nunit.library</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.test.nunit.library</AssemblyName>
+    <RootNamespace>dk.gov.oiosi.test.unit</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.test.unit</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
