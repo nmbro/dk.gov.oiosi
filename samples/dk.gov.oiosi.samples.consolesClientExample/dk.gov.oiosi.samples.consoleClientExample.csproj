@@ -64,7 +64,7 @@
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
       <Name>dk.gov.oiosi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\dk.gov.oiosi.test.request\dk.gov.oiosi.test.request.csproj">
+    <ProjectReference Include="..\..\test\dk.gov.oiosi.test.request\dk.gov.oiosi.test.request.csproj">
       <Project>{5E505C7E-74B8-4B5C-9989-BFAC6279065B}</Project>
       <Name>dk.gov.oiosi.test.request</Name>
     </ProjectReference>

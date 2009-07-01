@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.lesnikowskiMai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.raspProfile", "src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj", "{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.consoleClientExample", "test\dk.gov.oiosi.test.extendedRequest\dk.gov.oiosi.samples.consoleClientExample.csproj", "{85D7677F-F564-49BB-90FC-498D6DFEBF81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.interceptors", "test\dk.gov.oiosi.test.interceptors\dk.gov.oiosi.test.interceptors.csproj", "{E3543EED-B932-40FE-9986-1877DCEF3934}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.nunit.interop", "test\dk.gov.oiosi.test.interop\dk.gov.oiosi.test.nunit.interop.csproj", "{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}"
@@ -41,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.integration", "test\dk.gov.oiosi.test.integration\dk.gov.oiosi.test.integration.csproj", "{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.unit", "test\dk.gov.oiosi.test.unit\dk.gov.oiosi.test.unit.csproj", "{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.consoleClientExample", "samples\dk.gov.oiosi.samples.consolesClientExample\dk.gov.oiosi.samples.consoleClientExample.csproj", "{85D7677F-F564-49BB-90FC-498D6DFEBF81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,10 +72,6 @@ Global
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -108,12 +104,15 @@ Global
 		{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85D7677F-F564-49BB-90FC-498D6DFEBF81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{85D7677F-F564-49BB-90FC-498D6DFEBF81} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{E3543EED-B932-40FE-9986-1877DCEF3934} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
@@ -121,6 +120,7 @@ Global
 		{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{D07CB4A1-8CB2-45C3-A242-6749796D4593} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
+		{85D7677F-F564-49BB-90FC-498D6DFEBF81} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
 		{64FADDE4-B1CC-431D-B646-37286621500F} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{57C0192D-6D8F-4FDF-A349-B30CC5F96A67} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{1D9FFCF0-992B-4533-A9B6-590C6CBDD399} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
