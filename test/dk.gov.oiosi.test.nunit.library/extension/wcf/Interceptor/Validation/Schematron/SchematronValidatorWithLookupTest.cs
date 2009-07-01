@@ -6,11 +6,20 @@ using NUnit.Framework;
 
 using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron;
 using System.Xml;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.raspProfile;
 
 namespace dk.gov.oiosi.test.nunit.library.extension.wcf.Interceptor.Validation.Schematron {
 
     [TestFixture]
     public class SchematronValidatorWithLookupTest {
+
+        public SchematronValidatorWithLookupTest() {
+            ConfigurationHandler.ConfigFilePath = "RaspConfiguration.xml";
+            ConfigurationHandler.Reset();
+            DefaultDocumentTypes defaultDocumentTypes = new DefaultDocumentTypes();
+            defaultDocumentTypes.CleanAdd();
+        }
 
         [Test]
         public void SchematronValidateTwentyTimesInvoice() {

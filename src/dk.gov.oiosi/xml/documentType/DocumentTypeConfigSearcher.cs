@@ -43,18 +43,14 @@ namespace dk.gov.oiosi.xml.documentType {
     /// Standard way to search for document types.
     /// </summary>
     public class DocumentTypeConfigSearcher {
-        private static DocumentTypeCollectionConfig _documentTypeConfig;
+        private DocumentTypeCollectionConfig _documentTypeConfig;
         private static object _documentTypeCollectionLock = new object();
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public DocumentTypeConfigSearcher() {
-            lock (_documentTypeCollectionLock) {
-                if (_documentTypeConfig == null) {
-                    _documentTypeConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-                }
-            }
+            _documentTypeConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
         }
 
         /// <summary>

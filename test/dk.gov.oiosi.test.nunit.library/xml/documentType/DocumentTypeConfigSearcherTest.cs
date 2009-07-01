@@ -4,18 +4,31 @@ using NUnit.Framework;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.raspProfile;
+using dk.gov.oiosi.configuration;
+using System;
 
 namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
 
     [TestFixture]
     public class DocumentTypeConfigSearcherTest {
-            
+        private const string friendlyName = "No Namespace";
         private readonly DocumentTypeConfigSearcher _searcher;
+        private DefaultDocumentTypes _documentTypes;
 
         public DocumentTypeConfigSearcherTest() {
-            DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
-            documentTypes.CleanAdd();
+            ConfigurationHandler.ConfigFilePath = "Resources/DocumentTypeSearcherRaspConfiguration.xml";
+            ConfigurationHandler.Reset();
+            _documentTypes = new DefaultDocumentTypes();
+            _documentTypes.CleanAdd();
+            AddNoNamespaceTestDocumentType();
             _searcher = new DocumentTypeConfigSearcher();
+            ConfigurationHandler.SaveToFile();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown() {
+            ConfigurationHandler.ConfigFilePath = "RaspConfiguration.xml";
+            ConfigurationHandler.Reset();
         }
 
         [Test]
@@ -102,6 +115,11 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
             AssertFindDocument("Faktura v0.7", TestConstants.PATH_INVOICE07_XML);
         }
 
+        [Test]
+        public void SearchForNoNamespaceTest() {
+            AssertFindDocument(friendlyName, TestConstants.PATH_NONAMESPACE_XML);
+        }
+
         [Test, ExpectedException(typeof(NoDocumentTypeFoundFromXmlDocumentException))]
         public void SearchForUnkownTypeTest() {
             AssertFindDocument(null, TestConstants.PATH_UNKNOWNTYPE_XML);
@@ -124,5 +142,15 @@ namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
             Assert.AreEqual(friendlyName, documentType.FriendlyName);
         }
 
+        private void AddNoNamespaceTestDocumentType() {
+            Console.WriteLine("ConfigurationHandler.Version=" + ConfigurationHandler.Version);
+            Console.WriteLine("ConfigurationHandler.ConfigFilePath=" + ConfigurationHandler.ConfigFilePath);
+            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+            DocumentTypeConfig documentType = new DocumentTypeConfig();
+            documentType.FriendlyName = friendlyName;
+            documentType.RootName = "NoNamespace";
+            documentType.RootNamespace = "";
+            configuration.AddDocumentType(documentType);
+        }
     }
 }

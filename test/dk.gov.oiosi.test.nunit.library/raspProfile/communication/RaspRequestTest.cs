@@ -17,8 +17,7 @@ namespace dk.gov.oiosi.test.nunit.library.raspProfile.communication {
     public class RaspRequestTest {
 
         [TestFixtureSetUp]
-        public void Setup()
-        {
+        public void Setup() {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
 

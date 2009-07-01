@@ -57,83 +57,84 @@ namespace dk.gov.oiosi.test.nunit.library.uddi{
     	private IdentifierEan endpointInFirstRegistry = new IdentifierEan("5700000000001");
     	private IdentifierEan endpointInSecondRegistry = new IdentifierEan("5700000000002");
 		private IdentifierEan endpointInFourthRegistry = new IdentifierEan("5700000000004");
-    	
 
-    	[SetUp]
-        public void SetUp(){
-            ConfigurationHandler.ConfigFilePath = "..\\..\\Resources\\RaspConfiguration.xml";
+
+        [SetUp]
+        public void SetUp() {
+            ConfigurationHandler.ConfigFilePath = "Resources\\RaspConfigurationUddi.xml";
+            ConfigurationHandler.Reset();
             SetUpConfiguration();
         }
 
         [Test]
-        public void _01_TestSuccesfulOnFirstLookup(){
-        	GetClearDummyConfig();
-        	IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse>result = client.Lookup(CreateParams(endpointInFirstRegistry));
-			Assert.IsNotNull(result);
-			Assert.IsNotEmpty(result);
-            Assert.AreEqual(firstRegistry.ToString(),result[0].EndpointAddress.GetKeyAsString());
+        public void _01_TestSuccesfulOnFirstLookup() {
+            GetClearDummyConfig();
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
+            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
+            Assert.AreEqual(firstRegistry.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
         [Test]
-        public void _02_TestSuccesfulOnFirstFallback(){
-			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.ErroneousEndpoints.Add(firstRegistry);
-			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
-			Assert.IsNotNull(result);
-			Assert.IsNotEmpty(result);
+        public void _02_TestSuccesfulOnFirstFallback() {
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+            config.ErroneousEndpoints.Add(firstRegistry);
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
+            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
             Assert.AreEqual(firstFallback.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
-		[Test,ExpectedException(typeof(UddiException))]
-		public void _03_TestFailureOnFirstRegistry() {
-			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.ErroneousEndpoints.Add(firstRegistry);
-			config.ErroneousEndpoints.Add(firstFallback);
-			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
-			Assert.IsEmpty(result);
-		}
+        [Test, ExpectedException(typeof(UddiException))]
+        public void _03_TestFailureOnFirstRegistry() {
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+            config.ErroneousEndpoints.Add(firstRegistry);
+            config.ErroneousEndpoints.Add(firstFallback);
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
+            Assert.IsEmpty(result);
+        }
 
         [Test]
-        public void _04_TestSuccesfulOnSecondRegistry(){
-			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier>{endpointInSecondRegistry});
-			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInSecondRegistry));
-			Assert.IsNotNull(result);
-			Assert.IsNotEmpty(result);
+        public void _04_TestSuccesfulOnSecondRegistry() {
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+            config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInSecondRegistry });
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInSecondRegistry));
+            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
             Assert.AreEqual(secondRegistry.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
-		[Test]
-		public void _05_TestSuccesfulOnLastFallback() {
-			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInFourthRegistry});
-			config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInFourthRegistry });
-			config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInFourthRegistry });
-			config.ErroneousEndpoints.Add(fourthRegistry);
-			config.ErroneousEndpoints.Add(fourthFallback1);
+        [Test]
+        public void _05_TestSuccesfulOnLastFallback() {
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+            config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInFourthRegistry });
+            config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInFourthRegistry });
+            config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInFourthRegistry });
+            config.ErroneousEndpoints.Add(fourthRegistry);
+            config.ErroneousEndpoints.Add(fourthFallback1);
 
-			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFourthRegistry));
-			Assert.IsNotNull(result);
-			Assert.IsNotEmpty(result);
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFourthRegistry));
+            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
             Assert.AreEqual(fourthFallback2.ToString(), result[0].EndpointAddress.GetKeyAsString());
-		}
+        }
 
         [Test]
-        public void _06_TestUnsuccesfulOnAllRegistries(){
-			AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
-			config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInNoRegistry });
-			config.NonExistingRegistrations.Add(fourthRegistry, new List<Identifier> { endpointInNoRegistry });
+        public void _06_TestUnsuccesfulOnAllRegistries() {
+            AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
+            config.NonExistingRegistrations.Add(firstRegistry, new List<Identifier> { endpointInNoRegistry });
+            config.NonExistingRegistrations.Add(secondRegistry, new List<Identifier> { endpointInNoRegistry });
+            config.NonExistingRegistrations.Add(thirdRegistry, new List<Identifier> { endpointInNoRegistry });
+            config.NonExistingRegistrations.Add(fourthRegistry, new List<Identifier> { endpointInNoRegistry });
 
-			IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-			List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInNoRegistry));
-			Assert.IsEmpty(result);
+            IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
+            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInNoRegistry));
+            Assert.IsEmpty(result);
         }
 
         private LookupParameters CreateParams(IdentifierEan ean) {
