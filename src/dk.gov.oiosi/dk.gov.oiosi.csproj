@@ -552,11 +552,6 @@
     <Content Include="Resources\Licenses\RaspClientLicense.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\External libraries\Licenses\LegionOfTheBouncyCastleLicense.txt" />
-    <Content Include="Resources\External libraries\Licenses\MsEnterpriseLibraryEULA.txt" />
-    <Content Include="Resources\External libraries\Licenses\NovellLdapLicense.txt" />
-    <Content Include="Resources\External libraries\MailLicense.xml" />
-    <Content Include="Resources\External libraries\Novell.Directory.Ldap.dll" />
     <Content Include="Resources\Http Endpoint Example\About.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -636,15 +631,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Component Include="Resources\External libraries\bccrypto-csharp-b02.dll" />
-    <Component Include="Resources\External libraries\dk.gov.oiosi.uddi.dll" />
-    <Component Include="Resources\External libraries\Mail.dll" />
-    <Component Include="Resources\External libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
-    <Component Include="Resources\External libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
-    <Component Include="Resources\External libraries\Microsoft.Practices.ObjectBuilder.dll" />
-    <Component Include="Resources\External libraries\OcspClient2.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

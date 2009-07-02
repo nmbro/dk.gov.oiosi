@@ -29,39 +29,35 @@ namespace dk.gov.oiosi.test.integration.communication {
         public void Setup() {
             ConfigurationUtil.SetupConfiguration();
         }
-
         [Test]
-        public void OioxmlInvoiceMustBeSendableByRaspRequest() {
-            var oioxmlInvoiceFile = new FileInfo("Resources/Documents/Examples/OIOXML_Invoice_v0.7.xml");
-            var response = SendRequestAndGetResponse(oioxmlInvoiceFile);
-            Assert.IsNotNull(response);
-        }
-
-        [Test]
-        public void OioublInvoiceMustBeSendableByRaspRequest() {
-            var oioublInvoiceFile = new FileInfo("Resources/Documents/Examples/OIOUBL_Invoice_v2p1.xml");
-            var response = SendRequestAndGetResponse(oioublInvoiceFile);
-            Assert.IsNotNull(response);
+        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
         }
 
         [Test]
         public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
-            var oioublFile = new FileInfo("Resources/Documents/Examples/OIOUBL_ApplicationResponse_v2p2.xml");
-            var response = SendRequestAndGetResponse(oioublFile);
-            Assert.IsNotNull(response);
+            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p2.xml");
+        }
+
+        [Test]
+        public void OioxmlInvoiceMustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7.xml");
+        }
+
+        [Test]
+        public void OioublInvoiceMustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Invoice_v2p1.xml");
         }
 
         [Test]
         public void OioublCatalogue202MustBeSendableByRaspRequest() {
-            var oioublFile = new FileInfo("Resources/Documents/Examples/OIOUBL_Catalogue_v2p2.xml");
-            var response = SendRequestAndGetResponse(oioublFile);
-            Assert.IsNotNull(response);
+            AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p2.xml");
         }
 
         [Test]
         public void AllExampleDocumentsMustBeSendableByRaspRequest() {
             bool errorsFound = false;
-            var documentsToSendDirectory = new DirectoryInfo("Resources/Documents/Examples");
+            var documentsToSendDirectory = new DirectoryInfo("Resources/Documents/Test");
             foreach (var file in documentsToSendDirectory.GetFiles()) {
                 Response response;
                 try {
@@ -81,6 +77,13 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
         
         # region Private methods
+
+        private void AssertSendable(string path) {
+            var oioublFile = new FileInfo(path);
+            var response = SendRequestAndGetResponse(oioublFile);
+            Assert.IsNotNull(response);
+
+        }
 
         private Response SendRequestAndGetResponse(FileInfo file) {
             var documentId = "TEST:" + Guid.NewGuid();

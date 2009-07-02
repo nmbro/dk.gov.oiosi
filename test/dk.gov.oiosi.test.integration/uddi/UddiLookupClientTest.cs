@@ -79,8 +79,8 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }
 
-        [Test]
-        public void LookingUpNonExistingServiceShouldReturnEmptyResponse() {
+        [Test, ExpectedException(typeof(FaultException<DispositionReport>))]
+        public void LookingUpNonExistingServiceShouldReturnFault() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             
             var lookupParameters = new LookupParameters(eanIdentifier, nonExistingServiceId, profileIds, acceptHttpProtocol);
@@ -97,8 +97,8 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
-        [Test, ExpectedException(typeof(FaultException<DispositionReport>))]
-        public void LookingUpExistingServiceProvidingNonExistingRoleMustReturnError() {
+        [Test]
+        public void LookingUpExistingServiceProvidingNonExistingRoleMustReturnEmptyResult() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol, nonExistingRoleIdentifier);
