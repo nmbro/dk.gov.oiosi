@@ -36,7 +36,7 @@ using System.Xml.Serialization;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.test.nunit.library.uddi {
+namespace dk.gov.oiosi.test.unit.uddi {
     public class AdvancedUddiDummyClient :IUddiLookupClient {
         private List<Uri> _erroneousEndpoints = new List<Uri>();
         private Dictionary<Uri,List<Identifier>> _nonExistingRegistrations = new Dictionary<Uri, List<Identifier>>();

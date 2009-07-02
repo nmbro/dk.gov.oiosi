@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace dk.gov.oiosi.test.nunit.library {
+namespace dk.gov.oiosi.test.unit {
     internal class Settings
     {
         public static DirectoryInfo OutputDirectory {

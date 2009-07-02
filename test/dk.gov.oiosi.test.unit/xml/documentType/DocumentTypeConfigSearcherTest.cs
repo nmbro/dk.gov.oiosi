@@ -7,7 +7,7 @@ using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.configuration;
 using System;
 
-namespace dk.gov.oiosi.test.nunit.library.xml.documentType {
+namespace dk.gov.oiosi.test.unit.xml.documentType {
 
     [TestFixture]
     public class DocumentTypeConfigSearcherTest {

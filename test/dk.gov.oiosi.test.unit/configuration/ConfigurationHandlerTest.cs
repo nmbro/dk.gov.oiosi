@@ -8,7 +8,7 @@ using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.security.revocation;
 using NUnit.Framework;
 
-namespace dk.gov.oiosi.test.nunit.library.configuration {
+namespace dk.gov.oiosi.test.unit.configuration {
     
     [TestFixture]
     public class ConfigurationHandlerTest {

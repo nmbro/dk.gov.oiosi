@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace dk.gov.oiosi.test.nunit.library {
+namespace dk.gov.oiosi.test.unit {
     public class Print {
 
         public static void Started(string testName) {

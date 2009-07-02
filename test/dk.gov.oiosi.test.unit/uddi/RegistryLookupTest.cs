@@ -39,7 +39,7 @@ using dk.gov.oiosi.uddi;
 using NUnit.Framework;
 using dk.gov.oiosi.common.cache;
 
-namespace dk.gov.oiosi.test.nunit.library.uddi{
+namespace dk.gov.oiosi.test.unit.uddi{
     [TestFixture]
     public class RegistryLookupTest {
         // The fake registries (and fallback servers)

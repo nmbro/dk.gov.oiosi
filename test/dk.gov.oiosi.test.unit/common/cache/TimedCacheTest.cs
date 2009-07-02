@@ -8,7 +8,7 @@ using NUnit.Framework;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.common.cache;
 
-namespace dk.gov.oiosi.test.nunit.library.common.cache {
+namespace dk.gov.oiosi.test.unit.common.cache {
 
     [TestFixture]
     public class TimedCacheTest {

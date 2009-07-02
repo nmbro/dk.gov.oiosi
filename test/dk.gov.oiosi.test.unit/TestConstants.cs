@@ -1,4 +1,4 @@
-namespace dk.gov.oiosi.test.nunit.library {
+namespace dk.gov.oiosi.test.unit {
     public class TestConstants {
 
         private const string raspProfileResources = "Resources/";

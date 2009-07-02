@@ -9,7 +9,7 @@ using System.Xml;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
 
-namespace dk.gov.oiosi.test.nunit.library.extension.wcf.Interceptor.Validation.Schematron {
+namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron {
 
     [TestFixture]
     public class SchematronValidatorWithLookupTest {

@@ -5,8 +5,8 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.test.nunit.library.uddi.AdvancedUddiDummyClient</ImplementationNamespaceClass>
-    <ImplementationAssembly>dk.gov.oiosi.test.nunit.library</ImplementationAssembly>
+    <ImplementationNamespaceClass>dk.gov.oiosi.test.unit.uddi.AdvancedUddiDummyClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.test.unit</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiConfig">
     <ProfileConformanceClaim />

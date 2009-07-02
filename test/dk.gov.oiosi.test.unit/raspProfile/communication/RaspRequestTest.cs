@@ -11,7 +11,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.raspProfile;
 
-namespace dk.gov.oiosi.test.nunit.library.raspProfile.communication {
+namespace dk.gov.oiosi.test.unit.raspProfile.communication {
     
     [TestFixture]
     public class RaspRequestTest {

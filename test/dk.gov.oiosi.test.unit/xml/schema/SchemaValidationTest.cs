@@ -8,7 +8,7 @@ using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.communication.configuration;
 
-namespace dk.gov.oiosi.test.nunit.library.xml.schema {
+namespace dk.gov.oiosi.test.unit.xml.schema {
 
     [TestFixture]
     public class SchemaValidationTest {

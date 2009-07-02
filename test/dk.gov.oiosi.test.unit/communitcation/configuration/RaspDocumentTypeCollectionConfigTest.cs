@@ -7,7 +7,7 @@ using NUnit.Framework;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.xpath.discriminator;
 
-namespace dk.gov.oiosi.test.nunit.library.communitcation.configuration {
+namespace dk.gov.oiosi.test.unit.communitcation.configuration {
     [TestFixture]
     public class RaspDocumentTypeCollectionConfigTest {
         [Test]

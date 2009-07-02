@@ -10,7 +10,7 @@ using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.addressing;
 
-namespace dk.gov.oiosi.test.nunit.library.common {
+namespace dk.gov.oiosi.test.unit.common {
     [TestFixture]
     public class UtilitiesTest {
 

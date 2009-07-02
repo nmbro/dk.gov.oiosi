@@ -33,7 +33,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
 using NUnit.Framework;
 
-namespace dk.gov.oiosi.test.nunit.library.raspProfile {
+namespace dk.gov.oiosi.test.unit.raspProfile {
 
     [TestFixture]
     public class RaspConfigurationTest {

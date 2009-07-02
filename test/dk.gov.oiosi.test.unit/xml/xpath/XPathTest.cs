@@ -9,7 +9,7 @@ using dk.gov.oiosi.common;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.raspProfile;
 
-namespace dk.gov.oiosi.test.nunit.library.xml.xpath {
+namespace dk.gov.oiosi.test.unit.xml.xpath {
     [TestFixture]
     public class XPathTest {
         private DocumentTypeConfigSearcher _searcher;

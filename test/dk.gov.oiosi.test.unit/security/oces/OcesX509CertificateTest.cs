@@ -4,7 +4,7 @@ using NUnit.Framework;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.security.oces;
 
-namespace dk.gov.oiosi.test.nunit.library.security.oces {
+namespace dk.gov.oiosi.test.unit.security.oces {
     [TestFixture]
     public class OcesX509CertificateTest {
 

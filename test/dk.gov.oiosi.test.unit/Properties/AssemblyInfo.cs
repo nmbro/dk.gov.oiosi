@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dk.gov.oiosi.test.nunit.library")]
+[assembly: AssemblyTitle("dk.gov.oiosi.test.unit")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ITST")]
-[assembly: AssemblyProduct("dk.gov.oiosi.test.nunit.library")]
+[assembly: AssemblyProduct("dk.gov.oiosi.test.unit")]
 [assembly: AssemblyCopyright("Copyright © ITST 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

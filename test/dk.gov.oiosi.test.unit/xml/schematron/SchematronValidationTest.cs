@@ -7,7 +7,7 @@ using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.xml.schematron;
 
-namespace dk.gov.oiosi.test.nunit.library.xml.schematron {
+namespace dk.gov.oiosi.test.unit.xml.schematron {
     [TestFixture]
     public class SchematronValidationTest {
 

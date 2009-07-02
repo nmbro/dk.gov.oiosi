@@ -7,7 +7,7 @@ using NUnit.Framework;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.exception;
 
-namespace dk.gov.oiosi.test.nunit.library.security.oces {
+namespace dk.gov.oiosi.test.unit.security.oces {
     [TestFixture]
     public class OcesCertificateSubjectKeyTest {
 

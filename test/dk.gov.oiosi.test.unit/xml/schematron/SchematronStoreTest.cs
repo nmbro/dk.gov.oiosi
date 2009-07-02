@@ -9,11 +9,21 @@ using System.Xml;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.communication.configuration;
 using System.Xml.Xsl;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.raspProfile;
 
-namespace dk.gov.oiosi.test.nunit.library.xml.schematron {
+namespace dk.gov.oiosi.test.unit.xml.schematron {
 
     [TestFixture]
     public class SchematronStoreTest {
+
+        public SchematronStoreTest() {
+            ConfigurationHandler.ConfigFilePath = "Resources/SchematronStoreRaspConfiguration.xml";
+            ConfigurationHandler.Reset();
+            DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
+            documentTypes.CleanAdd();
+            ConfigurationHandler.SaveToFile();
+        }
 
         [Test]
         public void _01_GetOnceTest() {

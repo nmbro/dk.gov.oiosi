@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 using dk.gov.oiosi.security;
 
-namespace dk.gov.oiosi.test.nunit.library.security {
+namespace dk.gov.oiosi.test.unit.security {
     [TestFixture]
     public class CertificateSubjectTest {
 
