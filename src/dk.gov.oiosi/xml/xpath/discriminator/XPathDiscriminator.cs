@@ -31,6 +31,7 @@
   *
   */
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace dk.gov.oiosi.xml.xpath.discriminator {
     /// <summary>
@@ -50,8 +51,8 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
             string xpathExpression = config.XPathExpression;
             string xpathResult = config.XPathExpectedResult;
             string result = DocumentXPathResolver.GetElementValueByXpath(xmlDocument, xpathExpression, namespaces);
-            bool xPathResultIsContainedInResult = result.Contains(xpathResult);
-            return xPathResultIsContainedInResult;
+            Regex regex = new Regex(xpathResult);
+            return regex.IsMatch(result);
         }
 
         /// <summary>

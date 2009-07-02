@@ -10,7 +10,7 @@
   <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
   <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
   <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
-  <property name="UnitTest.file" value="test/dk.gov.oiosi.test.nunit.library/bin/release/dk.gov.oiosi.test.nunit.library.dll"/>
+  <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
   <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
   
   <target name="Clean" description="Remove all build products">

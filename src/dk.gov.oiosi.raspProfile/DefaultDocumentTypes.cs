@@ -584,7 +584,7 @@ namespace dk.gov.oiosi.raspProfile {
         }
 
         private XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root) {
-            string expectedResult = "OIOUBL-2.0";
+            string expectedResult = "OIOUBL-2.0(1|2)";
             string xpathExpression = "/root:"+root+"/cbc:CustomizationID";
             XPathDiscriminatorConfig id = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             return id;
