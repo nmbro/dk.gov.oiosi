@@ -95,7 +95,6 @@ namespace dk.gov.oiosi.configuration {
         /// Used by the Unit Test to reset the static information.
         /// </summary>
         public static void Reset() {
-            //ConfigurationDocument.ConfigFilePath = null;
             _configSectionsCache = new Dictionary<Type, object>();
             configurationDocument.ConfigurationSections = new ArrayList();
             configurationDocument = configurationDocument.GetFromFile();

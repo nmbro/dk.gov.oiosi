@@ -69,9 +69,9 @@
 		</cac:Person>
 	</cac:ProviderParty>
 	<cac:ReceiverParty>
-		<cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+		<cbc:EndpointID schemeID="GLN">5798009811530</cbc:EndpointID>
 		<cac:PartyIdentification>
-			<cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+			<cbc:ID schemeID="GLN">5798009811530</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>KatalogAdm ApS</cbc:Name>

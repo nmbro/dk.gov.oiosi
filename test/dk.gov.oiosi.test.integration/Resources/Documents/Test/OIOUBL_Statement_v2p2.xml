@@ -271,9 +271,9 @@
     <cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
+      <cbc:EndpointID schemeID="GLN">5798009811530</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
+        <cbc:ID schemeID="GLN">5798009811530</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>

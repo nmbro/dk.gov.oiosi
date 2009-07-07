@@ -4,7 +4,7 @@
 	<com:IssueDate>2007-05-31</com:IssueDate>
 	<com:TypeCode>PIE</com:TypeCode>
 	<main:InvoiceCurrencyCode>DKK</main:InvoiceCurrencyCode>
-	<com:BuyersReferenceID schemeID="EAN">5798009811578</com:BuyersReferenceID>
+	<com:BuyersReferenceID schemeID="EAN">5798009811530</com:BuyersReferenceID>
 	<com:ReferencedOrder>
 		<com:BuyersOrderID>n/a</com:BuyersOrderID>
 		<com:SellersOrderID>2</com:SellersOrderID>

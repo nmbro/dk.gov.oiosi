@@ -6,7 +6,7 @@
 	<main:InvoiceCurrencyCode>DKK</main:InvoiceCurrencyCode>
 	<com:Note><![CDATA[Kundenummer : 24706118
 ]]></com:Note>
-	<com:BuyersReferenceID schemeID="EAN">5798009811578</com:BuyersReferenceID>
+	<com:BuyersReferenceID schemeID="EAN">5798009811530</com:BuyersReferenceID>
 	<com:ReferencedOrder>
 		<com:BuyersOrderID>Ikke oplyst</com:BuyersOrderID>
 		<com:SellersOrderID/>

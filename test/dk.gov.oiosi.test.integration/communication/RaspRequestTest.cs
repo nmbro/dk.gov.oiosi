@@ -40,13 +40,8 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
-        public void OioxmlInvoiceMustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7.xml");
-        }
-
-        [Test]
-        public void OioublInvoiceMustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_Invoice_v2p1.xml");
+        public void OioublCatalogue201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p1.xml");
         }
 
         [Test]
@@ -55,27 +50,145 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
-        public void AllExampleDocumentsMustBeSendableByRaspRequest() {
-            bool errorsFound = false;
-            var documentsToSendDirectory = new DirectoryInfo("Resources/Documents/Test");
-            foreach (var file in documentsToSendDirectory.GetFiles()) {
-                Response response;
-                try {
-                    response = SendRequestAndGetResponse(file);
-                    if (response != null) Console.WriteLine("Success: " + file.Name);
-                    if (response == null) {
-                        errorsFound = true;
-                        Console.WriteLine("Failure: " + file.Name);
-                    }
-                }
-                catch {
-                    errorsFound = true;
-                    Console.WriteLine("Failure: " + file.Name);
-                }
-            }
-            Assert.IsFalse(errorsFound, "One or more documents had failures.");
+        public void OioublCatalogueDeletion201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p1.xml");
         }
-        
+
+        [Test]
+        public void OioublCatalogueDeletion202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublCatalogueItemSpecificationUpdate201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublCatalogueItemSpecificationUpdate202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublCataloguePricingUpdate201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CataloguePricingUpdate_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublCataloguePricingUpdate202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CataloguePricingUpdate_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublCatalogueRequest201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueRequest_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublCatalogueRequest202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueRequest_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublCreditNote201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CreditNote_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublCreditNote202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_CreditNote_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublInvoice201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Invoice_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublInvoice202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Invoice_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublOrder201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Order_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublOrder202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Order_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublOrderCancellation201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderCancellation_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublOrderCancellation202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderCancellation_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublOrderChange201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderChange_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublOrderChange202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderChange_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublOrderResponseSimple201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderResponseSimple_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublOrderResponseSimple202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderResponseSimple_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublOrderResponse201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderResponse_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublOrderResponse202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_OrderResponse_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublReminder201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Reminder_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublReminder202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Reminder_v2p2.xml");
+        }
+
+        [Test]
+        public void OioublStatement201MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Statement_v2p1.xml");
+        }
+
+        [Test]
+        public void OioublStatement202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Statement_v2p2.xml");
+        }
+
+        [Test]
+        public void OioxmlCreditNoteMustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOXML_CreditNote_v0.7.xml");
+        }
+
+        [Test]
+        public void OioxmlInvoiceMustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7.xml");
+        }
+
         # region Private methods
 
         private void AssertSendable(string path) {
@@ -184,7 +297,7 @@ namespace dk.gov.oiosi.test.integration.communication {
                 string profileTModelGuid = profileMapping.TModelGuid;
                 return IdentifierUtility.GetUddiIDFromString(profileTModelGuid);
             }
-            throw new Exception("GetProfileTModelId");
+            throw new Exception("GetProfileTModelId failed for : " + profileName);
         }
 
         /// <summary>
