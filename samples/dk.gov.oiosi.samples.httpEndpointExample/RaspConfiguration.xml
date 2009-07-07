@@ -3,7 +3,7 @@
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
-        <Id>97506a4d-ab23-4d73-ba84-a7556bc53e11</Id>
+        <Id>d31d0afe-e5f8-4229-9f35-574761ec1778</Id>
         <FriendlyName>Faktura v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pie/</RootNamespace>
         <RootName>Invoice</RootName>
@@ -143,6 +143,9 @@
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
+          <ProfileIdXPath>
+            <XPath />
+          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -154,9 +157,12 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath />
+        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>1ec7a344-392a-4c5c-a113-f3aefa7c1aca</Id>
+        <Id>664b35c9-14be-4773-92c6-0cca9a3f8240</Id>
         <FriendlyName>Kreditnota v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/</RootNamespace>
         <RootName>Invoice</RootName>
@@ -296,6 +302,9 @@
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
+          <ProfileIdXPath>
+            <XPath />
+          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -307,15 +316,18 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath />
+        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>34d1f6a0-aa8e-4325-8f53-ed2892ec0899</Id>
+        <Id>8a3f77ea-ea44-4644-a804-0f72ff7ac894</Id>
         <FriendlyName>Applikationsmeddelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -469,11 +481,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -485,12 +497,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>252d26fc-9b9e-463b-bc40-a7d4c75baa6c</Id>
+        <Id>95b28f38-9c7f-4d86-bd81-e6a59c5fd025</Id>
         <FriendlyName>Katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
         <RootName>Catalogue</RootName>
         <ServiceContractTModel>uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-Catalogue-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-Catalogue-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -645,11 +657,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Catalogue/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -661,12 +673,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>33f2055f-f829-450e-8583-1f44df311576</Id>
+        <Id>45d7a5fd-7944-49bc-b30e-bd059e3632ed</Id>
         <FriendlyName>Katalogforespørgsel</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2</RootNamespace>
         <RootName>CatalogueRequest</RootName>
         <ServiceContractTModel>uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -821,11 +833,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueRequest/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -837,12 +849,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>2b1278c3-2533-4128-a6d8-1badec84c0fe</Id>
+        <Id>3f1ec2ff-d240-4cc1-87dd-27264b066200</Id>
         <FriendlyName>Opdatering af katalogelement</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2</RootNamespace>
         <RootName>CatalogueItemSpecificationUpdate</RootName>
         <ServiceContractTModel>uddi:63eab5c0-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -997,11 +1009,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueItemSpecificationUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1013,12 +1025,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>aff209b8-1f46-4a42-bc2c-8ea3d541c8a3</Id>
+        <Id>b6b101ac-1963-4ffa-b596-7e841cc35c43</Id>
         <FriendlyName>Opdatering af katalogpriser</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2</RootNamespace>
         <RootName>CataloguePricingUpdate</RootName>
         <ServiceContractTModel>uddi:abdb2720-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1173,11 +1185,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CataloguePricingUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1189,12 +1201,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>2ad6446c-06c5-4e88-9076-47d9a4f732c9</Id>
+        <Id>1e72b429-f6f8-4f74-8f88-71b42340dd44</Id>
         <FriendlyName>Sletning af katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2</RootNamespace>
         <RootName>CatalogueDeletion</RootName>
         <ServiceContractTModel>uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1349,11 +1361,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueDeletion/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1365,13 +1377,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>eb3168d7-bd7f-490e-9172-c531e2e62cb1</Id>
+        <Id>51094198-462d-4faa-97ce-b5f44d739cee</Id>
         <FriendlyName>Kreditnota</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
         <RootName>CreditNote</RootName>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-CreditNote-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-CreditNote-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_CreditNote.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1525,11 +1537,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CreditNote/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1541,13 +1553,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>d4edbb87-c634-4458-b991-34cc43555f86</Id>
+        <Id>da8b30e2-1fac-42d3-8028-5268ae10ca1c</Id>
         <FriendlyName>Faktura</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-Invoice-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-Invoice-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1701,11 +1713,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1717,13 +1729,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>4247e713-0f67-4a15-b438-3be5b020ef18</Id>
+        <Id>27349b8b-480b-4422-ab11-0e1d45e65f58</Id>
         <FriendlyName>Ordre</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
         <RootName>Order</RootName>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-Order-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-Order-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1877,11 +1889,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1893,13 +1905,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>a203fb3f-a36f-4786-aeaa-ae74e54519de</Id>
+        <Id>8edb1fa4-d5c8-487c-beb0-6704ee91f5b8</Id>
         <FriendlyName>Ordreannulering</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2</RootNamespace>
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-OrderCancellation-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-OrderCancellation-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderCancellation.xsls</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1933,7 +1945,7 @@
             <XPath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
           <SenderFriendlyName>
-            <XPath>/root:OrderCancellation/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+            <XPath>/root:OrderCancellation/cac:Party/cac:BuyerCustomerParty/cac:PartyName/cbc:Name</XPath>
           </SenderFriendlyName>
           <Key>
             <Xpath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
@@ -2053,11 +2065,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderCancellation/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2069,13 +2081,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>0de4f0a3-eae8-4d3b-b969-5519a261d736</Id>
+        <Id>1d220487-a94e-4e9b-aefc-c2c496855169</Id>
         <FriendlyName>Ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</RootNamespace>
         <RootName>OrderResponse</RootName>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-OrderResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-OrderResponse-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2229,11 +2241,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2245,13 +2257,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>e124044e-145e-43c8-a2fe-3f42d390c356</Id>
+        <Id>3b8c8728-f8a4-4257-b923-43c550f96839</Id>
         <FriendlyName>Ordreændring</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2</RootNamespace>
         <RootName>OrderChange</RootName>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-OrderChange-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-OrderChange-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2405,11 +2417,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderChange/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2421,13 +2433,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>bd35cf54-f326-4e3c-99d7-a8b6e3eb4939</Id>
+        <Id>ddf26851-70e0-48db-beba-d02d301ed33d</Id>
         <FriendlyName>Simpel ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2</RootNamespace>
         <RootName>OrderResponseSimple</RootName>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2581,11 +2593,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderResponseSimple/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2597,13 +2609,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>5d22c002-ca00-4699-8ede-6cc401dedbcc</Id>
+        <Id>130a8bce-cc71-4dee-a347-cba432ffe073</Id>
         <FriendlyName>Rykker</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Reminder-2</RootNamespace>
         <RootName>Reminder</RootName>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-Reminder-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-Reminder-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2757,11 +2769,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Reminder/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2773,13 +2785,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>9cbc1082-54a1-41e5-9160-078328a7b856</Id>
+        <Id>0b8cc586-d4df-4ab8-b06a-0399f9409f43</Id>
         <FriendlyName>KontoUdtog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Statement-2</RootNamespace>
         <RootName>Statement</RootName>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.01/UBL-Statement-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL v2.01/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.0/UBL-Statement-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2933,11 +2945,11 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Statement/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.01</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.01/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
