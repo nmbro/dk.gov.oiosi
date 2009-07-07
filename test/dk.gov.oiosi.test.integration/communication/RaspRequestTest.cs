@@ -308,10 +308,7 @@ namespace dk.gov.oiosi.test.integration.communication {
             var uddiClientFactory = new RegistryLookupClientFactory();
             var uddiClient = uddiClientFactory.CreateUddiLookupClient();
             var uddiResponses = uddiClient.Lookup(uddiLookupParameters);
-            if (uddiResponses.Count != 1)
-            {
-                throw new Exception("An uddi entry could not be found. Identifier: " + uddiLookupParameters.Identifier);
-            }
+            Assert.AreEqual(1, uddiResponses.Count, "Unexcpected number of uddi results.");
             var selectedUddiResponse = uddiResponses[0];
             return selectedUddiResponse;
         }
