@@ -50,11 +50,11 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
         private CertificateStoreIdentification _sendCertificate;
         private CertificateStoreIdentification _receiveCertificate;
 
-        private MailServerConfiguration _sendOutbox = new MailServerConfiguration("", "", "", "");
-        private MailServerConfiguration _sendInbox = new MailServerConfiguration("", "", "", "");
+        private MailServerConfiguration _sendOutbox;
+        private MailServerConfiguration _sendInbox;
 
-        private MailServerConfiguration _receiveInbox = new MailServerConfiguration("", "", "", "");
-        private MailServerConfiguration _receiveOutbox = new MailServerConfiguration("", "", "", "");
+        private MailServerConfiguration _receiveInbox;
+        private MailServerConfiguration _receiveOutbox;
 
         /// <summary>
         /// Deafult constructor

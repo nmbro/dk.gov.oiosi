@@ -9,7 +9,7 @@ namespace dk.gov.oiosi.test.integration {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.Add();
 
-            ProfileMappingCollection profileMappings = new ProfileMappingCollection();
+            DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
 
             DefaultLdapConfig ldapConfig = new DefaultLdapConfig();

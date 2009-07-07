@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile {
         }
 
         private void SetupProfileMappings() {
-            ProfileMappingCollection profileMappings = new ProfileMappingCollection();
+            DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
         }
 

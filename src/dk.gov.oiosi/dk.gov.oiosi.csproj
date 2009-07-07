@@ -642,9 +642,6 @@
     <None Include="Resources\Certificates\TDCRootSSL.cer" />
     <None Include="Resources\Certificates\TDCTestRoot.cer" />
     <None Include="Resources\Licenses\License.rtf" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net Installation Guide.doc" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net Release Notes.doc" />
-    <None Include="Resources\Documents\OIOSI RASP Library for .Net Tutorials.doc" />
     <None Include="Resources\Http Endpoint Example\RaspHTTPEndpointExample.zip" />
   </ItemGroup>
   <ItemGroup>
