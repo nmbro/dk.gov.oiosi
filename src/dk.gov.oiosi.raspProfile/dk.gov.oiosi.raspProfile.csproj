@@ -508,6 +508,9 @@
     <Content Include="Resources\UI\errorss.xslt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_ApplicationResponse.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -517,6 +520,9 @@
     <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates2.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates3.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CreditNote.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -524,6 +530,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines3.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Invoice.xsl">

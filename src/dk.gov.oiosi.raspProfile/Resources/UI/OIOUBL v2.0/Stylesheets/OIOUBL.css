@@ -1,0 +1,49 @@
+
+h2, h1, h3, td, th, tr
+{
+	font-family: arial;
+	font-size: 10pt;
+}
+
+h2
+{
+	color: #000000;
+	font-weight: bold;
+	margin: 0em;
+	font-size: 12pt;
+}
+
+h3
+{
+	color: #000000;
+	margin: 0em;
+	font-size: 20pt;
+}
+
+table
+{
+	border: 0pt;
+	margin: 0em;
+	width: 100%;
+}
+
+
+td
+{
+	vertical-align: top;
+}
+
+
+
+td.UBLLine
+{
+	color: #000000;
+	margin: 0em;
+	font-size: 8pt;
+}
+
+hr
+{
+color:#CCCCCC;
+
+}

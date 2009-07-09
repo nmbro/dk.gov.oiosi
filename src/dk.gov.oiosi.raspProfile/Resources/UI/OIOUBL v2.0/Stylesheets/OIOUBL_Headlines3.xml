@@ -4,7 +4,7 @@
 
 		OIOUBL Instance Documentation	
 
-		title= OIOUBL_Headlines2.xml	
+		title= OIOUBL_Headlines3.xml	
 		replaces= OIOUBL_Headlines.xml	
 		publisher= "IT og Telestyrelsen"
 		Creator= Finn Christensen and Charlotte Dahl Skovhus
@@ -17,7 +17,7 @@
 		
 		all terms derived from http://dublincore.org/documents/dcmi-terms/
 
-		For more information, see www.oioubl.dk	or email oioubl@itst.dk
+		For more information, see www.oioubl.info	or email oioubl@itst.dk
 		
 ******************************************************************************************************************
 -->
@@ -162,9 +162,9 @@
 			<g name="OIOUBLInv">FAKTURA</g>
 			<g name="OIOUBLOrd">ORDRE</g>
 			<g name="OIOUBLOrdC">ORDREANNULLERING</g>
-      <g name="OIOUBLOrdCh">ORDREÆNDRING</g>
-      <g name="OIOUBLOrdR">ORDRERESPONS</g>
 			<g name="OIOUBLOrdRSim">SIMPEL ORDRERESPONS</g>
+      <g name="OIOUBLOrdR">ORDREBEKRÆFTELSE</g>
+      <g name="OIOUBLOrdCh">ORDREÆNDRING</g>
 			<g name="OrderableUnit">Bestillingsenhed</g>
 			<g name="OrderableUnitFactorRate">Basis-/ordremængde faktor:</g>
 			<g name="OrderCancellationID">Ordreannullerings ID:</g>
@@ -309,7 +309,7 @@
 			<g name="VersionID">UBLVersionID:</g>
 			<g name="XPath">XPath:</g>
 			<g name="OIOUBLRem">RYKKER</g>
-      <g name="AccountingCustomerInvrem">Rykkermodtager</g>
+			<g name="AccountingCustomerInvrem">Rykkermodtager</g>
 			<g name="AccountingSupplierInvrem">Rykkerafsender</g>
 			<g name="ReminderDocumentReference">Rykkerreference:</g>
 			<g name="ReminderTypeCode">Rykkertype:</g>
@@ -321,27 +321,31 @@
 			<g name="DebetAmount">Debetbeløb:</g>
 			<g name="CreditAmount">Kreditbeløb:</g>
 			<g name="ReminderTotal">Rykkertotal:</g>
-			<g name="OIOUBLSta">KONTOUDTOG</g>
-			<g name="AccountingCustomersta">Kontoudtogmodtager</g>
-			<g name="AccountingSuppliersta">Kontoudtogafsender</g>
+			<g name="OIOUBLStatement">KONTOUDTOG</g>
+			<g name="AccountingCustomerStatement">Kontoudtogmodtager</g>
+			<g name="AccountingSupplierStatement">Kontoudtogafsender</g>
 			<g name="StatementDocumentReference">Kontoudtogreference:</g>
-			<g name="StatementTypeCode">Kontoudtogtype:</g>
+			<g name="StatementTypeCode">Statementtype:</g>
 			<g name="StatementID">Kontoudtognr:</g>
-			<g name="StatemetnIssueDate">Fakturadato:</g>
+			<g name="StatementIssueDate">Kontoudtogdato:</g>
 			<g name="StatementPeriod">Kontoudtogperiode:</g>
-			<g name="StatementInvoiceDate">Bilagsdato:</g>
-			<g name="StatementInvoiceNumber">Bilagsnummer:</g>
+			<g name="StatementInvoiceDate">Kontoudtogdato:</g>
+			<g name="StatementInvoiceNumber">Fakturanummer:</g>
 			<g name="StatementDebetAmount">Debetbeløb:</g>
 			<g name="StatementCreditAmount">Kreditbeløb:</g>
 			<g name="StatementTotal">Kontoudtogtotal:</g>
-			<!-- ============================================== -->
-			<!-- New Tags -->
-			<!-- ============================================== -->
-			<g name="TobiasOIOUBLOrdR">ORDRERESPONS</g>
-			<g name="TobiasOIOUBLOrdCancel">ORDREANNULLERING</g>
-			<g name="TobiasOrderCancellationID">Ordreannullierings ID:</g>
-			<g name="TobiasBalanceTotal">Balance total</g>
-			<!-- ============================================== -->
-		</g-funcs>
+      <g name="SalesOrder">Salgsordrenummer:</g>
+      <g name="SequenceNumberID">Sekvensnummer:</g>
+      <g name="OrderReferenceOrderReferenceID">Købers ordrenr:</g>
+      <g name="OrderReferenceSalesOrderID">Sælgers ordrenr:</g>
+      <g name="OrderReferenceUUID">UUID:</g>
+      <g name="OrderReferenceIssueDate">Udstedelsesdato:</g>
+      <g name="OrderReferenceIssueDate">Udstedelsestidspunkt:</g>
+      <g name="OrderReferenceCustomerReference">Kunde reference:</g>
+      <g name="OrderReferenceDocumentReference">Dokument Reference:</g>
+      <g name="TotalPackagesQuantity">Antal kolli:</g>
+      <g name="NetWeightMeasure">Nettovægt:</g>
+      <g name="GrossWeightMeasure">Bruttovægt:</g>
+    </g-funcs>
 	</document-merge>
 </module>
