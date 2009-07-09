@@ -38,7 +38,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
-        [Ignore]
         public void CacheTest() {
             List<UddiId> profileIds = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);

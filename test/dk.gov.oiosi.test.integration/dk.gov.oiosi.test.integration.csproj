@@ -47,9 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
-    <Compile Include="communication\listener\ListenerTest.cs" />
     <Compile Include="communication\RaspRequestTest.cs" />
-    <Compile Include="communication\RequestTest.cs" />
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="email\LesnikowskiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
