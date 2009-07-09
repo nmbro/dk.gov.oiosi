@@ -6,21 +6,58 @@ using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.handlers.email;
 using NUnit.Framework;
 using dk.gov.oiosi.lesnikowskiMailProvider;
+using System.Threading;
 
-namespace dk.gov.oiosi.test.integration.email
-{
+namespace dk.gov.oiosi.test.integration.email {
+
     [TestFixture]
-    public class LesnikowskiTest
-    {
+    public class LesnikowskiTest {
+        private string[] USERNAMES = { "integrationtest01", "integrationtest02", "integrationtest03", "integrationtest04", "integrationtest05", "integrationtest06", "integrationtest07", "integrationtest08", "integrationtest09" };
+        private const string MAILSERVERADDRESS = "test.ehandel.gov.dk";
+        private const string PASSWORD = "Test1234";
+
+
         [Test]
-        [Ignore]
-        public void TestSmtpOutbox() {
-            //MailServerConfiguration mailConf = new MailServerConfiguration("relay.netic.dk", "", "", "");
-            SmtpOutboxLesnikowski smtpOut = new SmtpOutboxLesnikowski();
-            smtpOut.OutboxServerConfiguration = new MailServerConfiguration("relay.netic.dk", "", "", "replyto@test.dk");
-            smtpOut.OutboxServerConfiguration.ConnectionPolicy = new MailServerConnectionPolicy(new TcpPort(25));
-            smtpOut.OutboxServerConfiguration.ConnectionPolicy.AuthenticationMode = MailAuthenticationMode.None;
-            string output = smtpOut.Send(new MailSoap12TransportBinding(Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "Soap:Action", "Send this!"), "from@test.dk", "christian.u.pedersen@accenture.com", "replyto@test.dk", "MessageID"));
+        public void TestSendAndReceive() {
+            Random random = new Random(DateTime.Now.Second);
+            int usernameIndex = random.Next(0,9);
+            string username = USERNAMES[usernameIndex];
+            string fromEmail = username + "@" + MAILSERVERADDRESS;
+            string toEmail = username + "@" + MAILSERVERADDRESS;
+
+            MailServerConfiguration smtpMailConf = new MailServerConfiguration(MAILSERVERADDRESS, username, "Test1234", fromEmail);
+            smtpMailConf.ConnectionPolicy.Port = new TcpPort(25);
+            smtpMailConf.ConnectionPolicy.PollingPattern = MailServerPollingPattern.LogOn_PollOnce_LogOff;
+            smtpMailConf.ConnectionPolicy.PollingInterval = TimeSpan.FromSeconds(5);
+            smtpMailConf.ConnectionPolicy.AuthenticationMode = MailAuthenticationMode.None;
+            SmtpOutboxLesnikowski smtp = new SmtpOutboxLesnikowski(smtpMailConf);
+
+            MailServerConfiguration pop3MailConf = new MailServerConfiguration(MAILSERVERADDRESS, username, "Test1234", fromEmail);
+            pop3MailConf.ConnectionPolicy.Port = new TcpPort(110);
+            pop3MailConf.ConnectionPolicy.PollingPattern = MailServerPollingPattern.LogOn_PollOnce_LogOff;
+            pop3MailConf.ConnectionPolicy.PollingInterval = TimeSpan.FromSeconds(5);
+            pop3MailConf.ConnectionPolicy.AuthenticationMode = MailAuthenticationMode.PlainText;
+            Pop3InboxLesnikowski pop3 = new Pop3InboxLesnikowski(pop3MailConf);
+            
+            Message payload = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "Soap:Action", "Send this!");
+            MailSoap12TransportBinding outBinding = new MailSoap12TransportBinding(payload, fromEmail, toEmail, "", "LesnikowskiTest:" + Guid.NewGuid());
+            string output = smtp.Send(outBinding);
+
+            pop3.BeginReceiving();
+
+            //Wait for the mail
+            Thread.Sleep(TimeSpan.FromSeconds(5));
+
+            while (pop3.Peek() != null) {
+                MailSoap12TransportBinding inBinding = pop3.Dequeue(TimeSpan.FromMinutes(1));
+                Assert.IsNotNull(inBinding);
+                Assert.AreEqual(fromEmail, inBinding.From, "Unexpected from email");
+                Assert.AreEqual(toEmail, inBinding.To, "Unexpected to email");
+                MailSoap12TransportBindingAttachment attachment = inBinding.Attachment;
+                Assert.IsNotNull(attachment);
+                Message recievedPayload = attachment.WcfMessage;
+                Assert.IsNotNull(recievedPayload);
+            }
         }
     }
 }

@@ -45,6 +45,9 @@ namespace dk.gov.oiosi.configuration {
     public class ConfigurationDocument {
         private static string _configFilePath = null;
 
+        /// <summary>
+        /// Configuration document version to compare compability
+        /// </summary>
         [XmlAttribute("version")]
         public string Version;
 

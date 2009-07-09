@@ -9,7 +9,6 @@ using NUnit.Framework;
 namespace dk.gov.oiosi.test.integration.communication.listener {
     
     [TestFixture]
-    [Ignore]
     public class ListenerTest {
         
         [Test]

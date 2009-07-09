@@ -77,6 +77,9 @@ namespace dk.gov.oiosi.configuration {
             set { ConfigurationDocument.ConfigFilePath = value; }
         }
 
+        /// <summary>
+        /// Gets and sets the configuration version.
+        /// </summary>
         public static string Version {
             get { return configurationDocument.Version; }
             set { configurationDocument.Version = value; }
