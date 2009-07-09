@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.uddi {
         private EndpointAddress _endpointAddress;
         private System.Net.Mail.MailAddress _ServiceContactEmail;
         private Version _version;
-        private List<ProcessRoleDefinition> _processes = new List<ProcessRoleDefinition>();
+        private List<ProcessRoleDefinition> _processRoles = new List<ProcessRoleDefinition>();
 
         /// <summary>
         /// Constructor
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.uddi {
             _termsOfUseUrl = termsOfUseUrl;
             _ServiceContactEmail = serviceContactEmail;
             _version = version;
-            _newerVersionReference = newerVersionReference; _processes = processes;
+            _newerVersionReference = newerVersionReference; _processRoles = processes;
         }
 
         /// <summary>
@@ -166,10 +166,19 @@ namespace dk.gov.oiosi.uddi {
         }
 
         /// <summary>
-        /// Gets a i enumerable over the processes in the response
+        /// Gets an enumerable over the processRoles in the response
         /// </summary>
+        [Obsolete("Please use the ProcessRoles instead")]
         public IEnumerable<ProcessRoleDefinition> Processes {
-            get { return _processes; }
+            get { return _processRoles; }
         }
+
+        /// <summary>
+        /// Gets an enumerable over the processRoles in the response
+        /// </summary>
+        public IEnumerable<ProcessRoleDefinition> ProcessRoles {
+            get { return _processRoles; }
+        }
+
     }
 }

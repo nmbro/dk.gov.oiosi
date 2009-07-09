@@ -176,7 +176,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(false, response.HasNewerVersion);
             Assert.AreEqual(null, response.NewerVersionReference);
 
-            foreach (var processRoleDefinition in response.Processes) {
+            foreach (var processRoleDefinition in response.ProcessRoles) {
                 Assert.AreEqual("Procurement-OrdAdv-BilSim-1.0 SellerParty", processRoleDefinition.Name);
                 break;
             }
