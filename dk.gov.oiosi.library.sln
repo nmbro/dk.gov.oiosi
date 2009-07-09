@@ -42,6 +42,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.unit", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.consoleClientExample", "samples\dk.gov.oiosi.samples.consolesClientExample\dk.gov.oiosi.samples.consoleClientExample.csproj", "{85D7677F-F564-49BB-90FC-498D6DFEBF81}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{628F6878-C794-4989-9830-E9B606CC38C9}"
+	ProjectSection(SolutionItems) = preProject
+		doc\OIOSI RASP Library for .Net Installation Guide.doc = doc\OIOSI RASP Library for .Net Installation Guide.doc
+		doc\OIOSI RASP Library for .Net Release Notes.doc = doc\OIOSI RASP Library for .Net Release Notes.doc
+		doc\OIOSI RASP Library for .Net Tutorials.doc = doc\OIOSI RASP Library for .Net Tutorials.doc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
