@@ -160,16 +160,16 @@ namespace dk.gov.oiosi.test.integration.uddi {
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {
-            var expectedActivationDate = new DateTime(2008, 1, 19, 16, 0, 42);
+            var expectedActivationDate = new DateTime(2009, 7, 4, 7, 21, 50);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
             var expectedEndpoint = "http://test.ehandel.gov.dk:8080/NemHandel-2009-05-27/services/TestService";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
-            var expectedIdentifierActual = "5798009811578";
+            var expectedIdentifierActual = TestConstants.TESTEAN;
             Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
 
-            var expectedExpirationDate = new DateTime(2018, 01, 21, 16, 0, 42);
+            var expectedExpirationDate = new DateTime(2019, 7, 4, 7, 21, 50);
             Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
 
             Assert.AreEqual(false, response.HasNewerVersion);
