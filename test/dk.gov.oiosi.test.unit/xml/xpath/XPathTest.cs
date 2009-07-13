@@ -24,7 +24,7 @@ namespace dk.gov.oiosi.test.unit.xml.xpath {
         [Test]
         public void IdentifierTest() {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary[TestConstants.PATH_APPLICATIONRESPONSE201_XML] = "DK28186371";
+            dictionary[TestConstants.PATH_APPLICATIONRESPONSE201_XML] = "5798009811578";
             dictionary[TestConstants.PATH_CATALOGUE_XML] = "5798009811578";
             dictionary[TestConstants.PATH_CATALOGUEDELETION_XML] = "5798009811578";
             dictionary[TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML] = "5798009811578";
