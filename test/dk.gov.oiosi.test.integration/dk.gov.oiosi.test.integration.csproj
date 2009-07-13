@@ -194,6 +194,9 @@
     <Content Include="Resources\Documents\Test\OIOXML_Invoice_v0.7.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Documents\Test\OIOXML_Invoice_v0.7_CPR_Sender.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

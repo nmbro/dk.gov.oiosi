@@ -539,7 +539,7 @@ namespace dk.gov.oiosi.raspProfile {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
-            ServiceEndpointKey senderKey = CreateKey(senderKeyXPath);
+            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
 
             DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
@@ -566,7 +566,7 @@ namespace dk.gov.oiosi.raspProfile {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
-            ServiceEndpointKey senderKey = CreateKey(senderKeyXPath);
+            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             const ProfileIdXPath profileIdXPath = null;
 
             DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
@@ -605,6 +605,16 @@ namespace dk.gov.oiosi.raspProfile {
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2", "sdt"));
             namespaces.Add(new PrefixedNamespace("urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", "udt"));
             return namespaces;
+        }
+
+        private ServiceEndpointKey CreateSenderKey(string xpath) {
+            ServiceEndpointKey key = CreateKey(xpath);
+            foreach (KeyTypeMappingExpression mappingExpression in key.MappingExpressions) {
+                if (!mappingExpression.Name.Equals("EndpointKeyType", StringComparison.CurrentCultureIgnoreCase)) continue;
+                KeyTypeMapping cprMapping = new KeyTypeMapping("CPR", "cpr");
+                mappingExpression.AddMapping(cprMapping);
+            }
+            return key;
         }
 
         private ServiceEndpointKey CreateKey(string xpath) {

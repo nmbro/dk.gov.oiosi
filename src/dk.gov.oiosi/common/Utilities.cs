@@ -198,6 +198,8 @@ namespace dk.gov.oiosi.common
                     return EndpointKeyTypeCode.iban;
                 case "duns":
                     return EndpointKeyTypeCode.duns;
+                case "cpr":
+                    return EndpointKeyTypeCode.cpr;
                 default:
                     return EndpointKeyTypeCode.other;
             }

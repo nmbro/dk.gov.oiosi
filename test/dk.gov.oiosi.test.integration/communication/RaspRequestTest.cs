@@ -27,7 +27,7 @@ namespace dk.gov.oiosi.test.integration.communication {
 
         [TestFixtureSetUp]
         public void Setup() {
-            ConfigurationUtil.SetupConfiguration();
+            ConfigurationUtil.SetupConfiguration("RaspConfigurationRaspRequestTest.xml");
         }
         [Test]
         public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
@@ -187,6 +187,11 @@ namespace dk.gov.oiosi.test.integration.communication {
         [Test]
         public void OioxmlInvoiceMustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7.xml");
+        }
+
+        [Test]
+        public void OioxmlInvoiceCPRSenderMustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7_CPR_Sender.xml");
         }
 
         # region Private methods
