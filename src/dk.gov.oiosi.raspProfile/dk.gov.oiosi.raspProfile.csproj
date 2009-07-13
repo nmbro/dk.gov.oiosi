@@ -371,6 +371,7 @@
       </SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\SchematronStylesheets\OIOXML v0.7\ublinvoice.xsl.old" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Documents\Examples Invalid\NoNamespace.xml">

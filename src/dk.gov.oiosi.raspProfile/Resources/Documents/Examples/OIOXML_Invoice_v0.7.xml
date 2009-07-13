@@ -119,7 +119,7 @@
 	</com:LegalTotals>
 	<com:InvoiceLine>
 		<com:ID>1</com:ID>
-		<com:InvoicedQuantity unitCode="" unitCodeListAgencyID="n/a">23.00</com:InvoicedQuantity>
+		<com:InvoicedQuantity unitCode="stk" unitCodeListAgencyID="n/a">23.00</com:InvoicedQuantity>
 		<com:LineExtensionAmount currencyID="DKK">645.84</com:LineExtensionAmount>
 		<com:ReferencedOrderLine>
 			<com:BuyersID>n/a</com:BuyersID>
@@ -138,7 +138,7 @@
 				</com:Tax>
 				<com:BasePrice>
 					<com:PriceAmount currencyID="DKK">28.08</com:PriceAmount>
-					<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+					<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 				</com:BasePrice>
 			</com:Item>
 			<com:DeliveryRequirement>
@@ -175,17 +175,17 @@
 			</com:Tax>
 			<com:BasePrice>
 				<com:PriceAmount currencyID="DKK">28.08</com:PriceAmount>
-				<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+				<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 			</com:BasePrice>
 		</com:Item>
 		<com:BasePrice>
 			<com:PriceAmount currencyID="DKK">28.08</com:PriceAmount>
-			<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+			<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 		</com:BasePrice>
 	</com:InvoiceLine>
 	<com:InvoiceLine>
 		<com:ID>2</com:ID>
-		<com:InvoicedQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:InvoicedQuantity>
+		<com:InvoicedQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:InvoicedQuantity>
 		<com:LineExtensionAmount currencyID="DKK">23.40</com:LineExtensionAmount>
 		<com:ReferencedOrderLine>
 			<com:BuyersID>n/a</com:BuyersID>
@@ -204,7 +204,7 @@
 				</com:Tax>
 				<com:BasePrice>
 					<com:PriceAmount currencyID="DKK">23.40</com:PriceAmount>
-					<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+					<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 				</com:BasePrice>
 			</com:Item>
 			<com:DeliveryRequirement>
@@ -241,12 +241,12 @@
 			</com:Tax>
 			<com:BasePrice>
 				<com:PriceAmount currencyID="DKK">23.40</com:PriceAmount>
-				<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+				<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 			</com:BasePrice>
 		</com:Item>
 		<com:BasePrice>
 			<com:PriceAmount currencyID="DKK">23.40</com:PriceAmount>
-			<com:BaseQuantity unitCode="" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
+			<com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">1.00</com:BaseQuantity>
 		</com:BasePrice>
 	</com:InvoiceLine>
 </Invoice>
