@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpWhatProfilesAnIdentifierCanSupport() {
-            var identifier = new IdentifierEan("5798009811578");
+            var identifier = new IdentifierEan(TestConstants.TESTEAN);
             var orderService = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);
             var acceptedProtocols = new List<EndpointAddressTypeCode>();
             acceptedProtocols.Add(EndpointAddressTypeCode.http);
