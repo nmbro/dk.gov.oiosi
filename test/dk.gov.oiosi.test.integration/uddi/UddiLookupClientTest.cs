@@ -73,7 +73,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             
             Assert.Greater(lookupResponses.Count, 0);
 
-            var expectedCertificateSubjectString = "CN=NemHandel test service (funktionscertifikat) + SERIALNUMBER=CVR:26769388-FID:1200406941690 + O=IT- og Telestyrelsen // CVR:26769388 + C=DK";
+            var expectedCertificateSubjectString = "SERIALNUMBER = CVR:30808460-FID:1237813246789 + CN = FOCES 1 (funktionscertifikat), O = DANID A/S // CVR:30808460, C = DK";
             var actualCertificateSubjectString = lookupResponses[0].CertificateSubjectSerialNumber.SubjectString;
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }
@@ -163,13 +163,13 @@ namespace dk.gov.oiosi.test.integration.uddi {
             var expectedActivationDate = new DateTime(2009, 7, 4, 7, 21, 50);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
-            var expectedEndpoint = "http://test.ehandel.gov.dk:8080/NemHandel-2009-05-27/services/TestService";
+            var expectedEndpoint = "http://test.ehandel.gov.dk/test/nemhandel_test/2009/07/07/TestService.svc";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
             var expectedIdentifierActual = TestConstants.TESTEAN;
             Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
 
-            var expectedExpirationDate = new DateTime(2019, 7, 4, 7, 21, 50);
+            var expectedExpirationDate = new DateTime(2019, 7, 6, 7, 21, 50);
             Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
 
             Assert.AreEqual(false, response.HasNewerVersion);
