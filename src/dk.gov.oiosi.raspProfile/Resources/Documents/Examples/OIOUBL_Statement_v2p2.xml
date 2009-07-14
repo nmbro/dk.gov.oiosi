@@ -160,9 +160,9 @@
 		<cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -207,7 +207,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -271,9 +271,9 @@
     <cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="GLN">5798009811547</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="GLN">5798009811547</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -318,7 +318,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -382,9 +382,9 @@
     <cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -429,7 +429,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -492,9 +492,9 @@
     <cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -539,7 +539,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -603,9 +603,9 @@
     <cac:Party>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -650,7 +650,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -710,9 +710,9 @@
   <cac:PayeeParty>
     <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
     <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-    <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+    <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
     <cac:PartyIdentification>
-      <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+      <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
     </cac:PartyIdentification>
     <cac:PartyName>
       <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -757,7 +757,7 @@
       </cac:Address>
     </cac:PhysicalLocation>
     <cac:PartyLegalEntity>
-      <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+      <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
     </cac:PartyLegalEntity>
     <cac:Contact>
       <cbc:ID>9000000002</cbc:ID>
@@ -846,9 +846,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -893,7 +893,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -956,9 +956,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1003,7 +1003,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1067,9 +1067,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1114,7 +1114,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1178,9 +1178,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1225,7 +1225,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1288,9 +1288,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1335,7 +1335,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1395,9 +1395,9 @@
     <cac:PayeeParty>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1442,7 +1442,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -1619,9 +1619,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1666,7 +1666,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1729,9 +1729,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1776,7 +1776,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1840,9 +1840,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1887,7 +1887,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -1951,9 +1951,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -1998,7 +1998,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2061,9 +2061,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2108,7 +2108,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2168,9 +2168,9 @@
     <cac:PayeeParty>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2215,7 +2215,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
@@ -2392,9 +2392,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2439,7 +2439,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2502,9 +2502,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2549,7 +2549,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2613,9 +2613,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2660,7 +2660,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2724,9 +2724,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2771,7 +2771,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2834,9 +2834,9 @@
       <cac:Party>
         <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
         <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-        <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+        <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
         <cac:PartyIdentification>
-          <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+          <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
         </cac:PartyIdentification>
         <cac:PartyName>
           <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2881,7 +2881,7 @@
           </cac:Address>
         </cac:PhysicalLocation>
         <cac:PartyLegalEntity>
-          <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+          <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
         </cac:PartyLegalEntity>
         <cac:Contact>
           <cbc:ID>9000000002</cbc:ID>
@@ -2941,9 +2941,9 @@
     <cac:PayeeParty>
       <cbc:WebsiteURI>http://www.oioubl.info</cbc:WebsiteURI>
       <cbc:LogoReferenceID>http://www.oioubl.info/images/oio_logo_top.gif</cbc:LogoReferenceID>
-      <cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+      <cbc:EndpointID schemeID="DK:CVR">DK73624570</cbc:EndpointID>
       <cac:PartyIdentification>
-        <cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+        <cbc:ID schemeID="DK:CVR">DK73624570</cbc:ID>
       </cac:PartyIdentification>
       <cac:PartyName>
         <cbc:Name>Value Facturing A/S</cbc:Name>
@@ -2988,7 +2988,7 @@
         </cac:Address>
       </cac:PhysicalLocation>
       <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="GLN">5798009811578</cbc:CompanyID>
+        <cbc:CompanyID schemeID="DK:CVR">DK73624570</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact>
         <cbc:ID>9000000002</cbc:ID>
