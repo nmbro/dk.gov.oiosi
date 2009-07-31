@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="converter\configuration\PreloadedConverterAppConfiguration.cs" />
     <Compile Include="converter\configuration\IPreloadedConverterConfiguration.cs" />
+    <Compile Include="converter\configuration\PreloadedConverterXmlConfiguration.cs" />
     <Compile Include="converter\configuration\ResultSchematronValidatorAppConfigurationCollection.cs" />
     <Compile Include="converter\configuration\SchematronValidatorAppConfigurationCollection.cs" />
     <Compile Include="converter\configuration\SourceSchematronValidatorAppConfigurationCollection.cs" />
@@ -49,7 +50,9 @@
     <Compile Include="validator\configuration\ISchematronValidatorConfiguration.cs" />
     <Compile Include="validator\configuration\ISchemaValidatorConfiguration.cs" />
     <Compile Include="validator\configuration\SchematronValidatorAppConfiguration.cs" />
+    <Compile Include="validator\configuration\SchematronValidatorXmlConfiguration.cs" />
     <Compile Include="validator\configuration\SchemaValidatorAppConfiguration.cs" />
+    <Compile Include="validator\configuration\SchemaValidatorXmlConfiguration.cs" />
     <Compile Include="validator\IValidator.cs" />
     <Compile Include="validator\SchemaValidationFailedException.cs" />
     <Compile Include="validator\SchematronValidationFailedException.cs" />
