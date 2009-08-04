@@ -47,6 +47,8 @@
     <Compile Include="converter\configuration\SourceSchematronValidatorAppConfigurationCollection.cs" />
     <Compile Include="converter\PreloadedConverter.cs" />
     <Compile Include="converter\ConverterException.cs" />
+    <Compile Include="converter\TypedPreloadedConverter.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="validator\configuration\ISchematronValidatorConfiguration.cs" />
     <Compile Include="validator\configuration\ISchemaValidatorConfiguration.cs" />
     <Compile Include="validator\configuration\SchematronValidatorAppConfiguration.cs" />

@@ -141,6 +141,7 @@ namespace dk.gov.oiosi.xml.converter {
                 throw new ConverterException("Initiation of the Converter failed, used stylesheetpath=" + configuration.TransformStylesheetPath, ex);
             }
         }
+
         private bool TryInitSchemaValidator(ISchemaValidatorConfiguration configuration, out IValidator schemaValidator) {
             schemaValidator = null;
             if (configuration == null) return false;
