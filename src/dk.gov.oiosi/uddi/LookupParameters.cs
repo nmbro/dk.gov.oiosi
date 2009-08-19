@@ -8,7 +8,11 @@ namespace dk.gov.oiosi.uddi {
     /// Parameters for use in lookup
     /// </summary>
     public class LookupParameters {
-        
+        public const string RASPPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/";
+        public const string BASICPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/BasicProfile1.1/";
+        public const string MODELTPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/OWSA/modelT/1.0/";
+        public const string OTHERPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/otherProfile/";
+
         /// <summary>
         /// The identifier for the service
         /// </summary>
@@ -33,6 +37,46 @@ namespace dk.gov.oiosi.uddi {
         /// List of transport protocols accepted as a valid result
         /// </summary>
         public List<EndpointAddressTypeCode> AcceptedTransportProtocols { get; private set; }
+
+        /// <summary>
+        /// The profile conformance claim, default is 
+        /// "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/"
+        /// which is the RASP protocol.
+        /// </summary>
+        public string ProfileConformanceClaim { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="serviceId"></param>
+        /// <param name="profileIds"></param>
+        /// <param name="acceptedTransportProtocols"></param>
+        /// <param name="profileRoleIdentifier"></param>
+        /// <param name="profileConformanceClaim"></param>
+        public LookupParameters(
+            Identifier identifier,
+            UddiId serviceId,
+            List<UddiId> profileIds,
+            List<EndpointAddressTypeCode> acceptedTransportProtocols,
+            string profileRoleIdentifier,
+            string profileConformanceClaim) {
+
+            if (identifier == null) throw new ArgumentNullException("identifier");
+            if (serviceId == null) throw new ArgumentNullException("serviceId");
+            if (profileIds == null) throw new ArgumentNullException("profileIds");
+            if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
+            if (profileRoleIdentifier == null) throw new ArgumentNullException("profileRoleIdentifier");
+            if (profileIds.Count == 0) throw new ArgumentException("profileIds must contain at least one item");
+            if (string.IsNullOrEmpty(profileConformanceClaim)) throw new ArgumentException("profileConformanceClaim cannot be null or empty");
+
+            Identifier = identifier;
+            ServiceId = serviceId;
+            ProfileIds = profileIds;
+            AcceptedTransportProtocols = acceptedTransportProtocols;
+            ProfileRoleIdentifier = profileRoleIdentifier;
+            ProfileConformanceClaim = profileConformanceClaim;
+        }
 
         /// <summary>
         /// Constructor
@@ -61,7 +105,9 @@ namespace dk.gov.oiosi.uddi {
             ProfileIds = profileIds;
             AcceptedTransportProtocols = acceptedTransportProtocols;
             ProfileRoleIdentifier = profileRoleIdentifier;
+            ProfileConformanceClaim = RASPPROFILECONFORMANCECLAIM;
         }
+
 
         /// <summary>
         /// Constructor
@@ -86,6 +132,7 @@ namespace dk.gov.oiosi.uddi {
             ServiceId = serviceId;
             ProfileIds = profileIds;
             AcceptedTransportProtocols = acceptedTransportProtocols;
+            ProfileConformanceClaim = RASPPROFILECONFORMANCECLAIM;
         }
 
         /// <summary>
@@ -94,7 +141,33 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="identifier"></param>
         /// <param name="serviceId"></param>
         /// <param name="acceptedTransportProtocols"></param>
-        public LookupParameters(Identifier identifier, UddiId serviceId, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+        /// <param name="profileConformanceClaim"></param>
+        public LookupParameters(
+            Identifier identifier, 
+            UddiId serviceId, 
+            List<EndpointAddressTypeCode> acceptedTransportProtocols,
+            string profileConformanceClaim) {
+            if (identifier == null) throw new ArgumentNullException("identifier");
+            if (serviceId == null) throw new ArgumentNullException("serviceId");
+            if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
+            if (string.IsNullOrEmpty(profileConformanceClaim)) throw new ArgumentException("string profileConformanceClaim cannot be null or empty");
+
+            Identifier = identifier;
+            ServiceId = serviceId;
+            AcceptedTransportProtocols = acceptedTransportProtocols;
+            ProfileConformanceClaim = profileConformanceClaim;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="serviceId"></param>
+        /// <param name="acceptedTransportProtocols"></param>
+        public LookupParameters(
+            Identifier identifier, 
+            UddiId serviceId, 
+            List<EndpointAddressTypeCode> acceptedTransportProtocols) {
             if (identifier == null) throw new ArgumentNullException("identifier");
             if (serviceId == null) throw new ArgumentNullException("serviceId");
             if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
@@ -102,6 +175,7 @@ namespace dk.gov.oiosi.uddi {
             Identifier = identifier;
             ServiceId = serviceId;
             AcceptedTransportProtocols = acceptedTransportProtocols;
+            ProfileConformanceClaim = RASPPROFILECONFORMANCECLAIM;
         }
     }
 }

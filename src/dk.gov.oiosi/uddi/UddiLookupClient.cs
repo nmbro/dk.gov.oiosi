@@ -41,19 +41,17 @@ namespace dk.gov.oiosi.uddi {
     /// Class for resolving endpoints on the UDDI-based Address Resolution Service (ARS).
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
-
+        public const string RASPREGISTRATIONCONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
         private static readonly ICache<UddiLookupKey, List<UddiService>> uddiCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(1, 0, 0, 0));
 
         private UDDI_Inquiry_PortTypeClient _uddiProxy;
 
         /// <summary>
-        /// Constructor
+        /// Constructor used normally to do lookup for RASP endpoint types in the UDDI
         /// </summary>
         public UddiLookupClient(Uri address) {
-            //UDDI_Inquiry_PortTypeClient _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
-
         }
 
         /// <summary>
@@ -73,7 +71,6 @@ namespace dk.gov.oiosi.uddi {
             return supportedResponses;
         }
 
-
         private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, LookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
             return lookupParameters.AcceptedTransportProtocols.Contains(address.EndpointAddressTypeCode);
@@ -87,7 +84,7 @@ namespace dk.gov.oiosi.uddi {
 
             List<UddiService> uddiServices;
             if (!uddiCache.TryGetValue(key, out uddiServices)) {
-                uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId);
+                uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId, lookupParameters.ProfileConformanceClaim);
                 
                 if (uddiServices.Count > 0) {
                     uddiCache.Set(key, uddiServices);
@@ -126,17 +123,17 @@ namespace dk.gov.oiosi.uddi {
                 );
         }
 
-        private List<UddiService> GetUddiServices(Identifier organizationIdentifier, UddiId serviceUddiId) {
+        private List<UddiService> GetUddiServices(Identifier organizationIdentifier, UddiId serviceUddiId, string profileConformanceClaim) {
 
-            keyedReference profileConformanceClaim = new keyedReference();
-            profileConformanceClaim.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";
-            profileConformanceClaim.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
-            profileConformanceClaim.keyValue = "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/";
+            keyedReference profileConformanceClaimKeyReference = new keyedReference();
+            profileConformanceClaimKeyReference.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";
+            profileConformanceClaimKeyReference.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
+            profileConformanceClaimKeyReference.keyValue = profileConformanceClaim;
             
             keyedReference registrationConformanceClaim = new keyedReference();
             registrationConformanceClaim.tModelKey = "uddi:80496ef5-4d24-4788-a3f8-12fb54a75106";
             registrationConformanceClaim.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/registrationConformanceClaim/";
-            registrationConformanceClaim.keyValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
+            registrationConformanceClaim.keyValue = RASPREGISTRATIONCONFORMANCECLAIM;
 
             keyedReference endpointKeyType = new keyedReference();
             endpointKeyType.tModelKey = "uddi:182a4a2b-3717-4283-b97c-55cc3b684dae";
@@ -148,7 +145,7 @@ namespace dk.gov.oiosi.uddi {
             endpointKey.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKey/";
             endpointKey.keyValue = organizationIdentifier.GetAsString();
 
-            keyedReference[] categories = new[] {profileConformanceClaim, registrationConformanceClaim, endpointKeyType, endpointKey};
+            keyedReference[] categories = new[] {profileConformanceClaimKeyReference, registrationConformanceClaim, endpointKeyType, endpointKey};
 
             categoryBag serviceCategories = new categoryBag {Items = categories};
 
@@ -203,6 +200,8 @@ namespace dk.gov.oiosi.uddi {
             return uddiServices;
         }
     }
+
+
 
     class UddiLookupKey
     {
