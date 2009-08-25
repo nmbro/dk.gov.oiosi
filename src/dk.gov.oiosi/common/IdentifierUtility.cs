@@ -120,6 +120,35 @@ namespace dk.gov.oiosi.common
         }
 
 
+        public static Identifier GetIdentifierFromKeyType(
+            string endpointKey,
+            string endpointKeyType
+        ) {
+            EndpointKeyTypeCode code = ParseKeyTypeCode(endpointKeyType);
+            switch (code) {
+                case EndpointKeyTypeCode.cvr:
+                    return new IdentifierCvr(endpointKey);
+                case EndpointKeyTypeCode.ean:
+                    return new IdentifierEan(endpointKey);
+                case EndpointKeyTypeCode.ovt:
+                    return new IdentifierOvt(endpointKey);
+                case EndpointKeyTypeCode.p:
+                    return new IdentifierP(endpointKey);
+                case EndpointKeyTypeCode.se:
+                    return new IdentifierSe(endpointKey);
+                case EndpointKeyTypeCode.vans:
+                    return new IdentifierVans(endpointKey);
+                case EndpointKeyTypeCode.iban:
+                    return new IdentifierIban(endpointKey);
+                case EndpointKeyTypeCode.duns:
+                    return new IdentifierDuns(endpointKey);
+                case EndpointKeyTypeCode.cpr:
+                    return new IdentifierCpr(endpointKey);
+                default:
+                    throw new UnknownEndpointTypeException(code);
+            }
+        }
+
         /// <summary>
         /// Takes an endpoint an returns a endpointaddress
         /// </summary>
@@ -137,6 +166,36 @@ namespace dk.gov.oiosi.common
                 address = new EndpointAddressSMTP(new System.Net.Mail.MailAddress(endpointAddress));
             }
             return address;
+        }
+
+        /// <summary>
+        /// Parses the key type code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static EndpointKeyTypeCode ParseKeyTypeCode(string code) {
+            switch (code) {
+                case "cvr":
+                    return EndpointKeyTypeCode.cvr;
+                case "ean":
+                    return EndpointKeyTypeCode.ean;
+                case "ovt":
+                    return EndpointKeyTypeCode.ovt;
+                case "p":
+                    return EndpointKeyTypeCode.p;
+                case "se":
+                    return EndpointKeyTypeCode.se;
+                case "vans":
+                    return EndpointKeyTypeCode.vans;
+                case "iban":
+                    return EndpointKeyTypeCode.iban;
+                case "duns":
+                    return EndpointKeyTypeCode.duns;
+                case "cpr":
+                    return EndpointKeyTypeCode.cpr;
+                default:
+                    return EndpointKeyTypeCode.other;
+            }
         }
     }
 }
