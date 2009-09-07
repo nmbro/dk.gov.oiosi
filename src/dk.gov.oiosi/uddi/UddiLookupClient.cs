@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.uddi {
             bool filterResponseByProfile = lookupParameters.ProfileIds != null;
             
             List<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
-            UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId, _uddiProxy.Endpoint.Address.Uri);
+            UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId, _uddiProxy.Endpoint.Address.Uri, lookupParameters.ProfileConformanceClaim);
 
             List<UddiService> uddiServices;
             if (!uddiCache.TryGetValue(key, out uddiServices)) {
@@ -208,12 +208,14 @@ namespace dk.gov.oiosi.uddi {
         private Identifier identifier;
         private UddiId serviceId;
         private Uri endpoint;
+        private string profileConformanceClaim;
 
-        public UddiLookupKey(Identifier identifier, UddiId serviceId, Uri endpoint)
+        public UddiLookupKey(Identifier identifier, UddiId serviceId, Uri endpoint, string profileConformanceClaim)
         {
             this.identifier = identifier;
             this.serviceId = serviceId;
             this.endpoint = endpoint;
+            this.profileConformanceClaim = profileConformanceClaim;
         }
 
         public override int GetHashCode()
@@ -233,6 +235,8 @@ namespace dk.gov.oiosi.uddi {
             if (!serviceId.Equals(other.serviceId)) return false;
 
             if (!endpoint.Equals(other.endpoint)) return false;
+
+            if (!profileConformanceClaim.Equals(other.profileConformanceClaim)) return false;
 
             return true;
         }
