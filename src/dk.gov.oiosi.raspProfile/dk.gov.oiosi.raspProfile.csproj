@@ -459,6 +459,9 @@
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_AttachedDocument_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -495,7 +498,19 @@
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Order_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Quotation_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Reminder_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_RequestForQuotation_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_SelfBilledCreditNote_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_SelfBilledInvoice_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Statement_Schematron.xsl">
