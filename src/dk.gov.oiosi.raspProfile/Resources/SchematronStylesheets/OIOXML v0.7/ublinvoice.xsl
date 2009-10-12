@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Version 20091002 -->
 <xsl:stylesheet version="1.0" com:dummy-for-xmlns="" pie:dummy-for-xmlns="" pip:dummy-for-xmlns="" pcp:dummy-for-xmlns="" pcm:dummy-for-xmlns="" main:dummy-for-xmlns="" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:com="http://rep.oio.dk/ubl/xml/schemas/0p71/common/" xmlns:pie="http://rep.oio.dk/ubl/xml/schemas/0p71/pie/" xmlns:pip="http://rep.oio.dk/ubl/xml/schemas/0p71/pip/" xmlns:pcp="http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/" xmlns:pcm="http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/" xmlns:main="http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/">
 <xsl:output method="xml" />
 <xsl:template match="*|@*" mode="schematron-get-full-path">
@@ -516,6 +517,7 @@
 <xsl:apply-templates mode="M13" />
 </xsl:template>
 <xsl:template match="text()" priority="-1" mode="M13" />
+<!-- FC 20090923 issue 5
 <xsl:template match="/*[local-name()='Invoice']/com:BuyersReferenceID[substring(.,13,1)!=0]" priority="4000" mode="M14">
 <xsl:if test="((((10 - substring((substring(.,1,1) * 1 + substring(.,2,1) * 3) + (substring(.,3,1) * 1 + substring(.,4,1) * 3) + (substring(.,5,1) * 1 + substring(.,6,1) * 3) + (substring(.,7,1) * 1 + substring(.,8,1) * 3) + (substring(.,9,1) * 1 + substring(.,10,1) * 3) + (substring(.,11,1) * 1 + substring(.,12,1) * 3),string-length((substring(.,1,1) * 1 + substring(.,2,1) * 3) + (substring(.,3,1) * 1 + substring(.,4,1) * 3) + (substring(.,5,1) * 1 + substring(.,6,1) * 3) + (substring(.,7,1) * 1 + substring(.,8,1) * 3) + (substring(.,9,1) * 1 + substring(.,10,1) * 3) + (substring(.,11,1) * 1 + substring(.,12,1) * 3)),1)) + ((substring(.,1,1) * 1 + substring(.,2,1) * 3) + (substring(.,3,1) * 1 + substring(.,4,1) * 3) + (substring(.,5,1) * 1 + substring(.,6,1) * 3) + (substring(.,7,1) * 1 + substring(.,8,1) * 3) + (substring(.,9,1) * 1 + substring(.,10,1) * 3) + (substring(.,11,1) * 1 + substring(.,12,1) * 3))) - ((substring(.,1,1) * 1 + substring(.,2,1) * 3) + (substring(.,3,1) * 1 + substring(.,4,1) * 3) + (substring(.,5,1) * 1 + substring(.,6,1) * 3) + (substring(.,7,1) * 1 + substring(.,8,1) * 3) + (substring(.,9,1) * 1 + substring(.,10,1) * 3) + (substring(.,11,1) * 1 + substring(.,12,1) * 3))) != substring(.,13,1) )">
 <error><xsl:attribute name="context"><xsl:value-of select="concat(name(parent::*),'/',name())" /></xsl:attribute>
@@ -548,6 +550,7 @@
 </xsl:choose>
 <xsl:apply-templates mode="M14" />
 </xsl:template>
+-->
 <xsl:template match="text()" priority="-1" mode="M14" />
 <xsl:template match="/pie:Invoice/com:PaymentMeans | /pcm:Invoice/com:PaymentMeans" priority="4000" mode="M15">
 <xsl:choose>
@@ -787,7 +790,7 @@
 <xsl:otherwise>
 <error><xsl:attribute name="context"><xsl:value-of select="concat(name(parent::*),'/',name())" /></xsl:attribute>
 <pattern>com:ID='Deliverydate' or com:ID ='Period'</pattern>:
-   ReferencedOrderLine - DeliveryRequirement - ID should equal DeliveryDate or Period.
+   ReferencedOrderLine - DeliveryRequirement - ID should equal Deliverydate or Period.
 </error></xsl:otherwise>
 </xsl:choose>
 <xsl:choose>

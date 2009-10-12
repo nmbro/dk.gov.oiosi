@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <OrderResponse xmlns="urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2 UBL-OrderResponse-2.0.xsd">
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.02</cbc:CustomizationID>
@@ -151,7 +151,7 @@
 				</cac:DeliveryLocation>
 			</cac:Delivery>
 			<cac:Price>
-				<cbc:PriceAmount currencyID="DKK">1730.00</cbc:PriceAmount>
+				<cbc:PriceAmount currencyID="DKK">1975.00</cbc:PriceAmount>
 			</cac:Price>
 			<cac:Item>
 				<cbc:Description>Copenhagen - HAMBURG</cbc:Description>
@@ -193,7 +193,7 @@
 				</cac:DeliveryLocation>
 			</cac:Delivery>
 			<cac:Price>
-				<cbc:PriceAmount currencyID="DKK">1730.00</cbc:PriceAmount>
+				<cbc:PriceAmount currencyID="DKK">1975.00</cbc:PriceAmount>
 			</cac:Price>
 			<cac:Item>
 				<cbc:Description>Hamburg - COPENHAGEN</cbc:Description>
