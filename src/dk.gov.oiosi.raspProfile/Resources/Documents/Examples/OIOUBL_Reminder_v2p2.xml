@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Reminder xmlns="urn:oasis:names:specification:ubl:schema:xsd:Reminder-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:Reminder-2 UBL-Reminder-2.0.xsd">
+
+<!--
+******************************************************************************************************************
+20080410 Finn Christensen
+Reminder without any allowancecharge.
+		
+******************************************************************************************************************
+-->
+
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.02</cbc:CustomizationID>
 	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Procurement-OrdAdv-BilSim-1.0</cbc:ProfileID>
@@ -102,24 +111,9 @@
 		<cbc:PaymentMeansID>1</cbc:PaymentMeansID>
 		<cbc:Amount currencyID="DKK">6312.50</cbc:Amount>
 	</cac:PaymentTerms>
-	<cac:TaxTotal>
-		<cbc:TaxAmount currencyID="DKK">1262.50</cbc:TaxAmount>
-		<cac:TaxSubtotal>
-			<cbc:TaxableAmount currencyID="DKK">5050.00</cbc:TaxableAmount>
-			<cbc:TaxAmount currencyID ="DKK">1262.50</cbc:TaxAmount>
-			<cac:TaxCategory>
-				<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxcategoryid-1.1">StandardRated</cbc:ID>
-				<cbc:Percent>25</cbc:Percent>
-				<cac:TaxScheme>
-					<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
-					<cbc:Name>Moms</cbc:Name>
-				</cac:TaxScheme>
-			</cac:TaxCategory>
-		</cac:TaxSubtotal>
-	</cac:TaxTotal>
 	<cac:LegalMonetaryTotal>
-		<cbc:LineExtensionAmount currencyID ="DKK">5050.00</cbc:LineExtensionAmount>
-		<cbc:TaxExclusiveAmount currencyID ="DKK">1262.50</cbc:TaxExclusiveAmount>
+		<cbc:LineExtensionAmount currencyID ="DKK">6312.50</cbc:LineExtensionAmount>
+		<cbc:TaxExclusiveAmount currencyID ="DKK">0.00</cbc:TaxExclusiveAmount>
 		<cbc:TaxInclusiveAmount currencyID ="DKK">6312.50</cbc:TaxInclusiveAmount>
 		<cbc:PayableAmount currencyID ="DKK">6312.50</cbc:PayableAmount>
 	</cac:LegalMonetaryTotal>
