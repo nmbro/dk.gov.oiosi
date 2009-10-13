@@ -84,7 +84,7 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetTestCertificatesOscpConfig() {
             // Test certificates here
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
-            ocspConfig.DefaultTimeoutMsec = 10000;
+            ocspConfig.DefaultTimeoutMsec = 20000;
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetOscpConfig() {
             // Live certificates here
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
-            ocspConfig.DefaultTimeoutMsec = 10000;
+            ocspConfig.DefaultTimeoutMsec = 20000;
         }
 
         /// <summary>
