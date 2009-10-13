@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Invoice xsi:schemaLocation="http://rep.oio.dk/ubl/xml/schemas/0p71/pie/ http://rep.oio.dk/ubl/xml/schemas/0p71/pie/pieStrict.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://rep.oio.dk/ubl/xml/schemas/0p71/pie/" xmlns:com="http://rep.oio.dk/ubl/xml/schemas/0p71/common/" xmlns:main="http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/">
 	<com:ID>A00095678</com:ID>
 	<com:IssueDate>2005-11-20</com:IssueDate>
@@ -25,7 +25,7 @@
 			<com:ID>7778</com:ID><com:Name>Hans Hansen</com:Name><com:Phone>26532147</com:Phone><com:E-Mail>Hans@dls.dk</com:E-Mail></com:BuyerContact>
 	</com:BuyerParty>
 	<com:SellerParty>
-		<com:ID schemeID="CVR">16356706</com:ID>
+		<com:ID schemeID="CPR">1234567890</com:ID>
 		<com:PartyName>
 			<com:Name>Tavleverandøren</com:Name>
 		</com:PartyName>
@@ -36,7 +36,7 @@
 			</com:Country>
 		</com:Address>
 		<com:PartyTaxScheme>
-			<com:CompanyTaxID schemeID="CVR">16356706</com:CompanyTaxID>
+			<com:CompanyTaxID schemeID="CPR">1234567890</com:CompanyTaxID>
 		</com:PartyTaxScheme>
 		<com:OrderContact>
 			<com:ID>23456</com:ID><com:Name>Hugo Jensen</com:Name><com:Phone>15812337</com:Phone><com:E-Mail>Hugo@tavl.dk</com:E-Mail></com:OrderContact>
