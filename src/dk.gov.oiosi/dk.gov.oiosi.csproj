@@ -213,7 +213,6 @@
     <Compile Include="uddi\UddiCategoryBag.cs" />
     <Compile Include="uddi\UddiProxy.cs" />
     <Compile Include="uddi\UddiBinding.cs" />
-    <Compile Include="uddi\UddiCategory.cs" />
     <Compile Include="uddi\UddiConfig.cs" />
     <Compile Include="uddi\UddiFallbackClient.cs" />
     <Compile Include="uddi\LookupParameters.cs" />
