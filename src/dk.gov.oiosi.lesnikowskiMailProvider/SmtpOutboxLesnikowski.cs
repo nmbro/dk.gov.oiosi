@@ -139,12 +139,13 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
 
         private void LogOnSSL(){
             int port = OutboxServerConfiguration.ConnectionPolicy.Port;
+            //TODO: is this correct...
             _smtp.Connect(OutboxServerConfiguration.ServerAddress, port, true);
             string hostName = System.Net.Dns.GetHostName();
             _smtp.Ehlo(HeloType.EhloHelo, hostName);
 
             try {
-                _smtp.StartTLS();
+                //_smtp.StartTLS();
                 _smtp.Login();
             }
             catch {
