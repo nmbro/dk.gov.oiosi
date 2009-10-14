@@ -276,22 +276,18 @@ namespace dk.gov.oiosi.communication.handlers.email {
             try {
                 SetState(InboxState.AttemptingLogOn);
                 OnStartPolling.Set();
-                // Keep polling until someone says stop
                 do {
                     MailSoap12TransportBinding msg;
                     lock (MailServerLockingToken) {
                         TryLogOn();
                         msg = PollServer();
-                        while (msg != null) {
-                            // If a message was fetched, lock the queue and add it
+                        if (msg != null) {
                             lock (pMailQueue) {
                                 pMailQueue.Add(msg);
                                 pMailEntryTimes.Add(msg, DateTime.Now);
                                 logging.WCFLogger.Write(TraceEventType.Verbose, "Incoming mail received from " + msg.From + " in reply to '" + msg.InReplyTo + "'");
                             }
-                            msg = PollServer();
                         }
-
                         LogOff();
                     }
 

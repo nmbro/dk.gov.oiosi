@@ -226,20 +226,13 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
                 _pop3.GetAccountStat();
                 MailSoap12TransportBinding msg = null;
 
-                // Get the place of the last message
-                long currentMail = _pop3.MessageCount;
+                if (_pop3.MessageCount < 1) return null;
 
-                // As long as there are messages on the server and we havent gotten one yet
-                while (_pop3.MessageCount > 0 && currentMail > 0 && msg == null) {
-                    WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox getting mail...");
-                    string mail = _pop3.GetMessage(currentMail);
-                    _pop3.DeleteMessage(currentMail--);
-                    msg = ConvertStringToMail(mail);
-
-                    // Get the updated account stats
-                    _pop3.GetAccountStat();
-                }
-                return msg;
+                // There is at least one message on the server and we have to process it
+                WCFLogger.Write(TraceEventType.Verbose, "Lesnikowski Inbox getting mail...");
+                string mail = _pop3.GetMessage(1);
+                _pop3.DeleteMessage(1);
+                return ConvertStringToMail(mail);
             }
             catch (Exception e) {
                 throw new LesnikowskiCouldNotGetMailsException(e);
