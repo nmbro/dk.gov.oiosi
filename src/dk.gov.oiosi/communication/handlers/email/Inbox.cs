@@ -290,8 +290,9 @@ namespace dk.gov.oiosi.communication.handlers.email {
                         }
                         LogOff();
                     }
-
-                    OnStopPolling.WaitOne(Utilities.TimeSpanInMilliseconds(InboxServerConfiguration.ConnectionPolicy.PollingInterval), false);
+                    int waitTime = Utilities.TimeSpanInMilliseconds(InboxServerConfiguration.ConnectionPolicy.PollingInterval);
+                    logging.WCFLogger.Write(TraceEventType.Verbose, "Waiting " + waitTime + "ms before pulling server again.");
+                    OnStopPolling.WaitOne(waitTime, false);
                 }
                 while (_state == InboxState.Listening);
             }

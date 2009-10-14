@@ -19,6 +19,7 @@ namespace dk.gov.oiosi.uddi
         private const string versionRevisionId = "uddi:8e7ce808-0279-4042-8088-133667744c6f";
 
         private readonly businessService service;
+        private readonly UddiCategoryBag categoryBag;
         private readonly List<UddiBinding> bindings;
 
         public UddiService(businessService service, List<UddiBinding> uddiBindings) {
@@ -26,39 +27,12 @@ namespace dk.gov.oiosi.uddi
             if (uddiBindings == null) throw new ArgumentNullException("uddiBindings");
             
             this.service = service;
+            this.categoryBag = new UddiCategoryBag(service.categoryBag);
             bindings = uddiBindings;
         }
 
         public List<UddiBinding> Bindings {
             get { return bindings; }
-        }
-
-        public DateTime ActivationDateUTC {
-            get { return GetActivationDateUTC(); }
-        }
-
-        public CertificateSubject CertificateSubject {
-            get { return GetCertificateSubject(); }
-        }
-
-        public DateTime ExpirationDateUTC {
-            get { return GetExpirationDateUtcFormat(); }
-        }
-
-        public UddiId NewerVersion {
-            get { return GetNewerVersion(); }
-        }
-
-        public MailAddress ContactMail {
-            get { return GetContactMail(); }
-        }
-
-        public Uri TermsOfUseUri {
-            get { return GetTermsOfUseUrl(); }
-        }
-
-        public Version Version {
-            get { return GetVersion(); }
         }
 
         public IEnumerable<UddiBinding> GetBindingsSupportingOneOrMoreProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
@@ -75,68 +49,86 @@ namespace dk.gov.oiosi.uddi
         /// </summary>
         /// <returns>Returns true if this service is inactive or expired, according to its UDDI registration.</returns>
         public bool IsInactiveOrExpired() {
+            DateTime activationDate = GetActivationDateUtc();
+            DateTime expirationDate = GetExpirationDateUtc();
             DateTime nowUTC = DateTime.UtcNow;
-            return !(nowUTC > ActivationDateUTC && nowUTC < ExpirationDateUTC);
+            return !(nowUTC > activationDate && nowUTC < expirationDate);
         }
 
-        # region Private methods
-
-        private DateTime GetActivationDateUTC() {
-            keyedReference activationDate = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, activationDateId);
-            if (activationDate == null) return DateTime.MinValue;
+        public DateTime GetActivationDateUtc() {
+            keyedReference activationDate;
+            if (!this.categoryBag.TryGetKeyedReference(activationDateId, out activationDate)) {
+                return DateTime.MinValue;
+            }
             return GetDatetimeFromLifetimeDates(activationDate.keyValue, false);
         }
 
-        private CertificateSubject GetCertificateSubject() {
-            keyedReference certificateReference = UddiCategory.GetMandatoryCategoryByIdentifier(service.categoryBag, certificateSubjectId);
+        public CertificateSubject GetCertificateSubject() {
+            keyedReference certificateReference;
+            if (!this.categoryBag.TryGetKeyedReference(certificateSubjectId, out certificateReference)) {
+                return null;
+            }
             return new CertificateSubject(certificateReference.keyValue);
         }
 
-        private DateTime GetExpirationDateUtcFormat() {
-            keyedReference expirationDate = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, expirationDateId);
-            if (expirationDate == null) return DateTime.MaxValue;
+        public DateTime GetExpirationDateUtc() {
+            keyedReference expirationDate;
+            if (!this.categoryBag.TryGetKeyedReference(expirationDateId, out expirationDate)) {
+                return DateTime.MinValue;
+            }
             return GetDatetimeFromLifetimeDates(expirationDate.keyValue, false);
         }
 
-        private UddiId GetNewerVersion() {
-            keyedReference newVersKeyref = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, newerVersionId);
-            if (newVersKeyref == null) return null;
+        public UddiId GetNewerVersion() {
+            keyedReference newVersKeyref;
+            if (!this.categoryBag.TryGetKeyedReference(newerVersionId, out newVersKeyref)) {
+                return null;
+            }
             if (String.IsNullOrEmpty(newVersKeyref.keyValue)) return null;
             return IdentifierUtility.GetUddiIDFromString(newVersKeyref.keyValue);
         }
 
-        private Uri GetTermsOfUseUrl() {
-            keyedReference termsOfUseUrl = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, termsOfUseUrlId);
-            if (termsOfUseUrl == null) return null;
+        public Uri GetTermsOfUseUrl() {
+            keyedReference termsOfUseUrl;
+            if (!this.categoryBag.TryGetKeyedReference(termsOfUseUrlId, out termsOfUseUrl)) {
+                return null;
+            }
             if (String.IsNullOrEmpty(termsOfUseUrl.keyValue)) return null;
-
             return new Uri(termsOfUseUrl.keyValue);
         }
 
-        private MailAddress GetContactMail() {
-            keyedReference contactMail = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, contactMailId);
-            if (contactMail == null) return null;
+        public MailAddress GetContactMail() {
+            keyedReference contactMail;
+            if (!this.categoryBag.TryGetKeyedReference(contactMailId, out contactMail)) {
+                return null;
+            }
             if (String.IsNullOrEmpty(contactMail.keyValue)) return null;
-
             return new MailAddress(contactMail.keyValue);
         }
 
-        private Version GetVersion() {
-            keyedReference majorVersion = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, versionMajorId);
-            if (majorVersion == null) return null;
+        public Version GetVersion() {
+            keyedReference majorVersion;
+            this.categoryBag.TryGetKeyedReference(versionMajorId, out majorVersion);
 
-            keyedReference minorVersion = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, versionMinorId);
-            keyedReference revision = UddiCategory.GetOptionalCategoryByIdentifier(service.categoryBag, versionRevisionId);
+            keyedReference minorVersion;
+            this.categoryBag.TryGetKeyedReference(versionMinorId, out minorVersion);
 
+            keyedReference revisionVersion;
+            this.categoryBag.TryGetKeyedReference(versionRevisionId, out revisionVersion);
 
             int majorInt = 0;
             int minorInt = 0;
             int revisionInt = 0;
 
-            majorInt = Int32.Parse(majorVersion.keyValue);
-            if (minorVersion != null) minorInt = Int32.Parse(minorVersion.keyValue);
-            if (revision != null) revisionInt = Int32.Parse(revision.keyValue);
-
+            if (!string.IsNullOrEmpty(majorVersion.keyValue)) {
+                majorInt = Int32.Parse(majorVersion.keyValue);
+            }
+            if (!string.IsNullOrEmpty(minorVersion.keyValue)) {
+                minorInt = Int32.Parse(minorVersion.keyValue);
+            }
+            if (!string.IsNullOrEmpty(revisionVersion.keyValue)) {
+                revisionInt = Int32.Parse(revisionVersion.keyValue);
+            }
             return new Version(majorInt, minorInt, revisionInt);
         }
 
@@ -168,8 +160,5 @@ namespace dk.gov.oiosi.uddi
             // Heuristic, treat as UTC date:
             return DateTime.Parse(datestring, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal);
         }
-
-        # endregion
-
     }
 }

@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.communication.handlers.email
         /// </summary>
         public const MailServerPollingPattern DefaultPollingPattern = MailServerPollingPattern.LogOn_PollOnce_LogOff;
 
-        private TimeSpan _pollingInterval = new TimeSpan(5000);
+        private TimeSpan _pollingInterval = TimeSpan.FromSeconds(DefaultPollingIntervalInSeconds);
         private MailAuthenticationMode _authenticationMode = MailAuthenticationMode.PlainText;
         private MailServerPollingPattern _pollingPattern = MailServerPollingPattern.LogOn_PollOnce_LogOff;
         private TcpPort _port;
@@ -130,7 +130,7 @@ namespace dk.gov.oiosi.communication.handlers.email
         /// Constructor
         /// </summary>
         public MailServerConnectionPolicy() {
-            _pollingInterval = new TimeSpan(0,0, DefaultPollingIntervalInSeconds);
+            _pollingInterval = TimeSpan.FromSeconds(DefaultPollingIntervalInSeconds);
             _pollingPattern = DefaultPollingPattern;
         }
     }

@@ -112,13 +112,13 @@ namespace dk.gov.oiosi.uddi {
             return new UddiLookupResponse(
                 lookupParameters.Identifier,
                 uddiBinding.EndpointAddress,
-                uddiService.ActivationDateUTC,
-                uddiService.ExpirationDateUTC,
-                uddiService.CertificateSubject,
-                uddiService.TermsOfUseUri,
-                uddiService.ContactMail,
-                uddiService.Version,
-                uddiService.NewerVersion,
+                uddiService.GetActivationDateUtc(),
+                uddiService.GetExpirationDateUtc(),
+                uddiService.GetCertificateSubject(),
+                uddiService.GetTermsOfUseUrl(),
+                uddiService.GetContactMail(),
+                uddiService.GetVersion(),
+                uddiService.GetNewerVersion(),
                 uddiBinding.Processes
                 );
         }

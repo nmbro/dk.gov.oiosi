@@ -210,6 +210,7 @@
     <Compile Include="uddi\Registry.cs" />
     <Compile Include="uddi\LookupRegistryFallbackConfig.cs" />
     <Compile Include="uddi\RegistryLookupClient.cs" />
+    <Compile Include="uddi\UddiCategoryBag.cs" />
     <Compile Include="uddi\UddiProxy.cs" />
     <Compile Include="uddi\UddiBinding.cs" />
     <Compile Include="uddi\UddiCategory.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="uddi\UddiNoImplementingAssemblyException.cs" />
     <Compile Include="uddi\UddiEmptyGuidException.cs" />
     <Compile Include="uddi\UddiException.cs" />
+    <Compile Include="uddi\UddiTModel.cs" />
     <Compile Include="uddi\UddiWrongGuidFormatException.cs" />
     <Compile Include="communication\MissingCredentialsException.cs" />
     <Compile Include="xml\documentType\AmbiguousDocumentTypeFoundFromXmlDocumentException.cs" />

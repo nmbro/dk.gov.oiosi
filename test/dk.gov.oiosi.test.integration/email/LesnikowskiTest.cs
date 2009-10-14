@@ -62,10 +62,10 @@ namespace dk.gov.oiosi.test.integration.email {
 
         [Test]
         public void TestSendAndReceiveGMAIL() {
-            string username = "hougeout@gmail.com";
+            string username = "hougein@gmail.com";
             string password = "test1234";
-            string fromEmail = "hougeout@gmail.com";
-            string toEmail = "hougeout@gmail.com";
+            string fromEmail = "hougein@gmail.com";
+            string toEmail = "hougein@gmail.com";
 
             MailServerConfiguration smtpMailConf = new MailServerConfiguration("smtp.gmail.com", username, password, fromEmail);
             smtpMailConf.ConnectionPolicy.Port = new TcpPort(465);
@@ -90,19 +90,23 @@ namespace dk.gov.oiosi.test.integration.email {
 
             pop3.BeginReceiving();
 
+            try {
+                //Wait for the mail
+                Thread.Sleep(TimeSpan.FromSeconds(30));
 
-            //Wait for the mail
-            Thread.Sleep(TimeSpan.FromSeconds(15));
-
-            while (pop3.Peek() != null) {
-                MailSoap12TransportBinding inBinding = pop3.Dequeue(TimeSpan.FromMinutes(1));
-                Assert.IsNotNull(inBinding);
-                Assert.AreEqual(fromEmail, inBinding.From, "Unexpected from email");
-                Assert.AreEqual(toEmail, inBinding.To, "Unexpected to email");
-                MailSoap12TransportBindingAttachment attachment = inBinding.Attachment;
-                Assert.IsNotNull(attachment);
-                Message recievedPayload = attachment.WcfMessage;
-                Assert.IsNotNull(recievedPayload);
+                while (pop3.Peek() != null) {
+                    MailSoap12TransportBinding inBinding = pop3.Dequeue(TimeSpan.FromMinutes(1));
+                    Assert.IsNotNull(inBinding);
+                    Assert.AreEqual(fromEmail, inBinding.From, "Unexpected from email");
+                    Assert.AreEqual(toEmail, inBinding.To, "Unexpected to email");
+                    MailSoap12TransportBindingAttachment attachment = inBinding.Attachment;
+                    Assert.IsNotNull(attachment);
+                    Message recievedPayload = attachment.WcfMessage;
+                    Assert.IsNotNull(recievedPayload);
+                }
+            }
+            finally {
+                pop3.Close();
             }
         }
     }
