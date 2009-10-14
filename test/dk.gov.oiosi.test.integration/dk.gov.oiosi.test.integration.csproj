@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
-    <Compile Include="communication\RaspRequestMailTest.cs" />
     <Compile Include="communication\RaspRequestTest.cs" />
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="email\LesnikowskiTest.cs" />
