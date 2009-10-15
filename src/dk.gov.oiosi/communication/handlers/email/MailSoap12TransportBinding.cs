@@ -126,6 +126,7 @@ namespace dk.gov.oiosi.communication.handlers.email
         /// Constructor
         /// </summary>
         /// <param name="msg">A WCF Message that will be used to extract the necessary fields from</param>
+        [Obsolete("Please use the MailSoap12TransportBinding(Message msg, string fromAddress) constuctor instead due to gmail compability")]
         public MailSoap12TransportBinding(Message msg) 
         {
             // Set the from and to headers
@@ -143,6 +144,30 @@ namespace dk.gov.oiosi.communication.handlers.email
             if (msg.Headers.ReplyTo != null)
                 _replyTo = msg.Headers.ReplyTo.ToString();
    
+            // Create a new ID for the mail and uses the from address as ID due to the specification
+            _messageId = Guid.NewGuid().ToString() + "@127.0.0.1";
+
+            // Create the attachment
+            _attachment = new MailSoap12TransportBindingAttachment(msg);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="msg">A WCF Message that will be used to extract the necessary fields from</param>
+        /// <param name="fromAddress">The from address that has to be used to generate the id used in the email transport</param>
+        public MailSoap12TransportBinding(Message msg, string fromAddress) {
+            _from = fromAddress;
+
+            // to headers
+            if (msg.Headers.To != null) {
+                _to = TrimMailAddress(msg.Headers.To);
+            }
+
+            // In case there happens to be a replyTo header, use it
+            if (msg.Headers.ReplyTo != null)
+                _replyTo = msg.Headers.ReplyTo.ToString();
+
             // Create a new ID for the mail and uses the from address as ID due to the specification
             _messageId = Guid.NewGuid().ToString() + "_" + _from;
 

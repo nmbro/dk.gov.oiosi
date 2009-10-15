@@ -216,13 +216,15 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
             // Attach a To header, so that the SMTP/MIME SOAP 1.2 protocol can be complied with
             message.Headers.To = this.RemoteAddress.Uri;
 
+            MailSoap12TransportBinding mail = null;
+            string replyAddress = _mailHandler.OutboxServerConfiguration.ReplyAddress;
 
-            MailSoap12TransportBinding mail = new MailSoap12TransportBinding(message);
-
-            if (_mailHandler.OutboxServerConfiguration.ReplyAddress == null || _mailHandler.OutboxServerConfiguration.ReplyAddress == "")
-                throw new dk.gov.oiosi.communication.handlers.email.MailBindingFieldMissingException("replyAddress in the configuration file");
+            if (string.IsNullOrEmpty(replyAddress))
+                throw new MailBindingFieldMissingException("replyAddress in the configuration file");
             else {
-                mail.From = MailSoap12TransportBinding.TrimMailAddress(_mailHandler.OutboxServerConfiguration.ReplyAddress);
+                string fromAddress = MailSoap12TransportBinding.TrimMailAddress(_mailHandler.OutboxServerConfiguration.ReplyAddress);
+                mail = new MailSoap12TransportBinding(message, fromAddress);
+                mail.From = fromAddress;
             }
 
             if (mail.To == null || mail.To == "") {

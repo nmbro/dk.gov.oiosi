@@ -149,22 +149,22 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
         }
 
         private MailSoap12TransportBinding CreateMailMessage(Message message) {
-
+            string fromAddress = MailSoap12TransportBinding.TrimMailAddress(this.pMailHandler.InboxServerConfiguration.ReplyAddress);
             
 
-            MailSoap12TransportBinding mail = new MailSoap12TransportBinding(message);
+            MailSoap12TransportBinding mail = new MailSoap12TransportBinding(message, fromAddress);
             // 2. Check mail headers of incoming request
             if (_requestMessage.ReplyTo != null && _requestMessage.ReplyTo != "")
                 mail.To = _requestMessage.ReplyTo;
             else if (_requestMessage.From != null && _requestMessage.From != "")
                 mail.To = _requestMessage.From;
             else
-                throw new EmailReplyCouldNotBeSentException(new dk.gov.oiosi.communication.handlers.email.MailBindingFieldMissingException("From"));
+                throw new EmailReplyCouldNotBeSentException(new MailBindingFieldMissingException("From"));
            
 
             // Try to set the FROM header of the mail
             if (mail.From == null || mail.From == ""){
-                mail.From = MailSoap12TransportBinding.TrimMailAddress(this.pMailHandler.InboxServerConfiguration.ReplyAddress);
+                mail.From = fromAddress;
             }
 
             message.Headers.To = new Uri("mailto:" + _requestMessage.From);
