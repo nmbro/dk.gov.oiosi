@@ -62,10 +62,10 @@ namespace dk.gov.oiosi.test.integration.email {
 
         [Test]
         public void TestSendAndReceiveGMAIL() {
-            string username = "hougein@gmail.com";
-            string password = "test1234";
-            string fromEmail = "hougein@gmail.com";
-            string toEmail = "hougein@gmail.com";
+            string username = "nemhandelintegration@gmail.com";
+            string password = "Test1234";
+            string fromEmail = "nemhandelintegration@gmail.com";
+            string toEmail = "nemhandelintegration@gmail.com";
 
             MailServerConfiguration smtpMailConf = new MailServerConfiguration("smtp.gmail.com", username, password, fromEmail);
             smtpMailConf.ConnectionPolicy.Port = new TcpPort(465);
@@ -82,17 +82,14 @@ namespace dk.gov.oiosi.test.integration.email {
             Pop3InboxLesnikowski pop3 = new Pop3InboxLesnikowski(pop3MailConf);
 
             Message payload1 = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "Soap:Action", "Send this!");
-            Message payload2 = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, "Soap:Action", "Send this!");
             MailSoap12TransportBinding outBinding1 = new MailSoap12TransportBinding(payload1, fromEmail, toEmail, "", "LesnikowskiTest1:" + Guid.NewGuid());
-            MailSoap12TransportBinding outBinding2 = new MailSoap12TransportBinding(payload2, fromEmail, toEmail, "", "LesnikowskiTest2:" + Guid.NewGuid());
-            smtp.Send(outBinding1);
-            string output = smtp.Send(outBinding2);
+            string output = smtp.Send(outBinding1);
 
             pop3.BeginReceiving();
 
             try {
                 //Wait for the mail
-                Thread.Sleep(TimeSpan.FromSeconds(30));
+                Thread.Sleep(TimeSpan.FromSeconds(5));
 
                 while (pop3.Peek() != null) {
                     MailSoap12TransportBinding inBinding = pop3.Dequeue(TimeSpan.FromMinutes(1));
