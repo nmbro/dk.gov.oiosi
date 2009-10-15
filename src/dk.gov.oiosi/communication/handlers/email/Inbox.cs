@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.communication.handlers.email {
         /// <summary>
         /// Email logon timeout default
         /// </summary>
-        public static TimeSpan LogOnTimeout = new TimeSpan(0, 0, 15);
+        public static TimeSpan LogOnTimeout = TimeSpan.FromSeconds(30);
 
         /// <summary>
         /// Event raised when an inbox's state changes
@@ -62,7 +62,7 @@ namespace dk.gov.oiosi.communication.handlers.email {
         /// Keeps track of when mails were entered to the queue (and thus when they should be deleted)
         /// </summary>
         protected Dictionary<MailSoap12TransportBinding, DateTime> pMailEntryTimes = new Dictionary<MailSoap12TransportBinding, DateTime>();
-        private TimeSpan _cacheingTime = new TimeSpan(0, 5, 0);
+        private TimeSpan _cacheingTime = TimeSpan.FromMinutes(5);
 
 
         // Delegate used for async calling of the sync method Receive
