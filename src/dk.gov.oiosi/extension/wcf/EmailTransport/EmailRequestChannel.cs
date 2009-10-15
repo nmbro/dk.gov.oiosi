@@ -177,39 +177,38 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
                 WCFLogger.Write(TraceEventType.Stop, "Mail request channel finishing sending a fault");
                 return null;
             }
-            else {
-                try {
-                    // Wait for the reply
-                    AutoResetEvent onAbort = new AutoResetEvent(false);
-                    _threadsDequeueing.Add(onAbort);
-                    MailSoap12TransportBinding mail = _mailHandler.Dequeue(id, timeout, onAbort);
-                    
-                    
-                    // If dequeue returned null, someone stopped it, throw aborted exception
-                    if (mail == null) return null;
 
-                    // Get the WCF Message
-                    reply = mail.Attachment.WcfMessage;
+            try {
+                // Wait for the reply
+                AutoResetEvent onAbort = new AutoResetEvent(false);
+                _threadsDequeueing.Add(onAbort);
+                MailSoap12TransportBinding mail = _mailHandler.Dequeue(id, timeout, onAbort);
+                
+                
+                // If dequeue returned null, someone stopped it, throw aborted exception
+                if (mail == null) return null;
 
-                    WCFLogger.Write(TraceEventType.Verbose, "Mail request channel got a reply");
-                }
-                catch(CommunicationObjectAbortedException){
-                    message.Close();
-                    throw;
-                }
-                catch (TimeoutException) {
-                    message.Close();
-                    throw;
-                }
-                catch (Exception e) {
-                    this.Fault();
-                    message.Close();
-                    throw new EmailResponseNotGottenException(e);
-                }
+                // Get the WCF Message
+                reply = mail.Attachment.WcfMessage;
 
-                WCFLogger.Write(TraceEventType.Stop, "Mail request channel finishing requesting");
-                return reply;
+                WCFLogger.Write(TraceEventType.Verbose, "Mail request channel got a reply");
             }
+            catch(CommunicationObjectAbortedException){
+                message.Close();
+                throw;
+            }
+            catch (TimeoutException) {
+                message.Close();
+                throw;
+            }
+            catch (Exception e) {
+                this.Fault();
+                message.Close();
+                throw new EmailResponseNotGottenException(e);
+            }
+
+            WCFLogger.Write(TraceEventType.Stop, "Mail request channel finishing requesting");
+            return reply;
         }
 
         private MailSoap12TransportBinding CreateMailMessage(Message message) {

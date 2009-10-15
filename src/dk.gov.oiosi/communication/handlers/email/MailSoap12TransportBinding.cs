@@ -41,8 +41,14 @@ namespace dk.gov.oiosi.communication.handlers.email
     /// compliant with the "Smtp/MIME Base64 Transport Binding for SOAP 1.2"
     /// protocol
     /// </summary>
-    public class MailSoap12TransportBinding
-    {
+    public class MailSoap12TransportBinding {
+        private string _subject = "Base64 encoded SOAP 1.2";
+        private string _body = "This message was auto generated " + DateTime.Now.ToString() + " in accordance with the OIO SOAP over SMTP protocol(http://www.oio.dk/files/OIO_SOAP_SMTP_Binding.pdf).\n\nThe attachment contains XML/SOAP and should under no circumstances be altered.";
+        private string _from;
+        private string _to;
+        private string _replyTo;
+        private string _messageId;
+
         #region Properties
 
         /// <summary>
@@ -52,8 +58,6 @@ namespace dk.gov.oiosi.communication.handlers.email
             get { return _subject; }
             set { _subject = value; }
         }
-        private string _subject = "Base64 encoded SOAP 1.2";
-
 
         /// <summary>
         /// Main mail body (always returns an empty string, which is what the "Smtp/MIME Base64 Transport Binding for SOAP 1.2" requires)
@@ -62,7 +66,6 @@ namespace dk.gov.oiosi.communication.handlers.email
             get { return _body; }
             set { _body = value; }
         }
-        private string _body = "This message was auto generated " + DateTime.Now.ToString() + " in accordance with the OIO SOAP over SMTP protocol(http://www.oio.dk/files/OIO_SOAP_SMTP_Binding.pdf).\n\nThe attachment contains XML/SOAP and should under no circumstances be altered.";
 
         /// <summary>
         /// The sender
@@ -72,7 +75,6 @@ namespace dk.gov.oiosi.communication.handlers.email
             get { return _from; }
             set { _from = value; }
         }
-        private string _from;
 
         /// <summary>
         /// The receiver
@@ -82,7 +84,6 @@ namespace dk.gov.oiosi.communication.handlers.email
             get { return _to; }
             set { _to = value; }
         }
-        private string _to;
 
         /// <summary>
         /// URI to reply to
@@ -92,9 +93,6 @@ namespace dk.gov.oiosi.communication.handlers.email
             get { return _replyTo; }
             set { _replyTo = value; }
         }
-        private string _replyTo;
-       
-        
 
         /// <summary>
         /// The Message-Id of the mail
@@ -102,7 +100,6 @@ namespace dk.gov.oiosi.communication.handlers.email
         public string MessageId {
             get { return _messageId; }
         }
-        private string _messageId;
 
 
         /// <summary>
@@ -146,8 +143,8 @@ namespace dk.gov.oiosi.communication.handlers.email
             if (msg.Headers.ReplyTo != null)
                 _replyTo = msg.Headers.ReplyTo.ToString();
    
-            // Create a new ID for the mail
-            _messageId = Guid.NewGuid().ToString();
+            // Create a new ID for the mail and uses the from address as ID due to the specification
+            _messageId = Guid.NewGuid().ToString() + "_" + _from;
 
             // Create the attachment
             _attachment = new MailSoap12TransportBindingAttachment(msg);
