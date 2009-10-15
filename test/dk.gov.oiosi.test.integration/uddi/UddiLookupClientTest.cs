@@ -157,6 +157,13 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(0, lookupResponses.Count);
         }
 
+        [Test]
+        public void LookingUpAllRegistrationsOnEanNumber() {
+            var lookupParameters = new LookupParameters(eanIdentifier, acceptHttpProtocol);
+            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(19, lookupResponses.Count);
+        }
+
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {

@@ -177,5 +177,22 @@ namespace dk.gov.oiosi.uddi {
             AcceptedTransportProtocols = acceptedTransportProtocols;
             ProfileConformanceClaim = RASPPROFILECONFORMANCECLAIM;
         }
+
+        /// <summary>
+        /// Constructor that is used to get all services for at specific identifier
+        /// in the UDDI.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="acceptedTransportProtocols"></param>
+        public LookupParameters(
+            Identifier identifier,
+            List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+            if (identifier == null) throw new ArgumentNullException("identifier");
+            if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
+
+            Identifier = identifier;
+            AcceptedTransportProtocols = acceptedTransportProtocols;
+            ProfileConformanceClaim = RASPPROFILECONFORMANCECLAIM;
+        }
     }
 }

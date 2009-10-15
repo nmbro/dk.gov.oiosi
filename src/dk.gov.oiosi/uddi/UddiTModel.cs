@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.uddi {
 
         public string GetProcessDefinitionReferenceId() {
             keyedReference keyedRef;
-            if (!categoryBag.TryGetKeyedReference(businessProcessRoleIdentifierTypeId, out keyedRef)) return "";
+            if (!categoryBag.TryGetKeyedReference(businessProcessDefinitionReferenceId, out keyedRef)) return "";
             if (keyedRef.keyValue == "") return "";
             return keyedRef.keyValue;
         }

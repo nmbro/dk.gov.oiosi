@@ -151,7 +151,9 @@ namespace dk.gov.oiosi.uddi {
 
             find_service findService = new find_service();
             findService.findQualifiers = new[] { FindQualifers.andAllKeys.ToString() };
-            findService.tModelBag = new[] { serviceUddiId.ID };
+            if (serviceUddiId != null) {
+                findService.tModelBag = new[] { serviceUddiId.ID };
+            }
             findService.categoryBag = serviceCategories;
 
             serviceList listOfServices = _uddiProxy.find_service(findService);
@@ -203,36 +205,34 @@ namespace dk.gov.oiosi.uddi {
 
 
 
-    class UddiLookupKey
-    {
+    class UddiLookupKey {
         private Identifier identifier;
         private UddiId serviceId;
         private Uri endpoint;
         private string profileConformanceClaim;
 
-        public UddiLookupKey(Identifier identifier, UddiId serviceId, Uri endpoint, string profileConformanceClaim)
-        {
+        public UddiLookupKey(Identifier identifier, UddiId serviceId, Uri endpoint, string profileConformanceClaim) {
             this.identifier = identifier;
             this.serviceId = serviceId;
             this.endpoint = endpoint;
             this.profileConformanceClaim = profileConformanceClaim;
         }
 
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return identifier.GetHashCode();
         }
 
-        public override bool Equals(Object obj)
-        {
+        public override bool Equals(Object obj) {
             if (obj == null) return false;
 
             if (this.GetType() != obj.GetType()) return false;
             UddiLookupKey other = (UddiLookupKey)obj;
 
             if (!identifier.Equals(other.identifier)) return false;
-            
-            if (!serviceId.Equals(other.serviceId)) return false;
+
+            if (serviceId == null && other.serviceId != null) return false;
+            if (serviceId != null && other.serviceId == null) return false;
+            if (serviceId != null && other.serviceId != null && !serviceId.Equals(other.serviceId)) return false;
 
             if (!endpoint.Equals(other.endpoint)) return false;
 
