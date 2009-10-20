@@ -20,14 +20,12 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
     /// Implements the general RASP contract and takes any form of SOAP (hence the Message object as a parameter)
     /// </summary>
     [ServiceBehavior(IncludeExceptionDetailInFaults=true)]
-    public class TestService : IServiceContract
-    {
-        public Message RequestRespond(Message request)
-        {
+    public class TestService : IServiceContract {
+        public Message RequestRespond(Message request) {
             DocumentTypeConfigSearcher typeSearcher = new DocumentTypeConfigSearcher();
             DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(new OiosiMessage(request).MessageXml);
 
-            // Create the reply message
+            // Create the reply message (The body can be empty)
             string body = "Request was received " + DateTime.Now.ToString();
             return Message.CreateMessage(MessageVersion.Soap12WSAddressing10,
                 docTypeConfig.EndpointType.ReplyAction, body);

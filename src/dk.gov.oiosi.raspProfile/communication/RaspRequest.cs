@@ -46,24 +46,15 @@ namespace dk.gov.oiosi.raspProfile.communication
             message.UbiquitousProperties[key] = partyIdentifierSetting;
 
             // Adds custom headers by xpaths
-            foreach (CustomHeaderXPathConfiguration xpath in docTypeConfig.CustomHeaderConfiguration.XPaths)
-            {
-                string value = DocumentXPathResolver.GetElementValueByXpath(
-                    message.MessageXml,
-                    xpath.XPath,
-                    docTypeConfig.Namespaces);
-
+            foreach (CustomHeaderXPathConfiguration xpath in docTypeConfig.CustomHeaderConfiguration.XPaths) {
+                var value = DocumentXPathResolver.GetElementValueByXpath(message.MessageXml, xpath.XPath, docTypeConfig.Namespaces);
                 var qualifiedName = new XmlQualifiedName(xpath.Name, Definitions.DefaultOiosiNamespace2007);
-                message.MessageHeaders[qualifiedName] = MessageHeader.CreateHeader(qualifiedName.Name,
-                                                                                        qualifiedName.Namespace, value);
+                message.MessageHeaders[qualifiedName] = MessageHeader.CreateHeader(qualifiedName.Name, qualifiedName.Namespace, value);
             }
 
             // Add the MessageIdentifier header
-            var messageIdentifierHeaderName = new XmlQualifiedName("MessageIdentifier",
-                                                                   Definitions.DefaultOiosiNamespace2007);
-            message.MessageHeaders[messageIdentifierHeaderName] =
-                MessageHeader.CreateHeader(messageIdentifierHeaderName.Name, messageIdentifierHeaderName.Namespace,
-                                           documentId);
+            var messageIdentifierHeaderName = new XmlQualifiedName("MessageIdentifier", Definitions.DefaultOiosiNamespace2007);
+            message.MessageHeaders[messageIdentifierHeaderName] = MessageHeader.CreateHeader(messageIdentifierHeaderName.Name, messageIdentifierHeaderName.Namespace, documentId);
 
             // Change the SOAP actions
             if (!string.IsNullOrEmpty(docTypeConfig.EndpointType.RequestAction))

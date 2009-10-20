@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.common;
+using System;
 
 namespace dk.gov.oiosi.communication {
     
@@ -42,23 +43,52 @@ namespace dk.gov.oiosi.communication {
     /// Represents an outbound message (xml + metadata)
     /// </summary>
     public class OiosiMessage {
+        private const string DEFAULTREQUESTACTION = "*";
+        private const string DEFAULTREPLYACTION = "*";
+        //private Dictionary<string, object> _properties = new Dictionary<string, object>();
+        //private Dictionary<XmlQualifiedName, MessageHeader> _messageHeaders = new Dictionary<XmlQualifiedName, MessageHeader>();
+        //TODO: private Dictionary<string, object> _ubiquitousProperties = new Dictionary<string, object>();
+        //TODO: private string _requestAction = "*";
+        //TODO: private string _replyAction = "*";
+        private XmlDocument _messageXml;
 
         #region Constructors
+
+        private OiosiMessage() {
+            Properties = new Dictionary<string, object>();
+            UbiquitousProperties = new Dictionary<string, object>();
+            MessageHeaders = new Dictionary<XmlQualifiedName, MessageHeader>();
+        }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="xml">the message</param>
-        public OiosiMessage(XmlDocument xml) 
-        {   _messageXml = xml;
+        public OiosiMessage(XmlDocument xml) : this() {   
+            _messageXml = xml;
+            RequestAction = DEFAULTREQUESTACTION;
+            ReplyAction = DEFAULTREPLYACTION;
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="wcfMessage">the message</param>
-        public OiosiMessage(Message wcfMessage) {
-            _messageXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
+        public OiosiMessage(Message wcfMessage) : this() {
+            try {
+                _messageXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
+                //Adding the headers
+                foreach (MessageHeader header in wcfMessage.Headers) {
+                    XmlQualifiedName qName = new XmlQualifiedName(header.Name, header.Namespace);
+                    MessageHeaders.Add(qName, header);
+                }
+                foreach (KeyValuePair<string, object> keyValuePair in wcfMessage.Properties) {
+                    
+                }
+            }
+            catch (Exception e) {
+                dk.gov.oiosi.logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Error, "Exception occurred in OiosiMessage: " + e);
+            }
         }
 
         #endregion
@@ -66,48 +96,27 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// A list of cumstom headers
         /// </summary>
-        public Dictionary<XmlQualifiedName, MessageHeader> MessageHeaders {
-            get { return _messageHeaders; }
-        }
-        private Dictionary<XmlQualifiedName, MessageHeader> _messageHeaders = new Dictionary<XmlQualifiedName, MessageHeader>();
+        public Dictionary<XmlQualifiedName, MessageHeader> MessageHeaders { get; private set; }
 
         /// <summary>
         /// Custom properties
         /// </summary>
-        public Dictionary<string, object> Properties {
-            get { return _properties; }
-        }
-        private Dictionary<string, object> _properties = new Dictionary<string,object>();
+        public Dictionary<string, object> Properties { get; private set; }
 
         /// <summary>
         /// Custom properties
         /// </summary>
-        public Dictionary<string, object> UbiquitousProperties {
-            get { return _ubiquitousProperties; }
-        }
-        private Dictionary<string, object> _ubiquitousProperties = new Dictionary<string, object>();
-
-
-        private string _requestAction = "*";
+        public Dictionary<string, object> UbiquitousProperties { get; private set; }
 
         /// <summary>
         /// Gets or sets the request action of the message
         /// </summary>
-        public string RequestAction {
-            get { return _requestAction; }
-            set { _requestAction = value; }
-        }
-
-
-        private string _replyAction = "*";
+        public string RequestAction { get; set; }
 
         /// <summary>
         /// Gets or sets the reply action for the message
         /// </summary>
-        public string ReplyAction {
-            get { return _replyAction; }
-            set { _replyAction = value; }
-        }
+        public string ReplyAction { get; set; }
 
         /// <summary>
         /// Property for the message
@@ -115,7 +124,6 @@ namespace dk.gov.oiosi.communication {
         public XmlDocument MessageXml {
             get { return _messageXml; }
         }
-        private XmlDocument _messageXml;
 
         /// <summary>
         /// Do we have a message body?

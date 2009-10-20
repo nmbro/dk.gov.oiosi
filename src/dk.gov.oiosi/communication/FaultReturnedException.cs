@@ -44,11 +44,9 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// The SOAP fault that caused this exception to be thrown
         /// </summary>
-        public FaultException Fault
-        {
+        public FaultException Fault {
             get { return _fault; }
         }
-
         
         /// <summary>
         /// Constructor
@@ -65,6 +63,5 @@ namespace dk.gov.oiosi.communication {
             d.Add("source", source);
             return d;
         }
-
     }
 }

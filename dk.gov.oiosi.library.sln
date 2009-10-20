@@ -19,11 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.raspProfile", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.interceptors", "test\dk.gov.oiosi.test.interceptors\dk.gov.oiosi.test.interceptors.csproj", "{E3543EED-B932-40FE-9986-1877DCEF3934}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.nunit.interop", "test\dk.gov.oiosi.test.interop\dk.gov.oiosi.test.nunit.interop.csproj", "{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.request", "test\dk.gov.oiosi.test.request\dk.gov.oiosi.test.request.csproj", "{5E505C7E-74B8-4B5C-9989-BFAC6279065B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.testMailService", "test\dk.gov.oiosi.test.testMailService\dk.gov.oiosi.test.testMailService.csproj", "{1B605236-E2CA-4F79-950E-243C13F07981}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7AC5A6CB-37F0-46BC-BC8B-BB7EF217146A}"
 	ProjectSection(SolutionItems) = preProject
@@ -83,18 +79,10 @@ Global
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3543EED-B932-40FE-9986-1877DCEF3934}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B605236-E2CA-4F79-950E-243C13F07981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B605236-E2CA-4F79-950E-243C13F07981}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B605236-E2CA-4F79-950E-243C13F07981}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B605236-E2CA-4F79-950E-243C13F07981}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -121,9 +109,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E3543EED-B932-40FE-9986-1877DCEF3934} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
-		{AB42E499-248B-47CD-A7DC-3F3F2A411AF1} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
-		{1B605236-E2CA-4F79-950E-243C13F07981} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9} = {87757E99-1BC9-46B5-BCB7-C49EB107CDE9}
 		{D07CB4A1-8CB2-45C3-A242-6749796D4593} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}

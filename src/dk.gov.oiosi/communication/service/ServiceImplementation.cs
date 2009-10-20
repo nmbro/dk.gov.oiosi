@@ -93,9 +93,10 @@ namespace dk.gov.oiosi.communication.service {
                         }
                     }
                 }
-                foreach (MessageHeader h in request.Headers) {
-                    listenerReq.RequestMessage.MessageHeaders.Add(new XmlQualifiedName(h.Name, h.Namespace), h);
-                }
+                //TODO: this is not needed?
+                //foreach (MessageHeader h in request.Headers) {
+                //    listenerReq.RequestMessage.MessageHeaders.Add(new XmlQualifiedName(h.Name, h.Namespace), h);
+                //}
             }
             catch (Exception e) {
                 dk.gov.oiosi.logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Error, "Exception occurred in service implementation: " + e);

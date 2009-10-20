@@ -47,8 +47,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// Constructor
         /// </summary>
         /// <param name="configuration">validation configuration</param>
-        public ServerSchemaValidationBindingElement(ValidationServerConfiguration configuration)
-            : base(configuration) {
+        public ServerSchemaValidationBindingElement(ValidationServerConfiguration configuration) : base(configuration) {
             _schemaValidator = new SchemaValidatorWithLookup();
         }
 
