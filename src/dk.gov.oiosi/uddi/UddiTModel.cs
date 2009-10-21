@@ -6,6 +6,7 @@ using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.uddi {
     internal class UddiTModel {
+        private const string wsdlTypeId = "uddi:uddi.org:wsdl:types";
         private const string businessProcessRoleIdentifierId = "uddi:4b2e5d7e-8e5d-4c03-92ca-3597b7f52444";
         private const string businessProcessRoleIdentifierTypeId = "uddi:8dd0fa3e-be33-47f9-847b-8d974952a8dc";
         private const string businessProcessDefinitionReferenceId = "uddi:d474ac8c-ec5d-4679-90b0-a227a517d745";
@@ -24,6 +25,10 @@ namespace dk.gov.oiosi.uddi {
 
         public tModel TModel {
             get { return tModel; }
+        }
+
+        public UddiId UddiId {
+            get { return new UddiStringId(tModel.tModelKey, true); }
         }
 
         public string Name {
@@ -67,9 +72,6 @@ namespace dk.gov.oiosi.uddi {
         }
 
         public bool IsProfileRole() {
-            if (tModel.categoryBag == null) return false;
-            if (tModel.categoryBag.Items.Length < 1) return false;
-
             // Check registration conformance
             keyedReference confClaimKeyref;
             if (!categoryBag.TryGetKeyedReference(registrationConformanceClaimId, out confClaimKeyref)) {
@@ -82,6 +84,14 @@ namespace dk.gov.oiosi.uddi {
             // Check that the businessProcessDefinitionReference category exists:
             keyedReference procKeyref;
             return categoryBag.TryGetKeyedReference(businessProcessDefinitionReferenceId, out procKeyref);
+        }
+
+        public bool IsPortType() {
+            keyedReference wsdlType;
+            if (!categoryBag.TryGetKeyedReference(wsdlTypeId, out wsdlType)) {
+                return false;
+            }
+            return wsdlType.keyValue.Equals("portType");
         }
     }
 }

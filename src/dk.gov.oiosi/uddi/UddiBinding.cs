@@ -3,52 +3,47 @@ using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.common;
 
-namespace dk.gov.oiosi.uddi
-{
-    internal class UddiBinding
-    {
+namespace dk.gov.oiosi.uddi {
+    internal class UddiBinding {
         private readonly bindingTemplate template;
-        private readonly List<tModel> tModels;
+        private readonly List<UddiTModel> tModels;
 
         public UddiBinding(bindingTemplate template, List<tModel> tModels) {
             if (template == null) throw new ArgumentNullException("template");
             if (tModels == null) throw new ArgumentNullException("tModels");
 
             this.template = template;
-            this.tModels = tModels;
+            Converter<tModel, UddiTModel> converter = delegate(tModel tmodel) { return new UddiTModel(tmodel); };
+            this.tModels = tModels.ConvertAll<UddiTModel>(converter);
         }
 
-        public EndpointAddress EndpointAddress {
-            get { return GetEndpointAddress(); }
-        }
-
-        public List<ProcessRoleDefinition> Processes {
-            get { return GetProcesses(); }
-        }
-
-        private EndpointAddress GetEndpointAddress() {
+        public EndpointAddress GetEndpointAddress() {
             accessPoint accessPointItem = template.Item as accessPoint;
             if (accessPointItem == null) throw new Exception("accessPoint type expected");
             return IdentifierUtility.GetEndpointAddressFromString(accessPointItem.Value);
         }
 
-        private List<ProcessRoleDefinition> GetProcesses() {
-            List<ProcessRoleDefinition> processes = new List<ProcessRoleDefinition>();
-            foreach (tModel model in tModels) {
-                UddiTModel uddiTModel = new UddiTModel(model);
-                if (!uddiTModel.IsProfileRole()) continue;
+        public List<UddiTModel> GetProcessRoleTModels() {
+            Predicate<UddiTModel> find = delegate(UddiTModel uddiTModel) { return uddiTModel.IsProfileRole(); };
+            return tModels.FindAll(find);
+        }
 
-                string name = uddiTModel.Name;
-                string description = uddiTModel.Description;
-                string role = uddiTModel.GetProfileRoleId();
-                string roleType = uddiTModel.GetProfileRoleTypeId();
-                UddiId processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(uddiTModel.GetProcessDefinitionReferenceId());
+        public List<ProcessRoleDefinition> GetProcessRoleDefinitions() {
+            List<UddiTModel> processesRoleTModels = GetProcessRoleTModels();
+            Converter<UddiTModel, ProcessRoleDefinition> converter = delegate(UddiTModel tmodel) {
+                string name = tmodel.Name;
+                string description = tmodel.Description;
+                string role = tmodel.GetProfileRoleId();
+                string roleType = tmodel.GetProfileRoleTypeId();
+                UddiId processDefinitionReferenceId = IdentifierUtility.GetUddiIDFromString(tmodel.GetProcessDefinitionReferenceId());
+                return new ProcessRoleDefinition(name, description, role, roleType, processDefinitionReferenceId);
+            };
+            return processesRoleTModels.ConvertAll<ProcessRoleDefinition>(converter);
+        }
 
-                ProcessRoleDefinition roleDefinition = new ProcessRoleDefinition(name, description, role, roleType, processDefinitionReferenceId);
-                processes.Add(roleDefinition);
-            }
-
-            return processes;
+        public UddiTModel GetPortType() {
+            Predicate<UddiTModel> find = delegate(UddiTModel uddiTModel) { return uddiTModel.IsPortType(); };
+            return tModels.Find(find);
         }
 
         /// <summary>
@@ -58,14 +53,13 @@ namespace dk.gov.oiosi.uddi
         /// <param name="roleIdentifier">If set to null non role check is performed and all roles are accepted.</param>
         /// <returns></returns>
         internal bool SupportsOneOrMoreProfileAndRole(List<UddiId> profileUddiIds, string roleIdentifier) {
-            foreach (tModel tModelItem in GetTModelProfiles()) {
-                UddiTModel uddiTModel = new UddiTModel(tModelItem);
+            List<UddiTModel> processRoles = GetProcessRoleTModels();
+            foreach (UddiTModel uddiTModel in processRoles) {
                 string profile = uddiTModel.GetProcessDefinitionReferenceId();
                 string role = uddiTModel.GetProfileRoleId();
                 bool hasProfileAndRole = HasOneOrMoreProfileAndRole(profile, role, profileUddiIds, roleIdentifier);
                 if (hasProfileAndRole) return true;
             }
-
             return false;
         }
 
@@ -89,23 +83,6 @@ namespace dk.gov.oiosi.uddi
             
             if (hasProfile && hasRole) return true;
             return false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>True if valid</returns>
-        private IEnumerable<tModel> GetTModelProfiles() {
-            foreach (tModel tModelItem in tModels) {
-                if (tModelItem == null) continue;
-                if (tModelItem.categoryBag == null) continue;
-                if (tModelItem.categoryBag.Items.Length < 1) continue;
-
-                UddiTModel uddiTModel = new UddiTModel(tModelItem);
-                if (!uddiTModel.IsProfileRole()) continue;
-
-                yield return tModelItem;
-            }
         }
     }
 }

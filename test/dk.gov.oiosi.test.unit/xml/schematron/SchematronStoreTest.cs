@@ -40,7 +40,7 @@ namespace dk.gov.oiosi.test.unit.xml.schematron {
 
         [Test]
         public void _02_GetTwiceTest() {
-            Console.WriteLine(DateTime.Now + " GetOnceTest start");
+            Console.WriteLine(DateTime.Now + " GetTwiceTest start");
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML);
             DocumentTypeConfigSearcher searcher = new DocumentTypeConfigSearcher();
@@ -50,12 +50,12 @@ namespace dk.gov.oiosi.test.unit.xml.schematron {
             Assert.IsNotNull(transform1);
             XslCompiledTransform transform2 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
             Assert.IsNotNull(transform2);
-            Console.WriteLine(DateTime.Now + " GetOnceTest stop");
+            Console.WriteLine(DateTime.Now + " GetTwiceTest stop");
         }
 
         [Test]
         public void _03_GetTenTimesTest() {
-            Console.WriteLine(DateTime.Now + " GetOnceTest start");
+            Console.WriteLine(DateTime.Now + " GetTenTimesTest start");
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML);
             DocumentTypeConfigSearcher searcher = new DocumentTypeConfigSearcher();
@@ -68,7 +68,7 @@ namespace dk.gov.oiosi.test.unit.xml.schematron {
                 XslCompiledTransform transform2 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
                 Assert.IsNotNull(transform2);
             }
-            Console.WriteLine(DateTime.Now + " GetOnceTest stop");
+            Console.WriteLine(DateTime.Now + " GetTenTimesTest stop");
         }
     }
 }

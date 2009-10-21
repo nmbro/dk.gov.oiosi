@@ -41,15 +41,16 @@ namespace dk.gov.oiosi.uddi {
     /// Response from a ARS UDDI lookup
     /// </summary>
     public class UddiLookupResponse {
-        private UddiId _newerVersionReference;
-        private Identifier _endpointIdentifierActual;
-        private CertificateSubject _certificateSubjectSerialNumber;
-        private DateTime _activationDate;
-        private DateTime _expirationDate;
-        private Uri _termsOfUseUrl;
-        private EndpointAddress _endpointAddress;
-        private System.Net.Mail.MailAddress _ServiceContactEmail;
-        private Version _version;
+        //TODO: delete?
+        //private UddiId _newerVersionReference;
+        //private Identifier _endpointIdentifierActual;
+        //private CertificateSubject _certificateSubjectSerialNumber;
+        //private DateTime _activationDate;
+        //private DateTime _expirationDate;
+        //private Uri _termsOfUseUrl;
+        //private EndpointAddress _endpointAddress;
+        //private System.Net.Mail.MailAddress _ServiceContactEmail;
+        //private Version _version;
         private List<ProcessRoleDefinition> _processRoles = new List<ProcessRoleDefinition>();
 
         /// <summary>
@@ -71,16 +72,46 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="version">Version of the endpoint</param>
         /// <param name="newerVersionReference">Possible reference to a newer version</param>
         /// <param name="processes">The processes supported by the endpoint</param>
+        [Obsolete("Please use the one that defines the service type as well")]
         public UddiLookupResponse(Identifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, List<ProcessRoleDefinition> processes) {
-            _endpointIdentifierActual = endpointIdentifierActual;
-            _endpointAddress = endpointAddress;
-            _activationDate = activationDate;
-            _expirationDate = expirationDate;
-            _certificateSubjectSerialNumber = certificateSubjectSerialNumber;
-            _termsOfUseUrl = termsOfUseUrl;
-            _ServiceContactEmail = serviceContactEmail;
-            _version = version;
-            _newerVersionReference = newerVersionReference; _processRoles = processes;
+            EndpointIdentifierActual = endpointIdentifierActual;
+            EndpointAddress = endpointAddress;
+            ActivationDate = activationDate;
+            ExpirationDate = expirationDate;
+            CertificateSubjectSerialNumber = certificateSubjectSerialNumber;
+            TermsOfUseUrl = termsOfUseUrl;
+            ServiceContactEmail = serviceContactEmail;
+            Version = version;
+            NewerVersionReference = newerVersionReference; 
+            _processRoles = processes;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="endpointIdentifierActual">The actual endpoint identifier of the request. This may 
+        /// be different from what the user/client specified, e.g. it may be a gateway range EAN.</param>
+        /// <param name="endpointAddress">Address of the endpoint</param>
+        /// <param name="activationDate">Activation date of the endpoint registration</param>
+        /// <param name="expirationDate">Expiration date of the endpoint registration</param>
+        /// <param name="certificateSubjectSerialNumber">Subject of the certificate</param>
+        /// <param name="termsOfUseUrl">URL to a file describing the terms of use</param>
+        /// <param name="serviceContactEmail">Email of the service contact</param>
+        /// <param name="version">Version of the endpoint</param>
+        /// <param name="newerVersionReference">Possible reference to a newer version</param>
+        /// <param name="serviceType">The service type supported at the endpoint</param>
+        /// <param name="processes">The processes supported by the endpoint</param>
+        public UddiLookupResponse(Identifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, UddiId serviceType, List<ProcessRoleDefinition> processes) {
+            EndpointIdentifierActual = endpointIdentifierActual;
+            EndpointAddress = endpointAddress;
+            ActivationDate = activationDate;
+            ExpirationDate = expirationDate;
+            CertificateSubjectSerialNumber = certificateSubjectSerialNumber;
+            TermsOfUseUrl = termsOfUseUrl;
+            ServiceContactEmail = serviceContactEmail;
+            Version = version;
+            NewerVersionReference = newerVersionReference;
+            _processRoles = processes;
         }
 
         /// <summary>
@@ -89,80 +120,58 @@ namespace dk.gov.oiosi.uddi {
         /// configuration, and if no individual UDDI registration matching the client search criteria
         /// was found on the UDDI. In this case this property holds the value of the gateway identifier.
         /// </summary>
-        public Identifier EndpointIdentifierActual {
-            get { return _endpointIdentifierActual; }
-            set { _endpointIdentifierActual = value; }
-        }
+        public Identifier EndpointIdentifierActual { get; set; }
 
         /// <summary>
         /// Gets or set found endpointaddress
         /// </summary>
-        public EndpointAddress EndpointAddress {
-            get { return _endpointAddress; }
-            set { _endpointAddress = value; }
-        }
+        public EndpointAddress EndpointAddress { get; set; }
 
         /// <summary>
         /// Gets or set expiration date of found endpoint registration
         /// </summary>
-        public DateTime ExpirationDate {
-            get { return _expirationDate; }
-            set { _expirationDate = value; }
-        }
+        public DateTime ExpirationDate { get; set; }
 
         /// <summary>
         /// Gets or set activation date of found endpoint registration
         /// </summary>
-        public DateTime ActivationDate {
-            get { return _activationDate; }
-            set { _activationDate = value; }
-        }
+        public DateTime ActivationDate { get; set; }
 
         /// <summary>
         /// Gets or sets serialnumber of found endpoint address certificates
         /// </summary>
-        public CertificateSubject CertificateSubjectSerialNumber {
-            get { return _certificateSubjectSerialNumber; }
-            set { _certificateSubjectSerialNumber = value; }
-        }
+        public CertificateSubject CertificateSubjectSerialNumber { get; set; }
 
         /// <summary>
         /// Gets or set terms of use uri's of found endpoint address
         /// </summary>
-        public Uri TermsOfUseUrl {
-            get { return _termsOfUseUrl; }
-            set { _termsOfUseUrl = value; }
-        }
+        public Uri TermsOfUseUrl { get; set; }
 
         /// <summary>
         /// Gets or set service contact emails of found endpoint address contacts
         /// </summary>
-        public System.Net.Mail.MailAddress ServiceContactEmail {
-            get { return _ServiceContactEmail; }
-            set { _ServiceContactEmail = value; }
-        }
+        public System.Net.Mail.MailAddress ServiceContactEmail { get; set; }
 
         /// <summary>
         /// Gets or set version of found endpoint address
         /// </summary>
-        public Version Version {
-            get { return _version; }
-            set { _version = value; }
-        }
+        public Version Version { get; set; }
 
         /// <summary>
         /// Gets or set newer version reference on found endpoint address
         /// </summary>
-        public UddiId NewerVersionReference {
-            get { return _newerVersionReference; }
-            set { _newerVersionReference = value; }
-        }
+        public UddiId NewerVersionReference { get; set; }
+
+        /// <summary>
+        /// Gets or sets the service type on the found endpoint address
+        /// </summary>
+        public UddiId ServiceType { get; set; }
 
         /// <summary>
         /// Gets or set a value indicating if there is a newer verion of found endpoints
         /// </summary>
         public bool HasNewerVersion {
-            get { return _newerVersionReference != null; }
+            get { return NewerVersionReference != null; }
         }
 
         /// <summary>

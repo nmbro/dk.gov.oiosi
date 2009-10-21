@@ -111,7 +111,7 @@ namespace dk.gov.oiosi.uddi {
         private UddiLookupResponse GetLookupResponse(LookupParameters lookupParameters, UddiService uddiService, UddiBinding uddiBinding) {
             return new UddiLookupResponse(
                 lookupParameters.Identifier,
-                uddiBinding.EndpointAddress,
+                uddiBinding.GetEndpointAddress(),
                 uddiService.GetActivationDateUtc(),
                 uddiService.GetExpirationDateUtc(),
                 uddiService.GetCertificateSubject(),
@@ -119,12 +119,12 @@ namespace dk.gov.oiosi.uddi {
                 uddiService.GetContactMail(),
                 uddiService.GetVersion(),
                 uddiService.GetNewerVersion(),
-                uddiBinding.Processes
+                uddiBinding.GetPortType().UddiId,
+                uddiBinding.GetProcessRoleDefinitions()
                 );
         }
 
         private List<UddiService> GetUddiServices(Identifier organizationIdentifier, UddiId serviceUddiId, string profileConformanceClaim) {
-
             keyedReference profileConformanceClaimKeyReference = new keyedReference();
             profileConformanceClaimKeyReference.tModelKey = "uddi:cc5f1df6-ae0a-4781-b24a-f30315893af7";
             profileConformanceClaimKeyReference.keyName = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Categories/profileConformanceClaim/";
