@@ -45,12 +45,6 @@ namespace dk.gov.oiosi.communication {
     public class OiosiMessage {
         private const string DEFAULTREQUESTACTION = "*";
         private const string DEFAULTREPLYACTION = "*";
-        //private Dictionary<string, object> _properties = new Dictionary<string, object>();
-        //private Dictionary<XmlQualifiedName, MessageHeader> _messageHeaders = new Dictionary<XmlQualifiedName, MessageHeader>();
-        //TODO: private Dictionary<string, object> _ubiquitousProperties = new Dictionary<string, object>();
-        //TODO: private string _requestAction = "*";
-        //TODO: private string _replyAction = "*";
-        private XmlDocument _messageXml;
 
         #region Constructors
 
@@ -78,12 +72,8 @@ namespace dk.gov.oiosi.communication {
             try {
                 _messageXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
                 //Adding the headers
-                foreach (MessageHeader header in wcfMessage.Headers) {
-                    XmlQualifiedName qName = new XmlQualifiedName(header.Name, header.Namespace);
-                    MessageHeaders.Add(qName, header);
-                }
-                foreach (KeyValuePair<string, object> keyValuePair in wcfMessage.Properties) {
-                    
+                for (int i = 0; i < wcfMessage.Headers.Count; i++) {
+                    CopyMessageHeader(wcfMessage.Headers, i);
                 }
             }
             catch (Exception e) {
@@ -139,6 +129,19 @@ namespace dk.gov.oiosi.communication {
         public XmlReader GetMessageXmlReader() {
             XmlNodeReader xnr = new XmlNodeReader(_messageXml.DocumentElement);
             return (XmlReader)xnr;
+        }
+
+        private void CopyMessageHeader(MessageHeaders messageHeaders, int index) {
+            try {
+                MessageHeaderInfo headerInfo = messageHeaders[index];
+                XmlQualifiedName qName = new XmlQualifiedName(headerInfo.Name, headerInfo.Namespace);
+                string headerValue = messageHeaders.GetHeader<string>(index);
+                MessageHeader header = MessageHeader.CreateHeader(headerInfo.Name, headerInfo.Namespace, headerValue);
+                MessageHeaders.Add(qName, header);
+            }
+            catch (Exception) {
+                //eats away headers not of the right type
+            }
         }
     }
 }
