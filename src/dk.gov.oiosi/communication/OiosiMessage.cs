@@ -59,7 +59,7 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         /// <param name="xml">the message</param>
         public OiosiMessage(XmlDocument xml) : this() {   
-            _messageXml = xml;
+            MessageXml = xml;
             RequestAction = DEFAULTREQUESTACTION;
             ReplyAction = DEFAULTREPLYACTION;
         }
@@ -70,7 +70,7 @@ namespace dk.gov.oiosi.communication {
         /// <param name="wcfMessage">the message</param>
         public OiosiMessage(Message wcfMessage) : this() {
             try {
-                _messageXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
+                MessageXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
                 //Adding the headers
                 for (int i = 0; i < wcfMessage.Headers.Count; i++) {
                     CopyMessageHeader(wcfMessage.Headers, i);
@@ -111,15 +111,13 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// Property for the message
         /// </summary>
-        public XmlDocument MessageXml {
-            get { return _messageXml; }
-        }
+        public XmlDocument MessageXml { get; private set; }
 
         /// <summary>
         /// Do we have a message body?
         /// </summary>
         public bool HasBody {
-            get { return (_messageXml != null && _messageXml.DocumentElement != null); }
+            get { return (MessageXml != null && MessageXml.DocumentElement != null); }
         }
         
         /// <summary>
@@ -127,7 +125,7 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         /// <returns>XmlReader that can read the message xml</returns>
         public XmlReader GetMessageXmlReader() {
-            XmlNodeReader xnr = new XmlNodeReader(_messageXml.DocumentElement);
+            XmlNodeReader xnr = new XmlNodeReader(MessageXml.DocumentElement);
             return (XmlReader)xnr;
         }
 
