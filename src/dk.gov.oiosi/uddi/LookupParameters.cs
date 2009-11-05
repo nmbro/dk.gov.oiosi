@@ -48,11 +48,11 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="serviceId"></param>
-        /// <param name="profileIds"></param>
-        /// <param name="acceptedTransportProtocols"></param>
-        /// <param name="profileRoleIdentifier"></param>
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="serviceId">The identifier on the service type (portType)</param>
+        /// <param name="profileIds">The profiles that must be supported</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
+        /// <param name="profileRoleIdentifier">The profile role (BuyerParty, SellerParty)</param>
         /// <param name="profileConformanceClaim"></param>
         public LookupParameters(
             Identifier identifier,
@@ -79,13 +79,13 @@ namespace dk.gov.oiosi.uddi {
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor 
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="serviceId"></param>
-        /// <param name="profileIds"></param>
-        /// <param name="acceptedTransportProtocols"></param>
-        /// <param name="profileRoleIdentifier"></param>
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="serviceId">The identifier on the service type (portType)</param>
+        /// <param name="profileIds">The profiles that must be supported</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
+        /// <param name="profileRoleIdentifier">The profile role (BuyerParty, SellerParty)</param>
         public LookupParameters(
             Identifier identifier,
             UddiId serviceId,
@@ -112,10 +112,10 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="serviceId"></param>
-        /// <param name="profileIds"></param>
-        /// <param name="acceptedTransportProtocols"></param>
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="serviceId">The identifier on the service type (portType)</param>
+        /// <param name="profileIds">The profiles that must be supported</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
         public LookupParameters(
             Identifier identifier,
             UddiId serviceId,
@@ -138,9 +138,9 @@ namespace dk.gov.oiosi.uddi {
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="serviceId"></param>
-        /// <param name="acceptedTransportProtocols"></param>
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="serviceId">The identifier on the service type (portType)</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
         /// <param name="profileConformanceClaim"></param>
         public LookupParameters(
             Identifier identifier, 
@@ -159,11 +159,12 @@ namespace dk.gov.oiosi.uddi {
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor that is used to get all services for a specific identifier and
+        /// a specific service type in the UDDI.
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="serviceId"></param>
-        /// <param name="acceptedTransportProtocols"></param>
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="serviceId">The identifier on the service type (portType)</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
         public LookupParameters(
             Identifier identifier, 
             UddiId serviceId, 
@@ -182,11 +183,9 @@ namespace dk.gov.oiosi.uddi {
         /// Constructor that is used to get all services for at specific identifier
         /// in the UDDI.
         /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="acceptedTransportProtocols"></param>
-        public LookupParameters(
-            Identifier identifier,
-            List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+        /// <param name="identifier">The identifier on the service (endpointKey and endpointKeyType)</param>
+        /// <param name="acceptedTransportProtocols">The accepted transport protocols (http, mail)</param>
+        public LookupParameters(Identifier identifier, List<EndpointAddressTypeCode> acceptedTransportProtocols) {
             if (identifier == null) throw new ArgumentNullException("identifier");
             if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
 
