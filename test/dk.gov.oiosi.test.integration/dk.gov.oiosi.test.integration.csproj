@@ -93,7 +93,9 @@
     <None Include="Resources\Certificates\Revoked.cer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Certificates\TDCOCESSTEST2.cer" />
+    <None Include="Resources\Certificates\TDCOCESSTEST2.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="RaspConfiguration.xml">

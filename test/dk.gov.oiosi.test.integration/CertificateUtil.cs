@@ -9,8 +9,10 @@ namespace dk.gov.oiosi.test.integration {
             const string certificateSerialNumber = "40 37 60 8e";
 
             var certificateFile = "Resources/Certificates/FOCES1.pkcs12";
+            var rootCertificateFile = "Resources/Certificates/TDCOCESSTEST2.cer";
             var certificatePassword = "Test1234";
             EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
+            EnsureCerCertificate(StoreName.Root, StoreLocation.CurrentUser, rootCertificateFile);
             var sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);
             X509Certificate2 certificate = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
             return certificate;
@@ -27,6 +29,12 @@ namespace dk.gov.oiosi.test.integration {
                                                 string certFileName, string certPassword) {
             X509Certificate2 certificate = new X509Certificate2(certFileName, certPassword,
                                                                 X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+            Install(storeName, storeLocation, certificate);
+        }
+
+        public static void EnsureCerCertificate(StoreName storeName, StoreLocation storeLocation,
+                                        string certFileName) {
+            X509Certificate2 certificate = new X509Certificate2(certFileName);
             Install(storeName, storeLocation, certificate);
         }
 

@@ -27,6 +27,7 @@ namespace dk.gov.oiosi.test.integration.communication {
 
         [TestFixtureSetUp]
         public void Setup() {
+            CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
             ConfigurationUtil.SetupConfiguration("RaspConfigurationRaspRequestTest.xml");
         }
         [Test]
