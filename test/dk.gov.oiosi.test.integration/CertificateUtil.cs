@@ -29,6 +29,7 @@ namespace dk.gov.oiosi.test.integration {
                                                 string certFileName, string certPassword) {
             X509Certificate2 certificate = new X509Certificate2(certFileName, certPassword,
                                                                 X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
+            if (IsInstalled(StoreName.Root, StoreLocation.CurrentUser, certificate)) return;
             Install(storeName, storeLocation, certificate);
         }
 
