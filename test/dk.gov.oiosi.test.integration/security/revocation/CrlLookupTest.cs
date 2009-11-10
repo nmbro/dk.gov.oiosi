@@ -14,7 +14,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         public void LookupTestValidCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx", "Test1234");
+            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/FOCES1.pkcs12", "Test1234");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }

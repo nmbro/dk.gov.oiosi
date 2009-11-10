@@ -639,6 +639,7 @@
     <None Include="Resources\Certificates\NemHandelTest1.pfx" />
     <None Include="Resources\Certificates\NemHandelTest2.pfx" />
     <None Include="Resources\Certificates\OiosiTestVOCES.pfx" />
+    <None Include="Resources\Certificates\OiosiTestVoces2.pfx" />
     <None Include="Resources\Certificates\TDCLiveOcesRoot.cer" />
     <None Include="Resources\Certificates\TDCRootSSL.cer" />
     <None Include="Resources\Certificates\TDCTestRoot.cer" />

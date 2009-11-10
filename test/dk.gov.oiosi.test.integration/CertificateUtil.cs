@@ -6,9 +6,9 @@ namespace dk.gov.oiosi.test.integration {
     {
 
         public static X509Certificate2 InstallAndGetFunctionCertificateFromCertificateStore() {
-            const string certificateSerialNumber = "40 36 d8 5e";
+            const string certificateSerialNumber = "40 37 60 8e";
 
-            var certificateFile = "Resources/Certificates/Testendpoint (funktionscertifikat) (40 36 d8 5e).pfx";
+            var certificateFile = "Resources/Certificates/FOCES1.pkcs12";
             var certificatePassword = "Test1234";
             EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
             var sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);

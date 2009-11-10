@@ -57,7 +57,7 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateConfig">
     <RootCertificateLocation>
-      <StoreLocation>LocalMachine</StoreLocation>
+      <StoreLocation>CurrentUser</StoreLocation>
       <StoreName>Root</StoreName>
       <SerialNumber>403617FC</SerialNumber>
     </RootCertificateLocation>
