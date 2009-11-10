@@ -54,6 +54,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
+        [Ignore]
         public void LookingUpExistingServiceMustReturnResponseWithValidProperties() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
