@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.test.integration {
             var rootCertificateFile = "Resources/Certificates/TDCOCESSTEST2.cer";
             var certificatePassword = "Test1234";
             EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
-            //EnsureCerCertificate(StoreName.Root, StoreLocation.CurrentUser, rootCertificateFile);
+            EnsureCerCertificate(StoreName.Root, StoreLocation.CurrentUser, rootCertificateFile);
             var sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);
             X509Certificate2 certificate = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
             return certificate;
