@@ -42,7 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{628F6878-C79
 	ProjectSection(SolutionItems) = preProject
 		doc\OIOSI RASP Library for .Net Installation Guide.doc = doc\OIOSI RASP Library for .Net Installation Guide.doc
 		doc\OIOSI RASP Library for .Net Release Notes.doc = doc\OIOSI RASP Library for .Net Release Notes.doc
-		doc\OIOSI RASP Library for .Net Tutorials.doc = doc\OIOSI RASP Library for .Net Tutorials.doc
 	EndProjectSection
 EndProject
 Global

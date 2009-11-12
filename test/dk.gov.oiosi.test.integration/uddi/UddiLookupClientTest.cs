@@ -165,6 +165,17 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(17, lookupResponses.Count);
         }
 
+        [Test]
+        public void GetProcessDefinitions() {
+            List<UddiId> uddiIds = new List<UddiId>();
+            uddiIds.Add(new UddiStringId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true));
+            uddiIds.Add(new UddiStringId("uddi:c001daa0-8ba3-11dd-894e-770465b08940", true));
+            UddiLookupClient lookupClient = new UddiLookupClient(uddiServerUri);
+
+            List<ProcessDefinition> processes = lookupClient.GetProcessDefinitions(uddiIds);
+            Assert.AreEqual(uddiIds.Count, processes.Count);
+        }
+
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {

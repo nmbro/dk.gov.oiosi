@@ -36,5 +36,18 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", enumerator.Current.ProcessDefinitionId.ID);
             Assert.IsFalse(enumerator.MoveNext());
         }
+
+        [Test]
+        public void GetProcessDefinitions() {
+            List<UddiId> uddiIds = new List<UddiId>();
+            uddiIds.Add(new UddiStringId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true));
+            uddiIds.Add(new UddiStringId("uddi:c001daa0-8ba3-11dd-894e-770465b08940", true));
+
+            RegistryLookupClientFactory rlcf = new RegistryLookupClientFactory();
+            IUddiLookupClient ulc = rlcf.CreateUddiLookupClient();
+
+            List<ProcessDefinition> processes = ulc.GetProcessDefinitions(uddiIds);
+            Assert.AreEqual(uddiIds.Count, processes.Count);
+        }
     }
 }
