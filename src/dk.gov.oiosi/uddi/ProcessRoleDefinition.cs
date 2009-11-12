@@ -6,11 +6,6 @@ namespace dk.gov.oiosi.uddi {
     /// Represents the process role definition in the UDDI structure.
     /// </summary>
     public class ProcessRoleDefinition {
-        private string _name;
-        private string _description;
-        private string _role;
-        private string _roleType;
-        private UddiId _processDefinitionId;
 
         /// <summary>
         /// Constructor that takes the given parameters.
@@ -30,46 +25,36 @@ namespace dk.gov.oiosi.uddi {
             if (role == null) throw new NullArgumentException("role");
             if (roleType == null) throw new NullArgumentException("roleType");
             if (processDefinitionId == null) throw new NullArgumentException("processDefinitionId");
-            _name = name;
-            _description = description;
-            _role = role;
-            _roleType = roleType;
-            _processDefinitionId = processDefinitionId;
+            Name = name;
+            Description = description;
+            Role = role;
+            RoleType = roleType;
+            ProcessDefinitionId = processDefinitionId;
         }
 
         /// <summary>
         /// Gets the name
         /// </summary>
-        public string Name {
-            get { return _name; }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets the description
         /// </summary>
-        public string Description {
-            get { return _description; }
-        }
+        public string Description { get; private set; }
 
         /// <summary>
         /// Gets the role
         /// </summary>
-        public string Role {
-            get { return _role; }
-        }
+        public string Role { get; private set; }
 
         /// <summary>
         /// Gets the roletype
         /// </summary>
-        public string RoleType {
-            get { return _roleType; }
-        }
+        public string RoleType { get; private set; }
 
         /// <summary>
         /// Gets the process definition id
         /// </summary>
-        public UddiId ProcessDefinitionId {
-            get { return _processDefinitionId; }
-        }
+        public UddiId ProcessDefinitionId { get; private set; }
     }
 }

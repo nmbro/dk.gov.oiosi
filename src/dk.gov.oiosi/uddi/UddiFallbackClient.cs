@@ -44,6 +44,35 @@ namespace dk.gov.oiosi.uddi{
             throw exception;
 		}
 
-		#endregion
-	}
+        /// <summary>
+        /// Implementation of the get process definition method from the IUddiLookupClient interface
+        /// </summary>
+        /// <param name="processDefinitionIds">The parameters used to make a lookup</param>
+        /// <returns></returns>
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+            List<ProcessDefinition> result;
+
+            Exception exception = null;
+            foreach (Uri uri in _fallbackList)
+            {
+                try
+                {
+                    IUddiLookupClient client = new UddiLookupClientFactory().CreateUddiLookupClient(uri);
+                    result = client.GetProcessDefinitions(processDefinitionIds);
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    exception = e;
+                    continue;
+                }
+            }
+            //The fallbacklist was empty we return an empty list as result.
+            if (exception == null) return new List<ProcessDefinition>();
+            // We never got a valid result, so the last known exception is thrown
+            throw exception;
+        }
+
+        #endregion
+    }
 }

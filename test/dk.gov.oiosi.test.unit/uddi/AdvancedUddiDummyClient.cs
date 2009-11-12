@@ -76,6 +76,10 @@ namespace dk.gov.oiosi.test.unit.uddi {
 			return new List<UddiLookupResponse>{response};
         }
 
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+            throw new NotImplementedException();
+        }
+
         [XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
         public class AdvancedUddiDummyClientConfig {
             private List<Uri> _erroneousEndpoints = new List<Uri>();
@@ -93,5 +97,11 @@ namespace dk.gov.oiosi.test.unit.uddi {
                 set { _nonExistingRegistrations = value; }
             }
         }
+
+        #region IUddiLookupClient Members
+
+
+
+        #endregion
     }
 }

@@ -205,6 +205,7 @@
     <Compile Include="uddi\EndpointKeyTypeCode.cs" />
     <Compile Include="uddi\FindQualifiers.cs" />
     <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
+    <Compile Include="uddi\ProcessDefinition.cs" />
     <Compile Include="uddi\RegistryLookupClientFactory.cs" />
     <Compile Include="uddi\RegistryLookupClientFactoryConfig.cs" />
     <Compile Include="uddi\Registry.cs" />

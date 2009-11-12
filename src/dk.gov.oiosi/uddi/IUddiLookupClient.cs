@@ -40,10 +40,16 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public interface IUddiLookupClient {
         /// <summary>
-        /// Translate parametres
+        /// Makes a lookup on the UDDI server to find services. 
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
         List<UddiLookupResponse> Lookup(LookupParameters parameters);
+
+        /// <summary>
+        /// Gets the information about the process defintions from the UDDI.
+        /// </summary>
+        /// <returns></returns>
+        List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds);
     }
 }

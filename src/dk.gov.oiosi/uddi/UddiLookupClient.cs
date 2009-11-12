@@ -42,7 +42,9 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
         public const string RASPREGISTRATIONCONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
-        private static readonly ICache<UddiLookupKey, List<UddiService>> uddiCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(1, 0, 0, 0));
+        private static readonly ICache<UddiLookupKey, List<UddiService>> getServiceCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(1, 0, 0, 0));
+        private static readonly ICache<UddiId, UddiTModel> getTModelCache = new TimedCache<UddiId, UddiTModel>(new TimeSpan(1, 0, 0, 0));
+
 
         private UDDI_Inquiry_PortTypeClient _uddiProxy;
 
@@ -53,6 +55,8 @@ namespace dk.gov.oiosi.uddi {
             _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
         }
+
+        #region IUddiLookupClient Members
 
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
@@ -71,6 +75,45 @@ namespace dk.gov.oiosi.uddi {
             return supportedResponses;
         }
 
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+            List<UddiId> missingIds = new List<UddiId>();
+            List<UddiTModel> foundTModels = new List<UddiTModel>();
+
+            //Check the cache for any existing tmodels.
+            foreach (UddiId processDefinitionId in processDefinitionIds) {
+                UddiTModel tmodel = null;
+                if (getTModelCache.TryGetValue(processDefinitionId, out tmodel)) {
+                    foundTModels.Add(tmodel);
+                    continue;
+                }
+                missingIds.Add(processDefinitionId);
+            }
+            
+            //Get the tmodels not in the cache
+            List<UddiTModel> tmodels = this.GetUddiTModels(missingIds);
+            //Adds the tmodels to the cache
+            foreach (UddiTModel tmodel in tmodels) {
+                getTModelCache.Set(tmodel.UddiId, tmodel);
+            }
+
+            List<ProcessDefinition> processDefinitions = new List<ProcessDefinition>();
+            foundTModels.AddRange(tmodels);
+            foreach (UddiTModel tmodel in foundTModels) {
+                UddiId uddiId = tmodel.UddiId;
+                string name = tmodel.Name;
+                string description = tmodel.Description;
+                string profileId = tmodel.GetProfileId();
+                string profileTypeId = tmodel.GetProfileTypeId();
+                string registrationConformanceClaim = tmodel.GetRegistrationConformanceClaim();
+
+                ProcessDefinition processDefinition = new ProcessDefinition(uddiId, name, description, profileId, profileTypeId, registrationConformanceClaim); 
+                processDefinitions.Add(processDefinition);
+            }
+            return processDefinitions;
+        }
+
+        #endregion
+
         private bool HasAcceptedTransportProtocol(UddiLookupResponse uddiLookupResponse, LookupParameters lookupParameters) {
             var address = uddiLookupResponse.EndpointAddress;
             return lookupParameters.AcceptedTransportProtocols.Contains(address.EndpointAddressTypeCode);
@@ -83,11 +126,11 @@ namespace dk.gov.oiosi.uddi {
             UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId, _uddiProxy.Endpoint.Address.Uri, lookupParameters.ProfileConformanceClaim);
 
             List<UddiService> uddiServices;
-            if (!uddiCache.TryGetValue(key, out uddiServices)) {
+            if (!getServiceCache.TryGetValue(key, out uddiServices)) {
                 uddiServices = GetUddiServices(lookupParameters.Identifier, lookupParameters.ServiceId, lookupParameters.ProfileConformanceClaim);
                 
                 if (uddiServices.Count > 0) {
-                    uddiCache.Set(key, uddiServices);
+                    getServiceCache.Set(key, uddiServices);
                 }
             }
             
@@ -200,6 +243,24 @@ namespace dk.gov.oiosi.uddi {
             }
 
             return uddiServices;
+        }
+
+        private List<UddiTModel> GetUddiTModels(IList<UddiId> uddiIds) {
+            get_tModelDetail getTModelDetail = new get_tModelDetail();
+            getTModelDetail.tModelKey = new string[uddiIds.Count];
+            for (int i=0; i<uddiIds.Count; i++) {
+                getTModelDetail.tModelKey[i] = uddiIds[i].ID;
+            }
+            tModelDetail tmodelDetails = _uddiProxy.get_tModelDetail(getTModelDetail);
+
+            if (tmodelDetails.tModel == null) return new List<UddiTModel>();
+
+            List<UddiTModel> uddiTmodels = new List<UddiTModel>();
+            foreach (tModel tmodel in tmodelDetails.tModel) {
+                UddiTModel uddiTmodel = new UddiTModel(tmodel);
+                uddiTmodels.Add(uddiTmodel);
+            }
+            return uddiTmodels;
         }
     }
 

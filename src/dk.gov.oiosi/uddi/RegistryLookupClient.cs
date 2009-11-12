@@ -25,6 +25,8 @@ namespace dk.gov.oiosi.uddi {
             _configuration = configuration;
         }
 
+        #region IUddiLookupClient Members
+
         /// <summary>
         /// Service lookup
         /// </summary>
@@ -41,5 +43,21 @@ namespace dk.gov.oiosi.uddi {
             }
             return response;
         }
+
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+            List<ProcessDefinition> processDefinitions = null;
+            foreach (Registry registry in _configuration.PrioritizedRegistryList) {
+                IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
+                processDefinitions = uddiLookupClient.GetProcessDefinitions(processDefinitionIds);
+                // Continue until some was found
+                if (processDefinitions != null && processDefinitions.Count != 0)
+                    break;
+            }
+
+            return processDefinitions;
+        }
+
+
+        #endregion
     }
 }
