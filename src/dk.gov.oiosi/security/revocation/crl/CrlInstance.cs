@@ -16,7 +16,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         private X509Crl data;
         private readonly Uri url;
 
-        private readonly ReaderWriterLockSlim rwl = new ReaderWriterLockSlim();
+        private readonly ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
         private readonly X509CertificateParser cp = new X509CertificateParser();
 
         /// <summary>
@@ -39,12 +39,13 @@ namespace dk.gov.oiosi.security.revocation.crl
         public bool IsRevoked(X509Certificate2 cert)
         {
             // Looks the data for reading.
-            rwl.EnterUpgradeableReadLock();
+            rwl.EnterReadLock();
             try
             {
                 if (!cacheValid())
                 {
                     // Upgrades lock since data is not valid.
+                    rwl.ExitReadLock();
                     rwl.EnterWriteLock();
                     try
                     {
@@ -56,6 +57,7 @@ namespace dk.gov.oiosi.security.revocation.crl
                     finally
                     {
                         // Downgrade lock
+                        rwl.EnterReadLock();
                         rwl.ExitWriteLock();
                     }
                 }
@@ -66,7 +68,7 @@ namespace dk.gov.oiosi.security.revocation.crl
             }
             finally
             {
-                rwl.ExitUpgradeableReadLock();
+                rwl.ExitReadLock();
             }
         }
 
