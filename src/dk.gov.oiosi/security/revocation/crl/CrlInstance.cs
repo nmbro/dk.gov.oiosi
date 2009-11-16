@@ -16,7 +16,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         private X509Crl data;
         private readonly Uri url;
 
-        private readonly ReaderWriterLock rwl = new ReaderWriterLock();
+        private readonly ReaderWriterLockSlim rwl = new ReaderWriterLockSlim();
         private readonly X509CertificateParser cp = new X509CertificateParser();
 
         /// <summary>
@@ -39,32 +39,35 @@ namespace dk.gov.oiosi.security.revocation.crl
         public bool IsRevoked(X509Certificate2 cert)
         {
             // Looks the data for reading.
-            rwl.AcquireReaderLock(0);
-            if (!cacheValid())
+            rwl.EnterUpgradeableReadLock();
+            try
             {
-                // Upgrades lock since data is not valid.
-                LockCookie cookie = rwl.UpgradeToWriterLock(0);
-                if (!cacheValid()) // Recheck, since another thread might have updated the cache.
+                if (!cacheValid())
                 {
+                    // Upgrades lock since data is not valid.
+                    rwl.EnterWriteLock();
                     try
                     {
-                        upgradeData();
+                        if (!cacheValid()) // Recheck, since another thread might have updated the cache.
+                        {
+                            upgradeData();
+                        }
                     }
-                    catch (CheckCertificateRevokedUnexpectedException e)
+                    finally
                     {
-                        rwl.ReleaseLock();
-                        throw e;
+                        // Downgrade lock
+                        rwl.ExitWriteLock();
                     }
                 }
 
-                // Downgrade lock
-                rwl.DowngradeFromWriterLock(ref cookie);
+                // Reads the data and unlocks.
+                bool isRevoked = data.IsRevoked(cp.ReadCertificate(cert.RawData));
+                return isRevoked;
             }
-
-            // Reads the data and unlocks.
-            bool isRevoked = data.IsRevoked(cp.ReadCertificate(cert.RawData));
-            rwl.ReleaseLock();
-            return isRevoked;
+            finally
+            {
+                rwl.ExitUpgradeableReadLock();
+            }
         }
 
         /// <summary>
@@ -114,10 +117,16 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>The NextUpdate value from the CRL</returns>
         public DateTime getNextUpdate()
         {
-            rwl.AcquireReaderLock(0);
-            DateTime date = data != null ? data.NextUpdate.Value : new DateTime(0);
-            rwl.ReleaseReaderLock();
-            return date;
+            rwl.EnterUpgradeableReadLock();
+            try
+            {
+                DateTime date = data != null ? data.NextUpdate.Value : new DateTime(0);
+                return date;
+            }
+            finally
+            {
+                rwl.ExitUpgradeableReadLock();
+            }
         }
     }
 }
