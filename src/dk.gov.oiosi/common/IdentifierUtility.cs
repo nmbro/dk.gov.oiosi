@@ -34,15 +34,13 @@ using System;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.common
-{
+namespace dk.gov.oiosi.common {
 
     /// <summary>
     /// Utilities for converting identifiers between strings and other types
     /// </summary>
-    public class IdentifierUtility
-    {
-
+    public class IdentifierUtility {
+        public const string ANONYMOUS = " http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/anonymous";
 
         /// <summary>
         /// Returns an UDDI identifier (e.g. a tModel key) as an UddiId object 
