@@ -554,7 +554,6 @@
     <Content Include="Resources\Licenses\RaspClientLicense.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Http Endpoint Example\About.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="addressing\ErrorMessages.resx">
@@ -645,7 +644,6 @@
     <None Include="Resources\Certificates\TDCRootSSL.cer" />
     <None Include="Resources\Certificates\TDCTestRoot.cer" />
     <None Include="Resources\Licenses\License.rtf" />
-    <None Include="Resources\Http Endpoint Example\RaspHTTPEndpointExample.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
