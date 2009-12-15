@@ -1,7 +1,0 @@
-Rasp HTTP Endpoint Example
---------------------------
-
-Example of how to set up an MS Internet Information Services (IIS) hosted http endpoint. 
-
-Unzip the archive to your local web site folder (for example C:\Intepub\wwwroot\) 
-and read Installation.pdf (or .txt) for instructions in how to set the endpoint up.
