@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     public class ClientSignatureValidationProofBindingElement : CommonBindingElement {
         private static UnfinishedSignatureValidationProofCache _unfinishedSignatures;
         private SignatureValidationStackCheck _stackCheck;
+        private static object signatureLock = new object();
 
         static ClientSignatureValidationProofBindingElement() {
             TimeSpan timeOut = TimeSpan.FromMinutes(10.0);
@@ -150,32 +151,39 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         #endregion
 
         private void InterceptedMessageResponse(InterceptorMessage message, Headers headers) {
-            SequenceHeader sequenceHeader = headers.SequenceHeader;
-            string relatesTo = headers.RelatesTo.ToString();
-            //Try to get the unfinished signature validation proof. If none exists return.
-            UnfinishedSignatureValidationProof unfinishedSignatureValidationProof = null;
-            if (!_unfinishedSignatures.TryGetValueFromMessageId(relatesTo, out unfinishedSignatureValidationProof))
-                return;
-            //System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
-            SignatureValidationProof signatureValidationProof = unfinishedSignatureValidationProof.SignatureValidationProof;
-            string signatureValidationProofKey = ClientSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey;
-            message.AddProperty(signatureValidationProofKey, signatureValidationProof);
+            lock (signatureLock)
+            {
+                SequenceHeader sequenceHeader = headers.SequenceHeader;
+                string relatesTo = headers.RelatesTo.ToString();
+                //Try to get the unfinished signature validation proof. If none exists return.
+                UnfinishedSignatureValidationProof unfinishedSignatureValidationProof = null;
+                if (!_unfinishedSignatures.TryGetValueFromMessageId(relatesTo, out unfinishedSignatureValidationProof))
+                    return;
+                //System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
+                SignatureValidationProof signatureValidationProof = unfinishedSignatureValidationProof.SignatureValidationProof;
+                string signatureValidationProofKey = ClientSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey;
+                message.AddProperty(signatureValidationProofKey, signatureValidationProof);
+            }
         }
 
         private void InterceptedAcknowledgementResponse(InterceptorMessage message, Headers headers) {
-            SequenceAcknowledgementHeader sequenceAcknowledgementHeader = headers.SequenceAcknowledgement;
-            string identityName = message.Properties.Security.ServiceSecurityContext.PrimaryIdentity.Name;
-            int index = identityName.LastIndexOf(';');
-            string certificateSubject = identityName.Substring(0, index);
-            //Try to get the messages that have been acked in the RM session. If none exists return.
-            List<UnfinishedSignatureValidationProof> ackedMessages = null;
-            //System.Diagnostics.Debug.WriteLine("InterceptedAcknowledgementResponse sequenceID" + sequenceAcknowledgementHeader.SequenceId);
-            if (!_unfinishedSignatures.TryGetValueFromSequenceAcknowledgementHeader(sequenceAcknowledgementHeader, out ackedMessages))
-                return;
-            foreach (UnfinishedSignatureValidationProof ackedMessage in ackedMessages) {
-                SignatureValidationProof signatureValidationProof = ackedMessage.SignatureValidationProof;
-                if (!signatureValidationProof.Completed)
-                    signatureValidationProof.CompleteValidation(certificateSubject);
+            lock (signatureLock)
+            {
+                SequenceAcknowledgementHeader sequenceAcknowledgementHeader = headers.SequenceAcknowledgement;
+                string identityName = message.Properties.Security.ServiceSecurityContext.PrimaryIdentity.Name;
+                int index = identityName.LastIndexOf(';');
+                string certificateSubject = identityName.Substring(0, index);
+                //Try to get the messages that have been acked in the RM session. If none exists return.
+                List<UnfinishedSignatureValidationProof> ackedMessages = null;
+                //System.Diagnostics.Debug.WriteLine("InterceptedAcknowledgementResponse sequenceID" + sequenceAcknowledgementHeader.SequenceId);
+                if (!_unfinishedSignatures.TryGetValueFromSequenceAcknowledgementHeader(sequenceAcknowledgementHeader, out ackedMessages))
+                    return;
+                foreach (UnfinishedSignatureValidationProof ackedMessage in ackedMessages)
+                {
+                    SignatureValidationProof signatureValidationProof = ackedMessage.SignatureValidationProof;
+                    if (!signatureValidationProof.Completed)
+                        signatureValidationProof.CompleteValidation(certificateSubject);
+                }
             }
         }
     }
