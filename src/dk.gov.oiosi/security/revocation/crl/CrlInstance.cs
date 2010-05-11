@@ -22,6 +22,17 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <summary>
         /// Creates a new CRLInstance instance.
         /// </summary>
+        /// <param name="url">The URL corresponding to the CRL.</param>
+        public CrlInstance(Uri url)
+        {
+            this.crlParser = new X509CrlParser();
+            this.data = null;
+            this.url = url;
+        }
+
+        /// <summary>
+        /// Creates a new CRLInstance instance.
+        /// </summary>
         /// <param name="crlParser">A factory used for generating X509CRL class's from a stream.</param>
         /// <param name="url">The URL corresponding to the CRL.</param>
         public CrlInstance(X509CrlParser crlParser, Uri url)

@@ -34,6 +34,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
+using dk.gov.oiosi.common.cache;
+using Org.BouncyCastle.X509;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
@@ -45,9 +47,14 @@ namespace dk.gov.oiosi.security.revocation.crl
     public class CrlLookup : IRevocationLookup
     {
         /// <summary>
-        /// Cache used for storing CRLs
+        /// Got cache for one day
         /// </summary>
-        private readonly static CrlCache cache = new CrlCache();
+        private readonly static TimedCache<Uri, CrlInstance> cache = new TimedCache<Uri, CrlInstance>(TimeSpan.FromDays(1.0));
+
+        /// <summary>
+        /// Lockobject to ensure locking of the cache.
+        /// </summary>
+        private static object lockObject = new object();
 
         #region IRevocationLookup Members
         
@@ -74,7 +81,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         		
     		    foreach (Uri url in URLs)
     		    {
-    			    CrlInstance crl = cache.getCRL(url);
+                    CrlInstance crl = GetInstace(url);
         			
     			    try 
     			    {
@@ -147,5 +154,18 @@ namespace dk.gov.oiosi.security.revocation.crl
     		
 		    return urls;
 	    }
+
+        private CrlInstance GetInstace(Uri url)
+        {
+            lock (lockObject) {
+                CrlInstance instance = null;
+                if (!cache.TryGetValue(url, out instance))
+                {
+                    instance = new CrlInstance(url);
+                    cache.Add(url, instance);
+                }
+                return instance;
+            }
+        }
     }
 }
