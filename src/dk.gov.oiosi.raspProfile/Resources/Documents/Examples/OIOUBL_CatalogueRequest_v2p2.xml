@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <CatalogueRequest xmlns="urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2 UBL-CatalogueRequest-2.0.xsd">
+
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.02</cbc:CustomizationID>
 	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Catalogue-CatAdv-1.0</cbc:ProfileID>
@@ -17,9 +18,9 @@
 		<cbc:EndTime>12:00:00</cbc:EndTime>
 	</cac:ValidityPeriod>
 	<cac:ReceiverParty>
-		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:EndpointID>
+		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
 		<cac:PartyIdentification>
-			<cbc:ID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:ID>
+			<cbc:ID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>Den Lille Skole</cbc:Name>
@@ -52,9 +53,9 @@
 		</cac:Person>
 	</cac:ReceiverParty>
 	<cac:ProviderParty>
-		<cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
+		<cbc:EndpointID schemeID="DK:CVR">DK45656787</cbc:EndpointID>
 		<cac:PartyIdentification>
-			<cbc:ID schemeID="GLN">5798009811578</cbc:ID>
+			<cbc:ID schemeID="DK:CVR">DK45656787</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>Teleeksperten A/S</cbc:Name>
@@ -69,10 +70,6 @@
 				<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 			</cac:Country>
 		</cac:PostalAddress>
-		<cac:PartyLegalEntity>
-			<cbc:RegistrationName>Teleeksperten A/S</cbc:RegistrationName>
-			<cbc:CompanyID schemeID="DK:CVR">DK45656787</cbc:CompanyID>
-		</cac:PartyLegalEntity>
 		<cac:Contact>
 			<cbc:ID>9000012345</cbc:ID>
 			<cbc:Name>Salgsafdelingen</cbc:Name>

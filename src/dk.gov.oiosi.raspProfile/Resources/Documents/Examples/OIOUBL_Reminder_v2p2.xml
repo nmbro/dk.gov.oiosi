@@ -3,15 +3,15 @@
 
 <!--
 ******************************************************************************************************************
-20080410 Finn Christensen
-Reminder without any allowancecharge.
+20080424 Finn Christensen
+Reminder with allowancecharge and usage of OIOUBL-2.02 codelist.
 		
 ******************************************************************************************************************
 -->
 
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.02</cbc:CustomizationID>
-	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Procurement-OrdAdv-BilSim-1.0</cbc:ProfileID>
+	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Procurement-OrdSimR-BilSim-1.0</cbc:ProfileID>
 	<cbc:ID>A00095678</cbc:ID>
 	<cbc:CopyIndicator>false</cbc:CopyIndicator>
 	<cbc:UUID>9756b55c-8815-1029-857a-e388fe63f399</cbc:UUID>
@@ -64,9 +64,9 @@ Reminder without any allowancecharge.
 	</cac:AccountingSupplierParty>
 	<cac:AccountingCustomerParty>
 		<cac:Party>
-			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:EndpointID>
+			<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:ID>
+				<cbc:ID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Den Lille Skole</cbc:Name>
@@ -81,10 +81,6 @@ Reminder without any allowancecharge.
 					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
-			<cac:PartyLegalEntity>
-				<cbc:RegistrationName>Den Lille Skole</cbc:RegistrationName>
-				<cbc:CompanyID schemeID="DK:CVR">DK16356709</cbc:CompanyID>
-			</cac:PartyLegalEntity>
 			<cac:Contact>
 				<cbc:ID>7778</cbc:ID>
 				<cbc:Name>Hans Hansen</cbc:Name>
@@ -109,13 +105,42 @@ Reminder without any allowancecharge.
 	<cac:PaymentTerms>
 		<cbc:ID>1</cbc:ID>
 		<cbc:PaymentMeansID>1</cbc:PaymentMeansID>
-		<cbc:Amount currencyID="DKK">6312.50</cbc:Amount>
+		<cbc:Amount currencyID="DKK">6355.50</cbc:Amount>
 	</cac:PaymentTerms>
+	<cac:AllowanceCharge>
+		<cbc:ID>1</cbc:ID>
+		<cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+		<cbc:AllowanceChargeReasonCode listAgencyID="320" listID="urn:oioubl:codelist:reminderallowancechargereasoncode-1.0">PenaltyFee</cbc:AllowanceChargeReasonCode>
+		<cbc:Amount currencyID="DKK">43.00</cbc:Amount>
+		<cac:TaxCategory>
+			<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxcategoryid-1.1">ZeroRated</cbc:ID>
+			<cac:TaxScheme>
+				<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
+				<cbc:Name>Moms</cbc:Name>
+			</cac:TaxScheme>
+		</cac:TaxCategory>
+	</cac:AllowanceCharge>
+	<cac:TaxTotal>
+		<cbc:TaxAmount currencyID="DKK">0.00</cbc:TaxAmount>
+		<cac:TaxSubtotal>
+			<cbc:TaxableAmount currencyID="DKK">43.00</cbc:TaxableAmount>
+			<cbc:TaxAmount currencyID ="DKK">0.00</cbc:TaxAmount>
+			<cac:TaxCategory>
+				<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxcategoryid-1.1">ZeroRated</cbc:ID>
+				<cbc:Percent>00</cbc:Percent>
+				<cac:TaxScheme>
+					<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
+					<cbc:Name>Moms</cbc:Name>
+				</cac:TaxScheme>
+			</cac:TaxCategory>
+		</cac:TaxSubtotal>
+	</cac:TaxTotal>
 	<cac:LegalMonetaryTotal>
 		<cbc:LineExtensionAmount currencyID ="DKK">6312.50</cbc:LineExtensionAmount>
 		<cbc:TaxExclusiveAmount currencyID ="DKK">0.00</cbc:TaxExclusiveAmount>
-		<cbc:TaxInclusiveAmount currencyID ="DKK">6312.50</cbc:TaxInclusiveAmount>
-		<cbc:PayableAmount currencyID ="DKK">6312.50</cbc:PayableAmount>
+		<cbc:TaxInclusiveAmount currencyID ="DKK">6355.50</cbc:TaxInclusiveAmount>
+		<cbc:ChargeTotalAmount currencyID="DKK">43.00</cbc:ChargeTotalAmount>
+		<cbc:PayableAmount currencyID ="DKK">6355.50</cbc:PayableAmount>
 	</cac:LegalMonetaryTotal>
 	<cac:ReminderLine>
 		<cbc:ID>1</cbc:ID>

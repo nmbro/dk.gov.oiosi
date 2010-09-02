@@ -452,6 +452,7 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_UtilityStatement_v2p2.xml" />
     <Content Include="Resources\Schemas\OIOXML v0.7\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

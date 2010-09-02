@@ -42,13 +42,7 @@
       <PrioritizedRegistryList>
         <Registry>
           <EndpointCollection>
-            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://discovery.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-          </EndpointCollection>
-        </Registry>
-        <Registry>
-          <EndpointCollection>
-            <Endpoint>http://oiosi2vans.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
+            <Endpoint>http://testuddi.nemhandel.gov.dk/uddi/services/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>

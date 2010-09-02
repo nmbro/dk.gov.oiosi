@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Catalogue xmlns="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2 UBL-Catalogue-2.0.xsd">
+
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.02</cbc:CustomizationID>
 	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Catalogue-CatAdv-1.0</cbc:ProfileID>
 	<cbc:ID>CAT-EX-1</cbc:ID>
-	<cbc:UUID>9756b4d0-8815-1029-857a-e388fe63f399</cbc:UUID>
+	<cbc:UUID>9756b516-8815-1029-857a-e388fe63f399</cbc:UUID>
 	<cbc:Name>Mobile phone</cbc:Name>
 	<cbc:IssueDate>2006-04-30</cbc:IssueDate>
 	<cbc:IssueTime>12:00:00</cbc:IssueTime>
@@ -65,9 +66,9 @@
 		</cac:Person>
 	</cac:ProviderParty>
 	<cac:ReceiverParty>
-		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:EndpointID>
+		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
 		<cac:PartyIdentification>
-			<cbc:ID schemeAgencyID="9" schemeID="GLN">5798009811578</cbc:ID>
+			<cbc:ID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>Den Lille Skole</cbc:Name>
@@ -82,10 +83,6 @@
 				<cbc:IdentificationCode>DK</cbc:IdentificationCode>
 			</cac:Country>
 		</cac:PostalAddress>
-		<cac:PartyLegalEntity>
-			<cbc:RegistrationName>Den Lille Skole</cbc:RegistrationName>
-			<cbc:CompanyID schemeID="DK:CVR">DK16356709</cbc:CompanyID>
-		</cac:PartyLegalEntity>
 		<cac:Contact>
 			<cbc:ID>98765</cbc:ID>
 			<cbc:Name>Administrationen</cbc:Name>
@@ -180,21 +177,6 @@
 					<cbc:StartDate>2006-08-01</cbc:StartDate>
 					<cbc:EndDate>2007-03-31</cbc:EndDate>
 				</cac:ValidityPeriod>
-				<cac:AllowanceCharge>
-					<cbc:ID>1</cbc:ID>
-					<cbc:ChargeIndicator>false</cbc:ChargeIndicator>
-					<cbc:MultiplierFactorNumeric>0.05</cbc:MultiplierFactorNumeric>
-					<cbc:Amount currencyID="DKK">40.00</cbc:Amount>
-					<cbc:BaseAmount currencyID="DKK">800.00</cbc:BaseAmount>
-					<cac:TaxCategory>
-						<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxcategoryid-1.1">StandardRated</cbc:ID>
-						<cbc:Percent>25</cbc:Percent>
-						<cac:TaxScheme>
-							<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
-							<cbc:Name>Moms</cbc:Name>
-						</cac:TaxScheme>
-					</cac:TaxCategory>
-				</cac:AllowanceCharge>
 			</cac:Price>
 			<cac:DeliveryUnit>
 				<cbc:BatchQuantity unitCode="EA">1</cbc:BatchQuantity>
@@ -240,7 +222,7 @@
 		</cac:Item>
 	</cac:CatalogueLine>
 	<cac:CatalogueLine>
-		<cbc:ID>NM-457896432</cbc:ID>
+		<cbc:ID>NM-457896433</cbc:ID>
 		<cbc:ActionCode listAgencyID="320" listID="urn:oioubl:codelist:catalogueactioncode-1.1">Add</cbc:ActionCode>
 		<cbc:Note>No delivery before August 2006</cbc:Note>
 		<cbc:OrderableIndicator>true</cbc:OrderableIndicator>
@@ -274,6 +256,7 @@
 			<cac:DeliveryUnit>
 				<cbc:BatchQuantity unitCode="EA">1</cbc:BatchQuantity>
 				<cbc:ConsumerUnitQuantity unitCode="EA">1</cbc:ConsumerUnitQuantity>
+				<cbc:HazardousRiskIndicator>false</cbc:HazardousRiskIndicator>
 			</cac:DeliveryUnit>
 			<cac:ApplicableTaxCategory>
 				<cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxcategoryid-1.1">StandardRated</cbc:ID>
