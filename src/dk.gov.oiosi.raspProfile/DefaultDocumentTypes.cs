@@ -452,10 +452,10 @@ namespace dk.gov.oiosi.raspProfile {
             const string xsdPath = "Resources/Schemas/OIOUBL v2.1-b/UBL-UtilityStatement-2.1.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_UtilityStatement_Schematron.xsl";
             const string xslUIPath = "";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:Party/cac:PartyName/cbc:Name";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationResponse";
