@@ -176,6 +176,12 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
+        public void OioublUtilityStatement202MustBeSendableByRaspRequest() {
+            AssertSendable("Resources/Documents/Test/OIOUBL_Statement_v2p2.xml");
+        }
+
+
+        [Test]
         public void OioxmlCreditNoteMustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOXML_CreditNote_v0.7.xml");
         }

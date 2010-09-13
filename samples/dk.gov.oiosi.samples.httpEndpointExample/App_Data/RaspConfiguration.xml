@@ -2960,6 +2960,186 @@
           <XPath>/root:Statement/cbc:ProfileID</XPath>
         </ProfileIdXPath>
       </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>f9921c1b-ee20-4831-ab85-6975a95ed899</Id>
+        <FriendlyName>Forsynings Specifikation</FriendlyName>
+        <RootNamespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</RootNamespace>
+        <RootName>UtilityStatement</RootName>
+        <ServiceContractTModel>uddi:nemhandel.dk:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.1-b/UBL-UtilityStatement-2.1.xsd</SchemaPath>
+        <StylesheetPath />
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:UtilityStatement/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:UtilityStatement/cac:SenderParty/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:UtilityStatement/cac:ReceiverParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:UtilityStatement/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:UtilityStatement/cac:SenderParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:UtilityStatement/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:UtilityStatement/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <SchematronValidationConfig>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <ErrorXPath>/Schematron/Error</ErrorXPath>
+          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+        </SchematronValidationConfig>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+      </DocumentTypeConfig>
     </DocumentTypes>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
@@ -3135,6 +3315,14 @@
       <ProfileMapping>
         <Name>OIOXML elektronisk handel - læs ind</Name>
         <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Reference-Utility-1.0</Name>
+        <TModelGuid>uddi:nemhandel.dk:570b3009-3f9f-46d2-b533-31d0bb4a37a0</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Reference-UtilityR-1.0</Name>
+        <TModelGuid>uddi:nemhandel.dk:1bfd82e6-0eca-47df-9230-37b97c9788c6</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>

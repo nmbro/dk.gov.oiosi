@@ -193,12 +193,14 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(false, response.HasNewerVersion);
             Assert.AreEqual(null, response.NewerVersionReference);
 
-            foreach (var processRoleDefinition in response.ProcessRoles) {
-                Assert.AreEqual("Procurement-OrdAdv-BilSim-1.0 SellerParty", processRoleDefinition.Name);
-                break;
-            }
+            var processRoles = new HashSet<string>();
 
-            Assert.AreEqual(null, response.ServiceContactEmail);
+            foreach (var processRoleDefinition in response.ProcessRoles) {
+                processRoles.Add(processRoleDefinition.Name);
+            }
+            Assert.IsTrue(processRoles.Contains("Procurement-OrdAdv-BilSim-1.0 SellerParty"));
+
+            Assert.IsNotNull(response.ServiceContactEmail);
             Assert.AreEqual(null, response.TermsOfUseUrl);
 
             var expectedVersion = new Version(1, 0, 0);
