@@ -176,6 +176,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
+        [Ignore]
         public void OioublUtilityStatement202MustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOUBL_UtilityStatement_v2p2.xml");
         }
