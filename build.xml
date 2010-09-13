@@ -28,7 +28,7 @@
           <import namespace="System.Reflection" />
         </imports>
         <attributes>
-          <attribute type="AssemblyVersionAttribute" value="1.2.1.0" />
+          <attribute type="AssemblyVersionAttribute" value="1.2.2.0" />
           <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 		  <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
         </attributes>
