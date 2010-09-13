@@ -14,6 +14,7 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
     public class SchemaValidationTest {
         private readonly SchemaValidator _validator201;
         private readonly SchemaValidator _validator07;
+        private readonly SchemaValidator _validator21b;
         private DocumentTypeConfigSearcher _searcher;
 
         public SchemaValidationTest() {
@@ -22,6 +23,9 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
 
             DirectoryInfo schema201Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS20);
             _validator201 = new SchemaValidator(schema201Directory);
+
+            DirectoryInfo schema21bDirectory = new DirectoryInfo(TestConstants.PATH_SCHEMAS21b);
+            _validator21b = new SchemaValidator(schema21bDirectory);
         }
 
         [TestFixtureSetUp]
@@ -125,6 +129,12 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
         public void StatementValidationTest() {
             const string xmlPath = TestConstants.PATH_STATEMENT_XML;
             Validate(xmlPath, _validator201);
+        }
+
+        [Test]
+        public void UtilityStatementValidationTest() {
+            const string xmlPath = TestConstants.PATH_UTILITYSTATEMENT_XML;
+            Validate(xmlPath, _validator21b);
         }
 
         [Test]

@@ -114,6 +114,12 @@ namespace dk.gov.oiosi.test.unit.xml.schematron {
             Validate(TestConstants.PATH_STATEMENT_XML, documentType);
         }
 
+        [Test]
+        public void OioublUtilityStatementValidation() {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetUtilityStatement();
+            Validate(TestConstants.PATH_UTILITYSTATEMENT_XML, documentType);
+        }
+
         [Test, ExpectedException(typeof(SchematronErrorException))]
         public void OioublNoIdInvoiceValidation() {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetInvoice();

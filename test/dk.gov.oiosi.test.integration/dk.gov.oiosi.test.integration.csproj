@@ -101,6 +101,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RaspConfigurationRaspRequestTest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="RaspConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -132,9 +135,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOUBL_CatalogueRequest_v2p2.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Documents\Test\OIOUBL_Catalogue_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOUBL_Catalogue_v2p2.xml">
@@ -192,6 +192,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOUBL_Statement_v2p2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Test\OIOUBL_UtilityStatement_v2p2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOXML_CreditNote_v0.7.xml">

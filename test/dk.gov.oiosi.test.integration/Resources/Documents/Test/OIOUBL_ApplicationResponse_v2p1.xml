@@ -37,9 +37,9 @@
 			</cac:Contact>
 	</cac:SenderParty>
 	<cac:ReceiverParty>
-			<cbc:EndpointID schemeID="GLN">5798009811530</cbc:EndpointID>
+			<cbc:EndpointID schemeID="GLN">5798009811738</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeID="GLN">5798009811530</cbc:ID>
+				<cbc:ID schemeID="GLN">5798009811738</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Tavleverandøren</cbc:Name>

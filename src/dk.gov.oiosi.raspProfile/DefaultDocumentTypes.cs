@@ -77,6 +77,7 @@ namespace dk.gov.oiosi.raspProfile {
             Add(GetOrderResponseSimple);               // Simpel ordrebekræftelse
             Add(GetReminder);                          // Rykker
             Add(GetStatement);                         // KontoUdtog
+            Add(GetUtilityStatement);                  // Forsynings specifikation
         }
 
         /// <summary>
@@ -438,6 +439,42 @@ namespace dk.gov.oiosi.raspProfile {
             DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
+
+        /// <summary>
+        /// The utility statement document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig GetUtilityStatement()
+        {
+            const string documentName = "Forsynings Specifikation";
+            const string rootName = "UtilityStatement";
+            const string rootNamespace = "urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2";
+            const string xsdPath = "Resources/Schemas/OIOUBL v2.1-b/UBL-UtilityStatement-2.1.xsd";
+            const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_UtilityStatement_Schematron.xsl";
+            const string xslUIPath = "";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationResponse";
+            const string serviceContractTModel = "uddi:nemhandel.dk:236f277d-a786-4724-a16e-26398b685a07";
+
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            
+            List < PrefixedNamespace > namespaces = new List<PrefixedNamespace>();
+            namespaces.Add(new PrefixedNamespace("urn:oioubl:names:specification:oioubl:schema:xsd:CommonAggregateComponents-2", "cac"));
+            namespaces.Add(new PrefixedNamespace("urn:oioubl:names:specification:oioubl:schema:xsd:CommonBasicComponents-2", "cbc"));
+            namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2", "ccts"));
+            namespaces.Add(new PrefixedNamespace("urn:oioubl:names:specification:oioubl:schema:xsd:SpecializedDatatypes-2", "sdt"));
+            namespaces.Add(new PrefixedNamespace("urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", "udt"));
+            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentTypeConfig.Namespaces = namespaces.ToArray();
+
+            return documentTypeConfig;
+        }
+
 
         /// <summary>
         /// The invoice 0.7 document definition

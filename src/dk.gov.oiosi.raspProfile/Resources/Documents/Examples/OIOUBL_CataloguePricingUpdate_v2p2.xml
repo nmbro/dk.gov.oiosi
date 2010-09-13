@@ -70,9 +70,9 @@
 		</cac:Person>
 	</cac:ProviderParty>
 	<cac:ReceiverParty>
-		<cbc:EndpointID schemeID="DK:CVR">DK98879887</cbc:EndpointID>
+		<cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
 		<cac:PartyIdentification>
-			<cbc:ID schemeID="DK:CVR">DK98879887</cbc:ID>
+			<cbc:ID schemeID="GLN">5798009811578</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>KatalogAdm ApS</cbc:Name>
@@ -101,9 +101,9 @@
 	</cac:ReceiverParty>
 	<cac:SellerSupplierParty>
 		<cac:Party>
-			<cbc:EndpointID schemeID="DK:CVR">DK87493746</cbc:EndpointID>
+			<cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeID="DK:CVR">DK87493746</cbc:ID>
+				<cbc:ID schemeID="GLN">5798009811578</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Papirhuset A/S</cbc:Name>

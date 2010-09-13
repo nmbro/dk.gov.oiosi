@@ -58,9 +58,9 @@
 	</cac:BuyerCustomerParty>
 	<cac:SellerSupplierParty>
 		<cac:Party>
-			<cbc:EndpointID schemeID="DK:CVR">DK16356706</cbc:EndpointID>
+			<cbc:EndpointID schemeID="GLN">5798009811578</cbc:EndpointID>
 			<cac:PartyIdentification>
-				<cbc:ID schemeID="DK:CVR">DK16356706</cbc:ID>
+				<cbc:ID schemeID="GLN">5798009811578</cbc:ID>
 			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Tavleleverandøren</cbc:Name>

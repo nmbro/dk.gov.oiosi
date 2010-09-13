@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.test.integration {
         }
 
         public static void SetupConfiguration(string configurationFilePath) {
-            ConfigurationHandler.ConfigFilePath = "RaspConfiguration.xml";
+            ConfigurationHandler.ConfigFilePath = configurationFilePath;
 
             ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();

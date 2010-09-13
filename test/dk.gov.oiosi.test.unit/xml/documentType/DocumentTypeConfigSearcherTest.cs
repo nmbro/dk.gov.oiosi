@@ -111,6 +111,11 @@ namespace dk.gov.oiosi.test.unit.xml.documentType {
         }
 
         [Test]
+        public void SearchForUtilityStatementTest() {
+            AssertFindDocument("Forsynings Specifikation", TestConstants.PATH_UTILITYSTATEMENT_XML);
+        }
+
+        [Test]
         public void SearchForInvoice07Test() {
             AssertFindDocument("Faktura v0.7", TestConstants.PATH_INVOICE07_XML);
         }

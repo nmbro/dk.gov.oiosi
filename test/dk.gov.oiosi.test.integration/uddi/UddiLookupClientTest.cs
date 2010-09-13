@@ -54,7 +54,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
-        [Ignore]
         public void LookingUpExistingServiceMustReturnResponseWithValidProperties() {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
@@ -74,7 +73,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             
             Assert.Greater(lookupResponses.Count, 0);
 
-            var expectedCertificateSubjectString = "CN=FOCES1 (funktionscertifikat) + OID.2.5.4.5=CVR:30808460-FID:1255692730737, O=DANID A/S // CVR:30808460, C=DK";
+            var expectedCertificateSubjectString = "OID.2.5.4.5=CVR:26769388-FID:1272375084431 + CN=Test NemHandelservice (funktionscertifikat), O=IT- og Telestyrelsen // CVR:26769388, C=DK";
             var actualCertificateSubjectString = lookupResponses[0].CertificateSubjectSerialNumber.SubjectString;
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }
@@ -142,7 +141,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithDunsIdentifierShouldReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId> { nesublProfilesProfile5 };
 
             var lookupParameters = new LookupParameters(dunsIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -179,16 +178,16 @@ namespace dk.gov.oiosi.test.integration.uddi {
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {
-            var expectedActivationDate = new DateTime(2009, 10, 23, 0, 0, 0);
+            var expectedActivationDate = new DateTime(2010, 9, 9, 0, 0, 0);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
-            var expectedEndpoint = "http://test.ehandel.gov.dk/test/nemhandel_test/2009/07/07/TestService.svc";
+            var expectedEndpoint = "http://testservice.nemhandel.gov.dk/integration/RASPNET/1.2.2/receiver.svc";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
             var expectedIdentifierActual = TestConstants.TESTEAN;
             Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
 
-            var expectedExpirationDate = new DateTime(2019, 10, 23, 0, 0, 0);
+            var expectedExpirationDate = new DateTime(2030, 9, 9, 0, 0, 0);
             Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
 
             Assert.AreEqual(false, response.HasNewerVersion);

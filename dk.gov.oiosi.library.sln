@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.exception", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.configuration", "src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj", "{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.logging", "src\dk.gov.oiosi.Logging\dk.gov.oiosi.logging.csproj", "{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.Logging", "src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj", "{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.lesnikowskiMailProvider", "src\dk.gov.oiosi.lesnikowskiMailProvider\dk.gov.oiosi.lesnikowskiMailProvider.csproj", "{47A0BAAC-867E-47DD-93F2-372284D52CCA}"
 EndProject
@@ -42,9 +42,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{628F6878-C79
 	ProjectSection(SolutionItems) = preProject
 		doc\OIOSI RASP Library for .Net Installation Guide.doc = doc\OIOSI RASP Library for .Net Installation Guide.doc
 		doc\OIOSI RASP Library for .Net Release Notes.doc = doc\OIOSI RASP Library for .Net Release Notes.doc
+		doc\OIOSI RASP Library for .Net Tutorials.doc = doc\OIOSI RASP Library for .Net Tutorials.doc
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -120,9 +125,5 @@ Global
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{E103A780-78F2-497C-938B-FF8AF72F87F6} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal

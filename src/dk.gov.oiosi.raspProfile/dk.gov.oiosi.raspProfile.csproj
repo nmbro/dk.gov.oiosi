@@ -67,6 +67,51 @@
     <None Include="Resources\Certificates\TDCTestRoot.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\CCTS_CCT_SchemaModule-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_CurrencyCode_ISO_7_04.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_LanguageCode_ISO_7_04.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_UnitCode_UNECE_7_04.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\OIOUBL_UTS-CommonBasicComponents-2.1.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonAggregateComponents-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonBasicComponents-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonExtensionComponents-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CoreComponentParameters-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-ExtensionContentDatatype-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-QualifiedDatatypes-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Schemas\OIOUBL v2.1-b\UBL-UtilityStatement-2.1.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Resources\Schemas\OIOXML v0.7\0p70dk_Reusable.xsd">
       <SubType>
       </SubType>
@@ -404,9 +449,6 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueRequest_v2p2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -452,7 +494,9 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_UtilityStatement_v2p2.xml" />
+    <Content Include="Resources\Documents\Examples\OIOUBL_UtilityStatement_v2p2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Schemas\OIOXML v0.7\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -499,6 +543,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_Statement_Schematron.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SchematronStylesheets\OIOUBL v2.0\OIOUBL_UtilityStatement_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SchematronStylesheets\OIOXML v0.7\ublinvoice.xsl">

@@ -41,11 +41,6 @@ namespace dk.gov.oiosi.test.integration.communication {
         }
 
         [Test]
-        public void OioublCatalogue201MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p1.xml");
-        }
-
-        [Test]
         public void OioublCatalogue202MustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p2.xml");
         }
