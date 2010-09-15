@@ -2995,8 +2995,8 @@
           </PrefixedNamespace>
         </Namespaces>
         <EndpointType>
-          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationResponse</ReplyAction>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementResponse</ReplyAction>
           <EndpointFriendlyName>
             <XPath>/root:UtilityStatement/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>

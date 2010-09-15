@@ -457,8 +457,8 @@ namespace dk.gov.oiosi.raspProfile {
             const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitUtilitySpecificationResponse";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementResponse";
             const string serviceContractTModel = "uddi:nemhandel.dk:236f277d-a786-4724-a16e-26398b685a07";
 
             DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
