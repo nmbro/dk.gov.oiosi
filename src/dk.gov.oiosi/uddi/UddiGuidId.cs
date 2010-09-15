@@ -61,7 +61,9 @@ namespace dk.gov.oiosi.uddi {
             string guidString = "";
 
             if (isUddiType) {
-                guidString = guid.Substring(5);
+                var lastIndex = guid.LastIndexOf(':');
+                if (lastIndex < 0) return false;
+                guidString = guid.Substring(lastIndex+1);
             } else {
                 guidString = guid;
             }

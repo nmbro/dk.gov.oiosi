@@ -67,6 +67,7 @@
     <Compile Include="TestConstants.cs" />
     <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
     <Compile Include="uddi\RegistryLookupTest.cs" />
+    <Compile Include="uddi\UddiGuidIdTest.cs" />
     <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
     <Compile Include="xml\schematron\SchematronStoreTest.cs" />
     <Compile Include="xml\schematron\SchematronValidationTest.cs" />
