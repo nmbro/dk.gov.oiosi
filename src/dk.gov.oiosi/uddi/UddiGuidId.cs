@@ -40,13 +40,13 @@ namespace dk.gov.oiosi.uddi {
     /// Represents a UDDI type guid.
     /// </summary>
     public class UddiGuidId : UddiId {
-        private Guid _guid;
+        private UddiStringId id;
 
         /// <summary>
         /// Creates a new GUID
         /// </summary>
         public UddiGuidId() {
-            _guid = Guid.NewGuid();
+            id = new UddiStringId();
         }
 
         /// <summary>
@@ -80,25 +80,7 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="guid">guid</param>
         /// <param name="isUddiType">is it uddi type</param>
         public UddiGuidId(string guid, bool isUddiType) {
-            if (String.IsNullOrEmpty(guid)) throw new NullOrEmptyArgumentException("guid");
-            if (guid.Length < 10) throw new UnexpectedNumberOfCharactersException("guid", 10);
-            string guidString = "";
-            if (isUddiType) {
-                guidString = guid.Substring(5);
-            } 
-            else {
-                guidString = guid;
-            }
-
-            Guid g = Guid.Empty;
-            try {
-                g = new Guid(guidString);
-            }
-            catch (Exception ex) {
-                throw new UddiWrongGuidFormatException(guidString, ex);
-            }
-
-            _guid = g;
+            id = new UddiStringId(guid, isUddiType);
         }
 
         /// <summary>
@@ -106,26 +88,20 @@ namespace dk.gov.oiosi.uddi {
         /// </summary>
         /// <param name="guid">guid</param>
         public UddiGuidId(Guid guid) {
-            if (guid == Guid.Empty) {
-                throw new UddiEmptyGuidException();
-            }
-            _guid = guid;
+            id = new UddiStringId(guid);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="Id"></param>
-        public UddiGuidId(UddiId Id): this(Id.ID, true) {
-        }
+        public UddiGuidId(UddiId Id): this(Id.ID, true) {}
 
         /// <summary>
         /// Gets the guid
         /// </summary>
         public override string ID {
-            get {
-                return "uddi:" + _guid.ToString();
-            }
+            get { return id.ID; }
         }
 
         /// <summary>
