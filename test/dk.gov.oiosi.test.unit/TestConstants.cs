@@ -28,7 +28,7 @@ namespace dk.gov.oiosi.test.unit {
         public const string PATH_UNKNOWNTYPE_XML = raspProfileResources + "Documents/Examples Invalid/UnknownType.xml";
         public const string PATH_NONAMESPACE_XML = raspProfileResources + "Documents/Examples Invalid/NoNamespace.xml";
 
-        public const string PATH_SCHEMAS20 = raspProfileResources + "Schemas/OIOUBL v2.0/";
+        public const string PATH_SCHEMAS20 = raspProfileResources + "Schemas/UBL v2.0/";
         public const string PATH_SCHEMAS07 = raspProfileResources + "Schemas/OIOXML v0.7/";
         public const string PATH_SCHEMAS21b = raspProfileResources + "Schemas/OIOUBL v2.1-b/";
 

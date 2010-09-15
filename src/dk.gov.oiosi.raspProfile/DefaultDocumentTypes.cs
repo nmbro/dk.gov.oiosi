@@ -88,7 +88,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Katalog";
             const string rootName = "Catalogue";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-Catalogue-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-Catalogue-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Catalogue_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:Catalogue/cac:ReceiverParty/cbc:EndpointID";
@@ -112,7 +112,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Katalogforespørgsel";
             const string rootName = "CatalogueRequest";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-CatalogueRequest-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CatalogueRequest-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueRequest_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:CatalogueRequest/cac:ProviderParty/cbc:EndpointID";
@@ -136,7 +136,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "KontoUdtog";
             const string rootName = "Statement";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Statement-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-Statement-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-Statement-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Statement_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Statement.xsl";
             const string destinationKeyXPath = "/root:Statement/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
@@ -160,7 +160,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Opdatering af katalogelement";
             const string rootName = "CatalogueItemSpecificationUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-CatalogueItemSpecificationUpdate-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CatalogueItemSpecificationUpdate-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:CatalogueItemSpecificationUpdate/cac:ReceiverParty/cbc:EndpointID";
@@ -184,7 +184,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Opdatering af katalogpriser";
             const string rootName = "CataloguePricingUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-CataloguePricingUpdate-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CataloguePricingUpdate-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CataloguePricingUpdate_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:CataloguePricingUpdate/cac:ReceiverParty/cbc:EndpointID";
@@ -208,7 +208,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Ordreannulering";
             const string rootName = "OrderCancellation";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-OrderCancellation-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-OrderCancellation-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderCancellation_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl";
             const string destinationKeyXPath = "/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
@@ -232,7 +232,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Ordrebekræftelse";
             const string rootName = "OrderResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-OrderResponse-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-OrderResponse-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponse_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponse.xsl";
             const string destinationKeyXPath = "/root:OrderResponse/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
@@ -256,7 +256,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Ordreændring";
             const string rootName = "OrderChange";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-OrderChange-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-OrderChange-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderChange_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderChange.xsl";
             const string destinationKeyXPath = "/root:OrderChange/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
@@ -280,7 +280,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Sletning af katalog";
             const string rootName = "CatalogueDeletion";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-CatalogueDeletion-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CatalogueDeletion-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueDeletion_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:CatalogueDeletion/cac:ReceiverParty/cbc:EndpointID";
@@ -304,7 +304,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Applikationsmeddelse";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-ApplicationResponse-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-ApplicationResponse-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_ApplicationResponse_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl";
             const string destinationKeyXPath = "/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID";
@@ -328,7 +328,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Kreditnota";
             const string rootName = "CreditNote";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-CreditNote-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CreditNote-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CreditNote_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_CreditNote.xsl";
             const string destinationKeyXPath = "//cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
@@ -352,7 +352,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Faktura";
             const string rootName = "Invoice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-Invoice-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-Invoice-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Invoice_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Invoice.xsl";
             const string destinationKeyXPath = "/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
@@ -376,7 +376,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Ordre";
             const string rootName = "Order";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-Order-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-Order-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Order_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Order.xsl";
             const string destinationKeyXPath = "/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
@@ -400,7 +400,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Simpel ordrebekræftelse";
             const string rootName = "OrderResponseSimple";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-OrderResponseSimple-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-OrderResponseSimple-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponseSimple_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl";
             const string destinationKeyXPath = "/root:OrderResponseSimple/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
@@ -424,7 +424,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Rykker";
             const string rootName = "Reminder";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Reminder-2";
-            const string xsdPath = "Resources/Schemas/OIOUBL v2.0/UBL-Reminder-2.0.xsd";
+            const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-Reminder-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Reminder_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Reminder.xsl";
             const string destinationKeyXPath = "/root:Reminder/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
