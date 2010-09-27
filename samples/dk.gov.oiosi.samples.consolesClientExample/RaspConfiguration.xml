@@ -2965,7 +2965,7 @@
         <FriendlyName>Forsynings Specifikation</FriendlyName>
         <RootNamespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</RootNamespace>
         <RootName>UtilityStatement</RootName>
-        <ServiceContractTModel>uddi:nemhandel.dk:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
+        <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOUBL v2.1-b/UBL-UtilityStatement-2.1.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>

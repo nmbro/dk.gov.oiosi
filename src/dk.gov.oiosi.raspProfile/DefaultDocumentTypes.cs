@@ -459,7 +459,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementResponse";
-            const string serviceContractTModel = "uddi:nemhandel.dk:236f277d-a786-4724-a16e-26398b685a07";
+            const string serviceContractTModel = "uddi:236f277d-a786-4724-a16e-26398b685a07";
 
             DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             
