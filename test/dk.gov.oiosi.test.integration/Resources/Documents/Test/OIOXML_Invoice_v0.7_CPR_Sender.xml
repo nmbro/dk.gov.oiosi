@@ -5,13 +5,13 @@
 	<com:TypeCode>PIE</com:TypeCode>
 	<main:InvoiceCurrencyCode>DKK</main:InvoiceCurrencyCode>
 	<com:Note>[Bemærk: dette dokument er automatisk konverteret fra OIOUBL til OIOXML, jf. http://www.oioubl.info/oioubltools/da/oioubltools.html (v01p11).]</com:Note>
-	<com:BuyersReferenceID schemeID="EAN">5798009811738</com:BuyersReferenceID>
+	<com:BuyersReferenceID schemeID="EAN">5798009811585</com:BuyersReferenceID>
 	<com:ReferencedOrder>
 		<com:BuyersOrderID>5002701</com:BuyersOrderID>
 		<com:IssueDate>2005-11-01</com:IssueDate>
 	</com:ReferencedOrder>
 	<com:BuyerParty>
-		<com:ID schemeID="EAN">5798009811738</com:ID>
+		<com:ID schemeID="EAN">5798009811585</com:ID>
 		<com:AccountCode>5250124502</com:AccountCode><com:PartyName>
 			<com:Name>Den Lille Skole</com:Name>
 		</com:PartyName>
