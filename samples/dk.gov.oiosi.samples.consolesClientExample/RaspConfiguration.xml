@@ -3318,11 +3318,11 @@
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-Utility-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:570b3009-3f9f-46d2-b533-31d0bb4a37a0</TModelGuid>
+        <TModelGuid>uddi:570b3009-3f9f-46d2-b533-31d0bb4a37a0</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-UtilityR-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:1bfd82e6-0eca-47df-9230-37b97c9788c6</TModelGuid>
+        <TModelGuid>uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>

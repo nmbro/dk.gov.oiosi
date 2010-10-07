@@ -80,8 +80,8 @@ namespace dk.gov.oiosi.raspProfile {
             AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
             AddMapping("urn:www.nesubl.eu:profiles:profile7:ver2.0", "uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D");
             AddMapping("urn:www.nesubl.eu:profiles:profile8:ver2.0", "uddi:F4240370-CCA6-401e-9B5B-4531F413421D");
-            AddMapping("Reference-Utility-1.0", "uddi:nemhandel.dk:570b3009-3f9f-46d2-b533-31d0bb4a37a0");
-            AddMapping("Reference-UtilityR-1.0", "uddi:nemhandel.dk:1bfd82e6-0eca-47df-9230-37b97c9788c6");
+            AddMapping("Reference-Utility-1.0", "uddi:570b3009-3f9f-46d2-b533-31d0bb4a37a0");
+            AddMapping("Reference-UtilityR-1.0", "uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6");
         }
 
         private void AddMapping(string name, string tModelGuid) {
