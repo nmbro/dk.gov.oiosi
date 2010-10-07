@@ -117,7 +117,7 @@
 
 	<!-- Modtager -->
 	<cac:ReceiverParty>
-		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811585</cbc:EndpointID>
+		<cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798009811738</cbc:EndpointID>
 
 		<cac:PartyIdentification>
 			<cbc:ID schemeID="DK:CVR">DK12345678</cbc:ID>
