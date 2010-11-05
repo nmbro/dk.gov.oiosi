@@ -14,10 +14,12 @@ namespace dk.gov.oiosi.security.validation.configuration {
         public const string MultipleRootX509CertificateValidatorAppConfigurationName = "multipleRootX509CertificateValidatorConfiguration";
         public const string CertificateStoreIdentificationAppConfigurationCollectionName = "rootCertificateCollection";
 
+        
+
         #region IMultipleRootX509CertificateValidatorConfiguration Members
 
         public IEnumerable<ICertificateStoreIdentification> TrustedRootCertificates {
-            get { throw new NotImplementedException(); }
+            get { return CertificateStoreIdentificationConfigurationCollection.Cast<ICertificateStoreIdentification>(); }
         }
 
         #endregion
