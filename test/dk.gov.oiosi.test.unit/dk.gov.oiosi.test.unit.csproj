@@ -39,10 +39,14 @@
       <HintPath>..\..\lib\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -63,6 +67,8 @@
     <Compile Include="security\CertificateSubjectTest.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
+    <Compile Include="security\validation\configuration\MultipleRootX509CertificateValidatorAppConfigurationTest.cs" />
+    <Compile Include="security\validation\MultipleRootX509CertificateValidatorTest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
@@ -93,16 +99,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Certifcates\Device.cer">
+    <None Include="App.config" />
+    <None Include="Resources\Certificates\Device.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Certifcates\Employee.cer">
+    <None Include="Resources\Certificates\Employee.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Certifcates\Organisation.cer">
+    <None Include="Resources\Certificates\FOCES1.pkcs12">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Certifcates\Root.cer">
+    <None Include="Resources\Certificates\Organisation.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certificates\Root.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certificates\tdc_systemtest_2.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
