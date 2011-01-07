@@ -23,13 +23,14 @@ using NUnit.Framework;
 namespace dk.gov.oiosi.test.integration.communication {
     
     [TestFixture]
-    public class RaspRequestTest {
+    public class IntegrationRaspRequestTest {
 
         [TestFixtureSetUp]
         public void Setup() {
             CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
             ConfigurationUtil.SetupConfiguration("RaspConfigurationRaspRequestTest.xml");
         }
+
         [Test]
         public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
