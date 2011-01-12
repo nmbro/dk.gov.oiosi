@@ -85,10 +85,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Resources\Certificates\ Test NemHandelservice %28funktionscertifikat%29.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Certificates\FOCES1.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Certificates\FOCES1.pkcs12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certificates\NemHandel test service %28funktionscertifikat%29.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Certificates\NemHandel test service.cer">

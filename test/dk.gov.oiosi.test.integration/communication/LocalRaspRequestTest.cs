@@ -13,13 +13,21 @@ using System.Xml;
 using dk.gov.oiosi.xml.documentType;
 using System.ServiceModel.Channels;
 using System.Security.Cryptography.X509Certificates;
+using dk.gov.oiosi.raspProfile.extension.wcf;
+using dk.gov.oiosi.extension.wcf.Behavior;
 
 namespace dk.gov.oiosi.test.integration.communication {
 
+    /// <summary>
+    /// Class to test the transport locally
+    /// </summary>
     [TestFixture]
     public class LocalRaspRequestTest {
-        private const string LOCALHOST_STRING = "http://localhost:8080/test_rasp_service";
+        private const string HOST_STRING = "http://localhost:8080/test_rasp_service";
+        //private const string HOST_STRING = "http://testservice.nemhandel.gov.dk/TestEndpoint/dualcert_test_service/testservice.svc";
         private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/FOCES1.cer";
+        //private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/NemHandel test service (funktionscertifikat).cer";
+        //private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/ Test NemHandelservice (funktionscertifikat).cer";
         private X509Certificate2 privateKeyCertificate;
         private X509Certificate2 publicKeyCertificate;
 
@@ -44,25 +52,23 @@ namespace dk.gov.oiosi.test.integration.communication {
         # region Private methods
 
         private void AssertSendable(string path) {
-            var host = new ServiceHost(typeof(ServiceStubImplementation), new Uri[] { new Uri(LOCALHOST_STRING) });
-            host.Credentials.ServiceCertificate.Certificate = privateKeyCertificate;
+            using (ServiceHost serviceHost = new ServiceHost(typeof(ServiceStubImplementation))) {
+                serviceHost.Credentials.ServiceCertificate.Certificate = privateKeyCertificate;
+                //Adds the rm behaviour code for IIS exists in dk.gov.oiosi.raspProfile.extension.wcf.RaspServiceHostFactory
+                serviceHost.Description.Behaviors.Add(new EncryptRmBodiesBehavior());
 
-            try {
-                host.Open(TimeSpan.FromSeconds(5));
-
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(30));
-
-                var oioublFile = new FileInfo(path);
-
-                var response = SendRequestAndGetResponse(oioublFile);
-                Assert.IsNotNull(response);
-            }
-            catch (Exception ex) {
-                throw ex;
-            }
-            finally {
-                if (host.State != CommunicationState.Faulted) {
-                    host.Close(TimeSpan.FromSeconds(30));
+                try {
+                    serviceHost.Open(TimeSpan.FromSeconds(5));
+                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(30));
+                    var oioublFile = new FileInfo(path);
+                    var response = SendRequestAndGetResponse(oioublFile);
+                    Assert.IsNotNull(response);
+                } catch (Exception ex) {
+                    throw ex;
+                } finally {
+                    if (serviceHost.State != CommunicationState.Faulted) {
+                        serviceHost.Close(TimeSpan.FromSeconds(30));
+                    }
                 }
             }
         }
@@ -81,7 +87,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         private RaspRequest GetRaspRequest(OiosiMessage oiosiMessage) {
             var documentTypeConfigSearcher = new DocumentTypeConfigSearcher();
             var documentTypeConfig = documentTypeConfigSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
-            var endpointAddressUri = new Uri(LOCALHOST_STRING);
+            var endpointAddressUri = new Uri(HOST_STRING);
 
             var credentials = new Credentials(new OcesX509Certificate(privateKeyCertificate), new OcesX509Certificate(publicKeyCertificate));
             var request = new Request(endpointAddressUri, credentials);
