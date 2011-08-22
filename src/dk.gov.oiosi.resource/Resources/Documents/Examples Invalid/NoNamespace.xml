@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<NoNamespace>
+  <SenderID>5798009811738</SenderID>
+  <!-- The destination ID is an EAN number -->
+  <DestinationID>5793635524531</DestinationID>
+  <DateSent>2006-08-09</DateSent>
+  <Purpose>ResourceUpdate</Purpose>
+  <!-- This represents the destination in clear text -->
+  <Destination>Resource Database</Destination>
+  <NotificationText>Catalogue item no. 83376 has been updated</NotificationText>
+  <Description>Catalogue item no. 83376 has been updated from the AT to the DT model. Please update the written documentation.</Description>
+</NoNamespace>

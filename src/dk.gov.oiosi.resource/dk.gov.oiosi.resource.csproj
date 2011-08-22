@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{79042BE3-3F98-4C5E-BEA2-F82F497F8526}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dk.gov.oiosi.resource</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.resource</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Certificates\TDCLiveOcesRoot.cer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Certificates\TDCTestRoot.cer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\CCTS_CCT_SchemaModule-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_CurrencyCode_ISO_7_04.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_LanguageCode_ISO_7_04.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\CodeList_UnitCode_UNECE_7_04.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\OIOUBL_UTS-CommonBasicComponents-2.1.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonAggregateComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonBasicComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CommonExtensionComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-CoreComponentParameters-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-ExtensionContentDatatype-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-QualifiedDatatypes-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UBL-UtilityStatement-2.1.xsd" />
+    <None Include="Resources\Schemas\OIOUBL v2.1-b\UnqualifiedDataTypeSchemaModule-2.0.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\0p70dk_Reusable.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\CoreComponentParametersDk.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\CoreComponentTypesDk.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\Invoice.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\nonCardinalTypes.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pcmLax.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pcmStrict.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pcpLax.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pcpStrict.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\PIECOMredefines.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pieLax.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\PIEredefines.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pieStrict.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pipCOMredefines.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pipLax.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\Pipredefines.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\pipStrict.xsd" />
+    <None Include="Resources\Schemas\OIOXML v0.7\reusabletypes.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\CCTS_CCT_SchemaModule-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\CodeList_CurrencyCode_ISO_7_04.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\CodeList_LanguageCode_ISO_7_04.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\CodeList_UnitCode_UNECE_7_04.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-ApplicationResponse-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-AttachedDocument-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-BillOfLading-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Catalogue-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CatalogueDeletion-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CatalogueItemSpecificationUpdate-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CataloguePricingUpdate-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CatalogueRequest-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CertificateOfOrigin-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CommonAggregateComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CommonBasicComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CommonExtensionComponents-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CoreComponentParameters-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-CreditNote-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-DebitNote-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-DespatchAdvice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-ExtensionContentDatatype-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-ForwardingInstructions-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-FreightInvoice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Invoice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Order-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-OrderCancellation-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-OrderChange-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-OrderResponse-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-OrderResponseSimple-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-PackingList-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-QualifiedDatatypes-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Quotation-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-ReceiptAdvice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Reminder-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-RemittanceAdvice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-RequestForQuotation-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-SelfBilledCreditNote-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-SelfBilledInvoice-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Statement-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-TransportationStatus-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UBL-Waybill-2.0.xsd" />
+    <None Include="Resources\Schemas\UBL v2.0\UnqualifiedDataTypeSchemaModule-2.0.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Documents\Examples Invalid\NoNamespace.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\OIOUBL_Invoice_v2p1_NoId.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\OIOUBL_Invoice_v2p1_NoSender.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\OIOUBL_Invoice_v2p1_WrongElement.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\OIOUBL_Invoice_v2p1_WrongNamespace.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\OIOXML_Invoice_Invalid_EanNumber_v0.7.xml" />
+    <Content Include="Resources\Documents\Examples Invalid\UnknownType.xml" />
+    <Content Include="Resources\Documents\Examples\OIOUBL_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_ApplicationResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueDeletion_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueDeletion_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CataloguePricingUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CataloguePricingUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueRequest_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CatalogueRequest_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Catalogue_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_CreditNote_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderCancellation_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderCancellation_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderChange_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderChange_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponseSimple_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponseSimple_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_OrderResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Order_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Order_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Reminder_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Reminder_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_Statement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_UtilityStatement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOXML_CreditNote_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOXML_Invoice_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Licenses\RaspClientLicense.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\SchematronStylesheets\OIOUBL v2.0\" />
+    <Folder Include="Resources\SchematronStylesheets\OIOXML v0.7\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
