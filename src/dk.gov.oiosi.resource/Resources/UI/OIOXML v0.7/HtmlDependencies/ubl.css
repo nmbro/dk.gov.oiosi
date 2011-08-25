@@ -1,0 +1,77 @@
+BODY { 	
+	background : White;
+	color : WindowText;
+	margin : 1px;
+	font-family : Arial;
+	font-size : x-small;
+width:auto;
+
+}
+hr {color:navy;width:100%}
+
+
+	#Iheader {
+		margin:0; padding:0;
+		background : ActiveCaption;
+	color : CaptionText;
+		}
+
+	#main1{
+		margin:0; padding:0;
+		
+		}
+	#main2 {
+		margin:5; padding:5;
+		
+		}
+	#BuyerParty, #DestinationParty{
+		float:left;
+		width:30%;
+		margin:5x; padding:5px;
+		background-color: white;
+		border-left:1px solid navy;
+		border-top:2px solid navy;
+		font-size:80%;
+	background : Menu;
+	color : WindowText;
+	text-align : left;
+	padding : 1px;
+		}
+	#SellerParty, #PaymentMeans  {
+position:relative;
+top:15px;
+
+		float:left;
+		width:30%;
+		margin:5x; padding:5px;
+		border-left:1px solid navy;
+		border-top:2px solid navy;
+		font-size:80%;
+		background : White;
+	
+	color : black;
+	text-align : left;
+	padding : 1px;
+		}
+
+.invoicemain{border: 1px dashed navy;padding-top:25px;width:80%;margin-left:15%;padding-bottom:5px;}
+
+.pris tr{border-top: 5px solid navy;}	
+	
+table {	
+	background : white;
+	color : black;
+	
+	padding : 5px;
+	
+	width : 80%;
+margin-left:10%;
+}
+td{font-family : Arial;font-size:x-small; valign:top;}
+.invoiceinfo{padding:5px;margin-left:10%}
+
+.invoiceinfo span {border-right:1px solid black; padding-right:1px; margin-left:2px; }
+
+.secondaryRow .firstitem{background-color:white;color:black;}
+
+.buyerparty , .sellerparty {padding:5px;}
