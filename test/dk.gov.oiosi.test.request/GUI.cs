@@ -105,10 +105,19 @@ namespace dk.gov.oiosi.test.request {
         }
 
         public static XmlDocument LoadXmlDocument() {
-            Console.Write("File to send: ");
-            string file = Console.ReadLine();
+            string defaultFile = "D:\\Test\\OIOXML_Invoice_v0.7.xml";
+            Console.Write("File to send (Empty line result in using file " + defaultFile+") : ");
             XmlDocument xdoc = new XmlDocument();
-            xdoc.Load(file);
+            string file = Console.ReadLine();
+            if(string.IsNullOrEmpty(file))
+            {
+                xdoc.Load(defaultFile);
+            }
+            else
+            {
+                xdoc.Load(file);
+            }
+            
             return xdoc;
         }
 
@@ -121,46 +130,93 @@ namespace dk.gov.oiosi.test.request {
 
         public static X509Certificate2 GetCertificate() {
 
-            Console.Write("Store ");
+            Console.WriteLine("Store (empty line result in StoreName=My).");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write("[" + StoreName.My + "/" + StoreName.Root + "/" + StoreName.AddressBook + "/" + StoreName.CertificateAuthority + "]: ");
+            Console.WriteLine("[" + StoreName.My + "/" + StoreName.Root + "/" + StoreName.AddressBook + "/" + StoreName.CertificateAuthority + "]: ");
             Console.ForegroundColor = ConsoleColor.White;
 
             StoreName storeName = StoreName.My;
+            string userFeedback;
             bool done = false;
             do {
-                try {
-                    storeName = (StoreName)Enum.Parse(typeof(StoreName), Console.ReadLine());
+                userFeedback = Console.ReadLine();
+                if (string.IsNullOrEmpty(userFeedback))
+                {
+                    // using the default values
+                    storeName = StoreName.My;
                     done = true;
                 }
-                catch { }
+                else
+                {
+
+                    try
+                    {
+                        storeName = (StoreName)Enum.Parse(typeof(StoreName), userFeedback);
+                        done = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
             } while (!done);
 
 
-            Console.Write("Store Location ");
+            Console.WriteLine("Store Location (empty line result in StoreLocation=CurrentUser).");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write("[" + StoreLocation.CurrentUser + "/" + StoreLocation.LocalMachine + "]: ");
+            Console.WriteLine("[" + StoreLocation.CurrentUser + "/" + StoreLocation.LocalMachine + "]: ");
             Console.ForegroundColor = ConsoleColor.White;
-
 
             StoreLocation storeLocation = StoreLocation.CurrentUser;
             done = false;
             do {
-                try {
-                    storeLocation = (StoreLocation)Enum.Parse(typeof(StoreLocation), Console.ReadLine());
+                userFeedback = Console.ReadLine();
+                if (string.IsNullOrEmpty(userFeedback))
+                {
+                    // using the default values
+                    storeLocation = StoreLocation.CurrentUser;
                     done = true;
                 }
-                catch (Exception e) { Console.WriteLine(e); }
+                else
+                {
+                    try
+                    {
+                        storeLocation = (StoreLocation)Enum.Parse(typeof(StoreLocation), userFeedback);
+                        done = true;
+                    }
+                    catch (Exception e) { Console.WriteLine(e); }
+
+                }
             } while (!done);
-
-
-
-            Console.Write("Serial number: ");
-            string serial = Console.ReadLine();
-
 
             X509Store certStore = new X509Store(storeName, storeLocation);
             certStore.Open(OpenFlags.ReadOnly);
+
+            Console.WriteLine("At that location the following certificate exist: ");
+            Console.WriteLine(" Serial");
+            Console.WriteLine("   Issuer");
+            Console.WriteLine("   Subject");
+
+            foreach (X509Certificate2 xxx in certStore.Certificates)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(" " + xxx.SerialNumber);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("   " + xxx.Issuer);
+                Console.WriteLine("   " + xxx.Subject);
+                //Console.WriteLine();
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+            string defaultSerial = "4037608E";
+            Console.Write("Serial number (empty line will result in " + defaultSerial + "): ");
+            string serial = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(serial))
+            {
+                serial = defaultSerial;
+            }
+
             X509Certificate2 clientCert = certStore.Certificates.Find(X509FindType.FindBySerialNumber,
                 serial, true)[0];
             certStore.Close();
@@ -181,9 +237,16 @@ namespace dk.gov.oiosi.test.request {
         public static void PrintResponse(Response response) {
             Console.ForegroundColor = ConsoleColor.Yellow;
             if (response.ResponseMessage.HasBody)
-                Console.WriteLine("\nResponse received: " + response.ResponseMessage.MessageXml.OuterXml + "\n");
+            {
+                Console.WriteLine("Response received");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("  " + response.ResponseMessage.MessageXml.OuterXml);
+            }
             else
-                Console.WriteLine("Empty response received\n");
+            {
+                Console.WriteLine("Empty response received");
+            }
+
             Console.ForegroundColor = ConsoleColor.White;
         }
         #endregion

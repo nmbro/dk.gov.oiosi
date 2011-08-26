@@ -331,10 +331,10 @@ namespace dk.gov.oiosi.raspProfile {
             const string xsdPath = "Resources/Schemas/UBL v2.0/UBL-CreditNote-2.0.xsd";
             const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CreditNote_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_CreditNote.xsl";
-            const string destinationKeyXPath = "//cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "//cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "//cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "//cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string destinationKeyXPath = "/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteResponse";
@@ -644,12 +644,29 @@ namespace dk.gov.oiosi.raspProfile {
             return namespaces;
         }
 
-        private ServiceEndpointKey CreateSenderKey(string xpath) {
+        private ServiceEndpointKey CreateSenderKey(string xpath) 
+        {
+            // Why is there a differents between CreateSenderKey and CreateKey ???
+            // It is not the configuration file job, to limith the use of NemHandel
+            // If the xml document contain errors, the errors should be handled be schema or schematron validation
+            
             ServiceEndpointKey key = CreateKey(xpath);
-            foreach (KeyTypeMappingExpression mappingExpression in key.MappingExpressions) {
-                if (!mappingExpression.Name.Equals("EndpointKeyType", StringComparison.CurrentCultureIgnoreCase)) continue;
-                KeyTypeMapping cprMapping = new KeyTypeMapping("CPR", "cpr");
-                mappingExpression.AddMapping(cprMapping);
+            foreach (KeyTypeMappingExpression mappingExpression in key.MappingExpressions) 
+            {
+                if (!mappingExpression.Name.Equals("EndpointKeyType", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    continue;
+                }
+                else
+                {
+                    KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
+                    KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
+                    KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
+
+                    mappingExpression.AddMapping(cprMapping);
+                    mappingExpression.AddMapping(uppercasedCPRMapping);
+                    mappingExpression.AddMapping(dkcprMapping);
+                }
             }
             return key;
         }
@@ -658,29 +675,51 @@ namespace dk.gov.oiosi.raspProfile {
             ServiceEndpointKey key = new ServiceEndpointKey(xpath);
             string keyTypeXpath = xpath + "/@schemeID";
             KeyTypeMappingExpression mappingExpression = new KeyTypeMappingExpression("EndpointKeyType", keyTypeXpath);
-            KeyTypeMapping deprecatedEanMapping = new KeyTypeMapping("ean", "ean");
-            KeyTypeMapping uppercasedDeprecatedEanMapping = new KeyTypeMapping("EAN", "ean");
-            KeyTypeMapping deprecatedCvrMapping = new KeyTypeMapping("CVR", "cvr");
-            KeyTypeMapping eanMapping = new KeyTypeMapping("GLN", "ean");
-            KeyTypeMapping cvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
+
+            KeyTypeMapping eanMapping = new KeyTypeMapping("ean", "ean");
+            KeyTypeMapping uppercasedEanMapping = new KeyTypeMapping("EAN", "ean");
+            KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
+
+            KeyTypeMapping cvrMapping = new KeyTypeMapping("cvr", "cvr");
+            KeyTypeMapping uppercasedCVRMapping = new KeyTypeMapping("CVR", "cvr");
+            KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
+
+            KeyTypeMapping pMapping = new KeyTypeMapping("p", "p");
+            KeyTypeMapping uppercasedPMapping = new KeyTypeMapping("P", "p");
+            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+
+            KeyTypeMapping seMapping = new KeyTypeMapping("se", "se");
+            KeyTypeMapping uppercasedSEMapping = new KeyTypeMapping("SE", "se");
+            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
+
             KeyTypeMapping ovtMapping = new KeyTypeMapping("ISO 6523", "ovt");
-            KeyTypeMapping pMapping = new KeyTypeMapping("DK:P", "p");
-            KeyTypeMapping seMapping = new KeyTypeMapping("DK:SE", "se");
             KeyTypeMapping vansMapping = new KeyTypeMapping("DK:VANS", "vans");
             KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
             KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
-            mappingExpression.AddMapping(deprecatedEanMapping);
-            mappingExpression.AddMapping(uppercasedDeprecatedEanMapping);
-            mappingExpression.AddMapping(deprecatedCvrMapping);
+            
             mappingExpression.AddMapping(eanMapping);
+            mappingExpression.AddMapping(uppercasedEanMapping);
+            mappingExpression.AddMapping(glnMapping);
+
             mappingExpression.AddMapping(cvrMapping);
-            mappingExpression.AddMapping(ovtMapping);
+            mappingExpression.AddMapping(uppercasedCVRMapping);            
+            mappingExpression.AddMapping(dkcvrMapping);
+            
             mappingExpression.AddMapping(pMapping);
+            mappingExpression.AddMapping(uppercasedPMapping);
+            mappingExpression.AddMapping(dkpMapping);
+
             mappingExpression.AddMapping(seMapping);
+            mappingExpression.AddMapping(uppercasedSEMapping);            
+            mappingExpression.AddMapping(dkseMapping);
+
+            mappingExpression.AddMapping(ovtMapping);
             mappingExpression.AddMapping(vansMapping);
             mappingExpression.AddMapping(ibanMapping);
             mappingExpression.AddMapping(dunsMapping);
+
             key.AddMappingExpression(mappingExpression);
+
             return key;
         }
 

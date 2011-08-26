@@ -16,20 +16,20 @@ namespace dk.gov.oiosi.raspProfile.communication {
         /// Synchronously sends a request and gets a response
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="documentId"></param>
         /// <param name="response"></param>
-        void GetResponse(OiosiMessage request, string documentId, out Response response);
+        /// <param name="documentId"></param>
+        void GetResponse(OiosiMessage request, out Response response, string documentId);
 
         /// <summary>
         /// Asynchronously starts sending a request
         /// </summary>
-        IAsyncResult BeginGetResponse (OiosiMessage message, string documentId, AsyncCallback callback);
+        IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, string documentId, AsyncCallback callback);
        
         /// <summary>
         /// Asynchronously ends sending a request
         /// </summary>
         /// <returns>Response message</returns>
-        Response EndGetResponse (IAsyncResult asyncResult);
+        void EndGetResponse(IAsyncResult asyncResult, out Response response);
 
 
         /// <summary>

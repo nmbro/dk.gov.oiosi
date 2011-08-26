@@ -31,7 +31,7 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.HasConfigurationSection<OcspConfig>();
             ConfigurationHandler.HasConfigurationSection<SchematronStoreConfig>();
             ConfigurationHandler.HasConfigurationSection<UddiConfig>();
-            ConfigurationHandler.HasConfigurationSection<RootCertificateConfig>();
+            ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>();
 
             EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ConfigurationHandler.GetConfigurationSection<SchematronStoreConfig>();
             ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            ConfigurationHandler.GetConfigurationSection<RootCertificateConfig>();
+            ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
 
 

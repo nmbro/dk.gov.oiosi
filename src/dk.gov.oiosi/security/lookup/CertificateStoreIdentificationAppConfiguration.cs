@@ -8,6 +8,10 @@ namespace dk.gov.oiosi.security.lookup {
     /// </summary>
     public class CertificateStoreIdentificationAppConfiguration : ConfigurationElement, ICertificateStoreIdentification {
         /// <summary>
+        /// TODO: dokument this
+        /// </summary>
+        public const string NameName = "name";
+        /// <summary>
         /// Constant definition of what the store location element is called
         /// </summary>
         public const string StoreLocationName = "storeLocation";
@@ -19,6 +23,14 @@ namespace dk.gov.oiosi.security.lookup {
         /// Constant definition of what the serial number element is called
         /// </summary>
         public const string SerialNumberName = "serialNumber";
+
+        /// <summary>
+        /// TODO document this
+        /// </summary>
+        [ConfigurationProperty(NameName, IsKey=true)]
+        public string Name {
+            get { return (string)this[NameName]; }
+        }
 
         #region ICertificateStoreIdentification Members
 

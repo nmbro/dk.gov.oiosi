@@ -102,16 +102,17 @@ namespace dk.gov.oiosi.uddi {
         /// <param name="serviceType">The service type supported at the endpoint</param>
         /// <param name="processes">The processes supported by the endpoint</param>
         public UddiLookupResponse(Identifier endpointIdentifierActual, EndpointAddress endpointAddress, DateTime activationDate, DateTime expirationDate, CertificateSubject certificateSubjectSerialNumber, Uri termsOfUseUrl, System.Net.Mail.MailAddress serviceContactEmail, Version version, UddiId newerVersionReference, UddiId serviceType, List<ProcessRoleDefinition> processes) {
-            EndpointIdentifierActual = endpointIdentifierActual;
-            EndpointAddress = endpointAddress;
-            ActivationDate = activationDate;
-            ExpirationDate = expirationDate;
-            CertificateSubjectSerialNumber = certificateSubjectSerialNumber;
-            TermsOfUseUrl = termsOfUseUrl;
-            ServiceContactEmail = serviceContactEmail;
-            Version = version;
-            NewerVersionReference = newerVersionReference;
-            _processRoles = processes;
+            this.EndpointIdentifierActual = endpointIdentifierActual;
+            this.EndpointAddress = endpointAddress;
+            this.ActivationDate = activationDate;
+            this.ExpirationDate = expirationDate;
+            this.CertificateSubjectSerialNumber = certificateSubjectSerialNumber;
+            this.TermsOfUseUrl = termsOfUseUrl;
+            this.ServiceContactEmail = serviceContactEmail;
+            this.Version = version;
+            this.NewerVersionReference = newerVersionReference;
+            this.ServiceType = serviceType;
+            this._processRoles = processes;
         }
 
         /// <summary>

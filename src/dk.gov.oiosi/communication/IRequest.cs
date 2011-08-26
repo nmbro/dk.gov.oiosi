@@ -44,21 +44,19 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         /// <param name="message">Request message</param>
         /// <returns>Response message</returns>
-        Response GetResponse (OiosiMessage message);
+        void GetResponse(OiosiMessage message, out Response response);
 
         /// <summary>
         /// Asynchronously starts sending a request
         /// </summary>
         /// <param name="message">Request message</param>
         /// <param name="callback">Callback delegate</param>
-        IAsyncResult BeginGetResponse (OiosiMessage message, AsyncCallback callback);
+        IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, AsyncCallback callback);
        
         /// <summary>
         /// Asynchronously ends sending a request
         /// </summary>
-        /// <returns>Response message</returns>
-        Response EndGetResponse (IAsyncResult asyncResult);
-
+        void EndGetResponse(IAsyncResult asyncResult, out Response response);
 
         /// <summary>
         /// Shut-down

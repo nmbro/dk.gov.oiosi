@@ -35,6 +35,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.lookup;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
@@ -79,9 +80,17 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// Loads the configured OCES default root certificate
         /// </summary>
         /// <returns>The loaded x509 certificate. If no certificate is found, an exception is thrown.</returns>
-        public X509Certificate2 GetDefaultOcesRootCertificateFromStore() {
-            RootCertificateConfig rootCertificateConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateConfig>();
-            return CertificateLoader.GetCertificateFromCertificateStoreInformation(rootCertificateConfig.RootCertificateLocation);
+        public IList<X509Certificate2> GetDefaultOcesRootCertificateListFromStore() {
+            IList<X509Certificate2> list = new List<X509Certificate2>();
+            RootCertificateCollectionConfig rootCertificateConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
+            X509Certificate2 certificate2;
+            foreach(CertificateStoreIdentification certificateStoreIdentification in rootCertificateConfig.GetAsList())
+            {
+                certificate2 = CertificateLoader.GetCertificateFromCertificateStoreInformation(certificateStoreIdentification);
+                list.Add(certificate2);
+            }
+
+            return list;
         }
     }
 }

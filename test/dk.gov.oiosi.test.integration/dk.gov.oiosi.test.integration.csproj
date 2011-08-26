@@ -50,7 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
-    <Compile Include="communication\RaspRequestTest.cs" />
+    <Compile Include="communication\LocalRaspRequestTest.cs" />
+    <Compile Include="communication\IntegrationRaspRequestTest.cs" />
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="email\LesnikowskiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,22 +84,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Resources\Certificates\FOCES1.pkcs12">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\NemHandel test service.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\ocesca.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\Revoked.cer">
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Funktionscertifikat\CVR26769388.Expire20100115.NemHandel test service.cer">
+      <Link>Resources\Certificates\CVR26769388.Expire20100115.NemHandel test service.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Certificates\TDCOCESSTEST2.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Root\TDC OCES CA.cer">
+      <Link>Resources\Certificates\TDC OCES CA.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20111016.FOCES1.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20111016.FOCES1.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx</Link>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
+      <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="RaspConfigurationRaspRequestTest.xml">

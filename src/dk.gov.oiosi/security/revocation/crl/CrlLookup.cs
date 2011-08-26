@@ -40,7 +40,7 @@ using Org.BouncyCastle.X509;
 namespace dk.gov.oiosi.security.revocation.crl
 {
     /// <summary>
-    /// Class for checking certificate revocation status against a CRL.
+    /// Class for checking certificate revocation status against a CRL (Certificate Revocation List).
     /// 
     /// Makes use of a cache for storing CRLs
     /// </summary>

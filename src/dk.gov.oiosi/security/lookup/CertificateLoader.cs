@@ -158,6 +158,9 @@ namespace dk.gov.oiosi.security.lookup {
         public static X509Certificate2Collection GetCertificatesFromStore(StoreName storeName, StoreLocation storeLocation, string issuerName) {
             X509Store store = new X509Store(storeName, storeLocation);
             store.Open(OpenFlags.ReadOnly);
+
+            // TODO - JLM  - hvis der er tre nivauer - får vi så det ønskede certificat, eller det mellemste niveau?
+
             X509Certificate2Collection certificates = store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, false);
             store.Close();
             return certificates;

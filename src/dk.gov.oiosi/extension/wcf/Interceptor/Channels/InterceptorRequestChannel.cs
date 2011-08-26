@@ -155,8 +155,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
                 HandleException(message);
                 WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + ex);
                 throw ex;
-            }
-            
+            }           
         }
 
         /// <summary>

@@ -121,7 +121,7 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
         /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
         /// <param name="request">Request message</param>
-        public void GetResponse(OiosiMessage request, string documentId, out Response response)
+        public void GetResponse(OiosiMessage request, out Response response, string documentId)
         {
             AddCustomHeaders(request, documentId);
             incapsulatedRequest.GetResponse(request, out response);
@@ -131,22 +131,23 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// Asynchronously starts sending a request
         /// </summary>
         /// <param name="message">Request message</param>
+        /// <param name="response">The response object</param>
         /// <param name="documentId">The document Id used for the custom headers</param>
         /// <param name="callback">The asynchronous callback</param>
         /// <returns>Returns an IAsyncResult object</returns>
-        public IAsyncResult BeginGetResponse(OiosiMessage message, string documentId, AsyncCallback callback)
+        public IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, string documentId, AsyncCallback callback)
         {
             AddCustomHeaders(message, documentId);
-            return incapsulatedRequest.BeginGetResponse(message, callback);
+            return incapsulatedRequest.BeginGetResponse(message, out response, callback);
         }
 
         /// <summary>
         /// Asynchronously ends sending a request
         /// </summary>
         /// <returns>Response message</returns>
-        public Response EndGetResponse(IAsyncResult asyncResult)
+        public void EndGetResponse(IAsyncResult asyncResult, out Response response)
         {
-            return incapsulatedRequest.EndGetResponse(asyncResult);
+            incapsulatedRequest.EndGetResponse(asyncResult, out response);
         }
 
         /// <summary>

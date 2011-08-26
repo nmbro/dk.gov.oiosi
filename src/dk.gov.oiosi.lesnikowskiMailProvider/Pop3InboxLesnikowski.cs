@@ -224,7 +224,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider {
             try {
                 // Get the account stats and see if there were any mails
                 _pop3.GetAccountStat();
-                MailSoap12TransportBinding msg = null;
+                //MailSoap12TransportBinding msg = null;
 
                 if (_pop3.MessageCount < 1) return null;
 

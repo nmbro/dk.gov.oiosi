@@ -179,6 +179,7 @@
     <Compile Include="extension\wcf\ServiceHostFactoryEncryptedRmBodies.cs" />
     <Compile Include="security\ICertificateConfiguration.cs" />
     <Compile Include="security\lookup\CertificateStoreIdentificationAppConfiguration.cs" />
+    <Compile Include="security\lookup\RootCertificateLocation.cs" />
     <Compile Include="security\lookup\ICertificateStoreIdentification.cs" />
     <Compile Include="security\oces\AmbigousSubjectCvrNumberException.cs" />
     <Compile Include="security\oces\EmployeeOcesX509Certificate.cs" />
@@ -199,7 +200,11 @@
     <Compile Include="security\InvalidOcesCertificateException.cs" />
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
-    <Compile Include="security\RootCertificateConfig.cs" />
+    <Compile Include="security\RootCertificateCollectionConfig.cs" />
+    <Compile Include="security\lookup\CertificateStoreIdentificationAppConfigurationCollection.cs" />
+    <Compile Include="security\validation\configuration\MultipleRootX509CertificateValidatorAppConfiguration.cs" />
+    <Compile Include="security\validation\configuration\IMultipleRootX509CertificateValidatorConfiguration.cs" />
+    <Compile Include="security\validation\MultipleRootX509CertificateValidator.cs" />
     <Compile Include="uddi\EndpointAddressTypeCode.cs" />
     <Compile Include="uddi\EndpointKeyTypeCode.cs" />
     <Compile Include="uddi\FindQualifiers.cs" />
@@ -549,10 +554,10 @@
     <Compile Include="extension\wcf\Interceptor\Validation\ValidationConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Certificates\Readme.txt" />
-    <Content Include="Resources\Licenses\RaspClientLicense.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Licenses\RaspClientLicense.txt">
+      <Link>Resources\Licenses\RaspClientLicense.txt</Link>
     </Content>
+    <Content Include="Resources\Certificates\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="addressing\ErrorMessages.resx">
@@ -633,8 +638,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Licenses\License.rtf">
+      <Link>Resources\Licenses\License.rtf</Link>
+    </None>
     <None Include="app.config" />
-    <None Include="Resources\Licenses\License.rtf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">

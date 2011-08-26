@@ -34,6 +34,9 @@ using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.common.cache;
+using dk.gov.oiosi.security;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -42,8 +45,8 @@ namespace dk.gov.oiosi.uddi {
     /// </summary>
     public class UddiLookupClient : IUddiLookupClient {
         public const string RASPREGISTRATIONCONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
-        private static readonly ICache<UddiLookupKey, List<UddiService>> getServiceCache = new TimedCache<UddiLookupKey, List<UddiService>>(new TimeSpan(1, 0, 0, 0));
-        private static readonly ICache<UddiId, UddiTModel> getTModelCache = new TimedCache<UddiId, UddiTModel>(new TimeSpan(1, 0, 0, 0));
+        private static readonly ICache<UddiLookupKey, List<UddiService>> getServiceCache = ServiceCache();
+        private static readonly ICache<UddiId, UddiTModel> getTModelCache = TModelCache();
 
 
         private UDDI_Inquiry_PortTypeClient _uddiProxy;
@@ -58,6 +61,49 @@ namespace dk.gov.oiosi.uddi {
 
         #region IUddiLookupClient Members
 
+        private static ICache<UddiLookupKey, List<UddiService>> ServiceCache()
+        {
+            TimeSpan timeSpan = CreateTimeSpan("ServiceCache", 0, 1, 0, 0);
+            ICache<UddiLookupKey, List<UddiService>> serviceCache = new TimedCache<UddiLookupKey, List<UddiService>>(timeSpan);
+
+            return serviceCache;
+        }
+
+        private static ICache<UddiId, UddiTModel> TModelCache()
+        {
+            TimeSpan timeSpan = CreateTimeSpan("TModelCache", 0, 1, 0, 0);
+            ICache<UddiId, UddiTModel> tModelCache = new TimedCache<UddiId, UddiTModel>(timeSpan);
+
+            return tModelCache;
+        }
+
+        private static System.TimeSpan CreateTimeSpan(string key, int days, int hours, int minutes, int seconds)
+        {
+            TimeSpan cacheTime;
+
+            string value = ConfigurationManager.AppSettings[key];
+            if (string.IsNullOrEmpty(value))
+            {
+                // not defined, using default cache time
+                cacheTime = new TimeSpan(days, hours, minutes, seconds);
+            }
+            else
+            {
+                if (System.TimeSpan.TryParse(value, out cacheTime))
+                {
+                    // values succesfull parsed to boolean
+                }
+                else
+                {
+                    // parsing to TimeSpan failed
+                    // using default cache time
+                    cacheTime = new TimeSpan(days, hours, minutes, seconds);
+                }
+            }
+
+            return cacheTime;
+        }
+
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).
         /// </summary>
@@ -65,10 +111,12 @@ namespace dk.gov.oiosi.uddi {
             if (lookupParameters == null) throw new ArgumentNullException("lookupParameters");
 
             List<UddiLookupResponse> supportedResponses = new List<UddiLookupResponse>();
-            var uddiLookupResponses = GetUddiResponses(lookupParameters);
-            foreach (var uddiLookupResponse in uddiLookupResponses) {
+            List<UddiLookupResponse> uddiLookupResponses = GetUddiResponses(lookupParameters);
+            foreach (UddiLookupResponse uddiLookupResponse in uddiLookupResponses)
+            {
                 bool hasAcceptedTransportProtocol = HasAcceptedTransportProtocol(uddiLookupResponse, lookupParameters);
-                if (hasAcceptedTransportProtocol) {
+                if (hasAcceptedTransportProtocol)
+                {
                     supportedResponses.Add(uddiLookupResponse);
                 }
             }
@@ -133,18 +181,26 @@ namespace dk.gov.oiosi.uddi {
                     getServiceCache.Set(key, uddiServices);
                 }
             }
-            
-            foreach (UddiService uddiService in uddiServices) {
-                if(uddiService.IsInactiveOrExpired()) continue;
 
-                IEnumerable<UddiBinding> supportedBindings = uddiService.Bindings;
-                if (filterResponseByProfile) {
-                    supportedBindings = uddiService.GetBindingsSupportingOneOrMoreProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
+            UddiLookupResponse lookupResponse;
+            foreach (UddiService uddiService in uddiServices) {
+                if (uddiService.IsInactiveOrExpired())
+                {
+                    continue;
                 }
-                
-                foreach (UddiBinding uddiBinding in supportedBindings) {
-                    var lookupResponse = GetLookupResponse(lookupParameters, uddiService, uddiBinding);
-                    lookupResponses.Add(lookupResponse);
+                else
+                {
+                    IEnumerable<UddiBinding> supportedBindings = uddiService.Bindings;
+                    if (filterResponseByProfile)
+                    {
+                        supportedBindings = uddiService.GetBindingsSupportingOneOrMoreProfileAndRole(lookupParameters.ProfileIds, lookupParameters.ProfileRoleIdentifier);
+                    }
+
+                    foreach (UddiBinding uddiBinding in supportedBindings)
+                    {
+                        lookupResponse = GetLookupResponse(lookupParameters, uddiService, uddiBinding);
+                        lookupResponses.Add(lookupResponse);
+                    }
                 }
             }
 
@@ -152,19 +208,33 @@ namespace dk.gov.oiosi.uddi {
         }
 
         private UddiLookupResponse GetLookupResponse(LookupParameters lookupParameters, UddiService uddiService, UddiBinding uddiBinding) {
-            return new UddiLookupResponse(
-                lookupParameters.Identifier,
-                uddiBinding.GetEndpointAddress(),
-                uddiService.GetActivationDateUtc(),
-                uddiService.GetExpirationDateUtc(),
-                uddiService.GetCertificateSubject(),
-                uddiService.GetTermsOfUseUrl(),
-                uddiService.GetContactMail(),
-                uddiService.GetVersion(),
-                uddiService.GetNewerVersion(),
-                uddiBinding.GetPortType().UddiId,
-                uddiBinding.GetProcessRoleDefinitions()
+            Identifier identifier = lookupParameters.Identifier;
+            EndpointAddress endpointAddress = uddiBinding.GetEndpointAddress();
+            DateTime activationDateUtc = uddiService.GetActivationDateUtc();
+            DateTime expirationDateUtc = uddiService.GetExpirationDateUtc();
+            CertificateSubject subject = uddiService.GetCertificateSubject();
+            Uri termsOfUse = uddiService.GetTermsOfUseUrl();
+            MailAddress mail = uddiService.GetContactMail();
+            Version version = uddiService.GetVersion();
+            UddiId newerVersion = uddiService.GetNewerVersion();
+            UddiId serviceType = uddiBinding.GetPortType().UddiId;
+            List<ProcessRoleDefinition> list = uddiBinding.GetProcessRoleDefinitions();
+            
+            UddiLookupResponse response = new UddiLookupResponse(
+                identifier,
+                endpointAddress,
+                activationDateUtc,
+                expirationDateUtc,
+                subject,
+                termsOfUse,
+                mail,
+                version,
+                newerVersion,
+                serviceType,
+                list
                 );
+
+            return response;
         }
 
         private List<UddiService> GetUddiServices(Identifier organizationIdentifier, UddiId serviceUddiId, string profileConformanceClaim) {
