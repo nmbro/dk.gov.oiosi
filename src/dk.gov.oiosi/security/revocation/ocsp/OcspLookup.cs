@@ -38,16 +38,21 @@ using dk.gov.oiosi.common;
 using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
 using Iloveit.Ocsp.Demo;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
     /// <summary>
-    /// Class for checking certificate revocation status against an OCSP server.
+    /// Class for checking certificate revocation status against an OCSP (Online Certificate Status Protocol) server.
     /// </summary>
     public class OcspLookup : IRevocationLookup {
 
-        OcspConfig _configuration;
-        X509Certificate2 _defaultOcesRootCertificate;
+        private OcspConfig _configuration;
+
+        /// <summary>
+        /// List of the default OCES (OCES1 and OCES2) root certificate
+        /// </summary>
+        private IList<X509Certificate2> defaultOcesRootCertificateList;
 
         private static readonly ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(new TimeSpan(1, 0, 0));
 
@@ -70,18 +75,20 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// to get a default root certificate from a Configuration.xml file
         /// </summary>
         /// <param name="configuration">OCSP configuration</param>
-        /// <param name="defaultRootCertificate">If the default root certificate is set to null, an attempt is made
+        /// <param name="defaultRootCertificateList">If the default root certificate is set to null, an attempt is made
         /// to get a default root certificate from a Configuration.xml file</param>
-        private void Init(OcspConfig configuration, X509Certificate2 defaultRootCertificate) {
+        private void Init(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList) {
             try {
                 // 1. Set configuration
                 _configuration = configuration;
 
                 // 2. Get default certificate:
-                if (defaultRootCertificate == null) {
-                    _defaultOcesRootCertificate = _configuration.GetDefaultOcesRootCertificateFromStore();
-                } else {
-                    _defaultOcesRootCertificate = defaultRootCertificate;
+                if (defaultRootCertificateList == null)
+                {
+                    this.defaultOcesRootCertificateList = _configuration.GetDefaultOcesRootCertificateListFromStore();
+                } else 
+                {
+                    this.defaultOcesRootCertificateList = defaultRootCertificateList;
                 }
             } catch (UriFormatException) {
                 throw;
@@ -112,9 +119,9 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// Constructor
         /// </summary>
         /// <param name="configuration">Configuration</param>
-        /// <param name="defaultRootCertificate">The default root certificate</param>
-        public OcspLookup(OcspConfig configuration, X509Certificate2 defaultRootCertificate) {
-            Init(configuration, defaultRootCertificate);
+        /// <param name="defaultRootCertificateList">The default root certificate</param>
+        public OcspLookup(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList) {
+            Init(configuration, defaultRootCertificateList);
         }
 
         /// <summary>
@@ -134,37 +141,59 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         private RevocationResponse CheckCertificateCall(X509Certificate2 certificate) {
             RevocationResponse response = new RevocationResponse();
 
-            try {
-                //1. instantiate ocsp library
-                OcspClient ocsp = new OcspClient(_defaultOcesRootCertificate.RawData);
+            try 
+            {
+                if (certificate != null)
+                {
+                    int index = 0;
 
-                //2. make binary request
+                    while (index < this.defaultOcesRootCertificateList.Count && response.IsValid == false)
+                    {
 
-                //converts hexadecimal to decimal
-                uint uiHex = new uint();
-                byte[] req = null;
-                if (certificate != null) {
-                    uiHex = System.Convert.ToUInt32(certificate.SerialNumber, 16);
-                    req = ocsp.MakeOcspRequest(uiHex.ToString());
+                        // ToDo - jlm, kan denne metode hånder tre niveauder i OCES2 certifikater???
 
-                    //3. send request
-                    String serverURL;
-                    if (string.IsNullOrEmpty(_configuration.ServerUrl)){
-                        // Use OCSP server specified in certificate
-                        serverURL = GetServerUriFromCertificate(certificate);
+                        //1. instantiate ocsp library
+                        OcspClient ocsp = new OcspClient(this.defaultOcesRootCertificateList[index].RawData);
+
+                        //2. make binary request
+
+                        //converts hexadecimal to decimal
+                        uint uiHex = new uint();
+                        byte[] req = null;
+
+                        uiHex = System.Convert.ToUInt32(certificate.SerialNumber, 16);
+                        req = ocsp.MakeOcspRequest(uiHex.ToString());
+
+                        //3. send request
+                        String serverURL;
+                        if (string.IsNullOrEmpty(_configuration.ServerUrl))
+                        {
+                            // Use OCSP server specified in certificate
+                            serverURL = GetServerUriFromCertificate(certificate);
+                        }
+                        else
+                        {
+                            // Use OCSP server specified in configuration
+                            serverURL = _configuration.ServerUrl.ToString();
+                        }
+
+                        byte[] resp = ocsp.Send(req, serverURL);
+
+                        //4. check result
+                        if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString()))
+                        {
+                            // Certificate is valid
+                            response.IsValid = true;
+                        }
+                        else
+                        {
+                            // certificate is not valid - checking the next certificate
+                            index++;
+                        }
                     }
-                    else {
-                        // Use OCSP server specified in configuration
-                        serverURL = _configuration.ServerUrl.ToString();
-                    }
-
-                    byte[] resp = ocsp.Send(req, serverURL);
-
-                    //4. check result
-                    if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString())) {
-                        response.IsValid = true;
-                    }
-                } else {
+                } 
+                else 
+                {
                     throw new CheckCertificateOcspUnexpectedException();
                 }
             } catch (ArgumentNullException) {

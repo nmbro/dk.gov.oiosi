@@ -38,20 +38,26 @@ using Lesnikowski.Mail.Headers.Constants;
 
 using dk.gov.oiosi.exception.Keyword;
 
-namespace dk.gov.oiosi.lesnikowskiMailProvider {
+namespace dk.gov.oiosi.lesnikowskiMailProvider
+{
     /// <summary>
     /// Exception thrown when the mail recieved has an invalid mime type.
     /// </summary>
-    public class LesnikowskiInvalidMimeTypeException : LesnikowskiException {
+    public class LesnikowskiInvalidMimeTypeException : LesnikowskiException
+    {
         /// <summary>
         /// Constructor that takes the mime type and the mime sub type that is 
         /// invalid.
         /// </summary>
         /// <param name="mimeType"></param>
         /// <param name="mimeSubtypeName"></param>
-        public LesnikowskiInvalidMimeTypeException(MimeType mimeType, string mimeSubtypeName) : base(GetKeywords(mimeType, mimeSubtypeName)) { }
+        public LesnikowskiInvalidMimeTypeException(MimeType mimeType, string mimeSubtypeName)
+            : base(GetKeywords(mimeType, mimeSubtypeName))
+        { 
+        }
 
-        private static Dictionary<string, string> GetKeywords(MimeType mimeType, string mimeSubtypeName) {
+        private static Dictionary<string, string> GetKeywords(MimeType mimeType, string mimeSubtypeName)
+        {
             Dictionary<string, string> keywords = KeywordFromString.GetKeyword("mimetype", mimeType.ToString());
             keywords.Add("mimesubtype", mimeSubtypeName);
             return keywords;

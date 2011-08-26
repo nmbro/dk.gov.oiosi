@@ -71,7 +71,10 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <returns></returns>
         public Uri GetAsUri() {
-            return new Uri(GetKeyAsString());
+            string key = GetKeyAsString();
+            Uri uri = new Uri(key);
+
+            return uri;
         }
 
         /// <summary>
@@ -80,7 +83,10 @@ namespace dk.gov.oiosi.addressing {
         /// <returns></returns>
         public System.ServiceModel.EndpointAddress GetAsWCFEndpointAddress()
         {
-            return new System.ServiceModel.EndpointAddress(GetKeyTypeAsString() + "://" + GetKeyAsString());
+            string key = GetKeyAsString();
+            System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(key);
+
+            return endpointAddress;
         }
 
     }

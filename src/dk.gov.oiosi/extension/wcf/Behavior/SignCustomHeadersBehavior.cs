@@ -97,20 +97,23 @@ namespace dk.gov.oiosi.extension.wcf.Behavior {
         /// </summary>
         /// <param name="endpoint">-</param>
         /// <param name="clientRuntime">-</param>
-        public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime) {/* Do nothing special */}
+        public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime) 
+        {/* Do nothing special */}
 
         /// <summary>
         /// Not implemented by this behavior
         /// </summary>
         /// <param name="endpoint">-</param>
         /// <param name="endpointDispatcher">-</param>
-        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher) {/* Do nothing special */}
+        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
+        {/* Do nothing special */}
 
         /// <summary>
         /// Not implemented by this behavior
         /// </summary>
         /// <param name="endpoint">-</param>
-        public void Validate(ServiceEndpoint endpoint) {/* Do nothing special */}
+        public void Validate(ServiceEndpoint endpoint) 
+        {/* Do nothing special */}
 
 
         #region IServiceBehavior Members
@@ -131,21 +134,24 @@ namespace dk.gov.oiosi.extension.wcf.Behavior {
         /// </summary>
         /// <param name="serviceDescription">-</param>
         /// <param name="serviceHostBase">-</param>
-        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase) {/*Do nothing special*/}
+        public void ApplyDispatchBehavior(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase) 
+        {/*Do nothing special*/}
 
         /// <summary>
         /// Not implemented by this behavior
         /// </summary>
         /// <param name="serviceDescription">-</param>
         /// <param name="serviceHostBase">-</param>
-        public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase) {/*Do nothing special*/}
+        public void Validate(ServiceDescription serviceDescription, System.ServiceModel.ServiceHostBase serviceHostBase)
+        {/*Do nothing special*/}
 
         #endregion
 
         /// <summary>
         /// Adds the requirement telling WCF to encrypt the body of RM messages
         /// </summary>
-        private void AddProtectionRequirements(BindingParameterCollection bindingParameters) {
+        private void AddProtectionRequirements(BindingParameterCollection bindingParameters)
+        {
 
 
             logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Custom header signing behavior adding protection requirements");  

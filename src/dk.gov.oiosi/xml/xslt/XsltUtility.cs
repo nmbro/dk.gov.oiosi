@@ -32,6 +32,7 @@
   */
 using System.Xml;
 using System.Xml.Xsl;
+using System.Xml.XPath;
 
 namespace dk.gov.oiosi.xml.xslt {
 
@@ -73,9 +74,30 @@ namespace dk.gov.oiosi.xml.xslt {
         /// <param name="document"></param>
         /// <param name="transform"></param>
         /// <returns></returns>
-        public XmlDocument TransformXml(XmlDocument document, XslCompiledTransform transform) {
+        public XmlDocument TransformXPath(XPathDocument document, XslCompiledTransform transform) {
             XmlDocument transformedXml = new XmlDocument();
-            using (XmlWriter writer = transformedXml.CreateNavigator().AppendChild()) {
+
+            using (XmlWriter writer = transformedXml.CreateNavigator().AppendChild())
+            {
+                transform.Transform(document, (XsltArgumentList)null, writer);
+            }
+
+            return transformedXml;
+        }
+
+        /// <summary>
+        /// Method that transforms the XML document from a precompiled XSLT stylesheet
+        /// 
+        /// no namespace-qualified arguments is used
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public XmlDocument TransformXml(XmlDocument document, XslCompiledTransform transform)
+        {
+            XmlDocument transformedXml = new XmlDocument();
+            using (XmlWriter writer = transformedXml.CreateNavigator().AppendChild())
+            {
                 transform.Transform(document, (XsltArgumentList)null, writer);
             }
             return transformedXml;

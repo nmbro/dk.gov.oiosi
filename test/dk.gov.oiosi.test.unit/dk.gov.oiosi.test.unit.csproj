@@ -99,25 +99,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
+      <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\ServerCertifikat\CVR26769388.Expire20090806.NemHandel Test 1.cer">
+      <Link>Resources\Certificates\CVR26769388.Expire20090806.NemHandel Test 1.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Virksomhedscertifikat\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer">
+      <Link>Resources\Certificates\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer</Link>
+    </None>
     <None Include="App.config" />
-    <None Include="Resources\Certificates\Device.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\Employee.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\FOCES1.pkcs12">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\Organisation.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\Root.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\tdc_systemtest_2.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\RaspConfigurationWithVersion1117.xml">

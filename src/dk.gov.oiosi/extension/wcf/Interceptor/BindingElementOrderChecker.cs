@@ -64,7 +64,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         /// <param name="bindingOrder">The binding order</param>
         public BindingElementOrderChecker(Type[][] bindingOrder) {
-            _bindingOrder = bindingOrder;
+            this._bindingOrder = bindingOrder;
         }
 
         /// <summary>

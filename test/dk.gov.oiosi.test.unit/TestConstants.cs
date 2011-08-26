@@ -32,10 +32,10 @@ namespace dk.gov.oiosi.test.unit {
         public const string PATH_SCHEMAS07 = raspProfileResources + "Schemas/OIOXML v0.7/";
         public const string PATH_SCHEMAS21b = raspProfileResources + "Schemas/OIOUBL v2.1-b/";
 
-        public const string PATH_CERTIFICATE_ORGANISATION = "Resources/Certificates/Organisation.cer";
-        public const string PATH_CERTIFICATE_EMPLOYEE = "Resources/Certificates/Employee.cer";
-        public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/Device.cer";
-        public const string PATH_CERTIFICATE_ROOT = "Resources/Certificates/Root.cer";
+        public const string PATH_CERTIFICATE_ORGANISATION = "Resources/Certificates/CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer";
+        public const string PATH_CERTIFICATE_EMPLOYEE = "Resources/Certificates/CVR30808460.Expire20091126.Test MOCES3(Expired).pfx";
+        public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR26769388.Expire20090806.NemHandel Test 1.cer";
+        public const string PATH_CERTIFICATE_ROOT = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
 
         public const string PATH_INVOICE_XML_IDENTIFIER_EAN = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
         public const string PATH_INVOICE_XML_IDENTIFIER_OVT = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ovt_v2p1.xml";

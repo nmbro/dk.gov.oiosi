@@ -64,10 +64,16 @@ namespace dk.gov.oiosi.xml.schema {
             try {
                 CheckNamespace(xmlDocument, xmlSchema);
                 // Note: This code uses an obsolete method and should be updated.
-                xmlSchema.Compile(null, urlResolver);
+                //xmlSchema.Compile(null, urlResolver);
+
+                XmlSchemaSet schemaSet = new XmlSchemaSet();
+                schemaSet.XmlResolver = urlResolver;
+                schemaSet.Add(xmlSchema);
+                schemaSet.Compile();
 
                 XmlDocument clonedDocument = (XmlDocument)xmlDocument.Clone();
-                clonedDocument.Schemas.Add(xmlSchema);
+                //clonedDocument.Schemas.Add(xmlSchema);
+                clonedDocument.Schemas.Add(schemaSet);
                 clonedDocument.Validate(null);
             }
             catch (Exception ex) {
@@ -87,9 +93,17 @@ namespace dk.gov.oiosi.xml.schema {
         public void SchemaValidateXmlDocument(XmlDocument xmlDocument, XmlSchema xmlSchema, ValidationEventHandler validationEventHandler) {
             CheckNamespace(xmlDocument, xmlSchema);
             // Note: This code uses an obsolete method and should be updated.
-            xmlSchema.Compile(validationEventHandler, urlResolver);
+            //xmlSchema.Compile(validationEventHandler, urlResolver);
+
+            XmlSchemaSet schemaSet = new XmlSchemaSet();
+            schemaSet.XmlResolver = urlResolver; 
+            schemaSet.Add(xmlSchema);
+            schemaSet.ValidationEventHandler += validationEventHandler;
+            schemaSet.Compile();
+
             XmlDocument clonedDocument = (XmlDocument)xmlDocument.Clone();
-            clonedDocument.Schemas.Add(xmlSchema);
+            //clonedDocument.Schemas.Add(xmlSchema);
+            clonedDocument.Schemas.Add(schemaSet);
             clonedDocument.Validate(validationEventHandler);
         }
 

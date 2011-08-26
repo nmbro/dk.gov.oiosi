@@ -46,6 +46,13 @@ namespace dk.gov.oiosi.raspProfile {
         /// Adds all the mappings
         /// </summary>
         public void AddAll() {
+            // oioxml
+            AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
+            AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
+            AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
+            AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
+            
+            // OIOUBL
             AddMapping("Catalogue-CatBas-1.0", "uddi:4697A391-741F-4534-A21E-8F0A460013BB");
             AddMapping("Catalogue-CatBasR-1.0", "uddi:03717C45-27A8-453f-833C-BD4D8AAB9675");
             AddMapping("Catalogue-CatSim-1.0", "uddi:BE9F86E6-03C0-4d00-A3EE-44FC29EB3882");
@@ -68,10 +75,8 @@ namespace dk.gov.oiosi.raspProfile {
             AddMapping("Procurement-OrdAdvR-BilSimR-1.0", "uddi:b23940b1-d571-4640-8830-9b7f34809fbc");
             AddMapping("Procurement-OrdSel-BilSim-1.0", "uddi:46D94D6B-E835-4916-BBB5-F27DC655876A");
             AddMapping("Procurement-OrdSel-BilSimR-1.0", "uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F");
-            AddMapping("OIOXML elektronisk handel",	"uddi:c001daa0-8ba3-11dd-894e-770465b08940");
-            AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
-            AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
-            AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
+            
+            // OIOUBL nesubl
             AddMapping("urn:www.nesubl.eu:profiles:profile1:ver2.0", "uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5");
             AddMapping("urn:www.nesubl.eu:profiles:profile2:ver2.0", "uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D");
             AddMapping("urn:www.nesubl.eu:profiles:profile3:ver2.0", "uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35");
@@ -80,6 +85,8 @@ namespace dk.gov.oiosi.raspProfile {
             AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
             AddMapping("urn:www.nesubl.eu:profiles:profile7:ver2.0", "uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D");
             AddMapping("urn:www.nesubl.eu:profiles:profile8:ver2.0", "uddi:F4240370-CCA6-401e-9B5B-4531F413421D");
+
+            // OIOUBL Utility
             AddMapping("Reference-Utility-1.0", "uddi:570b3009-3f9f-46d2-b533-31d0bb4a37a0");
             AddMapping("Reference-UtilityR-1.0", "uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6");
         }

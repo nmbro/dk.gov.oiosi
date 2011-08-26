@@ -11,12 +11,14 @@ namespace dk.gov.oiosi.test.integration.security.revocation
     [TestFixture]
     public class CrlLookupTest
     {
+        private string funkttionscertificat = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
+        private string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx";
 
         [Test]
         public void LookupTestValidCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/FOCES1.pkcs12", "Test1234");
+            X509Certificate2 certificate = new X509Certificate2(funkttionscertificat, "Test1234");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
@@ -25,7 +27,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         public void LookupTestRevokedCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/Revoked.cer");
+            X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked);
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsFalse(response.IsValid);
         }
@@ -54,13 +56,13 @@ namespace dk.gov.oiosi.test.integration.security.revocation
                 int select = random.Next(2);
                 if (select < 1) {
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:0", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/FOCES1.pkcs12", "Test1234");
+                    X509Certificate2 certificate = new X509Certificate2(funkttionscertificat, "Test1234");
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsTrue(response.IsValid);
                 }
                 else {
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:1", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2("Resources/Certificates/Revoked.cer");
+                    X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked);
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsFalse(response.IsValid);
                 }

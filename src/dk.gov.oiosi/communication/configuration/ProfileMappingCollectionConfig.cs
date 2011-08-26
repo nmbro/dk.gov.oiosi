@@ -42,7 +42,8 @@ namespace dk.gov.oiosi.communication.configuration {
     /// A collection of ProfileMapping
     /// </summary>
     [System.Xml.Serialization.XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-    public class ProfileMappingCollectionConfig {
+    public class ProfileMappingCollectionConfig 
+    {
         private List<ProfileMapping> _profileMappings = new List<ProfileMapping>();
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace dk.gov.oiosi.communication {
         private ClientProxy _proxy;
 
         // The delegate used to call our synchronous sending method asynchronously
-        private delegate Response AsyncGetResponse(OiosiMessage message);
+        private delegate void AsyncGetResponse(OiosiMessage message, out Response response);
 
         /// <summary>
         /// Constant for http endpoint configuration name
@@ -284,7 +284,7 @@ namespace dk.gov.oiosi.communication {
             OpenProxy();
 
             try {
-                response = SendMessage(message);
+                SendMessage(message, out response);
             }
             catch  {
                 throw;
@@ -319,7 +319,7 @@ namespace dk.gov.oiosi.communication {
             OpenProxy();
 
             try {
-                response = SendMessage(request);
+                SendMessage(request, out response);
             }
             catch {
                 throw;
@@ -361,8 +361,9 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        private Response SendMessage(OiosiMessage message) {
-            Response response = null;
+        private void SendMessage(OiosiMessage message, out Response response)
+        {
+            response = null;
             try {
                 // Convert to WCF message
                 Message wcfMessage = null;
@@ -434,8 +435,6 @@ namespace dk.gov.oiosi.communication {
             catch {
                 throw ;
             }
-            //4. Return
-            return response;
         }
 
         /// <summary>
@@ -511,9 +510,10 @@ namespace dk.gov.oiosi.communication {
         /// <param name="message">Request message</param>
         /// <param name="callback">The asynchronous callback</param>
         /// <returns>Returns an IAsyncResult object</returns>
-        public IAsyncResult BeginGetResponse(OiosiMessage message, AsyncCallback callback) {
+        public IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, AsyncCallback callback)
+        {
             AsyncGetResponse asyncGetResponse = new AsyncGetResponse(GetResponse);
-            IAsyncResult result = asyncGetResponse.BeginInvoke(message, callback, asyncGetResponse);
+            IAsyncResult result = asyncGetResponse.BeginInvoke(message, out response, callback, asyncGetResponse);
             return result;
         }
 
@@ -522,15 +522,16 @@ namespace dk.gov.oiosi.communication {
         /// Asynchronously ends sending a request
         /// </summary>
         /// <returns>Response message</returns>
-        public Response EndGetResponse(IAsyncResult asyncResult) {
-            Response r;
+        public void EndGetResponse(IAsyncResult asyncResult, out Response response) 
+        {
+            //Response r;
             try {
-                r = ((AsyncGetResponse)asyncResult.AsyncState).EndInvoke(asyncResult);
+                ((AsyncGetResponse)asyncResult.AsyncState).EndInvoke(out response, asyncResult);
             }
             catch (InvalidOperationException) {
                 throw;
             }
-            return r;
+            //return r;
         }
       
         #region properties

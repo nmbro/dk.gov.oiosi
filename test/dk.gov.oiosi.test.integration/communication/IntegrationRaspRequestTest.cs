@@ -213,7 +213,7 @@ namespace dk.gov.oiosi.test.integration.communication {
             var oiosiMessage = new OiosiMessage(xmlDocument);
             var raspRequest = GetRaspRequest(oiosiMessage);
             Response response;
-            raspRequest.GetResponse(oiosiMessage, documentId, out response);
+            raspRequest.GetResponse(oiosiMessage, out response, documentId);
             return response;
         }
 

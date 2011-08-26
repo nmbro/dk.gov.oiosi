@@ -56,7 +56,9 @@ namespace dk.gov.oiosi.communication {
 
             // Who was the response from?
             if (msg.Headers.From != null)
-                _responseUri = msg.Headers.From.Uri;
+            {
+                this._responseUri = msg.Headers.From.Uri;
+            }
         }
 
         #endregion

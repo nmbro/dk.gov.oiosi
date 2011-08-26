@@ -104,8 +104,8 @@ namespace dk.gov.oiosi.test.unit.raspProfile {
         }
 
         private void SetupDefaultRootCertificateConfig() {
-            DefaultRootCertificateConfig rootCertificateConfig = new DefaultRootCertificateConfig();
-            rootCertificateConfig.SetIfNotExistsProductionDefaultRootCertificateConfig();
+            DefaultRootCertificateCollectionConfig rootCertificateConfig = new DefaultRootCertificateCollectionConfig();
+            rootCertificateConfig.SetIfNotExistsProductionDefaultRootCertificateCollectionConfig();
         }
 
         private void SetupDefaultOcesCertificates() {
