@@ -34,6 +34,7 @@
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security.revocation.ocsp;
+using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.raspProfile {
 

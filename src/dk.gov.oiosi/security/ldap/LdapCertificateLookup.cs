@@ -39,6 +39,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.validation;
 using Novell.Directory.Ldap;
+using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.security.ldap {
     /// <summary>
@@ -51,7 +52,7 @@ namespace dk.gov.oiosi.security.ldap {
     public class LdapCertificateLookup : ICertificateLookup {
         private LdapSettings _settings;
 
-        private static ICache<CertificateSubject, X509Certificate2> certCache = new TimedCache<CertificateSubject, X509Certificate2>(new TimeSpan(14, 0, 0, 0));
+        private static ICache<CertificateSubject, X509Certificate2> certCache = CreateCache();
 
         /// <summary>
         /// The LdapCertificateLookup constructor takes an ldap settings object 
@@ -70,6 +71,15 @@ namespace dk.gov.oiosi.security.ldap {
             : this(ConfigurationHandler.GetConfigurationSection<LdapSettings>())
         {
             
+        }
+
+        private static ICache<CertificateSubject, X509Certificate2> CreateCache()
+        {
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            TimeSpan timeSpan = cacheConfig.CertificateCache;
+            ICache<CertificateSubject, X509Certificate2> certCache = new TimedCache<CertificateSubject, X509Certificate2>(timeSpan);
+
+            return certCache;
         }
 
         #region ICetificateLookup Members

@@ -39,6 +39,7 @@ using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
 using Iloveit.Ocsp.Demo;
 using System.Collections.Generic;
+using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
@@ -54,13 +55,21 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// </summary>
         private IList<X509Certificate2> defaultOcesRootCertificateList;
 
-        private static readonly ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(new TimeSpan(1, 0, 0));
+        private static readonly ICache<string, RevocationResponse> ocspCache = CreateCache();
 
         /// <summary>
         /// Gets the configuration of the lookup client
         /// </summary>
         public OcspConfig Configuration {
             get { return _configuration; }
+        }
+
+        private static ICache<string, RevocationResponse> CreateCache()
+        {
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            TimeSpan timeSpan = cacheConfig.RevocationLookupTimeSpan;
+            ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(timeSpan);
+            return ocspCache;
         }
 
         /// <summary>

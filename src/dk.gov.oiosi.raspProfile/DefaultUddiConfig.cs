@@ -94,9 +94,6 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetDefaultUddiConfig() {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiConfig.TryOtherHostsOnFailure = true;
-            uddiConfig.PublishEndpoint = "https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc";
-            uddiConfig.PublishInquiryEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry";                                                 
-            uddiConfig.SecurityEndpoint = "http://publish.uddi.ehandel.gov.dk/registry/uddi/security";
             uddiConfig.FallbackTimeoutMinutes = 15;
             uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));

@@ -121,7 +121,27 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>Returns true if CRL is still valid, false otherwise.</returns>
         private bool cacheValid()
         {
-            return data != null && data.NextUpdate.Value > DateTime.Now;
+            bool result;
+            if (data == null)
+            {
+                // data invalid, cache always false
+                result = false;
+            }
+            else
+            {
+                if (data.NextUpdate.Value > DateTime.Now)
+                {
+                    // next update is in the future, so cache version is valid
+                    result = true;
+                }
+                else
+                { 
+                    // next update is in the past, so cache version is invalid
+                    result = false;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

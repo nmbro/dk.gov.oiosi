@@ -37,6 +37,8 @@ using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.security;
 using System.Net.Mail;
 using System.Configuration;
+using dk.gov.oiosi.security.cache;
+using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -63,7 +65,9 @@ namespace dk.gov.oiosi.uddi {
 
         private static ICache<UddiLookupKey, List<UddiService>> ServiceCache()
         {
-            TimeSpan timeSpan = CreateTimeSpan("ServiceCache", 0, 1, 0, 0);
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+
+            TimeSpan timeSpan = cacheConfig.UddiServiceTimeSpan;
             ICache<UddiLookupKey, List<UddiService>> serviceCache = new TimedCache<UddiLookupKey, List<UddiService>>(timeSpan);
 
             return serviceCache;
@@ -71,13 +75,15 @@ namespace dk.gov.oiosi.uddi {
 
         private static ICache<UddiId, UddiTModel> TModelCache()
         {
-            TimeSpan timeSpan = CreateTimeSpan("TModelCache", 0, 1, 0, 0);
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+
+            TimeSpan timeSpan = cacheConfig.UddiTModelCache;
             ICache<UddiId, UddiTModel> tModelCache = new TimedCache<UddiId, UddiTModel>(timeSpan);
 
             return tModelCache;
         }
 
-        private static System.TimeSpan CreateTimeSpan(string key, int days, int hours, int minutes, int seconds)
+        /*private static System.TimeSpan CreateTimeSpan(string key, int days, int hours, int minutes, int seconds)
         {
             TimeSpan cacheTime;
 
@@ -102,7 +108,7 @@ namespace dk.gov.oiosi.uddi {
             }
 
             return cacheTime;
-        }
+        }*/
 
         /// <summary>
         /// Translates a business level key ("EndpointKey", e.g. an EAN number) to an endpoint address (e.g. an URL).

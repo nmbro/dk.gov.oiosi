@@ -177,6 +177,7 @@
     <Compile Include="extension\wcf\Interceptor\Ubiquitous Properties\UbiquitousPropertiesBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Ubiquitous Properties\UbiquitousPropertiesBindingElement.cs" />
     <Compile Include="extension\wcf\ServiceHostFactoryEncryptedRmBodies.cs" />
+    <Compile Include="security\cache\CacheConfig.cs" />
     <Compile Include="security\ICertificateConfiguration.cs" />
     <Compile Include="security\lookup\CertificateStoreIdentificationAppConfiguration.cs" />
     <Compile Include="security\lookup\RootCertificateLocation.cs" />

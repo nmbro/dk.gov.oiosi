@@ -56,12 +56,9 @@
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20120427.Test NemHandelservice.cer" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20111016.FOCES1.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20130307.FOCES1.pfx" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.p12" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.pfx" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1.p12" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1.pfx" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES2_Spærret.p12" />
-    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx" />
+    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES1 %28medarbejdercertificat 3%29%28Expired%29.pfx" />
+    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 1%29.pfx" />
+    <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx" />
     <None Include="Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer" />
     <None Include="Resources\Certificates\Test\ServerCertifikat\CVR26769388.Expire20090806.NemHandel Test 1.cer" />
     <None Include="Resources\Certificates\Test\Virksomhedscertifikat\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer" />

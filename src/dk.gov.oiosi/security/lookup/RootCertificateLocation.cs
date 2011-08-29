@@ -31,44 +31,33 @@
   *
   */
 
-using System.Xml.Serialization;
-using dk.gov.oiosi.configuration;
+using System.Security.Cryptography.X509Certificates;
+using dk.gov.oiosi.exception;
 
-namespace dk.gov.oiosi.uddi {
-    
+namespace dk.gov.oiosi.security.lookup {
     /// <summary>
-    /// UDDI configuration for the user.settings file.
+    /// Class that represents where to find a certificate in the certificate store.
     /// </summary>
-    [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class UddiConfig {
-
-        private LookupRegistryFallbackConfig lookupRegistryFallbackConfig;
-
-        private int _fallbackTimeoutMinutes = 0;
-        private bool _tryOtherHostsOnFailure;
-
+    public class RootCertificateLocation : CertificateStoreIdentification
+    {
         /// <summary>
-        /// Gets or sets the fallback timeout in minutes
+        /// Default constructor for the XMLSerializer but it should not be used.
         /// </summary>
-        public int FallbackTimeoutMinutes {
-            get { return _fallbackTimeoutMinutes; }
-            set { _fallbackTimeoutMinutes = value; }
+        public RootCertificateLocation() 
+            : base()
+        {
         }
 
         /// <summary>
-        /// Gets or sets the list of registries to try lookup with
+        /// Constructor that takes the store location, store name and the serial number of 
+        /// the certificate in the store as parameters.
         /// </summary>
-        public LookupRegistryFallbackConfig LookupRegistryFallbackConfig {
-            get { return lookupRegistryFallbackConfig; }
-            set { lookupRegistryFallbackConfig = value; }
-        }
-
-        /// <summary>
-        /// Should other hosts be tried on failure
-        /// </summary>
-        public bool TryOtherHostsOnFailure {
-            get { return _tryOtherHostsOnFailure; }
-            set { _tryOtherHostsOnFailure = value; }
+        /// <param name="storeLocation"></param>
+        /// <param name="storeName"></param>
+        /// <param name="serialNumber"></param>
+        public RootCertificateLocation(StoreLocation storeLocation, StoreName storeName, string serialNumber)
+            : base(storeLocation, storeName, serialNumber)
+        {
         }
     }
 }

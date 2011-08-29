@@ -36,6 +36,8 @@ using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
 using dk.gov.oiosi.common.cache;
 using Org.BouncyCastle.X509;
+using dk.gov.oiosi.security.cache;
+using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
@@ -49,7 +51,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <summary>
         /// Got cache for one day
         /// </summary>
-        private readonly static TimedCache<Uri, CrlInstance> cache = new TimedCache<Uri, CrlInstance>(TimeSpan.FromDays(1.0));
+        private static TimedCache<Uri, CrlInstance> cache = CreateCache();
 
         /// <summary>
         /// Lockobject to ensure locking of the cache.
@@ -113,6 +115,15 @@ namespace dk.gov.oiosi.security.revocation.crl
             {
                 throw new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
             }
+        }
+
+        private static TimedCache<Uri, CrlInstance> CreateCache()
+        {
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            TimeSpan timeSpan = cacheConfig.CrlCache;
+            TimedCache<Uri, CrlInstance> cache = new TimedCache<Uri, CrlInstance>(timeSpan);
+
+            return cache;
         }
 
         #endregion

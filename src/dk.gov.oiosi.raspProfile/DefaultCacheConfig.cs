@@ -28,47 +28,51 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
+  *   Jacob Mogensen, mySupply ApS
   *
   */
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-using System.Xml.Serialization;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.uddi;
+using dk.gov.oiosi.security.cache;
 
-namespace dk.gov.oiosi.uddi {
-    
+namespace dk.gov.oiosi.raspProfile
+{
+
     /// <summary>
-    /// UDDI configuration for the user.settings file.
+    /// Creates the default Cache configuration
     /// </summary>
-    [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class UddiConfig {
-
-        private LookupRegistryFallbackConfig lookupRegistryFallbackConfig;
-
-        private int _fallbackTimeoutMinutes = 0;
-        private bool _tryOtherHostsOnFailure;
-
+    public class DefaultCacheConfig
+    {
         /// <summary>
-        /// Gets or sets the fallback timeout in minutes
+        /// Set default cache config values
         /// </summary>
-        public int FallbackTimeoutMinutes {
-            get { return _fallbackTimeoutMinutes; }
-            set { _fallbackTimeoutMinutes = value; }
+        public void SetDefaultCacheConfig()
+        {
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            cacheConfig.UddiServiceCacheTimeSpan = "01:00:00";
+            cacheConfig.UddiTModelCacheTimeSpan = "01:00:00";
+            cacheConfig.RevocationLookupCacheTimeSpan = "01:00:00";
+            cacheConfig.CrlCacheTimeSpan = "01:00:00";
+            cacheConfig.CertificateCacheTimeSpan = "01.00:00:00";
         }
 
         /// <summary>
-        /// Gets or sets the list of registries to try lookup with
+        /// Sets the default cache configuration if it does not exist
         /// </summary>
-        public LookupRegistryFallbackConfig LookupRegistryFallbackConfig {
-            get { return lookupRegistryFallbackConfig; }
-            set { lookupRegistryFallbackConfig = value; }
-        }
-
-        /// <summary>
-        /// Should other hosts be tried on failure
-        /// </summary>
-        public bool TryOtherHostsOnFailure {
-            get { return _tryOtherHostsOnFailure; }
-            set { _tryOtherHostsOnFailure = value; }
+        public void SetIfNotExistsDefaulCacheConfig()
+        {
+            if (ConfigurationHandler.HasConfigurationSection<CacheConfig>())
+            {
+                // The configuration exist, nothing to do
+            }
+            else
+            {
+                this.SetDefaultCacheConfig();
+            }
         }
     }
 }
