@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         private static TimedCache<Uri, CrlInstance> CreateCache()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.CrlCache;
+            TimeSpan timeSpan = cacheConfig.CrlLookupCacheTimeSpan;
             TimedCache<Uri, CrlInstance> cache = new TimedCache<Uri, CrlInstance>(timeSpan);
 
             return cache;

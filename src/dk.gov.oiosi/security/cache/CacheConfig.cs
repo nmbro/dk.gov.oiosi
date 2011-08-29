@@ -42,16 +42,15 @@ namespace dk.gov.oiosi.security.cache {
     [System.Xml.Serialization.XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class CacheConfig 
     {
-        private string revocationLookupCacheTime = string.Empty;
+        private string ocspLookupCacheTimeInHours = string.Empty;
 
-        private string uddiServiceCacheTime = string.Empty;
+        private string crlLookupCacheTimeInHours = string.Empty;
 
-        private string uddiTModelCacheTime = string.Empty;
+        private string uddiServiceCacheTimeInHours = string.Empty;
 
-        private string crlCacheTime = string.Empty;
+        private string uddiTModelCacheTimeInHours = string.Empty;
 
-        private string certificateCacheTime = string.Empty;
-
+        private string certificateCacheTimeInDays = string.Empty;
 
         /// <summary>
         /// Default constructor
@@ -63,156 +62,211 @@ namespace dk.gov.oiosi.security.cache {
         #region RevocationLookup
 
         /// <summary>
-        /// The RevocationLookup cache TimeSpan as string (hh:MM:ss)
+        /// The OcspLookup cache TimeSpan as string (hh:MM:ss)
         /// </summary>
-        public string RevocationLookupCacheTimeSpan
+        public string OcspLookupCacheTimeInHours
         {
             get
             {
-                return this.revocationLookupCacheTime;
+                return this.ocspLookupCacheTimeInHours;
             }
             set
             {
-                this.revocationLookupCacheTime = value;
+                this.ocspLookupCacheTimeInHours = value;
             }
         }
 
         /// <summary>
-        /// The RevocationLookup cache TimeSpan
+        /// The OcspLookup cache TimeSpan
         /// </summary>
-        public TimeSpan RevocationLookupTimeSpan
+        public TimeSpan OcspLookupCacheTimeSpan
         {
             get
             {
-                return CreateTimeSpan(this.revocationLookupCacheTime);
+                return this.TimeSpanFromHours(this.ocspLookupCacheTimeInHours);
             }
         }
 
         # endregion RevocationLookup
-
-        # region UddiService
-
-        /// <summary>
-        /// The UddiService cache TimeSpan as string (hh:MM:ss)
-        /// </summary>
-        public string UddiServiceCacheTimeSpan
-        {
-            get
-            {
-                return this.uddiServiceCacheTime;
-            }
-            set
-            {
-                this.uddiServiceCacheTime = value;
-            }
-        }
-
-        /// <summary>
-        /// The UddiService cache TimeSpan
-        /// </summary>
-        public TimeSpan UddiServiceTimeSpan
-        {
-            get
-            {
-                return CreateTimeSpan(this.uddiServiceCacheTime);
-            }
-        }
-
-        # endregion UddiService
-
-
-
-        # region UddiTModel
-
-        /// <summary>
-        /// The UddiTModel cache TimeSpan as string (hh:MM:ss)
-        /// </summary>
-        public string UddiTModelCacheTimeSpan
-        {
-            get
-            {
-                return this.uddiTModelCacheTime;
-            }
-            set
-            {
-                this.uddiTModelCacheTime = value;
-            }
-        }
-
-        /// <summary>
-        /// The UddiTModel cache TimeSpan
-        /// </summary>
-        public TimeSpan UddiTModelCache
-        {
-            get
-            {
-                return CreateTimeSpan(this.uddiTModelCacheTime);
-            }
-        }
-
-        # endregion UddiTModel
 
         # region CRL
 
         /// <summary>
         /// The Crl cache TimeSpan as string (hh:MM:ss)
         /// </summary>
-        public string CrlCacheTimeSpan
+        public string CrlLookupCacheTimeInHours
         {
             get
             {
-                return this.crlCacheTime;
+                return this.crlLookupCacheTimeInHours;
             }
             set
             {
-                this.crlCacheTime = value;
+                this.crlLookupCacheTimeInHours = value;
             }
         }
 
         /// <summary>
         /// The Crl cache TimeSpan
         /// </summary>
-        public TimeSpan CrlCache
+        public TimeSpan CrlLookupCacheTimeSpan
         {
             get
             {
-                return CreateTimeSpan(this.crlCacheTime);
+                return this.TimeSpanFromHours(this.crlLookupCacheTimeInHours);
             }
         }
 
         # endregion CRL
 
+        # region UddiService
+
+        /// <summary>
+        /// The UddiService cache TimeSpan as string (hh:MM:ss)
+        /// </summary>
+        public string UddiServiceCacheTimeInHours
+        {
+            get
+            {
+                return this.uddiServiceCacheTimeInHours;
+            }
+            set
+            {
+                this.uddiServiceCacheTimeInHours = value;
+            }
+        }
+
+        /// <summary>
+        /// The UddiService cache TimeSpan
+        /// </summary>
+        public TimeSpan UddiServiceCacheTimeSpan
+        {
+            get
+            {
+                return this.TimeSpanFromHours(this.uddiServiceCacheTimeInHours);
+            }
+        }
+
+        # endregion UddiService
+
+        # region UddiTModel
+
+        /// <summary>
+        /// The UddiTModel cache TimeSpan as string (hh:MM:ss)
+        /// </summary>
+        public string UddiTModelCacheTimeInHours
+        {
+            get
+            {
+                return this.uddiTModelCacheTimeInHours;
+            }
+            set
+            {
+                this.uddiTModelCacheTimeInHours = value;
+            }
+        }
+
+        /// <summary>
+        /// The UddiTModel cache TimeSpan
+        /// </summary>
+        public TimeSpan UddiTModelCacheTimeSpan
+        {
+            get
+            {
+                return this.TimeSpanFromHours(this.uddiTModelCacheTimeInHours);
+            }
+        }
+
+        # endregion UddiTModel
+                
         # region Certificate
 
         /// <summary>
         /// The Certificate cache TimeSpan as string (hh:MM:ss)
         /// </summary>
-        public string CertificateCacheTimeSpan
+        public string CertificateCacheTimeInDays
         {
             get
             {
-                return this.certificateCacheTime;
+                return this.certificateCacheTimeInDays;
             }
             set
             {
-                this.certificateCacheTime = value;
+                this.certificateCacheTimeInDays = value;
             }
         }
 
         /// <summary>
         /// The Certificate cache TimeSpan
         /// </summary>
-        public TimeSpan CertificateCache
+        public TimeSpan CertificateCacheTimeSpan
         {
             get
             {
-                return CreateTimeSpan(this.certificateCacheTime);
+                return this.TimeSpanFromDays(this.certificateCacheTimeInDays);
             }
         }
 
         # endregion Certificate
 
-        /// <summary>
+
+
+        private TimeSpan TimeSpanFromHours(string value)
+        {
+            TimeSpan timeSpan;
+            double time;
+            if (string.IsNullOrEmpty(value))
+            {
+                time = 1;
+            }
+            else
+            {
+                if (double.TryParse(value, out time))
+                {
+                     // values succesfull parsed to boolean
+                }
+                else
+                {
+                     // parsing to double failed
+                    // using default cache time
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Unable to parse the value '" + value + "' to a double.");
+                    time = 1;
+                }
+            }
+
+            timeSpan = TimeSpan.FromHours(time);
+            return timeSpan;
+        }
+
+         
+        private TimeSpan TimeSpanFromDays(string value)
+        {
+            TimeSpan timeSpan;
+            double time;
+            if (string.IsNullOrEmpty(value))
+            {
+                time = 1;
+            }
+            else
+            {
+                if (double.TryParse(value, out time))
+                {
+                     // values succesfull parsed to boolean
+                }
+                else
+                {
+                     // parsing to double failed
+                    // using default cache time
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Unable to parse the value '" + value + "' to a double.");
+                    time = 1;
+                }
+            }
+
+            timeSpan = TimeSpan.FromDays(time);
+            return timeSpan;
+        }
+
+      /*  /// <summary>
         /// Create the TimeSpan based on the configuration values
         /// </summary>
         /// <param name="configuratedTime"></param>
@@ -220,9 +274,10 @@ namespace dk.gov.oiosi.security.cache {
         private static System.TimeSpan CreateTimeSpan(string configuratedTime)
         {
             return CreateTimeSpan(configuratedTime, 0, 1, 0, 0);
-        }
+        }*/
 
-        /// <summary>
+
+     /*   /// <summary>
         /// Create the cache timespan
         /// </summary>
         /// <param name="configuratedTime">The configurated value</param>
@@ -257,6 +312,6 @@ namespace dk.gov.oiosi.security.cache {
             }
 
             return cacheTime;
-        }
+        }*/
     }
 }

@@ -76,7 +76,7 @@ namespace dk.gov.oiosi.security.ldap {
         private static ICache<CertificateSubject, X509Certificate2> CreateCache()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.CertificateCache;
+            TimeSpan timeSpan = cacheConfig.CertificateCacheTimeSpan;
             ICache<CertificateSubject, X509Certificate2> certCache = new TimedCache<CertificateSubject, X509Certificate2>(timeSpan);
 
             return certCache;

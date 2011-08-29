@@ -53,11 +53,11 @@ namespace dk.gov.oiosi.raspProfile
         public void SetDefaultCacheConfig()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            cacheConfig.UddiServiceCacheTimeSpan = "01:00:00";
-            cacheConfig.UddiTModelCacheTimeSpan = "01:00:00";
-            cacheConfig.RevocationLookupCacheTimeSpan = "01:00:00";
-            cacheConfig.CrlCacheTimeSpan = "01:00:00";
-            cacheConfig.CertificateCacheTimeSpan = "01.00:00:00";
+            cacheConfig.UddiServiceCacheTimeInHours = "1";
+            cacheConfig.UddiTModelCacheTimeInHours = "1";
+            cacheConfig.OcspLookupCacheTimeInHours = "1";
+            cacheConfig.CrlLookupCacheTimeInHours = "1";
+            cacheConfig.CertificateCacheTimeInDays = "1";
         }
 
         /// <summary>

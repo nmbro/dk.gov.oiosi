@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.uddi {
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
 
-            TimeSpan timeSpan = cacheConfig.UddiServiceTimeSpan;
+            TimeSpan timeSpan = cacheConfig.UddiServiceCacheTimeSpan;
             ICache<UddiLookupKey, List<UddiService>> serviceCache = new TimedCache<UddiLookupKey, List<UddiService>>(timeSpan);
 
             return serviceCache;
@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.uddi {
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
 
-            TimeSpan timeSpan = cacheConfig.UddiTModelCache;
+            TimeSpan timeSpan = cacheConfig.UddiTModelCacheTimeSpan;
             ICache<UddiId, UddiTModel> tModelCache = new TimedCache<UddiId, UddiTModel>(timeSpan);
 
             return tModelCache;

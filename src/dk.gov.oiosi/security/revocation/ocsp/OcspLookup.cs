@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         private static ICache<string, RevocationResponse> CreateCache()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.RevocationLookupTimeSpan;
+            TimeSpan timeSpan = cacheConfig.OcspLookupCacheTimeSpan;
             ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(timeSpan);
             return ocspCache;
         }
