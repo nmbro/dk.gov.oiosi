@@ -8,6 +8,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.raspProfile.communication;
+using System.IO;
 
 namespace dk.gov.oiosi.test.request {
     
@@ -104,21 +105,98 @@ namespace dk.gov.oiosi.test.request {
                 return true;
         }
 
-        public static XmlDocument LoadXmlDocument() {
-            string defaultFile = "D:\\Test\\OIOXML_Invoice_v0.7.xml";
-            Console.Write("File to send (Empty line result in using file " + defaultFile+") : ");
-            XmlDocument xdoc = new XmlDocument();
-            string file = Console.ReadLine();
-            if(string.IsNullOrEmpty(file))
+        public static XmlDocument LoadXmlDocument() 
+        {
+            bool answerCorrect = false;
+            //bool tryAgain = true;
+            bool usePredefinedFile = false;
+            ConsoleKeyInfo key;
+
+            while (answerCorrect != true)
             {
-                xdoc.Load(defaultFile);
+                Console.Write("File to send - use predefined test files? (y/n)? ");
+                key = Console.ReadKey();
+                
+                if (key.Key == ConsoleKey.Y)
+                {
+                    usePredefinedFile = true;
+                    answerCorrect = true;
+                }
+                else if (key.Key == ConsoleKey.N)
+                {
+                    usePredefinedFile = false;
+                    answerCorrect = true; 
+                }
+                else
+                {
+                    Console.WriteLine(" Answer not regonized!");
+                }
+            }
+            
+            string fileNumber;
+            int fileNumberInt; 
+            string file = string.Empty;
+            
+            if (usePredefinedFile == true)
+            {
+                IDictionary<int, string> files = DefaultFiles();
+                while (string.IsNullOrEmpty(file))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Choose a file:");
+
+                    foreach(KeyValuePair<int, string> pair in files)
+                    {
+                        Console.WriteLine(pair.Key + " - " + pair.Value);
+                    }
+
+                    Console.WriteLine();
+                    Console.Write("Which file does you want to use? ");
+                    fileNumber = Console.ReadLine();
+
+                    if (int.TryParse(fileNumber, out fileNumberInt))
+                    {
+                        if (files.ContainsKey(fileNumberInt))
+                        {
+                            // file number found
+                            file = files[fileNumberInt];
+                        }
+                        else
+                        {
+                            // file number not supported
+                            Console.WriteLine("File number (" + fileNumber + ") is not supported, try again.");
+                        }
+                    }
+                    else
+                    {
+                        // int not regonized
+                        Console.WriteLine("File number ("+fileNumber+") not regonized, try again.");
+                    }
+                }
             }
             else
             {
-                xdoc.Load(file);
+                Console.Write("File to send: ");
+                file = Console.ReadLine();
             }
+
+            XmlDocument xdoc = new XmlDocument();
+            xdoc.Load(file);
+    
             
             return xdoc;
+        }
+
+        private static IDictionary<int, string> DefaultFiles()
+        {
+            IDictionary<int, string> files = new Dictionary<int, string>();
+            string path = "." + Path.DirectorySeparatorChar + "Resources" + Path.DirectorySeparatorChar + "Documents" + Path.DirectorySeparatorChar + "Examples" + Path.DirectorySeparatorChar;
+            files.Add(1, path + "OIOXML_Invoice_v0.7.xml");
+            files.Add(2, path + "OIOXML_CreditNote_v0.7.xml");
+
+            files.Add(3, path + "OIOUBL_Invoice_v2p2.xml");
+
+            return files;
         }
 
         public static Uri GetEndpointAddress() {
@@ -208,7 +286,17 @@ namespace dk.gov.oiosi.test.request {
             }
 
             Console.ForegroundColor = ConsoleColor.White;
-            string defaultSerial = "4037608E";
+            string defaultSerial = string.Empty;
+
+            if (string.Equals(ConfigurationDocument.ConfigFilePath, "RaspConfiguration.Live.xml", StringComparison.OrdinalIgnoreCase))
+            {
+                defaultSerial = "45A2F4A1";
+            }
+            else if (string.Equals(ConfigurationDocument.ConfigFilePath, "RaspConfiguration.Test.xml", StringComparison.OrdinalIgnoreCase))
+            {
+                defaultSerial = "4037C978";
+            }
+             
             Console.Write("Serial number (empty line will result in " + defaultSerial + "): ");
             string serial = Console.ReadLine();
 

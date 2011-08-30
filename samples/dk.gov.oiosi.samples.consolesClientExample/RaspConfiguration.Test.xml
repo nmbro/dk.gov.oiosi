@@ -4215,7 +4215,7 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>dir.certifikat.dk</Host>
+    <Host>fenris.certifikat.dk</Host>
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -4244,13 +4244,7 @@
       <PrioritizedRegistryList>
         <Registry>
           <EndpointCollection>
-            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-          </EndpointCollection>
-        </Registry>
-        <Registry>
-          <EndpointCollection>
-            <Endpoint>http://discoverygateway.uddi.ehandel.gov.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
+            <Endpoint>http://testuddi.nemhandel.gov.dk/uddi/services/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
@@ -4269,7 +4263,7 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>3E48BDC4</SerialNumber>
+        <SerialNumber>403617fc</SerialNumber>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
@@ -4293,21 +4287,6 @@
     <ResendingPattern>RecursiveBackoff</ResendingPattern>
     <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
     <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="RaspMessageStoreConfiguration">
-    <RootDirectory>C:\Users\jlm0578\AppData\Roaming\NemHandel\MessageStore\Root</RootDirectory>
-    <AutoSendOnInsert>false</AutoSendOnInsert>
-    <TimedFileListenerConfigurations>
-      <TimedFileListenerConfiguration>
-        <Name>Default Timed File Listener</Name>
-        <ListenDirectory>C:\Users\jlm0578\AppData\Roaming\NemHandel\MessageStore\Insert</ListenDirectory>
-        <PollingInterval>00:00:05</PollingInterval>
-        <Extension>
-          <string>xml</string>
-          <string>docx</string>
-        </Extension>
-      </TimedFileListenerConfiguration>
-    </TimedFileListenerConfigurations>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="SchematronStoreConfig">
     <MaxCompiledStylesheetsInMemory>2</MaxCompiledStylesheetsInMemory>

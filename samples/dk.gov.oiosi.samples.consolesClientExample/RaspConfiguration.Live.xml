@@ -4294,21 +4294,6 @@
     <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
     <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="RaspMessageStoreConfiguration">
-    <RootDirectory>C:\Users\jlm0578\AppData\Roaming\NemHandel\MessageStore\Root</RootDirectory>
-    <AutoSendOnInsert>false</AutoSendOnInsert>
-    <TimedFileListenerConfigurations>
-      <TimedFileListenerConfiguration>
-        <Name>Default Timed File Listener</Name>
-        <ListenDirectory>C:\Users\jlm0578\AppData\Roaming\NemHandel\MessageStore\Insert</ListenDirectory>
-        <PollingInterval>00:00:05</PollingInterval>
-        <Extension>
-          <string>xml</string>
-          <string>docx</string>
-        </Extension>
-      </TimedFileListenerConfiguration>
-    </TimedFileListenerConfigurations>
-  </ConfigurationSection>
   <ConfigurationSection xsi:type="SchematronStoreConfig">
     <MaxCompiledStylesheetsInMemory>2</MaxCompiledStylesheetsInMemory>
   </ConfigurationSection>

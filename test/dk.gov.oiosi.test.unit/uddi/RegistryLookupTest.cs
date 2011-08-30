@@ -156,7 +156,7 @@ namespace dk.gov.oiosi.test.unit.uddi{
             // Configures fallback sequence
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiConfig.FallbackTimeoutMinutes = 1;
-            uddiConfig.PublishEndpoint = uddiConfig.SecurityEndpoint = "http://a.com";
+            //uddiConfig.PublishEndpoint = uddiConfig.SecurityEndpoint = "http://a.com";
             uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(
                 new Registry(

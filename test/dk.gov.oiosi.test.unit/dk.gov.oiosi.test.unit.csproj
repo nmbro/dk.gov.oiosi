@@ -99,10 +99,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.pfx">
-      <Link>Resources\Certificates\CVR30808460.Expire20091126.Test MOCES3%28Expired%29.pfx</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

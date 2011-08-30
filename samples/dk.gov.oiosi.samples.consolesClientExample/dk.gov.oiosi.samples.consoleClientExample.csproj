@@ -71,15 +71,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20120427.Test NemHandelservice.cer">
+      <Link>Resources\Certificates\Test\CVR26769388.Expire20120427.Test NemHandelservice.cer</Link>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
+      <Link>Resources\Certificates\Test\TDC OCES Systemtest CA II.cer</Link>
+    </None>
     <None Include="App.config" />
-    <None Include="Resources\Certificates\ocesca.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Certificates\Testendpoint %28funktionscertifikat%29 %2840 36 d8 5e%29.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\Resources\Documents\Examples\OIOXML_Invoice_v0.7.xml">
+      <Link>Resources\Documents\Examples\OIOXML_Invoice_v0.7.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RaspConfiguration.Live.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RaspConfiguration.Test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RaspConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

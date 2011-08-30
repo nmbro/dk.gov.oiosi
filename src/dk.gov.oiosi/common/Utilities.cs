@@ -147,6 +147,8 @@ namespace dk.gov.oiosi.common
         /// DocumentTypeConfig.
         /// </summary>
         public static EndpointKeyTypeCode GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType) {
+
+
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
             KeyTypeMappingExpression mappingExpression = endpointType.Key.GetMappingExpression("EndpointKeyType");

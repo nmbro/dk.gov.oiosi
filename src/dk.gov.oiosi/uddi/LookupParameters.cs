@@ -168,7 +168,9 @@ namespace dk.gov.oiosi.uddi {
         public LookupParameters(
             Identifier identifier, 
             UddiId serviceId, 
-            List<EndpointAddressTypeCode> acceptedTransportProtocols) {
+            List<EndpointAddressTypeCode> acceptedTransportProtocols) 
+        {
+            // Test code call this one
             if (identifier == null) throw new ArgumentNullException("identifier");
             if (serviceId == null) throw new ArgumentNullException("serviceId");
             if (acceptedTransportProtocols == null) throw new ArgumentNullException("acceptedTransportProtocols");
