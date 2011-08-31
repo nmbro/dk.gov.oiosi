@@ -84,12 +84,14 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             
             Console.WriteLine("1. UDDI services");
+
             Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine(" Using UDDI/NemHandel register(s):");
             foreach (Registry registry in uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList)
             {
                 foreach (string endpoint in registry.Endpoints)
                 {
-                    Console.WriteLine("   " + endpoint);
+                    Console.WriteLine("  " + endpoint);
                 }
             }
 
@@ -99,27 +101,26 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
 
             // Get the UDDI parameters with which to call the UDDI server
             LookupParameters parameters = GetUddiParameters(message, docTypeConfig);
+            Console.WriteLine(" Lookup Parameters");
+            Console.WriteLine("  EndPoint      : " + parameters.Identifier.ToString());
+            Console.WriteLine("  EndPoint type : " + parameters.Identifier.KeyTypeCode);
+            Console.WriteLine("  Profile       : " + GetProfileName(message, docTypeConfig));
 
             // Perform the actual UDDI lookup
             UddiLookupResponse uddiResponse = PerformUddiLookup(parameters);
 
-
-            
-            Console.WriteLine("   EndPoint      : "+parameters.Identifier.ToString());
-            Console.WriteLine("   EndPoint type : " + parameters.Identifier.KeyTypeCode);
-            Console.WriteLine("   Profile       : " + GetProfileName(message, docTypeConfig));
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("   Got UDDI reply:");
+            Console.WriteLine(" Got UDDI reply:");
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             if (uddiResponse == null)
             {
-                Console.WriteLine("    The endpoint is no registrated in UDDI!");
+                Console.WriteLine("  The endpoint is no registrated in UDDI!");
             }
             else
             {
-                Console.WriteLine("    " + uddiResponse.EndpointAddress.GetKeyAsString());
+                Console.WriteLine("  " + uddiResponse.EndpointAddress.GetKeyAsString());
             }
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -264,7 +265,8 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             Console.WriteLine();
             Console.WriteLine("2. Certificate download");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("   " + settings.Host);
+            Console.WriteLine(" Using host");
+            Console.WriteLine("  " + settings.Host);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
 
@@ -276,9 +278,9 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             // Lookup the certificate using LDAP
             X509Certificate2 certificate = ldapClient.GetCertificate(certSubject);
 
-            Console.WriteLine("   Downloaded certificate with LDAP:");
+            Console.WriteLine(" Downloaded certificate with LDAP:");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("    " + certificate.Subject);
+            Console.WriteLine("  " + certificate.Subject);
             Console.ForegroundColor = ConsoleColor.White;
 
             return certificate;
@@ -300,9 +302,9 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             Console.WriteLine();
             Console.WriteLine("3. Certificate status by RevocationLookup.");
 
-            Console.WriteLine("   Certificate status is valid: ");
+            Console.WriteLine(" Certificate status is valid: ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("    "+ revocationResponse.IsValid.ToString());
+            Console.WriteLine("  "+ revocationResponse.IsValid.ToString());
             Console.ForegroundColor = ConsoleColor.White;
 
             // Make sure the cert was valid
