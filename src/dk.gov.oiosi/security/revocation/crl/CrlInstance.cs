@@ -100,7 +100,7 @@ namespace dk.gov.oiosi.security.revocation.crl
 
                     // Downloads the .crl file into an X509CRL object.
                     data = crlParser.ReadCrl(stream);
-
+                    DateTime f = data.NextUpdate.Value;
                     stream.Close();
 
                     return; // Everything went well.
@@ -124,12 +124,17 @@ namespace dk.gov.oiosi.security.revocation.crl
             bool result;
             if (data == null)
             {
-                // data invalid, cache always false
+                // data invalid, cache invalid
                 result = false;
             }
             else
             {
-                if (data.NextUpdate.Value > DateTime.Now)
+                // The next update is defined in utc time.
+                // So now is also in utc time
+                DateTime now = DateTime.UtcNow;
+                DateTime nextUpdateUTCTime = data.NextUpdate.Value;
+
+                if (nextUpdateUTCTime > now)
                 {
                     // next update is in the future, so cache version is valid
                     result = true;
@@ -150,16 +155,26 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>The NextUpdate value from the CRL</returns>
         public DateTime getNextUpdate()
         {
+            DateTime nextUpdate;
+
             rwl.EnterUpgradeableReadLock();
             try
             {
-                DateTime date = data != null ? data.NextUpdate.Value : new DateTime(0);
-                return date;
+                if (data != null)
+                {
+                    nextUpdate = data.NextUpdate.Value;
+                }
+                else
+                {
+                    nextUpdate = new DateTime(0);
+                }
             }
             finally
             {
                 rwl.ExitUpgradeableReadLock();
             }
+
+            return nextUpdate;
         }
     }
 }
