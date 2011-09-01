@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="RootCertificateConfig">
-    <RootCertificateLocation>
-      <StoreLocation>LocalMachine</StoreLocation>
-      <StoreName>Root</StoreName>
-      <SerialNumber>403617FC</SerialNumber>
-    </RootCertificateLocation>
+    <RootCertificateLocationCollection>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>403617fc</SerialNumber>
+      </RootCertificateLocation>
+    </RootCertificateLocationCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>

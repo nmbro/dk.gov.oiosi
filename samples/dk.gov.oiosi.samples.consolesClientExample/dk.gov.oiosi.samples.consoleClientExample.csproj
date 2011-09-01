@@ -80,10 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\src\dk.gov.oiosi.resource\Resources\Documents\Examples\OIOXML_Invoice_v0.7.xml">
-      <Link>Resources\Documents\Examples\OIOXML_Invoice_v0.7.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="RaspConfiguration.Live.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

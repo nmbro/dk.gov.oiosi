@@ -32,11 +32,6 @@
     <MaxCompiledStylesheetsInMemory>2</MaxCompiledStylesheetsInMemory>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiConfig">
-    <ProfileConformanceClaim />
-    <RegistrationConformanceClaim />
-    <PublishEndpoint>http://testuddi.nemhandel.gov.dk/uddi/services/publish</PublishEndpoint>
-    <PublishInquiryEndpoint>http://testuddi.nemhandel.gov.dk/uddi/services/inquiry</PublishInquiryEndpoint>
-    <SecurityEndpoint>http://testuddi.nemhandel.gov.dk/uddi/services/security</SecurityEndpoint>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupRegistryFallbackConfig>
       <PrioritizedRegistryList>
@@ -50,11 +45,13 @@
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateConfig">
-    <RootCertificateLocation>
-      <StoreLocation>CurrentUser</StoreLocation>
-      <StoreName>Root</StoreName>
-      <SerialNumber>403617FC</SerialNumber>
-    </RootCertificateLocation>
+    <RootCertificateLocationCollection>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>403617fc</SerialNumber>
+      </RootCertificateLocation>
+    </RootCertificateLocationCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>
