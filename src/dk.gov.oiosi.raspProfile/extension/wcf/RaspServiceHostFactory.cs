@@ -53,7 +53,6 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf {
         /// <returns>Returns the service host</returns>
         public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses) {
             return base.CreateServiceHost(constructorString, baseAddresses);
-
         }
 
         /// <summary>

@@ -37,7 +37,6 @@ using System.Text;
 
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
-using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.raspProfile
 {
@@ -53,11 +52,45 @@ namespace dk.gov.oiosi.raspProfile
         public void SetDefaultCacheConfig()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            cacheConfig.UddiServiceCacheTimeInHours = "1";
-            cacheConfig.UddiTModelCacheTimeInHours = "1";
-            cacheConfig.OcspLookupCacheTimeInHours = "1";
-            cacheConfig.CrlLookupCacheTimeInHours = "1";
-            cacheConfig.CertificateCacheTimeInDays = "1";
+            string implementationAssembly = "dk.gov.oiosi.RaspLibrary";
+            CacheConfiguration configurationValidity = new CacheConfiguration("validityTimeInMinutes", "60");
+            CacheConfiguration configurationFrequency = new CacheConfiguration("frequencyInMinutes", "10");
+            CacheConfiguration configurationMaxSize = new CacheConfiguration("maxSize", "10");
+
+            cacheConfig.OcspLookupCache = new CacheConfigElement();
+            cacheConfig.OcspLookupCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]";
+            cacheConfig.OcspLookupCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationValidity);
+            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationFrequency);
+
+            cacheConfig.CrlLookupCache = new CacheConfigElement();
+            cacheConfig.CrlLookupCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]";
+            cacheConfig.CrlLookupCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationValidity);
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationFrequency);
+
+            cacheConfig.UddiServiceCache = new CacheConfigElement();
+            cacheConfig.UddiServiceCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]";
+            cacheConfig.UddiServiceCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationValidity);
+            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationFrequency);
+
+            cacheConfig.UddiTModelCache = new CacheConfigElement();
+            cacheConfig.UddiTModelCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]";
+            cacheConfig.UddiTModelCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationValidity);
+            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationFrequency);
+
+            cacheConfig.CertificateCache = new CacheConfigElement();
+            cacheConfig.CertificateCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
+            cacheConfig.CertificateCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationValidity);
+            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationFrequency);
+
+            cacheConfig.SchematronStoreCache = new CacheConfigElement();
+            cacheConfig.SchematronStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
+            cacheConfig.SchematronStoreCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.SchematronStoreCache.CacheConfigurationCollection.Add(configurationMaxSize);
         }
 
         /// <summary>

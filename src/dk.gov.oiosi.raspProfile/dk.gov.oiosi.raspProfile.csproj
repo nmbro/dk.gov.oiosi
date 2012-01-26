@@ -55,7 +55,6 @@
     <Compile Include="DefaultOcesCertificate.cs" />
     <Compile Include="DefaultRevocationConfig.cs" />
     <Compile Include="DefaultRootCertificateCollectionConfig.cs" />
-    <Compile Include="DefaultSchematronConfig.cs" />
     <Compile Include="DefaultUddiConfig.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingExtensionElement.cs" />
@@ -729,9 +728,9 @@
       <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
       <Name>dk.gov.oiosi.configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.logging.csproj">
+    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
       <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
-      <Name>dk.gov.oiosi.logging</Name>
+      <Name>dk.gov.oiosi.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>

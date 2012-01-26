@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("dk.gov.oiosi.raspProfile")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("accenture")]
+[assembly: AssemblyCompany("ITST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.raspProfile")]
-[assembly: AssemblyCopyright("Copyright © accenture 2011")]
+[assembly: AssemblyCopyright("Copyright © ITST 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
