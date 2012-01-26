@@ -58,6 +58,7 @@
     <Compile Include="common\UtilitiesTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
+    <Compile Include="configuration\CacheConfigTest.cs" />
     <Compile Include="configuration\ConfigurationHandlerTest.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
     <Compile Include="Print.cs" />
@@ -113,6 +114,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\RaspConfigurationCacheConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\RaspConfigurationWithVersion1117.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

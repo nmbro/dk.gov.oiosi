@@ -198,9 +198,8 @@ namespace dk.gov.oiosi.test.unit.common.cache {
         }
 
         private void TestExists(string key) {
-            Assert.IsTrue(_cache.ContainsKey(key));
             string current = null;
-            Assert.IsTrue(_cache.TryGetValue(key, out current));
+            Assert.IsTrue(_cache.TryGetValue(key, out current));            
         }
 
         private void TestElement(string key, string expected) {
@@ -210,7 +209,6 @@ namespace dk.gov.oiosi.test.unit.common.cache {
         }
 
         private void TestDoNotExists(string key) {
-            Assert.IsFalse(_cache.ContainsKey(key));
             string current = null;
             Assert.IsFalse(_cache.TryGetValue(key, out current));
         }

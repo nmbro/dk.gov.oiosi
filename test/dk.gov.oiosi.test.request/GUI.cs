@@ -24,15 +24,33 @@ namespace dk.gov.oiosi.test.request {
             // Read the settings from the console
             Console.WriteLine("\nPlease configure the mail account used for sending");
             Console.WriteLine("----------------------------------------------------");
-            Console.Write("\tMail server: ");
-            string server = Console.ReadLine();
-            Console.Write("\tAccount name: ");
-            string account = Console.ReadLine();
-            Console.Write("\tPassword: ");
-            string password = Console.ReadLine();
-            string replyAddress = account + "@" + server;
-            Console.WriteLine("\tThe address '" + replyAddress + "' will be used");
+            string server = "ebconnect.dk";
+            Console.Write("\tMail server: " + server);
+            string serverInput = Console.ReadLine();
+            if (!string.IsNullOrEmpty(serverInput))
+            {
+                server = serverInput;
+            }
 
+            string account = "ebDispatcher_out";
+            Console.Write("\tAccount name: " + account);
+            string accountInput = Console.ReadLine();
+            if (!string.IsNullOrEmpty(accountInput))
+            {
+                account = accountInput;
+            }
+
+            string password = "Unimaze1";
+            Console.Write("\tPassword: " + password);
+            string passwordInput = Console.ReadLine();
+            if (!string.IsNullOrEmpty(passwordInput))
+            {
+                password = passwordInput;
+            }
+
+            string replyAddress = account + "@" + server;
+
+            Console.WriteLine("\tThe address '" + replyAddress + "' will be used");
             // Configure the mail accounts in the dynamic configuration file
             // This code uses the same server address and account info for sending and receiving
             EmailTransportUserConfig mailConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
@@ -44,6 +62,7 @@ namespace dk.gov.oiosi.test.request {
             // Configure the request to use the settings
             request.Policy.InboxMailConfiguration = mailConfig.SendInbox;
             request.Policy.OutboxMailConfiguration = mailConfig.SendOutbox;
+
         }
         #endregion
 

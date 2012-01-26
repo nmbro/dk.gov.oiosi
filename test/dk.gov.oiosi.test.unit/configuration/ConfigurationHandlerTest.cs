@@ -7,6 +7,12 @@ using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.raspProfile;
 using dk.gov.oiosi.security.revocation;
 using NUnit.Framework;
+using dk.gov.oiosi.security;
+using System.Security.Cryptography.X509Certificates;
+using dk.gov.oiosi.common.cache;
+using dk.gov.oiosi.security.revocation.crl;
+using dk.gov.oiosi.uddi;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.test.unit.configuration {
     
@@ -108,10 +114,12 @@ namespace dk.gov.oiosi.test.unit.configuration {
 
         [Test]
         public void SectionsMissingInExistingConfigurationFileShouldBeAddedFromTheDefaultConfiguration() {
+            
+            // why only test one configuration section... what about all the others?
             FileInfo configFileWithOnlyOneDocumentType = GetConfigFileWithDocumentSectionWithOnlyOneDocumentType();
             ConfigurationHandler.ConfigFilePath = configFileWithOnlyOneDocumentType.FullName;
             ConfigurationHandler.Reset();
-
+            
             DefaultLdapConfig ldapConfig = new DefaultLdapConfig();
             ldapConfig.SetIfNotExistsLdapLookupFactoryConfig();
 
@@ -164,6 +172,50 @@ namespace dk.gov.oiosi.test.unit.configuration {
             ConfigurationHandler.ConfigFilePath = configWithVersion1117.FullName;
             ConfigurationHandler.Reset();
             Assert.AreEqual("1.1.1.7", ConfigurationHandler.Version);
+        }
+
+
+        [Test]
+        public void GetCacheConfigTest()
+        {
+            var configFile = Settings.CreateRandomPath("RaspConfig.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+
+            ConfigurationHandler.ConfigFilePath = configFile.FullName;
+            ConfigurationHandler.Reset();
+
+            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
+            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+
+            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            
+            ConfigurationHandler.SaveToFile();
+
+            var rootNode = GetRaspConfigurationNode(configFile);
+            AssertNodeHasConfigurationSectionWithName(rootNode, "CacheConfig");
+        }
+
+        [Test]
+        public void GetCacheTest()
+        {
+            var configFileWithEmailSection = GetConfigFileWithCacheConfig();
+            ConfigurationHandler.ConfigFilePath = configFileWithEmailSection.FullName;
+            ConfigurationHandler.Reset();
+            
+            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
+            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+
+            ICache<string, RevocationResponse> ocspLookupCache = CacheFactory.Instance.OcspLookupCache;
+            ICache<Uri, CrlInstance> crlLookupCache = CacheFactory.Instance.CrlLookupCache;
+            ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache = CacheFactory.Instance.UddiServiceCache;
+            ICache<UddiId, UddiTModel> uddiTModelCache = CacheFactory.Instance.UddiTModelCache;
+            ICache<CertificateSubject, X509Certificate2> certificateCache =  CacheFactory.Instance.CertificateCache;
+
+            Assert.IsNotNull(ocspLookupCache);
+            Assert.IsNotNull(crlLookupCache);
+            Assert.IsNotNull(uddiServiceCache);
+            Assert.IsNotNull(uddiTModelCache);
+            Assert.IsNotNull(certificateCache);
         }
 
         # region Helper methods
@@ -220,6 +272,15 @@ namespace dk.gov.oiosi.test.unit.configuration {
 
         private FileInfo GetConfigFileWithEmailTransportConfigSectionWithOnlyCertificatesSet() {
             var sourceFile = new FileInfo("Resources\\RaspConfigurationWithEmailTransportConfigSectionWithOnlyCertificatesSet.xml");
+            var configFile = Settings.CreateRandomPath("RaspConfiguration.xml");
+            Directory.CreateDirectory(configFile.Directory.FullName);
+            File.Copy(sourceFile.FullName, configFile.FullName);
+            return configFile;
+        }
+
+        private FileInfo GetConfigFileWithCacheConfig()
+        {
+            var sourceFile = new FileInfo("Resources\\RaspConfigurationCacheConfig.xml");
             var configFile = Settings.CreateRandomPath("RaspConfiguration.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
             File.Copy(sourceFile.FullName, configFile.FullName);

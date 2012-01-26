@@ -19,13 +19,13 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
 
         public SchemaValidationTest() {
             DirectoryInfo schema07Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS07);
-            _validator07 = new SchemaValidator(schema07Directory);
+            _validator07 = new SchemaValidator();//schema07Directory
 
             DirectoryInfo schema201Directory = new DirectoryInfo(TestConstants.PATH_SCHEMAS20);
-            _validator201 = new SchemaValidator(schema201Directory);
+            _validator201 = new SchemaValidator();//schema201Directory
 
             DirectoryInfo schema21bDirectory = new DirectoryInfo(TestConstants.PATH_SCHEMAS21b);
-            _validator21b = new SchemaValidator(schema21bDirectory);
+            _validator21b = new SchemaValidator();//schema21bDirectory
         }
 
         [TestFixtureSetUp]
@@ -38,109 +38,109 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
         [Test]
         public void ApplicationResponse201ValidationTest() {
             const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE201_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void ApplicationResponse202ValidationTest() {
             const string xmlPath = TestConstants.PATH_APPLICATIONRESPONSE202_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CataloguelidationTest() {
             const string xmlPath = TestConstants.PATH_CATALOGUE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CatalogueDeletionValidationTest() {
             const string xmlPath = TestConstants.PATH_CATALOGUEDELETION_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CatalogueItemSpecificationUpdateValidationTest() {
             const string xmlPath = TestConstants.PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CataloguePricingUpdateValidationTest() {
             const string xmlPath = TestConstants.PATH_CATALOGUEPRICINGUPDATE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CatalogueRequesttValidationTest() {
             const string xmlPath = TestConstants.PATH_CATALOGUEREQUEST_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void CreditNoteValidationTest() {
             const string xmlPath = TestConstants.PATH_CREDITNOTE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void InvoiceValidationTest() {
             const string xmlPath = TestConstants.PATH_INVOICE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void OrderValidationTest() {
             const string xmlPath = TestConstants.PATH_ORDER_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void OrderCancellationValidationTest() {
             const string xmlPath = TestConstants.PATH_ORDERCANCELLATION_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void OrderChangeValidationTest() {
             const string xmlPath = TestConstants.PATH_ORDERCHANGE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void OrderResponseValidationTest() {
             const string xmlPath = TestConstants.PATH_ORDERRESPONSE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void OrderResponseSimpleValidationTest() {
             const string xmlPath = TestConstants.PATH_ORDERRESPONSESIMPLE_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void ReminderValidationTest() {
             const string xmlPath = TestConstants.PATH_REMINDER_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void StatementValidationTest() {
             const string xmlPath = TestConstants.PATH_STATEMENT_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
         [Test]
         public void UtilityStatementValidationTest() {
             const string xmlPath = TestConstants.PATH_UTILITYSTATEMENT_XML;
-            Validate(xmlPath, _validator21b);
+            Validate(xmlPath, _validator21b, TestConstants.PATH_SCHEMAS21b);
         }
 
         [Test]
         public void Invoice07ValidationTest() {
             string xmlPath = TestConstants.PATH_INVOICE07_XML;
-            Validate(xmlPath, _validator07);
+            Validate(xmlPath, _validator07, TestConstants.PATH_SCHEMAS07);
         }
 
         [Test, ExpectedException(typeof(dk.gov.oiosi.xml.schema.SchemaValidationFailedException))]
@@ -156,16 +156,20 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
             FileStream stream = File.OpenRead(xmlSchemaPath);
             XmlSchema schema = XmlSchema.Read(stream, null);
             stream.Close();
-            _validator201.SchemaValidateXmlDocument(document, schema);
+
+            SchemaStore schemaStore = new SchemaStore();
+            XmlSchemaSet xmlSchemaSet = schemaStore.LoadXmlSchemaSet(TestConstants.PATH_SCHEMAS20, schema);
+
+            _validator201.SchemaValidateXmlDocument(document, xmlSchemaSet);
         }
 
         [Test, ExpectedException(typeof(dk.gov.oiosi.xml.schema.SchemaValidationFailedException))]
         public void InvoiceWrongElementValidationTest() {
             string xmlPath = TestConstants.PATH_INVOICEWRONGELEMENT_XML;
-            Validate(xmlPath, _validator201);
+            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
         }
 
-        private void Validate(string xmlDocumentPath, SchemaValidator validator) {
+        private void Validate(string xmlDocumentPath, SchemaValidator validator, string schemaPath) {
             XmlDocument document = new XmlDocument();
             document.Load(xmlDocumentPath);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
@@ -173,7 +177,11 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
             FileStream stream = File.OpenRead(xmlSchemaPath);
             XmlSchema schema = XmlSchema.Read(stream, null);
             stream.Close();
-            validator.SchemaValidateXmlDocument(document, schema);
+
+            SchemaStore schemaStore = new SchemaStore();
+            XmlSchemaSet xmlSchemaSet = schemaStore.LoadXmlSchemaSet(schemaPath, schema);
+
+            validator.SchemaValidateXmlDocument(document, xmlSchemaSet);
         }
     }
 }

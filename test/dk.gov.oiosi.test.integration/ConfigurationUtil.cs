@@ -20,17 +20,14 @@ namespace dk.gov.oiosi.test.integration {
             DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
 
-            DefaultSchematronConfig schematronConfig = new DefaultSchematronConfig();
-            schematronConfig.SetIfNotExistsOcesCertificateConfig();
-
             ConfigurationHandler.HasConfigurationSection<LdapLookupFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<RegistryLookupClientFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<LdapSettings>();
             ConfigurationHandler.HasConfigurationSection<OcspConfig>();
-            ConfigurationHandler.HasConfigurationSection<SchematronStoreConfig>();
             ConfigurationHandler.HasConfigurationSection<UddiConfig>();
+            ConfigurationHandler.HasConfigurationSection<CacheConfig>();
             ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>();
 
@@ -46,8 +43,8 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<LdapSettings>();
             ConfigurationHandler.GetConfigurationSection<OcspConfig>();
-            ConfigurationHandler.GetConfigurationSection<SchematronStoreConfig>();
             ConfigurationHandler.GetConfigurationSection<UddiConfig>();
+            ConfigurationHandler.HasConfigurationSection<CacheConfig>();
             ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
 
@@ -57,9 +54,6 @@ namespace dk.gov.oiosi.test.integration {
 
             DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
-
-            DefaultSchematronConfig schematronConfig = new DefaultSchematronConfig();
-            schematronConfig.SetIfNotExistsOcesCertificateConfig();
 
             EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
 
