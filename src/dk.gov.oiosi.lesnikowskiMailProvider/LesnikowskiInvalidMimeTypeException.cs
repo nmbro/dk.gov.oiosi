@@ -51,7 +51,7 @@ namespace dk.gov.oiosi.lesnikowskiMailProvider
         /// </summary>
         /// <param name="mimeType"></param>
         /// <param name="mimeSubtypeName"></param>
-        public LesnikowskiInvalidMimeTypeException(MimeType mimeType, string mimeSubtypeName)
+        public LesnikowskiInvalidMimeTypeException(MimeType mimeType, string mimeSubtypeName) 
             : base(GetKeywords(mimeType, mimeSubtypeName))
         { 
         }
