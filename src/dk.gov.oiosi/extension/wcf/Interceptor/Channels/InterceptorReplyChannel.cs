@@ -47,7 +47,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// EndTryReceiveRequest where the interception can be done.
     /// </summary>
     /// <remarks>In case an interceptor has been added UNDER the security layer a copy of the Message object should never be done - seeing how this leads to the To header not being signed.</remarks>
-    class InterceptorReplyChannel : InterceptorChannelBase<IReplyChannel>, IReplyChannel {
+    class InterceptorReplyChannel : InterceptorChannelBase<IReplyChannel>, IReplyChannel
+    {
         private IChannelInterceptor _channelInterceptor;
 
         /// <summary>
@@ -58,8 +59,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="manager"></param>
         /// <param name="innerChannel"></param>
         /// <param name="channelInterceptor"></param>
-        public InterceptorReplyChannel(ChannelManagerBase manager, IReplyChannel innerChannel, IChannelInterceptor channelInterceptor) : base(manager, innerChannel) {
-            _channelInterceptor = channelInterceptor;
+        public InterceptorReplyChannel(ChannelManagerBase manager, IReplyChannel innerChannel, IChannelInterceptor channelInterceptor) 
+            : base(manager, innerChannel) 
+        {
+            this._channelInterceptor = channelInterceptor;
         }
 
         #region IReplyChannel Members
@@ -75,9 +78,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// associated with the asynchronous receive of a request operation</param>
         /// <returns>The System.IAsyncResult that references the asynchronous receive request
         /// operation</returns>
-        public IAsyncResult BeginReceiveRequest(TimeSpan timeout, AsyncCallback callback, object state) {
+        public IAsyncResult BeginReceiveRequest(TimeSpan timeout, AsyncCallback callback, object state) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel begins recieve requet");
-            return InnerChannel.BeginReceiveRequest(timeout, callback, state);
+            IAsyncResult asyncResult = base.InnerChannel.BeginReceiveRequest(timeout, callback, state);
+
+            return asyncResult;
         }
 
         /// <summary>
@@ -90,9 +96,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// associated with the asynchronous receive of a request operation</param>
         /// <returns>The System.IAsyncResult that references the asynchronous reception of the
         /// request</returns>
-        public IAsyncResult BeginReceiveRequest(AsyncCallback callback, object state) {
+        public IAsyncResult BeginReceiveRequest(AsyncCallback callback, object state) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel begins recieve request");
-            return InnerChannel.BeginReceiveRequest(callback, state);
+            IAsyncResult asyncResult = base.InnerChannel.BeginReceiveRequest(callback, state);
+
+            return asyncResult;
         }
 
         /// <summary>
@@ -106,9 +115,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="state">An object, specified by the application, that contains state information
         /// associated with the asynchronous receive of a request operation</param>
         /// <returns></returns>
-        public IAsyncResult BeginTryReceiveRequest(TimeSpan timeout, AsyncCallback callback, object state) {
+        public IAsyncResult BeginTryReceiveRequest(TimeSpan timeout, AsyncCallback callback, object state) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel begins try recieve request");
-            return InnerChannel.BeginTryReceiveRequest(timeout, callback, state);
+            IAsyncResult asyncResult = base.InnerChannel.BeginTryReceiveRequest(timeout, callback, state);
+
+            return asyncResult;
         }
 
         /// <summary>
@@ -123,9 +135,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         ///     associated with the asynchronous receive of a request operation</param>
         /// <returns>The System.IAsyncResult that references the asynchronous operation to wait
         /// for a request message to arrive</returns>
-        public IAsyncResult BeginWaitForRequest(TimeSpan timeout, AsyncCallback callback, object state) {
+        public IAsyncResult BeginWaitForRequest(TimeSpan timeout, AsyncCallback callback, object state) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel begins wait for request");
-            return InnerChannel.BeginWaitForRequest(timeout, callback, state);
+            IAsyncResult asyncResult = base.InnerChannel.BeginWaitForRequest(timeout, callback, state);
+
+            return asyncResult;
         }
 
         /// <summary>
@@ -137,10 +152,13 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// method</param>
         /// <returns>The System.ServiceModel.Channels.RequestContext used to construct a reply
         /// to the request</returns>
-        public RequestContext EndReceiveRequest(IAsyncResult result) {
+        public RequestContext EndReceiveRequest(IAsyncResult result)
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel ends receive request");
-            RequestContext innerContext = InnerChannel.EndReceiveRequest(result);
-            return EndReceiveRequest(innerContext);
+            RequestContext innerContext = base.InnerChannel.EndReceiveRequest(result);
+            RequestContext requestContext = this.EndReceiveRequest(innerContext);
+
+            return requestContext;
         }
 
         /// <summary>
@@ -153,12 +171,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="context">The System.ServiceModel.Channels.RequestContext received</param>
         /// <returns>true if a request message is received before the specified interval of time
         /// elapses; otherwise false</returns>
-        public bool EndTryReceiveRequest(IAsyncResult result, out RequestContext context) {
+        public bool EndTryReceiveRequest(IAsyncResult result, out RequestContext context) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel ends try receive request");
             bool success = InnerChannel.EndTryReceiveRequest(result, out context);
-            if (context == null) return success;
-            context = EndReceiveRequest(context);
-            return context != null;
+            if (context != null)
+            {
+                context = this.EndReceiveRequest(context);
+                if (context != null)
+                {
+                    success = true;
+                }
+                else 
+                {
+                    success = false;
+                }
+            }
+
+            return success;
         }
 
         /// <summary>
@@ -169,17 +199,25 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// operation to finish, and from which to retrieve an end result</param>
         /// <returns>true if a request is received before the specified interval of time elapses;
         /// otherwise false</returns>
-        public bool EndWaitForRequest(IAsyncResult result) {
+        public bool EndWaitForRequest(IAsyncResult result) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel ends wait for request");
-            return InnerChannel.EndWaitForRequest(result);
+            bool succes = base.InnerChannel.EndWaitForRequest(result);
+
+            return succes;
         }
 
         /// <summary>
         /// Implements the LocalAddress get property of the IReplyChannel interface. It bridges the
         /// call to the inner channel located in the channel base.
         /// </summary>
-        public System.ServiceModel.EndpointAddress LocalAddress {
-            get { return InnerChannel.LocalAddress; }
+        public System.ServiceModel.EndpointAddress LocalAddress 
+        {
+            get 
+            {
+                System.ServiceModel.EndpointAddress endpointAddress = base.InnerChannel.LocalAddress;
+                return endpointAddress;
+            }
         }
 
         /// <summary>
@@ -189,9 +227,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="timeout">The System.TimeSpan that specifies how long the receive of a request operation
         /// has to complete before timing out and returning false</param>
         /// <returns>The System.ServiceModel.Channels.RequestContext used to construct replies</returns>
-        public RequestContext ReceiveRequest(TimeSpan timeout) {
+        public RequestContext ReceiveRequest(TimeSpan timeout) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel receives request");
-            return InnerChannel.ReceiveRequest(timeout);
+            RequestContext requestContext = base.InnerChannel.ReceiveRequest(timeout);
+
+            return requestContext;
         }
 
         /// <summary>
@@ -199,9 +240,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// call to the inner channel located in the channel base.
         /// </summary>
         /// <returns>The System.ServiceModel.Channels.RequestContext used to construct replies</returns>
-        public RequestContext ReceiveRequest() {
+        public RequestContext ReceiveRequest() 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel receives request");
-            return InnerChannel.ReceiveRequest();
+            RequestContext requestContext = base.InnerChannel.ReceiveRequest();
+
+            return requestContext;
         }
 
         /// <summary>
@@ -213,9 +257,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="context">The System.ServiceModel.Channels.RequestContext received</param>
         /// <returns>true if a request message is received before the specified interval of time
         /// elapses; otherwise false</returns>
-        public bool TryReceiveRequest(TimeSpan timeout, out RequestContext context) {
+        public bool TryReceiveRequest(TimeSpan timeout, out RequestContext context) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel tries to receive request");
-            return InnerChannel.TryReceiveRequest(timeout, out context);
+            bool succes = InnerChannel.TryReceiveRequest(timeout, out context);
+
+            return succes;
         }
 
         /// <summary>
@@ -226,67 +273,100 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// before timing out and returning false</param>
         /// <returns>true if a request is received before the specified interval of time elapses;
         /// otherwise false</returns>
-        public bool WaitForRequest(TimeSpan timeout) {
+        public bool WaitForRequest(TimeSpan timeout) 
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel waits for request");
-            return InnerChannel.WaitForRequest(timeout);
+            bool succes = InnerChannel.WaitForRequest(timeout);
+
+            return succes;
         }
 
         #endregion
 
-        private RequestContext EndReceiveRequest(RequestContext innerContext) {
-            if (innerContext == null) return null;
-            if (innerContext.RequestMessage == null) return innerContext;
-            if (!_channelInterceptor.DoesRequestIntercept) return innerContext;
+        private RequestContext EndReceiveRequest(RequestContext innerContext) 
+        {
+            RequestContext requestContext = null;
             
-            Message wcfMessage = innerContext.RequestMessage;
-            RequestContext wrappedContext;
-            InterceptorMessage message = new InterceptorMessage(wcfMessage);
-            try {
-                _channelInterceptor.InterceptRequest(message);
-                wrappedContext = new InterceptorRequestContext(innerContext, message.GetMessage(), _channelInterceptor);
-                return wrappedContext;
+            if (innerContext == null) 
+            {
+                requestContext = null;
             }
-            catch (InterceptorChannelException iifex) {
-                WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Exception occurred in interceptor");
-                return HandleException(iifex, innerContext, message);
+            else if (innerContext.RequestMessage == null)
+            {
+                requestContext = innerContext;
             }
-            catch (Exception ex) {
-                WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Exception occurred in interceptor");
-                InterceptorInternalFailureException iifex = new InterceptorInternalFailureException(ex);
-                return HandleException(iifex, innerContext, message);
+            else if (!_channelInterceptor.DoesRequestIntercept)
+            {
+                requestContext = innerContext;
             }
+            else
+            {
+
+                Message wcfMessage = innerContext.RequestMessage;
+                RequestContext wrappedContext;
+                InterceptorMessage message = new InterceptorMessage(wcfMessage);
+                try
+                {
+                    this._channelInterceptor.InterceptRequest(message);
+                    requestContext = new InterceptorRequestContext(innerContext, message.GetMessage(), _channelInterceptor);
+                }
+                catch (InterceptorChannelException iifex)
+                {
+                    WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Exception occurred in interceptor");
+                    requestContext = this.HandleException(iifex, innerContext, message);
+                }
+                catch (Exception ex)
+                {
+                    WCFLogger.Write(System.Diagnostics.TraceEventType.Warning, "Exception occurred in interceptor");
+                    InterceptorInternalFailureException iifex = new InterceptorInternalFailureException(ex);
+                    requestContext = this.HandleException(iifex, innerContext, message);
+                }
+            }
+
+            return requestContext;
         }
 
-        private RequestContext HandleException(InterceptorChannelException icex, RequestContext innerContext, InterceptorMessage message) {
+        private RequestContext HandleException(InterceptorChannelException icex, RequestContext innerContext, InterceptorMessage message) 
+        {
+            RequestContext requestContext;
             WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Interceptor is starting to handle a thrown exception...");
             try {
-                if (_channelInterceptor.DoesFaultOnRequestException) {
-                    SendSoapFault(icex, innerContext, message);
-                    return null;
+                if (_channelInterceptor.DoesFaultOnRequestException)
+                {
+                    this.SendSoapFault(icex, innerContext, message);
+                    requestContext = null;
                 }
+                else
+                {
 
-                RequestContext wrappedContext = new InterceptorRequestContext(innerContext, message.GetMessage(), _channelInterceptor);
-                object exceptions = null;
-                InterceptorChannelExceptionCollection exceptionCollection = null;
-                if (!wrappedContext.RequestMessage.Properties.TryGetValue("Exceptions", out exceptions)) {
-                    exceptions = new InterceptorChannelExceptionCollection();
-                    wrappedContext.RequestMessage.Properties.Add("Exceptions", exceptions);
+                    RequestContext wrappedContext = new InterceptorRequestContext(innerContext, message.GetMessage(), _channelInterceptor);
+                    object exceptions = null;
+                    InterceptorChannelExceptionCollection exceptionCollection = null;
+                    if (!wrappedContext.RequestMessage.Properties.TryGetValue("Exceptions", out exceptions))
+                    {
+                        exceptions = new InterceptorChannelExceptionCollection();
+                        wrappedContext.RequestMessage.Properties.Add("Exceptions", exceptions);
+                    }
+                    exceptionCollection = (InterceptorChannelExceptionCollection)exceptions;
+                    exceptionCollection.Add(icex);
+                    WCFLogger.Write(System.Diagnostics.TraceEventType.Information, "Interceptor added an exception to the message: " + icex.Message);
+                    WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Interceptor is finished handling the thrown exception.");
+                    requestContext = wrappedContext;
                 }
-                exceptionCollection = (InterceptorChannelExceptionCollection)exceptions;
-                exceptionCollection.Add(icex);
-                WCFLogger.Write(System.Diagnostics.TraceEventType.Information, "Interceptor added an exception to the message: " + icex.Message);
-                WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Interceptor is finished handling the thrown exception.");
-                return wrappedContext;
             } 
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 WCFLogger.Write(System.Diagnostics.TraceEventType.Error, "An error occurred when trying to handle an exception in the Interceptor: " + ex);
                 WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Interceptor is finished handling the thrown exception.");
-                return null;
+                requestContext = null;
             }
+
+            return requestContext;
         }
 
-        private void SendSoapFault(InterceptorChannelException ex, RequestContext innerContext, InterceptorMessage message) {
+        private void SendSoapFault(InterceptorChannelException ex, RequestContext innerContext, InterceptorMessage message) 
+        {
             WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Interceptor is sending a SOAP fault...");        
             MessageFault messageFault = ex.GetMessageFault();
             Message wcfMessage = Message.CreateMessage(MessageVersion.Default, messageFault, common.Definitions.DefaultOiosiNamespace2007 + messageFault.Code.SubCode.Name);

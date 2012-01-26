@@ -38,59 +38,81 @@ using System.Xml.Schema;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schema;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
  
     /// <summary>
     /// Schema validation with lookup
     /// </summary>
-    public class SchemaValidatorWithLookup {
+    public class SchemaValidatorWithLookup 
+    {
+        /// <summary>
+        /// The Document identifyer
+        /// </summary>
         private DocumentTypeConfigSearcher searcher;
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public SchemaValidatorWithLookup() {
-            searcher = new DocumentTypeConfigSearcher();
+        public SchemaValidatorWithLookup() 
+        {
+            this.searcher = new DocumentTypeConfigSearcher();
+            this.logger = LoggerFactory.Create(this.GetType());
         }
 
         /// <summary>
         /// Schema validator
         /// </summary>
         /// <param name="document">document to validate</param>
-        public void Validate(XmlDocument document) {
-            try {
-                if (document == null) throw new SchemaValidationInterceptionEmptyBodyException();
+        public void Validate(XmlDocument document) 
+        {
+            this.logger.Trace("Schema validate xml document.");
+            try
+            {
+                if (document == null)
+                {
+                    throw new SchemaValidationInterceptionEmptyBodyException();
+                }
+
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(document);
-                XmlSchema schema = LoadSchema(documentType);
-                DirectoryInfo localSchemaLocation = GetLocalSchemaLocation(documentType);
-                SchemaValidator validator = new SchemaValidator(localSchemaLocation);
-                validator.SchemaValidateXmlDocument(document, schema);
+                SchemaStore schemaStore = new SchemaStore();
+                XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
+                SchemaValidator schemaValidator = new SchemaValidator();
+                ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
+
+                schemaValidator.SchemaValidateXmlDocument(document, XmlSchemaSet, validationEventHandler);
+                
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
+                this.logger.Debug("Schema validate xml document.", ex);
                 throw new SchemaValidateDocumentFailedException(ex);
             }
+
+            this.logger.Trace("Schema validate xml document - Finish.");
         }
 
-        private DirectoryInfo GetLocalSchemaLocation(DocumentTypeConfig documentType) {
-            FileInfo file = new FileInfo(documentType.SchemaPath);
-            return file.Directory;
-        }
-
-        private XmlSchema LoadSchema(DocumentTypeConfig documentType) {
-            FileInfo schemaFile = new FileInfo(documentType.SchemaPath);
-            FileStream fs = null;
-            XmlSchema schema = null;
-            try {
-                fs = File.OpenRead(schemaFile.FullName);
-                schema = XmlSchema.Read(fs, null);
-                return schema;
+        /// <summary>
+        /// Handle the callback schema error and warnings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void ValidationCallBack(object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+            {
+                this.logger.Warn("Matching schema not found. No schema validation occurred");
             }
-            catch (Exception ex) {
-                throw new FailedToLoadSchemaException(schemaFile, ex);
-            }
-            finally {
-                if (fs!= null) fs.Close();
+            else
+            {
+                this.logger.Info("Rejected and Schema invalid document.");
+                throw new SchemaValidateDocumentFailedException(args.Exception);
             }
         }
     }

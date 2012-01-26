@@ -21,10 +21,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security.authorisation {
         /// <param name="configuration">The configuration</param>
         public ServerAuthorisationBindingElement(ServerAuthorisationBindingExtensionElement configuration) {
             _configuration = configuration;
-            ExternalCodeFactory<IAuthorisationValidator> authoriserFactory = new ExternalCodeFactory<IAuthorisationValidator>();
+            ExternalCodeFactory authoriserFactory = new ExternalCodeFactory();
             string implementationNamespaceClass = _configuration.ImplementationNamespaceClass;
             string implementationAssembly = configuration.ImplementationAssembly;
-            _authoriser = authoriserFactory.CreateInstance(implementationNamespaceClass, implementationAssembly);
+            _authoriser = authoriserFactory.CreateInstance<IAuthorisationValidator>(implementationNamespaceClass, implementationAssembly);
         }
 
         /// <summary>

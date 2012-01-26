@@ -37,23 +37,24 @@ using System.Xml.Xsl;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schematron;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
 
     /// <summary>
     /// Schematron validator with lookup
     /// </summary>
-    public class SchematronValidatorWithLookup {
-        private DocumentTypeConfigSearcher _searcher;
-        private SchematronValidator _validator;
-        private DocumentTypeConfig _documentType;
-        private XslCompiledTransform _compiledStylesheet;
+    public class SchematronValidatorWithLookup 
+    {
+        private DocumentTypeConfigSearcher searcher;
+        private ILogger logger;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public SchematronValidatorWithLookup() {
-            _searcher = new DocumentTypeConfigSearcher();
+            this.searcher = new DocumentTypeConfigSearcher();
+            this.logger = LoggerFactory.Create(this.GetType());
         }
 
         /// <summary>
@@ -61,19 +62,29 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// </summary>
         /// <param name="document">the document to validate</param>
         public void Validate(XmlDocument document) {
-            try {
-                if (document == null) throw new SchematronValidationInterceptionEmptyBodyException();
-                DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-                if (_documentType == null || !documentType.Equals(_documentType)) {
-                    _documentType = documentType;
-                    SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
-                    SchematronStore store = SchematronStoreFactory.GetSchematronStore();
-                    _compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
-                    _validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
+            try
+            {
+                this.logger.Trace("SchematronValidation");
+                if (document == null)
+                {
+                    throw new SchematronValidationInterceptionEmptyBodyException();
                 }
-                _validator.SchematronValidateXmlDocument(document, _compiledStylesheet);
+
+                DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(document);
+                SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
+                SchematronStore store = new SchematronStore();
+                XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
+                validator.SchematronValidateXmlDocument(document, compiledStylesheet);
             }
-            catch (Exception ex) {
+            catch (SchematronErrorException)
+            {
+                this.logger.Info("XmlDocument rejected, as it contant at least one schematron error.");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                this.logger.Error("Schematron validation failed", ex);
                 throw new SchematronValidateDocumentFailedException(ex);
             }
         }
