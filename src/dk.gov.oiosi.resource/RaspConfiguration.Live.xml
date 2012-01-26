@@ -4333,6 +4333,28 @@
       </CacheConfigurationCollection>
     </CertificateCache>
 
+    <SchematronStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchematronStoreCache>
+
+    <SchemaStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchemaStoreCache>
+
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
     <RootCertificateLocationCollection>
@@ -4364,7 +4386,5 @@
     <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
     <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="SchematronStoreConfig">
-    <MaxCompiledStylesheetsInMemory>2</MaxCompiledStylesheetsInMemory>
-  </ConfigurationSection>
+
 </RaspConfiguration>
