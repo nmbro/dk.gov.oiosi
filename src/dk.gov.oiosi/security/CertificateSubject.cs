@@ -162,7 +162,8 @@ namespace dk.gov.oiosi.security {
             Match cnMatch = cn.Match(_subjectString);
             _cn = GetAssignment(cnMatch.Value).Trim();
 
-            _dnsSearchBase = oMatch.Value + ", " + cMatch.Value;
+            //_dnsSearchBase = oMatch.Value + ", " + cMatch.Value;
+            _dnsSearchBase = cMatch.Value;
         }
 
         /// <summary>
