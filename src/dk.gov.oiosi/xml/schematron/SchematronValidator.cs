@@ -38,6 +38,7 @@ using System.Xml.Xsl;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.xml.xpath;
 using dk.gov.oiosi.xml.xslt;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.xml.schematron {
 
@@ -45,46 +46,68 @@ namespace dk.gov.oiosi.xml.schematron {
     /// Validates schematrons
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class SchematronValidator {
-        private string _errorXPath;
-        private string _errorMessageXPath;
-        private XmlDocument _schematronDocument;
-        private XsltUtility _xlstUtil;
+    public class SchematronValidator
+    {
+        private string errorXPath;
+        private string errorMessageXPath;
+        private XmlDocument schematronDocument;
+        private XsltUtility xlstUtil;
+
+        private ILogger logger;
 
         /// <summary>
         /// Constructs a new schematron validator
         /// </summary>
-        public SchematronValidator() {
-            _xlstUtil = new XsltUtility();
+        public SchematronValidator() 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.xlstUtil = new XsltUtility();
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public SchematronValidator(string errorXPath, string errorMessageXPath) : this() {
-            _errorXPath = errorXPath;
-            _errorMessageXPath = errorMessageXPath;
+        public SchematronValidator(string errorXPath, string errorMessageXPath) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.xlstUtil = new XsltUtility();
+            this.errorXPath = errorXPath;
+            this.errorMessageXPath = errorMessageXPath;
         }
 
         /// <summary>
         /// Constructor that takes the configuration as a parameter
         /// </summary>
         /// <param name="config"></param>
-        public SchematronValidator(SchematronValidationConfig config) : this() {
-            _errorXPath = config.ErrorXPath;
-            _errorMessageXPath = config.ErrorMessageXPath;
-            _schematronDocument = config.GetSchematronDocument();
+        public SchematronValidator(SchematronValidationConfig config)
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.xlstUtil = new XsltUtility();
+            this.errorXPath = config.ErrorXPath;
+            this.errorMessageXPath = config.ErrorMessageXPath;
+            this.schematronDocument = config.GetSchematronDocument();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="xmlDocument"></param>
-        public void SchematronValidateXmlDocument(XmlDocument xmlDocument) {
-            if (_schematronDocument == null) throw new Exception("No schematron document is set");
-            if (_errorXPath == null) throw new Exception("No error XPath is set");
-            if (_errorMessageXPath == null) throw new Exception("No error message XPath is set");
-            SchematronValidateXmlDocument(xmlDocument, _schematronDocument);
+        public void SchematronValidateXmlDocument(XmlDocument xmlDocument)
+        {
+            if (this.schematronDocument == null)
+            {
+                throw new Exception("No schematron document is set");
+            }
+            if (this.errorXPath == null)
+            {
+                throw new Exception("No error XPath is set");
+            }
+            if (this.errorMessageXPath == null)
+            {
+                throw new Exception("No error message XPath is set");
+            }
+
+            this.SchematronValidateXmlDocument(xmlDocument, this.schematronDocument);
         }
 
         /// <summary>
@@ -92,22 +115,38 @@ namespace dk.gov.oiosi.xml.schematron {
         /// </summary>
         /// <param name="xmlDocument">document to validate</param>
         /// <param name="xmlSchematronStylesheet">stylesheet to use</param>
-        public void SchematronValidateXmlDocument(XmlDocument xmlDocument, XmlDocument xmlSchematronStylesheet) {
-            if (_errorXPath == null) throw new Exception("No error XPath is set");
-            if (_errorMessageXPath == null) throw new Exception("No error message XPath is set");
+        public void SchematronValidateXmlDocument(XmlDocument xmlDocument, XmlDocument xmlSchematronStylesheet) 
+        {
+            if (this.errorXPath == null)
+            {
+                throw new Exception("No error XPath is set");
+            }
+            if (this.errorMessageXPath == null)
+            {
+                throw new Exception("No error message XPath is set");
+            }
+
             XmlDocument result = null;
             PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
             bool hasAnyErrors;
-            try {
-                result = _xlstUtil.TransformXml(xmlDocument, xmlSchematronStylesheet);
-                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, _errorXPath, prefixedNamespaces);
+            try 
+            {
+                result = xlstUtil.TransformXml(xmlDocument, xmlSchematronStylesheet);
+                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
             }
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
                 throw new SchematronValidationFailedException(xmlDocument, ex);
             }
-            if (hasAnyErrors) {
-                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, _errorMessageXPath, prefixedNamespaces);
+
+            if (hasAnyErrors)
+            {
+                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
                 throw new SchematronErrorException(result, firstErrorMessage);
+            }
+            else
+            {
+                // no schematron error
             }
         }
 
@@ -119,22 +158,38 @@ namespace dk.gov.oiosi.xml.schematron {
         /// </summary>
         /// <param name="document">The document to be validated</param>
         /// <param name="schematronStylesheet"></param>
-        public void SchematronValidateXmlDocument(XmlDocument document, XslCompiledTransform schematronStylesheet) {
-            if (_errorXPath == null) throw new Exception("No error XPath is set");
-            if (_errorMessageXPath == null) throw new Exception("No error message XPath is set");
+        public void SchematronValidateXmlDocument(XmlDocument document, XslCompiledTransform schematronStylesheet)
+        {
+            if (this.errorXPath == null)
+            {
+                throw new Exception("No error XPath is set");
+            }
+            if (this.errorMessageXPath == null)
+            {
+                throw new Exception("No error message XPath is set");
+            }
+
             XmlDocument result = null;
             PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
             bool hasAnyErrors;
-            try {
-                result = _xlstUtil.TransformXml(document, schematronStylesheet);
-                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, _errorXPath, prefixedNamespaces);
+            try
+            {
+                result = xlstUtil.TransformXml(document, schematronStylesheet);
+                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new SchematronValidationFailedException(document, ex);
             }
-            if (hasAnyErrors) {
-                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, _errorMessageXPath, prefixedNamespaces);
+
+            if (hasAnyErrors)
+            {
+                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
                 throw new SchematronErrorException(result, firstErrorMessage);
+            }
+            else
+            {
+                // no schematron error
             }
         }
     }

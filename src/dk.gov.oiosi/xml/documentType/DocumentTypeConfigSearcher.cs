@@ -59,18 +59,29 @@ namespace dk.gov.oiosi.xml.documentType {
         /// </summary>
         /// <param name="document">The document to examine</param>
         /// <returns>Returns a matching DocumentTypeConfig, or throws an exception if no match was found</returns>
-        public DocumentTypeConfig FindUniqueDocumentType(XmlDocument document) {
-            if (document == null) throw new NullArgumentException("document");
-            try {
+        public DocumentTypeConfig FindUniqueDocumentType(XmlDocument document)
+        {
+            if (document == null)
+            {
+                throw new NullArgumentException("document");
+            }
+
+            try 
+            {
                 DocumentTypeConfig documentType;
                 if (!TryFindUniqueDocumentType(document, out documentType))
+                {
                     throw new NoDocumentTypeFoundFromXmlDocumentException(document);
+                }
+
                 return documentType;
             }
-            catch (NoDocumentTypeFoundFromXmlDocumentException ex) {
+            catch (NoDocumentTypeFoundFromXmlDocumentException ex)
+            {
                 throw ex;
             }
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
                 throw new SearchForDocumentTypeFromXmlDocumentFailedException(document, ex);
             }
         }
@@ -84,8 +95,13 @@ namespace dk.gov.oiosi.xml.documentType {
         /// <param name="document"></param>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public bool TryFindUniqueDocumentType(XmlDocument document, out DocumentTypeConfig documentType) {
-            if (document == null) throw new NullArgumentException("document");
+        public bool TryFindUniqueDocumentType(XmlDocument document, out DocumentTypeConfig documentType) 
+        {
+            if (document == null)
+            {
+                throw new NullArgumentException("document");
+
+            }
             documentType = null;
             Predicate<DocumentTypeConfig> isDocumentType =
                 delegate(DocumentTypeConfig currentDocumentType) {
@@ -93,9 +109,17 @@ namespace dk.gov.oiosi.xml.documentType {
                 };
             List<DocumentTypeConfig> allDocumentTypes = new List<DocumentTypeConfig>(_documentTypeConfig.DocumentTypes);
             List<DocumentTypeConfig> currentDocumentTypes = allDocumentTypes.FindAll(isDocumentType);
-            if (currentDocumentTypes.Count > 1) throw new AmbiguousDocumentTypeFoundFromXmlDocumentException(document);
-            if (currentDocumentTypes.Count < 1) return false;
+            if (currentDocumentTypes.Count > 1)
+            {
+                throw new AmbiguousDocumentTypeFoundFromXmlDocumentException(document);
+            }
+            if (currentDocumentTypes.Count < 1) 
+            {
+                return false;
+            }
+            
             documentType = currentDocumentTypes[0];
+
             return true;
         }
     }

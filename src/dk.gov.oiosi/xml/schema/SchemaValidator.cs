@@ -34,6 +34,8 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
+using dk.gov.oiosi.logging;
+using System.Text;
 
 namespace dk.gov.oiosi.xml.schema {
 
@@ -41,42 +43,81 @@ namespace dk.gov.oiosi.xml.schema {
     /// Represents a validator that can validate whether an xml document is valid for a
     /// given xml schema.
     /// </summary>
-    public class SchemaValidator {
-        private UrlToLocalFilelResolver urlResolver;
+    public class SchemaValidator
+    {
+        private ILogger logger; 
+        //private UrlToLocalFilelResolver urlResolver;
 
         /// <summary>
         /// Constructor that takes the directory where the schemas are located.
         /// </summary>
         /// <param name="localSchemaLocation"></param>
-        public SchemaValidator(DirectoryInfo localSchemaLocation) {
-            urlResolver = new UrlToLocalFilelResolver(localSchemaLocation);
+        public SchemaValidator()
+        {
+            this.logger = LoggerFactory.Create(this.GetType());    
         }
 
         /// <summary>
         /// Validates wheter the xml document is valid to the given xml schema. Further 
         /// it ensures that the schema and the document has the same namespace. If 
-        /// either the document is invalid or the namepsaces are incorrect and an 
-        /// exception is thrown.
+        /// the document is invalid an exception is thrown.
         /// </summary>
         /// <param name="xmlDocument"></param>
-        /// <param name="xmlSchema"></param>
-        public void SchemaValidateXmlDocument(XmlDocument xmlDocument, XmlSchema xmlSchema) {
-            try {
-                CheckNamespace(xmlDocument, xmlSchema);
-                // Note: This code uses an obsolete method and should be updated.
-                //xmlSchema.Compile(null, urlResolver);
+        /// <param name="xmlSchemaSet"></param>
+        public void SchemaValidateXmlDocument(XmlDocument xmlDocument, XmlSchemaSet xmlSchemaSet) 
+        {
+            this.SchemaValidateXmlDocument(xmlDocument, xmlSchemaSet, null);
+        }
 
-                XmlSchemaSet schemaSet = new XmlSchemaSet();
-                schemaSet.XmlResolver = urlResolver;
-                schemaSet.Add(xmlSchema);
-                schemaSet.Compile();
+        /// <summary>
+        /// Validates wheter the xml document is valid to the given xml schema. Further 
+        /// it ensures that the schema and the document has the same namespace. If 
+        /// the document is invalid the validation event handler is called, if no event 
+        /// handler is provided, and exception is thrown
+        /// </summary>
+        /// <param name="xmlDocument"></param>
+        /// <param name="xmlSchemaSet"></param>
+        /// <param name="validationEventHandler"></param>
+        public void SchemaValidateXmlDocument(XmlDocument xmlDocument, XmlSchemaSet xmlSchemaSet, ValidationEventHandler validationEventHandler)
+        {
+            try
+            {
+                // http://msdn.microsoft.com/en-us/library/system.xml.schema.validationeventargs.severity.aspx
+                using (Stream stream = new MemoryStream())
+                {
+                    XmlWriterSettings xmlDocumentWriterSettings = new XmlWriterSettings();
+                    xmlDocumentWriterSettings.Encoding = Encoding.UTF8;
+                    xmlDocumentWriterSettings.Indent = true;
+                    xmlDocumentWriterSettings.IndentChars = " ";
+                    xmlDocumentWriterSettings.NewLineOnAttributes = true;
+                    xmlDocumentWriterSettings.OmitXmlDeclaration = false;
+                    xmlDocumentWriterSettings.CloseOutput = false;
 
-                XmlDocument clonedDocument = (XmlDocument)xmlDocument.Clone();
-                //clonedDocument.Schemas.Add(xmlSchema);
-                clonedDocument.Schemas.Add(schemaSet);
-                clonedDocument.Validate(null);
+                    using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlDocumentWriterSettings))
+                    {
+                        // write document to memory stream 
+                        // Note - this line is expensive in processing time
+                        xmlDocument.WriteTo(xmlWriter);
+                    }
+
+                    // document is now in a memory stream
+                    // set stream index to 0.
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                    xmlReaderSettings.Schemas.Add(xmlSchemaSet);
+                    xmlReaderSettings.ValidationEventHandler += validationEventHandler;
+                    xmlReaderSettings.ValidationType = ValidationType.Schema;
+
+                    //Create the schema validating reader.
+                    using (XmlReader xmlReader = XmlReader.Create(stream, xmlReaderSettings))
+                    {
+                        while (xmlReader.Read()) { }
+                    }
+                }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new SchemaValidationFailedException(xmlDocument, ex);
             }
         }
@@ -84,39 +125,36 @@ namespace dk.gov.oiosi.xml.schema {
         /// <summary>
         /// Validates wheter the xml document is valid to the given xml schema. Further 
         /// it ensures that the schema and the document has the same namespace. If 
-        /// the document is invalid the validation event handler is called, however 
-        /// if the namepsaces are incorrect and an exception is thrown.
+        /// the document is invalid the validation event handler is called, if no event 
+        /// handler is provided, and exception is thrown
         /// </summary>
         /// <param name="xmlDocument"></param>
-        /// <param name="xmlSchema"></param>
+        /// <param name="xmlSchemaSet"></param>
         /// <param name="validationEventHandler"></param>
-        public void SchemaValidateXmlDocument(XmlDocument xmlDocument, XmlSchema xmlSchema, ValidationEventHandler validationEventHandler) {
-            CheckNamespace(xmlDocument, xmlSchema);
-            // Note: This code uses an obsolete method and should be updated.
-            //xmlSchema.Compile(validationEventHandler, urlResolver);
+        private void SchemaValidateXmlDocument2(XmlDocument xmlDocument, XmlSchemaSet xmlSchemaSet, ValidationEventHandler validationEventHandler)
+        {
+            //// just as fast as SchemaValidateXmlDocument - can be improved?
+            try
+            {
+               // why is the document cloned
+                XmlDocument validateDocument = null;
 
-            XmlSchemaSet schemaSet = new XmlSchemaSet();
-            schemaSet.XmlResolver = urlResolver; 
-            schemaSet.Add(xmlSchema);
-            schemaSet.ValidationEventHandler += validationEventHandler;
-            schemaSet.Compile();
+                if (validationEventHandler == null)
+                {
+                    validateDocument = xmlDocument;
+                }
+                else
+                {
+                    validateDocument = (XmlDocument)xmlDocument.Clone();
+                }
 
-            XmlDocument clonedDocument = (XmlDocument)xmlDocument.Clone();
-            //clonedDocument.Schemas.Add(xmlSchema);
-            clonedDocument.Schemas.Add(schemaSet);
-            clonedDocument.Validate(validationEventHandler);
-        }
-
-        /// <summary>
-        /// Controls that the schema and the document has the same namespace.
-        /// </summary>
-        /// <exception cref="UnexpectedNamespaceException"></exception>
-        /// <param name="xmlDocument"></param>
-        /// <param name="xmlSchema"></param>
-        private void CheckNamespace(XmlDocument xmlDocument, XmlSchema xmlSchema) {
-            string documentNamespace = xmlDocument.DocumentElement.NamespaceURI;
-            string expectedNamespace = xmlSchema.TargetNamespace;
-            if (documentNamespace != expectedNamespace) throw new UnexpectedNamespaceException(documentNamespace, expectedNamespace);
+                validateDocument.Schemas.Add(xmlSchemaSet);
+                validateDocument.Validate(validationEventHandler);
+            }
+            catch (Exception ex)
+            {
+                throw new SchemaValidationFailedException(xmlDocument, ex);
+            }
         }
     }
 }

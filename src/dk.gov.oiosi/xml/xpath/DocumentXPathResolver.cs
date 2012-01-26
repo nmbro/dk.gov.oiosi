@@ -34,6 +34,7 @@
 using System;
 using System.Xml;
 using dk.gov.oiosi.exception;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.xml.xpath {
 
@@ -53,7 +54,8 @@ namespace dk.gov.oiosi.xml.xpath {
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-        ) {
+        ) 
+        {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             XmlNodeList nodes = GetNodes(xmlDocument, xpath, prefixedNamespaces);
             int nodesCount = nodes.Count;
@@ -176,9 +178,27 @@ namespace dk.gov.oiosi.xml.xpath {
             ) {
             //Prepare xpath search
             XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xmlDocument.NameTable);
+
+            string cbc = namespaceManager.LookupNamespace("cbc");
+
+            namespaceManager.AddNamespace("cbc", "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2");
+            string dns0 = namespaceManager.DefaultNamespace;
+            IDictionary<string, string> nis1 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.All);
+            IDictionary<string, string> nis2 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.ExcludeXml);
+            IDictionary<string, string> nis3 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.Local);
+
+
+
+
             foreach (PrefixedNamespace preNs in prefixedNamespaces) {
                 namespaceManager.AddNamespace(preNs.Prefix, preNs.Namespace);
             }
+
+            string dns10 = namespaceManager.DefaultNamespace;
+            IDictionary<string, string> nis11 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.All);
+            IDictionary<string, string> nis12 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.ExcludeXml);
+            IDictionary<string, string> nis13 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.Local);
+
             //Xpath search
             XmlNodeList nodes = xmlDocument.SelectNodes(xpath, namespaceManager);
             return nodes;
