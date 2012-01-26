@@ -85,9 +85,9 @@
       <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
       <Name>dk.gov.oiosi.exception</Name>
     </ProjectReference>
-    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.logging.csproj">
+    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
       <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
-      <Name>dk.gov.oiosi.logging</Name>
+      <Name>dk.gov.oiosi.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
