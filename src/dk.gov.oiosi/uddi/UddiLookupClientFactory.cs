@@ -33,6 +33,7 @@
 using System;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.configuration;
+using System.Reflection;
 
 namespace dk.gov.oiosi.uddi {
 
@@ -51,20 +52,29 @@ namespace dk.gov.oiosi.uddi {
             _config = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
 
             // 2. Get the type to load:
-            if (_config.ImplementationNamespaceClass == null || _config.ImplementationNamespaceClass == "") { 
-                throw new UddiNoImplementingClassException(); }
-            if (_config.ImplementationAssembly == null || _config.ImplementationAssembly == "") { 
-                throw new UddiNoImplementingAssemblyException(); }
-             string qualifiedTypename = _config.ImplementationNamespaceClass + ", " + _config.ImplementationAssembly;
+            if (string.IsNullOrEmpty(_config.ImplementationNamespaceClass)) 
+            { 
+                throw new UddiNoImplementingClassException(); 
+            }
+            
+            if (string.IsNullOrEmpty(_config.ImplementationAssembly)) 
+            { 
+                throw new UddiNoImplementingAssemblyException(); 
+            }
+            
+            string qualifiedTypename = _config.ImplementationNamespaceClass + ", " + _config.ImplementationAssembly;
             
             Type lookupClientType = Type.GetType(qualifiedTypename);
-            if (lookupClientType == null) {
+            if (lookupClientType == null) 
+            {
                 throw new CouldNotLoadTypeException(qualifiedTypename);
             }
 
             // 3. Instantiate the type:
         	object[] parameters = new object[]{address};
-			IUddiLookupClient lookupClient = (IUddiLookupClient)lookupClientType.GetConstructor(new Type[]{typeof(Uri)}).Invoke(parameters);
+            Type[] typeArray = new Type[] { typeof(Uri) };
+            ConstructorInfo constructorInfo = lookupClientType.GetConstructor(typeArray);
+            IUddiLookupClient lookupClient = (IUddiLookupClient)constructorInfo.Invoke(parameters);
 
             return lookupClient;
         }

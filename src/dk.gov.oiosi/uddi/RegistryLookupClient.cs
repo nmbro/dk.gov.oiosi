@@ -5,14 +5,16 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// UDDI lookup client that implements cross registry lookups
     /// </summary>
-    public class RegistryLookupClient : IUddiLookupClient {
+    public class RegistryLookupClient : IUddiLookupClient
+    {
         private readonly LookupRegistryFallbackConfig _configuration;
 
         /// <summary>
         /// Default constructor.
         /// It will read the configuration from RaspConfiguration.xml
         /// </summary>
-        public RegistryLookupClient() {
+        public RegistryLookupClient() 
+        {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             _configuration = uddiConfig.LookupRegistryFallbackConfig;
         }
@@ -32,26 +34,36 @@ namespace dk.gov.oiosi.uddi {
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
+        public List<UddiLookupResponse> Lookup(LookupParameters parameters) 
+        {
             List<UddiLookupResponse> response = null;
-            foreach (Registry registry in _configuration.PrioritizedRegistryList) {
+            foreach (Registry registry in _configuration.PrioritizedRegistryList) 
+            {
                 IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
                 response = uddiLookupClient.Lookup(parameters);
+                
                 // Continue only as long as no result was found in the current registry
                 if (response != null && response.Count != 0)
+                {
                     break;
+                }
             }
             return response;
         }
 
-        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) 
+        {
             List<ProcessDefinition> processDefinitions = null;
-            foreach (Registry registry in _configuration.PrioritizedRegistryList) {
+            foreach (Registry registry in _configuration.PrioritizedRegistryList)
+            {
                 IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
                 processDefinitions = uddiLookupClient.GetProcessDefinitions(processDefinitionIds);
+
                 // Continue until some was found
                 if (processDefinitions != null && processDefinitions.Count != 0)
+                {
                     break;
+                }
             }
 
             return processDefinitions;

@@ -6,7 +6,7 @@ using dk.gov.oiosi.security;
 
 namespace dk.gov.oiosi.uddi
 {
-    internal class UddiService
+    public class UddiService
     {
         private const string activationDateId = "uddi:B5449299-B951-4266-9952-4C4470970782";
         private const string certificateSubjectId = "uddi:e6feac92-0aee-4824-ae02-882760609e8a";

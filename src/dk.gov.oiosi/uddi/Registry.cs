@@ -11,7 +11,7 @@ namespace dk.gov.oiosi.uddi
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class Registry
     {
-        private List<string> _endpoints;
+        private List<string> endpoints;
 
         /// <summary>
         /// Default constructor
@@ -25,7 +25,7 @@ namespace dk.gov.oiosi.uddi
         /// <param name="endpoints">A list of access points to this registry</param>
         public Registry(List<string> endpoints)
         {
-            _endpoints = endpoints;
+            this.endpoints = endpoints;
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace dk.gov.oiosi.uddi
         [XmlArrayItem("Endpoint")]
         public List<string> Endpoints
         {
-            get { return _endpoints; }
-            set { _endpoints = value; }
+            get { return this.endpoints; }
+            set { this.endpoints = value; }
         }
 
         /// <summary>
@@ -46,8 +46,11 @@ namespace dk.gov.oiosi.uddi
 		public List<Uri> GetAsUris()
 		{
 			List<Uri> result = new List<Uri>();
-			foreach(string s in _endpoints)
-				result.Add(new Uri(s));
+            foreach (string s in this.endpoints)
+            {
+                result.Add(new Uri(s));
+            }
+
 			return result;
 		}
     }

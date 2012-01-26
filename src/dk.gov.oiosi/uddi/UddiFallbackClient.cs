@@ -5,14 +5,16 @@ namespace dk.gov.oiosi.uddi{
     /// <summary>
     /// An UDDI lookup client that implements fallbacks.
     /// </summary>
-	public class UddiFallbackClient : IUddiLookupClient{
+	public class UddiFallbackClient : IUddiLookupClient
+    {
 		private readonly IEnumerable<Uri> _fallbackList;
 
         /// <summary>
         /// Constructor that takes the fallback list as parameter
         /// </summary>
         /// <param name="fallbackList">The fallback list</param>
-		public UddiFallbackClient(IEnumerable<Uri> fallbackList){
+		public UddiFallbackClient(IEnumerable<Uri> fallbackList)
+        {
 			_fallbackList = fallbackList;
 		}
 
@@ -23,23 +25,31 @@ namespace dk.gov.oiosi.uddi{
         /// </summary>
         /// <param name="parameters">The parameters used to make a lookup</param>
         /// <returns></returns>
-		public List<UddiLookupResponse> Lookup(LookupParameters parameters) {
+		public List<UddiLookupResponse> Lookup(LookupParameters parameters)
+        {
 		    List<UddiLookupResponse> result;
-
+            UddiLookupClientFactory uddiLookupClientFactory = new UddiLookupClientFactory();
 			Exception exception = null;
 			foreach (Uri uri in _fallbackList) {
-				try{
-					IUddiLookupClient client = new UddiLookupClientFactory().CreateUddiLookupClient(uri);
+				try
+                {
+                    IUddiLookupClient client = uddiLookupClientFactory.CreateUddiLookupClient(uri);
 					result = client.Lookup(parameters);
 					return result;
 				}
-				catch(Exception e){
+				catch(Exception e)
+                {
 					exception = e;
 					continue;
 				}
 			}
+
             //The fallbacklist was empty we return an empty list as result.
-            if (exception == null) return new List<UddiLookupResponse>();
+            if (exception == null)
+            {
+                return new List<UddiLookupResponse>();
+            }
+
 			// We never got a valid result, so the last known exception is thrown
             throw exception;
 		}
@@ -49,7 +59,8 @@ namespace dk.gov.oiosi.uddi{
         /// </summary>
         /// <param name="processDefinitionIds">The parameters used to make a lookup</param>
         /// <returns></returns>
-        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) {
+        public List<ProcessDefinition> GetProcessDefinitions(List<UddiId> processDefinitionIds) 
+        {
             List<ProcessDefinition> result;
 
             Exception exception = null;

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using dk.gov.oiosi.common;
 
-namespace dk.gov.oiosi.uddi {
-    internal class UddiTModel {
+namespace dk.gov.oiosi.uddi 
+{
+    public class UddiTModel
+    {
         private const string wsdlTypeId = "uddi:uddi.org:wsdl:types";
         private const string businessProcessIdentifierId = "uddi:9111dd24-6734-407f-b949-d601ab427520";
         private const string businessProcessIdentifierTypeId = "uddi:e03ae1dd-634f-4c6b-abd2-814c165ab5bf";
