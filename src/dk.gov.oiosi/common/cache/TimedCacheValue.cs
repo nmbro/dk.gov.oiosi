@@ -1,4 +1,4 @@
-/*
+﻿/*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
   * file except in compliance with the License. You may obtain
@@ -22,22 +22,45 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis S�gaard, Accenture
+  *   Dennis Søgaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
+  *   Jacob Mogensen, mySupply ApS
+  *	  Dmitriy Lapko, TrueLink A/S
   *
   */
-namespace dk.gov.oiosi.common.cache {
 
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace dk.gov.oiosi.common.cache
+{
     /// <summary>
-    /// Interface that represents a timed cache.
-    /// 
-    /// Is kept to keep backwards compability.
+    /// Timed cache of some data
     /// </summary>
-    /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TValue"></typeparam>
-    public interface ITimedCache<TKey, TValue> : ICache<TKey, TValue> { }
+    public class TimedCacheValue<TValue>
+    {
+        private DateTime _timeOut;
+        private TValue _value;
+
+        public TimedCacheValue(DateTime timeOut, TValue value)
+        {
+            _timeOut = timeOut;
+            _value = value;
+        }
+
+        public DateTime TimeOut
+        {
+            get { return _timeOut; }
+        }
+
+        public TValue Value
+        {
+            get { return _value; }
+        }
+    }
 }

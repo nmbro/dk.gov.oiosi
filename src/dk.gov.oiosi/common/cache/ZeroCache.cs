@@ -28,15 +28,16 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
   */
+
 namespace dk.gov.oiosi.common.cache {
     /// <summary>
     /// Cache implementation that never stores anything. Used when the cache function should be turned off.
     /// </summary>
     /// <typeparam name="TKey">The type of the key</typeparam>
     /// <typeparam name="TValue">The type of the value</typeparam>
-    public class TimedNullCache<TKey, TValue> : ITimedCache<TKey, TValue> {
+    public class ZeroCache<TKey, TValue> : ICache<TKey, TValue> {
         #region ITimedCache<TKey,TValue> Members
 
         /// <summary>
@@ -45,6 +46,16 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="key"></param>
         /// <param name="value"></param>
         public void Add(TKey key, TValue value) { }
+
+        /// <summary>
+        /// Does not add anything. This is a stub.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public TValue TryAddValue(TKey key, TValue value) 
+        {
+            return value;
+        }
 
         /// <summary>
         /// Does not set anything. This is a stub.
@@ -79,6 +90,15 @@ namespace dk.gov.oiosi.common.cache {
             return false;
         }
 
+        /// <summary>
+        /// Do nothing, no data cached
+        /// </summary>
+        public void CheckExpired()
+        {
+            // nothing to do - we do not cache anything
+        }
+
         #endregion
+
     }
 }
