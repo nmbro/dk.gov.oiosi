@@ -15,6 +15,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <StartupObject>dk.gov.oiosi.samples.consoleClientExample.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,14 +81,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RaspConfiguration.Live.xml">
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
+      <Link>RaspConfiguration.Live.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RaspConfiguration.Test.xml">
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
+      <Link>RaspConfiguration.Test.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RaspConfiguration.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
