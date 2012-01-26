@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheConfig.cs" />
+    <Compile Include="CacheConfigElement.cs" />
+    <Compile Include="CacheConfiguration.cs" />
     <Compile Include="ErrorMessages.Designer.cs">
       <DependentUpon>ErrorMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>

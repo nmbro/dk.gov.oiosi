@@ -126,17 +126,21 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T">A serializable class type with a default constructor</typeparam>
         /// <returns>A configuration section. If the configuration section is not found a new instance of the configuration section class is returned.</returns>
-        public static T GetConfigurationSection<T>() where T : new() {
+        public static T GetConfigurationSection<T>() where T : new() 
+        {
             Type configSectionType = typeof (T);
-            lock (lockObject) {
+            lock (lockObject) 
+            {
                 object section;
                 bool sectionExistsInCache = _configSectionsCache.TryGetValue(typeof (T), out section);
-                if (sectionExistsInCache) {
+                if (sectionExistsInCache)
+                {
                     return (T) section;
                 }
 
                 bool sectionExistsInConfigurationDocument = configurationDocument.HasConfigurationSection(configSectionType);
-                if (sectionExistsInConfigurationDocument) {
+                if (sectionExistsInConfigurationDocument)
+                {
                     section = configurationDocument.GetConfigurationSection<T>(configSectionType);
                     _configSectionsCache.Add(configSectionType, section);
                     return (T) section;
@@ -151,8 +155,10 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Saves the configuration to file
         /// </summary>
-        public static void SaveToFile() {
-            lock (lockObject) {
+        public static void SaveToFile() 
+        {
+            lock (lockObject)
+            {
                 configurationDocument.AddUnrecognizedSectionsFromFile();
                 configurationDocument.SaveToFile();
             }
