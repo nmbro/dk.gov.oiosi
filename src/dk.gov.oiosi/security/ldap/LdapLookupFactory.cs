@@ -28,6 +28,7 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
+ *   Jacob Mogensen, mySupply
   *
   */
 using System;
@@ -39,8 +40,8 @@ namespace dk.gov.oiosi.security.ldap {
     /// <summary>
     /// Instantiates classes with the ICertificateLookup interface, based on configuration.
     /// </summary>
-    public class LdapLookupFactory {
-
+    public class LdapLookupFactory
+    {
         /// <summary>
         /// Instantiates classes with the ICertificateLookup interface, based on configuration.
         /// </summary>
@@ -50,23 +51,31 @@ namespace dk.gov.oiosi.security.ldap {
             LdapLookupFactoryConfig config = ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
 
             // 2. Get the type to load:
-            if (config.ImplementationNamespaceClass == null || config.ImplementationNamespaceClass == "") { 
-                throw new LdapNoImplementingClassException(); }
-            if (config.ImplementationAssembly == null || config.ImplementationAssembly == "") { 
-                throw new LdapNoImplementingAssemblyException(); }
+            if (config.ImplementationNamespaceClass == null || config.ImplementationNamespaceClass == "")
+            { 
+                throw new LdapNoImplementingClassException(); 
+            }
+            if (config.ImplementationAssembly == null || config.ImplementationAssembly == "") 
+            { 
+                throw new LdapNoImplementingAssemblyException(); 
+            }
 
             string qualifiedTypename = config.ImplementationNamespaceClass + ", " + config.ImplementationAssembly;
             Type lookupClientType = Type.GetType(qualifiedTypename);
-            if (lookupClientType == null) {
+
+            if (lookupClientType == null) 
+            {
                 throw new FailedToLoadLookupTypeException(qualifiedTypename);
             }
 
             // 3. Instantiate the type:
             ICertificateLookup lookupClient;
-            try {
+            try 
+            {
                 lookupClient = (ICertificateLookup)lookupClientType.GetConstructor(new Type[0]).Invoke(null);
             }
-            catch (Exception e) {
+            catch (Exception e) 
+            {
                 throw new LdapCertificateLookupInitializationFailedException(e);
             }
 

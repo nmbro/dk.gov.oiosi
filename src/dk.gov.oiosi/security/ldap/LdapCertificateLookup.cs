@@ -39,7 +39,6 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.lookup;
 using dk.gov.oiosi.security.validation;
 using Novell.Directory.Ldap;
-using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.security.ldap {
     /// <summary>
@@ -49,10 +48,11 @@ namespace dk.gov.oiosi.security.ldap {
     /// It implements the ICertificate lookup to garantee it has a speicific 
     /// interface for querying certificates.
     /// </summary>
-    public class LdapCertificateLookup : ICertificateLookup {
+    public class LdapCertificateLookup : ICertificateLookup 
+    {
         private LdapSettings _settings;
 
-        private static ICache<CertificateSubject, X509Certificate2> certCache = CreateCache();
+        private ICache<CertificateSubject, X509Certificate2> certiticateCache;
 
         /// <summary>
         /// The LdapCertificateLookup constructor takes an ldap settings object 
@@ -62,6 +62,7 @@ namespace dk.gov.oiosi.security.ldap {
         /// <param name="settings">Setting object that contains the ldap settings to be used.</param>
         public LdapCertificateLookup(LdapSettings settings) {
             _settings = settings;
+            this.certiticateCache = this.CreateCache();
         }
 
         /// <summary>
@@ -70,16 +71,15 @@ namespace dk.gov.oiosi.security.ldap {
         public LdapCertificateLookup()
             : this(ConfigurationHandler.GetConfigurationSection<LdapSettings>())
         {
-            
         }
 
-        private static ICache<CertificateSubject, X509Certificate2> CreateCache()
+        private ICache<CertificateSubject, X509Certificate2> CreateCache()
         {
-            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.CertificateCacheTimeSpan;
-            ICache<CertificateSubject, X509Certificate2> certCache = new TimedCache<CertificateSubject, X509Certificate2>(timeSpan);
+            //CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            //TimeSpan timeSpan = cacheConfig.CertificateCacheTimeSpan;
 
-            return certCache;
+            ICache<CertificateSubject, X509Certificate2> certiticateCache = CacheFactory.Instance.CertificateCache;
+            return certiticateCache;
         }
 
         #region ICetificateLookup Members
@@ -100,7 +100,8 @@ namespace dk.gov.oiosi.security.ldap {
 
             X509Certificate2 certificateToBeReturned;
 
-            if (!certCache.TryGetValue(subject, out certificateToBeReturned)) {
+            if (!certiticateCache.TryGetValue(subject, out certificateToBeReturned))
+            {
                 
                 LdapConnection ldapConnection = null;
                 try
@@ -111,11 +112,14 @@ namespace dk.gov.oiosi.security.ldap {
                 }
                 finally
                 {
-                    if (ldapConnection != null) ldapConnection.Disconnect();
+                    if (ldapConnection != null)
+                    {
+                        ldapConnection.Disconnect();
+                    }
                 }
 
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);
-                certCache.Set(subject, certificateToBeReturned);
+                certiticateCache.Set(subject, certificateToBeReturned);
             }
             else {
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);
@@ -137,6 +141,13 @@ namespace dk.gov.oiosi.security.ldap {
                 //A time limit on the connection to the server is added.
                 ldapConnection.Constraints.TimeLimit = _settings.ConnectionTimeoutMsec;
                 ldapConnection.Connect(_settings.Host, _settings.Port);
+                string authenticationMethod = ldapConnection.AuthenticationMethod;
+                int protocol = ldapConnection.ProtocolVersion;
+                System.Collections.IDictionary prop = ldapConnection.SaslBindProperties;
+                LdapSearchConstraints searh = ldapConnection.SearchConstraints;
+                
+               //ldapConnection.SearchConstraints.
+
                 return ldapConnection;
             } 
             catch (Exception e) {
@@ -152,21 +163,28 @@ namespace dk.gov.oiosi.security.ldap {
         /// <param name="ldapConnection">Ldap connection settings</param>
         /// <param name="subject">The certificate subject used in the search</param>
         /// <returns></returns>
-        private LdapSearchResults Search(LdapConnection ldapConnection, CertificateSubject subject) {
+        private LdapSearchResults Search(LdapConnection ldapConnection, CertificateSubject subject) 
+        {
+            LdapSearchResults ldapSearchResults;
             string searchBase = subject.DnsSearchBase;
             string searchFilter = subject.DnsSearchFilter;
+
             LdapSearchConstraints lsc = new LdapSearchConstraints();
             lsc.ServerTimeLimit = _settings.SearchServerTimeoutMsec;
             lsc.TimeLimit = _settings.SearchClientTimeoutMsec;
             lsc.MaxResults = _settings.MaxResults;
-            string[] attributes = { "userCertificate" }; 
-            try {
-                LdapSearchResults ldapSearchResults = ldapConnection.Search(searchBase, LdapConnection.SCOPE_SUB, searchFilter, attributes, false, lsc);
-                return ldapSearchResults;
+            
+            string[] attributes = { "userCertificate" };
+
+            try
+            {
+                ldapSearchResults = ldapConnection.Search(searchBase, LdapConnection.SCOPE_SUB, searchFilter, attributes, false, lsc);
             } 
             catch (Exception e) {
                 throw new SearchFailedException(e);
             }
+
+            return ldapSearchResults;
         }
 
         /// <summary>
@@ -182,11 +200,18 @@ namespace dk.gov.oiosi.security.ldap {
         private X509Certificate2 GetCertificate(LdapSearchResults ldapSearchResults, CertificateSubject subject) {
             //The search failed to find a certificate.
             bool searchResultFound = ldapSearchResults.hasMore();
-            if (searchResultFound == false) throw new LdapCertificateNotFoundException(subject);
+            if (searchResultFound == false)
+            {
+                throw new LdapCertificateNotFoundException(subject);
+            }
             
             LdapEntry ldapEntry = ldapSearchResults.next();
+
             bool moreThanOneSearchResultFound = ldapSearchResults.hasMore();
-            if (moreThanOneSearchResultFound) throw new LdapMultipleCertificatesFoundException(subject);
+            if (moreThanOneSearchResultFound)
+            {
+                throw new LdapMultipleCertificatesFoundException(subject);
+            }
 
             try {
                 LdapAttribute ldapAttribute = ldapEntry.getAttribute("userCertificate;binary");

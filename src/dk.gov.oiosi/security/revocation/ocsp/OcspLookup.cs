@@ -39,7 +39,6 @@ using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
 using Iloveit.Ocsp.Demo;
 using System.Collections.Generic;
-using dk.gov.oiosi.security.cache;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
@@ -55,66 +54,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// </summary>
         private IList<X509Certificate2> defaultOcesRootCertificateList;
 
-        private static readonly ICache<string, RevocationResponse> ocspCache = CreateCache();
-
-        /// <summary>
-        /// Gets the configuration of the lookup client
-        /// </summary>
-        public OcspConfig Configuration {
-            get { return _configuration; }
-        }
-
-        private static ICache<string, RevocationResponse> CreateCache()
-        {
-            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.OcspLookupCacheTimeSpan;
-            ICache<string, RevocationResponse> ocspCache = new TimedCache<string, RevocationResponse>(timeSpan);
-            return ocspCache;
-        }
-
-        /// <summary>
-        /// To be able to call the CheckCertificate method asynchron, we create a delegate.
-        /// </summary>
-        /// <param name="certificate">the certificate to check</param>
-        /// <returns>the OcSpResponse object to store the result</returns>
-        public delegate RevocationResponse AsyncOcspCall(X509Certificate2 certificate);
-
-        /// <summary>
-        /// Initializes. If the default root certificate is set to null, an attempt is made
-        /// to get a default root certificate from a Configuration.xml file
-        /// </summary>
-        /// <param name="configuration">OCSP configuration</param>
-        /// <param name="defaultRootCertificateList">If the default root certificate is set to null, an attempt is made
-        /// to get a default root certificate from a Configuration.xml file</param>
-        private void Init(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList) {
-            try {
-                // 1. Set configuration
-                _configuration = configuration;
-
-                // 2. Get default certificate:
-                if (defaultRootCertificateList == null)
-                {
-                    this.defaultOcesRootCertificateList = _configuration.GetDefaultOcesRootCertificateListFromStore();
-                } else 
-                {
-                    this.defaultOcesRootCertificateList = defaultRootCertificateList;
-                }
-            } catch (UriFormatException) {
-                throw;
-            } catch (ArgumentNullException) {
-                throw;
-            } catch (OverflowException) {
-                throw;
-            } catch (FormatException) {
-                throw;
-            } catch (CryptographicUnexpectedOperationException) {
-                throw;
-            } catch (CryptographicException) {
-                throw;
-            } catch (Exception) {
-                throw;
-            }
-        }
+        private ICache<string, RevocationResponse> ocspCache;
 
         /// <summary>
         /// Instantiates OcspLookup and loads the OCES default root certificate
@@ -139,6 +79,83 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         public OcspLookup() {
             OcspConfig configuration = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             Init(configuration, null);
+        }
+        
+
+        /// <summary>
+        /// Gets the configuration of the lookup client
+        /// </summary>
+        public OcspConfig Configuration
+        {
+            get { return _configuration; }
+        }
+
+        /// <summary>
+        /// To be able to call the CheckCertificate method asynchron, we create a delegate.
+        /// </summary>
+        /// <param name="certificate">the certificate to check</param>
+        /// <returns>the OcSpResponse object to store the result</returns>
+        public delegate RevocationResponse AsyncOcspCall(X509Certificate2 certificate);
+
+        /// <summary>
+        /// Initializes. If the default root certificate is set to null, an attempt is made
+        /// to get a default root certificate from a Configuration.xml file
+        /// </summary>
+        /// <param name="configuration">OCSP configuration</param>
+        /// <param name="defaultRootCertificateList">If the default root certificate is set to null, an attempt is made
+        /// to get a default root certificate from a Configuration.xml file</param>
+        private void Init(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList)
+        {
+            this.ocspCache = this.CreateCache();
+            try
+            {
+                // 1. Set configuration
+                _configuration = configuration;
+
+                // 2. Get default certificate:
+                if (defaultRootCertificateList == null)
+                {
+                    this.defaultOcesRootCertificateList = _configuration.GetDefaultOcesRootCertificateListFromStore();
+                }
+                else
+                {
+                    this.defaultOcesRootCertificateList = defaultRootCertificateList;
+                }
+            }
+            catch (UriFormatException)
+            {
+                throw;
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+            catch (OverflowException)
+            {
+                throw;
+            }
+            catch (FormatException)
+            {
+                throw;
+            }
+            catch (CryptographicUnexpectedOperationException)
+            {
+                throw;
+            }
+            catch (CryptographicException)
+            {
+                throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
+        private ICache<string, RevocationResponse> CreateCache()
+        {
+            ICache<string, RevocationResponse> ocspCache = CacheFactory.Instance.OcspLookupCache;
+            return ocspCache;
         }
 
         /// <summary>

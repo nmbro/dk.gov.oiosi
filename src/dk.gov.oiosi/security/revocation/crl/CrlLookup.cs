@@ -36,8 +36,8 @@ using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
 using dk.gov.oiosi.common.cache;
 using Org.BouncyCastle.X509;
-using dk.gov.oiosi.security.cache;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
@@ -51,12 +51,20 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <summary>
         /// Got cache for one day
         /// </summary>
-        private static TimedCache<Uri, CrlInstance> cache = CreateCache();
+        private ICache<Uri, CrlInstance> cache;
+
+        private ILogger logger;
 
         /// <summary>
         /// Lockobject to ensure locking of the cache.
         /// </summary>
         private static object lockObject = new object();
+
+        public CrlLookup()
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.cache = this.CreateCache();
+        }
 
         #region IRevocationLookup Members
         
@@ -83,7 +91,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         		
     		    foreach (Uri url in URLs)
     		    {
-                    CrlInstance crl = GetInstace(url);
+                    CrlInstance crl = GetInstance(url);
         			
     			    try 
     			    {
@@ -117,11 +125,11 @@ namespace dk.gov.oiosi.security.revocation.crl
             }
         }
 
-        private static TimedCache<Uri, CrlInstance> CreateCache()
+        private ICache<Uri, CrlInstance> CreateCache()
         {
-            CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            TimeSpan timeSpan = cacheConfig.CrlLookupCacheTimeSpan;
-            TimedCache<Uri, CrlInstance> cache = new TimedCache<Uri, CrlInstance>(timeSpan);
+            // CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
+            // TimeSpan timeSpan = cacheConfig.CrlLookupCacheTimeSpan;
+            ICache<Uri, CrlInstance> cache = CacheFactory.Instance.CrlLookupCache;
 
             return cache;
         }
@@ -166,17 +174,21 @@ namespace dk.gov.oiosi.security.revocation.crl
 		    return urls;
 	    }
 
-        private CrlInstance GetInstace(Uri url)
+        private CrlInstance GetInstance(Uri url)
         {
-            lock (lockObject) {
+            CrlInstance instance = new CrlInstance(url);
+            instance = cache.TryAddValue(url, instance);
+            return instance;
+
+            /*lock (lockObject) {
                 CrlInstance instance = null;
                 if (!cache.TryGetValue(url, out instance))
                 {
                     instance = new CrlInstance(url);
-                    cache.Add(url, instance);
+                    instance = cache.TryAddValue(url, instance);
                 }
                 return instance;
-            }
+            }*/
         }
     }
 }

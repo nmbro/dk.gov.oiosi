@@ -39,24 +39,45 @@ namespace dk.gov.oiosi.security.revocation {
     /// <summary>
     /// Creates an instance of a class wiht the IRevocationLookup interface
     /// </summary>
-    public class RevocationLookupFactory {
+    public class RevocationLookupFactory 
+    {
+        private IRevocationLookup revocationLookup = null;
+        private readonly object objectLock = new object();
 
         /// <summary>
-        /// Builds an instance of an IRevocationLookup client based on configuration.
+        /// Get the instance of an IRevocationLookup client based on configuration.
         /// </summary>
-        /// <returns>ocsp lookup</returns>
-        public IRevocationLookup CreateRevocationLookupClient() {
-            // 1. Get factory config:
-            RevocationLookupFactoryConfig config = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
+        /// <returns></returns>
+        public IRevocationLookup CreateRevocationLookupClient()
+        {
+            lock (objectLock)
+            {
+                if (revocationLookup == null)
+                {
+                    this.revocationLookup = this.CreateInstance();
+                }
+            }
 
-            return CreateRevocationLookupClient(config);
+            return this.revocationLookup;
         }
 
         /// <summary>
         /// Builds an instance of an IRevocationLookup client based on configuration.
         /// </summary>
         /// <returns>ocsp lookup</returns>
-        public IRevocationLookup CreateRevocationLookupClient(RevocationLookupFactoryConfig config) {
+        private IRevocationLookup CreateInstance() {
+            // 1. Get factory config:
+            RevocationLookupFactoryConfig config = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
+
+            return this.CreateInstance(config);
+        }
+
+        /// <summary>
+        /// Builds an instance of an IRevocationLookup client based on configuration.
+        /// </summary>
+        /// <returns>ocsp lookup</returns>
+        private IRevocationLookup CreateInstance(RevocationLookupFactoryConfig config)
+        {
             // 1. Get the type to load:
             if (config.ImplementationNamespaceClass == null || config.ImplementationNamespaceClass == "")
                 throw new RevocationNoImplementingClassException();

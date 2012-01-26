@@ -4,13 +4,14 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Org.BouncyCastle.X509;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
     /// <summary>
     /// Class used for storing CRLs retrieved from URL's in X509 certificates
     /// </summary>
-    class CrlInstance
+    public class CrlInstance
     {
         private readonly X509CrlParser crlParser;
         private X509Crl data;
@@ -18,6 +19,8 @@ namespace dk.gov.oiosi.security.revocation.crl
 
         private readonly ReaderWriterLockSlim rwl = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
         private readonly X509CertificateParser cp = new X509CertificateParser();
+
+        private ILogger logger;
 
         /// <summary>
         /// Creates a new CRLInstance instance.
@@ -28,6 +31,7 @@ namespace dk.gov.oiosi.security.revocation.crl
             this.crlParser = new X509CrlParser();
             this.data = null;
             this.url = url;
+            this.logger = LoggerFactory.Create(this.GetType());
         }
 
         /// <summary>
@@ -74,7 +78,9 @@ namespace dk.gov.oiosi.security.revocation.crl
                 }
 
                 // Reads the data and unlocks.
-                bool isRevoked = data.IsRevoked(cp.ReadCertificate(cert.RawData));
+                Org.BouncyCastle.X509.X509Certificate certificateToValidate = cp.ReadCertificate(cert.RawData);
+                bool isRevoked = data.IsRevoked(certificateToValidate);
+                
                 return isRevoked;
             }
             finally
@@ -98,8 +104,19 @@ namespace dk.gov.oiosi.security.revocation.crl
                 {
                     Stream stream = response.GetResponseStream();
 
+                    if (stream == null)
+                    {
+                        this.logger.Warn("The stream is null.");
+                    }
+
+                    this.logger.Debug("Start 'crlParser.ReadCrl(stream)'");
+                   
+                    
                     // Downloads the .crl file into an X509CRL object.
                     data = crlParser.ReadCrl(stream);
+
+                    this.logger.Debug("Finish with 'crlParser.ReadCrl(stream)'");
+
                     DateTime f = data.NextUpdate.Value;
                     stream.Close();
 
