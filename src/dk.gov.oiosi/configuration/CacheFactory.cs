@@ -90,12 +90,12 @@ namespace dk.gov.oiosi.configuration
             this.certificateCache = this.Create<ICache<CertificateSubject, X509Certificate2>>(element, "CertificateCache");
 
             // schematronCache
-            element = cacheConfig.SchematronStoreCache;
-            this.schematronStoreCache = this.Create<ICache<string, XslCompiledTransform>>(element, "SchematronStoreCache");
-
-            // schematronCache
             element = cacheConfig.SchemaStoreCache;
             this.schemaStoreCache = this.Create<ICache<string, XmlSchemaSet>>(element, "SchemaStoreCache");
+
+            // schematronCache
+            element = cacheConfig.SchematronStoreCache;
+            this.schematronStoreCache = this.Create<ICache<string, XslCompiledTransform>>(element, "SchematronStoreCache");
         }
 
         private T Create<T>(CacheConfigElement element, string name)
