@@ -153,6 +153,7 @@ namespace dk.gov.oiosi.xml.xslt {
                   //TextReader textReader = new StringReader(document.OuterXml);
                   //XmlReader xmlReader = new XmlTextReader(textReader);
                   */
+                
 
                 using (XmlReader reader = XmlReader.Create(stream, readerSettings))
                 {
@@ -182,6 +183,8 @@ namespace dk.gov.oiosi.xml.xslt {
 
             return transformedXml;
         }
+
+        //XmlNodeReader xnr = new XmlNodeReader(body.DocumentElement);
 
         // just as fast - can be improved?
         private XmlDocument TransformXml2(XmlDocument document, XslCompiledTransform transform)
@@ -219,6 +222,56 @@ namespace dk.gov.oiosi.xml.xslt {
             this.logger.Trace("Finish");
 
             return transformedXml;         
+        }
+
+        // just as fast - can be improved?
+        private XmlDocument TransformXml3(XmlDocument document, XslCompiledTransform transform)
+        {
+            this.logger.Trace("Start TransformXml");
+            XmlDocument transformedXml = new XmlDocument();
+
+            XmlReaderSettings readerSettings = new XmlReaderSettings();
+            readerSettings.CloseInput = false;
+
+            // Note - this line is expensive in processing time
+
+           // XmlNodeReader xnr = new XmlNodeReader(document.DocumentElement);
+            //XmlReader r = XmlTextReader.Create( 
+            this.logger.Trace("TransformXml1");
+            XmlNode node = document.DocumentElement;
+            this.logger.Trace("TransformXml2");
+            using (XmlNodeReader nodeReader = new XmlNodeReader(node))
+            {
+                using(XmlReader reader = XmlReader.Create(nodeReader, readerSettings))
+                {
+                this.logger.Trace("TransformXml3");
+
+                XmlWriterSettings writerSettings = new XmlWriterSettings();
+                writerSettings.Encoding = Encoding.UTF8;
+                writerSettings.Indent = true;
+                writerSettings.IndentChars = " ";
+                writerSettings.NewLineOnAttributes = true;
+                writerSettings.OmitXmlDeclaration = false;
+                writerSettings.CloseOutput = false;
+
+                MemoryStream resultStream = new MemoryStream();
+                this.logger.Trace("TransformXml4");
+                using (XmlWriter writer = XmlWriter.Create(resultStream, writerSettings))
+                {
+                    this.logger.Trace("TransformXml4,1");
+                    transform.Transform(reader, writer);
+                }
+                this.logger.Trace("TransformXml5");
+                // create the schematron result from 
+                resultStream.Seek(0, SeekOrigin.Begin);
+
+                transformedXml.Load(resultStream);
+                }
+            }
+
+            this.logger.Trace("Finish");
+
+            return transformedXml;
         }
     }
 }

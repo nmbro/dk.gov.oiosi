@@ -38,8 +38,8 @@ namespace dk.gov.oiosi.security.lookup {
     /// <summary>
     /// Utility class for loading certificates from store
     /// </summary>
-    public class CertificateLoader {
-
+    public class CertificateLoader 
+    {
         /// <summary>
         /// Gets a certificate from a certificate store from certificate subject serial number
         /// </summary>
@@ -47,12 +47,10 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeLocation">The store location</param>
         /// <param name="storeName">The store name</param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateFromStoreWithSSN(
-            string subjectSerialNumber,
-            StoreLocation storeLocation,
-            StoreName storeName
-        ) {
-            return GetCertificateFromStore(subjectSerialNumber, storeLocation, storeName, X509FindType.FindBySubjectName);
+        public X509Certificate2 GetCertificateFromStoreWithSSN(string subjectSerialNumber, StoreLocation storeLocation, StoreName storeName)
+        {
+            X509Certificate2 x509Certificate2 = this.GetCertificateFromStore(subjectSerialNumber, storeLocation, storeName, X509FindType.FindBySubjectName);
+            return x509Certificate2;
         }
 
         /// <summary>
@@ -61,8 +59,10 @@ namespace dk.gov.oiosi.security.lookup {
         /// </summary>
         /// <param name="certificateStoreIdentification"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateFromCertificateStoreInformation(ICertificateStoreIdentification certificateStoreIdentification) {
-            return GetCertificateFromStoreWithSerialNumber(certificateStoreIdentification.SerialNumber, certificateStoreIdentification.StoreLocation, certificateStoreIdentification.StoreName);
+        public X509Certificate2 GetCertificateFromCertificateStoreInformation(ICertificateStoreIdentification certificateStoreIdentification) 
+        {
+            X509Certificate2 x509Certificate2 = this.GetCertificateFromStoreWithSerialNumber(certificateStoreIdentification.SerialNumber, certificateStoreIdentification.StoreLocation, certificateStoreIdentification.StoreName);
+            return x509Certificate2;
         }
 
         /// <summary>
@@ -72,12 +72,10 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeLocation">The store location</param>
         /// <param name="storeName">The store name</param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateFromStoreWithSerialNumber(
-            string serialNumber,
-            StoreLocation storeLocation,
-            StoreName storeName
-        ) {
-            return GetCertificateFromStore(serialNumber, storeLocation, storeName, X509FindType.FindBySerialNumber);
+        public X509Certificate2 GetCertificateFromStoreWithSerialNumber(string serialNumber, StoreLocation storeLocation, StoreName storeName)
+        {
+            X509Certificate2 x509Certificate2 = this.GetCertificateFromStore(serialNumber, storeLocation, storeName, X509FindType.FindBySerialNumber);
+            return x509Certificate2;
         }
 
         /// <summary>
@@ -87,19 +85,24 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeLocation">The store location</param>
         /// <param name="storeName">The store name</param>
         /// <returns>bool</returns>
-        public static bool CertificateFromStoreWithSerialNumberExists(
-            string serialNumber,
-            StoreLocation storeLocation,
-            StoreName storeName
-        ) {
-            try {
-                GetCertificateFromStore(serialNumber, storeLocation, storeName, X509FindType.FindBySerialNumber);
-                return true;
-            } catch (CertificateLoaderCertificateNotFoundException) {
-                return false;
-            } catch (Exception exp) {
+        public bool CertificateFromStoreWithSerialNumberExists(string serialNumber, StoreLocation storeLocation, StoreName storeName) 
+        {
+            bool succes;
+            try 
+            {
+                this.GetCertificateFromStore(serialNumber, storeLocation, storeName, X509FindType.FindBySerialNumber);
+                succes = true;
+            } 
+            catch (CertificateLoaderCertificateNotFoundException) 
+            {
+                succes = false;
+            }
+            catch (Exception exp) 
+            {
                 throw exp;
             }
+
+            return succes;
         }
 
         /// <summary>
@@ -109,12 +112,21 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeLocation">The store location</param>
         /// <param name="storeName">The store name</param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateFromStoreWithSubjectKeyIdentifier(
-            string subjectKeyIdentifier,
-            StoreLocation storeLocation,
-            StoreName storeName
-        ) {
-            return GetCertificateFromStore(subjectKeyIdentifier, storeLocation, storeName, X509FindType.FindBySubjectKeyIdentifier);
+        public X509Certificate2 GetCertificateFromStoreWithSubjectKeyIdentifier(string subjectKeyIdentifier, StoreLocation storeLocation, StoreName storeName)
+        {
+            X509Certificate2 x509Certificate2 = this.GetCertificateFromStore(subjectKeyIdentifier, storeLocation, storeName, X509FindType.FindBySubjectKeyIdentifier);
+            return x509Certificate2;
+        }
+
+        /// <summary>
+        /// Gets a Root Certificate from store identified by
+        /// </summary>
+        /// <param name="rootCertificateLocation">The location information</param>
+        /// <returns>The root certificate</returns>
+        public X509Certificate2 GetCertificateFromStore(RootCertificateLocation rootCertificateLocation)
+        {
+            X509Certificate2 x509Certificate2 = this.GetCertificateFromStore(rootCertificateLocation.SerialNumber, rootCertificateLocation.StoreLocation, rootCertificateLocation.StoreName, X509FindType.FindBySerialNumber);
+            return x509Certificate2;
         }
 
         /// <summary>
@@ -125,26 +137,33 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeName">The store name</param>
         /// <param name="findType">find type</param>
         /// <returns>An x5092 certificate or null</returns>
-        public static X509Certificate2 GetCertificateFromStore(
-            string searchString,
-            StoreLocation storeLocation,
-            StoreName storeName,
-            X509FindType findType
-        ) {
+        public X509Certificate2 GetCertificateFromStore(string searchString, StoreLocation storeLocation, StoreName storeName, X509FindType findType)
+        {
             X509Store store = new X509Store(storeName, storeLocation);
-            store.Open(OpenFlags.ReadOnly);
             X509Certificate2Collection result;
-            try {
+
+            try 
+            {
+                store.Open(OpenFlags.ReadOnly);
                 result = store.Certificates.Find(findType, searchString, false);
             }
-            finally {
-                if (store != null) store.Close();
+            finally
+            {
+                if (store != null)
+                {
+                    store.Close();
+                }
             }
 
             if (result.Count < 1)
+            {
                 throw new CertificateLoaderCertificateNotFoundException(store, findType, searchString);
+            }
             if (result.Count > 1)
+            {
                 throw new CertificateLoaderMultipleCertificatesFoundException(store, findType, searchString);
+            }
+
             return result[0];
         }
 
@@ -155,10 +174,11 @@ namespace dk.gov.oiosi.security.lookup {
         /// <param name="storeLocation">The store location</param>
         /// <param name="issuerName">The name of the issuer</param>
         /// <returns>Returns a x5092 certificate object or null</returns>
-        public static X509Certificate2Collection GetCertificatesFromStore(StoreName storeName, StoreLocation storeLocation, string issuerName) {
+        public X509Certificate2Collection GetCertificatesFromStore(StoreName storeName, StoreLocation storeLocation, string issuerName) 
+        {
             X509Store store = new X509Store(storeName, storeLocation);
             store.Open(OpenFlags.ReadOnly);
-
+            // se på MultipleRootX509CertificateValidator.isValid(certifica, rootCertificate);
             // TODO - JLM  - hvis der er tre nivauer - får vi så det ønskede certificat, eller det mellemste niveau?
 
             X509Certificate2Collection certificates = store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, false);

@@ -58,7 +58,7 @@ namespace dk.gov.oiosi.logging
             {
                 // the key did not exist in the default app.config
                 // try the dk.gov.oiosi.logging.dll.config
-                 Configuration configuration = ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName);
+                Configuration configuration = ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName);
                 AppSettingsSection section = configuration.AppSettings;
                 KeyValueConfigurationCollection collection = section.Settings;
                 KeyValueConfigurationElement element = collection[log4NetConfigurationFile];

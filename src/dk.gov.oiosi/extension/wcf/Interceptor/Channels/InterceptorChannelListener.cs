@@ -213,13 +213,32 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         }
         #endregion
 
-        private TChannel WrapChannel(TChannel innerChannel) {
-            if (innerChannel == null) return null;
-            if (_channelInterceptor != null && typeof(TChannel) == typeof(IReplyChannel))
-                return (TChannel)(IChannel)new InterceptorReplyChannel(this, (IReplyChannel)innerChannel, _channelInterceptor);
-            if (_channelInterceptor != null && typeof(TChannel) == typeof(IReplySessionChannel))
-                return (TChannel)(IChannel)new InterceptorReplySessionChannel(this, (IReplySessionChannel)innerChannel, _channelInterceptor);
-            throw new UnsupportedChannelTypeException(typeof(TChannel));
+        private TChannel WrapChannel(TChannel innerChannel) 
+        {
+            TChannel channel;
+
+            if (innerChannel == null)
+            {
+                channel  = null;
+            }
+            else if (_channelInterceptor != null && typeof(TChannel) == typeof(IReplyChannel))
+            {
+                InterceptorReplyChannel interceptorReplyChannel = new InterceptorReplyChannel(this, (IReplyChannel)innerChannel, _channelInterceptor);
+                //interceptorReplyChannel.Faulted += new EventHandler(interceptorReplyChannel_Faulted);
+                channel = (TChannel)(IChannel)interceptorReplyChannel;
+            }
+            else if (_channelInterceptor != null && typeof(TChannel) == typeof(IReplySessionChannel))
+            {
+                InterceptorReplySessionChannel interceptorReplySessionChannel = new InterceptorReplySessionChannel(this, (IReplySessionChannel)innerChannel, _channelInterceptor);
+                //interceptorReplySessionChannel.Faulted += new EventHandler(interceptorReplySessionChannel_Faulted);
+                channel = (TChannel)(IChannel)interceptorReplySessionChannel;
+            }
+            else
+            {
+                throw new UnsupportedChannelTypeException(typeof(TChannel));
+            }
+
+            return channel;
         }
     }
 }

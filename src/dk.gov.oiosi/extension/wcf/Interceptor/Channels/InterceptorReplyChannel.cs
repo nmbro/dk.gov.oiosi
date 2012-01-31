@@ -49,6 +49,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// <remarks>In case an interceptor has been added UNDER the security layer a copy of the Message object should never be done - seeing how this leads to the To header not being signed.</remarks>
     class InterceptorReplyChannel : InterceptorChannelBase<IReplyChannel>, IReplyChannel
     {
+        private ILogger logger;
         private IChannelInterceptor _channelInterceptor;
 
         /// <summary>
@@ -63,7 +64,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
             : base(manager, innerChannel) 
         {
             this._channelInterceptor = channelInterceptor;
+            this.logger = LoggerFactory.Create(this.GetType());
         }
+
+
 
         #region IReplyChannel Members
         /// <summary>
@@ -174,22 +178,37 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         public bool EndTryReceiveRequest(IAsyncResult result, out RequestContext context) 
         {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel ends try receive request");
-            bool success = InnerChannel.EndTryReceiveRequest(result, out context);
-            if (context != null)
-            {
-                context = this.EndReceiveRequest(context);
+            IReplyChannel channel = base.InnerChannel;
+            bool success = true;
+            //try
+           // {
+                success = channel.EndTryReceiveRequest(result, out context);
+                
                 if (context != null)
                 {
-                    success = true;
+                    context = this.EndReceiveRequest(context);
+                    if (context != null)
+                    {
+                        success = true;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
                 }
-                else 
-                {
-                    success = false;
-                }
-            }
+          /*  }
+            catch (Exception ex)
+            {
+                this.logger.Error(ex.ToString());
+                string exString = ex.ToString();
+                context = null;
+                success = false;
+            }*/
 
             return success;
         }
+
+
 
         /// <summary>
         /// Implements the EndWaitForRequest method of the IReplyChannel interface. It bridges the

@@ -83,7 +83,7 @@ namespace dk.gov.oiosi.security {
         /// corresponding tModel GUID
         /// </summary>
         [XmlArray("RootCertificateLocationCollection")]
-        public RootCertificateLocation[] ProfileMappingCollection
+        public RootCertificateLocation[] RootCertificateCollection
         {
             get { return this.rootCertificateLocationList.ToArray(); }
             set { this.rootCertificateLocationList.AddRange(value); }

@@ -8,6 +8,7 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.communication.configuration;
 using System.IO;
 using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema;
+using System.Configuration;
 
 namespace dk.gov.oiosi.xml.schema
 {
@@ -19,12 +20,40 @@ namespace dk.gov.oiosi.xml.schema
     public class SchemaStore
     {
         private static object lockObject = new object();
+        private string basePath = string.Empty;
         private ICache<string, XmlSchemaSet> cache;
 
         public SchemaStore()
         {
             // Gets the cache from the CacheFactory
             cache = CacheFactory.Instance.SchemaStoreCache;
+
+            // Get or create the base path for the resources
+            // In development, if deployed on ASP.Net development  server, the default base path can not be used.
+            // Therefore the basepath is retrived from the web.config file
+            // If no basePath in app.config is defined, the Applications default base path is used.
+            string basePath = ConfigurationManager.AppSettings["ResourceBasePath"];
+            if (!string.IsNullOrEmpty(basePath))
+            {
+                this.basePath = basePath;
+            }
+
+            /*Configuration configuration = ConfigurationManager.OpenExeConfiguration(;
+            AppSettingsSection section = configuration.AppSettings;
+            KeyValueConfigurationCollection collection = section.Settings;
+            KeyValueConfigurationElement element = collection[log4NetConfigurationFile];
+            if(element != null)
+            {
+                log4NetConfigurationFile = element.Value;
+            }
+            }
+
+            if (string.IsNullOrEmpty(log4NetConfigurationFile))
+            {
+                // configuration file still not identified. Trying default filename
+                log4NetConfigurationFile = "log4net.xml";
+            }*/
+
         }
 
         /// <summary>
@@ -90,7 +119,18 @@ namespace dk.gov.oiosi.xml.schema
         {
             // ToDo: The XmlSchema file could be cached for faster retrivel
             XmlSchema schema = null;
-            FileInfo schemaFile = new FileInfo(documentType.SchemaPath);
+            FileInfo schemaFile;
+
+            if (string.IsNullOrEmpty(this.basePath))
+            {
+                schemaFile = new FileInfo(documentType.SchemaPath);
+            }
+            else
+            {
+                string path = Path.Combine(this.basePath, documentType.SchemaPath);
+                schemaFile = new FileInfo(path);
+            }
+
             FileStream fs = null;            
             try
             {
@@ -129,10 +169,20 @@ namespace dk.gov.oiosi.xml.schema
 
         public XmlSchemaSet LoadXmlSchemaSet(string schemaPath, XmlSchema xmlSchema, ValidationEventHandler validationEventHandler)
         {
+            FileInfo localSchemaLocationFileInfo;
 
-            FileInfo localSchemaLocationFileInfo = new FileInfo(schemaPath);
+            if (string.IsNullOrEmpty(this.basePath))
+            {
+                localSchemaLocationFileInfo = new FileInfo(schemaPath);
+            }
+            else
+            {
+                string path = Path.Combine(this.basePath, schemaPath);
+                localSchemaLocationFileInfo = new FileInfo(path);
+            }
+
             DirectoryInfo directoryInfo = localSchemaLocationFileInfo.Directory;
-            UrlToLocalFilelResolver urlResolver = new UrlToLocalFilelResolver(directoryInfo);
+            UrlToLocalFilelResolver urlResolver = new UrlToLocalFilelResolver(directoryInfo.FullName);
 
             XmlSchemaSet xmlSchemaSet = new XmlSchemaSet();
             xmlSchemaSet.XmlResolver = urlResolver;

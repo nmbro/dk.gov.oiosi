@@ -80,13 +80,15 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// Loads the configured OCES default root certificate
         /// </summary>
         /// <returns>The loaded x509 certificate. If no certificate is found, an exception is thrown.</returns>
-        public IList<X509Certificate2> GetDefaultOcesRootCertificateListFromStore() {
+        public IList<X509Certificate2> GetDefaultOcesRootCertificateListFromStore()
+        {
             IList<X509Certificate2> list = new List<X509Certificate2>();
             RootCertificateCollectionConfig rootCertificateConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             X509Certificate2 certificate2;
+            CertificateLoader certificateLoader = new CertificateLoader();
             foreach(CertificateStoreIdentification certificateStoreIdentification in rootCertificateConfig.GetAsList())
             {
-                certificate2 = CertificateLoader.GetCertificateFromCertificateStoreInformation(certificateStoreIdentification);
+                certificate2 = certificateLoader.GetCertificateFromCertificateStoreInformation(certificateStoreIdentification);
                 list.Add(certificate2);
             }
 

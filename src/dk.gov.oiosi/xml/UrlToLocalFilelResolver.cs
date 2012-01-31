@@ -33,52 +33,81 @@
 using System;
 using System.IO;
 using System.Xml;
+using dk.gov.oiosi.logging;
 
-namespace dk.gov.oiosi.xml {
+namespace dk.gov.oiosi.xml
+{
     /// <summary>
     /// Defines the RASP url resolver when looking for schemas. 
     /// Instead of looking for the schemas online it will attempt to find them locally.
     /// </summary>
-    public class UrlToLocalFilelResolver : XmlUrlResolver {
-        private DirectoryInfo _localSchemaDirectory;
+    public class UrlToLocalFilelResolver : XmlUrlResolver
+    {
+        private ILogger logger;
+        private string basePathForResources;
 
         /// <summary>
         /// Constructor that takes the directory where the schema are located
         /// as parameter.
         /// </summary>
-        public UrlToLocalFilelResolver(DirectoryInfo localSchemaDirectory) {
-            _localSchemaDirectory = localSchemaDirectory;
+        public UrlToLocalFilelResolver(string basePathForResources)
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.basePathForResources = basePathForResources;
         }
 
         /// <summary>
-        /// Overrides the GetEntitiy method of the XmlUrlResolver to implement custom code
-        /// for the RASP url resolver.
+        /// Constructor that takes the directory where the schema are located
+        /// as parameter.
         /// </summary>
-        /// <param name="absoluteUri"></param>
-        /// <param name="role"></param>
-        /// <param name="ofObjectToReturn"></param>
-        /// <returns></returns>
-        public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn) {
-            //The uri is to a file
-            string uri = absoluteUri.ToString();
-            uri = uri.Substring(uri.LastIndexOf("/") + 1);
-            Uri newUri;
-            string newPath = _localSchemaDirectory.FullName;
-            if (!newPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
-                newPath += Path.DirectorySeparatorChar;
-            newPath += uri;
-            if (File.Exists(newPath)) {
-                try {
-                    newUri = new Uri(newPath); 
+        public UrlToLocalFilelResolver(DirectoryInfo basePathForResources)
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.basePathForResources = basePathForResources.FullName;
+        }
+
+        public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+        {
+            return base.GetEntity(absoluteUri, role, ofObjectToReturn);
+        }
+
+
+        public override Uri ResolveUri(Uri baseUri, string relativeUri)
+        {
+            Uri uri = null;
+
+            if (baseUri != null && !string.IsNullOrEmpty(baseUri.OriginalString))
+            {
+                FileInfo baseFileInfo = new FileInfo(baseUri.LocalPath);
+                if (baseFileInfo.Exists)
+                {
+                    uri = base.ResolveUri(baseUri, relativeUri);
                 }
-                catch(Exception) {
-                    newUri = absoluteUri;
-                }
-            } 
-            else {
-                newUri = absoluteUri;
             }
-            return base.GetEntity(newUri, role, ofObjectToReturn);
+
+            if (uri == null)
+            {
+                string fullPath = Path.Combine(this.basePathForResources, relativeUri);
+                FileInfo fileInfo = new FileInfo(fullPath);
+
+                if (fileInfo.Exists)
+                {
+                    Uri newUri = new Uri(fileInfo.FullName);
+                    uri = base.ResolveUri(newUri, relativeUri);
+                }
+                else
+                {
+                    string baseUriString = string.Empty;
+                    if (baseUri != null)
+                    {
+                        baseUriString = baseUri.LocalPath;
+                    }
+
+                    this.logger.Warn("The resource identified by the relative uri '" + relativeUri + "' and the baseUri '" + baseUriString + "' and base path '" + this.basePathForResources + "' could not be located. The resource was not found.");
+                }
+            }
+
+            return uri;
         }
     }
 }

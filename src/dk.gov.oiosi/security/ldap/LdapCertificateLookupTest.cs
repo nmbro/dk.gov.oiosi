@@ -49,11 +49,13 @@ namespace dk.gov.oiosi.security.ldap {
         /// </summary>
         /// <param name="certificateSubject">The subject serial number of the certificate</param>
         /// <returns>Returns a selected certificate based on configuration.</returns>
-        public X509Certificate2 GetCertificate(CertificateSubject certificateSubject) {
+        public X509Certificate2 GetCertificate(CertificateSubject certificateSubject)
+        {
+            CertificateLoader certificateLoader = new CertificateLoader();
             switch (_config.Action) {
                 case LdapCertificateLookupTestConfig.LookupAction.FindCertificate:
                     // 1. Attempt to load the certificate from store:
-                    return CertificateLoader.GetCertificateFromStoreWithSSN(
+                    return certificateLoader.GetCertificateFromStoreWithSSN(
                         certificateSubject.SerialNumberValue,
                         _config.StoreLocation,
                         _config.StoreName

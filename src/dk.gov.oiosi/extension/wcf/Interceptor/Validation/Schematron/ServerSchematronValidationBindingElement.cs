@@ -40,8 +40,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
     /// <summary>
     /// Schematron validation binding element
     /// </summary>
-    public class ServerSchematronValidationBindingElement : ValidationServerBindingElement {
-        private SchematronValidatorWithLookup _validator;
+    public class ServerSchematronValidationBindingElement : ValidationServerBindingElement 
+    {
+        private SchematronValidatorWithLookup validator;
 
         /// <summary>
         /// Constructor
@@ -49,16 +50,17 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// <param name="configuration">validation configuration</param>
         public ServerSchematronValidationBindingElement(ValidationServerConfiguration configuration)
             : base(configuration) {
-            _validator = new SchematronValidatorWithLookup();
+            validator = new SchematronValidatorWithLookup();
         }
 
         /// <summary>
         /// Gets a message
         /// </summary>
         /// <param name="message">message</param>
-        public override void InterceptRequest(InterceptorMessage message) {
+        public override void InterceptRequest(InterceptorMessage message)
+        {
             XmlDocument document = message.GetBody();
-            _validator.Validate(document);
+            validator.Validate(document);
         }
 
         /// <summary>
@@ -71,7 +73,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// Clones a binding element
         /// </summary>
         /// <returns></returns>
-        public override BindingElement Clone() {
+        public override BindingElement Clone() 
+        {
             return new ServerSchematronValidationBindingElement(ValidationServerConfiguration);
         }
     }

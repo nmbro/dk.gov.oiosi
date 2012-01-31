@@ -418,7 +418,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -646,7 +646,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
         <RootName>Catalogue</RootName>
         <ServiceContractTModel>uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-Catalogue-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-Catalogue-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -874,7 +874,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2</RootNamespace>
         <RootName>CatalogueRequest</RootName>
         <ServiceContractTModel>uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1102,7 +1102,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2</RootNamespace>
         <RootName>CatalogueItemSpecificationUpdate</RootName>
         <ServiceContractTModel>uddi:63eab5c0-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1330,7 +1330,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2</RootNamespace>
         <RootName>CataloguePricingUpdate</RootName>
         <ServiceContractTModel>uddi:abdb2720-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1558,7 +1558,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2</RootNamespace>
         <RootName>CatalogueDeletion</RootName>
         <ServiceContractTModel>uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1786,7 +1786,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
         <RootName>CreditNote</RootName>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-CreditNote-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-CreditNote-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_CreditNote.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2014,7 +2014,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-Invoice-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-Invoice-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2242,7 +2242,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
         <RootName>Order</RootName>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-Order-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-Order-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2470,7 +2470,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2</RootNamespace>
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-OrderCancellation-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-OrderCancellation-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2698,7 +2698,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</RootNamespace>
         <RootName>OrderResponse</RootName>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-OrderResponse-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-OrderResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2926,7 +2926,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2</RootNamespace>
         <RootName>OrderChange</RootName>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-OrderChange-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-OrderChange-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -3154,7 +3154,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2</RootNamespace>
         <RootName>OrderResponseSimple</RootName>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -3382,7 +3382,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Reminder-2</RootNamespace>
         <RootName>Reminder</RootName>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-Reminder-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-Reminder-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -3610,7 +3610,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Statement-2</RootNamespace>
         <RootName>Statement</RootName>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL v2.0/UBL-Statement-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL v2.0/maindoc/UBL-Statement-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL v2.0/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -3838,7 +3838,7 @@
         <RootNamespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</RootNamespace>
         <RootName>UtilityStatement</RootName>
         <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL v2.1-b/UBL-UtilityStatement-2.1.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -4049,7 +4049,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUTS v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>

@@ -5,6 +5,7 @@ using System.Xml.Xsl;
 using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.xml.xslt;
 using dk.gov.oiosi.configuration;
+using System.Configuration;
 
 namespace dk.gov.oiosi.xml.schematron {
     
@@ -16,6 +17,7 @@ namespace dk.gov.oiosi.xml.schematron {
     public class SchematronStore 
     {
         private static object lockObject = new object();
+        private string basePath = string.Empty;
         private ICache<string, XslCompiledTransform> cache;
 
         /// <summary>
@@ -26,6 +28,16 @@ namespace dk.gov.oiosi.xml.schematron {
         {
             // get the cache from the cache factory
             this.cache = CacheFactory.Instance.SchematrongStoreCache;
+
+            // Get or create the base path for the resources
+            // In development, if deployed on ASP.Net development  server, the default base path can not be used.
+            // Therefore the basepath is retrived from the web.config file
+            // If no basePath in app.config is defined, the Applications default base path is used.
+            string basePath = ConfigurationManager.AppSettings["ResourceBasePath"];
+            if (!string.IsNullOrEmpty(basePath))
+            {
+                this.basePath = basePath;
+            }
         }
 
         /// <summary>
@@ -40,9 +52,20 @@ namespace dk.gov.oiosi.xml.schematron {
                 throw new ArgumentNullException("path");
             }
 
-            FileInfo fileInfo = new FileInfo(path);
+            string cacheKey = path;
+            FileInfo fileInfo;
+
+            if (string.IsNullOrEmpty(this.basePath))
+            {
+                fileInfo = new FileInfo(path);
+            }
+            else
+            {
+                string combinedPath = Path.Combine(this.basePath, path);
+                fileInfo = new FileInfo(combinedPath);
+            }
+
             XslCompiledTransform compiledSchematron = null;
-            string cacheKey = fileInfo.FullName;
 
             lock (lockObject)
             {
@@ -67,10 +90,15 @@ namespace dk.gov.oiosi.xml.schematron {
             XsltUtility xsltUtility = new XsltUtility();
             try 
             {
+                DirectoryInfo directoryInfo = fileInfo.Directory;
+                UrlToLocalFilelResolver urlResolver = new UrlToLocalFilelResolver(directoryInfo.FullName);
+
                 xmlStylesheet.Load(fileInfo.FullName);
+                xmlStylesheet.XmlResolver = urlResolver;
                 xslCompiledTransform = xsltUtility.PrecompiledStyleSheet(xmlStylesheet);
             }
-            catch (Exception ex) {
+            catch (Exception ex) 
+            {
                 throw new FailedToLoadSchematronStylesheetException(fileInfo, ex);
             }
 
