@@ -52,7 +52,7 @@ namespace dk.gov.oiosi.raspProfile
         public void SetDefaultCacheConfig()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            string implementationAssembly = "dk.gov.oiosi.RaspLibrary";
+            string implementationAssembly = "dk.gov.oiosi.library";
             CacheConfiguration configurationValidity = new CacheConfiguration("validityTimeInMinutes", "60");
             CacheConfiguration configurationFrequency = new CacheConfiguration("frequencyInMinutes", "10");
             CacheConfiguration configurationMaxSize = new CacheConfiguration("maxSize", "10");
