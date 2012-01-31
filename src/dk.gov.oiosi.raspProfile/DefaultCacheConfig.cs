@@ -87,6 +87,11 @@ namespace dk.gov.oiosi.raspProfile
             cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationValidity);
             cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationFrequency);
 
+            cacheConfig.SchemaStoreCache = new CacheConfigElement();
+            cacheConfig.SchemaStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
+            cacheConfig.SchemaStoreCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.SchemaStoreCache.CacheConfigurationCollection.Add(configurationMaxSize);
+
             cacheConfig.SchematronStoreCache = new CacheConfigElement();
             cacheConfig.SchematronStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
             cacheConfig.SchematronStoreCache.ImplementationAssembly = implementationAssembly;
