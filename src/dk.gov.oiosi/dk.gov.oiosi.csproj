@@ -424,7 +424,7 @@
     <Compile Include="extension\wcf\Interceptor\Security\ServerSignatureValidationProofBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Security\ServerSignatureValidationProofBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProof.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProofCache.cs" />
+    <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProofStore.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ClientSchematronValidationBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ClientSchematronValidationBindingExtensionElement.cs" />
     <Compile Include="xml\schematron\FailedToLoadSchematronStylesheetException.cs" />

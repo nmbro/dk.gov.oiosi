@@ -35,71 +35,95 @@ using System;
 using System.Collections.Generic;
 using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.extension.wcf.Interceptor.Security.Header;
+using dk.gov.oiosi.configuration;
 
-namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
-    class UnfinishedSignatureValidationProofCache {
-        private TimedCache<string, UnfinishedSignatureValidationProof> _messageIdUnfinishedSignatures;
-        private TimedCache<string, List<UnfinishedSignatureValidationProof>> _sequenceIdUnfinishedSignatures;
+namespace dk.gov.oiosi.extension.wcf.Interceptor.Security 
+{
+    public class UnfinishedSignatureValidationProofStore 
+    {
+        private ICache<string, UnfinishedSignatureValidationProof> messageIdUnfinishedSignaturesCache;
+        private ICache<string, List<UnfinishedSignatureValidationProof>> sequenceIdUnfinishedSignaturesCache;
         private object lockObject = new object();
 
-        public UnfinishedSignatureValidationProofCache(TimeSpan timeOut) {
-            _messageIdUnfinishedSignatures = new TimedCache<string, UnfinishedSignatureValidationProof>(timeOut);
-            _sequenceIdUnfinishedSignatures = new TimedCache<string, List<UnfinishedSignatureValidationProof>>(timeOut);
+        public UnfinishedSignatureValidationProofStore()
+        {
+            this.messageIdUnfinishedSignatures = CacheFactory.Instance.MessageIdUnfinishedSignaturesCache; 
+            this.sequenceIdUnfinishedSignatures = CacheFactory.Instance.SequenceIdUnfinishedSignaturesCache;
         }
 
-        public void Add(string messageId, SequenceHeader header, UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) {
+        public void Add(string messageId, SequenceHeader header, UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) 
+        {
             string sequenceId = header.SequenceId;
             List<UnfinishedSignatureValidationProof> sequenceUnfinishedSignatureValidationProofs = null;
             lock (lockObject) {
 
                 // Add the unfinished signature validaton proof to the dictinary using MessageID as key
-                _messageIdUnfinishedSignatures.Remove(messageId);
-                _messageIdUnfinishedSignatures.Add(messageId, unfinishedSignatureValidationProof);
+                this.messageIdUnfinishedSignatures.Remove(messageId);
+                this.messageIdUnfinishedSignatures.Add(messageId, unfinishedSignatureValidationProof);
 
                 // Add the unfinished signature validaton proof to the dictinary using SessionID as key
-                if (!_sequenceIdUnfinishedSignatures.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs)) {
+                if (!this.sequenceIdUnfinishedSignatures.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs)) 
+                {
                     sequenceUnfinishedSignatureValidationProofs = new List<UnfinishedSignatureValidationProof>();
-                    _sequenceIdUnfinishedSignatures.Add(sequenceId, sequenceUnfinishedSignatureValidationProofs);
-                }
-                
+                    this.sequenceIdUnfinishedSignatures.Add(sequenceId, sequenceUnfinishedSignatureValidationProofs);
+                }                
             }
-            lock (sequenceUnfinishedSignatureValidationProofs) {
+
+            lock (sequenceUnfinishedSignatureValidationProofs) 
+            {
                 Predicate<UnfinishedSignatureValidationProof> doesSignatureValidationProofForThisMessageAlreadyExist = delegate(UnfinishedSignatureValidationProof usvp) { return (usvp.Headers.MessageId.ToString() == messageId); };
                 UnfinishedSignatureValidationProof duplicateSignatureValidationProof = sequenceUnfinishedSignatureValidationProofs.Find(doesSignatureValidationProofForThisMessageAlreadyExist);
                 if (duplicateSignatureValidationProof != null)
+                {
                     sequenceUnfinishedSignatureValidationProofs.Remove(duplicateSignatureValidationProof);
+                }
 
                 sequenceUnfinishedSignatureValidationProofs.Add(unfinishedSignatureValidationProof);
             }
         }
 
-        public void Remove(string messageId, string sequenceId) {
-            lock (lockObject) {
-                _messageIdUnfinishedSignatures.Remove(messageId);
-                _sequenceIdUnfinishedSignatures.Remove(sequenceId);
+        public void Remove(string messageId, string sequenceId) 
+        {
+            lock (lockObject)
+            {
+                this.messageIdUnfinishedSignatures.Remove(messageId);
+                this.sequenceIdUnfinishedSignatures.Remove(sequenceId);
             }
         }
 
-        public bool TryGetValueFromMessageId(string messageId, out UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) {
-            lock (lockObject) {
-                return _messageIdUnfinishedSignatures.TryGetValue(messageId, out unfinishedSignatureValidationProof);
+        public bool TryGetValueFromMessageId(string messageId, out UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) 
+        {
+            lock (lockObject)
+            {
+                return this.messageIdUnfinishedSignatures.TryGetValue(messageId, out unfinishedSignatureValidationProof);
             }
         }
 
-        public bool TryGetValueFromSequenceAcknowledgementHeader(SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs) {
+        public bool TryGetValueFromSequenceAcknowledgementHeader(SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs) 
+        {
+            bool result = true; 
             //System.Diagnostics.Debug.WriteLine("SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs");
             string sequenceId = header.SequenceId;
             unfinishedSignatureValidationProofs = null;
             List<UnfinishedSignatureValidationProof> sequenceUnfinishedSignatureValidationProofs = null;
             Predicate<UnfinishedSignatureValidationProof> isMessageNumberWithinAckRange = delegate(UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) { return header.IsMessageNumberWithinRange(unfinishedSignatureValidationProof.Headers.SequenceHeader.MessageNumber); };
-            lock (lockObject) {
+            lock (lockObject) 
+            {
                 if (!_sequenceIdUnfinishedSignatures.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs))
-                    return false;
+                {
+                    result = false;
+                }
             }
-            lock (sequenceUnfinishedSignatureValidationProofs) {
-                unfinishedSignatureValidationProofs = sequenceUnfinishedSignatureValidationProofs.FindAll(isMessageNumberWithinAckRange);
+
+            if (sequenceUnfinishedSignatureValidationProofs != null)
+            {
+                lock (sequenceUnfinishedSignatureValidationProofs)
+                {
+                    unfinishedSignatureValidationProofs = sequenceUnfinishedSignatureValidationProofs.FindAll(isMessageNumberWithinAckRange);
+                }
             }
-            return true;
+
+            return result;
         }
     }
 }

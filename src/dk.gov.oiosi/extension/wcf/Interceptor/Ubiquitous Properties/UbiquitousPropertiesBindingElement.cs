@@ -40,40 +40,50 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties {
     /// Interceptor to insert a list of properties to all messages being sent (including Reliable messaging conversations)
     /// <remarks>Should be put right beneath the reliable messaging stack element</remarks>
     /// </summary>
-    public class UbiquitousPropertiesBindingElement: CommonBindingElement {
+    public class UbiquitousPropertiesBindingElement: CommonBindingElement
+    {
 
-        private Dictionary<string, object> _properties = new Dictionary<string,object>();
+        private Dictionary<string, object> properties = new Dictionary<string,object>();
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public UbiquitousPropertiesBindingElement(Dictionary<string,object> properties) {
-            _properties = properties;
+        public UbiquitousPropertiesBindingElement(Dictionary<string,object> properties)
+        {
+            this.properties = properties;
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public UbiquitousPropertiesBindingElement() {}
+        public UbiquitousPropertiesBindingElement()
+        {}
 
         /// <summary>
         /// Sets the ubiquitous properties
         /// </summary>
         /// <param name="properties">The properties that are to be added on all messages</param>
-        public void SetProperties(Dictionary<string, object> properties) {
+        public void SetProperties(Dictionary<string, object> properties) 
+        {
             foreach (KeyValuePair<string, object> p in properties)
-                _properties.Add(p.Key, p.Value);
+            {
+                this.properties.Add(p.Key, p.Value);
+            }
         }
 
         /// <summary>
         /// Intercepts the request call, and adds properties
         /// </summary>
         /// <param name="interceptorMessage">The SOAP message</param>
-        public override void InterceptRequest(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage) {
-                if (_properties != null) {
+        public override void InterceptRequest(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage) 
+        {
+            if (this.properties != null) 
+                {
                     Message msg = interceptorMessage.GetMessage();
-                    foreach (KeyValuePair<string, object> p in _properties)
+                    foreach (KeyValuePair<string, object> p in this.properties)
+                    {
                         msg.Properties.Add(p.Key, p.Value);
+                    }
                 }
         }
 
@@ -81,38 +91,58 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties {
         /// Not Implemented
         /// </summary>
         /// <param name="interceptorMessage">Not Implemented</param>
-        public override void InterceptResponse(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage) {
+        public override void InterceptResponse(dk.gov.oiosi.extension.wcf.Interceptor.Channels.InterceptorMessage interceptorMessage) 
+        {
             throw new NotImplementedException();
         }
 
         /// <summary>
         /// Do we intercept requests?
         /// </summary>
-        public override bool DoesRequestIntercept {
-            get { return true; }
+        public override bool DoesRequestIntercept
+        {
+            get
+            {
+                return true; 
+            }
         }
 
         /// <summary>
         /// Do we intercept reponses?
         /// </summary>
-        public override bool DoesResponseIntercept {
-            get { return false; }
+        public override bool DoesResponseIntercept 
+        {
+            get
+            { 
+                return false;
+            }
         }
 
         /// <summary>
         /// Do we send faults on exceptions?
         /// </summary>
-        public override bool DoesFaultOnRequestException {
-            get { return false; }
+        public override bool DoesFaultOnRequestException 
+        {
+            get 
+            { 
+                return false; 
+            }
         }
 
         /// <summary>
         /// Clone override
         /// </summary>
         /// <returns></returns>
-        public override System.ServiceModel.Channels.BindingElement Clone() {
-            if (_properties == null) return new UbiquitousPropertiesBindingElement();
-            else return new UbiquitousPropertiesBindingElement(_properties);
+        public override System.ServiceModel.Channels.BindingElement Clone() 
+        {
+            if (this.properties == null)
+            {
+                return new UbiquitousPropertiesBindingElement();
+            }
+            else
+            {
+                return new UbiquitousPropertiesBindingElement(this.properties);
+            }
         }
     }
 }

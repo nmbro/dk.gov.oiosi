@@ -4355,6 +4355,36 @@
       </CacheConfigurationCollection>
     </SchematronStoreCache>
 
+    <MessageIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </MessageIdUnfinishedSignaturesCache>
+
+    <SequenceIdUnfinishedSignaturesCacheCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.IList`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SequenceIdUnfinishedSignaturesCacheCache>
+
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
     <RootCertificateLocationCollection>

@@ -54,7 +54,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Constructor that takes the binding element extension for configuration reasons.
         /// </summary>
         /// <param name="configuration"></param>
-        public ServerSignatureValidationProofBindingElement(ServerSignatureValidationProofBindingExtensionElement configuration) {
+        public ServerSignatureValidationProofBindingElement(ServerSignatureValidationProofBindingExtensionElement configuration)
+        {
             _configuration = configuration;
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
@@ -69,7 +70,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <typeparam name="TChannel"></typeparam>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context) {
+        public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context)
+        {
             BindingElementCollection bindingElements = context.Binding.Elements;
             _stackCheck.Check(bindingElements);
             return base.BuildChannelListener<TChannel>(context);
@@ -80,7 +82,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// attaching it to the message.
         /// </summary>
         /// <param name="interceptorMessage"></param>
-        public override void InterceptRequest(InterceptorMessage interceptorMessage) {
+        public override void InterceptRequest(InterceptorMessage interceptorMessage) 
+        {
             Headers headers = new Headers(interceptorMessage);
             if (interceptorMessage.IsFault) return;
             if (headers.IsCreateSequence) return;
@@ -109,26 +112,30 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Intercept response as a stub.
         /// </summary>
         /// <param name="interceptorMessage"></param>
-        public override void InterceptResponse(InterceptorMessage interceptorMessage) { }
+        public override void InterceptResponse(InterceptorMessage interceptorMessage)
+        { }
 
         /// <summary>
         /// Returns whether the request interception should be done. Allways true.
         /// </summary>
-        public override bool DoesRequestIntercept {
+        public override bool DoesRequestIntercept 
+        {
             get { return true; }
         }
 
         /// <summary>
         /// Returns whether the response interception should be done. Allways false.
         /// </summary>
-        public override bool DoesResponseIntercept {
+        public override bool DoesResponseIntercept 
+        {
             get { return false; }
         }
 
         /// <summary>
         /// Returns whether an exception should be propergated og send a fault.
         /// </summary>
-        public override bool DoesFaultOnRequestException {
+        public override bool DoesFaultOnRequestException 
+        {
             get { return _configuration.FaultOnRequestValidationException; }
         }
 
@@ -136,7 +143,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Clones the element.
         /// </summary>
         /// <returns></returns>
-        public override BindingElement Clone() {
+        public override BindingElement Clone() 
+        {
             return new ServerSignatureValidationProofBindingElement(_configuration);
         }
 

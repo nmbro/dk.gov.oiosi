@@ -344,12 +344,18 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// Closes the proxy connection to the remote endpoint
         /// </summary>
-        private void CloseProxy() {
-            if (_proxy != null && _proxy.State != CommunicationState.Faulted) {
-                try {
+        private void CloseProxy()
+        {
+            if (_proxy != null && _proxy.State != CommunicationState.Faulted) 
+            {
+                try 
+                {
                     _proxy.Close();
                 }
-                catch (CommunicationObjectAbortedException) { }
+                catch (CommunicationObjectAbortedException ex) 
+                {
+                    string exString = ex.ToString();
+                }
                 catch (Exception ex) {
                     throw new RequestShutdownException(ex);
                 }
@@ -367,11 +373,13 @@ namespace dk.gov.oiosi.communication {
             try {
                 // Convert to WCF message
                 Message wcfMessage = null;
-                if (message.HasBody) {
+                if (message.HasBody) 
+                {
                     XmlReader xmlBody = message.GetMessageXmlReader();
                     wcfMessage = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, message.RequestAction, xmlBody);
                 }
-                else {
+                else
+                {
                     wcfMessage = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, message.RequestAction);
                 }
 
@@ -400,7 +408,9 @@ namespace dk.gov.oiosi.communication {
                 
                 // Make sure we dind't receive a fault
                 if (wcfMessageResponse.IsFault)
+                {
                     throw CreateFaultWasReceivedException(new FaultException(MessageFault.CreateFault(wcfMessageResponse, int.MaxValue)));
+                }
 
                 // Convert back to oiosi message
                 response = new Response(wcfMessageResponse);
@@ -444,7 +454,7 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         private Exception GetSoapFaultFromHttpException(System.Net.WebException e){
             
-            StringBuilder sb = new StringBuilder("", 65536);
+            StringBuilder sb = new StringBuilder("");//, 65536);
             Stream s = e.Response.GetResponseStream();
 
             // Try to read the fault
@@ -495,11 +505,12 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         private Exception CreateFaultWasReceivedException(FaultException e) { 
             // Time for blaming. Who's fault was it?
-            if (e.Code.IsSenderFault) {
+            if (e.Code.IsSenderFault)
+            {
                 return new FaultReturnedException(e, "dig");
-
             }
-            else {
+            else 
+            {
                 return new FaultReturnedException(e, "serveren");
             }
         }

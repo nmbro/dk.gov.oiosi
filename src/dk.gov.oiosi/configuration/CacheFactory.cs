@@ -16,6 +16,7 @@ namespace dk.gov.oiosi.configuration
     using System.Reflection;
     using System.Xml.Xsl;
     using System.Xml.Schema;
+    using dk.gov.oiosi.extension.wcf.Interceptor.Security;
 
     /// <summary>
     /// The factory that create the differents caches 
@@ -63,6 +64,16 @@ namespace dk.gov.oiosi.configuration
         private ICache<string, XmlSchemaSet> schemaStoreCache = null;
 
         /// <summary>
+        /// Cache to store the UnfinishedSignatureValidationProof
+        /// </summary>
+        private ICache<string, UnfinishedSignatureValidationProof> messageIdUnfinishedSignaturesCache = null;
+
+        /// <summary>
+        /// Cache to store the list of UnfinishedSignatureValidationProof
+        /// </summary>
+        private ICache<string, List<UnfinishedSignatureValidationProof>> sequenceIdUnfinishedSignaturesCache = null;
+
+        /// <summary>
         /// Private constructor
         /// </summary>
         private CacheFactory()
@@ -89,13 +100,22 @@ namespace dk.gov.oiosi.configuration
             element = cacheConfig.CertificateCache;
             this.certificateCache = this.Create<ICache<CertificateSubject, X509Certificate2>>(element, "CertificateCache");
 
-            // schematronCache
+            // schemaCache
             element = cacheConfig.SchemaStoreCache;
             this.schemaStoreCache = this.Create<ICache<string, XmlSchemaSet>>(element, "SchemaStoreCache");
 
             // schematronCache
             element = cacheConfig.SchematronStoreCache;
             this.schematronStoreCache = this.Create<ICache<string, XslCompiledTransform>>(element, "SchematronStoreCache");
+
+            // messageIdUnfinishedSignaturesCache
+            element = cacheConfig.MessageIdUnfinishedSignaturesCache;
+            this.messageIdUnfinishedSignaturesCache = this.Create<ICache<string, UnfinishedSignatureValidationProof>>(element, "MessageIdUnfinishedSignaturesCache");
+
+            // sequenceIdUnfinishedSignaturesCache
+            element = cacheConfig.SequenceIdUnfinishedSignaturesCache;
+            this.sequenceIdUnfinishedSignaturesCache = this.Create<ICache<string, List<UnfinishedSignatureValidationProof>>>(element, "SequenceIdUnfinishedSignaturesCacheCache");
+
         }
 
         private T Create<T>(CacheConfigElement element, string name)
@@ -207,6 +227,17 @@ namespace dk.gov.oiosi.configuration
         }
 
         /// <summary>
+        /// Get the schema cache
+        /// </summary>
+        public ICache<string, XmlSchemaSet> SchemaStoreCache
+        {
+            get
+            {
+                return this.schemaStoreCache;
+            }
+        }
+
+        /// <summary>
         /// Get the schematron cache
         /// </summary>
         public ICache<string, XslCompiledTransform> SchematrongStoreCache
@@ -218,13 +249,24 @@ namespace dk.gov.oiosi.configuration
         }
 
         /// <summary>
-        /// Get the schematron cache
+        /// Get the messageIdUnfinishedSignatures cache
         /// </summary>
-        public ICache<string, XmlSchemaSet> SchemaStoreCache
+        public ICache<string, UnfinishedSignatureValidationProof> MessageIdUnfinishedSignaturesCache
         {
             get
             {
-                return this.schemaStoreCache;
+                return this.messageIdUnfinishedSignaturesCache;
+            }
+        }
+
+        /// <summary>
+        /// Get the messageIdUnfinishedSignatures cache
+        /// </summary>
+        public ICache<string, List<UnfinishedSignatureValidationProof>> SequenceIdUnfinishedSignaturesCache
+        {
+            get
+            {
+                return this.sequenceIdUnfinishedSignaturesCache;
             }
         }
     }
