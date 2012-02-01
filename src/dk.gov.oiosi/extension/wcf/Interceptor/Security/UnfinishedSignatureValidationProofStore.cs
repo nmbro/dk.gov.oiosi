@@ -43,12 +43,12 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security
     {
         private ICache<string, UnfinishedSignatureValidationProof> messageIdUnfinishedSignaturesCache;
         private ICache<string, List<UnfinishedSignatureValidationProof>> sequenceIdUnfinishedSignaturesCache;
-        private object lockObject = new object();
+        private static object lockObject = new object();
 
         public UnfinishedSignatureValidationProofStore()
         {
-            this.messageIdUnfinishedSignatures = CacheFactory.Instance.MessageIdUnfinishedSignaturesCache; 
-            this.sequenceIdUnfinishedSignatures = CacheFactory.Instance.SequenceIdUnfinishedSignaturesCache;
+            this.messageIdUnfinishedSignaturesCache = CacheFactory.Instance.MessageIdUnfinishedSignaturesCache;
+            this.sequenceIdUnfinishedSignaturesCache = CacheFactory.Instance.SequenceIdUnfinishedSignaturesCache;
         }
 
         public void Add(string messageId, SequenceHeader header, UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) 
@@ -58,15 +58,18 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security
             lock (lockObject) {
 
                 // Add the unfinished signature validaton proof to the dictinary using MessageID as key
-                this.messageIdUnfinishedSignatures.Remove(messageId);
-                this.messageIdUnfinishedSignatures.Add(messageId, unfinishedSignatureValidationProof);
+                this.messageIdUnfinishedSignaturesCache.Set(messageId, unfinishedSignatureValidationProof);
 
                 // Add the unfinished signature validaton proof to the dictinary using SessionID as key
-                if (!this.sequenceIdUnfinishedSignatures.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs)) 
+                if (!this.sequenceIdUnfinishedSignaturesCache.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs))
                 {
                     sequenceUnfinishedSignatureValidationProofs = new List<UnfinishedSignatureValidationProof>();
-                    this.sequenceIdUnfinishedSignatures.Add(sequenceId, sequenceUnfinishedSignatureValidationProofs);
-                }                
+                    this.sequenceIdUnfinishedSignaturesCache.Add(sequenceId, sequenceUnfinishedSignatureValidationProofs);
+                }
+                else
+                {
+                    // the list already exist in the cache
+                }
             }
 
             lock (sequenceUnfinishedSignatureValidationProofs) 
@@ -86,17 +89,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security
         {
             lock (lockObject)
             {
-                this.messageIdUnfinishedSignatures.Remove(messageId);
-                this.sequenceIdUnfinishedSignatures.Remove(sequenceId);
+                this.messageIdUnfinishedSignaturesCache.Remove(messageId);
+                this.sequenceIdUnfinishedSignaturesCache.Remove(sequenceId);
             }
         }
 
         public bool TryGetValueFromMessageId(string messageId, out UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) 
         {
-            lock (lockObject)
-            {
-                return this.messageIdUnfinishedSignatures.TryGetValue(messageId, out unfinishedSignatureValidationProof);
-            }
+            return this.messageIdUnfinishedSignaturesCache.TryGetValue(messageId, out unfinishedSignatureValidationProof);
         }
 
         public bool TryGetValueFromSequenceAcknowledgementHeader(SequenceAcknowledgementHeader header, out List<UnfinishedSignatureValidationProof> unfinishedSignatureValidationProofs) 
@@ -107,13 +107,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security
             unfinishedSignatureValidationProofs = null;
             List<UnfinishedSignatureValidationProof> sequenceUnfinishedSignatureValidationProofs = null;
             Predicate<UnfinishedSignatureValidationProof> isMessageNumberWithinAckRange = delegate(UnfinishedSignatureValidationProof unfinishedSignatureValidationProof) { return header.IsMessageNumberWithinRange(unfinishedSignatureValidationProof.Headers.SequenceHeader.MessageNumber); };
-            lock (lockObject) 
-            {
-                if (!_sequenceIdUnfinishedSignatures.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs))
-                {
-                    result = false;
-                }
-            }
+            result = this.sequenceIdUnfinishedSignaturesCache.TryGetValue(sequenceId, out sequenceUnfinishedSignatureValidationProofs);
 
             if (sequenceUnfinishedSignatureValidationProofs != null)
             {

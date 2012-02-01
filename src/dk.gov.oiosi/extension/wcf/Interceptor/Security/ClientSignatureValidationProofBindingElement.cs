@@ -43,21 +43,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// Clientside interceptor that attaches proof of signature validations on 
     /// messages send in the system.
     /// </summary>
-    public class ClientSignatureValidationProofBindingElement : CommonBindingElement {
-        private static UnfinishedSignatureValidationProofCache _unfinishedSignatures;
-        private SignatureValidationStackCheck _stackCheck;
+    public class ClientSignatureValidationProofBindingElement : CommonBindingElement 
+    {
+        private UnfinishedSignatureValidationProofStore unfinishedSignaturesValidationProofStore;
+        private SignatureValidationStackCheck signatureValidationStackCheck;
         private static object signatureLock = new object();
 
-        static ClientSignatureValidationProofBindingElement() {
-            TimeSpan timeOut = TimeSpan.FromMinutes(10.0);
-            _unfinishedSignatures = new UnfinishedSignatureValidationProofCache(timeOut);
-        }
+        /*static ClientSignatureValidationProofBindingElement() 
+        {
+            unfinishedSignaturesValidationProofStore = new UnfinishedSignatureValidationProofStore();
+        }*/
 
         /// <summary>
         /// Default constructor that initializes the binding elements dependent components.
         /// </summary>
-        public ClientSignatureValidationProofBindingElement() {
-            _stackCheck = new SignatureValidationStackCheck(GetType());
+        public ClientSignatureValidationProofBindingElement() 
+        {
+            this.signatureValidationStackCheck = new SignatureValidationStackCheck(GetType());
+            this.unfinishedSignaturesValidationProofStore = new UnfinishedSignatureValidationProofStore();
         }
 
         #region RaspBindingElement overrides
@@ -68,9 +71,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <typeparam name="TChannel"></typeparam>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override IChannelFactory<TChannel> BuildChannelFactory<TChannel>(BindingContext context) {
+        public override IChannelFactory<TChannel> BuildChannelFactory<TChannel>(BindingContext context) 
+        {
             BindingElementCollection bindingElements = context.Binding.Elements;
-            _stackCheck.Check(bindingElements);
+            this.signatureValidationStackCheck.Check(bindingElements);
             return base.BuildChannelFactory<TChannel>(context);
         }
 
@@ -78,7 +82,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Clones the client signature proof binding element.
         /// </summary>
         /// <returns></returns>
-        public override BindingElement Clone() {
+        public override BindingElement Clone() 
+        {
             return new ClientSignatureValidationProofBindingElement();
         }
 
@@ -86,45 +91,71 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Returns whether the interceptor intercepts requests. This is 
         /// allways true.
         /// </summary>
-        public override bool DoesRequestIntercept {
-            get { return true; }
+        public override bool DoesRequestIntercept 
+        {
+            get 
+            {
+                return true;
+            }
         }
 
         /// <summary>
         /// Returns whether the interceptor intercepts responses. This is
         /// allways true.
         /// </summary>
-        public override bool DoesResponseIntercept {
-            get { return true; }
+        public override bool DoesResponseIntercept 
+        {
+            get 
+            { 
+                return true; 
+            }
         }
 
         /// <summary>
         /// Returns whether a fault should be returned if the interceptor throws an
         /// exception. This is false for client side interceptors.
         /// </summary>
-        public override bool DoesFaultOnRequestException {
-            get { return false; }
+        public override bool DoesFaultOnRequestException
+        {
+            get 
+            { 
+                return false; 
+            }
         }
 
         /// <summary>
         /// Intercepts the request, storing the unfinished signatures.
         /// </summary>
         /// <param name="message"></param>
-        public override void InterceptRequest(InterceptorMessage message) {
+        public override void InterceptRequest(InterceptorMessage message) 
+        {
             try {
                 Headers headers = new Headers(message);
                 SequenceHeader sequenceHeader = headers.SequenceHeader;
-                string messageId = "";
-                if (message.IsFault) return;
-                if (sequenceHeader == null) return;
-                if (sequenceHeader.IsLastMessage) return;
-                messageId = headers.MessageId.ToString();
-                UnfinishedSignatureValidationProof unfinishedSignature = new UnfinishedSignatureValidationProof(headers);
+                string messageId = string.Empty;
+                if (message.IsFault)
+                {
+                    // ? nothing to do??
+                }
+                else if (sequenceHeader == null)
+                {
+                    // ? nothing to do??
+                }
+                else if (sequenceHeader.IsLastMessage)
+                {
+                    // ? nothing to do??
+                }
+                else
+                {
+                    messageId = headers.MessageId.ToString();
+                    UnfinishedSignatureValidationProof unfinishedSignature = new UnfinishedSignatureValidationProof(headers);
 
-                //System.Diagnostics.Debug.WriteLine("\n\n\nAdding unfinished signature - id:" + messageId + ";unfinished signature validation proof: " + unfinishedSignature.SignatureValidationProof + "\n\n\n");
-                _unfinishedSignatures.Add(messageId, sequenceHeader, unfinishedSignature);
+                    //System.Diagnostics.Debug.WriteLine("\n\n\nAdding unfinished signature - id:" + messageId + ";unfinished signature validation proof: " + unfinishedSignature.SignatureValidationProof + "\n\n\n");
+                    this.unfinishedSignaturesValidationProofStore.Add(messageId, sequenceHeader, unfinishedSignature);
+                }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
@@ -134,17 +165,31 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// message.
         /// </summary>
         /// <param name="message"></param>
-        public override void InterceptResponse(InterceptorMessage message) {
-            try {
+        public override void InterceptResponse(InterceptorMessage message) 
+        {
+            try 
+            {
                 //System.Diagnostics.Debug.Write("Intercepting the response - ");
                 Headers headers = new Headers(message);
                 SequenceAcknowledgementHeader sequenceAcknowledgement = headers.SequenceAcknowledgement;
-                if (message.IsFault) return;
-                if (headers.SequenceHeader == null) return;
-                if (headers.RelatesTo != null) InterceptedMessageResponse(message, headers);
-                if (sequenceAcknowledgement != null) InterceptedAcknowledgementResponse(message, headers);
+                if (message.IsFault)
+                {
+                }
+                else if (headers.SequenceHeader == null)
+                {
+                }
+                else if (headers.RelatesTo != null)
+                {
+                    this.InterceptedMessageResponse(message, headers);
+                }
+
+                if (sequenceAcknowledgement != null)
+                {
+                    this.InterceptedAcknowledgementResponse(message, headers);
+                }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
@@ -155,34 +200,40 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
             {
                 SequenceHeader sequenceHeader = headers.SequenceHeader;
                 string relatesTo = headers.RelatesTo.ToString();
-                //Try to get the unfinished signature validation proof. If none exists return.
+
+                // Try to get the unfinished signature validation proof. If none exists return.
                 UnfinishedSignatureValidationProof unfinishedSignatureValidationProof = null;
-                if (!_unfinishedSignatures.TryGetValueFromMessageId(relatesTo, out unfinishedSignatureValidationProof))
-                    return;
-                //System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
-                SignatureValidationProof signatureValidationProof = unfinishedSignatureValidationProof.SignatureValidationProof;
-                string signatureValidationProofKey = ClientSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey;
-                message.AddProperty(signatureValidationProofKey, signatureValidationProof);
+                if (this.unfinishedSignaturesValidationProofStore.TryGetValueFromMessageId(relatesTo, out unfinishedSignatureValidationProof))
+                {
+                    // validation proof retrived
+                    //System.Diagnostics.Debug.WriteLine("InterceptedMessageResponse relatesTo " + relatesTo);
+                    SignatureValidationProof signatureValidationProof = unfinishedSignatureValidationProof.SignatureValidationProof;
+                    string signatureValidationProofKey = ClientSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey;
+                    message.AddProperty(signatureValidationProofKey, signatureValidationProof);
+                }
             }
         }
 
-        private void InterceptedAcknowledgementResponse(InterceptorMessage message, Headers headers) {
+        private void InterceptedAcknowledgementResponse(InterceptorMessage message, Headers headers) 
+        {
             lock (signatureLock)
             {
                 SequenceAcknowledgementHeader sequenceAcknowledgementHeader = headers.SequenceAcknowledgement;
                 string identityName = message.Properties.Security.ServiceSecurityContext.PrimaryIdentity.Name;
                 int index = identityName.LastIndexOf(';');
                 string certificateSubject = identityName.Substring(0, index);
-                //Try to get the messages that have been acked in the RM session. If none exists return.
+                // Try to get the messages that have been acked in the RM session. If none exists return.
                 List<UnfinishedSignatureValidationProof> ackedMessages = null;
                 //System.Diagnostics.Debug.WriteLine("InterceptedAcknowledgementResponse sequenceID" + sequenceAcknowledgementHeader.SequenceId);
-                if (!_unfinishedSignatures.TryGetValueFromSequenceAcknowledgementHeader(sequenceAcknowledgementHeader, out ackedMessages))
-                    return;
-                foreach (UnfinishedSignatureValidationProof ackedMessage in ackedMessages)
+                if (this.unfinishedSignaturesValidationProofStore.TryGetValueFromSequenceAcknowledgementHeader(sequenceAcknowledgementHeader, out ackedMessages))
                 {
-                    SignatureValidationProof signatureValidationProof = ackedMessage.SignatureValidationProof;
-                    if (!signatureValidationProof.Completed)
-                        signatureValidationProof.CompleteValidation(certificateSubject);
+                    // message
+                    foreach (UnfinishedSignatureValidationProof ackedMessage in ackedMessages)
+                    {
+                        SignatureValidationProof signatureValidationProof = ackedMessage.SignatureValidationProof;
+                        if (!signatureValidationProof.Completed)
+                            signatureValidationProof.CompleteValidation(certificateSubject);
+                    }
                 }
             }
         }

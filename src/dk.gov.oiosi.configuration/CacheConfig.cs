@@ -55,9 +55,13 @@ namespace dk.gov.oiosi.configuration
 
         private CacheConfigElement certificateCache = null;
 
+        private CacheConfigElement schemaStoreCache = null; 
+        
         private CacheConfigElement schematronStoreCache = null;
+        
+        private CacheConfigElement messageIdUnfinishedSignaturesCache = null;
 
-        private CacheConfigElement schemaStoreCache = null;
+        private CacheConfigElement sequenceIdUnfinishedSignaturesCache = null;
 
         /// <summary>
         /// Default constructor used by XMLSerialization. It should not be used.
@@ -69,8 +73,10 @@ namespace dk.gov.oiosi.configuration
             this.uddiServiceCache = new CacheConfigElement();
             this.uddiTModelCache = new CacheConfigElement();
             this.certificateCache = new CacheConfigElement();
+            this.schemaStoreCache = new CacheConfigElement(); 
             this.schematronStoreCache = new CacheConfigElement();
-            this.schemaStoreCache = new CacheConfigElement();
+            this.messageIdUnfinishedSignaturesCache = new CacheConfigElement();
+            this.sequenceIdUnfinishedSignaturesCache = new CacheConfigElement();
         }
 
         /// <summary>
@@ -83,7 +89,9 @@ namespace dk.gov.oiosi.configuration
         /// <param name="certificateCache"></param>
         /// <param name="schematronStoreCache"></param>
         /// <param name="schemaStoreCache"></param>
-        public CacheConfig(CacheConfigElement ocspLookupCache, CacheConfigElement crlLookupCache, CacheConfigElement uddiServiceCache, CacheConfigElement uddiTModelCache, CacheConfigElement certificateCache, CacheConfigElement schematronStoreCache, CacheConfigElement  schemaStoreCache)
+        /// <param name="messageIdUnfinishedSignaturesCache"></param>
+        /// <param name="sequenceIdUnfinishedSignaturesCache"></param>
+        public CacheConfig(CacheConfigElement ocspLookupCache, CacheConfigElement crlLookupCache, CacheConfigElement uddiServiceCache, CacheConfigElement uddiTModelCache, CacheConfigElement certificateCache, CacheConfigElement schematronStoreCache, CacheConfigElement schemaStoreCache, CacheConfigElement messageIdUnfinishedSignaturesCache, CacheConfigElement sequenceIdUnfinishedSignaturesCache)
         {
             if (ocspLookupCache == null)
             {
@@ -113,6 +121,14 @@ namespace dk.gov.oiosi.configuration
             {
                 throw new NullArgumentException("schemaStoreCache");
             }
+            if (messageIdUnfinishedSignaturesCache == null)
+            {
+                throw new NullArgumentException("messageIdUnfinishedSignaturesCache");
+            }
+            if (sequenceIdUnfinishedSignaturesCache == null)
+            {
+                throw new NullArgumentException("sequenceIdUnfinishedSignaturesCache");
+            }
 
             this.ocspLookupCache = ocspLookupCache;
             this.crlLookupCache = crlLookupCache;
@@ -121,6 +137,8 @@ namespace dk.gov.oiosi.configuration
             this.certificateCache = certificateCache;
             this.schematronStoreCache = schematronStoreCache;
             this.schemaStoreCache = schemaStoreCache;
+            this.messageIdUnfinishedSignaturesCache=messageIdUnfinishedSignaturesCache;
+            this.sequenceIdUnfinishedSignaturesCache = sequenceIdUnfinishedSignaturesCache;
         }
 
         /// <summary>
@@ -209,6 +227,23 @@ namespace dk.gov.oiosi.configuration
         }
 
         /// <summary>
+        /// Gets or set the SchemaStoreCache configuration element
+        /// </summary>
+        [XmlElement("SchemaStoreCache")]
+        public CacheConfigElement SchemaStoreCache
+        {
+            get
+            {
+                return this.schemaStoreCache;
+            }
+
+            set
+            {
+                this.schemaStoreCache = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or set the SchematronStoreCache configuration element
         /// </summary>
         [XmlElement("SchematronStoreCache")]
@@ -226,19 +261,36 @@ namespace dk.gov.oiosi.configuration
         }
 
         /// <summary>
-        /// Gets or set the SchemaStoreCache configuration element
+        /// Gets or set the MessageIdUnfinishedSignaturesCache configuration element
         /// </summary>
-        [XmlElement("SchemaStoreCache")]
-        public CacheConfigElement SchemaStoreCache
+        [XmlElement("MessageIdUnfinishedSignaturesCache")]
+        public CacheConfigElement MessageIdUnfinishedSignaturesCache
         {
             get
             {
-                return this.schemaStoreCache;
+                return this.messageIdUnfinishedSignaturesCache;
             }
 
             set
             {
-                this.schemaStoreCache = value;
+                this.messageIdUnfinishedSignaturesCache = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or set the SequenceIdUnfinishedSignaturesCache configuration element
+        /// </summary>
+        [XmlElement("SequenceIdUnfinishedSignaturesCache")]
+        public CacheConfigElement SequenceIdUnfinishedSignaturesCache
+        {
+            get
+            {
+                return this.sequenceIdUnfinishedSignaturesCache;
+            }
+
+            set
+            {
+                this.sequenceIdUnfinishedSignaturesCache = value;
             }
         }
     }
