@@ -35,13 +35,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Resources;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.exception.MessageStore {
     /// <summary>
     /// Used to handle the resourcefile in the MessageStore custom exceptions
     /// </summary>
-    public class ResourceFileExceptionMessageStore : IExceptionMessageStore {
+    public class ResourceFileExceptionMessageStore : IExceptionMessageStore 
+    {
         private ResourceManager internalErrorMessages = new ResourceManager(typeof(ErrorMessages));
+        private ILogger logger;
+
+        public ResourceFileExceptionMessageStore()
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
 
         #region IExceptionHandle Members
 
@@ -52,11 +60,13 @@ namespace dk.gov.oiosi.exception.MessageStore {
         /// <param name="exceptionType">The type of the exception</param>
         /// <param name="keywords">Keyword pairs to use</param>
         /// <returns>Returns the message string</returns>
-        public string GetExceptionMessage(IEnumerable<ResourceManager> resources, Type exceptionType, Dictionary<string, string> keywords) {
+        public string GetExceptionMessage(IEnumerable<ResourceManager> resources, Type exceptionType, Dictionary<string, string> keywords) 
+        {
             List<ResourceManager> allResources = new List<ResourceManager>(resources);
             allResources.Add(internalErrorMessages);
             string unformatedErrorMessage = GetUnformatedExceptionMessage(allResources, exceptionType, true);
             string formatedErrorMessage = GetFormatedExceptionMessage(keywords, unformatedErrorMessage, exceptionType);
+            
             return formatedErrorMessage;
         }
 
@@ -80,50 +90,92 @@ namespace dk.gov.oiosi.exception.MessageStore {
 
         #endregion
         
-        private string GetUnformatedExceptionMessage(IEnumerable<ResourceManager> resources ,Type exceptionType, bool throwException) {
+        private string GetUnformatedExceptionMessage(IEnumerable<ResourceManager> resources, Type exceptionType, bool throwException) {
             string exceptionTypeString = exceptionType.ToString();
             string key = exceptionTypeString.Replace('.', '_');
             int index = key.IndexOf('`');
-            if (index > -1) key = key.Remove(index);
-            string unformatedErrorMessage = null;
-            foreach (ResourceManager resourceManager in resources) {
-                unformatedErrorMessage = resourceManager.GetString(key);
-                if (unformatedErrorMessage != null) break; 
+            if (index > -1)
+            {
+                key = key.Remove(index);
             }
-            if (unformatedErrorMessage == null && throwException) throw new MessageToExceptionNotFoundException("Der kunne ikke findes en fejlbesked til '" + exceptionType.ToString() + "'");
+
+            string unformatedErrorMessage = string.Empty;
+            foreach (ResourceManager resourceManager in resources)
+            {
+                unformatedErrorMessage = resourceManager.GetString(key);
+                if (unformatedErrorMessage != null)
+                {
+                    break;
+                }
+            }
+
+            if (unformatedErrorMessage == null && throwException)
+            {
+                throw new MessageToExceptionNotFoundException("Der kunne ikke findes en fejlbesked til fejlen '" + exceptionType.ToString() + "'.");
+            }
+
             return unformatedErrorMessage;
         }
 
-        private string GetFormatedExceptionMessage(Dictionary<string, string> keywords, string unformatedErrorMessage, Type exceptionType) {
+        private string GetFormatedExceptionMessage(Dictionary<string, string> keywords, string unformatedErrorMessage, Type exceptionType)
+        {
             char[] charArray = unformatedErrorMessage.ToCharArray();
             string keyword = "";
             string fixedString = "";
             bool partOfKeyword = false;
-            foreach (char character in charArray) {
-                switch (character) {
+
+            foreach (char character in charArray)
+            {
+                switch (character)
+                {
                     case '[':
-                        //This exception cannot be handled by the same way as the standard exception
-                        if (partOfKeyword) throw new DoubleStartOfKeywordException("Der dobbelt start af keyword i beskeden : '" + unformatedErrorMessage + "'");
-                        partOfKeyword = true;
-                        continue;
+                        {
+                            //This exception cannot be handled by the same way as the standard exception
+                            if (partOfKeyword)
+                            {
+                                throw new DoubleStartOfKeywordException("Der dobbelt start af keyword i beskeden : '" + unformatedErrorMessage + "'.");
+                            }
+
+                            partOfKeyword = true;
+                            continue;
+                        }
                     case ']':
-                        //This exception cannot be handled by the same way as the standard exception
-                        if (!partOfKeyword) throw new UnexpectedEndOfKeywordException("Der er et uventet afslutning af keyword i beskeden : '" + unformatedErrorMessage + "'");
-                        string foundKeyword = ""; 
-                        bool keywordExits = keywords.TryGetValue(keyword, out foundKeyword);
-                        //This exception cannot be handled by the same way as the standard exception
-                        if (!keywordExits) throw new KeywordNotFoundException("Keyword '" + keyword + "' ikke fundet i de medsendte keywords til excpetion '" + exceptionType.ToString() + "'");
-                        fixedString += foundKeyword;
-                        keyword = "";
-                        partOfKeyword = false;
-                        continue;
+                        {
+                            // This exception cannot be handled by the same way as the standard exception
+                            if (!partOfKeyword)
+                            {
+                                // part two found before part one - not good.
+                                throw new UnexpectedEndOfKeywordException("Der er et uventet afslutning af keyword i beskeden : '" + unformatedErrorMessage + "'.");
+                            }
+
+                            string foundKeyword = string.Empty;
+                            bool keywordExits = keywords.TryGetValue(keyword, out foundKeyword);
+                            
+                            // This exception cannot be handled by the same way as the standard exception
+                            if (!keywordExits)
+                            {
+                                logger.Warn("Keyword '" + keyword + "' ikke fundet i de medsendte keywords til excpetion '" + exceptionType.ToString() + "'.");
+                                throw new KeywordNotFoundException("Keyword '" + keyword + "' ikke fundet i de medsendte keywords til excpetion '" + exceptionType.ToString() + "'.");
+                            }
+
+                            fixedString += foundKeyword;
+                            keyword = "";
+                            partOfKeyword = false;
+                            continue;
+                        }
                     default:
-                        break;
+                        {
+                            // all other cars - do nothing
+                            break;
+                        }
                 }
-                if (partOfKeyword) {
+
+                if (partOfKeyword)
+                {
                     keyword += character;
                 }
-                else {
+                else
+                {
                     fixedString += character;
                 }
             }
