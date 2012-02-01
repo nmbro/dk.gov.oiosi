@@ -77,10 +77,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
                 SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
                 validator.SchematronValidateXmlDocument(document, compiledStylesheet);
             }
-            catch (SchematronErrorException)
+            catch (SchematronErrorException ex)
             {
                 this.logger.Info("XmlDocument rejected, as it contant at least one schematron error.");
-                throw;
+                throw new SchematronValidateDocumentFailedException(ex);
             }
             catch (Exception ex)
             {

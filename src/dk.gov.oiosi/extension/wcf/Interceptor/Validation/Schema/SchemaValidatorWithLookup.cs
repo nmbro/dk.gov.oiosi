@@ -111,7 +111,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
             }
             else
             {
-                this.logger.Info("Rejected and Schema invalid document.");
+                this.logger.Info("Rejected a Schema invalid document.");
                 throw new SchemaValidateDocumentFailedException(args.Exception);
             }
         }
