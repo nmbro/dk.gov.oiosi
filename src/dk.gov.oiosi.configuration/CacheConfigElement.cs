@@ -66,6 +66,7 @@ namespace dk.gov.oiosi.configuration
         /// </summary>
         public CacheConfigElement()
         {
+            cacheConfigurationList = new List<CacheConfiguration>();
         }
 
         /// <summary>
