@@ -37,12 +37,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// <summary>
     /// Internal interceptor excteption
     /// </summary>
-    public class InterceptorInternalFailureException : InterceptorChannelException {
-
+    public class InterceptorInternalFailureException : InterceptorChannelException 
+    {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="innerException">The inner exception</param>
-        public InterceptorInternalFailureException(Exception innerException) : base(innerException) { }
+        public InterceptorInternalFailureException(Exception innerException) 
+            : base(innerException) 
+        { }
     }
 }

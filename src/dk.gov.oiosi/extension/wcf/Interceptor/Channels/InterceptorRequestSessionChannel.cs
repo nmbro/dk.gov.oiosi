@@ -40,7 +40,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     class InterceptorRequestSessionChannel : InterceptorRequestChannel, IRequestSessionChannel {
         private IRequestSessionChannel _innerChannel;
         public InterceptorRequestSessionChannel(ChannelManagerBase manager, IRequestSessionChannel innerChannel, IChannelInterceptor channelInterceptor)
-            : base(manager, innerChannel, channelInterceptor) {
+            : base(manager, innerChannel, channelInterceptor)
+        {
             _innerChannel = innerChannel;
         }
 
@@ -57,8 +58,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
 
         protected override void HandleException(Message message) {
             base.HandleException(message);
-            if (State == System.ServiceModel.CommunicationState.Faulted) return;
-            Fault();
+            if (State == System.ServiceModel.CommunicationState.Faulted)
+            {
+                // The base class has handle the exception
+            }
+            else
+            {
+                base.Fault();
+            }
         }
     }
 }

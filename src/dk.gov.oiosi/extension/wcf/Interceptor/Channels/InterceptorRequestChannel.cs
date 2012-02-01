@@ -42,8 +42,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// Interceptor request channel
     /// </summary>
     /// <remarks>In case an interceptor has been added UNDER the security layer a copy of the Message object should never be done - seeing how this leads to the To header not being signed.</remarks>
-    class InterceptorRequestChannel : InterceptorChannelBase<IRequestChannel>, IRequestChannel {
-        private IChannelInterceptor _channelInterceptor;
+    class InterceptorRequestChannel : InterceptorChannelBase<IRequestChannel>, IRequestChannel
+    {
+        private IChannelInterceptor channelInterceptor;
 
         /// <summary>
         /// Constructor
@@ -52,8 +53,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="innerChannel">inner channel</param>
         /// <param name="channelInterceptor">channel interceptor</param>
         public InterceptorRequestChannel(ChannelManagerBase manager, IRequestChannel innerChannel, IChannelInterceptor channelInterceptor)
-            : base(manager, innerChannel) {
-            _channelInterceptor = channelInterceptor;
+            : base(manager, innerChannel)
+        {
+            this.channelInterceptor = channelInterceptor;
         }
 
 
@@ -94,19 +96,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="state">An object, specified by the application, that contains state information
         /// associated with the asynchronous operation transmitting a request message</param>
         /// <returns>The System.IAsyncResult that references the asynchronous message transmission</returns>
-        public IAsyncResult BeginRequest(Message message, AsyncCallback callback, object state) {
-            ThrowIfDisposedOrNotOpen();
-            try {
+        public IAsyncResult BeginRequest(Message message, AsyncCallback callback, object state) 
+        {
+            base.ThrowIfDisposedOrNotOpen();
+            IAsyncResult asyncResult = null;
+            try
+            {
                 WCFLogger.Write(TraceEventType.Start, "Beginning to intercept request");
                 Message interceptedMessage = InterceptRequest(message);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
-                return InnerChannel.BeginRequest(interceptedMessage, callback, state);
+                asyncResult = InnerChannel.BeginRequest(interceptedMessage, callback, state);
             }
             catch (Exception ex) {
                 HandleException(message);
                 WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + ex);
                 throw ex;
             }
+
+            return asyncResult;
         }
 
 
@@ -117,7 +124,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="result">The System.IAsyncResult returned by a call to the System.ServiceModel.Channels.IInputChannel.BeginRequest()
         /// method</param>
         /// <returns>The System.ServiceModel.Channels.Message received in response to the request</returns>
-        public Message EndRequest(IAsyncResult result) {
+        public Message EndRequest(IAsyncResult result)
+        {
             Message innerMessage = InnerChannel.EndRequest(result);
             WCFLogger.Write(TraceEventType.Start, "Beginning to intercept response");
             Message interceptedMessage = InterceptResponse(innerMessage);
@@ -140,22 +148,28 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="timeout">The System.TimeSpan that specifies the interval of time within which a response
         /// must be received</param>
         /// <returns>The System.ServiceModel.Channels.Message received in response to the request</returns>
-        public Message Request(Message message, TimeSpan timeout) {
+        public Message Request(Message message, TimeSpan timeout) 
+        {
             WCFLogger.Write(TraceEventType.Start, "Beginning to intercept request");
-            ThrowIfDisposedOrNotOpen();
-            try {
+            base.ThrowIfDisposedOrNotOpen();
+
+            Message interceptedResponseMessage = null;
+            try 
+            {
                 Message interceptedRequestMessage = InterceptRequest(message);
                 WCFLogger.Write(TraceEventType.Verbose, "Interceptor Requesting");
                 Message innerMessage = InnerChannel.Request(interceptedRequestMessage, timeout);
-                Message interceptedResponseMessage = InterceptResponse(innerMessage);
+                interceptedResponseMessage = InterceptResponse(innerMessage);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
-                return interceptedResponseMessage;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 HandleException(message);
                 WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + ex);
                 throw ex;
-            }           
+            }
+
+            return interceptedResponseMessage;
         }
 
         /// <summary>
@@ -163,45 +177,57 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="message">The request System.ServiceModel.Channels.Message to be transmitted</param>
         /// <returns>The System.ServiceModel.Channels.Message received in response to the request</returns>
-        public Message Request(Message message) {
+        public Message Request(Message message)
+        {
             WCFLogger.Write(TraceEventType.Start, "Beginning to intercept request");
-            ThrowIfDisposedOrNotOpen();
-            try {
+            base.ThrowIfDisposedOrNotOpen();
+            Message interceptedResponseMessage = null;
+            try
+            {
                 Message interceptedRequestMessage = InterceptRequest(message);
                 Message innerMessage = InnerChannel.Request(interceptedRequestMessage);
-                Message interceptedResponseMessage = InterceptResponse(innerMessage);
+                interceptedResponseMessage = InterceptResponse(innerMessage);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
-                return interceptedResponseMessage;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 HandleException(message);
                 WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + ex);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
                 throw ex;
             }
+
+            return interceptedResponseMessage;
         }
 
         /// <summary>
         /// Gets the transport address to which the request is send
         /// </summary>
-        public Uri Via {
-            get { return InnerChannel.Via; }
+        public Uri Via 
+        {
+            get 
+            {
+                return InnerChannel.Via;
+            }
         }
 
-        protected override void OnAbort() {
+        protected override void OnAbort() 
+        {
             base.OnAbort();
         }
 
-        protected override void OnFaulted() {
+        protected override void OnFaulted()
+        {
             WCFLogger.Write(TraceEventType.Warning, "Interceptor going into faulted state");
             base.OnFaulted();
         }
 
         #endregion
 
-        protected virtual void HandleException(Message message) {
+        protected virtual void HandleException(Message message)
+        {
             message.Close();
-            Fault();
+            base.Fault();
         }
 
         /// <summary>
@@ -210,16 +236,25 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="wcfMessage">The request System.ServiceModel.Channels.Message to be transmitted</param>
         /// <returns>the intercepted message</returns>
-        private Message InterceptRequest(Message wcfMessage) {
-            if (wcfMessage == null) return null;
-            if (!_channelInterceptor.DoesRequestIntercept) { 
+        private Message InterceptRequest(Message wcfMessage)
+        {
+            Message interceptedWcfMessage = null;
+            if (wcfMessage == null)
+            {
+                interceptedWcfMessage = null;
+            }
+            else if (!this.channelInterceptor.DoesRequestIntercept)
+            {
                 WCFLogger.Write(TraceEventType.Information, "Interceptor ignored request");
-                return wcfMessage; 
+                interceptedWcfMessage = wcfMessage;
+            }
+            else
+            {
+                InterceptorMessage message = new InterceptorMessage(wcfMessage);
+                this.channelInterceptor.InterceptRequest(message);
+                interceptedWcfMessage = message.GetMessage();
             }
 
-            InterceptorMessage message = new InterceptorMessage(wcfMessage);
-            _channelInterceptor.InterceptRequest(message);
-            Message interceptedWcfMessage = message.GetMessage();
             return interceptedWcfMessage;
         }
 
@@ -229,14 +264,27 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="wcfMessage">The request System.ServiceModel.Channels.Message to be transmitted</param>
         /// <returns>response interception</returns>
-        private Message InterceptResponse(Message wcfMessage) {
-            if (wcfMessage == null) return null;
-            if (!_channelInterceptor.DoesResponseIntercept) {
+        private Message InterceptResponse(Message wcfMessage)
+        {
+            Message message;
+
+            if (wcfMessage == null)
+            {
+                message = null;
+            }
+            else if (!this.channelInterceptor.DoesResponseIntercept)
+            {
                 WCFLogger.Write(TraceEventType.Information, "Interceptor ignored response");
-                return wcfMessage; }
-            InterceptorMessage message = new InterceptorMessage(wcfMessage);
-            _channelInterceptor.InterceptResponse(message);
-            return message.GetMessage();
+                message = wcfMessage;
+            }
+            else
+            {
+                InterceptorMessage interceptorMessage = new InterceptorMessage(wcfMessage);
+                this.channelInterceptor.InterceptResponse(interceptorMessage);
+                message = interceptorMessage.GetMessage();
+            }
+
+            return message;
         }
     }
 }
