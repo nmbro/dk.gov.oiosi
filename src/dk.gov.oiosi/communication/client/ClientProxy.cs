@@ -50,8 +50,9 @@ namespace dk.gov.oiosi.communication.client {
         /// </summary>
         /// <param name="endpointConfigurationName">the name of the endpoint configuration</param>
         public ClientProxy(string endpointConfigurationName)
-            :base(endpointConfigurationName) {
-
+            :base(endpointConfigurationName) 
+        {
+            
         }
 
         /// <summary>

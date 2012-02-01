@@ -78,7 +78,7 @@ namespace dk.gov.oiosi.communication.service {
             // The incoming message + metadata
             ListenerRequest listenerReq = new ListenerRequest(new OiosiMessage(request));
 
-
+            
             try {
                 // If any properties with the attribute MessageProperty were sent with the message
                 // they should be attached to the ListenerRequest message as well
