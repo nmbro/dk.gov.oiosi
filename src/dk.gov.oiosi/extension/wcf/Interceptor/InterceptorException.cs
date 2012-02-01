@@ -44,17 +44,20 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
     /// communication exceptions up the stack while using the exception 
     /// message pattern.
     /// </summary>
-    public class InterceptorException : CommunicationException {
+    public class InterceptorException : CommunicationException
+    {
         private static List<ResourceManager> resources = new List<ResourceManager>();
         private static ResourceManager resourceManager = new ResourceManager(typeof(ErrorMessages));
         private IExceptionMessageStore exceptionMessageStore = new ResourceFileExceptionMessageStore();
         private string _message;
+
         /// <summary>
         /// Standard default constructor, gives the base constructor the resource manager as 
         /// parameter.
         /// </summary>
-        public InterceptorException() {
-            SetMessage(resourceManager);
+        public InterceptorException() 
+        {
+            this.SetMessage(resourceManager);
         }
 
         /// <summary>
@@ -62,8 +65,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// a base constructor with the keywords and the resource manager.
         /// </summary>
         /// <param name="keywords">A dictionary that contains keywords that are used in building the exception message</param>
-        public InterceptorException(System.Collections.Generic.Dictionary<string, string> keywords) {
-            SetMessage(resourceManager, keywords);
+        public InterceptorException(System.Collections.Generic.Dictionary<string, string> keywords) 
+        {
+            this.SetMessage(resourceManager, keywords);
         }
 
         /// <summary>
@@ -72,8 +76,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// resource manager.
         /// </summary>
         /// <param name="innerException">The inner exception of this exception</param>
-        public InterceptorException(System.Exception innerException) : base("", innerException) {
-            SetMessage(resourceManager);
+        public InterceptorException(System.Exception innerException) : base("", innerException) 
+        {
+            this.SetMessage(resourceManager);
         }
 
         /// <summary>
@@ -83,28 +88,35 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         /// <param name="keywords">A dictionary that contains keywords that are used in building the exception message</param>
         /// <param name="innerException">The inner exception of this exception</param>
-        public InterceptorException(Dictionary<string, string> keywords, System.Exception innerException) : base("", innerException) {
-            SetMessage(resourceManager, keywords);
+        public InterceptorException(Dictionary<string, string> keywords, System.Exception innerException)
+            : base("", innerException) 
+        {
+            this.SetMessage(resourceManager, keywords);
         }
 
         /// <summary>
         /// Property to get the error message
         /// </summary>
-        public override string Message {
-            get { return _message; }
+        public override string Message
+        {
+            get 
+            {
+                return _message;
+            }
         }
 
-        private void SetMessage(ResourceManager resource) {
+        private void SetMessage(ResourceManager resource) 
+        {
             Dictionary<string, string> keywords = new Dictionary<string,string>();
-            SetMessage(resource, keywords);
+            this.SetMessage(resource, keywords);
         }
 
-        private void SetMessage(ResourceManager resource, Dictionary<string, string> keywords) {
+        private void SetMessage(ResourceManager resource, Dictionary<string, string> keywords) 
+        {
             Type exceptionType = this.GetType();
             List<ResourceManager> collectiveResources = new List<ResourceManager>(resources);
             collectiveResources.Add(resource);
             _message = exceptionMessageStore.GetExceptionMessage(collectiveResources, exceptionType, keywords);
         }
-
     }
 }
