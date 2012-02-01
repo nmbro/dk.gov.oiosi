@@ -65,6 +65,9 @@ namespace dk.gov.oiosi.uddi
         /// </summary>
         public UddiLookupClient(Uri address)
         {
+            this.uddiServiceCache = this.CreateUddiServiceCache();
+            this.uddiTModelCache = this.CreateUddiTModelCache();
+
             // If this creation failed, it is possible that you are missing the app.config file in your project
             _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
             _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
