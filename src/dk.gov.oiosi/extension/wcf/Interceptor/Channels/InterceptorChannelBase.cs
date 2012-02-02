@@ -60,11 +60,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
             }
 
             this.innerChannel = innerChannel;
-            this.Faulted += new EventHandler(InterceptorChannelBase_Faulted);
-            innerChannel.Faulted += new EventHandler(InnerChannel_Faulted);
+            //this.Faulted += new EventHandler(InterceptorChannelBase_Faulted);
+           // innerChannel.Faulted += new EventHandler(InnerChannel_Faulted);
         }
 
-        void InnerChannel_Faulted(object sender, EventArgs e)
+        /*void InnerChannel_Faulted(object sender, EventArgs e)
         {
             throw new Exception("InnerChannel_Faulted");
         }
@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         void InterceptorChannelBase_Faulted(object sender, EventArgs e)
         {
             throw new Exception("InterceptorChannelBase_Faulted");
-        }
+        }*/
 
         /// <summary>
         /// Gets the inner channel of the channel base.
