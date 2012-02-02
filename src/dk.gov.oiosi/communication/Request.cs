@@ -48,15 +48,17 @@ using dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.communication.handlers.email;
 
-namespace dk.gov.oiosi.communication {
+namespace dk.gov.oiosi.communication
+{
 
     /// <summary>
     /// Represents a request to an OIOSI http or email endpoint.
     /// </summary>
-    public class Request : dk.gov.oiosi.communication.IRequest {
-        
+    public class Request : dk.gov.oiosi.communication.IRequest
+    {
+
         // The proxy used for service calls
-        private ClientProxy _proxy;
+        private ClientProxy proxy;
 
         // The delegate used to call our synchronous sending method asynchronously
         private delegate void AsyncGetResponse(OiosiMessage message, out Response response);
@@ -65,7 +67,7 @@ namespace dk.gov.oiosi.communication {
         /// Constant for http endpoint configuration name
         /// </summary>
         public const string HttpEndpointConfigurationName = "OiosiHttpEndpoint";
-        
+
         /// <summary>
         /// Constant for smtp endpoint configuration name
         /// </summary>
@@ -74,11 +76,11 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// The name of the WCF endpoint configuration
         /// </summary>
-        protected string pEndpointConfigurationName;
+        protected string endpointConfigurationName;
 
-        Credentials _credentials;
-        private Uri _requestUri;
-        SendPolicy _policy = new SendPolicy();
+        private Credentials credentials;
+        private Uri requestUri;
+        private SendPolicy policy = new SendPolicy();
 
         #region public methods
 
@@ -86,10 +88,11 @@ namespace dk.gov.oiosi.communication {
         /// Constructor
         /// </summary>
         /// <param name="endpointAddress"></param>
-        public Request(Uri endpointAddress) {
+        public Request(Uri endpointAddress)
+        {
             // Test that a valid endpoint address was given
-            TestEndpointAddressCompability(endpointAddress);
-            _requestUri = endpointAddress;
+            this.TestEndpointAddressCompability(endpointAddress);
+            this.requestUri = endpointAddress;
         }
 
         /// <summary>
@@ -98,8 +101,9 @@ namespace dk.gov.oiosi.communication {
         /// <param name="endpointAddress">The endpoint address</param>
         /// <param name="credentials">Credentials</param>
         public Request(Uri endpointAddress, Credentials credentials)
-            : this(endpointAddress) {
-            _credentials = credentials;
+            : this(endpointAddress)
+        {
+            this.credentials = credentials;
         }
 
         /// <summary>
@@ -110,8 +114,10 @@ namespace dk.gov.oiosi.communication {
         /// <param name="credentials">Overrides the credentials set in config</param>
         /// <param name="endpointAddress"></param>
         /// <param name="sendPolicy">The send policy of the request</param>
-        public Request(Uri endpointAddress, Credentials credentials, SendPolicy sendPolicy) : this(endpointAddress, credentials) {
-            _policy = sendPolicy;
+        public Request(Uri endpointAddress, Credentials credentials, SendPolicy sendPolicy)
+            : this(endpointAddress, credentials)
+        {
+            this.policy = sendPolicy;
         }
 
 
@@ -119,148 +125,183 @@ namespace dk.gov.oiosi.communication {
         /// Constructor
         /// </summary>
         /// <param name="endpointConfigurationName">The name of the endpoint configuration</param>
-        public Request(string endpointConfigurationName) {
-            if (endpointConfigurationName == null || endpointConfigurationName == "")
+        public Request(string endpointConfigurationName)
+        {
+            if (string.IsNullOrEmpty(endpointConfigurationName))
+            {
                 throw new NoEndpointGivenException();
-            pEndpointConfigurationName = endpointConfigurationName;
+            }
+
+            this.endpointConfigurationName = endpointConfigurationName;
         }
 
         /// <summary>
         /// Tests that and endpoint address is compatible with Request
         /// </summary>
-        protected void TestEndpointAddressCompability(Uri endpointAddress) {
-
+        protected void TestEndpointAddressCompability(Uri endpointAddress)
+        {
             if (endpointAddress == null)
+            {
                 throw new NoEndpointGivenException();
+            }
 
             // We only support 'http' and 'mailto'
             if (endpointAddress.Scheme != "mailto" && endpointAddress.Scheme != "http")
+            {
                 throw new NotSupportedSchemeException(endpointAddress.Scheme);
+            }
         }
 
         /// <summary>
         /// Creates the proxy object
         /// </summary>
-        protected void CreateProxy() {
+        protected void CreateProxy()
+        {
             logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Proxy being created");
 
             // Try to create a proxy
-            try {
+            try
+            {
                 // Is an endpoint in configuration given?
-                if (pEndpointConfigurationName != null) {
-                    _proxy = new ClientProxy(pEndpointConfigurationName);
-                    _requestUri = _proxy.Endpoint.Address.Uri;
-                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Endpoint configuration section '" + pEndpointConfigurationName  + "' used to create proxy object");
+                if (!string.IsNullOrEmpty(endpointConfigurationName))// != null)
+                {
+                    this.proxy = new ClientProxy(endpointConfigurationName);
+                    this.requestUri = proxy.Endpoint.Address.Uri;
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Endpoint configuration section '" + endpointConfigurationName + "' used to create proxy object");
                 }
                 // ... if not, infer the endpoint config from the URI type
-                else {
-                    switch (_requestUri.Scheme) {
+                else
+                {
+                    switch (this.requestUri.Scheme)
+                    {
 
                         case "mailto":
-                            logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Mail transport inferred from request URI '" + RequestUri + "'");
-                            _proxy = new ClientProxy(MailtoEndpointConfigurationName);
-                            logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Default mail endpoint configuration section '" + MailtoEndpointConfigurationName + "' used to create proxy object");
-                            break;
+                            {
+                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Mail transport inferred from request URI '" + RequestUri + "'");
+                                this.proxy = new ClientProxy(MailtoEndpointConfigurationName);
+                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Default mail endpoint configuration section '" + MailtoEndpointConfigurationName + "' used to create proxy object");
+                                break;
+                            }
 
                         case "http":
-                            logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "HTTP transport inferred from request URI '" + RequestUri + "'");
-                            _proxy = new ClientProxy(HttpEndpointConfigurationName);
-                            logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Default HTTP endpoint configuration section '" + HttpEndpointConfigurationName + "' used to create proxy object");
-                            break;
+                            {
+                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "HTTP transport inferred from request URI '" + RequestUri + "'");
+                                this.proxy = new ClientProxy(HttpEndpointConfigurationName);
+                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Default HTTP endpoint configuration section '" + HttpEndpointConfigurationName + "' used to create proxy object");
+                                break;
+                            }
 
                         default:
-                            throw new NotSupportedSchemeException(_requestUri.Scheme);
+                            {
+                                throw new NotSupportedSchemeException(this.requestUri.Scheme);
+                            }
                     }
                 }
 
                 // Add the behavior that will encrypt the bodies of WS-RM messages
-                _proxy.Endpoint.Behaviors.Add(new EncryptRmBodiesBehavior());
+                this.proxy.Endpoint.Behaviors.Add(new EncryptRmBodiesBehavior());
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Behavior to encrypt the body of RM messages added to proxy");
 
 
-                SetCredentials();
-                SetMailConfig();
+                this.SetCredentials();
+                this.SetMailConfig();
 
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Proxy finished being created");
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new ProxyGenerationException(e);
             }
         }
 
-        private void SetCredentials() {
+        private void SetCredentials()
+        {
 
             string dnsId = null;
 
             // Do we have programatically set credentials?
-            if (_credentials != null) {
+            if (this.credentials != null)
+            {
 
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Credentials added programatically. Starting to override proxy settings.");
 
                 // Override client cert
-                if (_credentials.ClientCertificate != null)
+                if (this.credentials.ClientCertificate != null)
                 {
-                    _proxy.ClientCredentials.ClientCertificate.Certificate = _credentials.ClientCertificate.Certificate;
-                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Client certificate overridden with '" + _credentials.ClientCertificate.Certificate.FriendlyName + "'");
+                    this.proxy.ClientCredentials.ClientCertificate.Certificate = this.credentials.ClientCertificate.Certificate;
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Client certificate overridden with '" + this.credentials.ClientCertificate.Certificate.FriendlyName + "'");
                 }
-               
+
                 // Override server cert
-                if (_credentials.ServerCertificate != null)
+                if (this.credentials.ServerCertificate != null)
                 {
-                    _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate = _credentials.ServerCertificate.Certificate;
-                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Server certificate overridden with '" + _credentials.ServerCertificate.Certificate.FriendlyName + "'");
+                    this.proxy.ClientCredentials.ServiceCertificate.DefaultCertificate = this.credentials.ServerCertificate.Certificate;
+                    logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Start, "Server certificate overridden with '" + this.credentials.ServerCertificate.Certificate.FriendlyName + "'");
                 }
 
                 // Get the endpoint DNS Identity
-                dnsId = _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.DnsName, false);
+                dnsId = this.proxy.ClientCredentials.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.DnsName, false);
 
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Finished overriding credentials.");
             }
             // The credentials were not set programatically...
             // If client credentials have been set by config, set the local property to point to them
-            else if (_proxy.ClientCredentials != null){
-                
+            else if (proxy.ClientCredentials != null)
+            {
+
                 X509Certificate2 clientCert = null;
                 X509Certificate2 serverCert = null;
 
-                if(_proxy.ClientCredentials.ClientCertificate != null)
-                    clientCert = _proxy.ClientCredentials.ClientCertificate.Certificate;
-                if(_proxy.ClientCredentials.ServiceCertificate != null) 
-                    serverCert = _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate;
+                if (this.proxy.ClientCredentials.ClientCertificate != null)
+                {
+                    clientCert = proxy.ClientCredentials.ClientCertificate.Certificate;
+                }
+                if (proxy.ClientCredentials.ServiceCertificate != null)
+                {
+                    serverCert = proxy.ClientCredentials.ServiceCertificate.DefaultCertificate;
+                }
 
                 // Local credentials should be set to same as the ones gotten from app.config
-                _credentials = new Credentials(
+                this.credentials = new Credentials(
                     new OcesX509Certificate(clientCert),
                     new OcesX509Certificate(serverCert));
 
                 // Get the endpoint DNS Identity
-                dnsId = _proxy.ClientCredentials.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.DnsName, false);
+                dnsId = this.proxy.ClientCredentials.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.DnsName, false);
             }
 
             // Set the endpoint address
             if (dnsId != null)
-                _proxy.Endpoint.Address = new EndpointAddress(_requestUri, new DnsEndpointIdentity(dnsId), new AddressHeaderCollection());
+            {
+                this.proxy.Endpoint.Address = new EndpointAddress(this.requestUri, new DnsEndpointIdentity(dnsId), new AddressHeaderCollection());
+            }
             else
-                _proxy.Endpoint.Address = new EndpointAddress(_requestUri);
-
+            {
+                proxy.Endpoint.Address = new EndpointAddress(this.requestUri);
+            }
         }
 
-        private void SetMailConfig() {
+        private void SetMailConfig()
+        {
             // Do we have dynamically set mail config?
-            if (_policy != null && _proxy.Endpoint.Binding.GetType() == typeof(CustomBinding)) {
-                EmailBindingElement binding = ((CustomBinding)_proxy.Endpoint.Binding).Elements.Find<EmailBindingElement>();
+            if (this.policy != null && this.proxy.Endpoint.Binding.GetType() == typeof(CustomBinding))
+            {
+                EmailBindingElement binding = ((CustomBinding)this.proxy.Endpoint.Binding).Elements.Find<EmailBindingElement>();
                 // If we had an email binding element
-                if (binding != null) {
-                    IMailServerConfiguration inboxConfiguration = _policy.InboxMailConfiguration;
-                    IMailServerConfiguration outboxConfiguration = _policy.OutboxMailConfiguration;
-                    if (inboxConfiguration != null) {
+                if (binding != null)
+                {
+                    IMailServerConfiguration inboxConfiguration = this.policy.InboxMailConfiguration;
+                    IMailServerConfiguration outboxConfiguration = this.policy.OutboxMailConfiguration;
+                    if (inboxConfiguration != null)
+                    {
                         binding.ReceivingServerAddress = inboxConfiguration.ServerAddress;
                         binding.ReceivingUserName = inboxConfiguration.UserName;
                         binding.ReceivingPassword = inboxConfiguration.Password;
                         binding.ReceivingPort = inboxConfiguration.ConnectionPolicy.Port;
                         binding.ReceivingAuthenticationMode = inboxConfiguration.ConnectionPolicy.AuthenticationMode;
                     }
-                    if (_policy.OutboxMailConfiguration != null) {
+                    if (this.policy.OutboxMailConfiguration != null)
+                    {
                         binding.SendingServerAddress = outboxConfiguration.ServerAddress;
                         binding.SendingUserName = outboxConfiguration.UserName;
                         binding.SendingPassword = outboxConfiguration.Password;
@@ -278,19 +319,23 @@ namespace dk.gov.oiosi.communication {
         /// <param name="message">Request message</param>
         /// <returns>Response message</returns>
         [Obsolete("void GetResponse(OiosiMessage message, Response response) should be used instead", false)]
-        public Response GetResponse(OiosiMessage message) {
+        public Response GetResponse(OiosiMessage message)
+        {
             System.Diagnostics.Debug.WriteLine(DateTime.Now + " " + this.ToString() + ".GetResponse()");
             Response response = null;
-            OpenProxy();
+            this.OpenProxy();
 
-            try {
-                SendMessage(message, out response);
+            try
+            {
+                this.SendMessage(message, out response);
             }
-            catch  {
+            catch
+            {
                 throw;
             }
-            finally {
-                CloseProxy();
+            finally
+            {
+                this.CloseProxy();
             }
             return response;
         }
@@ -315,29 +360,33 @@ namespace dk.gov.oiosi.communication {
         /// <param name="request">Request message</param>
         public void GetResponse(OiosiMessage request, out Response response)
         {
-
             response = null;
-            OpenProxy();
+            this.OpenProxy();
 
-            try {
-                SendMessage(request, out response);
+            try
+            {
+                this.SendMessage(request, out response);
             }
-            catch {
+            catch
+            {
                 throw;
             }
-            finally {
-                CloseProxy();
+            finally
+            {
+                this.CloseProxy();
             }
         }
 
         /// <summary>
         /// Opens a proxy connection to the remote endpoint 
         /// </summary>
-        private void OpenProxy() {
-            CreateProxy();
+        private void OpenProxy()
+        {
+            this.CreateProxy();
 
             // Test that an inner channel was created
-            if (_proxy.InnerChannel == null) {
+            if (proxy.InnerChannel == null)
+            {
                 throw new CreatingCommunicationChannelFailedException();
             }
         }
@@ -347,17 +396,18 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         private void CloseProxy()
         {
-            if (_proxy != null && _proxy.State != CommunicationState.Faulted) 
+            if (this.proxy != null && this.proxy.State != CommunicationState.Faulted)
             {
-                try 
+                try
                 {
-                    _proxy.Close();
+                    this.proxy.Close();
                 }
-                catch (CommunicationObjectAbortedException ex) 
+                catch (CommunicationObjectAbortedException ex)
                 {
                     string exString = ex.ToString();
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     throw new RequestShutdownException(ex);
                 }
             }
@@ -371,10 +421,11 @@ namespace dk.gov.oiosi.communication {
         private void SendMessage(OiosiMessage message, out Response response)
         {
             response = null;
-            try {
+            try
+            {
                 // Convert to WCF message
                 Message wcfMessage = null;
-                if (message.HasBody) 
+                if (message.HasBody)
                 {
                     XmlReader xmlBody = message.GetMessageXmlReader();
                     wcfMessage = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, message.RequestAction, xmlBody);
@@ -386,31 +437,37 @@ namespace dk.gov.oiosi.communication {
 
                 // Adds properties from the Message to the WCF message
                 foreach (KeyValuePair<string, object> p in message.Properties)
+                {
                     wcfMessage.Properties.Add(p.Key, p.Value);
+                }
 
                 // Do we have any properties that should be added to WS-RM messages as well?
-                if (message.UbiquitousProperties.Count > 0) {
-                    try {
-                        UbiquitousPropertiesBindingElement interceptor = (((CustomBinding)_proxy.ChannelFactory.Endpoint.Binding).Elements.Find<UbiquitousPropertiesBindingElement>());
+                if (message.UbiquitousProperties.Count > 0)
+                {
+                    try
+                    {
+                        UbiquitousPropertiesBindingElement interceptor = (((CustomBinding)proxy.ChannelFactory.Endpoint.Binding).Elements.Find<UbiquitousPropertiesBindingElement>());
                         interceptor.SetProperties(message.UbiquitousProperties);
                     }
-                    catch (NullReferenceException e) {
+                    catch (NullReferenceException e)
+                    {
                         throw new MissingStackElementException("UbiquitousPropertiesBindingElement", e);
                     }
                 }
 
                 // Adds custom headers 
-                foreach (KeyValuePair<XmlQualifiedName,MessageHeader> header in message.MessageHeaders) {
+                foreach (KeyValuePair<XmlQualifiedName, MessageHeader> header in message.MessageHeaders)
+                {
                     wcfMessage.Headers.Add(header.Value);
                 }
 
                 // Sends
-                Message wcfMessageResponse = _proxy.RequestRespond(wcfMessage);
-                
+                Message wcfMessageResponse = this.proxy.RequestRespond(wcfMessage);
+
                 // Make sure we dind't receive a fault
                 if (wcfMessageResponse.IsFault)
                 {
-                    throw CreateFaultWasReceivedException(new FaultException(MessageFault.CreateFault(wcfMessageResponse, int.MaxValue)));
+                    throw this.CreateFaultWasReceivedException(new FaultException(MessageFault.CreateFault(wcfMessageResponse, int.MaxValue)));
                 }
 
                 // Convert back to oiosi message
@@ -418,33 +475,45 @@ namespace dk.gov.oiosi.communication {
 
                 // If any properties with the attribute MessageProperty were sent with the message
                 // they should be attached to the ListenerRequest message as well
-                foreach (object o in wcfMessageResponse.Properties.Values) {
+                foreach (object o in wcfMessageResponse.Properties.Values)
+                {
                     object[] attributes = o.GetType().GetCustomAttributes(typeof(dk.gov.oiosi.extension.wcf.OiosiMessagePropertyAttribute), false);
-                    if (attributes.Length > 0) {
+                    if (attributes.Length > 0)
+                    {
                         response.AddProperty(o);
                     }
                 }
             }
-            catch (ProtocolException e) {
+            catch (ProtocolException e)
+            {
 
                 // Minor hack to fix interop problems with the Java/Axis2 1.2 NemHandel stack
                 // SOAP faults might be returned with a http code 400 (Bad request),
                 // if that is the case we need to manually get the SOAP fault from the WebException
                 if (e.InnerException is System.Net.WebException)
+                {
                     throw GetSoapFaultFromHttpException(e.InnerException as System.Net.WebException);
+                }
                 else
+                {
                     throw new ProtocolMismatchException(e);
+                }
             }
-            catch (MessageSecurityException e) {
+            catch (MessageSecurityException e)
+            {
                 // If the execption was not due to a fault
                 if (!(e.InnerException is FaultException))
+                {
                     throw new ProtocolMismatchException(e);
-                else {
+                }
+                else
+                {
                     throw CreateFaultWasReceivedException((FaultException)e.InnerException);
                 }
             }
-            catch {
-                throw ;
+            catch
+            {
+                throw;
             }
         }
 
@@ -453,21 +522,25 @@ namespace dk.gov.oiosi.communication {
         /// SOAP faults might be returned with a http code 400 (Bad request),
         /// if that is the case we need to manually get the SOAP fault  from the WebException
         /// </summary>
-        private Exception GetSoapFaultFromHttpException(System.Net.WebException e){
-            
+        private Exception GetSoapFaultFromHttpException(System.Net.WebException e)
+        {
+
             StringBuilder sb = new StringBuilder("");//, 65536);
             Stream s = e.Response.GetResponseStream();
 
             // Try to read the fault
-            try {
-                
+            try
+            {
+
                 byte[] readBuffer = new byte[1000];
                 int count = 0;
 
-                for (; ; ) {
+                for (; ; )
+                {
                     count = s.Read(readBuffer, 0, readBuffer.Length);
 
-                    if (count == 0) {
+                    if (count == 0)
+                    {
                         // EOF
                         break;
                     }
@@ -476,41 +549,49 @@ namespace dk.gov.oiosi.communication {
                 }
 
             }
-            catch {
+            catch
+            {
                 return e;
             }
-            finally {
+            finally
+            {
                 s.Close();
             }
 
             // Try to make it a SOAP faultobject
             MemoryStream memStream = null;
-            try {
+            try
+            {
                 memStream = new MemoryStream(Encoding.Default.GetBytes(sb.ToString()));
                 XmlTextReader xmlReader = new XmlTextReader(memStream);
                 Message msg = Message.CreateMessage(xmlReader, int.MaxValue, MessageVersion.Soap12WSAddressing10);
                 MessageFault msgFault = MessageFault.CreateFault(msg, int.MaxValue);
                 return CreateFaultWasReceivedException(new FaultException(msgFault));
             }
-            catch {
+            catch
+            {
                 return new Exception(sb.ToString());
             }
-            finally {
+            finally
+            {
                 if (memStream != null)
+                {
                     memStream.Close();
+                }
             }
         }
 
         /// <summary>
         /// Creates the appropriate exception when a fault was received
         /// </summary>
-        private Exception CreateFaultWasReceivedException(FaultException e) { 
+        private Exception CreateFaultWasReceivedException(FaultException e)
+        {
             // Time for blaming. Who's fault was it?
             if (e.Code.IsSenderFault)
             {
                 return new FaultReturnedException(e, "dig");
             }
-            else 
+            else
             {
                 return new FaultReturnedException(e, "serveren");
             }
@@ -534,41 +615,46 @@ namespace dk.gov.oiosi.communication {
         /// Asynchronously ends sending a request
         /// </summary>
         /// <returns>Response message</returns>
-        public void EndGetResponse(IAsyncResult asyncResult, out Response response) 
+        public void EndGetResponse(IAsyncResult asyncResult, out Response response)
         {
             //Response r;
-            try {
+            try
+            {
                 ((AsyncGetResponse)asyncResult.AsyncState).EndInvoke(out response, asyncResult);
             }
-            catch (InvalidOperationException) {
+            catch (InvalidOperationException)
+            {
                 throw;
             }
             //return r;
         }
-      
+
         #region properties
-        
+
         /// <summary>
         /// Property for credentials
         /// </summary>
-        public Credentials Credentials { 
-            get { return _credentials; } 
-            set { _credentials = value; } 
+        public Credentials Credentials
+        {
+            get { return this.credentials; }
+            set { this.credentials = value; }
         }
 
         /// <summary>
         /// Property for the request uri
         /// </summary>
-        public Uri RequestUri { 
-            get { return _requestUri; } 
+        public Uri RequestUri
+        {
+            get { return this.requestUri; }
         }
 
         /// <summary>
         /// Property for the send policy
         /// </summary>
-        public SendPolicy Policy { 
-            get { return _policy; }
-            set { _policy = value; }
+        public SendPolicy Policy
+        {
+            get { return this.policy; }
+            set { this.policy = value; }
         }
 
         #endregion
@@ -576,16 +662,20 @@ namespace dk.gov.oiosi.communication {
         /// <summary>
         /// Closes the request
         /// </summary>
-        public void Close() {
-            CloseProxy();
+        public void Close()
+        {
+            this.CloseProxy();
         }
 
         /// <summary>
         /// Aborts the request
         /// </summary>
-        public void Abort() {
-            if (_proxy != null)
-                _proxy.Abort();
+        public void Abort()
+        {
+            if (this.proxy != null)
+            {
+                proxy.Abort();
+            }
         }
 
         #endregion

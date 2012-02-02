@@ -228,6 +228,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         {
             message.Close();
             base.Fault();
+           
         }
 
         /// <summary>
