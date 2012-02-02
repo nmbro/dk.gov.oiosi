@@ -156,13 +156,13 @@
     <value>Kunne ikke loade XML schema filen "[filename]". Schema filen anvendes til at validere afsendte og modtagne beskeder af en bestemt type</value>
   </data>
   <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidateDocumentFailedException" xml:space="preserve">
-    <value>Kunne ikke validere (XML Schema validere) meddelelsens SOAP body.</value>
+    <value>Kunne ikke validere (XML Schema validere) dokumentet.</value>
   </data>
   <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidationInterceptionEmptyBodyException" xml:space="preserve">
     <value>SOAP-meddelelsens body var tom ved schema validerings interceptoren, dvs der fandtes ingen meddelelse som kunne valideres</value>
   </data>
   <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidateDocumentFailedException" xml:space="preserve">
-    <value>Kunne ikke schematron validere meddelelsen.</value>
+    <value>Schematron valideringen forløb ikke succesfuldt.</value>
   </data>
   <data name="dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidationInterceptionEmptyBodyException" xml:space="preserve">
     <value>Netværksmeddelelsens body var tom ved schematron validator interceptoren, dvs der fandtes ingen meddelelse som kunne valideres.</value>

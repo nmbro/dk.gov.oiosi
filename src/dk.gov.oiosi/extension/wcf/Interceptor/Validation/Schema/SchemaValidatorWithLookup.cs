@@ -87,7 +87,15 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                 ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
 
                 schemaValidator.SchemaValidateXmlDocument(document, XmlSchemaSet, validationEventHandler);
-                
+
+            }
+            catch (SchemaValidateDocumentFailedException)
+            {
+                throw;
+            }
+            catch (SchemaValidationFailedException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

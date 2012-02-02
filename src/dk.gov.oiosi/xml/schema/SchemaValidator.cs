@@ -36,6 +36,7 @@ using System.Xml;
 using System.Xml.Schema;
 using dk.gov.oiosi.logging;
 using System.Text;
+using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema;
 
 namespace dk.gov.oiosi.xml.schema {
 
@@ -115,6 +116,10 @@ namespace dk.gov.oiosi.xml.schema {
                         while (xmlReader.Read()) { }
                     }
                 }
+            }
+            catch (SchemaValidateDocumentFailedException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
