@@ -4250,7 +4250,6 @@
         </Registry>
         <Registry>
           <EndpointCollection>
-            <Endpoint>http://discoverygateway.uddi.ehandel.gov.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
@@ -4370,8 +4369,8 @@
       </CacheConfigurationCollection>
     </MessageIdUnfinishedSignaturesCache>
 
-    <SequenceIdUnfinishedSignaturesCacheCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.IList`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+    <SequenceIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
@@ -4383,7 +4382,7 @@
           <Value>10</Value>
         </Configuration>
       </CacheConfigurationCollection>
-    </SequenceIdUnfinishedSignaturesCacheCache>
+    </SequenceIdUnfinishedSignaturesCache>
 
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
@@ -4408,13 +4407,11 @@
     <FunctionCertificateSubjetKey>
       <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
+  </ConfigurationSection>  
+  
+  <ConfigurationSection xsi:type="SendingOptionConfig">
+    <SchemaValidation>true</SchemaValidation>
+    <SchematronValidation>true</SchematronValidation>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="SendingProcessConfiguration">
-    <Timeout>1.00:00:00</Timeout>
-    <MaxResendCount>24</MaxResendCount>
-    <ResendingPattern>RecursiveBackoff</ResendingPattern>
-    <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
-    <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
-  </ConfigurationSection>
-
+  
 </RaspConfiguration>

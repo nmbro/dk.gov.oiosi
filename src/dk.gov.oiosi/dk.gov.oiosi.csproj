@@ -161,6 +161,7 @@
     <Compile Include="communication\listener\StopListeningFailedException.cs" />
     <Compile Include="communication\MissingStackElementException.cs" />
     <Compile Include="communication\RequestShutdownException.cs" />
+    <Compile Include="communication\SendingValidation.cs" />
     <Compile Include="communication\TcpPort.cs" />
     <Compile Include="communication\UnexpectedReplyActionException.cs" />
     <Compile Include="configuration\CacheFactory.cs" />

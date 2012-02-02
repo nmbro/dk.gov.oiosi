@@ -120,11 +120,15 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// </summary>
         /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
         /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
-        /// <param name="request">Request message</param>
-        public void GetResponse(OiosiMessage request, out Response response, string documentId)
+        /// <param name="message">Request message</param>
+        public void GetResponse(OiosiMessage message, out Response response, string documentId)
         {
-            AddCustomHeaders(request, documentId);
-            incapsulatedRequest.GetResponse(request, out response);
+            // Validate the OiosiMessage
+            SendingValidation sendingValidation = new SendingValidation();
+            sendingValidation.Validate(message);
+
+            this.AddCustomHeaders(message, documentId);
+            this.incapsulatedRequest.GetResponse(message, out response);
         }
 
         /// <summary>
@@ -137,6 +141,10 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// <returns>Returns an IAsyncResult object</returns>
         public IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, string documentId, AsyncCallback callback)
         {
+            // Validate the OiosiMessage
+            SendingValidation sendingValidation = new SendingValidation();
+            sendingValidation.Validate(message);
+
             AddCustomHeaders(message, documentId);
             return incapsulatedRequest.BeginGetResponse(message, out response, callback);
         }

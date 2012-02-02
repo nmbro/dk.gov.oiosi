@@ -137,7 +137,7 @@ namespace dk.gov.oiosi.configuration
             this.certificateCache = certificateCache;
             this.schematronStoreCache = schematronStoreCache;
             this.schemaStoreCache = schemaStoreCache;
-            this.messageIdUnfinishedSignaturesCache=messageIdUnfinishedSignaturesCache;
+            this.messageIdUnfinishedSignaturesCache = messageIdUnfinishedSignaturesCache;
             this.sequenceIdUnfinishedSignaturesCache = sequenceIdUnfinishedSignaturesCache;
         }
 

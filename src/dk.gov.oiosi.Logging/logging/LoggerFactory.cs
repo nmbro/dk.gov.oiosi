@@ -41,7 +41,7 @@ namespace dk.gov.oiosi.logging
         /// <summary>
         /// Create a logger
         /// </summary>
-        /// <param name="loggerName">The name of the logger</param>
+        /// <param name="type">The type of the logger</param>
         /// <returns>A instance of a logger</returns>
         public static ILogger Create(Type type)
         {
@@ -88,7 +88,7 @@ namespace dk.gov.oiosi.logging
             catch (Exception exception)
             {
                 // Failed to create the loggerCreater defined in the app.config file.
-                throw new LoggingException("Unable to create a logger base on the parameter in the app.Config file.");
+                throw new LoggingException("Unable to create a logger base on the parameter in the app.Config file.", exception);
             }
 
             return loggerCreator;

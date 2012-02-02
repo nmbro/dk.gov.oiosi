@@ -115,7 +115,6 @@ namespace dk.gov.oiosi.configuration
             // sequenceIdUnfinishedSignaturesCache
             element = cacheConfig.SequenceIdUnfinishedSignaturesCache;
             this.sequenceIdUnfinishedSignaturesCache = this.Create<ICache<string, List<UnfinishedSignatureValidationProof>>>(element, "SequenceIdUnfinishedSignaturesCacheCache");
-
         }
 
         private T Create<T>(CacheConfigElement element, string name)

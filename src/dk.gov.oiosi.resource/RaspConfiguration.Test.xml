@@ -4390,7 +4390,7 @@
     </SchemaStoreCache>
 
     <SchematronStoreCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib], ??]</ImplementationNamespaceClass>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
@@ -4400,7 +4400,37 @@
       </CacheConfigurationCollection>
     </SchematronStoreCache>
 
+    <MessageIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </MessageIdUnfinishedSignaturesCache>
+
+    <SequenceIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SequenceIdUnfinishedSignaturesCache>
   </ConfigurationSection>
+  
   <ConfigurationSection xsi:type="RootCertificateConfig">
     <RootCertificateLocation>
       <StoreLocation>LocalMachine</StoreLocation>
@@ -4421,5 +4451,9 @@
     <FunctionCertificateSubjetKey>
       <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="SendingOptionConfig">
+    <SchemaValidation>true</SchemaValidation>
+    <SchematronValidation>true</SchematronValidation>
   </ConfigurationSection>
 </RaspConfiguration>

@@ -23,7 +23,7 @@ namespace dk.gov.oiosi.logging
         /// <summary>
         /// Create an instance of ILogger
         /// </summary>
-        /// <param name="info">The type of that class, that which to retrive a logger</param>
+        /// <param name="type">The type of that class, that which to retrive a logger</param>
         /// <returns>The created instance of ILogger</returns>
         ILogger Create(Type type);
 

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace dk.gov.oiosi
 {
+    /// <summary>
+    /// A logging exception
+    /// </summary>
     public class LoggingException : Exception
     {
         public LoggingException()

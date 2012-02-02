@@ -45,10 +45,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// Serverside interceptor that attaches proof of signature validations on 
     /// messages send in the system.
     /// </summary>
-    public class ServerSignatureValidationProofBindingElement : CommonBindingElement {
-        private ServerSignatureValidationProofBindingExtensionElement _configuration;
+    public class ServerSignatureValidationProofBindingElement : CommonBindingElement 
+    {
+        private ServerSignatureValidationProofBindingExtensionElement configuration;
         private IRevocationLookup revocationLookup;
-        private SignatureValidationStackCheck _stackCheck;
+        private SignatureValidationStackCheck stackCheck;
 
         /// <summary>
         /// Constructor that takes the binding element extension for configuration reasons.
@@ -56,10 +57,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <param name="configuration"></param>
         public ServerSignatureValidationProofBindingElement(ServerSignatureValidationProofBindingExtensionElement configuration)
         {
-            _configuration = configuration;
+            this.configuration = configuration;
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
-            revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
-            _stackCheck = new SignatureValidationStackCheck(GetType());
+            this.revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
+            this.stackCheck = new SignatureValidationStackCheck(GetType());
         }
 
         #region RaspBindingElement overrides
@@ -73,7 +74,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context)
         {
             BindingElementCollection bindingElements = context.Binding.Elements;
-            _stackCheck.Check(bindingElements);
+            this.stackCheck.Check(bindingElements);
             return base.BuildChannelListener<TChannel>(context);
         }
 
@@ -136,7 +137,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// </summary>
         public override bool DoesFaultOnRequestException 
         {
-            get { return _configuration.FaultOnRequestValidationException; }
+            get { return this.configuration.FaultOnRequestValidationException; }
         }
 
         /// <summary>
@@ -145,7 +146,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// <returns></returns>
         public override BindingElement Clone() 
         {
-            return new ServerSignatureValidationProofBindingElement(_configuration);
+            return new ServerSignatureValidationProofBindingElement(this.configuration);
         }
 
         #endregion

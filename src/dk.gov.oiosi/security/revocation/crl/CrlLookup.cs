@@ -63,7 +63,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         public CrlLookup()
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.cache = this.CreateCache();
+            this.cache = CacheFactory.Instance.CrlLookupCache;
         }
 
         #region IRevocationLookup Members
@@ -123,15 +123,6 @@ namespace dk.gov.oiosi.security.revocation.crl
             {
                 throw new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
             }
-        }
-
-        private ICache<Uri, CrlInstance> CreateCache()
-        {
-            // CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
-            // TimeSpan timeSpan = cacheConfig.CrlLookupCacheTimeSpan;
-            ICache<Uri, CrlInstance> cache = CacheFactory.Instance.CrlLookupCache;
-
-            return cache;
         }
 
         #endregion

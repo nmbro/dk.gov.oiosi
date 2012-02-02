@@ -61,6 +61,7 @@
     <Compile Include="ConfigurationSectionAlreadyExistsException.cs" />
     <Compile Include="ConfigurationSectionMissingXmlRootAttributeException.cs" />
     <Compile Include="ConfigurationTypeHasNoDefaultConstructorException.cs" />
+    <Compile Include="SendingOptionConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ErrorMessages.resx">

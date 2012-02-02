@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// channel and implements the needed functions from the ChannelBase of WCF.
     /// </summary>
     public class InterceptorChannelBase<TChannel> : ChannelBase where TChannel : class, IChannel {
-        private TChannel _innerChannel;
+        private TChannel innerChannel;
 
         /// <summary>
         /// Constructor that takes a channel manager and an inner channel as parameter. The manager
@@ -52,16 +52,33 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="manager">channel manager</param>
         /// <param name="innerChannel">inner channel</param>
         protected InterceptorChannelBase(ChannelManagerBase manager, TChannel innerChannel)
-            : base(manager) {
-            if (innerChannel == null) throw new NullArgumentException("innerChannel");
-            _innerChannel = innerChannel;
+            : base(manager) 
+        {
+            if (innerChannel == null)
+            {
+                throw new NullArgumentException("innerChannel");
+            }
+
+            this.innerChannel = innerChannel;
+            this.Faulted += new EventHandler(InterceptorChannelBase_Faulted);
+            innerChannel.Faulted += new EventHandler(InnerChannel_Faulted);
+        }
+
+        void InnerChannel_Faulted(object sender, EventArgs e)
+        {
+            throw new Exception("InnerChannel_Faulted");
+        }
+
+        void InterceptorChannelBase_Faulted(object sender, EventArgs e)
+        {
+            throw new Exception("InterceptorChannelBase_Faulted");
         }
 
         /// <summary>
         /// Gets the inner channel of the channel base.
         /// </summary>
         public TChannel InnerChannel {
-            get { return _innerChannel; }
+            get { return this.innerChannel; }
         }
 
         #region ChannelBase implementation
@@ -75,7 +92,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         public override T GetProperty<T>() {
             T baseProperty = base.GetProperty<T>();
             if (baseProperty != null) return baseProperty;
-            return _innerChannel.GetProperty<T>();
+            return this.innerChannel.GetProperty<T>();
         }
 
         /// <summary>
@@ -84,7 +101,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         protected override void OnAbort() {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase was aborted");
-            _innerChannel.Abort();
+            this.innerChannel.Abort();
         }
 
         /// <summary>
@@ -97,7 +114,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <returns></returns>
         protected override IAsyncResult OnBeginClose(TimeSpan timeout, AsyncCallback callback, object state) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase begins close");
-            return _innerChannel.BeginClose(timeout, callback, state);
+            return this.innerChannel.BeginClose(timeout, callback, state);
         }
 
         /// <summary>
@@ -110,7 +127,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <returns></returns>
         protected override IAsyncResult OnBeginOpen(TimeSpan timeout, AsyncCallback callback, object state) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase begins open");
-            return _innerChannel.BeginOpen(timeout, callback, state);
+            return this.innerChannel.BeginOpen(timeout, callback, state);
         }
 
         /// <summary>
@@ -120,7 +137,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="timeout"></param>
         protected override void OnClose(TimeSpan timeout) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase closes");
-            _innerChannel.Close(timeout);
+            this.innerChannel.Close(timeout);
         }
 
         /// <summary>
@@ -130,7 +147,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="result"></param>
         protected override void OnEndClose(IAsyncResult result) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase ends close");
-            _innerChannel.EndClose(result);
+            this.innerChannel.EndClose(result);
         }
 
         /// <summary>
@@ -140,7 +157,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="result"></param>
         protected override void OnEndOpen(IAsyncResult result) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase ends open");
-            _innerChannel.EndOpen(result);
+            this.innerChannel.EndOpen(result);
         }
 
         /// <summary>
@@ -150,7 +167,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// <param name="timeout"></param>
         protected override void OnOpen(TimeSpan timeout) {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorChannelBase opens");
-            _innerChannel.Open(timeout);
+            this.innerChannel.Open(timeout);
         }
         #endregion
     }

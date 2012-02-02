@@ -53,39 +53,40 @@ namespace dk.gov.oiosi.raspProfile
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
             string implementationAssembly = "dk.gov.oiosi.library";
-            CacheConfiguration configurationValidity = new CacheConfiguration("validityTimeInMinutes", "60");
-            CacheConfiguration configurationFrequency = new CacheConfiguration("frequencyInMinutes", "10");
+            CacheConfiguration configurationValidity10 = new CacheConfiguration("validityTimeInMinutes", "10");
+            CacheConfiguration configurationValidity60 = new CacheConfiguration("validityTimeInMinutes", "60");
+            CacheConfiguration configurationFrequency10 = new CacheConfiguration("frequencyInMinutes", "10");
             CacheConfiguration configurationMaxSize = new CacheConfiguration("maxSize", "10");
 
             cacheConfig.OcspLookupCache = new CacheConfigElement();
             cacheConfig.OcspLookupCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]";
             cacheConfig.OcspLookupCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationValidity);
-            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationFrequency);
+            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationValidity60);
+            cacheConfig.OcspLookupCache.CacheConfigurationCollection.Add(configurationFrequency10);
 
             cacheConfig.CrlLookupCache = new CacheConfigElement();
             cacheConfig.CrlLookupCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]";
             cacheConfig.CrlLookupCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationValidity);
-            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationFrequency);
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationValidity60);
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationFrequency10);
 
             cacheConfig.UddiServiceCache = new CacheConfigElement();
             cacheConfig.UddiServiceCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]";
             cacheConfig.UddiServiceCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationValidity);
-            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationFrequency);
+            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationValidity60);
+            cacheConfig.UddiServiceCache.CacheConfigurationCollection.Add(configurationFrequency10);
 
             cacheConfig.UddiTModelCache = new CacheConfigElement();
             cacheConfig.UddiTModelCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]";
             cacheConfig.UddiTModelCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationValidity);
-            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationFrequency);
+            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationValidity60);
+            cacheConfig.UddiTModelCache.CacheConfigurationCollection.Add(configurationFrequency10);
 
             cacheConfig.CertificateCache = new CacheConfigElement();
             cacheConfig.CertificateCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
             cacheConfig.CertificateCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationValidity);
-            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationFrequency);
+            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationValidity60);
+            cacheConfig.CertificateCache.CacheConfigurationCollection.Add(configurationFrequency10);
 
             cacheConfig.SchemaStoreCache = new CacheConfigElement();
             cacheConfig.SchemaStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
@@ -96,6 +97,19 @@ namespace dk.gov.oiosi.raspProfile
             cacheConfig.SchematronStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
             cacheConfig.SchematronStoreCache.ImplementationAssembly = implementationAssembly;
             cacheConfig.SchematronStoreCache.CacheConfigurationCollection.Add(configurationMaxSize);
+
+
+            cacheConfig.MessageIdUnfinishedSignaturesCache = new CacheConfigElement();
+            cacheConfig.MessageIdUnfinishedSignaturesCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]";
+            cacheConfig.MessageIdUnfinishedSignaturesCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity10);
+            cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationFrequency10);
+
+            cacheConfig.SequenceIdUnfinishedSignaturesCache = new CacheConfigElement();
+            cacheConfig.SequenceIdUnfinishedSignaturesCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]";
+            cacheConfig.SequenceIdUnfinishedSignaturesCache.ImplementationAssembly = implementationAssembly;
+            cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity10);
+            cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationFrequency10);
         }
 
         /// <summary>
