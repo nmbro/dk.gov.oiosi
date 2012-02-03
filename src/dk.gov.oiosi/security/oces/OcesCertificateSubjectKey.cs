@@ -7,7 +7,8 @@ namespace dk.gov.oiosi.security.oces {
     /// Implements the OCES certificate subject key. Ensures that the text that is 
     /// used to detect certificate strings.
     /// </summary>
-    public class OcesCertificateSubjectKey {
+    public class OcesCertificateSubjectKey
+    {
         private string _subjectKeyString;
 
         /// <summary>
@@ -21,7 +22,8 @@ namespace dk.gov.oiosi.security.oces {
         /// Constructor that takes the subject key string as parameter.
         /// </summary>
         /// <param name="subjectKeyString"></param>
-        public OcesCertificateSubjectKey(string subjectKeyString) {
+        public OcesCertificateSubjectKey(string subjectKeyString)
+        {
             CheckSubjectKeyString(subjectKeyString);
             _subjectKeyString = subjectKeyString;
         }
@@ -29,7 +31,8 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Gets and sets the subject key string.
         /// </summary>
-        public string SubjectKeyString {
+        public string SubjectKeyString
+        {
             get { return _subjectKeyString; }
             set {
                 CheckSubjectKeyString(value);

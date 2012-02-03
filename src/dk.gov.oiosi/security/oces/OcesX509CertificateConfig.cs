@@ -80,44 +80,73 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Gets or sets the personal certificate subject key
         /// </summary>
-        public OcesCertificateSubjectKey PersonalCertificateSubjectKey {
-            get { return _personalCertificateSubjectKey; }
-            set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.PersonalCertificateSubjectKey");
-                _personalCertificateSubjectKey = value; 
+        public OcesCertificateSubjectKey PersonalCertificateSubjectKey 
+        {
+            get { return this._personalCertificateSubjectKey; }
+            set 
+            {
+                if (value == null)
+                {
+                    throw new NullArgumentException("OcesX509CertificateConfig.PersonalCertificateSubjectKey");
+                }
+                else
+                {
+                    this._personalCertificateSubjectKey = value;
+                }
             }
         }
 
         /// <summary>
         /// Gets or sets the employee certificate subject key
         /// </summary>
-        public OcesCertificateSubjectKey EmployeeCertificateSubjectKey {
-            get { return _employeeCertificateSubjectKey; }
+        public OcesCertificateSubjectKey EmployeeCertificateSubjectKey 
+        {
+            get { return this._employeeCertificateSubjectKey; }
             set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.EmployeeCertificateSubjectKey");
-                _employeeCertificateSubjectKey = value;
+                if (value == null)
+                {
+                    throw new NullArgumentException("OcesX509CertificateConfig.EmployeeCertificateSubjectKey");
+                }
+                else
+                {
+                    this._employeeCertificateSubjectKey = value;
+                }
             }
         }
 
         /// <summary>
         /// Gets or sets the organization certificate subject key
         /// </summary>
-        public OcesCertificateSubjectKey OrganizationCertificateSubjectKey {
-            get { return _organizationCertificateSubjectKey; }
+        public OcesCertificateSubjectKey OrganizationCertificateSubjectKey 
+        {
+            get { return this._organizationCertificateSubjectKey; }
             set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.OrganizationCertificateSubjectKey");
-                _organizationCertificateSubjectKey = value;
+                if (value == null)
+                {
+                    throw new NullArgumentException("OcesX509CertificateConfig.OrganizationCertificateSubjectKey");
+                }
+                else
+                {
+                    this._organizationCertificateSubjectKey = value;
+                }
             }
         }
 
         /// <summary>
         /// Gets or sets the functional certificate subject key
         /// </summary>
-        public OcesCertificateSubjectKey FunctionCertificateSubjetKey {
+        public OcesCertificateSubjectKey FunctionCertificateSubjetKey 
+        {
             get { return _functionCertificateSubjectKey; }
             set {
-                if (value == null) throw new NullArgumentException("OcesX509CertificateConfig.FunctionCertificateSubjetKey");
-                _functionCertificateSubjectKey = value;
+                if (value == null)
+                {
+                    throw new NullArgumentException("OcesX509CertificateConfig.FunctionCertificateSubjetKey");
+                }
+                else
+                {
+                    this._functionCertificateSubjectKey = value;
+                }
             }
         }
     }

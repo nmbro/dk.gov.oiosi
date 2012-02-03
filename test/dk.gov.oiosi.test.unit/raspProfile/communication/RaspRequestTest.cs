@@ -43,7 +43,10 @@ namespace dk.gov.oiosi.test.unit.raspProfile.communication {
             // Call private method
             Type raspRequestType = typeof(RaspRequest);
             MethodInfo addCustomHeadersMethod = raspRequestType.GetMethod("AddCustomHeaders", BindingFlags.NonPublic | BindingFlags.Instance);
-            RaspRequest raspRequest = new RaspRequest(new Request(new Uri("http://test.dk"), new Credentials(new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE)), new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE)))));
+            OcesX509Certificate client = new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE, TestConstants.PASSWORD_CERTIFICATE_EMPLOYEE));
+            OcesX509Certificate server = new OcesX509Certificate(new X509Certificate2(TestConstants.PATH_CERTIFICATE_EMPLOYEE, TestConstants.PASSWORD_CERTIFICATE_EMPLOYEE));
+            Credentials c1 = new Credentials(client, server);
+            RaspRequest raspRequest = new RaspRequest(new Request(new Uri("http://test.dk"), c1));
             addCustomHeadersMethod.Invoke(raspRequest, new object[] { oiosiMessage, documentId });
 
             bool headerValueAdded = false;

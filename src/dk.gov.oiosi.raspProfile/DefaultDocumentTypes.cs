@@ -450,7 +450,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string rootName = "UtilityStatement";
             const string rootNamespace = "urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2";
             const string xsdPath = "Resources/Schemas/OIOUBL v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd";
-            const string xslPath = "Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_UtilityStatement_Schematron.xsl";
+            const string xslPath = "Resources/SchematronStylesheets/OIOUTS v2.1/OIOUBL_UtilityStatement_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:PartyName/cbc:Name";

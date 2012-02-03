@@ -70,7 +70,7 @@ namespace dk.gov.oiosi.raspProfile {
             string personalOcesCertificateSubjectKey = "PID";
             string employeeOcesCertificateSubjectKey = "RID";
             string organizationOcesCertificateSubjectKey = "UID";
-            string functionOcesCertificateSubjectKey = "DID";
+            string functionOcesCertificateSubjectKey = "FID";
 
             config.PersonalCertificateSubjectKey.SubjectKeyString = personalOcesCertificateSubjectKey;
             config.EmployeeCertificateSubjectKey.SubjectKeyString = employeeOcesCertificateSubjectKey;

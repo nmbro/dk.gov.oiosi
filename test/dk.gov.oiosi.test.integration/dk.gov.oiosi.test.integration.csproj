@@ -96,9 +96,6 @@
       <Link>Resources\Certificates\CVR30808460.Expire20111016.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx">
-      <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx</Link>
-    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

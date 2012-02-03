@@ -47,25 +47,31 @@ namespace dk.gov.oiosi.security.oces {
     public class OcesX509Certificate {
         
         private const string POLICYREGULAREXPRESSION = @"Policy Identifier=";
-        private X509Certificate2 _x509Certificate;
-        private X509CheckStatus _x509CheckStatus = X509CheckStatus.NotChecked;
+        private X509Certificate2 x509Certificate;
+        private X509CheckStatus x509CheckStatus = X509CheckStatus.NotChecked;
         private RevocationCheckStatus revocationCheckStatus = RevocationCheckStatus.NotChecked;
-        private OcesCertificateType _ocesCertificateType = OcesCertificateType.NonOces;
-        private CertificateSubject _subject;
+        private OcesCertificateType ocesCertificateType = OcesCertificateType.NonOces;
+        private CertificateSubject subject;
 
         /// <summary>
         /// Constructor that takes the X509Certificate wrapped. If the certificate is not 
         /// an OCES-certificate an exception will be thrown.
         /// </summary>
         /// <param name="certificate">An OCES x509 certificate</param>
-        public OcesX509Certificate(X509Certificate2 certificate) {
+        public OcesX509Certificate(X509Certificate2 certificate)
+        {
             if (certificate == null)
+            {
                 throw new ArgumentNullException("certificate");
-            _x509Certificate = certificate;
-            _subject = new CertificateSubject(_x509Certificate.Subject);
-            SetCertificateType();
-            if (_ocesCertificateType == OcesCertificateType.NonOces)
+            }
+
+            this.x509Certificate = certificate;
+            this.subject = new CertificateSubject(this.x509Certificate.Subject);
+            this.SetCertificateType();
+            if (this.ocesCertificateType == OcesCertificateType.NonOces)
+            {
                 throw new InvalidOcesCertificateException(certificate);
+            }
         }
 
         /// <summary>
@@ -74,11 +80,14 @@ namespace dk.gov.oiosi.security.oces {
         /// </summary>
         /// <param name="revocationLookupClient">The OCSP client to use for the request</param>
         /// <returns>Returns the check status</returns>
-        public revocation.RevocationCheckStatus CheckRevocationStatus(IRevocationLookup revocationLookupClient) {
+        public revocation.RevocationCheckStatus CheckRevocationStatus(IRevocationLookup revocationLookupClient)
+        {
             RevocationResponse response;
-            try {
-                response = revocationLookupClient.CheckCertificate(_x509Certificate);
-            } catch {
+            try 
+            {
+                response = revocationLookupClient.CheckCertificate(x509Certificate);
+            } catch
+            {
                 revocationCheckStatus = RevocationCheckStatus.UnknownIssue;
                 throw;
             }
@@ -94,28 +103,32 @@ namespace dk.gov.oiosi.security.oces {
         /// <summary>
         /// Gets the X509Certificate2 that is the basis of the OCES Certificate
         /// </summary>
-        public X509Certificate2 Certificate {
-            get { return _x509Certificate; }
+        public X509Certificate2 Certificate 
+        {
+            get { return x509Certificate; }
         }
 
         /// <summary>
         /// Gets the certificate subject of the oces certificate.
         /// </summary>
-        public CertificateSubject Subject {
-            get { return _subject; }
+        public CertificateSubject Subject
+        {
+            get { return subject; }
         }
 
         /// <summary>
         /// Gets the certificate check status
         /// </summary>
-        public X509CheckStatus X509CheckStatus {
-            get { return _x509CheckStatus; }
+        public X509CheckStatus X509CheckStatus
+        {
+            get { return x509CheckStatus; }
         }
         
         /// <summary>
         /// Gets the ocsp check status
         /// </summary>
-        public RevocationCheckStatus RevocationCheckStatus {
+        public RevocationCheckStatus RevocationCheckStatus 
+        {
             get { return revocationCheckStatus; }
         }
         
@@ -123,23 +136,25 @@ namespace dk.gov.oiosi.security.oces {
         /// Gets the certificate ocsp certificate type
         /// </summary>
         public OcesCertificateType OcesCertificateType {
-            get { return _ocesCertificateType; }
+            get { return ocesCertificateType; }
         }
 
         /// <summary>
         /// Gets certificate serial number
         /// </summary>
-        public CertificateSubject SubjectSerialNumber {
+        public CertificateSubject SubjectSerialNumber
+        {
             get {
-                if (_x509Certificate == null) return null;
-                else return new CertificateSubject(_x509Certificate.Subject);
+                if (x509Certificate == null) return null;
+                else return new CertificateSubject(x509Certificate.Subject);
             }
         }
 
         /// <summary>
         /// Returns the ocsp url
         /// </summary>
-        public string OcspUrl {
+        public string OcspUrl
+        {
             get {
                 return "";
             }
@@ -149,8 +164,9 @@ namespace dk.gov.oiosi.security.oces {
         /// Returns whether the certificate has a private key.
         /// </summary>
         /// <returns></returns>
-        public bool HasPrivateKey() {
-            return _x509Certificate.PrivateKey != null;
+        public bool HasPrivateKey()
+        {
+            return x509Certificate.PrivateKey != null;
         }
 
         /// <summary>
@@ -158,9 +174,10 @@ namespace dk.gov.oiosi.security.oces {
         /// </summary>
         /// <param name="cvrNumberString">The resulting cvr string</param>
         /// <returns>Whether a cvr number string value could be parsed.</returns>
-        public bool TryGetCvrNumberString(out string cvrNumberString) {
+        public bool TryGetCvrNumberString(out string cvrNumberString) 
+        {
             cvrNumberString = null;
-            string serialNumberValue = _subject.SerialNumberValue;
+            string serialNumberValue = subject.SerialNumberValue;
             Regex regEx = new Regex("CVR:\\d+");
             Match match = regEx.Match(serialNumberValue);
             if (match == null) return false;
@@ -174,7 +191,8 @@ namespace dk.gov.oiosi.security.oces {
         /// Try to get the cvr number as a string value from the certificate, if such exists
         /// </summary>
         /// <returns>Whether a cvr number string value could be parsed.</returns>
-        public static bool TryGetCvrNumberString(CertificateSubject subject, out string cvrNumberString) {
+        public static bool TryGetCvrNumberString(CertificateSubject subject, out string cvrNumberString)
+        {
             cvrNumberString = null;
             string serialNumberValue = subject.SerialNumberValue;
             Regex regEx = new Regex("CVR:\\d+");
@@ -190,50 +208,85 @@ namespace dk.gov.oiosi.security.oces {
         /// </summary>
         /// <param name="certificate"></param>
         /// <returns></returns>
-        public static OcesCertificateType GetOcesCertificateType(X509Certificate2 certificate) {
-            if (certificate == null) throw new NullArgumentException("certificate");
-            try {
-                //The code is using the subject as identifier of the the oces type.
-                return GetFromSubject(certificate);
+        public static OcesCertificateType GetOcesCertificateType(X509Certificate2 certificate)
+        {
+            if (certificate == null)
+            {
+                throw new NullArgumentException("certificate");
             }
-            catch (Exception ex) {
+
+            OcesCertificateType ocesCertificateType;
+            try 
+            {
+                //The code is using the subject as identifier of the the oces type.
+                ocesCertificateType =  GetFromSubject(certificate);
+            }
+            catch (Exception ex)
+            {
                 throw new FailedGetOcesCertificateTypeException(certificate, ex);
             }
+
+            return ocesCertificateType;
         }
 
         /// <summary>
         /// Get the OCES certificate type from a given certificate subject.
         /// </summary>
-        public static OcesCertificateType GetOcesCertificateType(CertificateSubject subject) {
-            if (subject == null) throw new NullArgumentException("subject");
+        public static OcesCertificateType GetOcesCertificateType(CertificateSubject subject) 
+        {
+            if (subject == null)
+            {
+                throw new NullArgumentException("subject");
+            }
              //The code is using the subject as identifier of the the oces type.
-             return GetFromSubject(subject);
+            OcesCertificateType ocesCertificateType = GetFromSubject(subject);
+
+            return ocesCertificateType;
         }
 
-        private static OcesCertificateType GetFromSubject(X509Certificate2 certificate) {
+        private static OcesCertificateType GetFromSubject(X509Certificate2 certificate) 
+        {
             CertificateSubject subject = new CertificateSubject(certificate.Subject);
             return GetFromSubject(subject);
         }
 
-        private static OcesCertificateType GetFromSubject(CertificateSubject subject) {
-            OcesX509CertificateConfig _config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-           
+        private static OcesCertificateType GetFromSubject(CertificateSubject subject)
+        {
+            OcesX509CertificateConfig config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
+            OcesCertificateType ocesCertificateType = new OcesCertificateType();
+
             string ssn = subject.SerialNumberValue;
-            if (ssn == null)
-                return OcesCertificateType.NonOces;
-            if (ssn.Contains(_config.EmployeeCertificateSubjectKey.SubjectKeyString))
-                return OcesCertificateType.OcesEmployee;
-            if (ssn.Contains(_config.OrganizationCertificateSubjectKey.SubjectKeyString))
-                return OcesCertificateType.OcesOrganisation;
-            if (ssn.Contains(_config.PersonalCertificateSubjectKey.SubjectKeyString))
-                return OcesCertificateType.OcesPersonal;
-            if (ssn.Contains(_config.FunctionCertificateSubjetKey.SubjectKeyString))
-                return OcesCertificateType.OcesFunction;
-            return OcesCertificateType.NonOces;
+            if (string.IsNullOrEmpty(ssn))
+            {
+                ocesCertificateType = OcesCertificateType.NonOces;
+            }
+            else if (ssn.Contains(config.EmployeeCertificateSubjectKey.SubjectKeyString))
+            {
+                ocesCertificateType = OcesCertificateType.OcesEmployee;
+            }
+            else if (ssn.Contains(config.OrganizationCertificateSubjectKey.SubjectKeyString))
+            {
+                ocesCertificateType = OcesCertificateType.OcesOrganisation;
+            }
+            else if (ssn.Contains(config.PersonalCertificateSubjectKey.SubjectKeyString))
+            {
+                ocesCertificateType = OcesCertificateType.OcesPersonal;
+            }
+            else if (ssn.Contains(config.FunctionCertificateSubjetKey.SubjectKeyString))
+            {
+                ocesCertificateType = OcesCertificateType.OcesFunction;
+            }
+            else
+            {
+                ocesCertificateType = OcesCertificateType.NonOces;
+            }
+
+            return ocesCertificateType;
         }
 
-        private void SetCertificateType() {
-            _ocesCertificateType = GetOcesCertificateType(_x509Certificate);
+        private void SetCertificateType() 
+        {
+            this.ocesCertificateType = GetOcesCertificateType(this.x509Certificate);
         }
     }
 }

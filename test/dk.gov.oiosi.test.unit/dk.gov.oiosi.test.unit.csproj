@@ -90,6 +90,10 @@
       <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
       <Name>dk.gov.oiosi.exception</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
@@ -100,31 +104,35 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20131101.FOCES1.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES1.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\ServerCertifikat\CVR26769388.Expire20090806.NemHandel Test 1.cer">
-      <Link>Resources\Certificates\CVR26769388.Expire20090806.NemHandel Test 1.cer</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Virksomhedscertifikat\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer">
-      <Link>Resources\Certificates\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer</Link>
-    </None>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\RaspConfigurationOcesX509.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\RaspConfigurationCacheConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\RaspConfigurationWithVersion1117.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\RaspConfigurationWithEmailTransportConfigSectionWithOnlyCertificatesSet.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\RaspConfigurationWithOnlyOneDocumentType.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_duns_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -150,7 +158,9 @@
     <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ovt_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\RaspConfigurationUddi.xml" />
+    <Content Include="Resources\RaspConfigurationUddi.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

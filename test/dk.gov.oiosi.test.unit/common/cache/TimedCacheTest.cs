@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.test.unit.common.cache {
 
     [TestFixture]
     public class TimedCacheTest {
-        private TimedCache<string, string> _cache;
+        private ICache<string, string> _cache;
 
         [Test]
         public void SingleAddRemoveTest() {
