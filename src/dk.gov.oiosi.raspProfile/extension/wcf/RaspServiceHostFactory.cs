@@ -63,7 +63,7 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf {
         /// <returns>Creates a service host</returns>
         protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses) {
             ServiceHost sh = base.CreateServiceHost(serviceType, baseAddresses);
-            
+
             // Add the encrypt RM bodies behavior
             sh.Description.Behaviors.Add(new EncryptRmBodiesBehavior());
 

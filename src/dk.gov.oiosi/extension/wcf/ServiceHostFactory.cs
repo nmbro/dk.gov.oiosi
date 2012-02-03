@@ -61,20 +61,8 @@ namespace dk.gov.oiosi.extension.wcf
         protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
         {
             ServiceHost sh = base.CreateServiceHost(serviceType, baseAddresses);
-            sh.Faulted += new EventHandler(sh_Faulted);
-            sh.UnknownMessageReceived += new EventHandler<UnknownMessageReceivedEventArgs>(sh_UnknownMessageReceived);
             sh.Description.Behaviors.Add(new EncryptRmBodiesBehavior());
             return sh;
-        }
-
-        void sh_UnknownMessageReceived(object sender, UnknownMessageReceivedEventArgs e)
-        {
-            throw new Exception("sh_UnknownMessageReceived");
-        }
-
-        void sh_Faulted(object sender, EventArgs e)
-        {
-            throw new Exception("sh_Faulted");
         }
     }
 }
