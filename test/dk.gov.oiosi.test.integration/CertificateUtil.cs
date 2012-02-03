@@ -14,7 +14,8 @@ namespace dk.gov.oiosi.test.integration {
             EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
             EnsureCerCertificate(StoreName.Root, StoreLocation.CurrentUser, rootCertificateFile);
             var sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);
-            X509Certificate2 certificate = CertificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
+            CertificateLoader certificateLoader = new CertificateLoader();
+            X509Certificate2 certificate = certificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
             return certificate;
         }
 

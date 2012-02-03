@@ -40,15 +40,18 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
     /// <summary>
     /// validation binding element
     /// </summary>
-    public class ServerSchemaValidationBindingElement : ValidationServerBindingElement {
-        private SchemaValidatorWithLookup _schemaValidator;
+    public class ServerSchemaValidationBindingElement : ValidationServerBindingElement
+    {
+        private SchemaValidatorWithLookup schemaValidator;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration">validation configuration</param>
-        public ServerSchemaValidationBindingElement(ValidationServerConfiguration configuration) : base(configuration) {
-            _schemaValidator = new SchemaValidatorWithLookup();
+        public ServerSchemaValidationBindingElement(ValidationServerConfiguration configuration)
+            : base(configuration)
+        {
+            this.schemaValidator = new SchemaValidatorWithLookup();
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// <param name="message">message</param>
         public override void InterceptRequest(InterceptorMessage message) {
             XmlDocument document = message.GetBody();
-            _schemaValidator.Validate(document);
+            this.schemaValidator.Validate(document);
         }
 
         /// <summary>

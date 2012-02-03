@@ -45,6 +45,8 @@ namespace dk.gov.oiosi.test.request {
                     // Create the OIOSI message object to send, and add the mandatory MessageIdentifier header
                     OiosiMessage message = new OiosiMessage(xdoc);
 
+
+
                     // If the user would like to set proxy config programatically
                     if (mode == GUI.MenuChoice.Custom) {
 
@@ -69,6 +71,7 @@ namespace dk.gov.oiosi.test.request {
 
                         // Use the OIOSI library class Request to send the document
                         Console.WriteLine("Starting to send...");
+                        
                         request.GetResponse(message, out response, Guid.NewGuid().ToString());
                         
                         #endregion

@@ -4296,7 +4296,7 @@
         </Registry>
         <Registry>
           <EndpointCollection>
-            <Endpoint>http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
+            <!--Endpoint>http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint -->
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>

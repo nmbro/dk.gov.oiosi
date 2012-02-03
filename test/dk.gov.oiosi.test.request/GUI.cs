@@ -313,7 +313,7 @@ namespace dk.gov.oiosi.test.request {
             }
             else if (string.Equals(ConfigurationDocument.ConfigFilePath, "RaspConfiguration.Test.xml", StringComparison.OrdinalIgnoreCase))
             {
-                defaultSerial = "4037C978";
+                defaultSerial = "4037fb49";
             }
              
             Console.Write("Serial number (empty line will result in " + defaultSerial + "): ");

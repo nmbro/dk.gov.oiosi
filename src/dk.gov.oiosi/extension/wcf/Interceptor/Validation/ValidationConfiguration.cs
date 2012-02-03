@@ -42,6 +42,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     public abstract class ValidationConfiguration : BindingElementExtensionElement {
         private const string ValidateRequestKey = "ValidateRequest";
         private const string ValidateResponseKey = "ValidateResponse";
+        private const string FaultOnRequestValidationExceptionKey = "FaultOnRequestValidationException";
 
         /// <summary>
         /// Gets whether the the request should be validated.
@@ -57,6 +58,15 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
         [ConfigurationProperty(ValidateResponseKey, DefaultValue = true)]
         public bool ValidateResponse {
             get { return (bool)base[ValidateResponseKey]; }
+        }
+
+        /// <summary>
+        /// Gets whether it should fault if the validation throws an exception.
+        /// </summary>
+        [ConfigurationProperty(FaultOnRequestValidationExceptionKey, DefaultValue = true)]
+        public bool FaultOnRequestValidationException
+        {
+            get { return (bool)base[FaultOnRequestValidationExceptionKey]; }
         }
     }
 }

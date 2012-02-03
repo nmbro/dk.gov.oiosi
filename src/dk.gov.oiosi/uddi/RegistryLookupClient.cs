@@ -39,13 +39,21 @@ namespace dk.gov.oiosi.uddi {
             List<UddiLookupResponse> response = null;
             foreach (Registry registry in _configuration.PrioritizedRegistryList) 
             {
-                IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
-                response = uddiLookupClient.Lookup(parameters);
-                
-                // Continue only as long as no result was found in the current registry
-                if (response != null && response.Count != 0)
+                if (registry.Endpoints.Count > 0)
                 {
-                    break;
+                    IUddiLookupClient uddiLookupClient = new UddiFallbackClient(registry.GetAsUris());
+                    response = uddiLookupClient.Lookup(parameters);
+
+                    // Continue only as long as no result was found in the current registry
+                    if (response != null && response.Count != 0)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    // no endpoint is defined in the EndpointCollection
+                    // so the Registry element can not be used
                 }
             }
             return response;

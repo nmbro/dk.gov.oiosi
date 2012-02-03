@@ -13,10 +13,12 @@ namespace dk.gov.oiosi.test.unit.security.validation
 
         [Test]
         public void _01_TestWithOneRootCertificate() {
-            var rootCertificate = new X509Certificate2(@"Resources\Certificates\tdc_systemtest_2.cer");
-            var functionCertificate = new X509Certificate2(@"Resources\Certificates\FOCES1.pkcs12", "Test1234");
-            var rootCertificates = new X509Certificate2[] { rootCertificate };
-            var validator = new MultipleRootX509CertificateValidator(rootCertificates);
+            X509Certificate2 rootCertificate = new X509Certificate2(@"Resources\Certificates\tdc_systemtest_2.cer");
+            X509Certificate2 functionCertificate = new X509Certificate2(@"Resources\Certificates\FOCES1.pkcs12", "Test1234");
+            
+            X509Certificate2[] rootCertificates = new X509Certificate2[] { rootCertificate };
+            MultipleRootX509CertificateValidator validator = new MultipleRootX509CertificateValidator(rootCertificates);
+            
             validator.Validate(functionCertificate);
         }
 

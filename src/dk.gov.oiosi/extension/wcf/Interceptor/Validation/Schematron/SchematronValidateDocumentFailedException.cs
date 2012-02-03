@@ -50,16 +50,48 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// <param name="innerException">Innerexception of the thrown exception</param>
         public SchematronValidateDocumentFailedException(Exception innerException) : base(GetFaultCode(innerException), GetInnerFaultCode(innerException), innerException) { }
 
-        private static OiosiFaultCode GetFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchematronErrorException)) return OiosiFaultCode.Sender;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiFaultCode.Sender;
-            return OiosiFaultCode.Receiver;
+        private static OiosiFaultCode GetFaultCode(Exception innerException)
+        {
+            OiosiFaultCode oiosiFaultCode;
+            Type type = innerException.GetType();
+            if (type == typeof(SchematronValidateDocumentFailedException))
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(SchematronErrorException))
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(NoDocumentTypeFoundException))
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else
+            {
+                oiosiFaultCode = OiosiFaultCode.Receiver;
+            }
+
+            return oiosiFaultCode;
         }
 
-        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchematronErrorException)) return OiosiInnerFaultCode.SchematronValidationFault;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            return OiosiInnerFaultCode.InternalSystemFailureFault;
+        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) 
+        {
+            OiosiInnerFaultCode oiosiInnerFaultCode;
+            Type type = innerException.GetType();
+            if (type == typeof(SchematronErrorException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.SchematronValidationFault;
+            }
+            else if (type == typeof(NoDocumentTypeFoundException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            }
+            else
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.InternalSystemFailureFault;
+            }
+
+            return oiosiInnerFaultCode;
         }
     }
 }

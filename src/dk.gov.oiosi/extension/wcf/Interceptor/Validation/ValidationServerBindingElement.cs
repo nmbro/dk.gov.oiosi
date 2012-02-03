@@ -35,14 +35,19 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     /// <summary>
     /// Abstract class for server validation binding element
     /// </summary>
-    public abstract class ValidationServerBindingElement : ValidationBindingElement {
-        private readonly ValidationServerConfiguration _validationServerConfiguration;
+    public abstract class ValidationServerBindingElement : ValidationBindingElement 
+    {
+        private readonly ValidationServerConfiguration validationServerConfiguration;
 
         /// <summary>
         /// The configuration for the validation server binding element
         /// </summary>
-        public ValidationServerConfiguration ValidationServerConfiguration {
-            get { return _validationServerConfiguration; }
+        public ValidationServerConfiguration ValidationServerConfiguration
+        {
+            get
+            { 
+                return this.validationServerConfiguration; 
+            }
         }
 
 
@@ -50,15 +55,21 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
         /// Constructor
         /// </summary>
         /// <param name="configuration">server configuration</param>
-        public ValidationServerBindingElement(ValidationServerConfiguration configuration) : base(configuration) {
-            _validationServerConfiguration = configuration;
+        public ValidationServerBindingElement(ValidationServerConfiguration configuration) 
+            : base(configuration)
+        {
+                this.validationServerConfiguration = configuration;
         }
 
         /// <summary>
         /// Gets whether it should fault if the validation throws an exception
         /// </summary>
-        public override bool DoesFaultOnRequestException {
-            get { return _validationServerConfiguration.FaultOnRequestValidationException; }
+        public override bool DoesFaultOnRequestException
+        {
+            get 
+            { 
+                return this.validationServerConfiguration.FaultOnRequestValidationException;
+            }
         }
     }
 }

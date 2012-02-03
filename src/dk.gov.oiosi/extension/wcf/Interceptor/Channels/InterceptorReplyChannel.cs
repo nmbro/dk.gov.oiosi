@@ -180,8 +180,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorReplyChannel ends try receive request");
             IReplyChannel channel = base.InnerChannel;
             bool success = true;
-            //try
-           // {
+            try
+            {
                 success = channel.EndTryReceiveRequest(result, out context);
                 
                 if (context != null)
@@ -196,14 +196,22 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
                         success = false;
                     }
                 }
-          /*  }
+            }
             catch (Exception ex)
             {
                 this.logger.Error(ex.ToString());
-                string exString = ex.ToString();
+                try
+                {
+                    channel.Close();
+                }
+                catch (Exception exception)
+                {
+                    this.logger.Fatal(exception.ToString());
+                }
+
                 context = null;
                 success = false;
-            }*/
+            }
 
             return success;
         }

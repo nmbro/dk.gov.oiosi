@@ -38,14 +38,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation {
     /// abstract validation server configuration
     /// </summary>
     public abstract class ValidationServerConfiguration : ValidationConfiguration {
-        private const string FaultOnRequestValidationExceptionKey = "FaultOnRequestValidationException";
+       
 
-        /// <summary>
-        /// Gets whether it should fault if the validation throws an exception.
-        /// </summary>
-        [ConfigurationProperty(FaultOnRequestValidationExceptionKey, DefaultValue = true)]
-        public bool FaultOnRequestValidationException {
-            get { return (bool)base[FaultOnRequestValidationExceptionKey]; }
-        }
+
     }
 }

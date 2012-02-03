@@ -45,13 +45,22 @@ namespace dk.gov.oiosi.uddi
         /// <returns>The list of Uri's</returns>
 		public List<Uri> GetAsUris()
 		{
-			List<Uri> result = new List<Uri>();
-            foreach (string s in this.endpoints)
+            List<Uri> endpointList = new List<Uri>();
+            Uri uri;
+            foreach (string endpoint in this.endpoints)
             {
-                result.Add(new Uri(s));
+                if (string.IsNullOrEmpty(endpoint))
+                {
+                    // the endpint is invalid
+                }
+                else
+                {
+                    uri = new Uri(endpoint);
+                    endpointList.Add(uri);
+                }
             }
 
-			return result;
+            return endpointList;
 		}
     }
 }

@@ -36,6 +36,7 @@ using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.xml.schema;
+using System.Xml.Schema;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
 {
@@ -48,20 +49,71 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
         /// Constuctor with innerexception
         /// </summary>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public SchemaValidateDocumentFailedException(System.Exception innerException) : base(GetFaultCode(innerException), GetInnerFaultCode(innerException), innerException) { }
+        public SchemaValidateDocumentFailedException(System.Exception innerException) 
+            : base(GetFaultCode(innerException), GetInnerFaultCode(innerException), innerException) { }
 
-        private static OiosiFaultCode GetFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiFaultCode.Sender;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiFaultCode.Sender;
-            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiFaultCode.Sender;
-            return OiosiFaultCode.Receiver;
+        private static OiosiFaultCode GetFaultCode(Exception innerException) 
+        {
+            OiosiFaultCode oiosiFaultCode;
+            Type type = innerException.GetType();
+            if (type == typeof(XmlSchemaValidationException))
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(SchemaValidateDocumentFailedException))
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(SchemaValidationFailedException)) 
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(NoDocumentTypeFoundException)) 
+            {
+                oiosiFaultCode = OiosiFaultCode.Sender;
+            }
+            else if (type == typeof(SchemaValidationInterceptionEmptyBodyException)) 
+            {
+                oiosiFaultCode =  OiosiFaultCode.Sender;
+            }
+            else
+            {
+                 oiosiFaultCode = OiosiFaultCode.Receiver;
+            }
+
+            return oiosiFaultCode;
         }
 
-        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException) {
-            if (innerException.GetType() == typeof(SchemaValidationFailedException)) return OiosiInnerFaultCode.SchemaValidationFault;
-            if (innerException.GetType() == typeof(NoDocumentTypeFoundException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            if (innerException.GetType() == typeof(SchemaValidationInterceptionEmptyBodyException)) return OiosiInnerFaultCode.UnknownDocumentTypeFault;
-            return OiosiInnerFaultCode.InternalSystemFailureFault;
+        private static OiosiInnerFaultCode GetInnerFaultCode(Exception innerException)
+        {
+            OiosiInnerFaultCode oiosiInnerFaultCode;
+            Type type = innerException.GetType();
+            if (type == typeof(XmlSchemaValidationException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.SchemaValidationFault;
+            }
+            if (type == typeof(SchemaValidateDocumentFailedException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.SchemaValidationFault;
+            }
+            else if (type == typeof(SchemaValidationFailedException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.SchemaValidationFault;
+            }
+            else if (type == typeof(NoDocumentTypeFoundException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            }
+            else if (type == typeof(SchemaValidationInterceptionEmptyBodyException))
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.UnknownDocumentTypeFault;
+            }
+            else
+            {
+                oiosiInnerFaultCode = OiosiInnerFaultCode.InternalSystemFailureFault;
+            }
+
+            return oiosiInnerFaultCode;
         }
     }
 }

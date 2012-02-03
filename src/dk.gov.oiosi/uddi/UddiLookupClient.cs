@@ -38,6 +38,7 @@ using dk.gov.oiosi.security;
 using System.Net.Mail;
 using System.Configuration;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.uddi
 {
@@ -50,14 +51,15 @@ namespace dk.gov.oiosi.uddi
         public const string RASPREGISTRATIONCONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/";
         private ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache;
         private ICache<UddiId, UddiTModel> uddiTModelCache;
+        private ILogger logger;
 
-
-        private UDDI_Inquiry_PortTypeClient _uddiProxy;
+        private UDDI_Inquiry_PortTypeClient uddiProxy;
 
         public UddiLookupClient()
         {
             this.uddiServiceCache = this.CreateUddiServiceCache();
             this.uddiTModelCache = this.CreateUddiTModelCache();
+            this.logger = LoggerFactory.Create(this.GetType());
         }
 
         /// <summary>
@@ -67,11 +69,22 @@ namespace dk.gov.oiosi.uddi
         {
             this.uddiServiceCache = this.CreateUddiServiceCache();
             this.uddiTModelCache = this.CreateUddiTModelCache();
+            this.logger = LoggerFactory.Create(this.GetType());
 
-            // If this creation failed, it is possible that you are missing the app.config file in your project
-            _uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
-            _uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
+            try
+            {
+                this.uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
+            }
+            catch(Exception)                
+            {
+                // If this creation failed, it is possible that you are missing the app.config file in your project
+                // If it still failes, the library version in in configuration file must be update to current version. 
+                // Se configuration/system.serviceModel/extensions/behaviorExtensions/add[name="signCustomHeaders"]
+                this.logger.Error("Creation of UDDI_Inquiry_PortTypeClient failed. It is possible that you are missing the app.config file in your project, or the library version in in configuration file must be update to current version. configuration/system.serviceModel/extensions/behaviorExtensions/add[@name=signCustomHeaders)/@type=... ");
+                throw;
+            }
 
+            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
         }
 
         #region IUddiLookupClient Members
@@ -199,7 +212,7 @@ namespace dk.gov.oiosi.uddi
             bool filterResponseByProfile = lookupParameters.ProfileIds != null;
 
             IList<UddiLookupResponse> lookupResponses = new List<UddiLookupResponse>();
-            UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId, _uddiProxy.Endpoint.Address.Uri, lookupParameters.ProfileConformanceClaim);
+            UddiLookupKey key = new UddiLookupKey(lookupParameters.Identifier, lookupParameters.ServiceId, this.uddiProxy.Endpoint.Address.Uri, lookupParameters.ProfileConformanceClaim);
 
             IList<UddiService> uddiServices;
             if (!uddiServiceCache.TryGetValue(key, out uddiServices))
@@ -303,7 +316,7 @@ namespace dk.gov.oiosi.uddi
             }
             findService.categoryBag = serviceCategories;
 
-            serviceList listOfServices = _uddiProxy.find_service(findService);
+            serviceList listOfServices = this.uddiProxy.find_service(findService);
 
             List<string> endPointUddiIds = new List<string>();
 
@@ -316,7 +329,7 @@ namespace dk.gov.oiosi.uddi
             // Har uddiid på service endpoint, skal finde endpoint uri
             get_serviceDetail getServiceDetail = new get_serviceDetail();
             getServiceDetail.serviceKey = endPointUddiIds.ToArray();
-            serviceDetail detail = _uddiProxy.get_serviceDetail(getServiceDetail);
+            serviceDetail detail = this.uddiProxy.get_serviceDetail(getServiceDetail);
 
             if (detail.businessService == null) return new List<UddiService>();
 
@@ -336,7 +349,7 @@ namespace dk.gov.oiosi.uddi
                     // Get the tModel details:
                     get_tModelDetail tModelDetail = new get_tModelDetail();
                     tModelDetail.tModelKey = tModelKeys.ToArray();
-                    tModelDetail modelDetail = _uddiProxy.get_tModelDetail(tModelDetail);
+                    tModelDetail modelDetail = this.uddiProxy.get_tModelDetail(tModelDetail);
 
                     List<tModel> uddiTModels = new List<tModel>();
                     foreach (tModel tModelItem in modelDetail.tModel)
@@ -363,7 +376,7 @@ namespace dk.gov.oiosi.uddi
             {
                 getTModelDetail.tModelKey[i] = uddiIds[i].ID;
             }
-            tModelDetail tmodelDetails = _uddiProxy.get_tModelDetail(getTModelDetail);
+            tModelDetail tmodelDetails = this.uddiProxy.get_tModelDetail(getTModelDetail);
 
             if (tmodelDetails.tModel == null) return new List<UddiTModel>();
 
