@@ -109,7 +109,8 @@ namespace dk.gov.oiosi.configuration {
         /// Reads generic RASP configuration from a file
         /// </summary>
         public ConfigurationDocument GetFromFile() {
-            if (!File.Exists(ConfigFilePath)) {
+            if (!File.Exists(ConfigFilePath))
+            {
                 return this;
             }
 

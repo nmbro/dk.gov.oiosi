@@ -75,6 +75,10 @@
       <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
       <Name>dk.gov.oiosi.exception</Name>
     </ProjectReference>
+    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

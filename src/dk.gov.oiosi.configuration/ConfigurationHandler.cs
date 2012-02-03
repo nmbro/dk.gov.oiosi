@@ -33,6 +33,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using dk.gov.oiosi.logging;
+using System.IO;
 
 
 namespace dk.gov.oiosi.configuration {
@@ -59,48 +61,78 @@ namespace dk.gov.oiosi.configuration {
     /// </code>
     /// </example>
     /// <remarks>Always make sure your configuration sections have a constructor that takes no arguments</remarks>
-    public class ConfigurationHandler {
+    public class ConfigurationHandler
+    {
         
-        private static Dictionary<Type, object> _configSectionsCache = new Dictionary<Type, object>();
+        private Dictionary<Type, object> configSectionsCache;
         private static object lockObject = new object();
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger;
+
+        /// <summary>
+        /// The config document
+        /// </summary>
+        private ConfigurationDocument configurationDocument = new ConfigurationDocument();
 
         /// <summary>
         /// The default rasp namespace url
         /// </summary>
         public const string RaspNamespaceUrl = "http://oiosi.dk/rasp/xml/2007/04/01/";
 
+        private static ConfigurationHandler configurationHandler = new ConfigurationHandler();
+
+
+        /// <summary>
+        /// Singleton implementation
+        /// </summary>
+        private ConfigurationHandler()
+        {
+            logger = LoggerFactory.Create(this.GetType());
+            configurationDocument = new ConfigurationDocument().GetFromFile();
+            configSectionsCache = new Dictionary<Type, object>();
+        }
+
         /// <summary>
         /// The path to the config file
         /// </summary>
-        public static string ConfigFilePath { 
-            get { return ConfigurationDocument.ConfigFilePath; }
-            set { ConfigurationDocument.ConfigFilePath = value; }
+        public static string ConfigFilePath
+        { 
+            get
+            {
+                return ConfigurationDocument.ConfigFilePath;
+            }
+            set
+            {
+                FileInfo fileInfo = new FileInfo(value);
+                configurationHandler.logger.Debug("New configuration file: " + value);
+                if (fileInfo.Exists)
+                {
+                    configurationHandler.logger.Warn("The configuration file does not exist: " + fileInfo.FullName);
+                }
+
+                ConfigurationDocument.ConfigFilePath = fileInfo.FullName;
+            }
         }
 
         /// <summary>
         /// Gets and sets the configuration version.
         /// </summary>
-        public static string Version {
-            get { return configurationDocument.Version; }
-            set { configurationDocument.Version = value; }
-        }
-
-        /// <summary>
-        /// The config document
-        /// </summary>
-        protected static ConfigurationDocument configurationDocument = new ConfigurationDocument();
-
-        static ConfigurationHandler() {
-            configurationDocument = configurationDocument.GetFromFile();
+        public static string Version 
+        {
+            get { return configurationHandler.configurationDocument.Version; }
+            set { configurationHandler.configurationDocument.Version = value; }
         }
 
         /// <summary>
         /// Used by the Unit Test to reset the static information.
         /// </summary>
         public static void Reset() {
-            _configSectionsCache = new Dictionary<Type, object>();
-            configurationDocument.ConfigurationSections = new ArrayList();
-            configurationDocument = configurationDocument.GetFromFile();
+            configurationHandler.configSectionsCache = new Dictionary<Type, object>();
+            configurationHandler.configurationDocument.ConfigurationSections = new ArrayList();
+            configurationHandler.configurationDocument = configurationHandler.configurationDocument.GetFromFile();
         }
 
         /// <summary>
@@ -108,13 +140,14 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool HasConfigurationSection<T>() where T : new() {
+        public static bool HasConfigurationSection<T>() where T : new() 
+        {
             Type configSectionType = typeof(T);
             lock (lockObject) {
-                bool sectionExistsInCache = _configSectionsCache.ContainsKey(typeof(T));
+                bool sectionExistsInCache = configurationHandler.configSectionsCache.ContainsKey(typeof(T));
                 if (sectionExistsInCache) return true;
 
-                bool sectionExistsInConfigurationDocument = configurationDocument.HasConfigurationSection(configSectionType);
+                bool sectionExistsInConfigurationDocument = configurationHandler.configurationDocument.HasConfigurationSection(configSectionType);
                 if (sectionExistsInConfigurationDocument) return true;
 
                 return false;
@@ -132,22 +165,22 @@ namespace dk.gov.oiosi.configuration {
             lock (lockObject) 
             {
                 object section;
-                bool sectionExistsInCache = _configSectionsCache.TryGetValue(typeof (T), out section);
+                bool sectionExistsInCache = configurationHandler.configSectionsCache.TryGetValue(typeof(T), out section);
                 if (sectionExistsInCache)
                 {
                     return (T) section;
                 }
 
-                bool sectionExistsInConfigurationDocument = configurationDocument.HasConfigurationSection(configSectionType);
+                bool sectionExistsInConfigurationDocument = configurationHandler.configurationDocument.HasConfigurationSection(configSectionType);
                 if (sectionExistsInConfigurationDocument)
                 {
-                    section = configurationDocument.GetConfigurationSection<T>(configSectionType);
-                    _configSectionsCache.Add(configSectionType, section);
+                    section = configurationHandler.configurationDocument.GetConfigurationSection<T>(configSectionType);
+                    configurationHandler.configSectionsCache.Add(configSectionType, section);
                     return (T) section;
                 }
 
-                section = configurationDocument.ReloadConfigSectionFromFile<T>(configSectionType);
-                _configSectionsCache.Add(configSectionType, section);
+                section = configurationHandler.configurationDocument.ReloadConfigSectionFromFile<T>(configSectionType);
+                configurationHandler.configSectionsCache.Add(configSectionType, section);
                 return (T) section;
             }
         }
@@ -159,8 +192,8 @@ namespace dk.gov.oiosi.configuration {
         {
             lock (lockObject)
             {
-                configurationDocument.AddUnrecognizedSectionsFromFile();
-                configurationDocument.SaveToFile();
+                configurationHandler.configurationDocument.AddUnrecognizedSectionsFromFile();
+                configurationHandler.configurationDocument.SaveToFile();
             }
         }
 
@@ -170,8 +203,9 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public static void RegisterConfigurationSection<T>() where T: new() {
-            lock (lockObject) {
-                configurationDocument.RegisterType<T>();
+            lock (lockObject)
+            {
+                configurationHandler.configurationDocument.RegisterType<T>();
             }
         }
 
@@ -179,8 +213,9 @@ namespace dk.gov.oiosi.configuration {
         /// Preloads all registered configuration sections in order to speed up load time of the configuration file
         /// </summary>
         public static void PreloadRegisteredConfigurationSections() {
-            lock (lockObject) {
-                configurationDocument.ReloadConfigurationFile();
+            lock (lockObject) 
+            {
+                configurationHandler.configurationDocument.ReloadConfigurationFile();
             }
         }
     }

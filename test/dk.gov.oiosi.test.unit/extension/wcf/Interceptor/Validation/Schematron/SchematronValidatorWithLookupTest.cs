@@ -17,12 +17,14 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
         public SchematronValidatorWithLookupTest() {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.xml";
             ConfigurationHandler.Reset();
-            DefaultDocumentTypes defaultDocumentTypes = new DefaultDocumentTypes();
-            defaultDocumentTypes.CleanAdd();
+            //DefaultDocumentTypes defaultDocumentTypes = new DefaultDocumentTypes();
+            //defaultDocumentTypes.CleanAdd();
         }
 
         [Test]
-        public void SchematronValidateTwentyTimesInvoice() {
+        public void SchematronValidateTwentyTimesInvoice() 
+        {
+
             Console.WriteLine(DateTime.Now + " SchematronValidateTwentyTimesInvoice start");
             SchematronValidatorWithLookup validator = new SchematronValidatorWithLookup();
             Console.WriteLine(DateTime.Now + " SchematronValidateTwentyTimesInvoice first stylesheet start");
