@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+  <ConfigurationSection xsi:type="LdapLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookup</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="RegistryLookupClientFactoryConfig">
+    <ImplementationNamespaceClass>dk.gov.oiosi.uddi.RegistryLookupClient</ImplementationNamespaceClass>
+    <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="LdapSettings">
+    <Host>fenris.certifikat.dk</Host>
+    <Port>389</Port>
+    <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
+    <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
+    <SearchClientTimeoutMsec>5000</SearchClientTimeoutMsec>
+    <MaxResults>1</MaxResults>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcspConfig">
+    <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
+    <ServerUrl>http://test.ocsp.certifikat.dk/ocsp/status</ServerUrl>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="UddiConfig">
+    <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
+    <LookupRegistryFallbackConfig>
+      <PrioritizedRegistryList>
+        <Registry>
+          <EndpointCollection>
+            <Endpoint>http://testuddi.nemhandel.gov.dk/uddi/services/inquiry</Endpoint>
+          </EndpointCollection>
+        </Registry>
+      </PrioritizedRegistryList>
+    </LookupRegistryFallbackConfig>
+    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
+  </ConfigurationSection>
+
+  <ConfigurationSection xsi:type="CacheConfig">
+    <OcspLookupCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </OcspLookupCache>
+
+    <CrlLookupCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </CrlLookupCache>
+
+    <UddiServiceCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </UddiServiceCache>
+
+    <UddiTModelCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </UddiTModelCache>
+
+    <CertificateCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </CertificateCache>
+
+    <SchemaStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchemaStoreCache>
+
+    <SchematronStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchematronStoreCache>
+
+    <MessageIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </MessageIdUnfinishedSignaturesCache>
+
+    <SequenceIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SequenceIdUnfinishedSignaturesCache>
+
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
+    <RootCertificateLocationCollection>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>403617fc</SerialNumber>
+      </RootCertificateLocation>
+    </RootCertificateLocationCollection>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="OcesX509CertificateConfig">
+    <PersonalCertificateSubjectKey>
+      <SubjectKeyString>PID</SubjectKeyString>
+    </PersonalCertificateSubjectKey>
+    <EmployeeCertificateSubjectKey>
+      <SubjectKeyString>RID</SubjectKeyString>
+    </EmployeeCertificateSubjectKey>
+    <OrganizationCertificateSubjectKey>
+      <SubjectKeyString>UID</SubjectKeyString>
+    </OrganizationCertificateSubjectKey>
+    <FunctionCertificateSubjetKey>
+      <SubjectKeyString>FID</SubjectKeyString>
+    </FunctionCertificateSubjetKey>
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="SendingOptionConfig">
+    <SchemaValidation>true</SchemaValidation>
+    <SchematronValidation>true</SchematronValidation>
+  </ConfigurationSection>
+</RaspConfiguration>
