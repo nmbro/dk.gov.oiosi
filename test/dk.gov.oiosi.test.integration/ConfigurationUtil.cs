@@ -30,6 +30,7 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.HasConfigurationSection<CacheConfig>();
             ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>();
+            ConfigurationHandler.HasConfigurationSection<SendingOptionConfig>();
 
             EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
         }
@@ -47,7 +48,7 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.HasConfigurationSection<CacheConfig>();
             ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-
+            ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();
 
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.CleanAdd();
