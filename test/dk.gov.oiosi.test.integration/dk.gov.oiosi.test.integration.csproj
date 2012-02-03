@@ -74,6 +74,10 @@
       <Project>{47A0BAAC-867E-47DD-93F2-372284D52CCA}</Project>
       <Name>dk.gov.oiosi.lesnikowskiMailProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
@@ -96,6 +100,14 @@
       <Link>Resources\Certificates\CVR30808460.Expire20111016.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20131101.FOCES1.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES1.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -103,11 +115,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RaspConfigurationRaspRequestTest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Resources\RaspConfigurationRaspRequestTest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RaspConfiguration.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Resources\RaspConfiguration.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOUBL_ApplicationResponse_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

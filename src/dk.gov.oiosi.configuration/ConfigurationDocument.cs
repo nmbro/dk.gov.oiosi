@@ -62,10 +62,13 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         protected ArrayList configurationSections = new ArrayList();
 
-        static ConfigurationDocument() {
+        static ConfigurationDocument() 
+        {
             _configFilePath = ConfigurationManager.AppSettings["RaspConfigurationFile"];
             if (_configFilePath == null)
+            {
                 _configFilePath = "RaspConfiguration.xml";
+            }
         }
 
         /// <summary>
@@ -135,9 +138,14 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         internal void RegisterType<T>() where T: new() {
             Type configSectionType = typeof (T);
-            if (configurationTypes.Contains(configSectionType)) return;
-
-            configurationTypes.Add(configSectionType);
+            if (configurationTypes.Contains(configSectionType))
+            {
+                // allready there
+            }
+            else
+            {
+                configurationTypes.Add(configSectionType);
+            }
         }
 
         /// <summary>
@@ -152,7 +160,7 @@ namespace dk.gov.oiosi.configuration {
                 streamWriter = new StreamWriter(memoryStream);
                 xmlSerializer.Serialize(streamWriter, this);
                 streamWriter.Flush();
-                return System.Text.ASCIIEncoding.ASCII.GetString(memoryStream.ToArray());
+                return System.Text.UTF8Encoding.UTF8.GetString(memoryStream.ToArray());
             }
             catch (Exception e) {
                 throw new ConfigurationCouldNotBeWrittenException(ConfigFilePath, e);
@@ -168,10 +176,16 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <param name="t">Type to be found</param>
         /// <returns>Index in the configuration section table</returns>
-        internal int IndexOfConfigurationSection(Type t) {
-            for (int i = 0; i < configurationSections.Count; i++) {
-                if (configurationSections[i].GetType() == t)
+        internal int IndexOfConfigurationSection(Type desiredType) 
+        {
+            Type type;
+            for (int i = 0; i < configurationSections.Count; i++)
+            {
+                type = configurationSections[i].GetType();
+                if (type == desiredType)
+                {
                     return i;
+                }
             }
             return -1;
         }
@@ -266,9 +280,11 @@ namespace dk.gov.oiosi.configuration {
 
         private void DeleteUnrecognizedConfigurationSections() {
             var sectionsToDelete = new List<object>();
-            foreach (var configurationSection in configurationSections) {
+            foreach (var configurationSection in configurationSections)
+            {
                 Type configSectionType = configurationSection.GetType();
-                if (configurationTypes.Contains(configSectionType) == false) {
+                if (configurationTypes.Contains(configSectionType) == false)
+                {
                     sectionsToDelete.Add(configurationSection);
                 }
             }

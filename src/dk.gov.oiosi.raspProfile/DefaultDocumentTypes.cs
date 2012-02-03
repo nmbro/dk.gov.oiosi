@@ -49,7 +49,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Adds all the document types from configuration, clears collection first
         /// </summary>
-        public void CleanAdd() {
+        public void CleanAdd()
+        {
             DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
             configuration.Clear();
             Add();

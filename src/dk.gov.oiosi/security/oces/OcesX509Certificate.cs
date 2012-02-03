@@ -86,7 +86,8 @@ namespace dk.gov.oiosi.security.oces {
             try 
             {
                 response = revocationLookupClient.CheckCertificate(x509Certificate);
-            } catch
+            } 
+            catch
             {
                 revocationCheckStatus = RevocationCheckStatus.UnknownIssue;
                 throw;

@@ -19,6 +19,7 @@ using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.xpath;
 using NUnit.Framework;
+using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.test.integration.communication {
     
@@ -28,7 +29,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         [TestFixtureSetUp]
         public void Setup() {
             CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
-            ConfigurationUtil.SetupConfiguration("RaspConfigurationRaspRequestTest.xml");
+            ConfigurationUtil.SetupConfiguration("Resources/RaspConfigurationRaspRequestTest.xml");
         }
 
         [Test]
@@ -199,57 +200,84 @@ namespace dk.gov.oiosi.test.integration.communication {
 
         # region Private methods
 
-        private void AssertSendable(string path) {
-            var oioublFile = new FileInfo(path);
-            var response = SendRequestAndGetResponse(oioublFile);
+        private void AssertSendable(string path)
+        {
+            FileInfo oioublFile = new FileInfo(path);
+            Response response = SendRequestAndGetResponse(oioublFile);
             Assert.IsNotNull(response);
-
         }
 
-        private Response SendRequestAndGetResponse(FileInfo file) {
-            var documentId = "TEST:" + Guid.NewGuid();
-            var xmlDocument = new XmlDocument();
+        private Response SendRequestAndGetResponse(FileInfo file)
+        {
+            string documentId = "TEST:" + Guid.NewGuid();
+            XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(file.FullName);
-            var oiosiMessage = new OiosiMessage(xmlDocument);
-            var raspRequest = GetRaspRequest(oiosiMessage);
+            OiosiMessage oiosiMessage = new OiosiMessage(xmlDocument);
+            RaspRequest raspRequest = this.GetRaspRequest(oiosiMessage);
             Response response;
             raspRequest.GetResponse(oiosiMessage, out response, documentId);
             return response;
         }
 
-        private RaspRequest GetRaspRequest(OiosiMessage oiosiMessage) {
-            var documentTypeConfigSearcher = new DocumentTypeConfigSearcher();
-            var documentTypeConfig = documentTypeConfigSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
-            var messageParameters = GetMessageParameters(oiosiMessage, documentTypeConfig);
-            var uddiResponse = PerformUddiLookup(messageParameters);
-            var endpointAddressUri = uddiResponse.EndpointAddress.GetAsUri();
+        private RaspRequest GetRaspRequest(OiosiMessage oiosiMessage) 
+        {
+            DocumentTypeConfigSearcher documentTypeConfigSearcher = new DocumentTypeConfigSearcher();
+            DocumentTypeConfig documentTypeConfig = documentTypeConfigSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
+            LookupParameters messageParameters = this.GetMessageParameters(oiosiMessage, documentTypeConfig);
+            UddiLookupResponse uddiResponse = this.PerformUddiLookup(messageParameters);
+            Uri endpointAddressUri = uddiResponse.EndpointAddress.GetAsUri();
 
-            var endpointCertificate = GetEndpointCertificateFromLdap(uddiResponse.CertificateSubjectSerialNumber);
-            ValidateEndpointCertificate(endpointCertificate);
-            var clientCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
+            OcesX509Certificate endpointCertificate = this.GetEndpointCertificateFromLdap(uddiResponse.CertificateSubjectSerialNumber);
+            this.ValidateEndpointCertificate(endpointCertificate);
+            X509Certificate2 clientCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
 
-            var credentials = new Credentials(new OcesX509Certificate(clientCertificate), endpointCertificate);
-            var request = new Request(endpointAddressUri, credentials);
-            var raspRequest = new RaspRequest(request);
+            Credentials credentials = new Credentials(new OcesX509Certificate(clientCertificate), endpointCertificate);
+            Request request = new Request(endpointAddressUri, credentials);
+            RaspRequest raspRequest = new RaspRequest(request);
             return raspRequest;
         }
 
         private void ValidateEndpointCertificate(OcesX509Certificate endpointOcesCertificate) {
-            var ocspLookupFactory = new RevocationLookupFactory();
+            RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             IRevocationLookup ocspClient = ocspLookupFactory.CreateRevocationLookupClient();
             
             RevocationCheckStatus ocspStatus = endpointOcesCertificate.CheckRevocationStatus(ocspClient);
-            if (ocspStatus == RevocationCheckStatus.AllChecksPassed) return;
 
-            throw new Exception("Certificate validation error");
-
+            switch (ocspStatus)
+            {
+                case RevocationCheckStatus.AllChecksPassed:
+                    {
+                        // all okay
+                        break;
+                    }
+                case RevocationCheckStatus.CertificateRevoked:
+                    {
+                        throw new Exception("Certificate validation error - CertificateRevoked");
+                        break;
+                    }
+                case RevocationCheckStatus.NotChecked:
+                    {
+                        throw new Exception("Certificate validation error - NotChecked");
+                        break;
+                    }
+                case RevocationCheckStatus.UnknownIssue:
+                    {
+                        throw new Exception("Certificate validation error - UnknownIssue");
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Certificate validation error");
+                        break;
+                    }
+            }
         }
 
         private OcesX509Certificate GetEndpointCertificateFromLdap(CertificateSubject certificateSubject) {
-            var ldapClientFactory = new LdapLookupFactory();
-            var ldapClient = ldapClientFactory.CreateLdapLookupClient();
+            LdapLookupFactory ldapClientFactory = new LdapLookupFactory();
+            ICertificateLookup ldapClient = ldapClientFactory.CreateLdapLookupClient();
             X509Certificate2 endpointCertificate = ldapClient.GetCertificate(certificateSubject);
-            var endpointOcesCertificate = new OcesX509Certificate(endpointCertificate);
+            OcesX509Certificate endpointOcesCertificate = new OcesX509Certificate(endpointCertificate);
             return endpointOcesCertificate;
         }
 
@@ -286,26 +314,46 @@ namespace dk.gov.oiosi.test.integration.communication {
             return uddiLookupParameters;
         }
 
-        private UddiId GetProfileTModelId(OiosiMessage message, DocumentTypeConfig docTypeConfig) {
+        private UddiId GetProfileTModelId(OiosiMessage message, DocumentTypeConfig docTypeConfig) 
+        {
+            UddiId uddiId;
             // If doctype does't have a XPath expression to extract the document Profile 
             // then we assume that the current document type does operate with OIOUBL profiles
-            if (docTypeConfig.ProfileIdXPath == null) return null;
-            if (docTypeConfig.ProfileIdXPath.XPath == null) return null;
-            if (docTypeConfig.ProfileIdXPath.XPath.Equals("")) return null;
-
-            // Fetch the OIOUBL profile name
-            string profileName = DocumentXPathResolver.GetElementValueByXpath(
-                    message.MessageXml,
-                    docTypeConfig.ProfileIdXPath.XPath,
-                    docTypeConfig.Namespaces);
-
-            var config = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
-            if (config.ContainsProfileMappingByName(profileName)) {
-                ProfileMapping profileMapping = config.GetMapping(profileName);
-                string profileTModelGuid = profileMapping.TModelGuid;
-                return IdentifierUtility.GetUddiIDFromString(profileTModelGuid);
+            if (docTypeConfig.ProfileIdXPath == null)
+            {
+                uddiId = null;
             }
-            throw new Exception("GetProfileTModelId failed for : " + profileName);
+            else if (docTypeConfig.ProfileIdXPath.XPath == null)
+            {
+                uddiId = null;
+            }
+            else if (docTypeConfig.ProfileIdXPath.XPath.Equals(""))
+            {
+                uddiId = null;
+            }
+            else
+            {
+
+                // Fetch the OIOUBL profile name
+                string profileName = DocumentXPathResolver.GetElementValueByXpath(
+                        message.MessageXml,
+                        docTypeConfig.ProfileIdXPath.XPath,
+                        docTypeConfig.Namespaces);
+
+                ProfileMappingCollectionConfig config = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
+                if (config.ContainsProfileMappingByName(profileName))
+                {
+                    ProfileMapping profileMapping = config.GetMapping(profileName);
+                    string profileTModelGuid = profileMapping.TModelGuid;
+                    uddiId = IdentifierUtility.GetUddiIDFromString(profileTModelGuid);
+                }
+                else
+                {
+                    throw new Exception("GetProfileTModelId failed for : " + profileName);
+                }
+            }
+
+            return uddiId;
         }
 
         /// <summary>
@@ -313,11 +361,11 @@ namespace dk.gov.oiosi.test.integration.communication {
         /// </summary>
         /// <returns>Returns the UDDI response</returns>
         private UddiLookupResponse PerformUddiLookup(LookupParameters uddiLookupParameters) {
-            var uddiClientFactory = new RegistryLookupClientFactory();
-            var uddiClient = uddiClientFactory.CreateUddiLookupClient();
-            var uddiResponses = uddiClient.Lookup(uddiLookupParameters);
+            RegistryLookupClientFactory uddiClientFactory = new RegistryLookupClientFactory();
+            IUddiLookupClient uddiClient = uddiClientFactory.CreateUddiLookupClient();
+            List<UddiLookupResponse> uddiResponses = uddiClient.Lookup(uddiLookupParameters);
             Assert.AreEqual(1, uddiResponses.Count, "Unexcpected number of uddi results.");
-            var selectedUddiResponse = uddiResponses[0];
+            UddiLookupResponse selectedUddiResponse = uddiResponses[0];
             return selectedUddiResponse;
         }
 

@@ -14,7 +14,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +36,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -52,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
       <Name>dk.gov.oiosi</Name>

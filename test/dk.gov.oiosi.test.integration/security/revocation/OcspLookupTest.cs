@@ -12,6 +12,12 @@ namespace dk.gov.oiosi.test.integration.security.revocation {
         private string rootCertificate = "Resources/Certificates/TDC OCES CA.cer";
         private string funtioncertifikat = "Resources/Certificates/CVR26769388.Expire20100115.NemHandel test service.cer";
 
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            ConfigurationUtil.SetupConfiguration();
+        }
+
         [Test]
         public void LookupTestWithoutOcspServerFromCertificate(){
             OcspConfig ocspConfig = new OcspConfig();
@@ -20,7 +26,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation {
             IList<X509Certificate2> list = new List<X509Certificate2>();
             list.Add(rootcert);
             OcspLookup ocspLookup = new OcspLookup(ocspConfig, list);
-            X509Certificate2 certificate = new X509Certificate2(funtioncertifikat);
+            X509Certificate2 certificate = new X509Certificate2(funtioncertifikat, "Test1234");
             RevocationResponse response = ocspLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
@@ -34,7 +40,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation {
             IList<X509Certificate2> list = new List<X509Certificate2>();
             list.Add(rootcert);
             OcspLookup ocspLookup = new OcspLookup(ocspConfig, list);
-            X509Certificate2 certificate = new X509Certificate2(funtioncertifikat);
+            X509Certificate2 certificate = new X509Certificate2(funtioncertifikat, "Test1234");
             RevocationResponse response = ocspLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }

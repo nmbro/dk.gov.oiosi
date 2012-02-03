@@ -23,9 +23,9 @@ namespace dk.gov.oiosi.test.integration.communication {
     /// </summary>
     [TestFixture]
     public class LocalRaspRequestTest {
-        private const string HOST_STRING = "http://localhost:8080/test_rasp_service";
+        private const string HOST_STRING = "http://localhost:8080/Oiosi/TestService.svc";
         //private const string HOST_STRING = "http://testservice.nemhandel.gov.dk/TestEndpoint/dualcert_test_service/testservice.svc";
-        private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/FOCES1.cer";
+        private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
         //private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/NemHandel test service (funktionscertifikat).cer";
         //private const string CLIENT_CERTIFICATE_PATH = "Resources/Certificates/ Test NemHandelservice (funktionscertifikat).cer";
         private X509Certificate2 privateKeyCertificate;
@@ -34,8 +34,8 @@ namespace dk.gov.oiosi.test.integration.communication {
         [TestFixtureSetUp]
         public void Setup() {
             privateKeyCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
-            publicKeyCertificate = new X509Certificate2(CLIENT_CERTIFICATE_PATH);
-            ConfigurationUtil.SetupConfiguration("RaspConfigurationRaspRequestTest.xml");
+            publicKeyCertificate = new X509Certificate2(CLIENT_CERTIFICATE_PATH, "Test1234");
+            ConfigurationUtil.SetupConfiguration("Resources/RaspConfigurationRaspRequestTest.xml");
         }
 
         [Test]

@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.samples
             // Production certificates valid
             // subject = "CN = NemHandel test service (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1200406941690, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
              //subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
-             subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
+             subject = "CN = TEST FOCES1 (funktionscertifikat), SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
             // subject = "CN=FO NemHandel Produktion (funktionscertifikat), SERIALNUMBER = CVR:26911745-FID:1300089978680, O=KMD A/S // CVR:26911745, C=DK";
             // Production certificates not valid
 

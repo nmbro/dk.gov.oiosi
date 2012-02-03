@@ -4431,12 +4431,19 @@
     </SequenceIdUnfinishedSignaturesCache>
   </ConfigurationSection>
   
-  <ConfigurationSection xsi:type="RootCertificateConfig">
-    <RootCertificateLocation>
-      <StoreLocation>LocalMachine</StoreLocation>
-      <StoreName>Root</StoreName>
-      <SerialNumber>403617fc</SerialNumber>
-    </RootCertificateLocation>
+  <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
+    <RootCertificateLocationCollection>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>403617fc</SerialNumber>
+      </RootCertificateLocation>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>3E48BDC4</SerialNumber>
+      </RootCertificateLocation>
+    </RootCertificateLocationCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>

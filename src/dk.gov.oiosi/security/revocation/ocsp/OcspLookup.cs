@@ -106,7 +106,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// to get a default root certificate from a Configuration.xml file</param>
         private void Init(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList)
         {
-            this.ocspCache = this.CreateCache();
+            this.ocspCache = CacheFactory.Instance.OcspLookupCache;
             try
             {
                 // 1. Set configuration
@@ -152,12 +152,6 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             }
         }
         
-        private ICache<string, RevocationResponse> CreateCache()
-        {
-            ICache<string, RevocationResponse> ocspCache = CacheFactory.Instance.OcspLookupCache;
-            return ocspCache;
-        }
-
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>

@@ -11,8 +11,10 @@ using dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.test.integration {
     public class ConfigurationUtil {
-        public static void SetupConfiguration() {
-            ConfigurationHandler.ConfigFilePath = "RaspConfiguration.xml";
+        public static void SetupConfiguration() 
+        {
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.xml";
+            ConfigurationHandler.Reset();
 
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.CleanAdd();
@@ -20,7 +22,7 @@ namespace dk.gov.oiosi.test.integration {
             DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
 
-            ConfigurationHandler.HasConfigurationSection<LdapLookupFactoryConfig>();
+            /*ConfigurationHandler.HasConfigurationSection<LdapLookupFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>();
             ConfigurationHandler.HasConfigurationSection<RegistryLookupClientFactoryConfig>();
@@ -30,25 +32,27 @@ namespace dk.gov.oiosi.test.integration {
             ConfigurationHandler.HasConfigurationSection<CacheConfig>();
             ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>();
-            ConfigurationHandler.HasConfigurationSection<SendingOptionConfig>();
+            ConfigurationHandler.HasConfigurationSection<SendingOptionConfig>();*/
 
-            EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
+           // EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
         }
 
-        public static void SetupConfiguration(string configurationFilePath) {
+        public static void SetupConfiguration(string configurationFilePath) 
+        {
             ConfigurationHandler.ConfigFilePath = configurationFilePath;
+            ConfigurationHandler.Reset();
 
-            ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
+            /*ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<RegistryLookupClientFactoryConfig>();
             ConfigurationHandler.GetConfigurationSection<LdapSettings>();
             ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ConfigurationHandler.GetConfigurationSection<UddiConfig>();
-            ConfigurationHandler.HasConfigurationSection<CacheConfig>();
+            ConfigurationHandler.GetConfigurationSection<CacheConfig>();
             ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
-            ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();
+            ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();*/
 
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.CleanAdd();
@@ -56,10 +60,10 @@ namespace dk.gov.oiosi.test.integration {
             DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
 
-            EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
-
-            ConfigurationHandler.ConfigFilePath = configurationFilePath;
-            ConfigurationHandler.SaveToFile();
+            //EmailTransportUserConfig emailTransportConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
+            
+            //ConfigurationHandler.ConfigFilePath = configurationFilePath;
+            //ConfigurationHandler.SaveToFile();
         }
     }
 }

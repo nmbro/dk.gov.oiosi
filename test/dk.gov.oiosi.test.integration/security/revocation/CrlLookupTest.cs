@@ -11,8 +11,14 @@ namespace dk.gov.oiosi.test.integration.security.revocation
     [TestFixture]
     public class CrlLookupTest
     {
-        private string funkttionscertificat = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
-        private string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES2_Spærret.pfx";
+        private string funkttionscertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
+        private string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES1 (medarbejdercertificat 2)(Spærret).pfx";
+        
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            ConfigurationUtil.SetupConfiguration();
+        }
 
         [Test]
         public void LookupTestValidCertificate()
@@ -27,7 +33,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
         public void LookupTestRevokedCertificate()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked);
+            X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsFalse(response.IsValid);
         }
@@ -62,7 +68,7 @@ namespace dk.gov.oiosi.test.integration.security.revocation
                 }
                 else {
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:1", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked);
+                    X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsFalse(response.IsValid);
                 }
