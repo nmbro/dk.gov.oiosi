@@ -288,7 +288,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             {
                 case UddiType.Production :
                     {
-                        serial = "45 a2 f4 a1";
+                        serial = "45 be bc 3e";
                         break;
                     }
                 case UddiType.Test :

@@ -8,10 +8,10 @@ namespace dk.gov.oiosi.samples.TestUddi
     using System.Text;
     using dk.gov.oiosi.samples.ClientExample;
 
-    public class Oioubl_Invoice_EndpointOfficient : AbstractRaspClient
+    public class Oioubl_Invoice_LiveTestEndpoint : AbstractRaspClient
     {
 
-        public Oioubl_Invoice_EndpointOfficient()
+        public Oioubl_Invoice_LiveTestEndpoint()
         {
 
             //this.client = new OiosiRaspClient(UddiType.Production, "./Resources/xml/ProductionUddi/123.xml");
@@ -20,7 +20,7 @@ namespace dk.gov.oiosi.samples.TestUddi
 
         static void Main(string[] args)
         {
-            new Oioubl_Invoice_EndpointOfficient().Perform();
+            new Oioubl_Invoice_LiveTestEndpoint().Perform();
             Console.WriteLine("Finish");
             Console.ReadKey();
         }

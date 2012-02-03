@@ -49,6 +49,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+      <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
+      <Name>dk.gov.oiosi.raspProfile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\dk.gov.oiosi.samples.ClientExample\dk.gov.oiosi.samples.ClientExample.csproj">
       <Project>{E6B6BCEA-0DFC-4ECB-A1F2-E8A38B0C7222}</Project>
       <Name>dk.gov.oiosi.samples.ClientExample</Name>

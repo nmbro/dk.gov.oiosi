@@ -50,6 +50,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
+      <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
+      <Name>dk.gov.oiosi.raspProfile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Oioubl_Invoice_EndpointJavaHttpV1_2_1\Oioubl_Invoice_EndpointJavaHttpV1_2_1.csproj">
       <Project>{332FFFFB-D1B2-42A1-9B1A-4309AB70D1DB}</Project>
       <Name>Oioubl_Invoice_EndpointJavaHttpV1_2_1</Name>
