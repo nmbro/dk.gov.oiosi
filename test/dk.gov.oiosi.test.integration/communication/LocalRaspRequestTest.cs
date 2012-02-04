@@ -38,10 +38,10 @@ namespace dk.gov.oiosi.test.integration.communication {
             ConfigurationUtil.SetupConfiguration("Resources/RaspConfigurationRaspRequestTest.xml");
         }
 
-        [Test]
-        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
-        }
+//        [Test]
+//        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
+//        }
 
         [Test]
         public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
