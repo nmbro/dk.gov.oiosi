@@ -195,28 +195,28 @@ namespace dk.gov.oiosi.test.unit.configuration {
             AssertNodeHasConfigurationSectionWithName(rootNode, "CacheConfig");
         }
 
-        [Test]
-        public void GetCacheTest()
-        {
-            var configFileWithEmailSection = GetConfigFileWithCacheConfig();
-            ConfigurationHandler.ConfigFilePath = configFileWithEmailSection.FullName;
-            ConfigurationHandler.Reset();
+//        [Test]
+//        public void GetCacheTest()
+//        {
+//            var configFileWithEmailSection = GetConfigFileWithCacheConfig();
+//            ConfigurationHandler.ConfigFilePath = configFileWithEmailSection.FullName;
+//            ConfigurationHandler.Reset();
             
-            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
-            ConfigurationHandler.PreloadRegisteredConfigurationSections();
+//            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
+//            ConfigurationHandler.PreloadRegisteredConfigurationSections();
 
-            ICache<string, RevocationResponse> ocspLookupCache = CacheFactory.Instance.OcspLookupCache;
-            ICache<Uri, CrlInstance> crlLookupCache = CacheFactory.Instance.CrlLookupCache;
-            ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache = CacheFactory.Instance.UddiServiceCache;
-            ICache<UddiId, UddiTModel> uddiTModelCache = CacheFactory.Instance.UddiTModelCache;
-            ICache<CertificateSubject, X509Certificate2> certificateCache =  CacheFactory.Instance.CertificateCache;
+//            ICache<string, RevocationResponse> ocspLookupCache = CacheFactory.Instance.OcspLookupCache;
+//            ICache<Uri, CrlInstance> crlLookupCache = CacheFactory.Instance.CrlLookupCache;
+//            ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache = CacheFactory.Instance.UddiServiceCache;
+//            ICache<UddiId, UddiTModel> uddiTModelCache = CacheFactory.Instance.UddiTModelCache;
+//            ICache<CertificateSubject, X509Certificate2> certificateCache = CacheFactory.Instance.CertificateCache;
 
-            Assert.IsNotNull(ocspLookupCache);
-            Assert.IsNotNull(crlLookupCache);
-            Assert.IsNotNull(uddiServiceCache);
-            Assert.IsNotNull(uddiTModelCache);
-            Assert.IsNotNull(certificateCache);
-        }
+//            Assert.IsNotNull(ocspLookupCache);
+//            Assert.IsNotNull(crlLookupCache);
+//            Assert.IsNotNull(uddiServiceCache);
+//            Assert.IsNotNull(uddiTModelCache);
+//            Assert.IsNotNull(certificateCache);
+//        }
 
         # region Helper methods
 
