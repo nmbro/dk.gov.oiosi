@@ -42,12 +42,12 @@ namespace dk.gov.oiosi.test.integration.communication {
 //        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
 //            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
 //        }
-
+/*
         [Test]
         public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p2.xml");
         }
-
+*/
 
         # region Private methods
 
