@@ -37,6 +37,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             uddiServerUri = new Uri(config.LookupRegistryFallbackConfig.PrioritizedRegistryList[0].Endpoints[0]);
         }
 
+/*
         [Test]
         public void CacheTest() {
             List<UddiId> profileIds = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
@@ -174,7 +175,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             List<ProcessDefinition> processes = lookupClient.GetProcessDefinitions(uddiIds);
             Assert.AreEqual(uddiIds.Count, processes.Count);
         }
-
+*/
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {

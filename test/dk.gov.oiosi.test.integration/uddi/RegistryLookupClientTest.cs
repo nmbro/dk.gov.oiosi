@@ -10,6 +10,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
     [TestFixture]
     public class RegistryLookupClientTest {
 
+/*
         [Test]
         public void LookingUpWhatProfilesAnIdentifierCanSupport() {
             var identifier = new IdentifierEan(TestConstants.TESTEAN);
@@ -37,7 +38,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
                 processDefinitionIds.Add(processRoleDefinition.ProcessDefinitionId.ID);
             }
             Assert.IsTrue(names.Contains("Procurement-OrdAdv-BilSim-1.0 SellerParty"));
-            //The id of the process definition
+            // The id of the process definition
             Assert.IsTrue(processDefinitionIds.Contains("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69"));
         }
 
@@ -53,5 +54,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
             List<ProcessDefinition> processes = ulc.GetProcessDefinitions(uddiIds);
             Assert.AreEqual(uddiIds.Count, processes.Count);
         }
+*/
     }
 }
