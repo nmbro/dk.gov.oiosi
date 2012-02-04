@@ -32,41 +32,41 @@ namespace dk.gov.oiosi.test.integration.communication {
             ConfigurationUtil.SetupConfiguration("Resources/RaspConfigurationRaspRequestTest.xml");
         }
 
-        [Test]
-        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
-        }
+//        [Test]
+//        public void OioublApplicationResponse201MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p1.xml");
+//        }
 
-        [Test]
-        public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p2.xml");
-        }
+//        [Test]
+//        public void OioublApplicationResponse202MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_ApplicationResponse_v2p2.xml");
+//        }
 
-        [Test]
-        public void OioublCatalogue202MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p2.xml");
-        }
+//        [Test]
+//        public void OioublCatalogue202MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_Catalogue_v2p2.xml");
+//        }
 
-        [Test]
-        public void OioublCatalogueDeletion201MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p1.xml");
-        }
+//        [Test]
+//        public void OioublCatalogueDeletion201MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p1.xml");
+//        }
 
-        [Test]
-        public void OioublCatalogueDeletion202MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p2.xml");
-        }
+//        [Test]
+//        public void OioublCatalogueDeletion202MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueDeletion_v2p2.xml");
+//        }
 
-        [Test]
-        public void OioublCatalogueItemSpecificationUpdate201MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml");
-        }
+//        [Test]
+//        public void OioublCatalogueItemSpecificationUpdate201MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml");
+//        }
 
-        [Test]
-        public void OioublCatalogueItemSpecificationUpdate202MustBeSendableByRaspRequest() {
-            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml");
-        }
-
+//        [Test]
+//        public void OioublCatalogueItemSpecificationUpdate202MustBeSendableByRaspRequest() {
+//            AssertSendable("Resources/Documents/Test/OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml");
+//        }
+/*
         [Test]
         public void OioublCataloguePricingUpdate201MustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOUBL_CataloguePricingUpdate_v2p1.xml");
@@ -197,7 +197,7 @@ namespace dk.gov.oiosi.test.integration.communication {
         public void OioxmlInvoiceCPRSenderMustBeSendableByRaspRequest() {
             AssertSendable("Resources/Documents/Test/OIOXML_Invoice_v0.7_CPR_Sender.xml");
         }
-
+*/
         # region Private methods
 
         private void AssertSendable(string path)
