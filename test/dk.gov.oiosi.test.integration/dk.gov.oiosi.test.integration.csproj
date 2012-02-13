@@ -115,10 +115,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\RaspConfigurationRaspRequestTest.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
+      <Link>Resources\RaspConfiguration.Live.xml</Link>
     </Content>
-    <Content Include="Resources\RaspConfiguration.xml">
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
+      <Link>Resources\RaspConfiguration.Test.xml</Link>
+    </Content>
+    <Content Include="Resources\RaspConfigurationRaspRequestTest.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Test\OIOUBL_ApplicationResponse_v2p1.xml">
