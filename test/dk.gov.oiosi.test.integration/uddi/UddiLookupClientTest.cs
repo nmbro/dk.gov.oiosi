@@ -31,15 +31,17 @@ namespace dk.gov.oiosi.test.integration.uddi {
         private readonly List<EndpointAddressTypeCode> acceptSmtpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.email };
         
         [TestFixtureSetUp]
-        public void SetupUddi() {
+        public void SetupUddi() 
+        {
             ConfigurationUtil.SetupConfiguration();
             UddiConfig config = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiServerUri = new Uri(config.LookupRegistryFallbackConfig.PrioritizedRegistryList[0].Endpoints[0]);
         }
 
-/*
+
         [Test]
-        public void CacheTest() {
+        public void CacheTest() 
+        {
             List<UddiId> profileIds = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
 
@@ -175,7 +177,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             List<ProcessDefinition> processes = lookupClient.GetProcessDefinitions(uddiIds);
             Assert.AreEqual(uddiIds.Count, processes.Count);
         }
-*/
+
         # region Helper methods
 
         private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {

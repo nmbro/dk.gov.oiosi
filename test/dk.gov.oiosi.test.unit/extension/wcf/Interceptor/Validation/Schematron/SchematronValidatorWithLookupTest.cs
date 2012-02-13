@@ -15,7 +15,7 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
     public class SchematronValidatorWithLookupTest {
 
         public SchematronValidatorWithLookupTest() {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
             ConfigurationHandler.Reset();
             //DefaultDocumentTypes defaultDocumentTypes = new DefaultDocumentTypes();
             //defaultDocumentTypes.CleanAdd();

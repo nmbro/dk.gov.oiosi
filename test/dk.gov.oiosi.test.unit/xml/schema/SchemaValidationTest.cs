@@ -183,7 +183,7 @@ namespace dk.gov.oiosi.test.unit.xml.schema {
         private void Validate(string xmlDocumentPath, SchemaValidator validator, string schemaPath) 
         {
             // Need the schema cache from the cacheConfiguration
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfigurationCacheConfig.xml";    
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";    
             
             XmlDocument document = new XmlDocument();
             document.Load(xmlDocumentPath);
