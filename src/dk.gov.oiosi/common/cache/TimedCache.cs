@@ -47,6 +47,10 @@ namespace dk.gov.oiosi.common.cache {
     /// <typeparam name="TValue">The value type</typeparam>
     public class TimedCache<TKey, TValue> : ICache<TKey,TValue>
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger;
         private const int DEFAULT_FREQUENCY_IN_MINUTES = 10;
         private const int DEFAULT_VALIDITY_IN_MINUTES = 60;
         
@@ -65,6 +69,11 @@ namespace dk.gov.oiosi.common.cache {
         private bool isChecking = false;
 
         /// <summary>
+        /// The name / type of cache
+        /// </summary>
+        private string name = string.Empty;
+
+        /// <summary>
         /// Cache constructor
         /// </summary>
         /// <param name="timeOut"></param>
@@ -78,6 +87,7 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="timeOut"></param>
         public TimedCache(TimeSpan timeOut, int frequencyInMinutes)
         {
+            this.logger = LoggerFactory.Create(this.GetType());
             this.timeOut = timeOut;
             this.cache = new Dictionary<TKey, TimedCacheValue<TValue>>();
             this.CreateExpiredCheckTask(frequencyInMinutes);
@@ -86,6 +96,7 @@ namespace dk.gov.oiosi.common.cache {
 
         public TimedCache(IDictionary<string, string> configuration)
         {
+            this.logger = LoggerFactory.Create(this.GetType());
             this.cache = new Dictionary<TKey, TimedCacheValue<TValue>>();
 
             // validity time
@@ -122,7 +133,7 @@ namespace dk.gov.oiosi.common.cache {
             else
             {
                 // dafault value
-                Logger.Write("The validityInMinutes/validityInHours was now defined for the TimeCache, default to '" + DEFAULT_FREQUENCY_IN_MINUTES + "' minutes.", LoggerCategories.General);
+                this.logger.Info("The validityInMinutes/validityInHours was now defined for the TimeCache, default to '" + DEFAULT_FREQUENCY_IN_MINUTES + "' minutes.");
                 validityInMinutes = DEFAULT_VALIDITY_IN_MINUTES;
             }
 
@@ -162,8 +173,13 @@ namespace dk.gov.oiosi.common.cache {
             else
             {
                 // dafault value
-                Logger.Write("The frequencyInMinutes/frequencyInHours was now defined for the TimeCache, default to '" + DEFAULT_FREQUENCY_IN_MINUTES + "' minutes.", LoggerCategories.General);
+                this.logger.Info("The frequencyInMinutes/frequencyInHours was now defined for the TimeCache, default to '" + DEFAULT_FREQUENCY_IN_MINUTES + "' minutes.");
                 frequencyInMinutes = DEFAULT_FREQUENCY_IN_MINUTES;
+            }
+
+            if (configuration.ContainsKey("CacheName"))
+            {
+                this.name = configuration["CacheName"];
             }
 
             this.CreateExpiredCheckTask(frequencyInMinutes);
@@ -182,7 +198,6 @@ namespace dk.gov.oiosi.common.cache {
             TimeSpan start = new TimeSpan(0, 0, 0);
             TimeSpan frequency = new TimeSpan(0, frequencyInMinutes, 0);
             threadingTimer = new System.Threading.Timer(tc, null, start, frequency);
-
         }
 
         private void CheckExpired_TimerCallback(object value)
@@ -336,7 +351,7 @@ namespace dk.gov.oiosi.common.cache {
 
         public void CheckExpired()
         {
-            Logger.Write("checkExpired", LoggerCategories.Debug);
+            this.logger.Trace(this.name);
             if(isChecking == false)
             {
                 // The Expired check is not running

@@ -47,6 +47,7 @@ namespace dk.gov.oiosi.common.cache {
         private Dictionary<TKey, TValue> _keyedDictionary;
         private int _maxSize;
         private static object _lockObject = new object();
+        private string name = string.Empty;
 
         /// <summary>
         /// Constructor that takes the max size of the cache
@@ -80,6 +81,11 @@ namespace dk.gov.oiosi.common.cache {
             else
             {
                 throw new Exception("Argument maxSize was not present in the configuration file.");
+            }
+
+            if (configuration.ContainsKey("CacheName"))
+            {
+                this.name = configuration["CacheName"];
             }
 
             this.Setup(maxSize);

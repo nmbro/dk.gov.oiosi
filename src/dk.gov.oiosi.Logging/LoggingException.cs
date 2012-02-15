@@ -8,6 +8,7 @@ namespace dk.gov.oiosi
     /// <summary>
     /// A logging exception
     /// </summary>
+    [Serializable]
     public class LoggingException : Exception
     {
         public LoggingException()

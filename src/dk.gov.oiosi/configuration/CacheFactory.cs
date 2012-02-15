@@ -29,6 +29,11 @@ namespace dk.gov.oiosi.configuration
         private static CacheFactory cacheFactory = new CacheFactory();
 
         /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger;
+
+        /// <summary>
         /// Cache to store the ocsp lookup - check is a certificate is valid
         /// </summary>
         private ICache<string, RevocationResponse> ocspLookupCache = null;
@@ -78,6 +83,8 @@ namespace dk.gov.oiosi.configuration
         /// </summary>
         private CacheFactory()
         {
+            this.logger = LoggerFactory.Create(this.GetType());
+
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
             CacheConfigElement element;
 
@@ -140,11 +147,30 @@ namespace dk.gov.oiosi.configuration
             
             if (cacheType == null)
             {
-                Logger.Write("Cache type not valid", "The cache type with qualifiedTypename '" + qualifiedTypename + "' is null.", LoggerCategories.Debug);
+                this.logger.Warn("Cache type not valid. The cache type with qualifiedTypename '" + qualifiedTypename + "' is null.");
                 throw new FailedToLoadLookupTypeException(qualifiedTypename);
             }
 
-            //Type parameter = typeof(cacheType);
+            // Add the cacheName to the cache, if the name does not already exist
+            bool nameExist = false;
+            int index = 0;
+            while(nameExist == false && index < element.CacheConfigurationCollection.Count)
+            {
+                if(element.CacheConfigurationCollection[index].Key.Equals("", StringComparison.OrdinalIgnoreCase))
+                {
+                    // name exist
+                    nameExist = true;
+                }
+
+                index++;
+            }
+
+            if (nameExist == false)
+            {
+                // the name configuration did not exist
+                // add a name config element
+                element.CacheConfigurationCollection.Add(new CacheConfiguration("CacheName", name));
+            }
 
             Type[] parameterArray = new Type[] { typeof(IDictionary<string,string>) };
             object[] objectArray = new object[] { element.GetDictionary() };

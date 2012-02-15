@@ -51,7 +51,7 @@ namespace dk.gov.oiosi.logging
         public void Configurate()
         {
             // first we try to retrive the configuration file name from app.config
-            string key = "log4NetConfigurationFile";
+            string key = "log4Net4RaspConfigurationFile";
             string log4NetConfigurationFile = ConfigurationManager.AppSettings[key];
 
             if(string.IsNullOrEmpty(log4NetConfigurationFile))
@@ -61,7 +61,7 @@ namespace dk.gov.oiosi.logging
                 Configuration configuration = ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName);
                 AppSettingsSection section = configuration.AppSettings;
                 KeyValueConfigurationCollection collection = section.Settings;
-                KeyValueConfigurationElement element = collection[log4NetConfigurationFile];
+                KeyValueConfigurationElement element = collection[key];
                 if(element != null)
                 {
                     log4NetConfigurationFile = element.Value;
