@@ -41,7 +41,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{628F6878-C794-4989-9830-E9B606CC38C9}"
 	ProjectSection(SolutionItems) = preProject
 		doc\OIOSI RASP Library for .Net Installation Guide.doc = doc\OIOSI RASP Library for .Net Installation Guide.doc
-		doc\OIOSI RASP Library for .Net Release Notes.doc = doc\OIOSI RASP Library for .Net Release Notes.doc
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.ClientExample", "samples\dk.gov.oiosi.samples.ClientExample\dk.gov.oiosi.samples.ClientExample.csproj", "{E6B6BCEA-0DFC-4ECB-A1F2-E8A38B0C7222}"
