@@ -156,7 +156,7 @@ namespace dk.gov.oiosi.configuration
             int index = 0;
             while(nameExist == false && index < element.CacheConfigurationCollection.Count)
             {
-                if(element.CacheConfigurationCollection[index].Key.Equals("", StringComparison.OrdinalIgnoreCase))
+                if(element.CacheConfigurationCollection[index].Key.Equals("CacheName", StringComparison.OrdinalIgnoreCase))
                 {
                     // name exist
                     nameExist = true;
