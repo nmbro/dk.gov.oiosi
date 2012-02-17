@@ -47,10 +47,16 @@ namespace dk.gov.oiosi.raspProfile {
         /// </summary>
         public void AddAll() {
             // oioxml
-            AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
-            AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
-            AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
-            AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
+            // The xml profiles is not used by the RASP, as there is no profiles in xml.
+            // But it still works.
+            // When Rasp sends a xml document, no profile is added in the lookup parameters,
+            // and the UDDI returns all registrated endpoints (uddiResponse), for that document type (all profiles).
+            // In xml there is only on profile, so just one endpoint (uddiResponse) is returned,
+            // and if just one uddiResponse is returned, that one is used.
+            // AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
+            // AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
+            // AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
+            // AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
             
             // OIOUBL
             AddMapping("Catalogue-CatBas-1.0", "uddi:4697A391-741F-4534-A21E-8F0A460013BB");
