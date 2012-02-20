@@ -108,7 +108,7 @@ namespace dk.gov.oiosi.configuration {
             {
                 FileInfo fileInfo = new FileInfo(value);
                 configurationHandler.logger.Debug("New configuration file: " + value);
-                if (fileInfo.Exists)
+                if (!fileInfo.Exists)
                 {
                     configurationHandler.logger.Warn("The configuration file does not exist: " + fileInfo.FullName);
                 }
