@@ -115,6 +115,5 @@ namespace dk.gov.oiosi.test.unit.raspProfile {
             DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
             ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
         }
-
     }
 }
