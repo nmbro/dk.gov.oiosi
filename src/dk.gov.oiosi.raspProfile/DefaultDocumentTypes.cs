@@ -696,23 +696,7 @@ namespace dk.gov.oiosi.raspProfile {
             // If the xml document contain errors, the errors should be handled be schema or schematron validation
             
             ServiceEndpointKey key = CreateKey(xpath);
-            foreach (KeyTypeMappingExpression mappingExpression in key.MappingExpressions) 
-            {
-                if (!mappingExpression.Name.Equals("EndpointKeyType", StringComparison.CurrentCultureIgnoreCase))
-                {
-                    continue;
-                }
-                else
-                {
-                    KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
-                    KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
-                    KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
 
-                    mappingExpression.AddMapping(cprMapping);
-                    mappingExpression.AddMapping(uppercasedCPRMapping);
-                    mappingExpression.AddMapping(dkcprMapping);
-                }
-            }
             return key;
         }
 
@@ -737,9 +721,17 @@ namespace dk.gov.oiosi.raspProfile {
             KeyTypeMapping uppercasedSEMapping = new KeyTypeMapping("SE", "se");
             KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
 
+            KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
+            KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
+            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
+
             KeyTypeMapping ovtMapping = new KeyTypeMapping("ISO 6523", "ovt");
-            KeyTypeMapping vansMapping = new KeyTypeMapping("DK:VANS", "vans");
+            
+            KeyTypeMapping vansMapping = new KeyTypeMapping("VANS", "vans");
+
+            KeyTypeMapping dkvansMapping = new KeyTypeMapping("DK:VANS", "vans");
             KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
+
             KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
             
             mappingExpression.AddMapping(eanMapping);
@@ -757,9 +749,16 @@ namespace dk.gov.oiosi.raspProfile {
             mappingExpression.AddMapping(seMapping);
             mappingExpression.AddMapping(uppercasedSEMapping);            
             mappingExpression.AddMapping(dkseMapping);
+            
+            mappingExpression.AddMapping(cprMapping);
+            mappingExpression.AddMapping(uppercasedCPRMapping);
+            mappingExpression.AddMapping(dkcprMapping);
 
             mappingExpression.AddMapping(ovtMapping);
+
             mappingExpression.AddMapping(vansMapping);
+            mappingExpression.AddMapping(dkvansMapping);
+
             mappingExpression.AddMapping(ibanMapping);
             mappingExpression.AddMapping(dunsMapping);
 
