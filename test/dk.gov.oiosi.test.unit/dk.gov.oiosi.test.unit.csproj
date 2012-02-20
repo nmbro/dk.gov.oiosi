@@ -82,6 +82,10 @@
     <Compile Include="xml\xpath\XPathTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.appConfig\dk.gov.oiosi.appConfig.csproj">
+      <Project>{B62518D3-E81C-4937-B1F0-5A936D719693}</Project>
+      <Name>dk.gov.oiosi.appConfig</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
       <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
       <Name>dk.gov.oiosi.configuration</Name>
@@ -97,6 +101,10 @@
     <ProjectReference Include="..\..\src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj">
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.xml\dk.gov.oiosi.xml.csproj">
+      <Project>{E103A780-78F2-497C-938B-FF8AF72F87F6}</Project>
+      <Name>dk.gov.oiosi.xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>

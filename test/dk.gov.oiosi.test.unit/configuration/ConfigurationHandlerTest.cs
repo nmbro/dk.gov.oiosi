@@ -17,14 +17,16 @@ using System.Collections.Generic;
 namespace dk.gov.oiosi.test.unit.configuration {
     
     [TestFixture]
-    public class ConfigurationHandlerTest {
+    public class ConfigurationHandlerTest
+    {
 
         /// <summary>
         /// By adding configuration sections up front we can avoid reading from the configuration file
         /// one time for each section. This improves performance.
         /// </summary>
         [Test]
-        public void ConfigurationFileCanBeCreatedByRegisteringConfigurationSectionsUpFront() {
+        public void ConfigurationFileCanBeCreatedByRegisteringConfigurationSectionsUpFront() 
+        {
             var configFile = Settings.CreateRandomPath("RaspConfig.xml");
             Directory.CreateDirectory(configFile.Directory.FullName);
 
@@ -195,64 +197,6 @@ namespace dk.gov.oiosi.test.unit.configuration {
             AssertNodeHasConfigurationSectionWithName(rootNode, "CacheConfig");
         }
 
-        [Test]
-        public void GetCacheTest()
-        {
-            FileInfo configFile = this.GetConfigFileWithCacheConfig();
-            ConfigurationHandler.ConfigFilePath = configFile.FullName;
-            ConfigurationHandler.Reset();
-
-            FileInfo fileInfo = new FileInfo(ConfigurationHandler.ConfigFilePath);
-            if (!fileInfo.Exists)
-            {
-                throw new Exception("Rasp File does not exist: " + fileInfo.FullName);
-            }
-
-
-            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
-            ConfigurationHandler.PreloadRegisteredConfigurationSections();
-
-            ICache<string, RevocationResponse> ocspLookupCache = CacheFactory.Instance.OcspLookupCache;
-            ICache<Uri, CrlInstance> crlLookupCache = CacheFactory.Instance.CrlLookupCache;
-            ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache = CacheFactory.Instance.UddiServiceCache;
-            ICache<UddiId, UddiTModel> uddiTModelCache = CacheFactory.Instance.UddiTModelCache;
-            ICache<CertificateSubject, X509Certificate2> certificateCache = CacheFactory.Instance.CertificateCache;
-
-            Assert.IsNotNull(ocspLookupCache);
-            Assert.IsNotNull(crlLookupCache);
-            Assert.IsNotNull(uddiServiceCache);
-            Assert.IsNotNull(uddiTModelCache);
-            Assert.IsNotNull(certificateCache);
-        }
-
-        [Test]
-        public void GetCacheSimpleTest()
-        {
-            ConfigurationHandler.ConfigFilePath = "Resources\\RaspConfiguration.Test.xml";
-            ConfigurationHandler.Reset();
-
-            FileInfo fileInfo = new FileInfo(ConfigurationHandler.ConfigFilePath);
-            if (!fileInfo.Exists)
-            {
-                throw new Exception("Rasp File does not exist: " + fileInfo.FullName);
-            }
-
-            ConfigurationHandler.RegisterConfigurationSection<CacheConfig>();
-            ConfigurationHandler.PreloadRegisteredConfigurationSections();
-
-            ICache<string, RevocationResponse> ocspLookupCache = CacheFactory.Instance.OcspLookupCache;
-            ICache<Uri, CrlInstance> crlLookupCache = CacheFactory.Instance.CrlLookupCache;
-            ICache<UddiLookupKey, IList<UddiService>> uddiServiceCache = CacheFactory.Instance.UddiServiceCache;
-            ICache<UddiId, UddiTModel> uddiTModelCache = CacheFactory.Instance.UddiTModelCache;
-            ICache<CertificateSubject, X509Certificate2> certificateCache = CacheFactory.Instance.CertificateCache;
-
-            Assert.IsNotNull(ocspLookupCache);
-            Assert.IsNotNull(crlLookupCache);
-            Assert.IsNotNull(uddiServiceCache);
-            Assert.IsNotNull(uddiTModelCache);
-            Assert.IsNotNull(certificateCache);
-        }
-        
         # region Helper methods
 
         private void AssertNodeHasConfigurationSectionWithName(XmlNode node, string configurationSectionName) {
