@@ -63,7 +63,10 @@ namespace dk.gov.oiosi.test.unit.raspProfile {
 
             ProfileMappingCollectionConfig profileMappingConfig =
                 ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
-            Assert.AreEqual(36, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
+
+            // Count : 32 - OIOUBL + UTS
+            // Count : 36 - OIOUBL + UTS + OIOXML
+            Assert.AreEqual(32, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
         }
 
         private void SetupDefaultDocumentTypes() {
