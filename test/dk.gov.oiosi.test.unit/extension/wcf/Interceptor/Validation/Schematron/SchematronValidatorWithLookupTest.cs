@@ -12,22 +12,15 @@ using System.IO;
 
 namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
 {
-
     [TestFixture]
     public class SchematronValidatorWithLookupTest
     {
 
-        public SchematronValidatorWithLookupTest()
+        [TestFixtureSetUp]
+        public void Setup()
         {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
             ConfigurationHandler.Reset();
-            //DefaultDocumentTypes defaultDocumentTypes = new DefaultDocumentTypes();
-            //defaultDocumentTypes.CleanAdd();
-            FileInfo file = new FileInfo(ConfigurationHandler.ConfigFilePath);
-            if (!file.Exists)
-            {
-                throw new NotImplementedException("The configuration file '" +file.FullName +"' does not exist");
-            }
         }
 
         [Test]
