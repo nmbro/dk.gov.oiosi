@@ -192,5 +192,50 @@ namespace dk.gov.oiosi.xml.schematron {
                 // no schematron error
             }
         }
+
+        /// <summary>
+        /// Schematron validates a document.
+        /// 
+        /// If the validation process fails it throws a SchematronValidationFailedException
+        /// If the document has any schematron errors it throws a SchematronErrorException
+        /// </summary>
+        /// <param name="documentAsString">The document to be validated</param>
+        /// <param name="schematronStylesheet"></param>
+        public void SchematronValidateXmlDocument(string documentAsString, XslCompiledTransform schematronStylesheet)
+        {
+            if (this.errorXPath == null)
+            {
+                throw new Exception("No error XPath is set");
+            }
+            if (this.errorMessageXPath == null)
+            {
+                throw new Exception("No error message XPath is set");
+            }
+
+            XmlDocument result = null;
+            PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
+            bool hasAnyErrors;
+            try
+            {
+                result = xlstUtil.TransformXml(documentAsString, schematronStylesheet);
+                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
+            }
+            catch (Exception ex)
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(documentAsString);
+                throw new SchematronValidationFailedException(xmlDoc, ex);
+            }
+
+            if (hasAnyErrors)
+            {
+                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
+                throw new SchematronErrorException(result, firstErrorMessage);
+            }
+            else
+            {
+                // no schematron error
+            }
+        }
     }
 }

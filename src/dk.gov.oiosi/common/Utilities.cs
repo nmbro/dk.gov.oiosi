@@ -28,6 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   *
   */
 using System;
@@ -52,9 +54,19 @@ namespace dk.gov.oiosi.common
         /// </summary>
         /// <param name="timeSpan">TimeSpan to convert</param>
         /// <returns>Number of milliseconds in timespan</returns>
-        public static Int32 TimeSpanInMilliseconds(TimeSpan timeSpan) {
-            if (timeSpan.TotalMilliseconds > (double)int.MaxValue) return int.MaxValue;
-            return Convert.ToInt32(timeSpan.TotalMilliseconds);
+        public static int TimeSpanInMilliseconds(TimeSpan timeSpan)
+        {
+            int result;
+            if (timeSpan.TotalMilliseconds > (double)int.MaxValue)
+            {
+                result = int.MaxValue;
+            }
+            else
+            {
+                result = Convert.ToInt32(timeSpan.TotalMilliseconds);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -70,7 +82,8 @@ namespace dk.gov.oiosi.common
             string xpath,
             PrefixedNamespace[] prefixedNamespaces,
             EndpointKeyTypeCode keyType
-        ) {
+        )
+        {
             // 1. Get the endpoint as string:
             string endpointKeyString = DocumentXPathResolver.GetElementValueByXpath(xmlDoc, xpath, prefixedNamespaces);
 
@@ -81,43 +94,101 @@ namespace dk.gov.oiosi.common
         }
 
         /// <summary>
+        /// Extracts the body of a WCF Message and returns it as an XmlDocment.
+        /// The original message will not be readable after calling this method
+        /// </summary>
+        /// <param name="msg">The WCF message</param>
+        /// <returns>The body of the Message as an XmlDocument</returns>
+        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg)
+        {
+            return Utilities.GetMessageBodyAsXmlDocument(msg, true);
+        }
+
+        /// <summary>
         /// Extracts the body of a WCF Message and returns it as an XmlDocment
         /// </summary>
         /// <param name="msg">The WCF message</param>
         /// <param name="discardOriginalMessage">If true, the body of the original message will not be 
         /// readable after calling this method</param>
         /// <returns>The body of the Message as an XmlDocument</returns>
-        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg, bool discardOriginalMessage) {
-
+        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg, bool discardOriginalMessage)
+        {
+            XmlDocument messageXml;
             if (msg.IsEmpty)
-                return null;
+            {
+                messageXml = null;
+            }
+            else
+            {
+                messageXml = new XmlDocument();
 
-            XmlDocument messageXml = new XmlDocument();
-
-            if (!discardOriginalMessage) {
-                MessageBuffer bufferCopy = msg.CreateBufferedCopy(int.MaxValue);
-                XmlDictionaryReader reader = bufferCopy.CreateMessage().GetReaderAtBodyContents();
-                messageXml.Load(reader);
-                reader.Close();
-                msg = bufferCopy.CreateMessage();
-                bufferCopy.Close();
-            } else {
-                XmlDictionaryReader reader = msg.GetReaderAtBodyContents();
-                messageXml.Load(reader);
-                reader.Close();
+                if (!discardOriginalMessage)
+                {
+                    MessageBuffer bufferCopy = msg.CreateBufferedCopy(int.MaxValue);
+                    XmlDictionaryReader reader = bufferCopy.CreateMessage().GetReaderAtBodyContents();
+                    messageXml.Load(reader);
+                    reader.Close();
+                    msg = bufferCopy.CreateMessage();
+                    bufferCopy.Close();
+                }
+                else
+                {
+                    XmlDictionaryReader reader = msg.GetReaderAtBodyContents();
+                    messageXml.Load(reader);
+                    reader.Close();
+                }
             }
             return messageXml;
         }
 
         /// <summary>
-        /// Extracts the body of a WCF Message and returns it as an XmlDocment.
+        /// Extracts the body of a WCF Message and returns it as an string.
         /// The original message will not be readable after calling this method
         /// </summary>
         /// <param name="msg">The WCF message</param>
-        /// <returns>The body of the Message as an XmlDocument</returns>
-        public static XmlDocument GetMessageBodyAsXmlDocument(Message msg) {
-            return GetMessageBodyAsXmlDocument(msg, true);
+        /// <returns>The body of the Message as an string</returns>
+        public static string GetMessageBodyAsString(Message msg)
+        {
+            return GetMessageBodyAsString(msg, true);
         }
+
+        /// <summary>
+        /// Extracts the body of a WCF Message and returns it as an string
+        /// </summary>
+        /// <param name="msg">The WCF message</param>
+        /// <param name="discardOriginalMessage">If true, the body of the original message will not be 
+        /// readable after calling this method</param>
+        /// <returns>The body of the Message as an string</returns>
+        public static string GetMessageBodyAsString(Message msg, bool discardOriginalMessage)
+        {
+            string result;
+            if (msg.IsEmpty)
+            {
+                result = string.Empty;
+            }
+            else
+            {
+                if (!discardOriginalMessage)
+                {
+                    MessageBuffer bufferCopy = msg.CreateBufferedCopy(int.MaxValue);
+
+                    using(XmlDictionaryReader reader = bufferCopy.CreateMessage().GetReaderAtBodyContents())
+                    {
+                        result = reader.ReadOuterXml();
+                    }
+                }
+                else
+                {
+                    using (XmlDictionaryReader reader = msg.GetReaderAtBodyContents())
+                    {
+                        result = reader.ReadOuterXml();
+                    }
+                }
+            }
+
+            return result;
+        }
+
 
 
         /// <summary>
@@ -125,9 +196,19 @@ namespace dk.gov.oiosi.common
         /// </summary>
         /// <param name="e">The outer exception</param>
         /// <returns>The outer + all inner exception messages</returns>
-        public static string GetFullExceptionMessage(Exception e) {
-            if (e == null) return "";
-            else return e.Message + ". " + GetFullExceptionMessage(e.InnerException);
+        public static string GetFullExceptionMessage(Exception e)
+        {
+            string result;
+            if (e == null)
+            {
+                result = string.Empty;
+            }
+            else
+            {
+                result = e.Message + ". " + Utilities.GetFullExceptionMessage(e.InnerException);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -137,18 +218,20 @@ namespace dk.gov.oiosi.common
         /// <param name="message"></param>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(OiosiMessage message, DocumentTypeConfig documentType) {
+        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(OiosiMessage message, DocumentTypeConfig documentType)
+        {
             XmlDocument xmlDocument = message.MessageXml;
-            return GetEndpointKeyTypeCode(xmlDocument, documentType);
+            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(xmlDocument, documentType);
+
+            return endpointKeyTypeCode;
         }
 
         /// <summary>
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType) {
-
-
+        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
+        {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
             KeyTypeMappingExpression mappingExpression = endpointType.Key.GetMappingExpression("EndpointKeyType");
@@ -160,14 +243,17 @@ namespace dk.gov.oiosi.common
                     xpathExpression,
                     documentType.Namespaces);
             KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
-            return ParseKeyTypeCode(mapping.MapsTo);
+            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.ParseKeyTypeCode(mapping.MapsTo);
+
+            return endpointKeyTypeCode;
         }
 
         /// <summary>
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType) {
+        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
+        {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
             KeyTypeMappingExpression mappingExpression = endpointType.SenderKey.GetMappingExpression("EndpointKeyType");
@@ -179,11 +265,15 @@ namespace dk.gov.oiosi.common
                     xpathExpression,
                     documentType.Namespaces);
             KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
-            return ParseKeyTypeCode(mapping.MapsTo);
+            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.ParseKeyTypeCode(mapping.MapsTo);
+
+            return endpointKeyTypeCode;
         }
 
-        private static EndpointKeyTypeCode ParseKeyTypeCode(string code) {
-            switch (code) {
+        private static EndpointKeyTypeCode ParseKeyTypeCode(string code)
+        {
+            switch (code)
+            {
                 case "cvr":
                     return EndpointKeyTypeCode.cvr;
                 case "ean":

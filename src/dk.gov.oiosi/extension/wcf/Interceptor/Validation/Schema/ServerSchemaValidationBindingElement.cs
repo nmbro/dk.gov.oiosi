@@ -28,6 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   *
   */
 
@@ -35,7 +37,8 @@ using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
-namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
+namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
+{
 
     /// <summary>
     /// validation binding element
@@ -58,8 +61,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// Gets request
         /// </summary>
         /// <param name="message">message</param>
-        public override void InterceptRequest(InterceptorMessage message) {
-            XmlDocument document = message.GetBody();
+        public override void InterceptRequest(InterceptorMessage message)
+        {
+            string document = message.GetBodyAsString();
             this.schemaValidator.Validate(document);
         }
 
@@ -68,13 +72,15 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public override void InterceptResponse(InterceptorMessage message) { }
+        public override void InterceptResponse(InterceptorMessage message)
+        { }
 
         /// <summary>
         /// Clones a bindingelement
         /// </summary>
         /// <returns></returns>
-        public override BindingElement Clone() {
+        public override BindingElement Clone()
+        {
             return new ServerSchemaValidationBindingElement(ValidationServerConfiguration);
         }
     }

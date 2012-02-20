@@ -41,31 +41,45 @@ namespace dk.gov.oiosi.communication
     using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema;
     using System.Xml;
     using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron;
+using dk.gov.oiosi.logging;
 
     public class SendingValidation
     {
+        private ILogger logger;
+
+        public SendingValidation()
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
 
         public bool Validate(OiosiMessage oiosiMessage)
         {
             bool result = true;
             SendingOptionConfig sendingOptionConfig = ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();
-            
+            this.logger.Trace("Strart SendingValidation");
+
             if (sendingOptionConfig.SchemaValidationBool)
             {
+                this.logger.Trace("Strart schema");
                 SchemaValidatorWithLookup schemaValidatorWithLookup = new SchemaValidatorWithLookup();
-                XmlDocument xmlDocument = oiosiMessage.MessageXml;
-                schemaValidatorWithLookup.Validate(xmlDocument);
+                //string document = oiosiMessage.MessageXml
+                XmlDocument document = oiosiMessage.MessageXml;
+                schemaValidatorWithLookup.Validate(document);
                 result = true;
+                
             }
 
             if (result && sendingOptionConfig.SchematronValidationBool)
             {
+                this.logger.Trace("Strart schematron");
                 SchematronValidatorWithLookup schematronValidatorWithLookup = new SchematronValidatorWithLookup();
-                XmlDocument xmlDocument = oiosiMessage.MessageXml;
-                schematronValidatorWithLookup.Validate(xmlDocument);
+                //string document = oiosiMessage.MessageString;
+                XmlDocument document = oiosiMessage.MessageXml;
+                schematronValidatorWithLookup.Validate(document);
                 result = true;
             }
 
+            this.logger.Trace("Finish SendingValidation");
             return result;
         }
     }

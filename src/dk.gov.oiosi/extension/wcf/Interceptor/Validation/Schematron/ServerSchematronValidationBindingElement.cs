@@ -28,19 +28,20 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   */
 
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
-namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
-
+namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron
+{
     /// <summary>
     /// Schematron validation binding element
     /// </summary>
-    public class ServerSchematronValidationBindingElement : ValidationServerBindingElement 
+    public class ServerSchematronValidationBindingElement : ValidationServerBindingElement
     {
         private SchematronValidatorWithLookup validator;
 
@@ -49,8 +50,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// </summary>
         /// <param name="configuration">validation configuration</param>
         public ServerSchematronValidationBindingElement(ValidationServerConfiguration configuration)
-            : base(configuration) {
-            validator = new SchematronValidatorWithLookup();
+            : base(configuration)
+        {
+            this.validator = new SchematronValidatorWithLookup();
         }
 
         /// <summary>
@@ -59,8 +61,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// <param name="message">message</param>
         public override void InterceptRequest(InterceptorMessage message)
         {
-            XmlDocument document = message.GetBody();
-            validator.Validate(document);
+            string documentAsString = message.GetBodyAsString();
+            this.validator.Validate(documentAsString);
         }
 
         /// <summary>
@@ -73,7 +75,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// Clones a binding element
         /// </summary>
         /// <returns></returns>
-        public override BindingElement Clone() 
+        public override BindingElement Clone()
         {
             return new ServerSchematronValidationBindingElement(ValidationServerConfiguration);
         }

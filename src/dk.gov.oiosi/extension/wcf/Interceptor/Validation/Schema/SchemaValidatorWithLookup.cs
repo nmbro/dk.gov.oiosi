@@ -28,7 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   */
 
 using System;
@@ -70,6 +71,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
         /// Schema validator
         /// </summary>
         /// <param name="document">document to validate</param>
+        [Obsolete("It is much faster to use Validate(string documentAsString)", false)]
         public void Validate(XmlDocument document) 
         {
             this.logger.Trace("Schema validate xml document.");
@@ -87,6 +89,50 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                 ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
 
                 schemaValidator.SchemaValidateXmlDocument(document, XmlSchemaSet, validationEventHandler);
+
+            }
+            catch (SchemaValidateDocumentFailedException)
+            {
+                throw;
+            }
+            catch (SchemaValidationFailedException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                this.logger.Debug("Schema validate xml document.", ex);
+                throw new SchemaValidateDocumentFailedException(ex);
+            }
+
+            this.logger.Trace("Schema validate xml document - Finish.");
+        }
+
+        /// <summary>
+        /// Schema validator
+        /// </summary>
+        /// <param name="documentAsString">document to validate</param>
+        public void Validate(string documentAsString)
+        {
+            this.logger.Trace("Schema validate xml document.");
+            try
+            {
+                if (documentAsString == null)
+                {
+                    throw new SchemaValidationInterceptionEmptyBodyException();
+                }
+
+                XmlDataDocument xmlDoc = new XmlDataDocument();
+                xmlDoc.LoadXml(documentAsString);
+                // ny udfording, find documentType via XmlReader eller ren string ?
+                DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(xmlDoc);
+
+                SchemaStore schemaStore = new SchemaStore();
+                XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
+                SchemaValidator schemaValidator = new SchemaValidator();
+                ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
+
+                schemaValidator.SchemaValidateXmlDocument(documentAsString, XmlSchemaSet, validationEventHandler);
 
             }
             catch (SchemaValidateDocumentFailedException)

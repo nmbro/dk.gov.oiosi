@@ -28,11 +28,12 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
   */
 
 using System;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.xml.schematron
 {
@@ -46,6 +47,18 @@ namespace dk.gov.oiosi.xml.schematron
         /// </summary>
         /// <param name="document">the current document</param>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public SchematronValidationFailedException(XmlDocument document, Exception innerException) : base(XmlDocumentKeywords.GetKeywords(document), innerException) { }
+        public SchematronValidationFailedException(XmlDocument document, Exception innerException) 
+            : base(XmlDocumentKeywords.GetKeywords(document), innerException)
+        { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="keywords">keywords for the message</param>>
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public SchematronValidationFailedException(Dictionary<string, string> keywords, Exception innerException)
+            : base(keywords, innerException)
+        { }
+        
     }
 }

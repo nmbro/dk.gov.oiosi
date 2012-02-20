@@ -37,6 +37,7 @@ using System.Xml.Schema;
 using dk.gov.oiosi.logging;
 using System.Text;
 using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.xml.schema {
 
@@ -133,32 +134,56 @@ namespace dk.gov.oiosi.xml.schema {
         /// the document is invalid the validation event handler is called, if no event 
         /// handler is provided, and exception is thrown
         /// </summary>
-        /// <param name="xmlDocument"></param>
+        /// <param name="xmlDocumentAsString"></param>
         /// <param name="xmlSchemaSet"></param>
         /// <param name="validationEventHandler"></param>
-        private void SchemaValidateXmlDocument2(XmlDocument xmlDocument, XmlSchemaSet xmlSchemaSet, ValidationEventHandler validationEventHandler)
+        public void SchemaValidateXmlDocument(string xmlDocumentAsString, XmlSchemaSet xmlSchemaSet, ValidationEventHandler validationEventHandler)
         {
-            //// just as fast as SchemaValidateXmlDocument - can be improved?
             try
             {
-               // why is the document cloned
-                XmlDocument validateDocument = null;
-
-                if (validationEventHandler == null)
+                // http://msdn.microsoft.com/en-us/library/system.xml.schema.validationeventargs.severity.aspx
+                using (Stream stream = new MemoryStream())
                 {
-                    validateDocument = xmlDocument;
-                }
-                else
-                {
-                    validateDocument = (XmlDocument)xmlDocument.Clone();
-                }
+                    XmlWriterSettings xmlDocumentWriterSettings = new XmlWriterSettings();
+                    xmlDocumentWriterSettings.Encoding = Encoding.UTF8;
+                    xmlDocumentWriterSettings.Indent = true;
+                    xmlDocumentWriterSettings.IndentChars = " ";
+                    xmlDocumentWriterSettings.NewLineOnAttributes = true;
+                    xmlDocumentWriterSettings.OmitXmlDeclaration = false;
+                    xmlDocumentWriterSettings.CloseOutput = false;
 
-                validateDocument.Schemas.Add(xmlSchemaSet);
-                validateDocument.Validate(validationEventHandler);
+                    using (StreamWriter sw = new StreamWriter(stream))
+                    {
+                        // write document to memory stream 
+                        sw.Write(xmlDocumentAsString);
+                        sw.Flush();
+
+                        // document is now in a memory stream
+                        // set stream index to 0.
+                        stream.Seek(0, SeekOrigin.Begin);
+
+                        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                        xmlReaderSettings.Schemas.Add(xmlSchemaSet);
+                        xmlReaderSettings.ValidationEventHandler += validationEventHandler;
+                        xmlReaderSettings.ValidationType = ValidationType.Schema;
+
+                        //Create the schema validating reader.
+                        using (XmlReader xmlReader = XmlReader.Create(stream, xmlReaderSettings))
+                        {
+                            while (xmlReader.Read()) { }
+                        }
+                    }
+                }
+            }
+            catch (SchemaValidateDocumentFailedException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
-                throw new SchemaValidationFailedException(xmlDocument, ex);
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(xmlDocumentAsString);
+                throw new SchemaValidationFailedException(xmlDoc, ex);
             }
         }
     }

@@ -28,7 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
+  *   
   */
 
 using System.Resources;

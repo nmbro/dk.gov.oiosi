@@ -28,7 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   */
 
 using System;
@@ -39,49 +40,76 @@ using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.logging;
+using System.IdentityModel.Tokens;
 
-namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
+namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels
+{
 
     /// <summary>
     /// Represents a interceptor message
     /// </summary>
-    public class InterceptorMessage {
-        private MessageBuffer _bufferCopy;
-        private Dictionary<string, object> _newProperties;
-        private MessageProperties _properties;
-        private bool _isFault;
-        private Message _originalMessage;
+    public class InterceptorMessage
+    {
+        private MessageBuffer bufferCopy;
+        private Dictionary<string, object> newProperties;
+        private MessageProperties properties;
+        private bool isFault;
+        private Message originalMessage;
 
         /// <summary>
         /// Constructor with a message
         /// </summary>
         /// <param name="message">a message</param>
-        public InterceptorMessage(Message message) {
-            _originalMessage = message;
-            _newProperties = new Dictionary<string, object>();
-            _properties = message.Properties;
-            _isFault = message.IsFault;
+        public InterceptorMessage(Message message)
+        {
+            this.originalMessage = message;
+            this.newProperties = new Dictionary<string, object>();
+            this.properties = message.Properties;
+            this.isFault = message.IsFault;
         }
 
         /// <summary>
         /// Gets whether the message is a fault
         /// </summary>
-        public bool IsFault {
-            get { return _isFault; }
+        public bool IsFault
+        {
+            get 
+            {
+                return this.isFault; 
+            }
         }
 
         /// <summary>
         /// Gets the properties of the message.
         /// </summary>
-        public MessageProperties Properties {
-            get { return _properties; }
+        public MessageProperties Properties
+        {
+            get 
+            {
+                return this.properties; 
+            }
         }
 
         /// <summary>
         /// Gets the certificate with which the message has been encrypted
         /// </summary>
-        public X509Certificate2 Certificate {
-            get { return ((System.IdentityModel.Tokens.X509SecurityToken)_originalMessage.Properties.Security.InitiatorToken.SecurityToken).Certificate; }
+        public X509Certificate2 Certificate
+        {
+            get 
+            {
+                X509Certificate2 x509Certificate2 = null;
+                SecurityToken securityToken = this.originalMessage.Properties.Security.InitiatorToken.SecurityToken;
+                if (securityToken is X509SecurityToken)
+                {
+                    x509Certificate2 = ((X509SecurityToken)securityToken).Certificate;
+                }
+                else
+                {
+                    throw new NotSupportedException("SecurityToken must be of type X509Certificate2");
+                }
+
+                return x509Certificate2;
+            }
         }
 
 
@@ -89,15 +117,22 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// Returns a copy of the message.
         /// </summary>
         /// <returns>the message</returns>
-        public Message GetCopy() {
+        public Message GetCopy()
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage get copy of message");
-            if(_bufferCopy == null)_bufferCopy = _originalMessage.CreateBufferedCopy(int.MaxValue);
-            Message message = _bufferCopy.CreateMessage();
-            foreach(KeyValuePair<string, object> pair in _newProperties) {
+            if (this.bufferCopy == null)
+            {
+                bufferCopy = originalMessage.CreateBufferedCopy(int.MaxValue);
+            }
+
+            Message message = bufferCopy.CreateMessage();
+            foreach (KeyValuePair<string, object> pair in newProperties)
+            {
                 string key = pair.Key;
                 object value = pair.Value;
                 message.Properties.Add(key, value);
             }
+
             return message;
         }
 
@@ -107,63 +142,111 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <remarks>In case an interceptor has been added UNDER the security layer a copy of the Message object should never be done - seeing how this leads to the To header not being signed.</remarks>
         /// <returns>The message</returns>
-        public Message GetMessage() {
-            if (_originalMessage.State == MessageState.Created)
-                return _originalMessage;
+        public Message GetMessage()
+        {
+            Message message;
+            if (this.originalMessage.State == MessageState.Created)
+            {
+                return this.originalMessage;
+            }
             else
-                return GetCopy();
+            {
+                message = this.GetCopy();
+            }
+
+            return message;
         }
 
         /// <summary>
         /// Returns the wcf message headers.
         /// </summary>
         /// <returns></returns>
-        public MessageHeaders GetHeaders() {
+        public MessageHeaders GetHeaders()
+        {
+            MessageHeaders messageHeaders = null;
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage get headers");
-            if (_bufferCopy == null) 
-                return new MessageHeaders(_originalMessage.Headers);
-            else {
-                Message message = _bufferCopy.CreateMessage();
-                return message.Headers;
+            if (this.bufferCopy == null)
+            {
+                messageHeaders = new MessageHeaders(originalMessage.Headers);
             }
+            else
+            {
+                Message message = bufferCopy.CreateMessage();
+                messageHeaders = message.Headers;
+            }
+
+            return messageHeaders;
         }
 
         /// <summary>
         /// Returns the body of a message
         /// </summary>
         /// <returns>a xmldocument with the body element only</returns>
-        public XmlDocument GetBody() {
+        public XmlDocument GetBody()
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage get body");
-            if (_bufferCopy == null) _bufferCopy = _originalMessage.CreateBufferedCopy(int.MaxValue);
-            Message message = _bufferCopy.CreateMessage();
-            return Utilities.GetMessageBodyAsXmlDocument(message);
+            if (this.bufferCopy == null)
+            {
+                this.bufferCopy = this.originalMessage.CreateBufferedCopy(int.MaxValue);
+            }
+
+            Message message = this.bufferCopy.CreateMessage();
+            XmlDocument xmlDocument = Utilities.GetMessageBodyAsXmlDocument(message);
+
+            return xmlDocument;
+        }
+
+        /// <summary>
+        /// Returns the body of a message
+        /// </summary>
+        /// <returns>a xmldocument with the body element only</returns>
+        public string GetBodyAsString()
+        {
+            WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage get body");
+            if (this.bufferCopy == null)
+            {
+                this.bufferCopy = this.originalMessage.CreateBufferedCopy(int.MaxValue);
+            }
+
+            Message message = this.bufferCopy.CreateMessage();
+            string body = Utilities.GetMessageBodyAsString(message);
+
+            return body;
         }
 
         /// <summary>
         /// Sets a new body on the message
         /// </summary>
         /// <param name="body"></param>
-        public void SetBody(XmlDocument body) {
+        public void SetBody(XmlDocument body)
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage set body");
-            if (_bufferCopy == null) 
-                _bufferCopy = _originalMessage.CreateBufferedCopy(int.MaxValue);
+            if (this.bufferCopy == null)
+            {
+                this.bufferCopy = this.originalMessage.CreateBufferedCopy(int.MaxValue);
+            }
+
             XmlNodeReader xnr = new XmlNodeReader(body.DocumentElement);
-            Message copy = _bufferCopy.CreateMessage();
+            Message copy = this.bufferCopy.CreateMessage();
             Message updatedMessage = Message.CreateMessage(copy.Version, copy.Headers.Action, xnr);
             updatedMessage.Headers.Clear();
             updatedMessage.Headers.CopyHeadersFrom(copy.Headers);
-            _bufferCopy = updatedMessage.CreateBufferedCopy(int.MaxValue);
+
+            // ?? update buffer again
+            this.bufferCopy = updatedMessage.CreateBufferedCopy(int.MaxValue);
         }
+
 
         /// <summary>
         /// Adds a custom property the message.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void AddProperty(string key, object value) {
+        public void AddProperty(string key, object value)
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage adds property");
-            _properties.Add(key, value);
-            _newProperties.Add(key, value);
+            this.properties.Add(key, value);
+            this.newProperties.Add(key, value);
         }
 
         /// <summary>
@@ -171,18 +254,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="certificateSubject"></param>
         /// <returns></returns>
-        public bool TryGetCertificateSubject(out string certificateSubject) {
+        public bool TryGetCertificateSubject(out string certificateSubject)
+        {
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage try get certificate subject");
-            certificateSubject = null;
-            try {
-                string identityName = _properties.Security.ServiceSecurityContext.PrimaryIdentity.Name;
+            bool success;
+            try
+            {
+                string identityName = this.properties.Security.ServiceSecurityContext.PrimaryIdentity.Name;
                 int index = identityName.LastIndexOf(';');
                 certificateSubject = identityName.Substring(0, index);
-                return true;
-            } 
-            catch (Exception) {
-                return false;
+                success = true;
             }
+            catch (Exception)
+            {
+                certificateSubject = string.Empty;
+                success = false;
+            }
+
+            return success;
         }
     }
 }

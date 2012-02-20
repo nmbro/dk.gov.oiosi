@@ -28,7 +28,8 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply ApS
+  *   Jens Madsen, Comcare
   */
 
 using System;
@@ -61,6 +62,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// Validates a document
         /// </summary>
         /// <param name="document">the document to validate</param>
+        [Obsolete("It is much faster to use Validate(string documentAsString)", false)]
         public void Validate(XmlDocument document) {
             try
             {
@@ -76,6 +78,45 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
                 XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                 SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
                 validator.SchematronValidateXmlDocument(document, compiledStylesheet);
+            }
+            catch (SchematronErrorException ex)
+            {
+                this.logger.Info("XmlDocument rejected, as it contant at least one schematron error.");
+                throw new SchematronValidateDocumentFailedException(ex);
+            }
+            catch (Exception ex)
+            {
+                this.logger.Error("Schematron validation failed", ex);
+                throw new SchematronValidateDocumentFailedException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Validates a document
+        /// </summary>
+        /// <param name="documentAsString">the document to validate</param>
+        public void Validate(string documentAsString)
+        {
+            try
+            {
+                this.logger.Trace("SchematronValidation");
+                if (documentAsString == null)
+                {
+                    throw new SchematronValidationInterceptionEmptyBodyException();
+                }
+
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(documentAsString);
+                DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(xmlDoc);
+
+
+                SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
+                SchematronStore store = new SchematronStore();
+                XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
+
+                validator.SchematronValidateXmlDocument(documentAsString, compiledStylesheet);
             }
             catch (SchematronErrorException ex)
             {
