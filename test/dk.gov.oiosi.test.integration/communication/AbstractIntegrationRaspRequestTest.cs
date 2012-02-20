@@ -31,7 +31,7 @@ namespace dk.gov.oiosi.test.integration.communication
             FileInfo oioublFile = new FileInfo(path);
             
             Response response = null;
-            bool disableTest = true;
+            bool disableTest = false;
             if (disableTest)
             {
                 // disable the test
