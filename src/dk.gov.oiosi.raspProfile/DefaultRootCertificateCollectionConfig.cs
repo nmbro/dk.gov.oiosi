@@ -55,6 +55,7 @@ namespace dk.gov.oiosi.raspProfile {
             
             // OCES 1
             RootCertificateLocation certificatLocation = new RootCertificateLocation();
+            certificatLocation.Description = "TDC OCES Systemtest CA II";
             certificatLocation.SerialNumber = "403617FC";
             certificatLocation.StoreLocation = StoreLocation.LocalMachine;
             certificatLocation.StoreName = StoreName.Root;
@@ -73,6 +74,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             // OCES 1
             RootCertificateLocation certificatLocation = new RootCertificateLocation();
+            certificatLocation.Description = "TDC OCES CA";
             certificatLocation.SerialNumber = "3E48BDC4";
             certificatLocation.StoreLocation = StoreLocation.LocalMachine;
             certificatLocation.StoreName = StoreName.Root;

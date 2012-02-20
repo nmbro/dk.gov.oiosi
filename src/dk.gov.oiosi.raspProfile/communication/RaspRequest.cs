@@ -114,39 +114,46 @@ namespace dk.gov.oiosi.raspProfile.communication
         }
 
         #region IRaspRequest Members
-        
+
+
         /// <summary>
         /// Synchronously sends a request and gets a response
         /// </summary>
-        /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
-        /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
         /// <param name="message">Request message</param>
-        public void GetResponse(OiosiMessage message, out Response response, string documentId)
+        /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
+        /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
+        public void GetResponse(OiosiMessage request, string documentId, out Response response)
         {
             // Validate the OiosiMessage
             SendingValidation sendingValidation = new SendingValidation();
-            sendingValidation.Validate(message);
+            sendingValidation.Validate(request);
 
-            this.AddCustomHeaders(message, documentId);
-            this.incapsulatedRequest.GetResponse(message, out response);
+            this.AddCustomHeaders(request, documentId);
+            this.incapsulatedRequest.GetResponse(request, out response);
+        }
+
+        [Obsolete("void GetResponse(OiosiMessage request, out Response response, string documentId", false)]
+        public void GetResponse(OiosiMessage request, out Response response, string documentId)
+        {
+            this.GetResponse(request, documentId, out response);
         }
 
         /// <summary>
         /// Asynchronously starts sending a request
         /// </summary>
         /// <param name="message">Request message</param>
-        /// <param name="response">The response object</param>
         /// <param name="documentId">The document Id used for the custom headers</param>
+        /// <param name="response">The response object</param>
         /// <param name="callback">The asynchronous callback</param>
         /// <returns>Returns an IAsyncResult object</returns>
-        public IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, string documentId, AsyncCallback callback)
+        public IAsyncResult BeginGetResponse(OiosiMessage message, string documentId, out Response response, AsyncCallback callback)
         {
             // Validate the OiosiMessage
             SendingValidation sendingValidation = new SendingValidation();
             sendingValidation.Validate(message);
 
             AddCustomHeaders(message, documentId);
-            return incapsulatedRequest.BeginGetResponse(message, out response, callback);
+            return this.incapsulatedRequest.BeginGetResponse(message, out response, callback);
         }
 
         /// <summary>
@@ -155,7 +162,7 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// <returns>Response message</returns>
         public void EndGetResponse(IAsyncResult asyncResult, out Response response)
         {
-            incapsulatedRequest.EndGetResponse(asyncResult, out response);
+            this.incapsulatedRequest.EndGetResponse(asyncResult, out response);
         }
 
         /// <summary>

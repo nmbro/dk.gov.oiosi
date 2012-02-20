@@ -38,11 +38,18 @@ namespace dk.gov.oiosi.communication.configuration {
     /// <summary>
     /// Ambiguous result is returned
     /// </summary>
-    public class AmbiguousDocumentTypeResultFromIdException : AmbiguousDocumentTypeResultException {
+    public class AmbiguousDocumentTypeResultFromIdException : AmbiguousDocumentTypeResultException
+    {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="id">The ID of the document</param>
-        public AmbiguousDocumentTypeResultFromIdException(Guid id) : base(KeywordFromGuid.GetKeyword(id)) { }
+        public AmbiguousDocumentTypeResultFromIdException(Guid guid) : base(KeywordFromGuid.GetKeyword(guid)) { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">The ID of the document</param>
+        public AmbiguousDocumentTypeResultFromIdException(string id) : base(KeywordFromGuid.GetKeyword(id)) { }
     }
 }

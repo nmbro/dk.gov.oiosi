@@ -151,11 +151,21 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public DocumentTypeConfig GetDocumentType(Guid id) {
+        public DocumentTypeConfig GetDocumentType(Guid guid) {
             DocumentTypeConfig documentType = null;
-            if (!TryGetDocumentType(id, out documentType))
-                throw new NoDocumentTypeFoundFromIdException(id);
+            if (!TryGetDocumentType(guid, out documentType))
+                throw new NoDocumentTypeFoundFromIdException(guid);
             return documentType;
+        }
+
+        /// <summary>
+        /// Get a document type from the id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public DocumentTypeConfig GetDocumentType(string id)
+        {
+            return this.GetDocumentType(new Guid(id));
         }
 
         /// <summary>

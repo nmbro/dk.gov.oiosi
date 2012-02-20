@@ -39,12 +39,14 @@ using dk.gov.oiosi.exception;
 using dk.gov.oiosi.xml.schematron;
 using dk.gov.oiosi.xml.xpath.discriminator;
 
-namespace dk.gov.oiosi.communication.configuration {
+namespace dk.gov.oiosi.communication.configuration
+{
     /// <summary>
     /// A RASP UBL Document type (such as an Invoice or a Notification)
     /// </summary>
-    [System.Xml.Serialization.XmlRoot(Namespace =  dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-    public class DocumentTypeConfig : IEquatable<DocumentTypeConfig> {
+    [System.Xml.Serialization.XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
+    public class DocumentTypeConfig : IEquatable<DocumentTypeConfig>
+    {
         private string _friendlyName = "";
         private string _rootNamespace = "";
         private string _rootName = "";
@@ -52,7 +54,7 @@ namespace dk.gov.oiosi.communication.configuration {
         private string _schemaPath = "";
         private string _stylesheetPath = "";
         private string _xsltTransformStylesheetPath = "";
-        private Guid _id = Guid.NewGuid();
+        private Guid _id;
         private SchematronValidationConfig _schematronValidationConfig = new SchematronValidationConfig();
         private List<PrefixedNamespace> _namespaces = new List<PrefixedNamespace>();
         private DocumentEndpointInformation _endpointType = new DocumentEndpointInformation();
@@ -76,10 +78,35 @@ namespace dk.gov.oiosi.communication.configuration {
             string rootName,
             string rootNamespace,
             XpathDiscriminatorConfigCollection identifierDiscriminators
-            ) {
+            )
+        {
             if (rootName == null) throw new NullArgumentException("rootName");
             if (rootNamespace == null) throw new NullArgumentException("rootNamespace");
             if (identifierDiscriminators == null) throw new NullArgumentException("identifierDiscriminators");
+            this._id = Guid.NewGuid();
+            _rootName = rootName;
+            _rootNamespace = rootNamespace;
+            _identifierDiscriminators = identifierDiscriminators;
+        }
+
+        /// <summary>
+        /// Constructor that only takes the parameters to uniquely identify
+        /// the document type.
+        /// </summary>
+        /// <param name="rootName"></param>
+        /// <param name="rootNamespace"></param>
+        /// <param name="identifierDiscriminators"></param>
+        public DocumentTypeConfig(
+            Guid id,
+            string rootName,
+            string rootNamespace,
+            XpathDiscriminatorConfigCollection identifierDiscriminators
+            )
+        {
+            if (rootName == null) throw new NullArgumentException("rootName");
+            if (rootNamespace == null) throw new NullArgumentException("rootNamespace");
+            if (identifierDiscriminators == null) throw new NullArgumentException("identifierDiscriminators");
+            this._id = id;
             _rootName = rootName;
             _rootNamespace = rootNamespace;
             _identifierDiscriminators = identifierDiscriminators;
@@ -88,6 +115,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="id">The id</param>
         /// <param name="friendlyName">Friendly name of the document</param>
         /// <param name="rootName">The document element name</param>
         /// <param name="rootNamespace">The document element namespace</param>
@@ -100,6 +128,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
         /// <param name="profileIdXPath">XPath expression</param>
         public DocumentTypeConfig(
+            Guid id,
             string friendlyName,
             string rootName,
             string rootNamespace,
@@ -111,7 +140,9 @@ namespace dk.gov.oiosi.communication.configuration {
             XpathDiscriminatorConfigCollection identifierDiscriminators,
             SchematronValidationConfig schematronValidationConfig,
             ProfileIdXPath profileIdXPath
-            ) : this(rootName, rootNamespace, identifierDiscriminators) {
+            )
+            : this(id, rootName, rootNamespace, identifierDiscriminators)
+        {
             if (friendlyName == null) throw new NullArgumentException("friendlyName");
             if (schemaPath == null) throw new NullArgumentException("schemaPath");
             if (stylesheetPath == null) throw new NullArgumentException("stylesheetPath");
@@ -119,6 +150,7 @@ namespace dk.gov.oiosi.communication.configuration {
             if (xsltTransformStylesheetPath == null) throw new NullArgumentException("xsltTransformStylesheetPath");
             if (endpointType == null) throw new NullArgumentException("endpointType");
             if (schematronValidationConfig == null) throw new NullArgumentException("schematronValidationConfig");
+
             _friendlyName = friendlyName;
             _schemaPath = schemaPath;
             _stylesheetPath = stylesheetPath;
@@ -145,6 +177,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
         /// <param name="profileIdXPath">Xpath expression</param>
         public DocumentTypeConfig(
+            Guid id,
             string friendlyName,
             string rootName,
             string rootNamespace,
@@ -157,9 +190,11 @@ namespace dk.gov.oiosi.communication.configuration {
             XpathDiscriminatorConfigCollection identifierDiscriminators,
             SchematronValidationConfig schematronValidationConfig,
             ProfileIdXPath profileIdXPath
-        ) : this (friendlyName, rootName, rootNamespace, schemaPath, 
-            stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath,
-            endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath) {
+        )
+            : this(id, friendlyName, rootName, rootNamespace, schemaPath,
+              stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath,
+              endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath)
+        {
             if (namespaces == null) throw new NullArgumentException("namespaces");
             _namespaces = namespaces;
         }
@@ -170,18 +205,32 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <remarks>
         /// Do not use the set property it is used for xml serialization
         /// </remarks>
-        public Guid Id {
-            get { return _id; }
-            set { _id = value; }
+        [XmlElement("Id")]
+        public Guid Id
+        {
+            get { return this._id; }
+            set 
+            {
+                if (value == null)
+                {
+                    this._id = Guid.NewGuid();
+                }
+                else
+                {
+                    this._id = value;
+                }
+            }
         }
 
         /// <summary>
         /// Friendly name of the document type, e.g. for use in the UI
         /// </summary>
         [XmlElement("FriendlyName")]
-        public string FriendlyName {
+        public string FriendlyName
+        {
             get { return _friendlyName; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _friendlyName = value;
             }
@@ -191,105 +240,123 @@ namespace dk.gov.oiosi.communication.configuration {
         /// The namespace of the root node of the document
         /// </summary>
         [XmlElement("RootNamespace")]
-        public string RootNamespace {
+        public string RootNamespace
+        {
             get { return _rootNamespace; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _rootNamespace = value;
-            }   
+            }
         }
 
         /// <summary>
         /// Name of the document type
         /// </summary>
         [XmlElement("RootName")]
-        public string RootName { 
-            get { return _rootName; } 
-            set {
+        public string RootName
+        {
+            get { return _rootName; }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _rootName = value;
-            } 
+            }
         }
 
         /// <summary>
         /// The Service contract TModel, used for UDDI lookups
         /// </summary>
         [XmlElement("ServiceContractTModel")]
-        public string ServiceContractTModel { 
-            get { return _serviceContractTModel; } 
-            set {
+        public string ServiceContractTModel
+        {
+            get { return _serviceContractTModel; }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _serviceContractTModel = value;
-            } 
+            }
         }
 
         /// <summary>
         /// The path to a XML schema file, defining the document type
         /// </summary>
         [XmlElement("SchemaPath")]
-        public string SchemaPath { 
-            get { return _schemaPath; } 
-            set {
+        public string SchemaPath
+        {
+            get { return _schemaPath; }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _schemaPath = value;
-            } 
+            }
         }
 
         /// <summary>
         /// The path to a stylesheet, defining how documents of this type should be presented
         /// </summary>
         [XmlElement("StylesheetPath")]
-        public string StylesheetPath { 
-            get { return _stylesheetPath; } 
-            set {
+        public string StylesheetPath
+        {
+            get { return _stylesheetPath; }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
-                _stylesheetPath = value; 
-            } 
+                _stylesheetPath = value;
+            }
         }
 
         /// <summary>
         /// A list of namespaces used by this document type
         /// </summary>
         [XmlArray("Namespaces")]
-        public PrefixedNamespace[] Namespaces { 
-            get { return _namespaces.ToArray(); } 
-            set {
+        public PrefixedNamespace[] Namespaces
+        {
+            get { return _namespaces.ToArray(); }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
-                _namespaces = new List<PrefixedNamespace>(value); 
-            } 
+                _namespaces = new List<PrefixedNamespace>(value);
+            }
         }
 
         /// <summary>
         /// A definition of what type of endpoints will receive documents of this type
         /// </summary>
         [XmlElement("EndpointType")]
-        public DocumentEndpointInformation EndpointType { 
-            get { return _endpointType; } 
-            set {
+        public DocumentEndpointInformation EndpointType
+        {
+            get { return _endpointType; }
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
-                _endpointType = value; 
-            } 
+                _endpointType = value;
+            }
         }
 
         /// <summary>
         /// The path to the XSLT transform stylesheet
         /// </summary>
-        public string XsltTransformStylesheetPath {
+        public string XsltTransformStylesheetPath
+        {
             get { return _xsltTransformStylesheetPath; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
-                _xsltTransformStylesheetPath = value; 
+                _xsltTransformStylesheetPath = value;
             }
         }
 
         /// <summary>
         /// Gets and sets the IdentifierDiscriminators
         /// </summary>
-        public XpathDiscriminatorConfigCollection IdentifierDiscriminators {
+        public XpathDiscriminatorConfigCollection IdentifierDiscriminators
+        {
             get { return _identifierDiscriminators; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
-                _identifierDiscriminators = value; 
+                _identifierDiscriminators = value;
             }
         }
 
@@ -297,9 +364,11 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Gets and sets the schematron validation configuration
         /// </summary>
         [XmlElement("SchematronValidationConfig")]
-        public SchematronValidationConfig SchematronValidationConfig {
+        public SchematronValidationConfig SchematronValidationConfig
+        {
             get { return _schematronValidationConfig; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("value");
                 _schematronValidationConfig = value;
             }
@@ -309,7 +378,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Gets and sets the coniguration section for custom headers
         /// </summary>
         [XmlElement("CustomHeaderConfiguration")]
-        public CustomHeaderConfiguration CustomHeaderConfiguration {
+        public CustomHeaderConfiguration CustomHeaderConfiguration
+        {
             get { return _customHeaderConfiguration; }
             set { _customHeaderConfiguration = value; }
         }
@@ -322,7 +392,8 @@ namespace dk.gov.oiosi.communication.configuration {
         public ProfileIdXPath ProfileIdXPath
         {
             get { return _profileIdXPath; }
-            set {
+            set
+            {
                 if (value == null) throw new NullArgumentException("ProfileIdXPath value");
                 _profileIdXPath = value;
             }
@@ -333,7 +404,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="ns">Namespace</param>
         /// <param name="prefix">Prefix</param>
-        public void AddNamespace(string ns, string prefix) {
+        public void AddNamespace(string ns, string prefix)
+        {
             _namespaces.Add(new PrefixedNamespace(ns, prefix));
         }
 
@@ -341,7 +413,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Adds a namespace
         /// </summary>
         /// <param name="ns">A namespace with a prefix</param>
-        public void AddNamespace(PrefixedNamespace ns) {
+        public void AddNamespace(PrefixedNamespace ns)
+        {
             _namespaces.Add(ns);
         }
 
@@ -350,7 +423,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="document">The document to check for</param>
         /// <returns>Returns true if name and namespace of the root element matches</returns>
-        public bool IsDocumentOfType(XmlDocument document) {
+        public bool IsDocumentOfType(XmlDocument document)
+        {
             if (document == null) throw new NullArgumentException("document");
             XmlElement root = document.DocumentElement;
             if (root.LocalName != RootName) return false;
@@ -367,7 +441,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(DocumentTypeConfig other) {
+        public bool Equals(DocumentTypeConfig other)
+        {
             if (_id == other._id) return true;
             if (_rootName != other._rootName) return false;
             if (_rootNamespace != other._rootNamespace) return false;

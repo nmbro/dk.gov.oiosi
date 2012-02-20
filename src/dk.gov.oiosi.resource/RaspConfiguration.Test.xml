@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.2.4.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
@@ -4065,112 +4065,8 @@
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
       <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
-        <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-BilSim-1.0</Name>
-        <TModelGuid>uddi:362229ac-b657-452a-b8f8-c93e62c670ff</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSimR-BilSim-1.0</Name>
-        <TModelGuid>uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>Catalogue-CatBas-1.0</Name>
         <TModelGuid>uddi:4697A391-741F-4534-A21E-8F0A460013BB</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Regning</Name>
-        <TModelGuid>uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Kreditnota</Name>
-        <TModelGuid>uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile1:ver2.0</Name>
-        <TModelGuid>uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile2:ver2.0</Name>
-        <TModelGuid>uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
-        <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
-        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
-        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
-        <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile8:ver2.0</Name>
-        <TModelGuid>uddi:F4240370-CCA6-401e-9B5B-4531F413421D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-BilSimR-1.0</Name>
-        <TModelGuid>uddi:98070e14-ee30-4b10-84ef-986cde3b8116</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-PayBas-1.0</Name>
-        <TModelGuid>uddi:E5D505C0-4B52-4485-8169-4AB5343559A5</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-PayBasR-1.0</Name>
-        <TModelGuid>uddi:FED5F809-64EC-4523-BC57-4A57D5680DA9</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSim-BilSim-1.0</Name>
-        <TModelGuid>uddi:142C4188-3D53-440d-A64F-68D7C3B9A59B</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSimR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:1e1b209e-7b8d-4f1e-8f2a-f3d9a94d1086</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSim-BilSimR-1.0</Name>
-        <TModelGuid>uddi:7A638D35-3E08-432e-B558-74CB85889905</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdv-BilSim-1.0</Name>
-        <TModelGuid>uddi:88FBD6D5-6A25-4c08-91CC-5344C73C4D69</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdvR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:b23940b1-d571-4640-8830-9b7f34809fbc</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdv-BilSimR-1.0</Name>
-        <TModelGuid>uddi:76897296-08aa-4848-a933-ae068b4c604e</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdvR-BilSim-1.0</Name>
-        <TModelGuid>uddi:1d01dd98-a302-4897-92d8-fd501447c450</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSel-BilSim-1.0</Name>
-        <TModelGuid>uddi:46D94D6B-E835-4916-BBB5-F27DC655876A</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSelR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:34CD4205-D7CF-47f6-87D4-DF4F8DB2AEFD</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSel-BilSimR-1.0</Name>
-        <TModelGuid>uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSelR-BilSim-1.0</Name>
-        <TModelGuid>uddi:ACED2BA9-5B9F-44d6-9698-FB55C3DED1A9</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatBasR-1.0</Name>
@@ -4201,40 +4097,92 @@
         <TModelGuid>uddi:EE7F4AEA-BFDC-4886-8C5E-319596E46DA5</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS OIOXML Elektronisk Regning</Name>
-        <TModelGuid>uddi:367e54f0-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-BilSim-1.0</Name>
+        <TModelGuid>uddi:362229ac-b657-452a-b8f8-c93e62c670ff</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS OIOXML Elektronisk Kreditnota</Name>
-        <TModelGuid>uddi:2c33e6e0-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-BilSimR-1.0</Name>
+        <TModelGuid>uddi:98070e14-ee30-4b10-84ef-986cde3b8116</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS Procurement-BilSimR-1.0</Name>
-        <TModelGuid>uddi:47a2e980-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-PayBas-1.0</Name>
+        <TModelGuid>uddi:E5D505C0-4B52-4485-8169-4AB5343559A5</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS Procurement-OrdAdvR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:5197bd80-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-PayBasR-1.0</Name>
+        <TModelGuid>uddi:FED5F809-64EC-4523-BC57-4A57D5680DA9</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS NS Procurement-PayBasR-1.0</Name>
-        <TModelGuid>uddi:4d2dadf0-e05a-11dc-889b-1a827c218899</TModelGuid>
+        <Name>Procurement-OrdSim-BilSim-1.0</Name>
+        <TModelGuid>uddi:142C4188-3D53-440d-A64F-68D7C3B9A59B</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NKS 2.0</Name>
-        <TModelGuid>uddi:fbc05a80-bde5-11dc-a81d-bfc65441a808</TModelGuid>
+        <Name>Procurement-OrdSimR-BilSimR-1.0</Name>
+        <TModelGuid>uddi:1e1b209e-7b8d-4f1e-8f2a-f3d9a94d1086</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>DOIP Order</Name>
-        <TModelGuid>uddi:1a967cf0-bde6-11dc-a81d-bfc65441a808</TModelGuid>
+        <Name>Procurement-OrdSim-BilSimR-1.0</Name>
+        <TModelGuid>uddi:7A638D35-3E08-432e-B558-74CB85889905</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>OIOXML elektronisk handel</Name>
-        <TModelGuid>uddi:c001daa0-8ba3-11dd-894e-770465b08940</TModelGuid>
+        <Name>Procurement-OrdSimR-BilSim-1.0</Name>
+        <TModelGuid>uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>OIOXML elektronisk handel - læs ind</Name>
-        <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
+        <Name>Procurement-OrdAdv-BilSim-1.0</Name>
+        <TModelGuid>uddi:88FBD6D5-6A25-4c08-91CC-5344C73C4D69</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdv-BilSimR-1.0</Name>
+        <TModelGuid>uddi:76897296-08aa-4848-a933-ae068b4c604e</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdvR-BilSim-1.0</Name>
+        <TModelGuid>uddi:1d01dd98-a302-4897-92d8-fd501447c450</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdvR-BilSimR-1.0</Name>
+        <TModelGuid>uddi:b23940b1-d571-4640-8830-9b7f34809fbc</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdSel-BilSim-1.0</Name>
+        <TModelGuid>uddi:46D94D6B-E835-4916-BBB5-F27DC655876A</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdSel-BilSimR-1.0</Name>
+        <TModelGuid>uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile1:ver2.0</Name>
+        <TModelGuid>uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile2:ver2.0</Name>
+        <TModelGuid>uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
+        <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
+        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
+        <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
+        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
+        <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile8:ver2.0</Name>
+        <TModelGuid>uddi:F4240370-CCA6-401e-9B5B-4531F413421D</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-Utility-1.0</Name>
@@ -4274,13 +4222,7 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiConfig">
-    <ProfileConformanceClaim />
-    <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
-    <PublishEndpoint>https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc</PublishEndpoint>
-    <PublishInquiryEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</PublishInquiryEndpoint>
-    <SecurityEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/security</SecurityEndpoint>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
-    <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
     <LookupRegistryFallbackConfig>
       <PrioritizedRegistryList>
         <Registry>
@@ -4294,13 +4236,9 @@
             <Endpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
           </EndpointCollection -->
         </Registry>
-        <Registry>
-          <EndpointCollection>
-            <!--Endpoint>http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint -->
-          </EndpointCollection>
-        </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
+  <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="CacheConfig">
     <OcspLookupCache>

@@ -4065,22 +4065,6 @@
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
       <ProfileMapping>
-        <Name>OIOXML elektronisk handel</Name>
-        <TModelGuid>uddi:c001daa0-8ba3-11dd-894e-770465b08940</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML elektronisk handel - læs ind</Name>
-        <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Regning</Name>
-        <TModelGuid>uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Kreditnota</Name>
-        <TModelGuid>uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>Catalogue-CatBas-1.0</Name>
         <TModelGuid>uddi:4697A391-741F-4534-A21E-8F0A460013BB</TModelGuid>
       </ProfileMapping>

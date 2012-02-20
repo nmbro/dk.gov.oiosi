@@ -404,7 +404,8 @@ namespace dk.gov.oiosi.communication
                 }
                 catch (CommunicationObjectAbortedException ex)
                 {
-                    string exString = ex.ToString();
+                    // The Communication Object hass already been aborted, so we can not close it
+                    // Exception should no be handled.
                 }
                 catch (Exception ex)
                 {
@@ -492,7 +493,7 @@ namespace dk.gov.oiosi.communication
                 // if that is the case we need to manually get the SOAP fault from the WebException
                 if (e.InnerException is System.Net.WebException)
                 {
-                    throw GetSoapFaultFromHttpException(e.InnerException as System.Net.WebException);
+                    throw this.GetSoapFaultFromHttpException(e.InnerException as System.Net.WebException);
                 }
                 else
                 {
@@ -508,7 +509,7 @@ namespace dk.gov.oiosi.communication
                 }
                 else
                 {
-                    throw CreateFaultWasReceivedException((FaultException)e.InnerException);
+                    throw this.CreateFaultWasReceivedException((FaultException)e.InnerException);
                 }
             }
             catch
@@ -524,8 +525,8 @@ namespace dk.gov.oiosi.communication
         /// </summary>
         private Exception GetSoapFaultFromHttpException(System.Net.WebException e)
         {
-
-            StringBuilder sb = new StringBuilder("");//, 65536);
+            // ToDo : should this string builder has ha max size? ~ new StringBuilder("", 65536);
+            StringBuilder sb = new StringBuilder();
             Stream s = e.Response.GetResponseStream();
 
             // Try to read the fault
@@ -534,20 +535,22 @@ namespace dk.gov.oiosi.communication
 
                 byte[] readBuffer = new byte[1000];
                 int count = 0;
+                bool finish = false;
 
-                for (; ; )
+                while (!finish)
                 {
                     count = s.Read(readBuffer, 0, readBuffer.Length);
 
                     if (count == 0)
                     {
                         // EOF
-                        break;
+                        finish = true;
                     }
-
-                    sb.Append(System.Text.Encoding.UTF8.GetString(readBuffer, 0, count));
+                    else
+                    {
+                        sb.Append(System.Text.Encoding.UTF8.GetString(readBuffer, 0, count));
+                    }
                 }
-
             }
             catch
             {

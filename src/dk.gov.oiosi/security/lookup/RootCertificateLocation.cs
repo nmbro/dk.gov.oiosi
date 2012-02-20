@@ -40,6 +40,8 @@ namespace dk.gov.oiosi.security.lookup {
     /// </summary>
     public class RootCertificateLocation : CertificateStoreIdentification
     {
+        private string description = string.Empty;
+
         /// <summary>
         /// Default constructor for the XMLSerializer but it should not be used.
         /// </summary>
@@ -58,6 +60,28 @@ namespace dk.gov.oiosi.security.lookup {
         public RootCertificateLocation(StoreLocation storeLocation, StoreName storeName, string serialNumber)
             : base(storeLocation, storeName, serialNumber)
         {
+        }
+
+        /// <summary>
+        /// Constructor that takes the store location, store name and the serial number of 
+        /// the certificate in the store as parameters.
+        /// </summary>
+        /// <param name="storeLocation"></param>
+        /// <param name="storeName"></param>
+        /// <param name="serialNumber"></param>
+        public RootCertificateLocation(string description, StoreLocation storeLocation, StoreName storeName, string serialNumber)
+            : base(storeLocation, storeName, serialNumber)
+        {
+            this.description = description;
+        }
+
+        /// <summary>
+        /// Gets and sets the store location.
+        /// </summary>
+        public string Description
+        {
+            get { return this.description; }
+            set { this.description = value; }
         }
     }
 }

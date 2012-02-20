@@ -59,33 +59,40 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Adds all the document types
         /// </summary>
-        public void Add() {
-            Add(GetInvoiceV07);
-            Add(GetCreditNoteV07);
-            
-            Add(GetApplicationResponse);               // Applikationsmeddelelse
-            Add(GetCatalogue);                         // Katalog
-            Add(GetCatalogueRequest);                  // Katalogforespørgsel
-            Add(GetCatalogueItemSpecificationUpdate);  // Opdatering af katalogelement
-            Add(GetCataloguePricingUpdate);            // Opdatering af katalogpriser
-            Add(GetCatalogueDeletion);                 // Sletning af katalog
-            Add(GetCreditNote);                        // Kreditnota
-            Add(GetInvoice);                           // Faktura
-            Add(GetOrder);                             // Ordre
-            Add(GetOrderCancellation);                 // Ordreannulering
-            Add(GetOrderResponse);                     // Ordrebekræftelse
-            Add(GetOrderChange);                       // Ordreændring
-            Add(GetOrderResponseSimple);               // Simpel ordrebekræftelse
-            Add(GetReminder);                          // Rykker
-            Add(GetStatement);                         // KontoUdtog
-            Add(GetUtilityStatement);                  // Forsynings specifikation
+        public void Add() 
+        {
+            this.Add(this.GetInvoiceV07);
+            this.Add(this.GetCreditNoteV07);
+
+            // Læs ind
+            // Add(this.GetScanInvoiceV07);
+            // Add(this.GetScanCreditNoteV07);
+
+            this.Add(this.GetApplicationResponse);               // Applikationsmeddelelse
+            this.Add(this.GetCatalogue);                         // Katalog
+            this.Add(this.GetCatalogueRequest);                  // Katalogforespørgsel
+            this.Add(this.GetCatalogueItemSpecificationUpdate);  // Opdatering af katalogelement
+            this.Add(this.GetCataloguePricingUpdate);            // Opdatering af katalogpriser
+            this.Add(this.GetCatalogueDeletion);                 // Sletning af katalog
+            this.Add(this.GetCreditNote);                        // Kreditnota
+            this.Add(this.GetInvoice);                           // Faktura
+            this.Add(this.GetOrder);                             // Ordre
+            this.Add(this.GetOrderCancellation);                 // Ordreannulering
+            this.Add(this.GetOrderResponse);                     // Ordrebekræftelse
+            this.Add(this.GetOrderChange);                       // Ordreændring
+            this.Add(this.GetOrderResponseSimple);               // Simpel ordrebekræftelse
+            this.Add(this.GetReminder);                          // Rykker
+            this.Add(this.GetStatement);                         // KontoUdtog
+            this.Add(this.GetUtilityStatement);                  // Forsynings specifikation
         }
 
         /// <summary>
         /// The catalogue document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCatalogue() {
+        public DocumentTypeConfig GetCatalogue() 
+        {
+            const string id = "68db0c6f-ec2c-44ad-b1c3-bdfae65ee5f0";
             const string documentName = "Katalog";
             const string rootName = "Catalogue";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2";
@@ -101,7 +108,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CatalogueResponse201Interface/SubmitCatalogueResponseRequestResponse";
             const string serviceContractTModel = "uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -109,7 +116,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue request document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCatalogueRequest() {
+        public DocumentTypeConfig GetCatalogueRequest() 
+        {
+            const string id = "463984d1-4ba5-44d6-8903-565cc56dd4cb";
             const string documentName = "Katalogforespørgsel";
             const string rootName = "CatalogueRequest";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2";
@@ -125,7 +134,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CatalogueRequestResponse201Interface/SubmitCatalogueRequestResponseResponse";
             const string serviceContractTModel = "uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -133,7 +142,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The statement document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetStatement() {
+        public DocumentTypeConfig GetStatement() 
+        {
+            const string id = "76c4f0fa-e969-4360-9a04-8de3c675d4f2";
             const string documentName = "KontoUdtog";
             const string rootName = "Statement";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Statement-2";
@@ -149,7 +160,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/StatementResponse201Interface/SubmitStatementResponseResponse";
             const string serviceContractTModel = "uddi:4e383840-bcfc-11dc-a81b-bfc65441a808";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -157,7 +168,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue item specification update document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCatalogueItemSpecificationUpdate() {
+        public DocumentTypeConfig GetCatalogueItemSpecificationUpdate()
+        {
+            const string id = "fb3034ea-eaaf-434b-8798-0433db497e66";
             const string documentName = "Opdatering af katalogelement";
             const string rootName = "CatalogueItemSpecificationUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2";
@@ -173,7 +186,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CatalogueItemSpecificationUpdateResponse201Interface/SubmitCatalogueItemSpecificationUpdateResponseResponse";
             const string serviceContractTModel = "uddi:63eab5c0-dfa0-11dc-889b-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -181,7 +194,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue pricing update document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCataloguePricingUpdate() {
+        public DocumentTypeConfig GetCataloguePricingUpdate() 
+        {
+            const string id = "02092e85-c2e4-4bb2-b22d-3eec04007a36";
             const string documentName = "Opdatering af katalogpriser";
             const string rootName = "CataloguePricingUpdate";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2";
@@ -197,7 +212,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CataloguePricingUpdateResponse201Interface/SubmitCataloguePricingUpdateResponseResponse";
             const string serviceContractTModel = "uddi:abdb2720-dfa0-11dc-889b-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -205,7 +220,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order cancellation document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetOrderCancellation() {
+        public DocumentTypeConfig GetOrderCancellation() 
+        {
+            const string id = "c4a09991-d038-4e51-bb06-2cdffe6c1b77";
             const string documentName = "Ordreannulering";
             const string rootName = "OrderCancellation";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2";
@@ -221,7 +238,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderCancellationResponse201Interface/SubmitOrderCancellationResponseResponse";
             const string serviceContractTModel = "uddi:7ba80590-dfa1-11dc-889b-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -229,7 +246,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order response document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetOrderResponse() {
+        public DocumentTypeConfig GetOrderResponse() 
+        {
+            const string id = "ba652e7d-e8bd-4926-8bd8-9e19a5ca23e6";
             const string documentName = "Ordrebekræftelse";
             const string rootName = "OrderResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
@@ -245,7 +264,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseResponse201Interface/SubmitOrderResponseResponseResponse";
             const string serviceContractTModel = "uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -253,7 +272,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order change document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetOrderChange() {
+        public DocumentTypeConfig GetOrderChange() 
+        {
+            const string id = "0412fdc2-5f07-4e6f-a8fd-c0dc7d780dce";
             const string documentName = "Ordreændring";
             const string rootName = "OrderChange";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2";
@@ -269,7 +290,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderChangeResponse201Interface/SubmitOrderChangeResponseResponse";
             const string serviceContractTModel = "uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -277,7 +298,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The catalogue deletion definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCatalogueDeletion() {
+        public DocumentTypeConfig GetCatalogueDeletion() 
+        {
+            const string id = "0efa1c48-b5e3-4eb8-bc5f-3fbd78daba10";
             const string documentName = "Sletning af katalog";
             const string rootName = "CatalogueDeletion";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2";
@@ -293,7 +316,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CatalogueDeletionResponse201Interface/SubmitCatalogueDeletionResponseResponse";
             const string serviceContractTModel = "uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -301,7 +324,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The application response document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetApplicationResponse() {
+        public DocumentTypeConfig GetApplicationResponse()
+        {
+            const string id = "40c9fbee-ad39-48ed-9e04-c28cbbf8a38c";
             const string documentName = "Applikationsmeddelse";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
@@ -317,7 +342,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponse201Interface/SubmitApplicationResponseResponse";
             const string serviceContractTModel = "uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -325,7 +350,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The credit note document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCreditNote() {
+        public DocumentTypeConfig GetCreditNote() 
+        {
+            const string id = "a25f2c30-cb5b-404d-886a-9030621f7eea";
             const string documentName = "Kreditnota";
             const string rootName = "CreditNote";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
@@ -341,7 +368,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteResponse";
             const string serviceContractTModel = "uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -349,7 +376,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// Settings for UBL Invoice 2.01
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetInvoice() {
+        public DocumentTypeConfig GetInvoice() 
+        {
+            const string id = "c0220657-c101-4d7d-9670-c9463e1559d5";
             const string documentName = "Faktura";
             const string rootName = "Invoice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
@@ -365,7 +394,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceResponse";
             const string serviceContractTModel = "uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -373,7 +402,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetOrder() {
+        public DocumentTypeConfig GetOrder() 
+        {
+            const string id = "5b84d1f6-f315-4a2c-a84d-095b10cc5a2c";
             const string documentName = "Ordre";
             const string rootName = "Order";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
@@ -389,7 +420,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Order201Interface/SubmitOrderResponse";
             const string serviceContractTModel = "uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -397,7 +428,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The order response simple document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetOrderResponseSimple() {
+        public DocumentTypeConfig GetOrderResponseSimple()
+        {
+            const string id = "c8577e35-7de6-49f6-926c-c061f5a7d1b6";
             const string documentName = "Simpel ordrebekræftelse";
             const string rootName = "OrderResponseSimple";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2";
@@ -413,7 +446,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponseSimple201Interface/SubmitOrderResponseSimpleResponse";
             const string serviceContractTModel = "uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -421,7 +454,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The reminder document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetReminder() {
+        public DocumentTypeConfig GetReminder() 
+        {
+            const string id = "b552710b-e4c2-44f6-a89e-1b158375b5f3";
             const string documentName = "Rykker";
             const string rootName = "Reminder";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Reminder-2";
@@ -437,7 +472,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Reminder201Interface/SubmitReminderResponse";
             const string serviceContractTModel = "uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -447,6 +482,7 @@ namespace dk.gov.oiosi.raspProfile {
         /// <returns>The document definition</returns>
         public DocumentTypeConfig GetUtilityStatement()
         {
+            const string id = "eee3da84-27b7-4b37-81b1-cfb9d2942a00";
             const string documentName = "Forsynings Specifikation";
             const string rootName = "UtilityStatement";
             const string rootNamespace = "urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2";
@@ -462,7 +498,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/UtilityStatement201Interface/SubmitUtilityStatementResponse";
             const string serviceContractTModel = "uddi:236f277d-a786-4724-a16e-26398b685a07";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             
             List < PrefixedNamespace > namespaces = new List<PrefixedNamespace>();
             namespaces.Add(new PrefixedNamespace("urn:oioubl:names:specification:oioubl:schema:xsd:CommonAggregateComponents-2", "cac"));
@@ -481,7 +517,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The invoice 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetInvoiceV07() {
+        public DocumentTypeConfig GetInvoiceV07() 
+        {
+            const string id = "5a15a880-eef8-40c0-80f2-bb65226f50c2";
             const string documentName = "Faktura v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pie/";
@@ -496,7 +534,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Response";
             const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -504,7 +542,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The scanned invoice 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetScanInvoiceV07() {
+        public DocumentTypeConfig GetScanInvoiceV07() 
+        {
+            const string id = "ef6f9602-7752-40a0-8b95-15440686c491";
             const string documentName = "Faktura v0.7 - Læs ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pip/";
@@ -519,7 +559,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07pipInterface/SubmitInvoice07pipResponse";
             const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -527,7 +567,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The credit note 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetCreditNoteV07() {
+        public DocumentTypeConfig GetCreditNoteV07() 
+        {
+            const string id = "7bd520d7-6ae5-4a3c-8604-082e69414092";            
             const string documentName = "Kreditnota v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/";
@@ -542,7 +584,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Response";
             const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
@@ -550,7 +592,9 @@ namespace dk.gov.oiosi.raspProfile {
         /// The scanned credit note 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetScanCreditNoteV07() {
+        public DocumentTypeConfig GetScanCreditNoteV07() 
+        {
+            const string id = "d430da7c-b4fd-4ac2-bd08-3ae77d680ffa";
             const string documentName = "Kreditnota v0.7 - Læs ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
@@ -565,11 +609,11 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpResponse";
             const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel);
             return documentTypeConfig;
         }
 
-        private DocumentTypeConfig GetDocumentTypeConfigOioublV2(string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, string xslPath, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel) {
+        private DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, string xslPath, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel) {
 
             const string OIOUBL_SCHEMATRON_ERROR_XPATH = "/Schematron/Error";
             const string OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH = "/Schematron/Error/Description";
@@ -583,12 +627,12 @@ namespace dk.gov.oiosi.raspProfile {
             DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            XPathDiscriminatorConfig id = GetCustomizationIdOoiubl2_01(rootName);
-            ids.Add(id);
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOoiubl2_01(rootName);
+            ids.Add(xPathDiscriminatorConfig);
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(documentName, rootName, rootNamespace, xsdPath, xslUIPath, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetUblNamespaces();
             namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
             documentType.Namespaces = namespaces.ToArray();
@@ -596,7 +640,7 @@ namespace dk.gov.oiosi.raspProfile {
             return documentType;
         }
 
-        private DocumentTypeConfig GetDocumentTypeConfigOioublV07(string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, string xslPath, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel) {
+        private DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, string xslPath, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel) {
             
             const string OIOXML_SCHEMATRON_ERROR_XPATH = "/schematron/error";
             const string OIOXML_SCHEMATRON_ERRORMESSAGE_XPATH = "/schematron/error";
@@ -613,7 +657,7 @@ namespace dk.gov.oiosi.raspProfile {
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, OIOXML_SCHEMATRON_ERROR_XPATH, OIOXML_SCHEMATRON_ERRORMESSAGE_XPATH);
 
-            DocumentTypeConfig documentType = new DocumentTypeConfig(documentName, rootName, rootNamespace, xsdPath, xslUIPath, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, "", "", endpointInformation, ids, schematronValidationConfig, profileIdXPath);
             List<PrefixedNamespace> namespaces = GetOioxmlNamespaces();
             namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
             documentType.Namespaces = namespaces.ToArray();

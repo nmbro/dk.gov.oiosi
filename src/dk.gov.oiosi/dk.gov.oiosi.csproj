@@ -426,16 +426,12 @@
     <Compile Include="extension\wcf\Interceptor\Security\ServerSignatureValidationProofBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProof.cs" />
     <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProofStore.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ClientSchematronValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ClientSchematronValidationBindingExtensionElement.cs" />
     <Compile Include="xml\schematron\FailedToLoadSchematronStylesheetException.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidateDocumentFailedException.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookup.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidationInterceptionEmptyBodyException.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ServerSchematronValidationBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ServerSchematronValidationBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\ClientSchemaValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\ClientSchemaValidationBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schema\FailedToLoadSchemaException.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schema\SchemaValidationInterceptionEmptyBodyException.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schema\SchemaValidatorWithLookup.cs" />
