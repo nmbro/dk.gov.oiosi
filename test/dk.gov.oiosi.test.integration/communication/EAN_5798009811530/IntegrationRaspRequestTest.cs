@@ -210,13 +210,6 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811530
         }
 
         [Test]
-        public void OioublUtilityStatement202MustBeSendableByRaspRequest()
-        {
-            AssertSendable("Resources/Documents/EAN_5798009811530/OIOUBL_UtilityStatement_v2p2.xml");
-        }
-
-
-        [Test]
         public void OioxmlCreditNoteMustBeSendableByRaspRequest()
         {
             AssertSendable("Resources/Documents/EAN_5798009811530/OIOXML_CreditNote_v0.7.xml");

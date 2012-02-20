@@ -29,11 +29,20 @@ namespace dk.gov.oiosi.test.integration.communication
         protected void AssertSendable(string path)
         {
             FileInfo oioublFile = new FileInfo(path);
+            
             Response response = null;
-            // disable the test
-            // Response response = SendRequestAndGetResponse(oioublFile);
-            // Assert.IsNotNull(response);
-            Assert.IsNull(response);
+            bool disableTest = true;
+            if (disableTest)
+            {
+                // disable the test
+                Assert.IsNull(response);
+            }
+            else
+            {
+                // perform the test
+                response = SendRequestAndGetResponse(oioublFile);
+                Assert.IsNotNull(response);
+            }
         }
 
         protected Response SendRequestAndGetResponse(FileInfo file)
@@ -44,7 +53,7 @@ namespace dk.gov.oiosi.test.integration.communication
             OiosiMessage oiosiMessage = new OiosiMessage(xmlDocument);
             RaspRequest raspRequest = this.GetRaspRequest(oiosiMessage);
             Response response;
-            raspRequest.GetResponse(oiosiMessage, out response, documentId);
+            raspRequest.GetResponse(oiosiMessage, documentId, out response);
             return response;
         }
 
