@@ -90,11 +90,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>8008</DevelopmentServerPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
           <DevelopmentServerVPath>/Oiosi</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/Oiosi</IISUrl>
+          <IISUrl>http://localhost:8080</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
