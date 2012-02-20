@@ -100,7 +100,7 @@ namespace dk.gov.oiosi.samples.ClientExample
                     // Use the OIOSI library class Request to send the document
                     Console.WriteLine("Starting to send...");
                     Response response;
-                    request.GetResponse(message, out response, Guid.NewGuid().ToString());
+                    request.GetResponse(message, Guid.NewGuid().ToString(),  out response);
 
                     // Print out the reply
                     GUI.PrintResponse(response);
