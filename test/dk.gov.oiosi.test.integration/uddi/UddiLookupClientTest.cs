@@ -76,7 +76,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             
             Assert.Greater(lookupResponses.Count, 0);
 
-            var expectedCertificateSubjectString = "OID.2.5.4.5=CVR:26769388-FID:1272375084431 + CN=Test NemHandelservice (funktionscertifikat), O=IT- og Telestyrelsen // CVR:26769388, C=DK";
+            var expectedCertificateSubjectString = "CN = Test NemHandelservice (funktionscertifikat) + SERIALNUMBER = CVR:34051178-FID:1329398684312, O = Digitaliseringsstyrelsen // CVR:34051178, C = DK";
             var actualCertificateSubjectString = lookupResponses[0].CertificateSubjectSerialNumber.SubjectString;
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }

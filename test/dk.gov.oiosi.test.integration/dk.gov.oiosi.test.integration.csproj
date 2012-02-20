@@ -126,8 +126,8 @@
       <Link>Resources\RaspConfiguration.Test.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="communication\EAN_5798009811547\_Endpoint Java .Net Version 1.2.1.txt" />
-    <Content Include="communication\EAN_5798009811561\_Endpoint Java .Net Version 1.2.3.txt" />
+    <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java Version 1.2.1.txt" />
+    <Content Include="communication\EAN_5798009811561\_Endpoint HTTP Java Version 1.2.3.txt" />
     <Content Include="communication\EAN_5798009811738\_Endpoint HTTP .Net Version 1.2.3.txt" />
     <Content Include="communication\EAN_5798009811530\_Endpoint HTTP .Net Version 1.2.1.txt" />
     <Content Include="Resources\Documents\EAN_5798009811530\OIOUBL_ApplicationResponse_v2p1.xml">
