@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("dk.gov.oiosi.configuration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The OIOSI open source library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ITST")]
+[assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.configuration")]
-[assembly: AssemblyCopyright("Copyright © ITST 2011")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

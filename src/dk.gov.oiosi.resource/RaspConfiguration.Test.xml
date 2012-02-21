@@ -199,7 +199,7 @@
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -404,7 +404,7 @@
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -629,7 +629,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -857,7 +857,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1085,7 +1085,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1313,7 +1313,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1541,7 +1541,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1769,7 +1769,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -1997,7 +1997,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2225,7 +2225,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2453,7 +2453,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2681,7 +2681,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -2909,7 +2909,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -3137,7 +3137,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -3365,7 +3365,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -3593,7 +3593,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -3821,7 +3821,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUBL v2.0/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL v2.0/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -4049,7 +4049,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOUTS v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUTS v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>

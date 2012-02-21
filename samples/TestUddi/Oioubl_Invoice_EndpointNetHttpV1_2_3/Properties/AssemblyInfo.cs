@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Oioubl_Invoice_EndpointNetHttpV1_2_3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("Oioubl_Invoice_EndpointNetHttpV1_2_3")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

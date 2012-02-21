@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("dk.gov.oiosi.test.extendedRequest")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unit test project")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ITST")]
+[assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.test.extendedRequest")]
-[assembly: AssemblyCopyright("Copyright © ITST 2009")]
+[assembly: AssemblyCopyright("Copyright © ITST DIGST 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.2.3.*")]
+[assembly: AssemblyVersion("1.2.4.*")]

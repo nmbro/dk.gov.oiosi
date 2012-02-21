@@ -26,10 +26,10 @@ namespace dk.gov.oiosi.samples
             string raspConfiguration = string.Empty;
 
             // Test
-            raspConfiguration = "RaspConfiguration.Test.xml";
+            //raspConfiguration = "RaspConfiguration.Test.xml";
 
             // Production/Live
-            //raspConfiguration = "RaspConfiguration.Live.xml";
+            raspConfiguration = "RaspConfiguration.Live.xml";
 
             // Set the Configuration handler to use the desired Configuration file
             ConfigurationDocument.ConfigFilePath = raspConfiguration;
@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.samples
             // Production certificates valid
             // subject = "CN = NemHandel test service (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1200406941690, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
              //subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
-             subject = "CN = TEST FOCES1 (funktionscertifikat), SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
+            subject = "OID.2.5.4.5=CVR:19020940-FID:1266418009173 + CN=E-handel ny (funktionscertifikat), O=COLOPLAST DANMARK A/S // CVR:19020940, C=DK";
             // subject = "CN=FO NemHandel Produktion (funktionscertifikat), SERIALNUMBER = CVR:26911745-FID:1300089978680, O=KMD A/S // CVR:26911745, C=DK";
             // Production certificates not valid
 

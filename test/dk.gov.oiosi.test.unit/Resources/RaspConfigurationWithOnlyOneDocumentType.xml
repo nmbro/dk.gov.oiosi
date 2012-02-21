@@ -147,7 +147,7 @@
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/SchematronStylesheets/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>

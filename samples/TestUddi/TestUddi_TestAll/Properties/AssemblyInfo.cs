@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TestUddi_TestAll")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("TestUddi_TestAll")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
