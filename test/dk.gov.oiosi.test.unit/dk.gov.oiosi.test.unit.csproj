@@ -147,28 +147,28 @@
     <Content Include="Resources\RaspConfigurationWithOnlyOneDocumentType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_duns_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_duns_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_iban_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_iban_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_vans_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_vans_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_se_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_se_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_p_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_p_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_cvr_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_cvr_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ean_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_ean_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\Examples\OIOUBL_Invoice_identifier_ovt_v2p1.xml">
+    <Content Include="Resources\Documents\IdentifierExamples\OIOUBL_Invoice_identifier_ovt_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\RaspConfigurationUddi.xml">
