@@ -39,6 +39,67 @@
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
 		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.configuration\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.exception\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.lesnikowskiMailProvider\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.Logging\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.raspProfile\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		<asminfo language="CSharp" output="src\dk.gov.oiosi.xml\Properties\AssemblyInfo.cs">
+			<imports>
+				<import namespace="System.Reflection" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+			</attributes>
+		</asminfo>
+		
 	</target>
 	<target name="BuildVisualStudioSolutionNet35" depends="SetVersion">
 		<msbuild project="${VisualStudioSolution.file}" target="Rebuild">
