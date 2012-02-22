@@ -58,7 +58,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile.communication {
         }
 
         private OiosiMessage GetInvoiceOiosiMessage() {
-            var invoiceSourcePath = "Resources/Documents/IdentifierExamples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
+            var invoiceSourcePath = "Resources/Documents/Examples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
             var invoiceFile = Settings.CreateRandomPath("invoice.xml");
             Directory.CreateDirectory(invoiceFile.DirectoryName);
             File.Copy(invoiceSourcePath, invoiceFile.FullName);
