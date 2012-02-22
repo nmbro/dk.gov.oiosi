@@ -40,6 +40,7 @@ using System.Security.Permissions;
 using System.Text;
 
 using dk.gov.oiosi.exception.MessageStore;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.exception
 {
@@ -53,7 +54,9 @@ namespace dk.gov.oiosi.exception
     /// <exception cref="MessageToExceptionNotFoundException">See custom exception</exception>
     /// <exception cref="UnexpectedEndOfKeywordException">See custom exception</exception>
     [Serializable]
-    public class MainException : System.Exception {
+    public class MainException : System.Exception 
+    {
+        private ILogger logger;
         private static List<ResourceManager> resources = new List<ResourceManager>();
         private IExceptionMessageStore exceptionMessageStore = new ResourceFileExceptionMessageStore();
         private string message;
@@ -62,8 +65,10 @@ namespace dk.gov.oiosi.exception
         /// Construct an exception. It assumes that the error message text is 
         /// stored in the main resource file of this module
         /// </summary>
-        public MainException() {
-            SetMessage(new Dictionary<string, string>());
+        public MainException() 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -72,8 +77,10 @@ namespace dk.gov.oiosi.exception
         /// of this module
         /// </summary>
         /// <param name="resourceManager">the resourcefile</param>
-        public MainException(ResourceManager resourceManager) {
-            SetMessage(resourceManager, new Dictionary<string, string>());
+        public MainException(ResourceManager resourceManager) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -81,8 +88,10 @@ namespace dk.gov.oiosi.exception
         /// text is stored in the main resource file of this module
         /// </summary>
         /// <param name="keywords">the keyword for the message</param>
-        public MainException(Dictionary<string, string> keywords) {
-            SetMessage(keywords);
+        public MainException(Dictionary<string, string> keywords) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(keywords);
         }
 
         /// <summary>
@@ -93,7 +102,8 @@ namespace dk.gov.oiosi.exception
         public MainException(Exception innerException)
             : base("", innerException)
         {
-            SetMessage(new Dictionary<string, string>());
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(new Dictionary<string, string>(), innerException);
         }
 
         /// <summary>
@@ -103,8 +113,10 @@ namespace dk.gov.oiosi.exception
         /// </summary>
         /// <param name="resourceManager">the resourcefile</param>
         /// <param name="keywords">the keyword for the message</param>
-        public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords) {
-            SetMessage(resourceManager, keywords);
+        public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, keywords);
         }
 
         /// <summary>
@@ -115,8 +127,10 @@ namespace dk.gov.oiosi.exception
         /// <param name="resourceManager">the resourcefile</param>
         /// <param name="innerException">the innerexception to throw</param>
         public MainException(ResourceManager resourceManager, Exception innerException)
-            : base("", innerException) {
-            SetMessage(resourceManager, new Dictionary<string, string>());
+            : base("", innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, new Dictionary<string, string>(), innerException);
         }
 
         /// <summary>
@@ -126,8 +140,10 @@ namespace dk.gov.oiosi.exception
         /// <param name="keywords">the keyword for the message</param>
         /// <param name="innerException">the innerexception to throw</param>
         public MainException(Dictionary<string, string> keywords, Exception innerException)
-            : base("", innerException) {
-            SetMessage(keywords);
+            : base("", innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(keywords, innerException);
         }
 
         /// <summary>
@@ -139,8 +155,10 @@ namespace dk.gov.oiosi.exception
         /// <param name="keywords">the keyword for the message</param>
         /// <param name="innerException">the innerexception of the thrown exception</param>
         public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords, Exception innerException)
-            : base("", innerException) {
-            SetMessage(resourceManager, keywords);
+            : base("", innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, keywords, innerException);
         }
 
         #region Standard Exception implementation
@@ -149,7 +167,10 @@ namespace dk.gov.oiosi.exception
         /// This is used when you want to throw a custom message
         /// </summary>
         /// <param name="message">the message to throw</param>
-        public MainException(string message) : base(message) { }
+        public MainException(string message) : base(message)
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
         
         /// <summary>
         /// This is used when you want to throw the custom message and the innerexception of the thrown
@@ -157,14 +178,23 @@ namespace dk.gov.oiosi.exception
         /// </summary>
         /// <param name="message">the message to throw</param>
         /// <param name="innerException">the innerexception of the thrown exception</param>
-        public MainException(string message, Exception innerException) : base(message, innerException) { }
+        public MainException(string message, Exception innerException) 
+            : base(message, innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
         
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="serializationInfo">Serialization info</param>
         /// <param name="streaminContext">The streaming context</param>
-        protected MainException(SerializationInfo serializationInfo, StreamingContext streaminContext) : base(serializationInfo, streaminContext) { }
+        protected MainException(SerializationInfo serializationInfo, StreamingContext streaminContext) 
+            : base(serializationInfo, streaminContext)
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
+
         
         /// <summary>
         /// This sets a SerializationInfo with all the exception object data targeted for serialization 
@@ -175,7 +205,8 @@ namespace dk.gov.oiosi.exception
         /// the source or destination</param>
         [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter=true)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context) 
-        { 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
             base.GetObjectData(info, context); 
         }
         
@@ -188,16 +219,33 @@ namespace dk.gov.oiosi.exception
             get { return message; }
         }
 
-        private void SetMessage(Dictionary<string, string> keywords) {
+        private void SetMessage(Dictionary<string, string> keywords, Exception originalException) {
             Type exceptionType = this.GetType();
-            message = exceptionMessageStore.GetExceptionMessage(resources, exceptionType, keywords);
+            try
+            {
+                message = exceptionMessageStore.GetExceptionMessage(resources, exceptionType, keywords);
+            }
+            catch
+            {
+                this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
+                this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+            }            
         }
 
-        private void SetMessage(ResourceManager resource, Dictionary<string, string> keywords) {
+        private void SetMessage(ResourceManager resource, Dictionary<string, string> keywords, Exception originalException)
+        {
             Type exceptionType = this.GetType();
             List<ResourceManager> collectiveResources = new List<ResourceManager>(resources);
             collectiveResources.Add(resource);
-            message = exceptionMessageStore.GetExceptionMessage(collectiveResources, exceptionType, keywords);
+            try
+            {
+                message = exceptionMessageStore.GetExceptionMessage(collectiveResources, exceptionType, keywords);
+            }
+            catch
+            {
+                this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
+                this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+            }            
         }
     }
 }
