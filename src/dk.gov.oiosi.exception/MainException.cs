@@ -68,7 +68,7 @@ namespace dk.gov.oiosi.exception
         public MainException() 
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.SetMessage(new Dictionary<string, string>());
+            this.SetMessage(new Dictionary<string, string>(), null);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.exception
         public MainException(ResourceManager resourceManager) 
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.SetMessage(resourceManager, new Dictionary<string, string>());
+            this.SetMessage(resourceManager, new Dictionary<string, string>(), null);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace dk.gov.oiosi.exception
         public MainException(Dictionary<string, string> keywords) 
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.SetMessage(keywords);
+            this.SetMessage(keywords, null);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace dk.gov.oiosi.exception
         public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords) 
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.SetMessage(resourceManager, keywords);
+            this.SetMessage(resourceManager, keywords, null);
         }
 
         /// <summary>
@@ -227,8 +227,18 @@ namespace dk.gov.oiosi.exception
             }
             catch
             {
-                this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
-                this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+                if (originalException == null)
+                {
+                    this.logger.Error("No error description exist for the error type.");
+                    this.message = "No translated error description exist for the error..";
+                }
+                else
+                {
+                    this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
+                    this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+                }
+                
+                
             }            
         }
 
@@ -243,8 +253,16 @@ namespace dk.gov.oiosi.exception
             }
             catch
             {
-                this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
-                this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+                if (originalException == null)
+                {
+                    this.logger.Error("No error description exist for the error type.");
+                    this.message = "No translated error description exist for the error.";
+                }
+                else
+                {
+                    this.logger.Error("No error description exist for the error type: '" + exceptionType + "'.");
+                    this.message = "No translated error description exist for the error: '" + exceptionType + "'.";
+                }
             }            
         }
     }
