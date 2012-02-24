@@ -1,13 +1,49 @@
-using System;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using Org.BouncyCastle.X509;
-using dk.gov.oiosi.logging;
+/*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this
+  * file except in compliance with the License. You may obtain
+  * a copy of the License at http://www.mozilla.org/MPL/
+  *
+  * Software distributed under the License is distributed on an
+  * "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, either express
+  * or implied. See the License for the specific language governing
+  * rights and limitations under the License.
+  *
+  *
+  * The Original Code is .NET RASP toolkit.
+  *
+  * The Initial Developer of the Original Code is Accenture and Avanade.
+  * Portions created by Accenture and Avanade are Copyright (C) 2009
+  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * All Rights Reserved.
+  *
+  * Contributor(s):
+  *   Gert Sylvest, Avanade
+  *   Jesper Jensen, Avanade
+  *   Ramzi Fadel, Avanade
+  *   Patrik Johansson, Accenture
+  *   Dennis Søgaard, Accenture
+  *   Christian Pedersen, Accenture
+  *   Martin Bentzen, Accenture
+  *   Mikkel Hippe Brun, ITST
+  *   Finn Hartmann Jordal, ITST
+  *   Christian Lanng, ITST
+  *   Jacob Mogensen, mySupply ApS
+  */
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
+    using System;
+    using System.IO;
+    using System.Net;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Threading;
+    using Org.BouncyCastle.X509;
+    using dk.gov.oiosi.logging;
+    using org.bouncycastle.asn1.x509;
+    using org.bouncycastle.asn1;
+    using Org.BouncyCastle.Asn1;
+
     /// <summary>
     /// Class used for storing CRLs retrieved from URL's in X509 certificates
     /// </summary>
@@ -113,7 +149,7 @@ namespace dk.gov.oiosi.security.revocation.crl
                    
                     
                     // Downloads the .crl file into an X509CRL object.
-                    data = crlParser.ReadCrl(stream);
+                    this.data = crlParser.ReadCrl(stream);
 
                     this.logger.Debug("Finish with 'crlParser.ReadCrl(stream)'");
 
@@ -127,8 +163,13 @@ namespace dk.gov.oiosi.security.revocation.crl
             }
             catch (IOException e)
             {
+                // creation a hollow X509Crl, that is valid only for very short time
+                // to prevent that the list is tried downloaded many times
+                this.data = new X509CrlEmptyList();
+
                 // Could not download new crl
                 throw new CheckCertificateRevokedUnexpectedException(e);
+                
             }
         }
 

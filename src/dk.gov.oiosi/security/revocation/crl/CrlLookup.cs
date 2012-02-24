@@ -91,7 +91,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         		
     		    foreach (Uri url in URLs)
     		    {
-                    CrlInstance crl = GetInstance(url);
+                    CrlInstance crl = this.GetInstance(url);
         			
     			    try 
     			    {
@@ -106,14 +106,18 @@ namespace dk.gov.oiosi.security.revocation.crl
                             response.IsValid = false;
                             return response;
 					    }
-				    } catch (CheckCertificateRevokedUnexpectedException e) 
+				    }
+                    catch (CheckCertificateRevokedUnexpectedException e) 
 				    {
 					    // There was an error in checking the certificate. Try the next url.
+                        // implicit the certificate is true, until other whise proven invalid
                         innerException = e;
 				    }
     		    }
             }
 
+            // At this point, all checks has result in an exception. If any check has performed well,
+            // the result was returned.
             // If any errors happen during CRL check, then abort the processing of the message.
             if (innerException != null)
             {
@@ -132,54 +136,50 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// </summary>
         /// <param name="cert">The certificate to find the URLs in.</param>
         /// <returns>A list of CRL URLs in the certificate</returns>
-        private List<Uri> GetURLs(X509Certificate2 cert) {
+        private List<Uri> GetURLs(X509Certificate2 cert)
+        {
 
-		    List<Uri> urls = new List<Uri>(); 
-    		
-	        foreach (System.Security.Cryptography.X509Certificates.X509Extension extension in cert.Extensions) {
-                
-                if (extension.Oid.Value == X509Extensions.CrlDistributionPoints.Id) {
+            List<Uri> urls = new List<Uri>();
+
+            foreach (System.Security.Cryptography.X509Certificates.X509Extension extension in cert.Extensions)
+            {
+
+                if (extension.Oid.Value == X509Extensions.CrlDistributionPoints.Id)
+                {
                     // Retrieves the raw ASN1 data of the CRL Dist Points X509 extension, and wraps it in a container class
                     CrlDistPoint crldp = CrlDistPoint.GetInstance(Asn1Object.FromByteArray(extension.RawData));
 
                     DistributionPoint[] distPoints = crldp.GetDistributionPoints();
 
-                    foreach (DistributionPoint dp in crldp.GetDistributionPoints()) {
+                    foreach (DistributionPoint dp in crldp.GetDistributionPoints())
+                    {
                         // Only use the "General name" data in the distribution point entry.
-                        GeneralNames gns = (GeneralNames) dp.DistributionPointName.Name;
+                        GeneralNames gns = (GeneralNames)dp.DistributionPointName.Name;
 
-                        foreach (GeneralName name in gns.GetNames()) {
+                        foreach (GeneralName name in gns.GetNames())
+                        {
                             // Only retrieve URLs
-                            if (name.TagNo == GeneralName.UniformResourceIdentifier) {
-                                DerStringBase s = (DerStringBase) name.Name;
+                            if (name.TagNo == GeneralName.UniformResourceIdentifier)
+                            {
+                                DerStringBase s = (DerStringBase)name.Name;
                                 urls.Add(new Uri(s.GetString()));
                             }
                         }
                     }
-                    
+
                     // There is only one CRL list so faster to break.
                     break;
                 }
-	        }
-    		
-		    return urls;
-	    }
+            }
+
+            return urls;
+        }
 
         private CrlInstance GetInstance(Uri url)
         {
             CrlInstance instance = new CrlInstance(url);
             instance = cache.TryAddValue(url, instance);
             return instance;
-
-            /*lock (lockObject) {
-                CrlInstance instance = null;
-                if (!cache.TryGetValue(url, out instance))
-                {
-                    instance = new CrlInstance(url);
-                    instance = cache.TryAddValue(url, instance);
-                }
-                return instance;
-            }*/
         }
     }
 }
