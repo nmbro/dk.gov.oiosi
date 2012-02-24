@@ -63,232 +63,232 @@
     <None Include="Resources\Certificates\Test\ServerCertifikat\CVR26769388.Expire20090806.NemHandel Test 1.cer" />
     <None Include="Resources\Certificates\Test\Virksomhedscertifikat\CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer" />
     <None Include="Resources\Licenses\License.rtf" />
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\CodeList_CurrencyCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_CurrencyCode_ISO_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\CodeList_LanguageCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_LanguageCode_ISO_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\CodeList_UnitCode_UNECE_7_04.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_UnitCode_UNECE_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\OIOUBL_UTS-CommonBasicComponents-2.1.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonBasicComponents-2.1.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-CommonAggregateComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonAggregateComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-CommonBasicComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonBasicComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-CommonExtensionComponents-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonExtensionComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-CoreComponentParameters-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CoreComponentParameters-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-ExtensionContentDatatype-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-ExtensionContentDatatype-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UBL-QualifiedDatatypes-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UBL-QualifiedDatatypes-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOUBL v2.1-b\maindoc\UBL-UtilityStatement-2.1.xsd">
+    <None Include="Resources\Schemas\OIOUBL_v2.1-b\maindoc\UBL-UtilityStatement-2.1.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\0p70dk_Reusable.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\0p70dk_Reusable.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\CoreComponentParametersDk.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\CoreComponentParametersDk.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\CoreComponentTypesDk.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\CoreComponentTypesDk.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\Invoice.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\Invoice.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\nonCardinalTypes.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\nonCardinalTypes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pcmLax.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pcmLax.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pcmStrict.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pcmStrict.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pcpLax.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pcpLax.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pcpStrict.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pcpStrict.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\PIECOMredefines.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\PIECOMredefines.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pieLax.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pieLax.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\PIEredefines.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\PIEredefines.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pieStrict.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pieStrict.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pipCOMredefines.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pipCOMredefines.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pipLax.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pipLax.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\Pipredefines.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\Pipredefines.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\pipStrict.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\pipStrict.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\OIOXML v0.7\reusabletypes.xsd">
+    <None Include="Resources\Schemas\OIOXML_v0.7\reusabletypes.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\CCTS_CCT_SchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\CCTS_CCT_SchemaModule-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\CodeList_CurrencyCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\CodeList_CurrencyCode_ISO_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\CodeList_LanguageCode_ISO_7_04.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\CodeList_LanguageCode_ISO_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\CodeList_UnitCode_UNECE_7_04.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\CodeList_UnitCode_UNECE_7_04.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-CommonAggregateComponents-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-CommonAggregateComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-CommonBasicComponents-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-CommonBasicComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-CommonExtensionComponents-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-CommonExtensionComponents-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-CoreComponentParameters-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-CoreComponentParameters-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-ExtensionContentDatatype-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-ExtensionContentDatatype-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UBL-QualifiedDatatypes-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UBL-QualifiedDatatypes-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-ApplicationResponse-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-ApplicationResponse-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-AttachedDocument-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-AttachedDocument-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-BillOfLading-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-BillOfLading-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Catalogue-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Catalogue-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CatalogueDeletion-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueDeletion-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CatalogueItemSpecificationUpdate-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueItemSpecificationUpdate-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CataloguePricingUpdate-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CataloguePricingUpdate-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CatalogueRequest-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueRequest-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CertificateOfOrigin-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CertificateOfOrigin-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-CreditNote-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-CreditNote-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-DebitNote-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-DebitNote-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-DespatchAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-DespatchAdvice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-ForwardingInstructions-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-ForwardingInstructions-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-FreightInvoice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-FreightInvoice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Invoice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Invoice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Order-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Order-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-OrderCancellation-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderCancellation-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-OrderChange-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderChange-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-OrderResponse-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponse-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-OrderResponseSimple-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponseSimple-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-PackingList-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-PackingList-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Quotation-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Quotation-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-ReceiptAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-ReceiptAdvice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Reminder-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Reminder-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-RemittanceAdvice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-RemittanceAdvice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-RequestForQuotation-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-RequestForQuotation-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-SelfBilledCreditNote-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledCreditNote-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-SelfBilledInvoice-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledInvoice-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Statement-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Statement-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-TransportationStatus-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-TransportationStatus-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Schemas\UBL v2.0\maindoc\UBL-Waybill-2.0.xsd">
+    <None Include="Resources\Schemas\UBL_v2.0\maindoc\UBL-Waybill-2.0.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -303,86 +303,57 @@
     <Content Include="Resources\Licenses\RaspClientLicense.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_CatalogueRequest_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueRequest_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_Catalogue_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Catalogue_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_CreditNote_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CreditNote_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_Invoice_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Invoice_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_OrderCancellation_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderCancellation_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_OrderChange_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderChange_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_OrderResponse_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponse_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_Order_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Order_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_Reminder_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Reminder_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL v2.0\OIOUBL_Statement_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUTS v2.1\OIOUBL_UtilityStatement_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOXML v0.7\ublinvoice.xsl">
+    <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\UI\defaultss.xslt" />
-    <Content Include="Resources\UI\errorss.xslt" />
-    <Content Include="Resources\UI\OIOUBL v2.0\HtmlDependencies\html\GTADefaultLogo.JPG" />
-    <Content Include="Resources\UI\OIOUBL v2.0\HtmlDependencies\html\OIOUBL.css" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL.css" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_ApplicationResponse.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates2.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CommonTemplates3.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_CreditNote.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines.xml" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines2.xml" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Headlines3.xml" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Invoice.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Order.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderCancellation.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderChange.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderResponse.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_OrderResponseSimple.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Reminder.xsl" />
-    <Content Include="Resources\UI\OIOUBL v2.0\Stylesheets\OIOUBL_Statement.xsl" />
-    <Content Include="Resources\UI\OIOXML v0.7\HtmlDependencies\finance.css" />
-    <Content Include="Resources\UI\OIOXML v0.7\HtmlDependencies\logo.gif" />
-    <Content Include="Resources\UI\OIOXML v0.7\HtmlDependencies\ubl.css" />
-    <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\fo.xsl" />
-    <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\fonamedtemplates.xsl" />
-    <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\html.xsl" />
-    <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\override.xsl" />
-    <Content Include="Resources\UI\OIOXML v0.7\StyleSheets\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

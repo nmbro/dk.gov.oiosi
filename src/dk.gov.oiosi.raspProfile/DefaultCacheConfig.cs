@@ -53,9 +53,12 @@ namespace dk.gov.oiosi.raspProfile
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
             string implementationAssembly = "dk.gov.oiosi.library";
+            CacheConfiguration configurationValidityMinus1 = new CacheConfiguration("validityTimeInMinutes", "-1");
+            CacheConfiguration configurationFrequencyMinus1 = new CacheConfiguration("frequencyInMinutes", "-1");
             CacheConfiguration configurationValidity10 = new CacheConfiguration("validityTimeInMinutes", "10");
             CacheConfiguration configurationValidity60 = new CacheConfiguration("validityTimeInMinutes", "60");
             CacheConfiguration configurationFrequency10 = new CacheConfiguration("frequencyInMinutes", "10");
+
             CacheConfiguration configurationMaxSize = new CacheConfiguration("maxSize", "10");
             string cacheName = "CacheName";
 
@@ -69,8 +72,8 @@ namespace dk.gov.oiosi.raspProfile
             cacheConfig.CrlLookupCache = new CacheConfigElement();
             cacheConfig.CrlLookupCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]";
             cacheConfig.CrlLookupCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationValidity60);
-            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationFrequency10);
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationValidityMinus1);
+            cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(configurationFrequencyMinus1);
             cacheConfig.CrlLookupCache.CacheConfigurationCollection.Add(new CacheConfiguration(cacheName, "CrlLookupCache"));
 
             cacheConfig.UddiServiceCache = new CacheConfigElement();

@@ -8,8 +8,8 @@
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pie/</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOXML v0.7/piestrict.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOXML v0.7/StyleSheets/html.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOXML_v0.7/piestrict.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>http://rep.oio.dk/ubl/xml/schemas/0p71/common/</Namespace>
@@ -147,7 +147,7 @@
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>

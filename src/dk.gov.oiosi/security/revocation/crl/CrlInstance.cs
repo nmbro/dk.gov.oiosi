@@ -57,6 +57,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         private readonly X509CertificateParser cp = new X509CertificateParser();
 
         private ILogger logger;
+        private DateTime earlistNextUpdate = DateTime.MinValue;
 
         /// <summary>
         /// Creates a new CRLInstance instance.
@@ -102,8 +103,21 @@ namespace dk.gov.oiosi.security.revocation.crl
                     {
                         if (!cacheValid()) // Recheck, since another thread might have updated the cache.
                         {
-                            upgradeData();
+                            // Only update if earlistNextUpdate is reached
+                            // pervent the update tast to be performed and faileds many times, if the server is offline
+                            if (DateTime.Now > this.earlistNextUpdate)
+                            {                                
+                                this.upgradeData();
+                                this.earlistNextUpdate = DateTime.MinValue;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        // update failed
+                        // prevent that the update tast should run again, rigth now
+                        // if the server is offline, give it a seconds to come online again
+                        this.earlistNextUpdate = DateTime.Now.AddMinutes(5);
                     }
                     finally
                     {
@@ -114,8 +128,19 @@ namespace dk.gov.oiosi.security.revocation.crl
                 }
 
                 // Reads the data and unlocks.
+                bool isRevoked;
+
                 Org.BouncyCastle.X509.X509Certificate certificateToValidate = cp.ReadCertificate(cert.RawData);
-                bool isRevoked = data.IsRevoked(certificateToValidate);
+                if (this.data == null)
+                {
+                    // If no data - crl server is not online
+                    // default: true/false?
+                    isRevoked = true;
+                }
+                else
+                {
+                    isRevoked = data.IsRevoked(certificateToValidate);
+                }
                 
                 return isRevoked;
             }
@@ -163,13 +188,8 @@ namespace dk.gov.oiosi.security.revocation.crl
             }
             catch (IOException e)
             {
-                // creation a hollow X509Crl, that is valid only for very short time
-                // to prevent that the list is tried downloaded many times
-                this.data = new X509CrlEmptyList();
-
                 // Could not download new crl
-                throw new CheckCertificateRevokedUnexpectedException(e);
-                
+                throw new CheckCertificateRevokedUnexpectedException(e);                
             }
         }
 

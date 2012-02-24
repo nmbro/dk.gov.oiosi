@@ -36,9 +36,6 @@ using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.common;
 using System;
-using System.IO;
-using System.Text;
-using System.Xml.XPath;
 
 namespace dk.gov.oiosi.communication
 {
@@ -60,6 +57,8 @@ namespace dk.gov.oiosi.communication
 
         private string messageAsString = string.Empty;
         private XmlDocument messageAsXml = null;
+
+        private object lockObject = new object();
 
         #region Constructors
 
@@ -209,10 +208,13 @@ namespace dk.gov.oiosi.communication
         {
             get
             {
-                if (this.messageAsXml == null)
+                lock (lockObject)
                 {
-                    this.messageAsXml = new XmlDocument();
-                    this.messageAsXml.LoadXml(this.messageAsString);
+                    if (this.messageAsXml == null && !string.IsNullOrEmpty(this.messageAsString))
+                    {
+                        this.messageAsXml = new XmlDocument();
+                        this.messageAsXml.LoadXml(this.messageAsString);
+                    }
                 }
 
                 return this.messageAsXml;
@@ -227,7 +229,13 @@ namespace dk.gov.oiosi.communication
             get
             {
                 bool hasBody;
+
+
                 if (!string.IsNullOrEmpty(this.messageAsString))
+                {
+                    hasBody = true;
+                }
+                else if (this.MessageXml != null && this.MessageXml.DocumentElement != null)
                 {
                     hasBody = true;
                 }

@@ -235,8 +235,10 @@ namespace dk.gov.oiosi.common.cache {
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(TKey key, TValue value) {
-            DateTime validUntilDateTime = DateTime.UtcNow.Add(timeOut);
+        public void Add(TKey key, TValue value)
+        {
+            DateTime validUntilDateTime = this.GetValidUntilDateTime();
+            
             TimedCacheValue<TValue> cacheValue = new TimedCacheValue<TValue>(validUntilDateTime, value);
             lock (cache) {
                 this.cache.Add(key, cacheValue);
@@ -271,7 +273,7 @@ namespace dk.gov.oiosi.common.cache {
                             // cached info expired
                             // so adding the new value instead
                             this.cache.Remove(key);
-                            DateTime validUntilDateTime = DateTime.UtcNow.Add(timeOut);
+                            DateTime validUntilDateTime = this.GetValidUntilDateTime();
                             cacheValue = new TimedCacheValue<TValue>(validUntilDateTime, value);
                             this.cache.Add(key, cacheValue);
                             result = value;
@@ -286,7 +288,7 @@ namespace dk.gov.oiosi.common.cache {
                     {
                         // value not cached
                         // adding the information
-                        DateTime validUntilDateTime = DateTime.UtcNow.Add(timeOut);
+                        DateTime validUntilDateTime = this.GetValidUntilDateTime();
                         cacheValue = new TimedCacheValue<TValue>(validUntilDateTime, value);
                         this.cache.Add(key, cacheValue);
                         result = value;
@@ -297,6 +299,22 @@ namespace dk.gov.oiosi.common.cache {
             return result;
         }
 
+        public DateTime GetValidUntilDateTime()
+        {
+            DateTime validUntilDateTime;
+
+             if (timeOut == TimeSpan.MaxValue)
+            {
+                validUntilDateTime = DateTime.MaxValue;
+            }
+            else
+            {
+                validUntilDateTime = DateTime.UtcNow.Add(timeOut);
+            }
+
+             return validUntilDateTime;
+        }
+
         /// <summary>
         /// Sets a cache key/value pair
         /// </summary>
@@ -304,7 +322,7 @@ namespace dk.gov.oiosi.common.cache {
         /// <param name="value"></param>
         public void Set(TKey key, TValue value)
         {
-            DateTime validUntilDateTime = DateTime.UtcNow.Add(timeOut);
+            DateTime validUntilDateTime = this.GetValidUntilDateTime();
             TimedCacheValue<TValue> cacheValue = new TimedCacheValue<TValue>(validUntilDateTime, value);
             lock (cache)
             {
@@ -431,19 +449,5 @@ namespace dk.gov.oiosi.common.cache {
                 // nothing to do
             }
         }
-
-        /*
-        private void Expire() {
-            DateTime now = DateTime.UtcNow;
-            List<TKey> expiredList = new List<TKey>();
-            foreach (KeyValuePair<TKey, TimedCacheValue<TValue>> pair in cache)
-            {
-                if (pair.Value.TimeOut < now)
-                    expiredList.Add(pair.Key);
-            }
-            foreach (TKey key in expiredList) {
-                cache.Remove(key);
-            }
-        }*/
     }
 }
