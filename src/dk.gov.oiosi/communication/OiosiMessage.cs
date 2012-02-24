@@ -36,6 +36,9 @@ using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.common;
 using System;
+using System.IO;
+using System.Text;
+using System.Xml.XPath;
 
 namespace dk.gov.oiosi.communication
 {
@@ -55,8 +58,8 @@ namespace dk.gov.oiosi.communication
         private string requestAction;
         private string replyAction;
 
-        private string messageAsString;
-        private XmlDocument messageAsXml;
+        private string messageAsString = string.Empty;
+        private XmlDocument messageAsXml = null;
 
         #region Constructors
 
@@ -67,17 +70,17 @@ namespace dk.gov.oiosi.communication
             this.messageHeaders = new Dictionary<XmlQualifiedName, MessageHeader>();
         }
 
-       /* /// <summary>
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="xml">the message</param>
         public OiosiMessage(string document)
             : this()
         {
-            this.messageString = document;
+            this.messageAsString = document;
             this.requestAction = DEFAULTREQUESTACTION;
             this.replyAction = DEFAULTREPLYACTION;
-        }*/
+        }
 
         /// <summary>
         /// Constructor
@@ -103,8 +106,8 @@ namespace dk.gov.oiosi.communication
         {
             try
             {
-                //this.messageString = Utilities.GetMessageBodyAsString(wcfMessage, true);
-                this.messageAsXml = Utilities.GetMessageBodyAsXmlDocument(wcfMessage, true);
+                this.messageAsString = Utilities.GetMessageBodyAsString(wcfMessage, true);
+                
                 // Adding the headers
                 for (int i = 0; i < wcfMessage.Headers.Count; i++)
                 {
@@ -182,24 +185,37 @@ namespace dk.gov.oiosi.communication
             }
         }
 
-      /*  /// <summary>
+        /// <summary>
         /// Property for the message
+        /// 
+        /// Note: The message as string, only exist on the receiver side, when the 
+        /// OiosiMessage has be initialized though the constructor OiosiMessage(Message wcfMessage)
         /// </summary>
-        public string MessageString
+        public string MessageAsString
         {
             get
             {
                 return this.messageAsString;
             }
-        }*/
+        }
 
         /// <summary>
         /// Property for the message
+        /// 
+        /// Note: XmlDocument is not the best representaion, as it is slow to work with.
+        /// On the receiver side, it is possible to get the message as a string instead
+        /// 
         /// </summary>
         public XmlDocument MessageXml
         {
             get
             {
+                if (this.messageAsXml == null)
+                {
+                    this.messageAsXml = new XmlDocument();
+                    this.messageAsXml.LoadXml(this.messageAsString);
+                }
+
                 return this.messageAsXml;
             }
         }
@@ -212,7 +228,7 @@ namespace dk.gov.oiosi.communication
             get
             {
                 bool hasBody;
-                if (MessageXml != null && MessageXml.DocumentElement != null)
+                if (!string.IsNullOrEmpty(this.messageAsString))
                 {
                     hasBody = true;
                 }
@@ -224,6 +240,32 @@ namespace dk.gov.oiosi.communication
                 return hasBody;
             }
         }
+
+       /* public XPathDocument GetMessageXPathDocument()
+        {
+        * 
+        * It will be faster to use XPathDocument, instead of xmlDocument
+        * 
+            XPathDocument xPathDocument;
+
+            using (Stream stream = new MemoryStream())
+            {
+                using (StreamWriter sw = new StreamWriter(stream))
+                {
+                    // write document to memory stream 
+                    sw.Write(this.messageAsString);
+                    sw.Flush();
+
+                    // document is now in a memory stream
+                    // set stream index to 0.
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    xPathDocument = new XPathDocument(stream);
+                }
+            }
+
+            return xPathDocument;
+        }*/
 
         /// <summary>
         /// Returns an XmlReader that can read the message xml
