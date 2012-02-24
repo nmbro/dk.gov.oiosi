@@ -43,7 +43,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// channel. There are no interceptors in other channel types.
     /// </summary>
     /// <typeparam name="TChannel">parameter name</typeparam>
-    public class ChannelListener<TChannel> : ChannelListenerBase<TChannel> where TChannel : class, IChannel {
+    /// InterceptorChannelListenerChannelListener
+    public class ChannelListenerChannelListener<TChannel> : ChannelListenerBase<TChannel> where TChannel : class, IChannel {
         private BindingContext context;
         private IChannelListener<TChannel> innerChannelListener;
         private IChannelInterceptor channelInterceptor;
@@ -53,23 +54,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="context">binding context</param>
         /// <param name="ChannelInterceptor">channel interceptor</param>
-        public ChannelListener(BindingContext context, IChannelInterceptor channelInterceptor) {
+        public ChannelListenerChannelListener(BindingContext context, IChannelInterceptor channelInterceptor) {
             this.context = context;
             this.innerChannelListener = context.BuildInnerChannelListener<TChannel>();
             this.channelInterceptor = channelInterceptor;
-
-            this.Faulted += new EventHandler(ChannelListener_Faulted);
-            this.innerChannelListener.Faulted += new EventHandler(innerChannelListener_Faulted);
-        }
-
-        void innerChannelListener_Faulted(object sender, EventArgs e)
-        {
-            throw new Exception("innerChannelListener_Faulted");
-        }
-
-        void ChannelListener_Faulted(object sender, EventArgs e)
-        {
-            throw new Exception("ChannelListener_Faulted");
         }
 
         #region ChannelListenerBase Overrides
