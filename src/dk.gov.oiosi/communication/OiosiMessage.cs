@@ -91,7 +91,6 @@ namespace dk.gov.oiosi.communication
             : this()
         {
             this.messageAsXml = xml;
-            // convert the xmlDocument to txt
 
             this.RequestAction = DEFAULTREQUESTACTION;
             this.ReplyAction = DEFAULTREPLYACTION;

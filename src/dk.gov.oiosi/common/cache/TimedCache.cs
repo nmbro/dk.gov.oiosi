@@ -119,10 +119,18 @@ namespace dk.gov.oiosi.common.cache {
             else if (configuration.ContainsKey(validityTimeInHoursString))
             {
                 int hours;
-                if (int.TryParse(configuration[validityTimeInMinutesString], out hours))
+                if (int.TryParse(configuration[validityTimeInHoursString], out hours))
                 {
-                    // all okay
-                    validityInMinutes = hours * 60;
+                    if (hours == -1)
+                    {
+                        // this indicate that the cached valud can not expire
+                        validityInMinutes = -1;
+                    }
+                    else
+                    {
+                        // all okay
+                        validityInMinutes = hours * 60;
+                    }
                 }
                 else
                 {
@@ -137,7 +145,16 @@ namespace dk.gov.oiosi.common.cache {
                 validityInMinutes = DEFAULT_VALIDITY_IN_MINUTES;
             }
 
-            this.timeOut = new TimeSpan(validityInMinutes * TimeSpan.TicksPerHour);
+            if (validityInMinutes == -1)
+            {
+                // the cached value, can not timeout
+                this.timeOut = TimeSpan.MaxValue;
+            }
+            else
+            {
+                // the timeperiod the cached valud is valid.
+                this.timeOut = new TimeSpan(validityInMinutes * TimeSpan.TicksPerHour);
+            }
 
             // Frequency in checks
             string frequencyInMinutesString = "frequencyInMinutes";
@@ -187,17 +204,25 @@ namespace dk.gov.oiosi.common.cache {
 
         private void CreateExpiredCheckTask(int frequencyInMinutes)
         {
-            // The frequence must be greater then one minutes
-            if (frequencyInMinutes < 1)
+            if (frequencyInMinutes == -1)
             {
-                throw new Exception("The frequency cache check '" + frequencyInMinutes + "' must be greater then one minute.");
+                // this will disable the frequency checker thread
+                this.logger.Info("The frequency checker thread for cache '" + this.name + "' has been disabled.");
             }
+            else
+            {
+                // The frequence must be greater then one minutes
+                if (frequencyInMinutes < 1)
+                {
+                    throw new Exception("The frequency cache check '" + frequencyInMinutes + "' must be greater then one minute.");
+                }
 
-            // start a new scheduled task, starting now
-            TimerCallback tc = new TimerCallback(this.CheckExpired_TimerCallback);
-            TimeSpan start = new TimeSpan(0, 0, 0);
-            TimeSpan frequency = new TimeSpan(0, frequencyInMinutes, 0);
-            threadingTimer = new System.Threading.Timer(tc, null, start, frequency);
+                // start a new scheduled task, starting now
+                TimerCallback tc = new TimerCallback(this.CheckExpired_TimerCallback);
+                TimeSpan start = new TimeSpan(0, 0, 0);
+                TimeSpan frequency = new TimeSpan(0, frequencyInMinutes, 0);
+                threadingTimer = new System.Threading.Timer(tc, null, start, frequency);
+            }
         }
 
         private void CheckExpired_TimerCallback(object value)
