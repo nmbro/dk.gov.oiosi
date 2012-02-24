@@ -94,7 +94,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// the binding element</param>
         /// <returns>Returns the relevant channel listener</returns>
         public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context) {
-            return new ChannelListener<TChannel>(context, this);
+            return new ChannelListenerChannelListener<TChannel>(context, this);
         }
 
         #region IChannelInterceptor Members
