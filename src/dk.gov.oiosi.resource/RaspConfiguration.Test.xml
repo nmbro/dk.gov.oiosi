@@ -4230,11 +4230,11 @@
           <EndpointCollection>
             <Endpoint>http://testuddi.nemhandel.gov.dk/uddi/services/inquiry</Endpoint>
           </EndpointCollection>
-          <!-- Production UDDI -->
-          <!-- EndpointCollection>
-            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-          </EndpointCollection -->
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <!-- other endpoint collection here -->
+          </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
@@ -4375,11 +4375,13 @@
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
         <SerialNumber>403617fc</SerialNumber>
+        <Description>TDC OCES Systemtest CA II</Description>
       </RootCertificateLocation>
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>3E48BDC4</SerialNumber>
+        <SerialNumber>4b ea 6e 94</SerialNumber>
+        <Description>TRUST2408 Systemtest VII Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>

@@ -4232,10 +4232,6 @@
             <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
-        <Registry>
-          <EndpointCollection>
-          </EndpointCollection>
-        </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
@@ -4375,6 +4371,7 @@
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
         <SerialNumber>3E48BDC4</SerialNumber>
+        <Description>TDC OCES CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>

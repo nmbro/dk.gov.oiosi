@@ -14,8 +14,11 @@ namespace dk.gov.oiosi.security.validation {
     
     public class MultipleRootX509CertificateValidator : System.IdentityModel.Selectors.X509CertificateValidator
     {
+        /// <summary>
+        /// Directory for root certificates, identified by Thumbprint.ToLowerInvariant() 
+        /// </summary>
+        private IDictionary<string, X509Certificate2> rootCertificateDirectory;
 
-        private IList<X509Certificate2> trustedRootCertificates = new List<X509Certificate2>();
         private ILogger logger;
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace dk.gov.oiosi.security.validation {
         public MultipleRootX509CertificateValidator() 
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.trustedRootCertificates = new List<X509Certificate2>();
+            this.rootCertificateDirectory = new Dictionary<string, X509Certificate2>();
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             this.LoadRootCertificates(rootCertificateCollectionConfig);
         }
@@ -33,20 +36,16 @@ namespace dk.gov.oiosi.security.validation {
         public MultipleRootX509CertificateValidator(RootCertificateCollectionConfig rootCertificateCollectionConfig)
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.trustedRootCertificates = new List<X509Certificate2>();
+            this.rootCertificateDirectory = new Dictionary<string, X509Certificate2>();
             this.LoadRootCertificates(rootCertificateCollectionConfig);
         }
 
         public MultipleRootX509CertificateValidator(ICollection<X509Certificate2> rootCertificateCollectionConfig)
         {
             this.logger = LoggerFactory.Create(this.GetType());
-            this.trustedRootCertificates = new List<X509Certificate2>();
+            this.rootCertificateDirectory = new Dictionary<string, X509Certificate2>();
             this.LoadRootCertificates(rootCertificateCollectionConfig);
         }
-
-        /*public MultipleRootX509CertificateValidator(IEnumerable<X509Certificate2> trustedRootCertificates) {
-            this.trustedRootCertificates = trustedRootCertificates;
-        }*/
 
         public override void Validate(X509Certificate2 certificate)
         {
@@ -67,69 +66,51 @@ namespace dk.gov.oiosi.security.validation {
         /// <returns></returns>
         public bool IsValid(X509Certificate2 certificate)
         {
-            bool valid = false;
-            int index = 0;
+            // Check if the certificate path contain the root certificate
+            bool isValid = this.IsValid(certificate, this.rootCertificateDirectory);
 
-            while (index < this.trustedRootCertificates.Count && valid == false)
-            {
-                if (this.IsValid(certificate, trustedRootCertificates[index]))
-                {
-                    // certificate and root certificate match
-                    valid = true;
-                }
-                else
-                {
-                    // no match, chect next root certificate
-                    valid = false;
-                }
-
-                index++;
-            }
-
-            return valid;
+            return isValid;
         }
 
-        public bool IsValid(X509Certificate2 certificate, X509Certificate2 rootCertificate)
+        public bool IsValid(X509Certificate2 certificate, IDictionary<string, X509Certificate2> rootCertificateDirectory)
         {
-            bool valid;
+            bool isValid;
 
             if (certificate.NotAfter < DateTime.Now)
             {
                 // certificate has expired
-                valid = false;
+                isValid = false;
             }
             else if (certificate.NotBefore > DateTime.Now)
             {
                 // yet valid
-                valid = false;
+                isValid = false;
             }
-            else if (!this.IsCertificateChildOfRoot(certificate, rootCertificate))
+            else
             {
-                // not correct root certificate
-                valid = false;
-            }
-            else 
-            {
-                // certificate valid
-                valid = true;
+                // validate the certificate path, and se if one of the
+                // certificate in the cartificate path (certificate chain) is in
+                // the list of valid root certificates
+                isValid = this.IsCertificateChildOfRoot(certificate, rootCertificateDirectory);
             }
 
-            return valid;
+            return isValid;
         }
 
-        public bool IsCertificateChildOfRoot(X509Certificate2 certificate, X509Certificate2 rootCertificate)
+        public bool IsCertificateChildOfRoot(X509Certificate2 certificate, IDictionary<string, X509Certificate2> rootCertificateDirectory)
         {
             // valid until proved otherwhise
-            bool valid = true;
-            X509Chain chain = this.CreateChain(certificate);
+            bool isValid = true;
+            X509Chain x509Chain = this.CreateChain(certificate);
 
-            //Modified chain validation of the certificate. We are not interested in Ctl lists
+            // Modified chain validation of the certificate. We are not interested in Ctl lists
             X509ChainStatus status;
             int index = 0;
-            while(valid && index < chain.ChainStatus.Length)
+
+            while (isValid && index < x509Chain.ChainStatus.Length)
             {
-            
-                status = chain.ChainStatus[index];
+
+                status = x509Chain.ChainStatus[index];
                             
                 switch (status.Status) 
                 {
@@ -137,58 +118,82 @@ namespace dk.gov.oiosi.security.validation {
                     case X509ChainStatusFlags.CtlNotTimeValid:
                     case X509ChainStatusFlags.CtlNotValidForUsage:
                     case X509ChainStatusFlags.NoError:
-                    case X509ChainStatusFlags.RevocationStatusUnknown:
                     case X509ChainStatusFlags.OfflineRevocation:
-                        {
+                    case X509ChainStatusFlags.RevocationStatusUnknown:
+                    {
                             // so far, still valid
                             break;
                         }
+                    case X509ChainStatusFlags.Cyclic:
+                    case X509ChainStatusFlags.HasExcludedNameConstraint:
+                    case X509ChainStatusFlags.HasNotDefinedNameConstraint:
+                    case X509ChainStatusFlags.HasNotPermittedNameConstraint:
+                    case X509ChainStatusFlags.HasNotSupportedNameConstraint:
+                    case X509ChainStatusFlags.InvalidBasicConstraints:
+                    case X509ChainStatusFlags.InvalidExtension:
+                    case X509ChainStatusFlags.InvalidNameConstraints:
+                    case X509ChainStatusFlags.InvalidPolicyConstraints:
+                    case X509ChainStatusFlags.NoIssuanceChainPolicy:
+                    case X509ChainStatusFlags.NotSignatureValid:
+                    case X509ChainStatusFlags.NotTimeNested:
+                    case X509ChainStatusFlags.NotTimeValid:
+                    case X509ChainStatusFlags.NotValidForUsage:
+                    case X509ChainStatusFlags.PartialChain:
+                    case X509ChainStatusFlags.Revoked:
+                    case X509ChainStatusFlags.UntrustedRoot:
+                    {
+                        isValid = false;
+                        break;
+                    }
                     default:
                         {
                             logger.Warn("The certificate chain.ChainStatus '" + status.Status + "' is not implemented.");
-                            valid = false;
+                            isValid = false;
                             break;
                         }
                 }
 
-                index ++;
+                index++;
             }
 
-            bool rootIsInChain = false;
-            if (valid)
+            if (isValid)
             {
                 // Check if the certificate has the default root certificate as its root
-                string rootThumbprint = rootCertificate.Thumbprint.ToLower();
-
-                if (certificate.Thumbprint.ToLower() == rootThumbprint)
+                string x509CertificateThumbprint = certificate.Thumbprint.ToLowerInvariant();
+                if (rootCertificateDirectory.ContainsKey(x509CertificateThumbprint))
                 {
                     // certificate is a root certificate - not valid
-                    rootIsInChain = false;
+                    isValid = false;
                 }
                 else
                 {
-                    // check all the chain in the certificate to se if one of the chain is the root certificate
-                    index = 0;
-                    X509ChainElement chainElem;
+                    // Iterate though the chain, to validate if it contain a valid root vertificate
+                    X509ChainElementCollection x509ChainElementCollection = x509Chain.ChainElements;
+                    X509ChainElementEnumerator enumerator = x509ChainElementCollection.GetEnumerator();
+                    X509ChainElement x509ChainElement;
+                    X509Certificate2 x509Certificate2;
 
-                    while (rootIsInChain == false && index < chain.ChainElements.Count)
+                    // At this point, the certificate is not valid, until a 
+                    // it is proved that it has a valid root certificate
+                    isValid = false;
+
+                    while (isValid == false && enumerator.MoveNext())
                     {
-                        chainElem = chain.ChainElements[index];
-                        if (chainElem.Certificate.Thumbprint.ToLower() == rootThumbprint)
+                        x509ChainElement = enumerator.Current;
+                        x509Certificate2 = x509ChainElement.Certificate;
+                        x509CertificateThumbprint = x509Certificate2.Thumbprint.ToLowerInvariant();
+                        if (rootCertificateDirectory.ContainsKey(x509CertificateThumbprint))
                         {
-                            // root certificate is in chain
-                            rootIsInChain = true;
+                            // The current chain element is in the trusted rootCertificateDirectory
+                            isValid = true;
+
+                            // now the loop will break, as we have found a trusted root certificate
                         }
-                        else
-                        {
-                            // root element not found yet - try the next dhain
-                            index++;
-                        }                        
                     }
                 }
             }
 
-            return rootIsInChain;
+            return isValid;
         }
 
         private void LoadRootCertificates(RootCertificateCollectionConfig rootCertificateCollectionConfig)
@@ -199,7 +204,7 @@ namespace dk.gov.oiosi.security.validation {
             foreach (RootCertificateLocation rootCertificateLocation in rootCertificateCollectionConfig.RootCertificateCollection)
             {
                 loadedRootCertificate = certificateLoader.GetCertificateFromCertificateStoreInformation(rootCertificateLocation);
-                this.trustedRootCertificates.Add(loadedRootCertificate);
+                this.rootCertificateDirectory.Add(loadedRootCertificate.Thumbprint.ToLowerInvariant(), loadedRootCertificate);
            }
         }
 
@@ -207,7 +212,7 @@ namespace dk.gov.oiosi.security.validation {
         {
             foreach (X509Certificate2 x509Certificate2 in rootCertificateCollection)
             {
-                this.trustedRootCertificates.Add(x509Certificate2);
+                this.rootCertificateDirectory.Add(x509Certificate2.Thumbprint.ToLowerInvariant(), x509Certificate2);
             }
         }
 
