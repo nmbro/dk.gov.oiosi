@@ -40,25 +40,11 @@ namespace dk.gov.oiosi.raspProfile {
     /// <summary>
     /// Default revocation values class
     /// </summary>
-    public class DefaultRevocationConfig {
+    public abstract class DefaultRevocationConfig
+    {
 
-        /// <summary>
-        /// Set default, live Ocsp factory 
-        /// </summary>
-        public void SetRevocationLookupFactoryConfig() {
-            RevocationLookupFactoryConfig revoFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
-            revoFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            revoFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookup";
-        }
-
-        /// <summary>
-        /// Set default, test Ocsp factory
-        /// </summary>
-        public void SetTestRevocationLookupFactoryConfig() {
-            RevocationLookupFactoryConfig revoFactoryConfig = ConfigurationHandler.GetConfigurationSection<RevocationLookupFactoryConfig>();
-            revoFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
-            revoFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.revocation.ocsp.OcspLookupTest";
-        }
+        public abstract void SetRevocationLookupFactoryConfig();
+        public abstract void SetTestRevocationLookupFactoryConfig();
 
         /// <summary>
         /// Use default live factory as default 
