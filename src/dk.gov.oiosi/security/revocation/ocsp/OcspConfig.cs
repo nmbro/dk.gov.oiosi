@@ -36,6 +36,7 @@ using System.Xml.Serialization;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.lookup;
 using System.Collections.Generic;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
@@ -43,9 +44,19 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
     /// OCSP dynamic configuration
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
-    public class OcspConfig {
+    public class OcspConfig 
+    {
+        private ILogger logger;
         private Uri _serverUrl = null;
         private int _defaultTimeoutMsec = 10000;
+
+        /// <summary>
+        /// Default constructor that initializes the OscpConfig with default values
+        /// </summary>
+        public OcspConfig()
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+        }
 
         /// <summary>
         /// Gets or sets the URL of the OCSP server.
@@ -72,11 +83,6 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         }
 
         /// <summary>
-        /// Default constructor that initializes the OscpConfig with default values
-        /// </summary>
-        public OcspConfig() { }
-
-        /// <summary>
         /// Loads the configured OCES default root certificate
         /// </summary>
         /// <returns>The loaded x509 certificate. If no certificate is found, an exception is thrown.</returns>
@@ -86,10 +92,61 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             RootCertificateCollectionConfig rootCertificateConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             X509Certificate2 certificate2;
             CertificateLoader certificateLoader = new CertificateLoader();
+
+            IList<Exception> exceptions = new List<Exception>();
             foreach(CertificateStoreIdentification certificateStoreIdentification in rootCertificateConfig.GetAsList())
             {
-                certificate2 = certificateLoader.GetCertificateFromCertificateStoreInformation(certificateStoreIdentification);
-                list.Add(certificate2);
+                // reset certificate to null
+                certificate2 = null;
+
+                try
+                {
+                    // tries to retrive the certificate
+                    certificate2 = certificateLoader.GetCertificateFromCertificateStoreInformation(certificateStoreIdentification);
+                }
+                catch (Exception ex)
+                {
+                    // store the exception
+                    // it is log later
+                    exceptions.Add(ex);
+                }
+
+                // only add the certificate, if one found
+                if (certificate2 != null)
+                {
+                    list.Add(certificate2);
+                }
+            }
+
+            if (list.Count == 0)
+            {
+                // no root certificate was found.
+                // logging the exception
+                foreach (Exception exception in exceptions)
+                {
+                    this.logger.Error(exceptions);
+                }
+
+                // and throw the latest exception
+                if (exceptions.Count > 0)
+                {
+                    throw exceptions[exceptions.Count];
+                }
+                else
+                {
+                    // no exception
+                    // an no root certificate
+                    throw new CertificateHandlingException(new Exception("No root certificate was found!")); 
+                }
+            }
+            else
+            {
+                // some root certificate found
+                // only log exceptions as debug
+                foreach (Exception exception in exceptions)
+                {
+                    this.logger.Debug(exceptions);
+                }
             }
 
             return list;
