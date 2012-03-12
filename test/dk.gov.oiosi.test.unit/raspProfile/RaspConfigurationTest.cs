@@ -92,7 +92,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile {
         /// Setup default OSCP settings
         /// </summary>
         private void SetupDefaultOscpConfig() {
-            DefaultRevocationConfig revocationConfig = new DefaultRevocationConfig();
+            DefaultRevocationConfig revocationConfig = new DefaultRevocationOcspConfig();
             revocationConfig.SetIfNotExistsRevocationLookupFactoryConfig();
             revocationConfig.SetIfNotExistsOscpConfig();
         }
