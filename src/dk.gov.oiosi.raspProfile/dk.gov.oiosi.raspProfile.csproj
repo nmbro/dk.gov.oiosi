@@ -49,6 +49,8 @@
     <Compile Include="communication\IRaspRequest.cs" />
     <Compile Include="communication\RaspRequest.cs" />
     <Compile Include="communication\service\RaspServiceImplementation.cs" />
+    <Compile Include="DefaultRevocationCrlConfig.cs" />
+    <Compile Include="DefaultRevocationOcspConfig.cs" />
     <Compile Include="DefaultSendingOptionConfig.cs" />
     <Compile Include="DefaultCacheConfig.cs" />
     <Compile Include="DefaultDocumentTypes.cs" />

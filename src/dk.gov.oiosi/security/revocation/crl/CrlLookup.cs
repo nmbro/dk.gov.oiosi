@@ -138,7 +138,6 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>A list of CRL URLs in the certificate</returns>
         private List<Uri> GetURLs(X509Certificate2 cert)
         {
-
             List<Uri> urls = new List<Uri>();
 
             foreach (System.Security.Cryptography.X509Certificates.X509Extension extension in cert.Extensions)

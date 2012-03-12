@@ -7,11 +7,12 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Parameters for use in lookup
     /// </summary>
-    public class LookupParameters {
+    public class LookupParameters 
+    {
         public const string RASPPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/OIOSI/1.0/secureReliableAsyncProfile/1.0/";
-        public const string BASICPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/BasicProfile1.1/";
-        public const string MODELTPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/OWSA/modelT/1.0/";
-        public const string OTHERPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/otherProfile/";
+        //public const string BASICPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/BasicProfile1.1/";
+        //public const string MODELTPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/OWSA/modelT/1.0/";
+        //public const string OTHERPROFILECONFORMANCECLAIM = "http://oio.dk/profiles/otherProfile/";
 
         /// <summary>
         /// The identifier for the service

@@ -40,8 +40,6 @@ namespace dk.gov.oiosi.security.revocation.crl
     using System.Threading;
     using Org.BouncyCastle.X509;
     using dk.gov.oiosi.logging;
-    using org.bouncycastle.asn1.x509;
-    using org.bouncycastle.asn1;
     using Org.BouncyCastle.Asn1;
 
     /// <summary>

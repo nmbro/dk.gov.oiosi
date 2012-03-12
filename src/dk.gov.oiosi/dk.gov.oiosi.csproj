@@ -63,10 +63,6 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="bccrypto-csharp-b02, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\bccrypto-csharp-b02.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -74,10 +70,6 @@
     <Reference Include="Novell.Directory.Ldap, Version=2.1.10.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Novell.Directory.Ldap.dll</HintPath>
-    </Reference>
-    <Reference Include="OcspClient2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\OcspClient2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -639,6 +631,7 @@
       <Link>Resources\Licenses\License.rtf</Link>
     </None>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">

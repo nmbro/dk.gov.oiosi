@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.exception.MessageStore {
         private ResourceManager internalErrorMessages = new ResourceManager(typeof(ErrorMessages));
         private ILogger logger;
 
+
         public ResourceFileExceptionMessageStore()
         {
             this.logger = LoggerFactory.Create(this.GetType());

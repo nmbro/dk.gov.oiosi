@@ -31,14 +31,23 @@
   *
   */
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using dk.gov.oiosi.common;
 using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.configuration;
-using Iloveit.Ocsp.Demo;
-using System.Collections.Generic;
+using Org.BouncyCastle.Ocsp;
+using Org.BouncyCastle.Asn1.Ocsp;
+using Org.BouncyCastle.Asn1;
+using Org.BouncyCastle.Math;
+using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.X509;
+//using Novell.Directory.Ldap.Asn1;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
@@ -49,10 +58,14 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
         private OcspConfig _configuration;
 
+        private readonly int BufferSize = 4096 * 8;
+
         /// <summary>
         /// List of the default OCES (OCES1 and OCES2) root certificate
         /// </summary>
         private IList<X509Certificate2> defaultOcesRootCertificateList;
+
+        private IDictionary<string, X509Certificate2> rootCertificateDirectory;
 
         private ICache<string, RevocationResponse> ocspCache;
 
@@ -115,11 +128,16 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 // 2. Get default certificate:
                 if (defaultRootCertificateList == null)
                 {
-                    this.defaultOcesRootCertificateList = _configuration.GetDefaultOcesRootCertificateListFromStore();
+                    defaultRootCertificateList = _configuration.GetDefaultOcesRootCertificateListFromStore();
                 }
-                else
+
+                // put the root certificates into the directory
+
+                this.rootCertificateDirectory = new Dictionary<string, X509Certificate2>();
+
+                foreach (X509Certificate2 x509Certificate2 in defaultRootCertificateList)
                 {
-                    this.defaultOcesRootCertificateList = defaultRootCertificateList;
+                    this.rootCertificateDirectory.Add(x509Certificate2.Thumbprint.ToLowerInvariant(), x509Certificate2);
                 }
             }
             catch (UriFormatException)
@@ -158,133 +176,387 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <param name="certificate">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
-        private RevocationResponse CheckCertificateCall(X509Certificate2 certificate) {
+        private RevocationResponse CheckCertificateCall(X509Certificate2 serverX509Certificate2)
+        {
             RevocationResponse response = new RevocationResponse();
 
-            try 
+            try
             {
-                if (certificate != null)
-                {
-                    int index = 0;
-
-                    while (index < this.defaultOcesRootCertificateList.Count && response.IsValid == false)
-                    {
-
-                        // ToDo - jlm, kan denne metode hånder tre niveauder i OCES2 certifikater???
-
-                        //1. instantiate ocsp library
-                        OcspClient ocsp = new OcspClient(this.defaultOcesRootCertificateList[index].RawData);
-
-                        //2. make binary request
-
-                        //converts hexadecimal to decimal
-                        uint uiHex = new uint();
-                        byte[] req = null;
-
-                        uiHex = System.Convert.ToUInt32(certificate.SerialNumber, 16);
-                        req = ocsp.MakeOcspRequest(uiHex.ToString());
-
-                        //3. send request
-                        String serverURL;
-                        if (string.IsNullOrEmpty(_configuration.ServerUrl))
-                        {
-                            // Use OCSP server specified in certificate
-                            serverURL = GetServerUriFromCertificate(certificate);
-                        }
-                        else
-                        {
-                            // Use OCSP server specified in configuration
-                            serverURL = _configuration.ServerUrl.ToString();
-                        }
-
-                        byte[] resp = ocsp.Send(req, serverURL);
-
-                        //4. check result
-                        if (ocsp.GetValidSerials(resp).Contains(uiHex.ToString()))
-                        {
-                            // Certificate is valid
-                            response.IsValid = true;
-                        }
-                        else
-                        {
-                            // certificate is not valid - checking the next certificate
-                            index++;
-                        }
-                    }
-                } 
-                else 
+                if (serverX509Certificate2 == null)
                 {
                     throw new CheckCertificateOcspUnexpectedException();
                 }
-            } catch (ArgumentNullException) {
+                // http://bouncy-castle.1462172.n4.nabble.com/c-ocsp-verification-td3160243.html
+                X509Certificate2 rootX509Certificate2 = this.FindRootCertificate(serverX509Certificate2, this.rootCertificateDirectory);
+
+                if (rootX509Certificate2 == null)
+                {
+                    throw new Exception("Root certificate for server certificate not identified");
+                }
+
+                // create BouncyCastle certificates
+                X509CertificateParser certParser = new X509CertificateParser();
+                Org.BouncyCastle.X509.X509Certificate rootX509Certificate = certParser.ReadCertificate(rootX509Certificate2.RawData);
+                Org.BouncyCastle.X509.X509Certificate serverX509Certificate = certParser.ReadCertificate(serverX509Certificate2.RawData);
+
+
+                // 1. Get server url
+                List<string> urlList = this.GetAuthorityInformationAccessOcspUrl(serverX509Certificate);
+
+                if (urlList.Count == 0)
+                {
+                    throw new Exception("No OCSP url found in ee certificate.");
+                }
+
+                // we always validate against the first defined url
+                string url = urlList[0];
+
+                // 2. Generate request
+                OcspReq req = this.GenerateOcspRequest(rootX509Certificate, serverX509Certificate.SerialNumber);
+
+                // 2. make binary request online
+                byte[] binaryResp = this.PostData(url, req.GetEncoded(), "application/ocsp-request", "application/ocsp-response");
+
+                //3. check result
+                response = this.ProcessOcspResponse(serverX509Certificate, rootX509Certificate, binaryResp);
+            }
+            catch (ArgumentNullException)
+            {
                 throw;
-            } catch (OverflowException) {
+            }
+            catch (OverflowException)
+            {
                 throw;
-            } catch (FormatException) {
+            }
+            catch (FormatException)
+            {
                 throw;
-            } catch (CryptographicUnexpectedOperationException) {
+            }
+            catch (CryptographicUnexpectedOperationException)
+            {
                 throw;
-            } catch (CryptographicException) {
+            }
+            catch (CryptographicException)
+            {
                 throw;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 throw new CheckCertificateOcspUnexpectedException(e);
             }
+
             return response;
         }
 
-        /// <summary>
-        /// Gets the Server URI from certificate
-        /// </summary>
-        /// <param name="certificate"></param>
-        /// <returns>Server URI</returns>
-        private string GetServerUriFromCertificate(X509Certificate2 certificate) {
-            string retval = "";
-            
-            try {
-                Regex liveOcesOidRegEx = new Regex(@"URL=http://[\w|/\.]*");
-                string extensionDataString = certificate.Extensions["1.3.6.1.5.5.7.1.1"].Format(false);
-                MatchCollection matches = liveOcesOidRegEx.Matches(extensionDataString);
-                if (matches.Count == 0 || matches.Count > 1) {
-                    // No or more than one matches
-                    throw new Exception();
-                }
-                else {
-                    retval = matches[0].ToString().Substring(4);
-                }
-            }
-            catch 
+
+        public X509Certificate2 FindRootCertificate(X509Certificate2 serverX509Certificate2, IDictionary<string, X509Certificate2> rootCertificateDirectory)
+        {
+            bool rootCertificateFound = false;
+            X509Certificate2 desiredRootX509Certificate2 = null;
+            // Find the desired root certificate
+            X509Chain x509Chain = new X509Chain();
+            x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            x509Chain.Build(serverX509Certificate2);
+
+            // Iterate though the chain, to validate if it contain a valid root vertificate
+            X509ChainElementCollection x509ChainElementCollection = x509Chain.ChainElements;
+            X509ChainElementEnumerator enumerator = x509ChainElementCollection.GetEnumerator();
+            X509ChainElement x509ChainElement;
+            X509Certificate2 x509Certificate2 = null;
+            string x509CertificateThumbprint;
+            // At this point, the certificate is not valid, until a 
+            // it is proved that it has a valid root certificate
+            while (rootCertificateFound == false && enumerator.MoveNext())
             {
-                throw new InvalidOcesCertificateException(certificate);
+                x509ChainElement = enumerator.Current;
+                x509Certificate2 = x509ChainElement.Certificate;
+                x509CertificateThumbprint = x509Certificate2.Thumbprint.ToLowerInvariant();
+                if (rootCertificateDirectory.ContainsKey(x509CertificateThumbprint))
+                {
+                    // The current chain element is in the trusted rootCertificateDirectory
+                    rootCertificateFound = true;
+
+                    // now the loop will break, as we have found a trusted root certificate
+                }
             }
-            return retval;
+
+            if (rootCertificateFound)
+            {
+                // root certificate is found
+                desiredRootX509Certificate2 = x509Certificate2;
+            }
+
+            return desiredRootX509Certificate2;
+        }
+
+       /* public List<string> GetAuthorityInformationAccessOcspUrl(X509Certificate2 rootX509Certificate2)
+        {
+            List<string> urls;
+            X509Certificate x509Certificate = rootX509Certificate2.Export(X509ContentType.Cert);
+            urls = this.GetAuthorityInformationAccessOcspUrl(x509Certificate);
+
+            return urls;
+        }*/
+
+        public List<string> GetAuthorityInformationAccessOcspUrl(Org.BouncyCastle.X509.X509Certificate rootX509Certificate)
+        {
+            List<string> ocspUrls = new List<string>();
+
+            try
+            {
+                // "1.3.6.1.5.5.7.1.1"
+                Asn1Object asn1Object = this.GetExtensionValue(rootX509Certificate, X509Extensions.AuthorityInfoAccess.Id);
+
+                if (asn1Object == null)
+                {
+                    return null;
+                }
+
+                // For a strange reason I cannot acess the aia.AccessDescription[]. 
+                // Hope it will be fixed in the next version (1.5). 
+                // mySupply ApS - JLM - Still not working in 1.7
+                // AuthorityInformationAccess aia = AuthorityInformationAccess.GetInstance(asn1Object); 
+
+                // Switched to manual parse 
+                Asn1Sequence s = (Asn1Sequence)asn1Object;
+                IEnumerator elements = s.GetEnumerator();
+
+                while (elements.MoveNext())
+                {
+                    Asn1Sequence element = (Asn1Sequence)elements.Current;
+                    DerObjectIdentifier oid = (DerObjectIdentifier)element[0];
+
+                    if (oid.Id.Equals("1.3.6.1.5.5.7.48.1")) // Is Ocsp? 
+                    {
+                        Asn1TaggedObject taggedObject = (Asn1TaggedObject)element[1];
+                        GeneralName gn = (GeneralName)GeneralName.GetInstance(taggedObject);
+                        ocspUrls.Add(((DerIA5String)DerIA5String.GetInstance(gn.Name)).GetString());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error parsing AIA.", e);
+            }
+
+            return ocspUrls;
+        }
+
+        private Asn1Object GetExtensionValue(Org.BouncyCastle.X509.X509Certificate rootX509Certificate, string oid)
+        {
+            if (rootX509Certificate == null)
+            {
+                return null;
+            }
+
+            byte[] bytes = rootX509Certificate.GetExtensionValue(new DerObjectIdentifier(oid)).GetOctets();
+
+            if (bytes == null)
+            {
+                return null;
+            }
+
+            Asn1InputStream aIn = new Asn1InputStream(bytes);
+
+            return aIn.ReadObject();
         } 
+
+       /* private OcspReq GenerateOcspRequest(X509Certificate2 rootX509Certificate2, BigInteger serialNumber)
+        {
+            X509Certificate rootX509Certificate = rootX509Certificate2.Export(X509ContentType.Cert);
+            return this.GenerateOcspRequest(rootX509Certificate, serialNumber);
+        }*/
+
+       /* private OcspReq GenerateOcspRequest(X509Certificate rootX509Certificate, byte serialNumber)
+        {
+            BigInteger serialNumberBigInteger = new BigInteger(serialNumber);
+            return this.GenerateOcspRequest(rootX509Certificate, serialNumberBigInteger);
+        }*/
+
+
+        private OcspReq GenerateOcspRequest(Org.BouncyCastle.X509.X509Certificate rootX509Certificate, BigInteger serialNumber)
+        {
+            CertificateID certificateID = new CertificateID(CertificateID.HashSha1, rootX509Certificate, serialNumber);
+            return this.GenerateOcspRequest(certificateID);
+        }
+
+        private OcspReq GenerateOcspRequest(CertificateID id)
+        {
+            OcspReqGenerator ocspRequestGenerator = new OcspReqGenerator();
+
+            ocspRequestGenerator.AddRequest(id);
+
+            BigInteger nonce = BigInteger.ValueOf(new DateTime().Ticks);
+
+            ArrayList oids = new ArrayList();
+            Hashtable values = new Hashtable();
+
+            oids.Add(OcspObjectIdentifiers.PkixOcsp);
+
+            Asn1OctetString asn1 = new DerOctetString(new DerOctetString(new byte[] { 1, 3, 6, 1, 5, 5, 7, 48, 1, 1 }));
+
+            values.Add(OcspObjectIdentifiers.PkixOcsp, new Org.BouncyCastle.Asn1.X509.X509Extension(false, asn1));
+            X509Extensions x509Extensions = new X509Extensions(oids, values);
+            ocspRequestGenerator.SetRequestExtensions(x509Extensions);
+
+            OcspReq ocspReq = ocspRequestGenerator.Generate();
+
+            return ocspRequestGenerator.Generate();
+        }
         
+        private byte[] PostData(string url, byte[] data, string contentType, string accept)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            request.ContentType = contentType;
+            request.ContentLength = data.Length;
+            request.Accept = accept;
+            Stream stream = request.GetRequestStream();
+            stream.Write(data, 0, data.Length);
+            stream.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream respStream = response.GetResponseStream();
+            byte[] resp = this.ToByteArray(respStream);
+            respStream.Close();
+
+            return resp;
+        }
+
+        public byte[] ToByteArray(Stream stream)
+        {
+            byte[] buffer = new byte[this.BufferSize];
+            MemoryStream ms = new MemoryStream();
+
+            int read = 0;
+
+            while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                ms.Write(buffer, 0, read);
+            }
+
+            return ms.ToArray();
+        }
+
+        private RevocationResponse ProcessOcspResponse(Org.BouncyCastle.X509.X509Certificate serverX509Certificate, Org.BouncyCastle.X509.X509Certificate rootX509Certificate, byte[] binaryResp)
+        {
+            OcspResp r = new OcspResp(binaryResp);
+            //CertificateStatus cStatus = CertificateStatus.Unknown;
+            RevocationResponse revocationResponse = new RevocationResponse();
+
+            switch (r.Status)
+            {
+                case OcspRespStatus.Successful:
+                    {
+                        BasicOcspResp or = (BasicOcspResp)r.GetResponseObject();
+
+                        // ValidateResponse(or, issuerCert); 
+
+                        if (or.Responses.Length == 1)
+                        {
+                            SingleResp resp = or.Responses[0];
+
+                            this.ValidateCertificateId(serverX509Certificate, rootX509Certificate, resp.GetCertID());
+
+                            // ValidateThisUpdate(resp); 
+                            // ValidateNextUpdate(resp); 
+
+                            Object certificateStatus = resp.GetCertStatus();
+
+                            if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
+                            {
+                                revocationResponse.IsValid = true;
+                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
+                            }
+                            else if (certificateStatus is Org.BouncyCastle.Ocsp.RevokedStatus)
+                            {
+                                revocationResponse.IsValid = false;
+                                //cStatus = CertificateStatus.Revoked;
+                            }
+                            else if (certificateStatus is Org.BouncyCastle.Ocsp.UnknownStatus)
+                            {
+                                 throw new Exception("CertificateStatus is Unknown");
+                            }
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Unknow status '" + r.Status + "'.");
+                    }
+            }
+
+            return revocationResponse;
+        }
+
+        //1. The certificate identified in a received response corresponds to 
+        //that which was identified in the corresponding request; 
+        private void ValidateCertificateId(Org.BouncyCastle.X509.X509Certificate serverX509Certificate, Org.BouncyCastle.X509.X509Certificate rootX509Certificate, CertificateID certificateId)
+        {
+            CertificateID expectedId = new CertificateID(CertificateID.HashSha1, rootX509Certificate, serverX509Certificate.SerialNumber);
+
+            if (!expectedId.SerialNumber.Equals(certificateId.SerialNumber))
+            {
+                throw new Exception("Invalid certificate ID in response");
+            }
+
+            if (!Org.BouncyCastle.Utilities.Arrays.AreEqual(expectedId.GetIssuerNameHash(), certificateId.GetIssuerNameHash()))
+            {
+                throw new Exception("Invalid certificate Issuer in response");
+            }
+        } 
+
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>
         /// <param name="certificate">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
-        public RevocationResponse CheckCertificate(X509Certificate2 certificate) {
+        public RevocationResponse CheckCertificate(X509Certificate2 x509Certificate2) {
             //To call the CheckCertificate asynchronously, we initialize the delegate and call it with IAsyncResult
-            RevocationResponse response;
+            RevocationResponse revocationResponse;
 
-            bool ocspResponseExistsInCache = ocspCache.TryGetValue(certificate.SubjectName.Name, out response);
-            if (ocspResponseExistsInCache) {
-                return response;
+            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
+            if (ocspResponseExistsInCache)
+            {
+                // response already in cache.
+                // Check if the response still is valid
+                if (revocationResponse.NextUpdate < DateTime.Now)
+                {
+                    // the cached value is to old
+                    // get new value
+                    revocationResponse = this.CheckCertificateOnline(x509Certificate2);
+                }
             }
+            else
+            {
+                // respons is not in cache
+                revocationResponse = this.CheckCertificateOnline(x509Certificate2);
+            }
+
+            // put revocationResponse in cache
+            this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+
+            return revocationResponse;
+        }
+
+        private RevocationResponse CheckCertificateOnline(X509Certificate2 certificate)
+        {
+            RevocationResponse revocationResponse;
 
             AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
             IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
 
             bool ocspRepliedInTime = asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false);
-            if (ocspRepliedInTime) {
-                response = asyncOcspCall.EndInvoke(asyncResult);
-                ocspCache.Set(certificate.SubjectName.Name, response);
-                return response;
+            if (ocspRepliedInTime)
+            {
+                revocationResponse = asyncOcspCall.EndInvoke(asyncResult);
+            }
+            else
+            {
+                throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
             }
 
-            throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
+            return revocationResponse;
         }
     }
 }

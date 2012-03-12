@@ -33,8 +33,10 @@ namespace dk.gov.oiosi.logging
         /// <summary>
         /// Initializes a new instance of the SourceData struct.
         /// </summary>
-        /// <param name="module">The name of the class/struct</param>
-        /// <param name="method">The name of the method</param>
+        /// <param name="moduleName">The name of the module</param>
+        /// <param name="className">The name of the class</param>
+        /// <param name="methodName">The name of the class/struct</param>
+        /// <param name="lineNumber">The line number</param>
         public SourceData(string moduleName, string className, string methodName, int lineNumber)
         {
             this.moduleName = moduleName;

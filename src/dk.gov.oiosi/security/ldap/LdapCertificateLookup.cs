@@ -94,9 +94,12 @@ namespace dk.gov.oiosi.security.ldap {
         /// </summary>
         /// <param name="subject">The subject string of an OCES certificate.</param>
         /// <returns>The certificate that satifies the conditions of the subject string.</returns>
-        public X509Certificate2 GetCertificate(CertificateSubject subject) {
+        public X509Certificate2 GetCertificate(CertificateSubject subject)
+        {
             if (subject == null)
+            {
                 throw new ArgumentNullException("subject");
+            }
 
             X509Certificate2 certificateToBeReturned;
 
@@ -118,11 +121,28 @@ namespace dk.gov.oiosi.security.ldap {
                     }
                 }
 
+                // check it is not expired
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);
-                certiticateCache.Set(subject, certificateToBeReturned);
+
+                // everything is okay, add it to the cache
+                this.certiticateCache.Set(subject, certificateToBeReturned);
             }
-            else {
-                CertificateValidator.ValidateCertificate(certificateToBeReturned);
+            else
+            {
+                // certificate found in cache
+                // check it is not expired
+                try
+                {
+                    CertificateValidator.ValidateCertificate(certificateToBeReturned);
+                }
+                catch
+                {
+                    // if any error is thrown, move the certificate from the cache
+                    this.certiticateCache.Remove(subject);
+
+                    // throw the original error
+                    throw;
+                }
             }
 
             return certificateToBeReturned;
