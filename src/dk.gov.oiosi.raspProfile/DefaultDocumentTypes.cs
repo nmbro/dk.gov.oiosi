@@ -523,7 +523,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Faktura v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pie/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/piestrict.xsd";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pieStrict.xsd";
             const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
             const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
             const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
@@ -548,7 +548,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Faktura v0.7 - Læs ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pip/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pipstrict.xsd";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pipStrict.xsd";
             const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
             const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
             const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
@@ -573,7 +573,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Kreditnota v0.7";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcmstrict.xsd";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcmStrict.xsd";
             const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
             const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
             const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
@@ -598,7 +598,7 @@ namespace dk.gov.oiosi.raspProfile {
             const string documentName = "Kreditnota v0.7 - Læs ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcpstrict.xsd";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcpStrict.xsd";
             const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
             const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
             const string destinationKeyXPath = "/root:Invoice/com:BuyersReferenceID";
