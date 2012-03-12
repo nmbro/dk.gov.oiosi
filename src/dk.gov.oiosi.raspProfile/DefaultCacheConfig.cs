@@ -112,14 +112,14 @@ namespace dk.gov.oiosi.raspProfile
             cacheConfig.MessageIdUnfinishedSignaturesCache = new CacheConfigElement();
             cacheConfig.MessageIdUnfinishedSignaturesCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]";
             cacheConfig.MessageIdUnfinishedSignaturesCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity10);
+            cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity60);
             cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationFrequency10);
             cacheConfig.MessageIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(new CacheConfiguration(cacheName, "MessageIdUnfinishedSignaturesCache"));
 
             cacheConfig.SequenceIdUnfinishedSignaturesCache = new CacheConfigElement();
             cacheConfig.SequenceIdUnfinishedSignaturesCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]";
             cacheConfig.SequenceIdUnfinishedSignaturesCache.ImplementationAssembly = implementationAssembly;
-            cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity10);
+            cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationValidity60);
             cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(configurationFrequency10);
             cacheConfig.SequenceIdUnfinishedSignaturesCache.CacheConfigurationCollection.Add(new CacheConfiguration(cacheName, "SequenceIdUnfinishedSignaturesCache"));
         }

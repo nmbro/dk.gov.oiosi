@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.2.4.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
@@ -8,7 +8,7 @@
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pie/</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOXML_v0.7/piestrict.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOXML_v0.7/pieStrict.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -89,8 +89,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -164,8 +180,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -179,22 +211,13 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
+          <ProfileIdXPath>
+            <XPath />
+          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -206,6 +229,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath />
+        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>7bd520d7-6ae5-4a3c-8604-082e69414092</Id>
@@ -213,7 +239,7 @@
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOXML_v0.7/pcmstrict.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOXML_v0.7/pcmStrict.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -294,8 +320,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -369,8 +411,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -384,22 +442,13 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
+          <ProfileIdXPath>
+            <XPath />
+          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -411,6 +460,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath />
+        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>40c9fbee-ad39-48ed-9e04-c28cbbf8a38c</Id>
@@ -418,7 +470,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -511,8 +563,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -586,8 +654,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -600,18 +684,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -739,8 +811,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -814,8 +902,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -828,18 +932,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -967,8 +1059,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1042,8 +1150,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1056,18 +1180,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1195,8 +1307,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1270,8 +1398,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1284,18 +1428,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1423,8 +1555,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1498,8 +1646,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1512,18 +1676,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1651,8 +1803,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1726,8 +1894,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1740,18 +1924,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1879,8 +2051,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1954,8 +2142,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1968,18 +2172,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2107,8 +2299,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2182,8 +2390,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2196,18 +2420,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2335,8 +2547,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2410,8 +2638,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2424,18 +2668,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2563,8 +2795,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2638,8 +2886,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2652,18 +2916,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2791,8 +3043,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2866,8 +3134,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2880,18 +3164,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3019,8 +3291,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3094,8 +3382,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3108,18 +3412,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3247,8 +3539,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3322,8 +3630,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3336,18 +3660,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3475,8 +3787,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3550,8 +3878,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3564,18 +3908,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3703,8 +4035,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3778,8 +4126,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3792,18 +4156,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3931,8 +4283,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -4006,8 +4374,24 @@
                     <MapsTo>se</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>ISO 6523</Value>
                     <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -4020,18 +4404,6 @@
                   <Mapping>
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>cpr</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -4207,12 +4579,12 @@
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
     <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
-    <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
+    <DefaultTimeoutMsec>20000</DefaultTimeoutMsec>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClient</ImplementationNamespaceClass>
@@ -4239,7 +4611,7 @@
         </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
-  <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
+    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="CacheConfig">
     <OcspLookupCache>
@@ -4254,24 +4626,30 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>OcspLookupCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </OcspLookupCache>
-
     <CrlLookupCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
           <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Value>-1</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
+          <Value>-1</Value>
+        </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>CrlLookupCache</Value>
         </Configuration>
       </CacheConfigurationCollection>
     </CrlLookupCache>
-
     <UddiServiceCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4284,9 +4662,12 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>UddiServiceCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </UddiServiceCache>
-
     <UddiTModelCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4299,9 +4680,12 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>UddiTModelCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </UddiTModelCache>
-
     <CertificateCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4314,9 +4698,12 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>CertificateCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </CertificateCache>
-
     <SchemaStoreCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4325,9 +4712,12 @@
           <Key>maxSize</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>SchemaStoreCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </SchemaStoreCache>
-
     <SchematronStoreCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4336,9 +4726,12 @@
           <Key>maxSize</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>SchematronStoreCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </SchematronStoreCache>
-
     <MessageIdUnfinishedSignaturesCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4351,9 +4744,12 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>MessageIdUnfinishedSignaturesCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </MessageIdUnfinishedSignaturesCache>
-
     <SequenceIdUnfinishedSignaturesCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
@@ -4366,12 +4762,15 @@
           <Key>frequencyInMinutes</Key>
           <Value>10</Value>
         </Configuration>
+        <Configuration>
+          <Key>CacheName</Key>
+          <Value>SequenceIdUnfinishedSignaturesCache</Value>
+        </Configuration>
       </CacheConfigurationCollection>
     </SequenceIdUnfinishedSignaturesCache>
   </ConfigurationSection>
-  
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
-    <RootCertificateLocationCollection>
+     <RootCertificateLocationCollection>
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
@@ -4384,7 +4783,7 @@
         <SerialNumber>4b ea 6e 94</SerialNumber>
         <Description>TRUST2408 Systemtest VII Primary CA</Description>
       </RootCertificateLocation>
-    </RootCertificateLocationCollection>
+    </RootCertificateLocationCollection>    
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>
@@ -4401,7 +4800,7 @@
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="SendingOptionConfig">
-    <SchemaValidation>true</SchemaValidation>
-    <SchematronValidation>true</SchematronValidation>
+    <SchemaValidation>True</SchemaValidation>
+    <SchematronValidation>True</SchematronValidation>
   </ConfigurationSection>
 </RaspConfiguration>
