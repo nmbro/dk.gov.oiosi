@@ -52,7 +52,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         private ILogger logger;
         //private ServerSignatureValidationProofBindingExtensionElement configuration;
         private IRevocationLookup revocationLookup;
-        private SignatureValidationStackCheck stackCheck;
+
+        // Why use SignatureValidationStackCheck ... ?
+        // If used as designed, it will make the endpoint stop, if the interceptor throws an error        
+        // private SignatureValidationStackCheck stackCheck;
 
         /// <summary>
         /// Constructor that takes the binding element extension for configuration reasons.
@@ -61,12 +64,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         public ServerSignatureValidationProofBindingElement(dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerConfiguration configuration) // (ServerSignatureValidationProofBindingExtensionElement configuration)
             : base(configuration)
         {
-            //this.configuration = configuration;
             this.logger = LoggerFactory.Create(this.GetType());
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             this.revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
-            this.stackCheck = new SignatureValidationStackCheck(GetType());
-            
+            //this.stackCheck = new SignatureValidationStackCheck(GetType());
         }
 
         #region RaspBindingElement overrides
