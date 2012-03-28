@@ -52,9 +52,10 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetTestDefaultRootCertificateCollectionConfig()
         {
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
-            
+            RootCertificateLocation certificatLocation;
+
             // OCES 1
-            RootCertificateLocation certificatLocation = new RootCertificateLocation();
+            certificatLocation = new RootCertificateLocation();
             certificatLocation.Description = "TDC OCES Systemtest CA II";
             certificatLocation.SerialNumber = "403617FC";
             certificatLocation.StoreLocation = StoreLocation.LocalMachine;
@@ -62,7 +63,12 @@ namespace dk.gov.oiosi.raspProfile {
             rootCertificateCollectionConfig.GetAsList().Add(certificatLocation);
 
             // OCES 2
-            // ToDo - rod certifikatet for OCES2 mangler
+            certificatLocation = new RootCertificateLocation();
+            certificatLocation.Description = "TRUST2408 Systemtest VII Primary CA";
+            certificatLocation.SerialNumber = "4bea6e94";
+            certificatLocation.StoreLocation = StoreLocation.LocalMachine;
+            certificatLocation.StoreName = StoreName.Root;
+            rootCertificateCollectionConfig.GetAsList().Add(certificatLocation);
         }
 
         /// <summary>
@@ -71,9 +77,10 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetProductionDefaultRootCertificateCollectionConfig()
         {
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
+            RootCertificateLocation certificatLocation;
 
             // OCES 1
-            RootCertificateLocation certificatLocation = new RootCertificateLocation();
+            certificatLocation = new RootCertificateLocation();
             certificatLocation.Description = "TDC OCES CA";
             certificatLocation.SerialNumber = "3E48BDC4";
             certificatLocation.StoreLocation = StoreLocation.LocalMachine;
@@ -81,7 +88,12 @@ namespace dk.gov.oiosi.raspProfile {
             rootCertificateCollectionConfig.GetAsList().Add(certificatLocation);
             
             // OCES 2
-            // ToDo - rod certifikatet for OCES2 mangler
+            certificatLocation = new RootCertificateLocation();
+            certificatLocation.Description = "TRUST2408 OCES Primary CA";
+            certificatLocation.SerialNumber = "4b8e6003";
+            certificatLocation.StoreLocation = StoreLocation.LocalMachine;
+            certificatLocation.StoreName = StoreName.Root;
+            rootCertificateCollectionConfig.GetAsList().Add(certificatLocation);
         }
 
         /// <summary>
