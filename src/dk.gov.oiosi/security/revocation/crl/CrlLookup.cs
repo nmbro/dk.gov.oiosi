@@ -121,12 +121,14 @@ namespace dk.gov.oiosi.security.revocation.crl
             // If any errors happen during CRL check, then abort the processing of the message.
             if (innerException != null)
             {
-                throw innerException;
+                response.Exception = innerException;
             }
             else
             {
-                throw new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
+                response.Exception = new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
             }
+
+            return response;
         }
 
         #endregion

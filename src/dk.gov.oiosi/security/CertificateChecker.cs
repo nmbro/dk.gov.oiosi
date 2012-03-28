@@ -290,7 +290,7 @@ namespace dk.gov.oiosi.security {
         }
 
         /// <summary>
-        /// Check if the certificate is revoced against ocsp server
+        /// Check if the certificate is revoked against ocsp server
         /// </summary>
         /// <param name="certificate">the certificate to check</param>
         /// <returns>RevocationResponse object to store the result</returns>

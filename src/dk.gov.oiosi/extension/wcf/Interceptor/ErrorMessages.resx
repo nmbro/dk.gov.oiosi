@@ -170,4 +170,13 @@
   <data name="dk_gov_oiosi_extension_wcf_Interceptor_XsltTransform_XsltTransformFailedException" xml:space="preserve">
     <value>Kunne ikke XSLT-transformere meddelelsen (med henblik på grafisk visning). Dette kan betyde, at der er fejl i meddelelsens struktur ift XSLT stylesheetet, eller at dette er forkert konfigureret.</value>
   </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFailedException" xml:space="preserve">
+    <value>Certifikatet valideringen fejlede med fejlen: [error]</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedException" xml:space="preserve">
+    <value>Afsender certifikatet er trukket tilbage.</value>
+  </data>
+  <data name="dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperException" xml:space="preserve">
+    <value>[message]</value>
+  </data>
 </root>

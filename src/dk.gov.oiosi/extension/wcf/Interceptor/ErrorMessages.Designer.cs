@@ -88,6 +88,16 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [message].
+        /// </summary>
+        internal static string dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperException {
+            get {
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperExceptio" +
+                        "n", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der skete en intern fejl i serveren..
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorInternalFailureException {
@@ -132,6 +142,25 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
             get {
                 return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_NotAuthorisedExcept" +
                         "ion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afsender certifikatet er trukket tilbage..
+        /// </summary>
+        internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedException {
+            get {
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certifikatet valideringen fejlede med fejlen: [error].
+        /// </summary>
+        internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFailedException {
+            get {
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFaile" +
+                        "dException", resourceCulture);
             }
         }
         

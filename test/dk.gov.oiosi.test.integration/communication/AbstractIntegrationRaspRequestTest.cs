@@ -80,9 +80,9 @@ namespace dk.gov.oiosi.test.integration.communication
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             IRevocationLookup ocspClient = ocspLookupFactory.CreateRevocationLookupClient();
 
-            RevocationCheckStatus ocspStatus = endpointOcesCertificate.CheckRevocationStatus(ocspClient);
+            RevocationResponse ocspStatus = endpointOcesCertificate.CheckRevocationStatus(ocspClient);
 
-            switch (ocspStatus)
+            switch (ocspStatus.RevocationCheckStatus)
             {
                 case RevocationCheckStatus.AllChecksPassed:
                     {

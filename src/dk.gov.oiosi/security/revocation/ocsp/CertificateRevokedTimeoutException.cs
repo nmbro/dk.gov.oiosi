@@ -32,14 +32,15 @@
   */
 using System;
 using System.Collections.Generic;
+using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
 
     /// <summary>
     /// Custom exception used when checking the certificate against ocsp, times out
     /// </summary>
-    public class CertificateRevokedTimeoutException : RevocationException {
-
+    public class CertificateRevokedTimeoutException : RevocationException
+    {
         /// <summary>
         /// Constructor with the timeout as keyword
         /// </summary>

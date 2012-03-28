@@ -40,6 +40,8 @@ namespace dk.gov.oiosi.security.revocation {
 
         private bool _isValid;
         private DateTime _nextUpdate = new DateTime();
+        private Exception exception = null;
+        private RevocationCheckStatus revocationCheckStatus;
 
         /// <summary>
         /// This property is used to store the time at or before which newer information will be available
@@ -57,6 +59,36 @@ namespace dk.gov.oiosi.security.revocation {
         public bool IsValid {
             get { return _isValid; }
             set { _isValid = value; }            
-        }        
+        }
+
+        /// <summary>
+        /// Gets or sets the exception that caught doing the revocation check.
+        /// </summary>
+        public Exception Exception
+        {
+            get
+            {
+                return this.exception;
+            }
+            set
+            {
+                this.exception = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the revocasion status of the revocation check.
+        /// </summary>
+        public RevocationCheckStatus RevocationCheckStatus
+        {
+            get
+            {
+                return this.revocationCheckStatus;
+            }
+            set
+            {
+                this.revocationCheckStatus = value;
+            }
+        }
     }
 }

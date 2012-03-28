@@ -33,19 +33,22 @@
 
 using System.Collections.Generic;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
+using dk.gov.oiosi.communication.fault;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// <summary>
     /// Exception thrown when no certificate subject can be found in the interceptor
     /// message.
     /// </summary>
-    public class FailedToGetCertificateSubjectException : InterceptorException {
+    public class FailedToGetCertificateSubjectException : InterceptorChannelException//InterceptorException
+    {
         /// <summary>
         /// Constructor that takes the interceptor message that did not contain a certificate
         /// subject.
         /// </summary>
         /// <param name="interceptorMessage"></param>
-        public FailedToGetCertificateSubjectException(InterceptorMessage interceptorMessage) : base(GetKeywords(interceptorMessage)) { }
+        public FailedToGetCertificateSubjectException(InterceptorMessage interceptorMessage)
+            : base(OiosiFaultCode.Sender, OiosiInnerFaultCode.SignatureNotValidFault, GetKeywords(interceptorMessage)) { }
 
         private static Dictionary<string, string> GetKeywords(InterceptorMessage interceptorMessage) {
             Dictionary<string, string> keywords = new Dictionary<string, string>();

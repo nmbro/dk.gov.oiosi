@@ -30,27 +30,27 @@
   *   Christian Lanng, ITST
   *
   */
-namespace dk.gov.oiosi.security.revocation {
+using System;
+using System.Collections.Generic;
 
+namespace dk.gov.oiosi.security.validation
+{
     /// <summary>
-    /// Status of an OCSP/CRL check
+    /// Custom exception is used when checking if the certificate is valid
     /// </summary>
-    public enum RevocationCheckStatus {
+    class CertificateRootNotTrustedException : CertificateValidationException
+    {
         /// <summary>
-        /// No check has been performed
+        /// Constructor with the date the certificate was made active
         /// </summary>
-        NotChecked,
-        /// <summary>
-        /// All checks have passed
-        /// </summary>
-        AllChecksPassed,
-        /// <summary>
-        /// The certificate has been revoked
-        /// </summary>
-        CertificateRevoked,
-        /// <summary>
-        /// An unknown issue prevented the check from being performed
-        /// </summary>
-        UnknownIssue
+        /// <param name="activeDate">the date the certificate was activated</param>
+        public CertificateRootNotTrustedException(string rootCertificate) : base(GetKeywords(rootCertificate)) { }
+
+        private static Dictionary<string, string> GetKeywords(string rootCertificate) 
+        {
+            Dictionary<string, string> keywords = new Dictionary<string, string>();
+            keywords.Add("root", rootCertificate);
+            return keywords;
+        }
     }
 }

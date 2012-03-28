@@ -80,25 +80,37 @@ namespace dk.gov.oiosi.security.oces {
         /// </summary>
         /// <param name="revocationLookupClient">The OCSP client to use for the request</param>
         /// <returns>Returns the check status</returns>
-        public revocation.RevocationCheckStatus CheckRevocationStatus(IRevocationLookup revocationLookupClient)
+        public RevocationResponse CheckRevocationStatus(IRevocationLookup revocationLookupClient)
         {
-            RevocationResponse response;
+            RevocationResponse response = new RevocationResponse();
+
             try 
             {
                 response = revocationLookupClient.CheckCertificate(x509Certificate);
+
+                if (response.Exception == null)
+                {
+                    if (response.IsValid)
+                    {
+                        response.RevocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
+                    }
+                    else
+                    {
+                        response.RevocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
+                    }
+                }
+                else
+                {
+                    response.RevocationCheckStatus = RevocationCheckStatus.UnknownIssue;
+                }
             } 
-            catch
+            catch (Exception e)
             {
-                revocationCheckStatus = RevocationCheckStatus.UnknownIssue;
-                throw;
+                response.Exception = e;
+                response.RevocationCheckStatus = RevocationCheckStatus.UnknownIssue;
             }
 
-            if (response.IsValid)
-                revocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
-            else
-                revocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
-            
-            return revocationCheckStatus;
+            return response;
         }
 
         /// <summary>

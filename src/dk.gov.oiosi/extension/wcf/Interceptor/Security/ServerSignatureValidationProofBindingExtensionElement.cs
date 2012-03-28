@@ -39,21 +39,22 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// <summary>
     /// The binding extension element for serverside proof of signature validation.
     /// </summary>
-    public class ServerSignatureValidationProofBindingExtensionElement : BindingElementExtensionElement {
+    public class ServerSignatureValidationProofBindingExtensionElement : dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerConfiguration// BindingElementExtensionElement 
+    {
         /// <summary>
         /// The string key used to store the signature validation proof on the message property.
         /// </summary>
         public const string SignatureValidationProofKey = "signaturevalidationproof";
-        private const string FaultOnRequestValidationExceptionKey = "FaultOnRequestValidationException";
+        //private const string FaultOnRequestValidationExceptionKey = "FaultOnRequestValidationException";
 
-        /// <summary>
+       /* /// <summary>
         /// Gets whether it should fault if the validation throws an exception.
         /// </summary>
         [ConfigurationProperty(FaultOnRequestValidationExceptionKey, DefaultValue = true)]
         public bool FaultOnRequestValidationException {
             get { return (bool)base[FaultOnRequestValidationExceptionKey]; }
         }
-
+        */
         #region BindingElementExtensionElement overrides
 
         /// <summary>

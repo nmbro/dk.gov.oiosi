@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.samples
             // Production certificates valid
             // subject = "CN = NemHandel test service (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1200406941690, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
              //subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
-            subject = "OID.2.5.4.5=CVR:19020940-FID:1266418009173 + CN=E-handel ny (funktionscertifikat), O=COLOPLAST DANMARK A/S // CVR:19020940, C=DK";
+            //subject = "OID.2.5.4.5=CVR:19020940-FID:1266418009173 + CN=E-handel ny (funktionscertifikat), O=COLOPLAST DANMARK A/S // CVR:19020940, C=DK";
             // subject = "CN=FO NemHandel Produktion (funktionscertifikat), SERIALNUMBER = CVR:26911745-FID:1300089978680, O=KMD A/S // CVR:26911745, C=DK";
             // Production certificates not valid
 
@@ -56,19 +56,16 @@ namespace dk.gov.oiosi.samples
             //
             // Test certificates valid
             // subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
-            // subject = "CN = TEST FOCES1 (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
+            //subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
             // Test certificates not valid
             // subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
             // subject = "CN=Navision (funktionscertifikat) + OID.2.5.4.5=CVR:23267519-FID:1257424251148, O=TIETGENSKOLEN // CVR:23267519, C=DK";
 
             // not valid any more
+            subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
             // subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:94731315, O=Danid A/S // CVR:30808460, C=DK";
             // subject = "CN=FOCES1 (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:1255692730737, O=DANID A/S // CVR:30808460, C=DK";
             // subject = "CN=TU GENEREL MOCES gyldig + SERIALNUMBER=CVR:30808460-RID:45490598, O=Danid A/S // CVR:30808460, C=DK";
-
-
-
-           
 
             // Now - retrive the certificate in LDAP, if the certificate is pressen...
             CertificateSubject certificateSubject = new CertificateSubject(subject);
@@ -113,6 +110,9 @@ namespace dk.gov.oiosi.samples
                 Console.WriteLine(" NOT found in LDAP.");
             }
 
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
         }
     }

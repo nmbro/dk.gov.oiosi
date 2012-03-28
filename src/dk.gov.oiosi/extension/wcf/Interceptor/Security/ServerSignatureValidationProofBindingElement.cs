@@ -39,15 +39,18 @@ using dk.gov.oiosi.extension.wcf.Interceptor.Security.Header;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.security.revocation;
+using dk.gov.oiosi.logging;
+using dk.gov.oiosi.security.revocation.ocsp;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// <summary>
     /// Serverside interceptor that attaches proof of signature validations on 
     /// messages send in the system.
     /// </summary>
-    public class ServerSignatureValidationProofBindingElement : CommonBindingElement 
+    public class ServerSignatureValidationProofBindingElement : dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerBindingElement //CommonBindingElement 
     {
-        private ServerSignatureValidationProofBindingExtensionElement configuration;
+        private ILogger logger;
+        //private ServerSignatureValidationProofBindingExtensionElement configuration;
         private IRevocationLookup revocationLookup;
         private SignatureValidationStackCheck stackCheck;
 
@@ -55,17 +58,20 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Constructor that takes the binding element extension for configuration reasons.
         /// </summary>
         /// <param name="configuration"></param>
-        public ServerSignatureValidationProofBindingElement(ServerSignatureValidationProofBindingExtensionElement configuration)
+        public ServerSignatureValidationProofBindingElement(dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerConfiguration configuration) // (ServerSignatureValidationProofBindingExtensionElement configuration)
+            : base(configuration)
         {
-            this.configuration = configuration;
+            //this.configuration = configuration;
+            this.logger = LoggerFactory.Create(this.GetType());
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             this.revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
             this.stackCheck = new SignatureValidationStackCheck(GetType());
+            
         }
 
         #region RaspBindingElement overrides
 
-        /// <summary>
+       /* /// <summary>
         /// Overrides the method to validate the binding element order.
         /// </summary>
         /// <typeparam name="TChannel"></typeparam>
@@ -76,37 +82,149 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
             BindingElementCollection bindingElements = context.Binding.Elements;
             this.stackCheck.Check(bindingElements);
             return base.BuildChannelListener<TChannel>(context);
-        }
+        }*/
 
         /// <summary>
         /// Intercept requests and creates the proof of validation interception before 
         /// attaching it to the message.
         /// </summary>
         /// <param name="interceptorMessage"></param>
-        public override void InterceptRequest(InterceptorMessage interceptorMessage) 
+        public override void InterceptRequest(InterceptorMessage interceptorMessage)
         {
-            Headers headers = new Headers(interceptorMessage);
-            if (interceptorMessage.IsFault) return;
-            if (headers.IsCreateSequence) return;
-            if (headers.SequenceHeader == null) return;
-            if (headers.SequenceHeader.IsLastMessage) return;
+            this.logger.Trace("Security validate the foces certificate.");
+            try
+            {
+                Headers headers = new Headers(interceptorMessage);
+                if (interceptorMessage.IsFault)
+                {
+                    // do nothing
+                }
+                else if (headers.IsCreateSequence)
+                {
+                    // do nothing
+                }
+                else if (headers.SequenceHeader == null)
+                {
+                    // do nothing
+                }
+                else if (headers.SequenceHeader.IsLastMessage)
+                {
+                    // do nothing
+                }
+                else
+                {
+                    // Get the certificate from the message
+                    X509Certificate2 certificate;
+                    try
+                    {
+                        certificate = interceptorMessage.Certificate;
+                    }
+                    catch
+                    {
+                        throw new FailedToGetCertificateSubjectException(interceptorMessage);
+                    }
 
-            // Get the certificate from the message
-            X509Certificate2 certificate;
-            try {
-                certificate = interceptorMessage.Certificate;
+                    
+
+                    // now we must revocate check the certificate
+                    OcesX509Certificate ocesCertificate = new OcesX509Certificate(certificate);
+                    RevocationResponse response = ocesCertificate.CheckRevocationStatus(revocationLookup);
+
+                    if (response.Exception != null)
+                    {
+                        // some error checking the certificate
+                        // make sure the error is of the correct type, and throw it
+                        // note - if the original exception was not a communikation exception, it is wraped in a communikation exception
+                        if (response.Exception is CertificateRevokedTimeoutException)
+                        {
+                            throw new CertificateRevokedValidationFailedException(response.Exception);
+                        }
+                        else if (response.Exception is CertificateRevokedException)
+                        {
+                            throw response.Exception;
+                        }
+                        else if (response.Exception is CertificateRevokedValidationFailedException)
+                        {
+                            throw response.Exception;
+                        }
+                        else if (response.Exception is CheckCertificateOcspUnexpectedException)
+                        {
+                            throw new CertificateRevokedValidationFailedException(response.Exception);
+                        }
+                        else if (response.Exception is CheckCertificateRevokedUnexpectedException)
+                        {
+                            throw new CertificateRevokedValidationFailedException(response.Exception);
+                        }
+                        else
+                        {
+                            throw new CertificateRevokedValidationFailedException(response.Exception);
+                        }
+                    }
+                    else
+                    {
+                        // no exception - all good so far
+
+                        switch (response.RevocationCheckStatus)
+                        {
+                            case RevocationCheckStatus.AllChecksPassed:
+                                {
+                                    // all good
+                                    SignatureValidationProof signatureValidationProof = new SignatureValidationProof(certificate.Subject);
+                                    interceptorMessage.AddProperty(ServerSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey, signatureValidationProof);
+                                    break;
+                                }
+                            case RevocationCheckStatus.CertificateRevoked:
+                                {
+                                    throw new CertificateRevokedException();
+                                    //break;
+                                }
+                            default:
+                                {
+                                    throw new CertificateRevokedValidationFailedException("The certificate faild in revocation check - reason unknown.");
+                                    //break;
+                                }
+                        }
+                    }
+                }
             }
-            catch {
-                throw new FailedToGetCertificateSubjectException(interceptorMessage);
+            catch (FailedToGetCertificateSubjectException)
+            {
+                // exception is of the correct type - rethrowing it
+                throw;
+            }
+           /* catch (CertificateRevokedTimeoutException e)
+            {
+                // exception is of the correct type - rethrowing it
+                throw new CertificateRevokedValidationFailedException(e);
+            }*/
+            catch (CertificateRevokedException)
+            {
+                // exception is of the correct type - rethrowing it
+                throw;
+            }
+            catch (CertificateRevokedValidationFailedException)
+            {
+                // exception is of the correct type - rethrowing it
+                throw;
             }
 
-            OcesX509Certificate ocesCertificate = new OcesX509Certificate(certificate);
-            RevocationCheckStatus status = ocesCertificate.CheckRevocationStatus(revocationLookup);
-            
-            if (status != RevocationCheckStatus.AllChecksPassed) 
-                throw new Exception();
-            SignatureValidationProof signatureValidationProof = new SignatureValidationProof(certificate.Subject);
-            interceptorMessage.AddProperty(ServerSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey, signatureValidationProof);
+          /*  catch (CheckCertificateOcspUnexpectedException)
+            {
+                // exception is of the correct type - rethrowing it
+                throw;
+            }*/
+           /* catch (CheckCertificateRevokedUnexpectedException)
+            {
+                // exception is of the correct type - rethrowing it
+                throw;
+            }*/
+            catch (Exception ex)
+            {
+                this.logger.Debug("Security validate the foces certificate", ex);
+                throw new CertificateRevokedValidationFailedException(ex);
+            }
+
+            this.logger.Trace("Security validate the foces certificate - Finish.");
         }
 
         /// <summary>
@@ -116,7 +234,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         public override void InterceptResponse(InterceptorMessage interceptorMessage)
         { }
 
-        /// <summary>
+        /*/// <summary>
         /// Returns whether the request interception should be done. Allways true.
         /// </summary>
         public override bool DoesRequestIntercept 
@@ -138,15 +256,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         public override bool DoesFaultOnRequestException 
         {
             get { return this.configuration.FaultOnRequestValidationException; }
-        }
+        }*/
 
-        /// <summary>
+       /* /// <summary>
         /// Clones the element.
         /// </summary>
         /// <returns></returns>
         public override BindingElement Clone() 
         {
             return new ServerSignatureValidationProofBindingElement(this.configuration);
+        }*/
+
+        /// <summary>
+        /// Clones the element.
+        /// </summary>
+        /// <returns></returns>
+        public override BindingElement Clone()
+        {
+            return new ServerSignatureValidationProofBindingElement(this.ValidationServerConfiguration);
         }
 
         #endregion

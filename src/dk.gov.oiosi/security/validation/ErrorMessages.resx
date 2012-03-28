@@ -118,16 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="dk_gov_oiosi_security_validation_CertificateExpiredException" xml:space="preserve">
-    <value>Certifikatet er udløbet den "[expiredate]"</value>
+    <value>Afsender certifikatet er udløbet den "[expiredate]"</value>
   </data>
   <data name="dk_gov_oiosi_security_validation_CertificateFailedChainValidationException" xml:space="preserve">
-    <value>Certifikatet fejlede kædevalideringen med status "[chainstatus]"</value>
+    <value>Afsender Certifikatet fejlede kædevalideringen med status "[chainstatus]"</value>
   </data>
   <data name="dk_gov_oiosi_security_validation_CertificateNotActiveException" xml:space="preserve">
-    <value>Certifikatet er ikke aktivt endnu, aktiveres den "[activedate]"</value>
+    <value>Afsender certifikatet er ikke aktivt endnu, aktiveres den "[activedate]"</value>
   </data>
   <data name="dk_gov_oiosi_security_validation_CertificateNotInCorrectFormatException" xml:space="preserve">
     <value>Certifikatet er ikke i et korrekt format</value>
+  </data>
+  <data name="dk_gov_oiosi_security_validation_CertificateRootNotTrustedException" xml:space="preserve">
+    <value>Rod certifikatet "[root]" er ikke trusted</value>
   </data>
   <data name="dk_gov_oiosi_security_validation_CertificateValidationException" xml:space="preserve">
     <value>Certifikatet er ikke validt.</value>

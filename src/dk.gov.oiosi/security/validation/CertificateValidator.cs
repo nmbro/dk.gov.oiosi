@@ -33,16 +33,16 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace dk.gov.oiosi.security.validation {
+namespace dk.gov.oiosi.security.validation
+{
 
     /// <summary>
     /// Class to validate X509 certificates
     /// </summary>
-    public class CertificateValidator {
-
-        private CertificateValidator() { }
-
-
+    public class CertificateValidator
+    {
+        private CertificateValidator()
+        { }
 
         /// <summary>
         /// Attempts to validate the certificate. If the certificate is invalid an exception is thrown.
@@ -56,12 +56,19 @@ namespace dk.gov.oiosi.security.validation {
         /// </remarks>
         /// <exception cref="CertificateFailedChainValidationException"></exception>
         /// <param name="certificate">The certificate to be validated</param>
-        public static void ValidateCertificate(X509Certificate2 certificate) {
-            X509Chain chain = CreateChain(certificate);
-            
+        public static void ValidateCertificate(X509Certificate2 certificate)
+        {
+            // first we check the activation and expire date - those cast the most specifict errors
+            this.CheckCertificateActivated(certificate);
+            this.CheckCertificateExpired(certificate);
+
+            X509Chain chain = this.CreateChain(certificate);
+
             //Modified chain validation of the certificate. We are not interested in Ctl lists
-            foreach (X509ChainStatus status in chain.ChainStatus) {
-                switch (status.Status) {
+            foreach (X509ChainStatus status in chain.ChainStatus)
+            {
+                switch (status.Status)
+                {
                     case X509ChainStatusFlags.CtlNotSignatureValid:
                     case X509ChainStatusFlags.CtlNotTimeValid:
                     case X509ChainStatusFlags.CtlNotValidForUsage:
@@ -73,15 +80,6 @@ namespace dk.gov.oiosi.security.validation {
                         throw new CertificateFailedChainValidationException(status);
                 }
             }
-
-            // Check if the certificate has the default root certificate as its root
-            /*foreach (X509ChainElement chainElem in chain.ChainElements) {
-                chainElem.Certificate.Thumbprint == 
-            }*/
-
-           
-            CheckCertificateActivated(certificate);
-            CheckCertificateExpired(certificate);
         }
 
         /// <summary>
@@ -99,12 +97,18 @@ namespace dk.gov.oiosi.security.validation {
         /// <param name="certificate">The certificate to be validated</param>
         /// <param name="rootCertificate">The root certificate of the certificate. If not null, checks
         /// that the root certificate exists in the certificate chain.</param>
-        public static void ValidateCertificate(X509Certificate2 certificate, X509Certificate2 rootCertificate) {
-            X509Chain chain = CreateChain(certificate);
+        public static void ValidateCertificate(X509Certificate2 certificate, X509Certificate2 rootCertificate)
+        {
+            this.CheckCertificateActivated(certificate);
+            this.CheckCertificateExpired(certificate);
+
+            X509Chain chain = this.CreateChain(certificate);
 
             //Modified chain validation of the certificate. We are not interested in Ctl lists
-            foreach (X509ChainStatus status in chain.ChainStatus) {
-                switch (status.Status) {
+            foreach (X509ChainStatus status in chain.ChainStatus)
+            {
+                switch (status.Status)
+                {
                     case X509ChainStatusFlags.CtlNotSignatureValid:
                     case X509ChainStatusFlags.CtlNotTimeValid:
                     case X509ChainStatusFlags.CtlNotValidForUsage:
@@ -121,23 +125,28 @@ namespace dk.gov.oiosi.security.validation {
             bool rootIsInChain = false;
             string rootThumbprint = rootCertificate.Thumbprint.ToLower();
 
-            if (certificate.Thumbprint.ToLower() != rootThumbprint) {
-                foreach (X509ChainElement chainElem in chain.ChainElements) {
-                    if (chainElem.Certificate.Thumbprint.ToLower() == rootThumbprint) {
+            if (certificate.Thumbprint.ToLower() != rootThumbprint)
+            {
+                foreach (X509ChainElement chainElem in chain.ChainElements)
+                {
+                    if (chainElem.Certificate.Thumbprint.ToLower() == rootThumbprint)
+                    {
                         rootIsInChain = true;
                         break;
                     }
                 }
-            } else {
+            }
+            else
+            {
                 throw new CertificateFailedChainValidationException("The root certificate and certificate must be different");
             }
 
-            if (rootIsInChain == false) {
+            if (rootIsInChain == false)
+            {
                 throw new CertificateFailedChainValidationException("The specified root certificate was not part of the certificate chain");
             }
 
-            CheckCertificateActivated(certificate);
-            CheckCertificateExpired(certificate);
+
         }
 
         /// <summary>
@@ -149,14 +158,17 @@ namespace dk.gov.oiosi.security.validation {
         /// <param name="certificate">The certificate to create a chain from</param>
         /// <exception cref="CertificateNotInCorrectFormatException">Thrown if there are any chain validation errors</exception>
         /// <returns>Returns the X509 chain object</returns>
-        private static X509Chain CreateChain(X509Certificate2 certificate) {
-            try {
+        private static X509Chain CreateChain(X509Certificate2 certificate)
+        {
+            try
+            {
                 X509Chain chain = new X509Chain();
                 chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
                 chain.Build(certificate);
                 return chain;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new CertificateNotInCorrectFormatException(e);
             }
         }
@@ -166,18 +178,24 @@ namespace dk.gov.oiosi.security.validation {
         /// Checks if the certificate is activated
         /// </summary>
         /// <param name="certificate">The certificate to check</param>
-        public static void CheckCertificateActivated(X509Certificate2 certificate) {
-            if (certificate.NotBefore > DateTime.Now) 
+        public static void CheckCertificateActivated(X509Certificate2 certificate)
+        {
+            if (certificate.NotBefore > DateTime.Now)
+            {
                 throw new CertificateNotActiveException(certificate.NotBefore);
+            }
         }
 
         /// <summary>
         /// Checks if the certificate is expired
         /// </summary>
         /// <param name="certificate">The certificate to check</param>
-        public static void CheckCertificateExpired(X509Certificate2 certificate) {
-            if (certificate.NotAfter < DateTime.Now) 
+        public static void CheckCertificateExpired(X509Certificate2 certificate)
+        {
+            if (certificate.NotAfter < DateTime.Now)
+            {
                 throw new CertificateExpiredException(certificate.NotAfter);
+            }
         }
     }
 }

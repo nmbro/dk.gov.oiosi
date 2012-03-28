@@ -121,7 +121,9 @@ namespace dk.gov.oiosi.security.ldap {
                     }
                 }
 
-                // check it is not expired
+                // Check the certificate
+                //   Check for activation date and expire date
+                //   Check the certificate chain
                 CertificateValidator.ValidateCertificate(certificateToBeReturned);
 
                 // everything is okay, add it to the cache

@@ -74,24 +74,27 @@ namespace dk.gov.oiosi.security.validation {
 
         public bool IsValid(X509Certificate2 certificate, IDictionary<string, X509Certificate2> rootCertificateDirectory)
         {
-            bool isValid;
+            bool isValid = true;
 
             if (certificate.NotAfter < DateTime.Now)
             {
-                // certificate has expired
-                isValid = false;
+                throw new CertificateExpiredException(certificate.NotAfter);
             }
             else if (certificate.NotBefore > DateTime.Now)
             {
                 // yet valid
-                isValid = false;
+                throw new CertificateNotActiveException(certificate.NotBefore);
             }
             else
             {
                 // validate the certificate path, and se if one of the
                 // certificate in the cartificate path (certificate chain) is in
                 // the list of valid root certificates
-                isValid = this.IsCertificateChildOfRoot(certificate, rootCertificateDirectory);
+                //isValid = this.IsCertificateChildOfRoot(certificate, rootCertificateDirectory);
+                if (this.IsCertificateChildOfRoot(certificate, rootCertificateDirectory) == false)
+                {
+                    throw new CertificateRootNotTrustedException(certificate.Issuer);
+                }
             }
 
             return isValid;

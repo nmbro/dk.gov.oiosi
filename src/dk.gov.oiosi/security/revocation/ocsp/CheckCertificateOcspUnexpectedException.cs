@@ -38,17 +38,30 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
     /// Custom exception used when an unexpected exception is thrown during a check to see
     /// if the certificate is revoked
     /// </summary>
-    public class CheckCertificateOcspUnexpectedException : RevocationException {
-        
+    public class CheckCertificateOcspUnexpectedException : Exception {
+
+        /// <summary>
+        /// Base constructor
+        /// </summary>
+        public CheckCertificateOcspUnexpectedException()
+            : base()
+        { }
+
         /// <summary>
         /// Constructor with innerexception
         /// </summary>
         /// <param name="innerException">innerexception of the thrown exception</param>
-        public CheckCertificateOcspUnexpectedException(Exception innerException) : base(innerException) { }
-        
+        public CheckCertificateOcspUnexpectedException(string message) 
+            : base(message)
+        { }
+
         /// <summary>
-        /// Base constructor
+        /// Constructor with message and innerexception
         /// </summary>
-        public CheckCertificateOcspUnexpectedException() : base() { }
+        /// <param name="message">Message</param>
+        /// <param name="innerException">innerexception of the thrown exception</param>
+        public CheckCertificateOcspUnexpectedException(string message, Exception innerException) 
+            : base(message, innerException) 
+        { }
     }
 }

@@ -75,8 +75,21 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// parameter and calls the base constructor with both the inner exception and the 
         /// resource manager.
         /// </summary>
+        /// <param name="message">The reasone of this exception</param>
+        public InterceptorException(string message)
+            : base(message)
+        {
+            this.SetMessage(resourceManager);
+        }
+
+        /// <summary>
+        /// Standard constructor that takes an exception that is the inner exception as 
+        /// parameter and calls the base constructor with both the inner exception and the 
+        /// resource manager.
+        /// </summary>
         /// <param name="innerException">The inner exception of this exception</param>
-        public InterceptorException(System.Exception innerException) : base("", innerException) 
+        public InterceptorException(System.Exception innerException) 
+            : base("", innerException) 
         {
             this.SetMessage(resourceManager);
         }
