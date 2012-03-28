@@ -59,10 +59,10 @@ namespace dk.gov.oiosi.security.validation
         public static void ValidateCertificate(X509Certificate2 certificate)
         {
             // first we check the activation and expire date - those cast the most specifict errors
-            this.CheckCertificateActivated(certificate);
-            this.CheckCertificateExpired(certificate);
+            CheckCertificateActivated(certificate);
+            CheckCertificateExpired(certificate);
 
-            X509Chain chain = this.CreateChain(certificate);
+            X509Chain chain = CreateChain(certificate);
 
             //Modified chain validation of the certificate. We are not interested in Ctl lists
             foreach (X509ChainStatus status in chain.ChainStatus)
@@ -99,10 +99,10 @@ namespace dk.gov.oiosi.security.validation
         /// that the root certificate exists in the certificate chain.</param>
         public static void ValidateCertificate(X509Certificate2 certificate, X509Certificate2 rootCertificate)
         {
-            this.CheckCertificateActivated(certificate);
-            this.CheckCertificateExpired(certificate);
+            CheckCertificateActivated(certificate);
+            CheckCertificateExpired(certificate);
 
-            X509Chain chain = this.CreateChain(certificate);
+            X509Chain chain = CreateChain(certificate);
 
             //Modified chain validation of the certificate. We are not interested in Ctl lists
             foreach (X509ChainStatus status in chain.ChainStatus)

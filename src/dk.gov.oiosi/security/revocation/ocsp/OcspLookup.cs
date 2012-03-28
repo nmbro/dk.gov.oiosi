@@ -140,7 +140,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                     this.rootCertificateDirectory.Add(x509Certificate2.Thumbprint.ToLowerInvariant(), x509Certificate2);
                 }
             }
-            catch (UriFormatException)
+            catch (UriFormatException e)
             {
                 throw;
             }
@@ -176,29 +176,138 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <param name="certificate">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
-        private RevocationResponse CheckCertificateCall(X509Certificate2 serverX509Certificate2)
+        private RevocationResponse RevocationResponse(X509Certificate2 x509Certificate2)
         {
-            RevocationResponse response = new RevocationResponse();
+            // this method can be call requsiv, so check the cache first
+            RevocationResponse revocationResponse;
 
-            try
+            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
+            if (ocspResponseExistsInCache)
             {
-                if (serverX509Certificate2 == null)
+                // response already in cache.
+                // Check if the response still is valid
+                if (revocationResponse.NextUpdate < DateTime.Now)
+                {
+                    // the cached value is to old
+                    // get new value
+                    revocationResponse = this.RevocationResponseOnline(x509Certificate2);
+                }
+            }
+            else
+            {
+                // respons is not in cache
+                revocationResponse = this.RevocationResponseOnline(x509Certificate2);
+            }
+
+            return revocationResponse;
+        }
+
+        /// <summary>
+        /// Checks a certificate status on a ocsp server
+        /// </summary>
+        /// <param name="certificate">The certificate to check</param>
+        /// <returns>The RevocationResponse object that contains the result</returns>
+        /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
+        private RevocationResponse RevocationResponseOnline(X509Certificate2 x509Certificate2)
+        {
+            RevocationResponse revocationResponse = new RevocationResponse();
+           
+                if (x509Certificate2 == null)
                 {
                     throw new CheckCertificateOcspUnexpectedException();
                 }
                 // http://bouncy-castle.1462172.n4.nabble.com/c-ocsp-verification-td3160243.html
-                X509Certificate2 rootX509Certificate2 = this.FindRootCertificate(serverX509Certificate2, this.rootCertificateDirectory);
+                X509Certificate2 issuerX509Certificate2 = this.FindIssuerCertificate(x509Certificate2);
 
-                if (rootX509Certificate2 == null)
+                if (issuerX509Certificate2.Thumbprint.Equals(x509Certificate2.Thumbprint, StringComparison.OrdinalIgnoreCase))
                 {
-                    throw new Exception("Root certificate for server certificate not identified");
+                    // the certificate and the issuer certificace is the same
+                    // this mean that the root certificate is not trusted
+                    revocationResponse = null;
+                }
+                else
+                {
+                    revocationResponse = this.RevocationResponseOnline(x509Certificate2, issuerX509Certificate2); 
+
+                    if(revocationResponse != null)
+                    {
+                        if (revocationResponse.Exception == null)
+                        {
+                            // no exception recorded
+                            if (revocationResponse.IsValid)
+                            {                                
+                                // now we know the certificate is valid.
+                                // if the issuer is a trusted root certificate, all is good
+                                if (this.rootCertificateDirectory.ContainsKey(issuerX509Certificate2.Thumbprint.ToLowerInvariant()))
+                                {
+                                    // the root certificate is trusted, so the RevocationResponse can be put on the cache
+                                    this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                                }
+                                else
+                                {
+                                    // we do not yet know if the certificate is valid.
+                                    // the certificate migth be good, but if the issueing certificate is revoked,
+                                    // then the certificate should also be revoked.
+                                    // validate the issuer certificate
+                                    // this is required, because certificate can have a chain that is longer then 2
+                                    
+                                    // The only problem is, that we can not ocsp validate the intermiddel certificate.
+                                    // It does not contain the Authority Info Access, containng the rl to where the certificate must be validated
+                                    // We must therefore gues, that the certificate is valid.
+                                    
+                                    /*
+                                    RevocationResponse issuerRevocationResponse = RevocationResponseOnline(issuerX509Certificate2);
+
+                                    if(issuerX509Certificate2 != null)
+                                    {
+                                        // the issuer certificate is validated, the validity of the issuer certificate
+                                        // is copied to the revocationResponse
+                                        revocationResponse.IsValid = issuerRevocationResponse.IsValid;
+                                        revocationResponse.Exception = issuerRevocationResponse.Exception;
+                                       // revocationResponse.RevocationCheckStatus = issuerRevocationResponse.RevocationCheckStatus;
+                                    }
+                                    else
+                                    {
+                                        revocationResponse.IsValid = false;
+                                        revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("The issueing certificate could not be validated.");
+                                        //revocationResponse.RevocationCheckStatus = issuerRevocationResponse.RevocationCheckStatus;
+                                    }*/
+                                }
+                            }
+                            else
+                            {
+                                // the certificate is not valid
+                                // no need to check the issuer certificate
+                                this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                            }
+                        }
+                        else
+                        {
+                            // some exception returned.
+                            // do not add to cache
+                        }                            
+                    }
+
+                }
+
+            return revocationResponse;
+        }
+
+
+        private RevocationResponse RevocationResponseOnline(X509Certificate2 serverX509Certificate2, X509Certificate2 issuerX509Certificate2)
+        {
+            RevocationResponse revocationResponse = new RevocationResponse();
+            try
+            {
+                if (issuerX509Certificate2 == null)
+                {
+                    throw new Exception("Issuer certificate for server certificate not identified");
                 }
 
                 // create BouncyCastle certificates
                 X509CertificateParser certParser = new X509CertificateParser();
-                Org.BouncyCastle.X509.X509Certificate rootX509Certificate = certParser.ReadCertificate(rootX509Certificate2.RawData);
+                Org.BouncyCastle.X509.X509Certificate issuerX509Certificate = certParser.ReadCertificate(issuerX509Certificate2.RawData);
                 Org.BouncyCastle.X509.X509Certificate serverX509Certificate = certParser.ReadCertificate(serverX509Certificate2.RawData);
-
 
                 // 1. Get server url
                 List<string> urlList = this.GetAuthorityInformationAccessOcspUrl(serverX509Certificate);
@@ -212,44 +321,80 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 string url = urlList[0];
 
                 // 2. Generate request
-                OcspReq req = this.GenerateOcspRequest(rootX509Certificate, serverX509Certificate.SerialNumber);
+                OcspReq req = this.GenerateOcspRequest(issuerX509Certificate, serverX509Certificate.SerialNumber);
 
                 // 2. make binary request online
                 byte[] binaryResp = this.PostData(url, req.GetEncoded(), "application/ocsp-request", "application/ocsp-response");
 
                 //3. check result
-                response = this.ProcessOcspResponse(serverX509Certificate, rootX509Certificate, binaryResp);
+                revocationResponse = this.ProcessOcspResponse(serverX509Certificate, issuerX509Certificate, binaryResp);
             }
-            catch (ArgumentNullException)
+            catch (CheckCertificateOcspUnexpectedException)
             {
                 throw;
             }
-            catch (OverflowException)
+            catch (ArgumentNullException e)
             {
-                throw;
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("ArgumentNullException", e);
             }
-            catch (FormatException)
+            catch (OverflowException e)
             {
-                throw;
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("OverflowException", e);
             }
-            catch (CryptographicUnexpectedOperationException)
+            catch (FormatException e)
             {
-                throw;
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("FormatException", e);
             }
-            catch (CryptographicException)
+            catch (CryptographicUnexpectedOperationException e)
             {
-                throw;
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("CryptographicUnexpectedOperationException", e);
+            }
+            catch (CryptographicException e)
+            {
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("CryptographicException", e);
             }
             catch (Exception e)
             {
-                throw new CheckCertificateOcspUnexpectedException(e);
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("OCSP valideringen fejlede.", e);
             }
 
-            return response;
+            return revocationResponse;
         }
 
+        public X509Certificate2 FindIssuerCertificate(X509Certificate2 serverX509Certificate2)
+        {
+            X509Certificate2 issuerX509Certificate2 = null;
+            
+            // Find the issuer certificate
+            X509Chain x509Chain = new X509Chain();
+            x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            x509Chain.Build(serverX509Certificate2);
 
-        public X509Certificate2 FindRootCertificate(X509Certificate2 serverX509Certificate2, IDictionary<string, X509Certificate2> rootCertificateDirectory)
+            // Iterate though the chain, to validate if it contain a valid root vertificate
+            X509ChainElementCollection x509ChainElementCollection = x509Chain.ChainElements;
+            X509ChainElementEnumerator enumerator = x509ChainElementCollection.GetEnumerator();
+            X509ChainElement x509ChainElement;
+            X509Certificate2 x509Certificate2 = null;
+            IDictionary<string, X509Certificate2> map = new Dictionary<string, X509Certificate2>();
+
+            // At this point, the certificate is not valid, until a 
+            // it is proved that it has a valid root certificate
+            while (enumerator.MoveNext())
+            {
+                x509ChainElement = enumerator.Current;
+                x509Certificate2 = x509ChainElement.Certificate;
+                map.Add(x509Certificate2.Subject, x509Certificate2);
+            }
+
+            if (map.ContainsKey(serverX509Certificate2.Issuer))
+            {
+                issuerX509Certificate2 = map[serverX509Certificate2.Issuer];
+            }
+
+            return issuerX509Certificate2;
+        }
+
+       /* public X509Certificate2 FindRootCertificate(X509Certificate2 serverX509Certificate2, IDictionary<string, X509Certificate2> rootCertificateDirectory)
         {
             bool rootCertificateFound = false;
             X509Certificate2 desiredRootX509Certificate2 = null;
@@ -287,15 +432,6 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             }
 
             return desiredRootX509Certificate2;
-        }
-
-       /* public List<string> GetAuthorityInformationAccessOcspUrl(X509Certificate2 rootX509Certificate2)
-        {
-            List<string> urls;
-            X509Certificate x509Certificate = rootX509Certificate2.Export(X509ContentType.Cert);
-            urls = this.GetAuthorityInformationAccessOcspUrl(x509Certificate);
-
-            return urls;
         }*/
 
         public List<string> GetAuthorityInformationAccessOcspUrl(Org.BouncyCastle.X509.X509Certificate rootX509Certificate)
@@ -326,7 +462,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                     Asn1Sequence element = (Asn1Sequence)elements.Current;
                     DerObjectIdentifier oid = (DerObjectIdentifier)element[0];
 
-                    if (oid.Id.Equals("1.3.6.1.5.5.7.48.1")) // Is Ocsp? 
+                    if (oid.Id.Equals("1.3.6.1.5.5.7.48.1")) // Is Ocsp 
                     {
                         Asn1TaggedObject taggedObject = (Asn1TaggedObject)element[1];
                         GeneralName gn = (GeneralName)GeneralName.GetInstance(taggedObject);
@@ -443,6 +579,9 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             //CertificateStatus cStatus = CertificateStatus.Unknown;
             RevocationResponse revocationResponse = new RevocationResponse();
 
+            X509CertificateParser parser = null;
+            
+
             switch (r.Status)
             {
                 case OcspRespStatus.Successful:
@@ -462,7 +601,14 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
                             Object certificateStatus = resp.GetCertStatus();
 
-                            if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
+                            if (certificateStatus == null)
+                            {
+                                // no revocation data exist - the certificate must be valid
+
+                                revocationResponse.IsValid = true;
+                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
+                            }
+                            else if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
                             {
                                 revocationResponse.IsValid = true;
                                 revocationResponse.NextUpdate = resp.NextUpdate.Value;
@@ -470,18 +616,22 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                             else if (certificateStatus is Org.BouncyCastle.Ocsp.RevokedStatus)
                             {
                                 revocationResponse.IsValid = false;
-                                //cStatus = CertificateStatus.Revoked;
+                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
                             }
                             else if (certificateStatus is Org.BouncyCastle.Ocsp.UnknownStatus)
                             {
-                                 throw new Exception("CertificateStatus is Unknown");
+                                throw new CheckCertificateOcspUnexpectedException("CertificateStatus is Unknown");
+                            }
+                            else
+                            {
+                                throw new CheckCertificateOcspUnexpectedException("CertificateStatus is unknown '" + certificateStatus.ToString()+ "'.");
                             }
                         }
                         break;
                     }
                 default:
                     {
-                        throw new Exception("Unknow status '" + r.Status + "'.");
+                        throw new CheckCertificateOcspUnexpectedException("Unknow status '" + r.Status + "'.");
                     }
             }
 
@@ -496,12 +646,12 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
             if (!expectedId.SerialNumber.Equals(certificateId.SerialNumber))
             {
-                throw new Exception("Invalid certificate ID in response");
+                throw new CheckCertificateOcspUnexpectedException("Invalid certificate ID in response");
             }
 
             if (!Org.BouncyCastle.Utilities.Arrays.AreEqual(expectedId.GetIssuerNameHash(), certificateId.GetIssuerNameHash()))
             {
-                throw new Exception("Invalid certificate Issuer in response");
+                throw new CheckCertificateOcspUnexpectedException("Invalid certificate Issuer in response");
             }
         } 
 
@@ -524,39 +674,61 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 {
                     // the cached value is to old
                     // get new value
-                    revocationResponse = this.CheckCertificateOnline(x509Certificate2);
+                    revocationResponse = this.CheckCertificateAsync(x509Certificate2);
                 }
             }
             else
             {
                 // respons is not in cache
-                revocationResponse = this.CheckCertificateOnline(x509Certificate2);
+                revocationResponse = this.CheckCertificateAsync(x509Certificate2);
             }
 
-            // put revocationResponse in cache
-            this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+            /*// now to validate the result
+            if (revocationResponse.Exception == null)
+            {
+                // no exception recorded
+                // update the cache
+                ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                //return response;
+            }
+            else
+            {
+                // some exception returned.
+                // do not add to cache
+            }*/
 
             return revocationResponse;
         }
 
-        private RevocationResponse CheckCertificateOnline(X509Certificate2 certificate)
+        /// <summary>
+        /// Checks a certificate status on a ocsp server
+        /// </summary>
+        /// <param name="certificate">The certificate to check</param>
+        /// <returns>The RevocationResponse object that contains the result</returns>
+        /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
+        public RevocationResponse CheckCertificateAsync(X509Certificate2 certificate)
         {
-            RevocationResponse revocationResponse;
+            //To call the CheckCertificate asynchronously, we initialize the delegate and call it with IAsyncResult
+            RevocationResponse response;
 
-            AsyncOcspCall asyncOcspCall = new AsyncOcspCall(CheckCertificateCall);
+            AsyncOcspCall asyncOcspCall = new AsyncOcspCall(this.RevocationResponse);
             IAsyncResult asyncResult = asyncOcspCall.BeginInvoke(certificate, null, null);
 
             bool ocspRepliedInTime = asyncResult.AsyncWaitHandle.WaitOne(Utilities.TimeSpanInMilliseconds(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec)), false);
             if (ocspRepliedInTime)
             {
-                revocationResponse = asyncOcspCall.EndInvoke(asyncResult);
+                // okay, the operation has finish.
+                response = asyncOcspCall.EndInvoke(asyncResult);
             }
             else
             {
+                // Note - The validation is still running, and is not closed
+
+                // operation timeout
                 throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
             }
 
-            return revocationResponse;
+            return response;
         }
     }
 }
