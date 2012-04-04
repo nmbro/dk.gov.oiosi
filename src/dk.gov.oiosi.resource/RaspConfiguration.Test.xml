@@ -4580,8 +4580,8 @@
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass -->
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass-->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">

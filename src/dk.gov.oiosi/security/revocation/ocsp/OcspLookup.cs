@@ -47,6 +47,8 @@ using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.X509;
+using dk.gov.oiosi.security.revocation.crl;
+using Org.BouncyCastle.Security.Certificates;
 //using Novell.Directory.Ldap.Asn1;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
@@ -248,30 +250,45 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                                     // we do not yet know if the certificate is valid.
                                     // the certificate migth be good, but if the issueing certificate is revoked,
                                     // then the certificate should also be revoked.
-                                    // validate the issuer certificate
+                                    // Validate the issuer certificate
                                     // this is required, because certificate can have a chain that is longer then 2
                                     
-                                    // The only problem is, that we can not ocsp validate the intermiddel certificate.
-                                    // It does not contain the Authority Info Access, containng the rl to where the certificate must be validated
-                                    // We must therefore gues, that the certificate is valid.
-                                    
-                                    /*
-                                    RevocationResponse issuerRevocationResponse = RevocationResponseOnline(issuerX509Certificate2);
+                                    // The only problem is, that we can not ocsp validate the intermiddel certificate (the issuer certificate).
+                                    // acording to DanID - that certificate can only be validated with CRL
+                                    // Note : The crl list will be/should be very short. Only containing the issuer certificate that has been revoked.
+                                    //        A good guess is that there at all time will be most 10 issuer certificate, so the list of revoked issuer certificate is short.
+                                    IList<string> issuerUrl = this.GetAuthorityInformationAccessOcspUrl(issuerX509Certificate2);
+                                    RevocationResponse issuerRevocationResponse;
 
-                                    if(issuerX509Certificate2 != null)
+                                    if (issuerUrl.Count > 0)
+                                    {
+                                        // hey, wow some url exist - lets use that
+                                        // don't thing this will ever happens anyway
+                                        issuerRevocationResponse = RevocationResponseOnline(issuerX509Certificate2);
+
+                                    }
+                                    else
+                                    {
+                                        // we need to validate with crl instead
+                                        // It does not contain the Authority Info Access, containng the rl to where the certificate must be validated
+                                        // We must therefore gues, that the certificate is valid.
+                                        CrlLookup crlLookupClient = new CrlLookup();
+                                        issuerRevocationResponse = crlLookupClient.CheckCertificate(issuerX509Certificate2);
+                                    }
+
+                                    // now to handle the issuerRevocationResponse
+                                    if (issuerRevocationResponse != null)
                                     {
                                         // the issuer certificate is validated, the validity of the issuer certificate
                                         // is copied to the revocationResponse
                                         revocationResponse.IsValid = issuerRevocationResponse.IsValid;
                                         revocationResponse.Exception = issuerRevocationResponse.Exception;
-                                       // revocationResponse.RevocationCheckStatus = issuerRevocationResponse.RevocationCheckStatus;
                                     }
                                     else
                                     {
                                         revocationResponse.IsValid = false;
                                         revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("The issueing certificate could not be validated.");
-                                        //revocationResponse.RevocationCheckStatus = issuerRevocationResponse.RevocationCheckStatus;
-                                    }*/
+                                    }
                                 }
                             }
                             else
@@ -299,6 +316,47 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             RevocationResponse revocationResponse = new RevocationResponse();
             try
             {
+                if (serverX509Certificate2 == null)
+                {
+                    throw new Exception("Server certificate is null");
+                }
+
+                // create BouncyCastle certificates
+                //X509CertificateParser certParser = new X509CertificateParser();
+                //Org.BouncyCastle.X509.X509Certificate serverX509Certificate = certParser.ReadCertificate(serverX509Certificate2.RawData);
+
+                // 1. Get server url
+                List<string> urlList = this.GetAuthorityInformationAccessOcspUrl(serverX509Certificate2);
+
+                if (urlList.Count == 0)
+                {
+                    throw new Exception("No OCSP url found in ee certificate.");
+                }
+
+                // we always validate against the first defined url
+                string url = urlList[0];
+
+
+                revocationResponse = this.RevocationResponseOnline(serverX509Certificate2, issuerX509Certificate2, url);               
+            }
+            catch (Exception e)
+            {
+                revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("OCSP valideringen fejlede.", e);
+            }
+
+            return revocationResponse;
+        }
+
+        public RevocationResponse RevocationResponseOnline(X509Certificate2 serverX509Certificate2, X509Certificate2 issuerX509Certificate2, string url)
+        {
+            RevocationResponse revocationResponse = new RevocationResponse();
+            try
+            {
+                if (serverX509Certificate2 == null)
+                {
+                    throw new Exception("Server certificate is null");
+                }
+
                 if (issuerX509Certificate2 == null)
                 {
                     throw new Exception("Issuer certificate for server certificate not identified");
@@ -309,18 +367,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 Org.BouncyCastle.X509.X509Certificate issuerX509Certificate = certParser.ReadCertificate(issuerX509Certificate2.RawData);
                 Org.BouncyCastle.X509.X509Certificate serverX509Certificate = certParser.ReadCertificate(serverX509Certificate2.RawData);
 
-                // 1. Get server url
-                List<string> urlList = this.GetAuthorityInformationAccessOcspUrl(serverX509Certificate);
-
-                if (urlList.Count == 0)
-                {
-                    throw new Exception("No OCSP url found in ee certificate.");
-                }
-
-                // we always validate against the first defined url
-                string url = urlList[0];
-
-                // 2. Generate request
+                // 1. Generate request
                 OcspReq req = this.GenerateOcspRequest(issuerX509Certificate, serverX509Certificate.SerialNumber);
 
                 // 2. make binary request online
@@ -434,40 +481,23 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             return desiredRootX509Certificate2;
         }*/
 
-        public List<string> GetAuthorityInformationAccessOcspUrl(Org.BouncyCastle.X509.X509Certificate rootX509Certificate)
+        public List<string> GetAuthorityInformationAccessOcspUrl(X509Certificate2 x509Certificate2)
         {
             List<string> ocspUrls = new List<string>();
 
             try
             {
-                // "1.3.6.1.5.5.7.1.1"
-                Asn1Object asn1Object = this.GetExtensionValue(rootX509Certificate, X509Extensions.AuthorityInfoAccess.Id);
-
-                if (asn1Object == null)
+                 // DanID test code shows how to do it
+                Org.BouncyCastle.Asn1.X509.X509Extensions x509Extensions = this.GetX509Extensions(x509Certificate2);
+                Org.BouncyCastle.Asn1.X509.X509Extension x509Extension = x509Extensions.GetExtension(Org.BouncyCastle.Asn1.X509.X509Extensions.AuthorityInfoAccess);
+                if (x509Extension != null)
                 {
-                    return null;
-                }
-
-                // For a strange reason I cannot acess the aia.AccessDescription[]. 
-                // Hope it will be fixed in the next version (1.5). 
-                // mySupply ApS - JLM - Still not working in 1.7
-                // AuthorityInformationAccess aia = AuthorityInformationAccess.GetInstance(asn1Object); 
-
-                // Switched to manual parse 
-                Asn1Sequence s = (Asn1Sequence)asn1Object;
-                IEnumerator elements = s.GetEnumerator();
-
-                while (elements.MoveNext())
-                {
-                    Asn1Sequence element = (Asn1Sequence)elements.Current;
-                    DerObjectIdentifier oid = (DerObjectIdentifier)element[0];
-
-                    if (oid.Id.Equals("1.3.6.1.5.5.7.48.1")) // Is Ocsp 
-                    {
-                        Asn1TaggedObject taggedObject = (Asn1TaggedObject)element[1];
-                        GeneralName gn = (GeneralName)GeneralName.GetInstance(taggedObject);
-                        ocspUrls.Add(((DerIA5String)DerIA5String.GetInstance(gn.Name)).GetString());
-                    }
+                    // The desired info does not exist
+                    // Meaning the certificate does not contain ocsp urls
+                    Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess authorityInformationAccess = Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess.GetInstance(x509Extension);
+                    Org.BouncyCastle.Asn1.X509.AccessDescription[] accessDescription = authorityInformationAccess.GetAccessDescriptions();
+                    string ocspUrl = this.GetAccessDescriptionUrlForOid(AccessDescription.IdADOcsp, accessDescription);
+                    ocspUrls.Add(ocspUrl);
                 }
             }
             catch (Exception e)
@@ -476,6 +506,87 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             }
 
             return ocspUrls;
+        }
+
+        //public List<string> GetAuthorityInformationAccessOcspUrl(Org.BouncyCastle.X509.X509Certificate serverX509Certificate)
+        //{
+        //    List<string> ocspUrls = new List<string>();
+
+        //    try
+        //    {
+        //         // "1.3.6.1.5.5.7.1.1"
+        //        Asn1Object asn1Object = this.GetExtensionValue(rootX509Certificate, X509Extensions.AuthorityInfoAccess.Id);
+
+        //        if (asn1Object == null)
+        //        {
+        //            return null;
+        //        }
+        //        // For a strange reason I cannot acess the aia.AccessDescription[]. 
+        //        // Hope it will be fixed in the next version (1.5). 
+        //        // mySupply ApS - JLM - Still not working in 1.7
+        //        // AuthorityInformationAccess aia = AuthorityInformationAccess.GetInstance(asn1Object); 
+
+        //        // Switched to manual parse 
+        //        Asn1Sequence s = (Asn1Sequence)asn1Object;
+        //        IEnumerator elements = s.GetEnumerator();
+
+        //        while (elements.MoveNext())
+        //        {
+        //            Asn1Sequence element = (Asn1Sequence)elements.Current;
+        //            DerObjectIdentifier oid = (DerObjectIdentifier)element[0];
+
+        //            if (oid.Id.Equals("1.3.6.1.5.5.7.48.1")) // Is Ocsp - yes
+        //            {
+        //                Asn1TaggedObject taggedObject = (Asn1TaggedObject)element[1];
+        //                GeneralName gn = (GeneralName)GeneralName.GetInstance(taggedObject);
+        //                ocspUrls.Add(((DerIA5String)DerIA5String.GetInstance(gn.Name)).GetString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception("Error parsing AIA.", e);
+        //    }
+
+        //    return ocspUrls;
+        //}
+
+        private X509Extensions GetX509Extensions(X509Certificate2 certificate)
+        {
+            try
+            {
+                var inputStream = new Asn1InputStream(certificate.RawData);
+                var certificateAsAsn1 = inputStream.ReadObject();
+                var certificateStructure = X509CertificateStructure.GetInstance(certificateAsAsn1);
+                var toBeSignedPart = certificateStructure.TbsCertificate;
+                var extensions = toBeSignedPart.Extensions;
+                if (extensions == null)
+                {
+                    throw new CheckCertificateOcspUnexpectedException("No X509 extensions found");
+                }
+                return extensions;
+            }
+            catch (CheckCertificateOcspUnexpectedException)
+            {
+                throw;
+            }
+            catch (CertificateEncodingException e)
+            {
+                throw new ArgumentException("Error while extracting Access Description", e);
+            }
+        }
+
+        private string GetAccessDescriptionUrlForOid(DerObjectIdentifier oid, AccessDescription[] authorityInformationAccessArray)
+        {
+            foreach (AccessDescription authorityInformationAcces in authorityInformationAccessArray)
+            {
+                if (oid.Equals(authorityInformationAcces.AccessMethod))
+                {
+                    var name = authorityInformationAcces.AccessLocation;
+                    return ((DerIA5String)name.Name).GetString();
+                }
+            }
+            return null;
         }
 
         private Asn1Object GetExtensionValue(Org.BouncyCastle.X509.X509Certificate rootX509Certificate, string oid)
@@ -579,7 +690,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             //CertificateStatus cStatus = CertificateStatus.Unknown;
             RevocationResponse revocationResponse = new RevocationResponse();
 
-            X509CertificateParser parser = null;
+            //X509CertificateParser parser = null;
             
 
             switch (r.Status)
@@ -588,45 +699,63 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                     {
                         BasicOcspResp or = (BasicOcspResp)r.GetResponseObject();
 
-                        // ValidateResponse(or, issuerCert); 
-
-                        if (or.Responses.Length == 1)
+                        // ValidateResponse(or, issuerCert);
+ 
+                        string certificateSerial =  Convert.ToUInt32(serverX509Certificate.SerialNumber.IntValue).ToString();
+                        bool found = false;
+                        foreach (SingleResp singleResp in or.Responses)
                         {
-                            SingleResp resp = or.Responses[0];
-
-                            this.ValidateCertificateId(serverX509Certificate, rootX509Certificate, resp.GetCertID());
-
-                            // ValidateThisUpdate(resp); 
-                            // ValidateNextUpdate(resp); 
-
-                            Object certificateStatus = resp.GetCertStatus();
-
-                            if (certificateStatus == null)
+                            if (singleResp.GetCertID().SerialNumber.ToString().Equals(certificateSerial))
                             {
-                                // no revocation data exist - the certificate must be valid
+                                found = true;  
 
-                                revocationResponse.IsValid = true;
-                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
-                            }
-                            else if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
-                            {
-                                revocationResponse.IsValid = true;
-                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
-                            }
-                            else if (certificateStatus is Org.BouncyCastle.Ocsp.RevokedStatus)
-                            {
-                                revocationResponse.IsValid = false;
-                                revocationResponse.NextUpdate = resp.NextUpdate.Value;
-                            }
-                            else if (certificateStatus is Org.BouncyCastle.Ocsp.UnknownStatus)
-                            {
-                                throw new CheckCertificateOcspUnexpectedException("CertificateStatus is Unknown");
-                            }
-                            else
-                            {
-                                throw new CheckCertificateOcspUnexpectedException("CertificateStatus is unknown '" + certificateStatus.ToString()+ "'.");
+                                this.ValidateCertificateId(serverX509Certificate, rootX509Certificate, singleResp.GetCertID());
+
+                                // ValidateThisUpdate(resp); 
+                                // ValidateNextUpdate(resp); 
+
+                                Object certificateStatus = singleResp.GetCertStatus();
+
+                                if (certificateStatus == null)
+                                {
+                                    // acording to org.openoces.ooapi.utils.ocsp.ResponseParser.cs (DanID test code)
+                                    // in the TU11, method SerialNumberInResponseIsNotRevoked(..),
+                                    // when the certificateStatus is empty, all is okay - not revoked
+                                    // no revocation data exist - the certificate must be valid
+                                    revocationResponse.IsValid = true;
+                                    revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                }
+                                else if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
+                                {
+                                    // this is the expected certificateStatus for valid certificates
+                                    revocationResponse.IsValid = true;
+                                    revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                }
+                                else if (certificateStatus is Org.BouncyCastle.Ocsp.RevokedStatus)
+                                {
+                                    revocationResponse.IsValid = false;
+                                    revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                }
+                                else if (certificateStatus is Org.BouncyCastle.Ocsp.UnknownStatus)
+                                {
+                                    throw new CheckCertificateOcspUnexpectedException("CertificateStatus is Unknown");
+                                }
+                                else
+                                {
+                                    throw new CheckCertificateOcspUnexpectedException("CertificateStatus is unknown '" + certificateStatus.ToString() + "'.");
+                                }
+
+                                // break foreach loop
+                                break;
                             }
                         }
+
+                        if (!found)
+                        {
+                            // the returned result did not contain the desired certificate
+                            throw new CheckCertificateOcspUnexpectedException("Revokation result did not contain the desired certificate serial number.");
+                        }
+
                         break;
                     }
                 default:

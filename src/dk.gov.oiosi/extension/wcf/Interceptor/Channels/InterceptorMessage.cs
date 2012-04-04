@@ -119,6 +119,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels
         /// <returns>the message</returns>
         public Message GetCopy()
         {
+            // http://msdn.microsoft.com/en-us/library/ms734675.aspx
             WCFLogger.Write(TraceEventType.Verbose, "InterceptorMessage get copy of message");
             if (this.bufferCopy == null)
             {
@@ -136,7 +137,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels
             return message;
         }
 
-
         /// <summary>
         /// Returns the message if it has not already been copied. If it has a copy of the message will be returne.
         /// </summary>
@@ -145,12 +145,13 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels
         public Message GetMessage()
         {
             Message message;
+            // This is because a Message object can only be read once.
             if (this.originalMessage.State == MessageState.Created)
             {
                 return this.originalMessage;
             }
             else
-            {
+            {                
                 message = this.GetCopy();
             }
 

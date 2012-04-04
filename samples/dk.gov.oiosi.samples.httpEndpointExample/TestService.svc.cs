@@ -32,7 +32,7 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
             // Use on of the two methods below, to retrive the document
 
             // This one is very expensive in in time/CPU.
-            XmlDocument xmlDocument = oiosiMessage.MessageXml;
+            //XmlDocument xmlDocument = oiosiMessage.MessageXml;
 
             // This is mutch faster, as not converstion between xml an string is performed
             string xmlDocumentAsString = oiosiMessage.MessageAsString;

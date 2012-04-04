@@ -168,13 +168,13 @@ namespace dk.gov.oiosi.security.revocation.crl
                         this.logger.Warn("The stream is null.");
                     }
 
-                    this.logger.Debug("Start 'crlParser.ReadCrl(stream)'");
+                    this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
                    
                     
                     // Downloads the .crl file into an X509CRL object.
                     this.data = crlParser.ReadCrl(stream);
 
-                    this.logger.Debug("Finish with 'crlParser.ReadCrl(stream)'");
+                    this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
 
                     DateTime f = data.NextUpdate.Value;
                     stream.Close();
