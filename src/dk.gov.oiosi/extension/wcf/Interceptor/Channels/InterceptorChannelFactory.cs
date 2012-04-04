@@ -51,7 +51,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// </summary>
         /// <param name="context">binding context</param>
         /// <param name="channelInterceptor">channel interceptor</param>
-        public InterceptorChannelFactory(BindingContext context, IChannelInterceptor channelInterceptor) {
+        public InterceptorChannelFactory(BindingContext context, IChannelInterceptor channelInterceptor)
+        {
             _innerChannelFactory = context.BuildInnerChannelFactory<TChannel>();
             _channelInterceptor = channelInterceptor;
         }

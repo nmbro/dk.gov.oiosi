@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.2.4.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
-        <Id>d31d0afe-e5f8-4229-9f35-574761ec1778</Id>
+        <Id>5a15a880-eef8-40c0-80f2-bb65226f50c2</Id>
         <FriendlyName>Faktura v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pie/</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOXML_v0.7/piestrict.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOXML v0.7/piestrict.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOXML v0.7/StyleSheets/html.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>http://rep.oio.dk/ubl/xml/schemas/0p71/common/</Namespace>
@@ -49,28 +49,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -104,28 +124,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -139,36 +179,42 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath />
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
-        <ProfileIdXPath>
-          <XPath />
-        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>664b35c9-14be-4773-92c6-0cca9a3f8240</Id>
+        <Id>7bd520d7-6ae5-4a3c-8604-082e69414092</Id>
         <FriendlyName>Kreditnota v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOXML_v0.7/pcmstrict.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
+        <SchemaPath>Resources/Schemas/OIOXML v0.7/pcmstrict.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOXML v0.7/StyleSheets/html.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>http://rep.oio.dk/ubl/xml/schemas/0p71/common/</Namespace>
@@ -208,28 +254,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -263,28 +329,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -298,35 +384,41 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath />
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOXML v0.7/ublinvoice.xsl</SchematronDocumentPath>
           <ErrorXPath>/schematron/error</ErrorXPath>
           <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
         </SchematronValidationConfig>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
-        <ProfileIdXPath>
-          <XPath />
-        </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>8a3f77ea-ea44-4644-a804-0f72ff7ac894</Id>
+        <Id>40c9fbee-ad39-48ed-9e04-c28cbbf8a38c</Id>
         <FriendlyName>Applikationsmeddelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -379,28 +471,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -434,28 +546,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -469,6 +601,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -481,7 +625,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -497,12 +641,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>95b28f38-9c7f-4d86-bd81-e6a59c5fd025</Id>
+        <Id>68db0c6f-ec2c-44ad-b1c3-bdfae65ee5f0</Id>
         <FriendlyName>Katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
         <RootName>Catalogue</RootName>
         <ServiceContractTModel>uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-Catalogue-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Catalogue-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -555,28 +699,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -610,28 +774,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -645,6 +829,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -657,7 +853,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Catalogue/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -673,12 +869,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>45d7a5fd-7944-49bc-b30e-bd059e3632ed</Id>
+        <Id>463984d1-4ba5-44d6-8903-565cc56dd4cb</Id>
         <FriendlyName>Katalogforespørgsel</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2</RootNamespace>
         <RootName>CatalogueRequest</RootName>
         <ServiceContractTModel>uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -731,28 +927,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -786,28 +1002,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -821,6 +1057,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -833,7 +1081,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueRequest/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -849,12 +1097,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>3f1ec2ff-d240-4cc1-87dd-27264b066200</Id>
+        <Id>fb3034ea-eaaf-434b-8798-0433db497e66</Id>
         <FriendlyName>Opdatering af katalogelement</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2</RootNamespace>
         <RootName>CatalogueItemSpecificationUpdate</RootName>
         <ServiceContractTModel>uddi:63eab5c0-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -907,28 +1155,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -962,28 +1230,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -997,6 +1285,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1009,7 +1309,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueItemSpecificationUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1025,12 +1325,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>b6b101ac-1963-4ffa-b596-7e841cc35c43</Id>
+        <Id>02092e85-c2e4-4bb2-b22d-3eec04007a36</Id>
         <FriendlyName>Opdatering af katalogpriser</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2</RootNamespace>
         <RootName>CataloguePricingUpdate</RootName>
         <ServiceContractTModel>uddi:abdb2720-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1083,28 +1383,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1138,28 +1458,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1173,6 +1513,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1185,7 +1537,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CataloguePricingUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1201,12 +1553,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>1e72b429-f6f8-4f74-8f88-71b42340dd44</Id>
+        <Id>0efa1c48-b5e3-4eb8-bc5f-3fbd78daba10</Id>
         <FriendlyName>Sletning af katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2</RootNamespace>
         <RootName>CatalogueDeletion</RootName>
         <ServiceContractTModel>uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -1259,28 +1611,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1314,28 +1686,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1349,6 +1741,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1361,7 +1765,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CatalogueDeletion/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1377,12 +1781,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>51094198-462d-4faa-97ce-b5f44d739cee</Id>
+        <Id>a25f2c30-cb5b-404d-886a-9030621f7eea</Id>
         <FriendlyName>Kreditnota</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
         <RootName>CreditNote</RootName>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-CreditNote-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CreditNote-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_CreditNote.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -1414,17 +1818,17 @@
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteRequest</RequestAction>
           <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNote201Interface/SubmitCreditNoteResponse</ReplyAction>
           <EndpointFriendlyName>
-            <XPath>//cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+            <XPath>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
           <SenderFriendlyName>
-            <XPath>//cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+            <XPath>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//cac:AccountingCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <Xpath>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
-                <XPathExpression>//cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <XPathExpression>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
                     <Value>ean</Value>
@@ -1435,28 +1839,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1475,11 +1899,11 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//cac:AccountingSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <Xpath>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
-                <XPathExpression>//cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <XPathExpression>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
                     <Value>ean</Value>
@@ -1490,28 +1914,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1525,6 +1969,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1537,7 +1993,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:CreditNote/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1553,12 +2009,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>da8b30e2-1fac-42d3-8028-5268ae10ca1c</Id>
+        <Id>c0220657-c101-4d7d-9670-c9463e1559d5</Id>
         <FriendlyName>Faktura</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-Invoice-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Invoice-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -1611,28 +2067,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1666,28 +2142,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1701,6 +2197,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1713,7 +2221,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1729,12 +2237,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>27349b8b-480b-4422-ab11-0e1d45e65f58</Id>
+        <Id>5b84d1f6-f315-4a2c-a84d-095b10cc5a2c</Id>
         <FriendlyName>Ordre</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
         <RootName>Order</RootName>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-Order-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Order-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -1787,28 +2295,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1842,28 +2370,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -1877,6 +2425,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1889,7 +2449,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -1905,13 +2465,13 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>8edb1fa4-d5c8-487c-beb0-6704ee91f5b8</Id>
+        <Id>c4a09991-d038-4e51-bb06-2cdffe6c1b77</Id>
         <FriendlyName>Ordreannulering</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2</RootNamespace>
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-OrderCancellation-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderCancellation.xsls</StylesheetPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderCancellation-2.0.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1945,7 +2505,7 @@
             <XPath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
           <SenderFriendlyName>
-            <XPath>/root:OrderCancellation/cac:Party/cac:BuyerCustomerParty/cac:PartyName/cbc:Name</XPath>
+            <XPath>/root:OrderCancellation/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </SenderFriendlyName>
           <Key>
             <Xpath>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
@@ -1963,28 +2523,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2018,28 +2598,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2053,6 +2653,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2065,7 +2677,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderCancellation/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2081,12 +2693,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>1d220487-a94e-4e9b-aefc-c2c496855169</Id>
+        <Id>ba652e7d-e8bd-4926-8bd8-9e19a5ca23e6</Id>
         <FriendlyName>Ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</RootNamespace>
         <RootName>OrderResponse</RootName>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-OrderResponse-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2139,28 +2751,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2194,28 +2826,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2229,6 +2881,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2241,7 +2905,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2257,12 +2921,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>3b8c8728-f8a4-4257-b923-43c550f96839</Id>
+        <Id>0412fdc2-5f07-4e6f-a8fd-c0dc7d780dce</Id>
         <FriendlyName>Ordreændring</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2</RootNamespace>
         <RootName>OrderChange</RootName>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-OrderChange-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderChange-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2315,28 +2979,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2370,28 +3054,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2405,6 +3109,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2417,7 +3133,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderChange/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2433,12 +3149,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>ddf26851-70e0-48db-beba-d02d301ed33d</Id>
+        <Id>c8577e35-7de6-49f6-926c-c061f5a7d1b6</Id>
         <FriendlyName>Simpel ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2</RootNamespace>
         <RootName>OrderResponseSimple</RootName>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2491,28 +3207,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2546,28 +3282,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2581,6 +3337,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2593,7 +3361,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:OrderResponseSimple/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2609,12 +3377,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>130a8bce-cc71-4dee-a347-cba432ffe073</Id>
+        <Id>b552710b-e4c2-44f6-a89e-1b158375b5f3</Id>
         <FriendlyName>Rykker</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Reminder-2</RootNamespace>
         <RootName>Reminder</RootName>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-Reminder-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Reminder-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2667,28 +3435,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2722,28 +3510,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2757,6 +3565,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2769,7 +3589,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Reminder/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2785,12 +3605,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>0b8cc586-d4df-4ab8-b06a-0399f9409f43</Id>
+        <Id>76c4f0fa-e969-4360-9a04-8de3c675d4f2</Id>
         <FriendlyName>KontoUdtog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Statement-2</RootNamespace>
         <RootName>Statement</RootName>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.0/UBL-Statement-2.0.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Statement-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
@@ -2843,28 +3663,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2898,28 +3738,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -2933,6 +3793,18 @@
                     <Value>DUNS</Value>
                     <MapsTo>duns</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2945,7 +3817,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Statement/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0</XPathExpectedResult>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
@@ -2961,12 +3833,12 @@
         </ProfileIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
-        <Id>f9921c1b-ee20-4831-ab85-6975a95ed899</Id>
+        <Id>eee3da84-27b7-4b37-81b1-cfb9d2942a00</Id>
         <FriendlyName>Forsynings Specifikation</FriendlyName>
         <RootNamespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</RootNamespace>
         <RootName>UtilityStatement</RootName>
         <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/OIOUBL_v2.1-b/UBL-UtilityStatement-2.1.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/OIOUBL_v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
@@ -3019,28 +3891,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3074,28 +3966,48 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>CVR</Value>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>GLN</Value>
-                    <MapsTo>ean</MapsTo>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
-                    <MapsTo>ovt</MapsTo>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:P</Value>
                     <MapsTo>p</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>DK:SE</Value>
                     <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>ISO 6523</Value>
+                    <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
                     <Value>DK:VANS</Value>
@@ -3110,7 +4022,15 @@
                     <MapsTo>duns</MapsTo>
                   </Mapping>
                   <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
                     <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -3129,7 +4049,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL_v2.0/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUTS_v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -3145,112 +4065,8 @@
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
       <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
-        <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-BilSim-1.0</Name>
-        <TModelGuid>uddi:362229ac-b657-452a-b8f8-c93e62c670ff</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSimR-BilSim-1.0</Name>
-        <TModelGuid>uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>Catalogue-CatBas-1.0</Name>
         <TModelGuid>uddi:4697A391-741F-4534-A21E-8F0A460013BB</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Regning</Name>
-        <TModelGuid>uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>OIOXML Elektronisk Kreditnota</Name>
-        <TModelGuid>uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile1:ver2.0</Name>
-        <TModelGuid>uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile2:ver2.0</Name>
-        <TModelGuid>uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
-        <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
-        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
-        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
-        <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile8:ver2.0</Name>
-        <TModelGuid>uddi:F4240370-CCA6-401e-9B5B-4531F413421D</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-BilSimR-1.0</Name>
-        <TModelGuid>uddi:98070e14-ee30-4b10-84ef-986cde3b8116</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-PayBas-1.0</Name>
-        <TModelGuid>uddi:E5D505C0-4B52-4485-8169-4AB5343559A5</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-PayBasR-1.0</Name>
-        <TModelGuid>uddi:FED5F809-64EC-4523-BC57-4A57D5680DA9</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSim-BilSim-1.0</Name>
-        <TModelGuid>uddi:142C4188-3D53-440d-A64F-68D7C3B9A59B</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSimR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:1e1b209e-7b8d-4f1e-8f2a-f3d9a94d1086</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSim-BilSimR-1.0</Name>
-        <TModelGuid>uddi:7A638D35-3E08-432e-B558-74CB85889905</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdv-BilSim-1.0</Name>
-        <TModelGuid>uddi:88FBD6D5-6A25-4c08-91CC-5344C73C4D69</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdvR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:b23940b1-d571-4640-8830-9b7f34809fbc</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdv-BilSimR-1.0</Name>
-        <TModelGuid>uddi:76897296-08aa-4848-a933-ae068b4c604e</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdAdvR-BilSim-1.0</Name>
-        <TModelGuid>uddi:1d01dd98-a302-4897-92d8-fd501447c450</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSel-BilSim-1.0</Name>
-        <TModelGuid>uddi:46D94D6B-E835-4916-BBB5-F27DC655876A</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSelR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:34CD4205-D7CF-47f6-87D4-DF4F8DB2AEFD</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSel-BilSimR-1.0</Name>
-        <TModelGuid>uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>Procurement-OrdSelR-BilSim-1.0</Name>
-        <TModelGuid>uddi:ACED2BA9-5B9F-44d6-9698-FB55C3DED1A9</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatBasR-1.0</Name>
@@ -3281,40 +4097,92 @@
         <TModelGuid>uddi:EE7F4AEA-BFDC-4886-8C5E-319596E46DA5</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS OIOXML Elektronisk Regning</Name>
-        <TModelGuid>uddi:367e54f0-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-BilSim-1.0</Name>
+        <TModelGuid>uddi:362229ac-b657-452a-b8f8-c93e62c670ff</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS OIOXML Elektronisk Kreditnota</Name>
-        <TModelGuid>uddi:2c33e6e0-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-BilSimR-1.0</Name>
+        <TModelGuid>uddi:98070e14-ee30-4b10-84ef-986cde3b8116</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS Procurement-BilSimR-1.0</Name>
-        <TModelGuid>uddi:47a2e980-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-PayBas-1.0</Name>
+        <TModelGuid>uddi:E5D505C0-4B52-4485-8169-4AB5343559A5</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS Procurement-OrdAdvR-BilSimR-1.0</Name>
-        <TModelGuid>uddi:5197bd80-a24e-11dc-a80b-bfc65441a808</TModelGuid>
+        <Name>Procurement-PayBasR-1.0</Name>
+        <TModelGuid>uddi:FED5F809-64EC-4523-BC57-4A57D5680DA9</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NS NS Procurement-PayBasR-1.0</Name>
-        <TModelGuid>uddi:4d2dadf0-e05a-11dc-889b-1a827c218899</TModelGuid>
+        <Name>Procurement-OrdSim-BilSim-1.0</Name>
+        <TModelGuid>uddi:142C4188-3D53-440d-A64F-68D7C3B9A59B</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>NKS 2.0</Name>
-        <TModelGuid>uddi:fbc05a80-bde5-11dc-a81d-bfc65441a808</TModelGuid>
+        <Name>Procurement-OrdSimR-BilSimR-1.0</Name>
+        <TModelGuid>uddi:1e1b209e-7b8d-4f1e-8f2a-f3d9a94d1086</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>DOIP Order</Name>
-        <TModelGuid>uddi:1a967cf0-bde6-11dc-a81d-bfc65441a808</TModelGuid>
+        <Name>Procurement-OrdSim-BilSimR-1.0</Name>
+        <TModelGuid>uddi:7A638D35-3E08-432e-B558-74CB85889905</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>OIOXML elektronisk handel</Name>
-        <TModelGuid>uddi:c001daa0-8ba3-11dd-894e-770465b08940</TModelGuid>
+        <Name>Procurement-OrdSimR-BilSim-1.0</Name>
+        <TModelGuid>uddi:EBABEE8B-A5D3-4dc9-B976-3AAFF9A4E855</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>OIOXML elektronisk handel - læs ind</Name>
-        <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
+        <Name>Procurement-OrdAdv-BilSim-1.0</Name>
+        <TModelGuid>uddi:88FBD6D5-6A25-4c08-91CC-5344C73C4D69</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdv-BilSimR-1.0</Name>
+        <TModelGuid>uddi:76897296-08aa-4848-a933-ae068b4c604e</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdvR-BilSim-1.0</Name>
+        <TModelGuid>uddi:1d01dd98-a302-4897-92d8-fd501447c450</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdAdvR-BilSimR-1.0</Name>
+        <TModelGuid>uddi:b23940b1-d571-4640-8830-9b7f34809fbc</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdSel-BilSim-1.0</Name>
+        <TModelGuid>uddi:46D94D6B-E835-4916-BBB5-F27DC655876A</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Procurement-OrdSel-BilSimR-1.0</Name>
+        <TModelGuid>uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile1:ver2.0</Name>
+        <TModelGuid>uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile2:ver2.0</Name>
+        <TModelGuid>uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
+        <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
+        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
+        <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
+        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
+        <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile8:ver2.0</Name>
+        <TModelGuid>uddi:F4240370-CCA6-401e-9B5B-4531F413421D</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-Utility-1.0</Name>
@@ -3331,7 +4199,8 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>fenris.certifikat.dk</Host>
+    <Host>dir.certifikat.dk</Host>
+    <!-- Host>crtdir.pp.certifikat.dk</Host -->
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -3339,11 +4208,12 @@
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
-    <DefaultTimeoutMsec>10000</DefaultTimeoutMsec>
+    <DefaultTimeoutMsec>20000</DefaultTimeoutMsec>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClient</ImplementationNamespaceClass>
@@ -3354,35 +4224,175 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="UddiConfig">
-    <ProfileConformanceClaim />
-    <RegistrationConformanceClaim>http://oio.dk/profiles/OIOSI/1.0/UDDI/registrationModel/1.1/</RegistrationConformanceClaim>
-    <PublishEndpoint>https://publish.uddi.ehandel.gov.dk/UDDIProxy/UDDIProxy.svc</PublishEndpoint>
-    <PublishInquiryEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</PublishInquiryEndpoint>
-    <SecurityEndpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/security</SecurityEndpoint>
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
-    <LookupReturnOptions>noMoreThanOneSetOrFail</LookupReturnOptions>
     <LookupRegistryFallbackConfig>
       <PrioritizedRegistryList>
         <Registry>
           <EndpointCollection>
             <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://publish.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-          </EndpointCollection>
-        </Registry>
-        <Registry>
-          <EndpointCollection>
-            <Endpoint>http://kommercielvansgateway.kmd.dk/UddiAdapterService/2008/10/27/UddiAdapterService.svc</Endpoint>
+            <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
     </LookupRegistryFallbackConfig>
+    <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="RootCertificateConfig">
-    <RootCertificateLocation>
-      <StoreLocation>LocalMachine</StoreLocation>
-      <StoreName>Root</StoreName>
-      <SerialNumber>403617fc</SerialNumber>
-    </RootCertificateLocation>
+  <ConfigurationSection xsi:type="CacheConfig">
+    <OcspLookupCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </OcspLookupCache>
+
+    <CrlLookupCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </CrlLookupCache>
+
+    <UddiServiceCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </UddiServiceCache>
+
+    <UddiTModelCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </UddiTModelCache>
+
+    <CertificateCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>60</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </CertificateCache>
+
+    <SchematronStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchematronStoreCache>
+
+    <SchemaStoreCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>maxSize</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SchemaStoreCache>
+
+    <MessageIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </MessageIdUnfinishedSignaturesCache>
+
+    <SequenceIdUnfinishedSignaturesCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </SequenceIdUnfinishedSignaturesCache>
+    
+  </ConfigurationSection>
+  <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
+    <RootCertificateLocationCollection>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>3E48BDC4</SerialNumber>
+        <Description>TDC OCES CA</Description>
+      </RootCertificateLocation>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>4b8e6003</SerialNumber>
+        <Description>TRUST2408 OCES Primary CA</Description>
+      </RootCertificateLocation>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>403617FC</SerialNumber>
+        <Description>TDC OCES Systemtest CA II</Description>
+      </RootCertificateLocation>
+      <RootCertificateLocation>
+        <StoreLocation>LocalMachine</StoreLocation>
+        <StoreName>Root</StoreName>
+        <SerialNumber>4bea6e94</SerialNumber>
+        <Description>TRUST2408 Systemtest VII Primary CA</Description>
+      </RootCertificateLocation>
+    </RootCertificateLocationCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>
@@ -3404,20 +4414,5 @@
     <ResendingPattern>RecursiveBackoff</ResendingPattern>
     <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
     <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="RaspMessageStoreConfiguration">
-    <RootDirectory>C:\Documents and Settings\christian.u.pedersen\Application Data\NemHandel\MessageStore\Root</RootDirectory>
-    <AutoSendOnInsert>false</AutoSendOnInsert>
-    <TimedFileListenerConfigurations>
-      <TimedFileListenerConfiguration>
-        <Name>Default Timed File Listener</Name>
-        <ListenDirectory>C:\Documents and Settings\christian.u.pedersen\Application Data\NemHandel\MessageStore\Insert</ListenDirectory>
-        <PollingInterval>00:00:05</PollingInterval>
-        <Extension>xml</Extension>
-      </TimedFileListenerConfiguration>
-    </TimedFileListenerConfigurations>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="SchematronStoreConfig">
-    <MaxCompiledStylesheetsInMemory>2</MaxCompiledStylesheetsInMemory>
   </ConfigurationSection>
 </RaspConfiguration>
