@@ -73,7 +73,8 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// </summary>
         /// <param name="certificate">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
-        public RevocationResponse CheckCertificate(X509Certificate2 certificate) {
+        public RevocationResponse CheckCertificate(X509Certificate2 certificate)
+        {
 
             /*
              * Assumptions:
@@ -81,51 +82,110 @@ namespace dk.gov.oiosi.security.revocation.crl
              * - An HTTP distribution point is present.
              */
 
+            // create RevocationResponse and set default values
             RevocationResponse response = new RevocationResponse();
-            RevocationException innerException = null;
+            response.IsValid = true;
+            response.NextUpdate = DateTime.MinValue;
 
-    	    if (certificate != null)
-    	    {
-    		    // Retrieve URL distribution points
-    		    List<Uri> URLs = GetURLs(certificate);
-        		
-    		    foreach (Uri url in URLs)
-    		    {
-                    CrlInstance crl = this.GetInstance(url);
-        			
-    			    try 
-    			    {
-					    if(!crl.IsRevoked(certificate))
-					    {
-						    response.IsValid = true;
-						    response.NextUpdate = crl.getNextUpdate();
-						    return response;
-					    }
-					    else
-					    {
-                            response.IsValid = false;
-                            return response;
-					    }
-				    }
-                    catch (CheckCertificateRevokedUnexpectedException e) 
-				    {
-					    // There was an error in checking the certificate. Try the next url.
-                        // implicit the certificate is true, until other whise proven invalid
-                        innerException = e;
-				    }
-    		    }
-            }
-
-            // At this point, all checks has result in an exception. If any check has performed well,
-            // the result was returned.
-            // If any errors happen during CRL check, then abort the processing of the message.
-            if (innerException != null)
+            if (certificate != null)
             {
-                response.Exception = innerException;
+
+
+                X509Chain x509Chain = new X509Chain();
+                x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+                x509Chain.Build(certificate);
+
+                // Iterate though the chain, to get the certificate list
+                X509ChainElementCollection x509ChainElementCollection = x509Chain.ChainElements;
+                X509ChainElementEnumerator enumerator = x509ChainElementCollection.GetEnumerator();
+                X509ChainElement x509ChainElement;
+                X509Certificate2 x509Certificate2 = null;
+                IDictionary<string, X509Certificate2> map = new Dictionary<string, X509Certificate2>();
+                IList<X509Certificate2> list = new List<X509Certificate2>();
+
+                while (enumerator.MoveNext())
+                {
+                    x509ChainElement = enumerator.Current;
+                    x509Certificate2 = x509ChainElement.Certificate;
+                    list.Add(x509Certificate2);
+                }
+
+                // now we have a list of the certificate chain
+                // list[0] -> the function certificate
+                // list[0 .. lsit.Count] -> middel certificates
+                //   oces1 : none middle certificate exist
+                //   oces2 : one middle certificate exist
+                // list[list.Count] - > root certificate
+                // we needed to validate all certificates, except the root certificates
+                // The question wheather the root certificates is trusted, is validated in MultipleRootX509CertificateValidator
+
+                int index = 0;
+                bool chainValid = true;
+                while (index < (list.Count - 1) && response.IsValid == true)
+                {
+                    // Retrieve URL distribution points
+                    List<Uri> URLs = this.GetURLs(list[index]);
+
+                    // The list should only contain one element
+                    // so we are only interesting in the first CRL list
+                    if (URLs.Count > 0)
+                    {
+                        Uri url = URLs[0];
+                        CrlInstance crl = this.GetInstance(url);
+
+                        try
+                        {
+                            if (!crl.IsRevoked(certificate))
+                            {
+                                // so the certificate is not revoked.
+                                // remember, that the issueing certificate could be revoked.
+                                // So the next update must be the earlist of the all
+                                response.IsValid = true;
+                                if (response.NextUpdate == DateTime.MinValue)
+                                {
+                                    response.NextUpdate = crl.getNextUpdate();
+                                }
+                                else if (response.NextUpdate < crl.getNextUpdate())
+                                {
+                                    // no new update
+                                    // the already registrated 'NextUpdate' is before the crl.getNextUpdate
+                                }
+                                else
+                                {
+                                    // new update time
+                                    // The already registrated 'NextUpdate', is greater (futher in the future) then crl.getNextUpdate
+                                    // so we use the crl.getNextUpdate as next update
+                                    response.NextUpdate = crl.getNextUpdate();
+                                }
+                            }
+                            else
+                            {
+                                response.IsValid = false;
+                            }
+                        }
+                        catch (CheckCertificateRevokedUnexpectedException exception)
+                        {
+                            // There was an error in checking the certificate. Try the next url.
+                            // implicit the certificate is true, until other whise proven invalid
+                            response.Exception = exception;
+                            response.IsValid = false;
+
+                        }
+                    }
+                    else
+                    {
+                        // url server ot identified, so we don't trust this certificate
+                        response.IsValid = false;
+                    }
+
+                    // increase the index, to check the next certificate
+                    index++;
+                }
             }
             else
             {
-                response.Exception = new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. Maybe certificate did not have any CRL DistPoints. Certificate: " + certificate));
+                response.IsValid = false;
+                response.Exception = new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. The certificate did not have any CRL DistPoints. Certificate: " + certificate));
             }
 
             return response;

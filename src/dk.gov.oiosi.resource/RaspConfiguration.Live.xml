@@ -4706,7 +4706,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>maxSize</Key>
-          <Value>10</Value>
+          <Value>20</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
@@ -4720,7 +4720,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>maxSize</Key>
-          <Value>10</Value>
+          <Value>20</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
