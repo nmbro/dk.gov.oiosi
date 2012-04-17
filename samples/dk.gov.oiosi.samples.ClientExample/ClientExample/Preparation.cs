@@ -223,22 +223,6 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
         #region 4 - Certificate
         public X509Certificate2 GetCertificate(UddiType UddiType)
         {
-            StoreName storeName = StoreName.My;
-
-            Console.Write("Store ");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write("[" + StoreName.My + "/" + StoreName.Root + "/" + StoreName.AddressBook + "/" + StoreName.CertificateAuthority + "]: ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(storeName.ToString());
-
-            StoreLocation storeLocation = StoreLocation.CurrentUser;
-            Console.Write("Store Location ");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write("[" + StoreLocation.CurrentUser + "/" + StoreLocation.LocalMachine + "]: ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(storeLocation.ToString());
-            
-
             //Console.Write("Serial number: 45 a2 f4 a1");
             //string serial = "45 a2 f4 a1";
             // Test certificate - Must be importet into windows key store
@@ -282,48 +266,245 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             *  Installed from https://www.certifikat.dk/export/sites/dk.certifikat.oc/da/developer/eksempler/
             */
 
+            X509Certificate2 clientCert = null;
             string serial = null;
 
             switch (UddiType)
             {
-                case UddiType.Production :
+                case UddiType.Production:
                     {
-                        serial = "45 be bc 3e";
+                        //serial = "45 be bc 3e";
+                        serial = "45 be bc 3e רר";
                         break;
                     }
-                case UddiType.Test :
+                case UddiType.Test:
                     {
                         serial = "40 37 fb 49";
                         break;
                     }
-                default :
+                default:
+                    {
+                        throw new NotImplementedException("The uddi type '" + UddiType.ToString() + "' is unknown.");
+                    }
+            }
+
+            StoreName storeName = StoreName.My;
+            StoreLocation storeLocation = StoreLocation.CurrentUser;
+            string storeNameString = string.Empty;
+            int storeNameInt;
+            string storeLocationString = string.Empty;
+            int storeLocationInt;
+            string certificateString = string.Empty;
+            int certificateInt;
+            X509Store certStore;
+            //bool selectAgain = false;
+            bool selectNewStore = false;
+            while (clientCert == null)
+            {
+                Console.Write("Store ");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("[" + StoreName.My + "/" + StoreName.Root + "/" + StoreName.AddressBook + "/" + StoreName.CertificateAuthority + "]: ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(storeName.ToString());
+
+                Console.Write("Store Location ");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("[" + StoreLocation.CurrentUser + "/" + StoreLocation.LocalMachine + "]: ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(storeLocation.ToString());
+
+                if (selectNewStore == false)
+                {
+                    // try to retrive the certificate
+
+                    Console.WriteLine("Serial number: " + serial);
+
+                    certStore = new X509Store(storeName, storeLocation);
+                    certStore.Open(OpenFlags.ReadOnly);
+
+                    X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, serial, true);
+                    certStore.Close();
+                    clientCert = null;
+
+                    if (collection.Count > 0)
+                    {
+                        clientCert = collection[0];
+                    }
+                }
+                
+                if ( clientCert == null)
+                {
+                    // the certificate not found
+                    //Console.WriteLine("Certificate not found, type in new serial number: ");
+                    //serial = Console.ReadLine();
+
+                    // store name
+                    do
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Select StoreName (type the index/int):");
+                        Console.WriteLine("1 - StoreName.My");
+                        Console.WriteLine("2 - StoreName.Root");
+                        Console.WriteLine("3 - StoreName.AddressBook");
+                        Console.WriteLine("4 - StoreName.CertificateAuthority");
+                        storeNameString = Console.ReadLine();
+                        if (int.TryParse(storeNameString, out storeNameInt))
                         {
-                            throw new NotImplementedException("The uddi type '" + UddiType.ToString() + "' is unknown.");
+                            switch (storeNameInt)
+                            {
+                                case 1:
+                                    {
+                                        storeName = StoreName.My;
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        storeName = StoreName.Root;
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        storeName = StoreName.AddressBook;
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        storeName = StoreName.CertificateAuthority;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("Not in range.");
+                                        storeNameString = string.Empty;
+                                        break;
+                                    }
+                            }
                         }
-            }
+                        else
+                        {
+                            Console.WriteLine("Not a int!!!");
+                            storeNameString = string.Empty;
+                        }
+                    }
+                    while (string.IsNullOrEmpty(storeNameString));
 
-            Console.WriteLine("Serial number: " + serial);
+                    // StoreLocation
+                    do
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Select StoreLocation (type the index/int):");
+                        Console.WriteLine("1 - StoreName.CurrentUser");
+                        Console.WriteLine("2 - StoreName.LocalMachine");
+                        storeLocationString = Console.ReadLine();
+                        if (int.TryParse(storeLocationString, out storeLocationInt))
+                        {
+                            switch (storeLocationInt)
+                            {
+                                case 1:
+                                    {
+                                        storeLocation = StoreLocation.CurrentUser;
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        storeLocation = StoreLocation.LocalMachine;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("Not in range.");
+                                        storeLocationString = string.Empty;
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not a int!!!");
+                            storeLocationString = string.Empty;
+                        }
 
-            X509Store certStore = new X509Store(storeName, storeLocation);
-            certStore.Open(OpenFlags.ReadOnly);
+                    }
+                    while (string.IsNullOrEmpty(storeLocationString));
 
-            X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, serial, true);
-            X509Certificate2 clientCert = null;
+                    // StoreLocation
 
-            if (collection.Count > 0)
-            {
-                clientCert = collection[0];
-            }
-            else
-            {
-                // the certificate not found
-                throw new NotImplementedException("The certificate was not found.");
+                    do
+                    {
+                        serial = string.Empty;
+                        Console.WriteLine();
+                        Console.WriteLine("Select certificate (type the index/int) (0 for new certificate location):");
+                        Console.WriteLine("Index - Serial number - ExpireDate");
+                        certStore = new X509Store(storeName, storeLocation);
+                        certStore.Open(OpenFlags.ReadOnly);
+                        X509Certificate2Enumerator x509Certificate2Enumerator = certStore.Certificates.GetEnumerator();
+
+                        int index = 1;
+                        X509Certificate x509Certificate;
+                        IDictionary<int, X509Certificate> map = new Dictionary<int, X509Certificate>();
+                        int subjectMax = 45;
+                        while (x509Certificate2Enumerator.MoveNext())
+                        {
+                            x509Certificate = x509Certificate2Enumerator.Current;
+                            map.Add(index, x509Certificate);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(" " + index + " - ");
+                            //Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.Write(x509Certificate.GetSerialNumberString() + " - ");
+                            Console.WriteLine(x509Certificate.GetExpirationDateString());
+                            Console.ForegroundColor = ConsoleColor.White;
+                            //if (x509Certificate.Subject.Length <= subjectMax)
+                            //{
+                            Console.WriteLine(x509Certificate.Subject);
+                            /*}
+                            else
+                            {
+                                Console.WriteLine(x509Certificate.Subject.Substring(0, subjectMax));
+                            }*/
+
+                            index++;
+                        }
+                        certStore.Close();
+                        if (index == 1)
+                        {
+                            Console.WriteLine("No certificate a selected location");
+                            //serial = "No certificate a selected location";
+                            selectNewStore = true;
+                        }
+                        else
+                        {
+                            certificateString = Console.ReadLine();
+
+                            if (int.TryParse(certificateString, out certificateInt))
+                            {
+                                if (certificateInt == 0)
+                                {
+                                    //serial = "try Again - certificate not found";
+                                    selectNewStore = true;
+                                }
+                                else if (map.ContainsKey(certificateInt))
+                                {
+                                    serial = map[certificateInt].GetSerialNumberString();
+                                    selectNewStore = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Index out of range.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not a int!!!");
+                            }
+                        }
+
+                    }
+                    while (!selectNewStore && string.IsNullOrEmpty(serial));
+                }
             }
 
             Console.WriteLine("Expire: " + clientCert.GetExpirationDateString());
 
-            certStore.Close();
-                        
             return clientCert;
         }
 

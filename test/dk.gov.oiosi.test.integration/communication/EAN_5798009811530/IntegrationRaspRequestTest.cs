@@ -209,6 +209,10 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811530
             AssertSendable("Resources/Documents/EAN_5798009811530/OIOUBL_Statement_v2p2.xml");
         }
 
+        /*
+         * Note - Endpoint.Net 1.2.1 can not receive UtilityStament
+         * */
+
         [Test]
         public void OioxmlCreditNoteMustBeSendableByRaspRequest()
         {

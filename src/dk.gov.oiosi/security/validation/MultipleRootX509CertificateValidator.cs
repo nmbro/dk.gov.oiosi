@@ -30,7 +30,16 @@ namespace dk.gov.oiosi.security.validation {
             this.logger = LoggerFactory.Create(this.GetType());
             this.rootCertificateDirectory = new Dictionary<string, X509Certificate2>();
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
-            this.LoadRootCertificates(rootCertificateCollectionConfig);
+            try
+            {
+                this.LoadRootCertificates(rootCertificateCollectionConfig);
+            }
+            catch (Exception exception)
+            {
+                // log the exception to the log fil, and then throw it again
+                this.logger.Fatal(exception);
+                throw;
+            }
         }
 
         public MultipleRootX509CertificateValidator(RootCertificateCollectionConfig rootCertificateCollectionConfig)

@@ -35,6 +35,7 @@ using System;
 using System.Diagnostics;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.logging;
+using System.Security.Cryptography;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     
@@ -42,8 +43,16 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
     /// Interceptor request channel
     /// </summary>
     /// <remarks>In case an interceptor has been added UNDER the security layer a copy of the Message object should never be done - seeing how this leads to the To header not being signed.</remarks>
-    class InterceptorRequestChannel : InterceptorChannelBase<IRequestChannel>, IRequestChannel
+    public class InterceptorRequestChannel : InterceptorChannelBase<IRequestChannel>, IRequestChannel
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger = null;
+
+        /// <summary>
+        /// The cannel interceptor
+        /// </summary>
         private IChannelInterceptor channelInterceptor;
 
         /// <summary>
@@ -55,6 +64,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         public InterceptorRequestChannel(ChannelManagerBase manager, IRequestChannel innerChannel, IChannelInterceptor channelInterceptor)
             : base(manager, innerChannel)
         {
+            this.logger = LoggerFactory.Create(this.GetType());
             this.channelInterceptor = channelInterceptor;
         }
 
@@ -189,12 +199,24 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
                 interceptedResponseMessage = InterceptResponse(innerMessage);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
             }
-            catch (Exception ex)
+            catch (CryptographicException exception)
+            {
+                // Exception, if the service e.g. does not have acces to the private key in the certificate
+                // So logging this special error
+                this.logger.Fatal("The service migth not have permission right to the private key in the certificate", exception);
+                
+                // handling the error as normal
+                HandleException(message);
+                WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + exception);
+                WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
+                throw exception;
+            }
+            catch (Exception exception)
             {
                 HandleException(message);
-                WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + ex);
+                WCFLogger.Write(TraceEventType.Error, "Exception occurred while intercepting: " + exception);
                 WCFLogger.Write(TraceEventType.Stop, "Finished intercepting request");
-                throw ex;
+                throw exception;
             }
 
             return interceptedResponseMessage;

@@ -4065,6 +4065,22 @@
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
       <ProfileMapping>
+        <Name>OIOXML elektronisk handel</Name>
+        <TModelGuid>uddi:c001daa0-8ba3-11dd-894e-770465b08940</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>OIOXML elektronisk handel - læs ind</Name>
+        <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>OIOXML Elektronisk Regning</Name>
+        <TModelGuid>uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>OIOXML Elektronisk Kreditnota</Name>
+        <TModelGuid>uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
         <Name>Catalogue-CatBas-1.0</Name>
         <TModelGuid>uddi:4697A391-741F-4534-A21E-8F0A460013BB</TModelGuid>
       </ProfileMapping>
@@ -4199,8 +4215,8 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>dir.certifikat.dk</Host>
-    <!-- Host>crtdir.pp.certifikat.dk</Host -->
+    <!-- Host>dir.certifikat.dk</Host -->
+    <Host>crtdir.pp.certifikat.dk</Host>
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -4208,8 +4224,8 @@
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -4380,7 +4396,7 @@
         <SerialNumber>4b8e6003</SerialNumber>
         <Description>TRUST2408 OCES Primary CA</Description>
       </RootCertificateLocation>
-      <RootCertificateLocation>
+      <!-- RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
         <SerialNumber>403617FC</SerialNumber>
@@ -4391,7 +4407,7 @@
         <StoreName>Root</StoreName>
         <SerialNumber>4bea6e94</SerialNumber>
         <Description>TRUST2408 Systemtest VII Primary CA</Description>
-      </RootCertificateLocation>
+      </RootCertificateLocation -->
     </RootCertificateLocationCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">

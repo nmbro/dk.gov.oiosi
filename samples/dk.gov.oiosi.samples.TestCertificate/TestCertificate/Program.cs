@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.security.revocation.ocsp;
 
 namespace dk.gov.oiosi.samples
 {
@@ -29,15 +30,19 @@ namespace dk.gov.oiosi.samples
             //raspConfiguration = "RaspConfiguration.Test.xml";
 
             // Production/Live
-            raspConfiguration = "RaspConfiguration.Live.xml";
+            //raspConfiguration = "RaspConfiguration.Live.xml";
 
+            // oces2
+            raspConfiguration = "RaspConfiguration.Oces2.xml";
             // Set the Configuration handler to use the desired Configuration file
             ConfigurationDocument.ConfigFilePath = raspConfiguration;
             CacheFactory instance = CacheFactory.Instance;
             // Test Certificate
             this.TextCertificate();
 
+            //TestOCSP();
         }
+
 
         private void TextCertificate()
         {
@@ -58,14 +63,15 @@ namespace dk.gov.oiosi.samples
             // subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
             //subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
             // Test certificates not valid
-            // subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
+             //subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
             // subject = "CN=Navision (funktionscertifikat) + OID.2.5.4.5=CVR:23267519-FID:1257424251148, O=TIETGENSKOLEN // CVR:23267519, C=DK";
-
+            //subject = "CN = TEST FOCES1 (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
             // not valid any more
-            subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
-            // subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:94731315, O=Danid A/S // CVR:30808460, C=DK";
+             //subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
+             subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:94731315, O=Danid A/S // CVR:30808460, C=DK";
             // subject = "CN=FOCES1 (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:1255692730737, O=DANID A/S // CVR:30808460, C=DK";
             // subject = "CN=TU GENEREL MOCES gyldig + SERIALNUMBER=CVR:30808460-RID:45490598, O=Danid A/S // CVR:30808460, C=DK";
+
 
             // Now - retrive the certificate in LDAP, if the certificate is pressen...
             CertificateSubject certificateSubject = new CertificateSubject(subject);
@@ -93,12 +99,12 @@ namespace dk.gov.oiosi.samples
                 if (revocationResponse.IsValid)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Certificate valid in OCSP");
+                    Console.Write("Certificate valid in OCSP/CRL");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Certificate not valid in OCSP");
+                    Console.Write("Certificate not valid in OCSP/CRL");
                 }
             }
             else
@@ -114,6 +120,57 @@ namespace dk.gov.oiosi.samples
             Console.WriteLine();
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
+        }
+
+        private void TestOCSP()
+        {
+            OcspLookup ocspLookup = new OcspLookup();
+
+            X509Store certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            certStore.Open(OpenFlags.ReadOnly);
+
+            string serial = "4c 05 5a 37";
+
+            X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, serial, true);
+            X509Certificate2 cert = null;
+
+            if (collection.Count > 0)
+            {
+                cert = collection[0];
+            }
+            else
+            {
+                // the certificate not found
+                throw new NotImplementedException("The certificate was not found.");
+            }
+
+            X509Chain x509Chain = new X509Chain();
+            x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            x509Chain.Build(cert);
+
+            // Iterate though the chain, to validate if it contain a valid root vertificate
+            X509ChainElementCollection x509ChainElementCollection = x509Chain.ChainElements;
+            X509ChainElementEnumerator enumerator = x509ChainElementCollection.GetEnumerator();
+            X509ChainElement x509ChainElement;
+            X509Certificate2 x509Certificate2 = null;
+            IDictionary<string, X509Certificate2> map = new Dictionary<string, X509Certificate2>();
+            IList<X509Certificate2> list = new List<X509Certificate2>();
+
+            // At this point, the certificate is not valid, until a 
+            // it is proved that it has a valid root certificate
+            while (enumerator.MoveNext())
+            {
+                x509ChainElement = enumerator.Current;
+                x509Certificate2 = x509ChainElement.Certificate;
+                list.Add(x509Certificate2);
+            }
+
+
+
+            ocspLookup.RevocationResponseOnline(list[0], list[1], "http://ocsp.systemtest8.trust2408.com/responder");
+
+
+
         }
     }
 }
