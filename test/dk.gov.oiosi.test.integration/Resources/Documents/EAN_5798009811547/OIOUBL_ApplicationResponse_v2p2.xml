@@ -72,7 +72,7 @@
 			<cbc:CopyIndicator>false</cbc:CopyIndicator>
 			<cbc:UUID>9756b4d0-8815-1029-857a-e388fe63f399</cbc:UUID>
 			<cbc:IssueDate>2005-11-20</cbc:IssueDate>
-			<cbc:DocumentTypeCode listAgencyID="320" listID="urn:oioubl:codelist:responsedocumenttypecode-1.2">Invoice</cbc:DocumentTypeCode>
+			<cbc:DocumentTypeCode listAgencyID="320" listID="urn:oioubl:codelist:responsedocumenttypecode-1.1">Invoice</cbc:DocumentTypeCode>
 		</cac:DocumentReference>
 	</cac:DocumentResponse>
 </ApplicationResponse>

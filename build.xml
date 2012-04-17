@@ -24,7 +24,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -34,7 +34,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -44,7 +44,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -54,7 +54,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -64,7 +64,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -74,7 +74,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -84,7 +84,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
@@ -94,7 +94,7 @@
 				<import namespace="System.Reflection" />
 			</imports>
 			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="1.2.4.0" />
+				<attribute type="AssemblyVersionAttribute" value="1.3.0.0" />
 				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>

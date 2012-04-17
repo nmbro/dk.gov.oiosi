@@ -6,7 +6,7 @@
   <!--  -->
   <!-- **************************** -->
   <root>
-    <priority value="All" />
+    <priority value="Info" />
     <!-- priority value="All" / -->
     <!-- **************************** -->
     <!-- Select the appender type you want to use. -->

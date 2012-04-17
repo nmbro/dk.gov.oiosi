@@ -69,6 +69,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.TestCe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUddi_TestAll", "samples\TestUddi\TestUddi_TestAll\TestUddi_TestAll.csproj", "{59C642DB-02F2-4AC4-8858-0A0602B8C762}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces1", "samples\TestUddi\Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces1\Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces1.csproj", "{67192054-0DBB-4E7B-8385-FF299AC46C3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2", "samples\TestUddi\Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2\Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2.csproj", "{C7991A23-2CF3-4D76-B236-75DA82D79A1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oioubl_Invoice_EndpointNetHttpV1_3.0_Foces1", "samples\TestUddi\Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces1\Oioubl_Invoice_EndpointNetHttpV1_3.0_Foces1.csproj", "{6FC972F7-8791-4E97-9161-EFB059698D84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oioubl_Invoice_EndpointNetHttpV1_3.0_Foces2", "samples\TestUddi\Oioubl_Invoice_EndpointNetHttpV1_3_0-Foces2\Oioubl_Invoice_EndpointNetHttpV1_3.0_Foces2.csproj", "{09D22A10-FF14-4CB4-999F-1DB1661AA52A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +175,22 @@ Global
 		{59C642DB-02F2-4AC4-8858-0A0602B8C762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59C642DB-02F2-4AC4-8858-0A0602B8C762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C642DB-02F2-4AC4-8858-0A0602B8C762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67192054-0DBB-4E7B-8385-FF299AC46C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67192054-0DBB-4E7B-8385-FF299AC46C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67192054-0DBB-4E7B-8385-FF299AC46C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67192054-0DBB-4E7B-8385-FF299AC46C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7991A23-2CF3-4D76-B236-75DA82D79A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7991A23-2CF3-4D76-B236-75DA82D79A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7991A23-2CF3-4D76-B236-75DA82D79A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7991A23-2CF3-4D76-B236-75DA82D79A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC972F7-8791-4E97-9161-EFB059698D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC972F7-8791-4E97-9161-EFB059698D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC972F7-8791-4E97-9161-EFB059698D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC972F7-8791-4E97-9161-EFB059698D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D22A10-FF14-4CB4-999F-1DB1661AA52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D22A10-FF14-4CB4-999F-1DB1661AA52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D22A10-FF14-4CB4-999F-1DB1661AA52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D22A10-FF14-4CB4-999F-1DB1661AA52A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -196,6 +220,10 @@ Global
 		{7C3CE344-C17E-4804-8BD8-499423B05ECB} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
 		{09C01E99-7EDD-4FFF-9C86-16368D5D7320} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
 		{59C642DB-02F2-4AC4-8858-0A0602B8C762} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
+		{67192054-0DBB-4E7B-8385-FF299AC46C3C} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
+		{C7991A23-2CF3-4D76-B236-75DA82D79A1A} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
+		{6FC972F7-8791-4E97-9161-EFB059698D84} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
+		{09D22A10-FF14-4CB4-999F-1DB1661AA52A} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
 		{CB3B7203-8EE9-49D8-9ABC-5DC5025C525E} = {8EFB3AB8-82D3-4A39-9B7C-15512395B555}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution

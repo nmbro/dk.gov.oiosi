@@ -109,6 +109,18 @@
     <Content Include="Resources\xml\ProductionUddi\ProductionUddi_Oioubl_Invoice_LiveTestEndpoint_5798009811578.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\xml\TestUddi\TestUddi_Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\xml\TestUddi\TestUddi_Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\xml\TestUddi\TestUddi_Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\xml\TestUddi\TestUddi_Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\xml\TestUddi\TestUddi_Oioubl_Invoice_EndpointJavaHttpV1_2_1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
