@@ -3,7 +3,7 @@
 
 	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
 	<cbc:CustomizationID>OIOUBL-2.01</cbc:CustomizationID>
-	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.3">Procurement-OrdAdv-BilSim-1.0</cbc:ProfileID>
+	<cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Procurement-OrdAdv-BilSim-1.0</cbc:ProfileID>
 	<cbc:ID>A00095679</cbc:ID>
 	<cbc:CopyIndicator>false</cbc:CopyIndicator>
 	<cbc:UUID>6E09886B-DC6E-439F-82D1-7CCAC7F4E3B2</cbc:UUID>
