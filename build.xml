@@ -160,6 +160,7 @@
 				<exclude name="*.resharper" />
 				<exclude name="*.cache" />
 				<exclude name="build.xml" />
+        <exclude name="doc/*.doc" />
 			</fileset>
 		</zip>
 		<!-- Source with bin folder - input to help file -->
