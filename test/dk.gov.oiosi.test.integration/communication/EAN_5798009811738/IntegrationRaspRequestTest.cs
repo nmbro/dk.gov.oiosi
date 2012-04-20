@@ -31,7 +31,8 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811738
         [TestFixtureSetUp]
         public void Setup()
         {
-            CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
+            // CertificateUtil.InstallAndGetOces1FunctionCertificateFromCertificateStore();
+            this.ClientCertificate = CertificateUtil.InstallAndGetOces1FunctionCertificateFromCertificateStore();
             ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Test.xml");
         }
 

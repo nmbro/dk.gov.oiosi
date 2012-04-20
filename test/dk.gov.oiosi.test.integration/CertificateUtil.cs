@@ -5,7 +5,7 @@ namespace dk.gov.oiosi.test.integration
 {
     public class CertificateUtil
     {
-        public static X509Certificate2 InstallAndGetFunctionCertificateFromCertificateStore()
+        public static X509Certificate2 InstallAndGetOces1FunctionCertificateFromCertificateStore()
         {
             const string certificateSerialNumber = "40 37 fb 49";
 
@@ -20,6 +20,20 @@ namespace dk.gov.oiosi.test.integration
             return certificate;
         }
 
+        public static X509Certificate2 InstallAndGetOces2FunctionCertificateFromCertificateStore()
+        {
+            const string certificateSerialNumber = "4c 05 5a 37";
+
+            string certificateFile = "CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
+            string rootCertificateFile = "Resources/Certificates/TRUST2408 Systemtest VII Primary CA.cer";
+            string certificatePassword = "Test1234";
+            CertificateUtil.EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
+            CertificateUtil.EnsureCerCertificate(StoreName.Root, StoreLocation.CurrentUser, rootCertificateFile);
+            CertificateStoreIdentification sendCertificateLocation = new CertificateStoreIdentification(StoreLocation.CurrentUser, StoreName.My, certificateSerialNumber);
+            CertificateLoader certificateLoader = new CertificateLoader();
+            X509Certificate2 certificate = certificateLoader.GetCertificateFromCertificateStoreInformation(sendCertificateLocation);
+            return certificate;
+        }
 
         public static void EnsureCertCertificate(StoreName storeName, StoreLocation storeLocation, string certFileName)
         {

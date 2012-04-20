@@ -5,6 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using dk.gov.oiosi.uddi;
 using dk.gov.oiosi.addressing;
+using dk.gov.oiosi.test.unit;
 
 namespace dk.gov.oiosi.test.integration.uddi
 {

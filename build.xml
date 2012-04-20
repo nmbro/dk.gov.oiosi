@@ -99,7 +99,7 @@
 				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
 			</attributes>
 		</asminfo>
-		
+    
 	</target>
 	<target name="BuildVisualStudioSolutionNet35" depends="SetVersion">
 		<msbuild project="${VisualStudioSolution.file}" target="Rebuild">
@@ -114,7 +114,7 @@
 	<target name="RunTests">
 		<exec program="${teamcity.dotnet.nunitlauncher2.0}">
 			<arg file="${UnitTest.file}" />
-			<arg file="${IntegrationTest.file}" />
+      <!-- arg file="${IntegrationTest.file}" / -->
 		</exec>
 	</target>
 	<target name="Distribute" depends="RunTests">

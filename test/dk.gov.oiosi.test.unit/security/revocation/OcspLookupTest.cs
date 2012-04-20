@@ -4,7 +4,7 @@ using NUnit.Framework;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
 
-namespace dk.gov.oiosi.test.integration.security.revocation {
+namespace dk.gov.oiosi.test.unit.security.revocation {
 
     [TestFixture]
     public class OcspLookupTest 

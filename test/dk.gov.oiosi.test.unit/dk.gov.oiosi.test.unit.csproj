@@ -58,6 +58,7 @@
     <Compile Include="common\UtilitiesTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
     <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
+    <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="configuration\CacheConfigTest.cs" />
     <Compile Include="configuration\ConfigurationHandlerTest.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
@@ -68,13 +69,17 @@
     <Compile Include="security\CertificateSubjectTest.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
+    <Compile Include="security\revocation\CrlLookupTest.cs" />
+    <Compile Include="security\revocation\OcspLookupTest.cs" />
     <Compile Include="security\validation\configuration\MultipleRootX509CertificateValidatorAppConfigurationTest.cs" />
     <Compile Include="security\validation\MultipleRootX509CertificateValidatorTest.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
+    <Compile Include="uddi\RegistryLookupClientTest.cs" />
     <Compile Include="uddi\RegistryLookupTest.cs" />
     <Compile Include="uddi\UddiGuidIdTest.cs" />
+    <Compile Include="uddi\UddiLookupClientTest.cs" />
     <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
     <Compile Include="xml\schematron\SchematronStoreTest.cs" />
     <Compile Include="xml\schematron\SchematronValidationTest.cs" />
@@ -112,9 +117,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Funktionscertifikat\CVR26769388.Expire20100115.NemHandel test service.cer">
+      <Link>Resources\Certificates\CVR26769388.Expire20100115.NemHandel test service.cer</Link>
+    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20131101.FOCES1.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx</Link>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx</Link>

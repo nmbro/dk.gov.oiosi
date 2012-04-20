@@ -50,20 +50,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
+    <Compile Include="communication\EAN_5798009814180\IntegrationOces1RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814197\IntegrationOces1RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814203\IntegrationOces2RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814203\IntegrationOces1RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814210\IntegrationOces2RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814210\IntegrationOces1RaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814197\IntegrationOces2RaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811530\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811547\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811561\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811738\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\AbstractIntegrationRaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814180\IntegrationRaspRequestTest.cs" />
+    <Compile Include="communication\EAN_5798009814180\IntegrationOces2RaspRequestTest.cs" />
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="email\LesnikowskiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="security\revocation\CrlLookupTest.cs" />
-    <Compile Include="security\revocation\OcspLookupTest.cs" />
     <Compile Include="TestConstants.cs" />
-    <Compile Include="uddi\RegistryLookupClientTest.cs" />
-    <Compile Include="uddi\UddiLookupClientTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
@@ -108,12 +111,20 @@
       <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TRUST2408 Systemtest VII Primary CA.cer">
+      <Link>Resources\Certificates\TRUST2408 Systemtest VII Primary CA.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config" />
@@ -123,10 +134,17 @@
       <Link>Resources\RaspConfiguration.Live.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Oces2.xml">
+      <Link>Resources\RaspConfiguration.Oces2.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
       <Link>Resources\RaspConfiguration.Test.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="communication\EAN_5798009814203\_Endpoint HTTP Java Version 1.3.0 Foces1.txt" />
+    <Content Include="communication\EAN_5798009814210\_Endpoint HTTP Java Version 1.3.0 Foces2.txt" />
+    <Content Include="communication\EAN_5798009814197\_Endpoint HTTP .Net Version 1.3.0 Foces2.txt" />
     <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java Version 1.2.1.txt" />
     <Content Include="communication\EAN_5798009811561\_Endpoint HTTP Java Version 1.2.3.txt" />
     <Content Include="communication\EAN_5798009811738\_Endpoint HTTP .Net Version 1.2.3.txt" />
@@ -331,7 +349,7 @@
     <Content Include="Resources\Documents\EAN_5798009811547\OIOXML_Invoice_v0.7_CPR_Sender.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\EAN_5798009811547\_Endpoint HTTP .Net Version 1.2.1.txt" />
+    <Content Include="Resources\Documents\EAN_5798009811547\_Endpoint HTTP Java Version 1.2.1.txt" />
     <Content Include="Resources\Documents\EAN_5798009811561\OIOUBL_ApplicationResponse_v2p1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -431,7 +449,7 @@
     <Content Include="Resources\Documents\EAN_5798009811561\OIOXML_Invoice_v0.7_CPR_Sender.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\EAN_5798009811561\_Endpoint HTTP .Net Version 1.2.1.txt" />
+    <Content Include="Resources\Documents\EAN_5798009811561\_Endpoint HTTP Java Version 1.2.3.txt" />
     <Content Include="Resources\Documents\EAN_5798009811738\OIOUBL_ApplicationResponse_v2p1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -632,6 +650,316 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\EAN_5798009814180\_Endpoint HTTP .Net Version 1.3.0 Foces1.txt" />
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_ApplicationResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueDeletion_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueDeletion_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CataloguePricingUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CataloguePricingUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueRequest_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CatalogueRequest_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Catalogue_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_CreditNote_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Invoice_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderCancellation_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderCancellation_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderChange_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderChange_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderResponseSimple_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderResponseSimple_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_OrderResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Order_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Order_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Reminder_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Reminder_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Statement_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_Statement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOUBL_UtilityStatement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOXML_CreditNote_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOXML_Invoice_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\OIOXML_Invoice_v0.7_CPR_Sender.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814197\_Endpoint HTTP .Net Version 1.3.0 Foces2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_ApplicationResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueDeletion_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueDeletion_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CataloguePricingUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CataloguePricingUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueRequest_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CatalogueRequest_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Catalogue_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_CreditNote_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Invoice_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderCancellation_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderCancellation_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderChange_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderChange_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderResponseSimple_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderResponseSimple_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_OrderResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Order_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Order_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Reminder_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Reminder_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Statement_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_Statement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOUBL_UtilityStatement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOXML_CreditNote_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOXML_Invoice_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\OIOXML_Invoice_v0.7_CPR_Sender.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814203\_Endpoint HTTP Java Version 1.3.0 Foces1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_ApplicationResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueDeletion_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueDeletion_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueItemSpecificationUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CataloguePricingUpdate_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CataloguePricingUpdate_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueRequest_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CatalogueRequest_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Catalogue_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_CreditNote_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Invoice_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderCancellation_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderCancellation_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderChange_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderChange_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderResponseSimple_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderResponseSimple_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_OrderResponse_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Order_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Order_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Reminder_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Reminder_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Statement_v2p1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_Statement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOUBL_UtilityStatement_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOXML_CreditNote_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOXML_Invoice_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\OIOXML_Invoice_v0.7_CPR_Sender.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009814210\_Endpoint HTTP Java Version 1.3.0 Foces2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="security\revocation\" />
+    <Folder Include="uddi\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

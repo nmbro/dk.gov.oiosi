@@ -6,6 +6,7 @@ using dk.gov.oiosi.uddi;
 using NUnit.Framework;
 using uddiorg.api_v3;
 using System.ServiceModel;
+using dk.gov.oiosi.test.unit;
 
 namespace dk.gov.oiosi.test.integration.uddi {
 

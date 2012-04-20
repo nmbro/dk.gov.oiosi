@@ -23,8 +23,27 @@ using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.test.integration.communication
 {
-    public abstract class AbstractIntegrationRaspRequestTest    {
- 
+    public abstract class AbstractIntegrationRaspRequestTest    
+    {
+
+        private X509Certificate2 clientCertificate = null;
+
+        /// <summary>
+        /// Get or set the client certificate
+        /// </summary>
+        public X509Certificate2 ClientCertificate
+        {
+            get
+            {
+                return this.clientCertificate;
+            }
+
+            set
+            {
+                this.clientCertificate = value;
+            }
+        }
+
 
         protected void AssertSendable(string path)
         {
@@ -67,7 +86,8 @@ namespace dk.gov.oiosi.test.integration.communication
 
             OcesX509Certificate endpointCertificate = this.GetEndpointCertificateFromLdap(uddiResponse.CertificateSubjectSerialNumber);
             this.ValidateEndpointCertificate(endpointCertificate);
-            X509Certificate2 clientCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
+            //X509Certificate2 clientCertificate = CertificateUtil.InstallAndGetFunctionCertificateFromCertificateStore();
+            X509Certificate2 clientCertificate = this.ClientCertificate;
 
             Credentials credentials = new Credentials(new OcesX509Certificate(clientCertificate), endpointCertificate);
             Request request = new Request(endpointAddressUri, credentials);

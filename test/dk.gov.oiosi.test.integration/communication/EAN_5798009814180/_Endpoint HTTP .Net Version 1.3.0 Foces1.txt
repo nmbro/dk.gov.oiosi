@@ -1,1 +1,1 @@
-﻿All documents point to the HTTP .Net Version 1.2.1 endpoint.
+﻿All documents point to the HTTP .Net Version 1.3.0 foces1 endpoint.
