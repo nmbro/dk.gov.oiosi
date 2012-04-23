@@ -21,7 +21,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
         [Test]
         public void LookupTestWithoutOcspServerFromCertificate(){
             OcspConfig ocspConfig = new OcspConfig();
-            ocspConfig.DefaultTimeoutMsec = 10000;
+            ocspConfig.DefaultTimeoutMsec = 20000;
             X509Certificate2 rootcert = new X509Certificate2(rootCertificate);
             IList<X509Certificate2> list = new List<X509Certificate2>();
             list.Add(rootcert);
@@ -34,7 +34,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
         [Test]
         public void LookupTestWithoutOcspServerFromConfig() {
             OcspConfig ocspConfig = new OcspConfig();
-            ocspConfig.DefaultTimeoutMsec = 10000;
+            ocspConfig.DefaultTimeoutMsec = 20000;
             ocspConfig.ServerUrl = "http://ocsp.certifikat.dk/ocsp/status";
             X509Certificate2 rootcert = new X509Certificate2(rootCertificate);
             IList<X509Certificate2> list = new List<X509Certificate2>();

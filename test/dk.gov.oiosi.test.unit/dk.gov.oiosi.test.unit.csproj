@@ -15,6 +15,8 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,6 +121,11 @@
   <ItemGroup>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Funktionscertifikat\CVR26769388.Expire20100115.NemHandel test service.cer">
       <Link>Resources\Certificates\CVR26769388.Expire20100115.NemHandel test service.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Root\TDC OCES CA.cer">
+      <Link>Resources\Certificates\TDC OCES CA.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20131101.FOCES1.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES1.pfx</Link>
@@ -126,6 +133,7 @@
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20131101.Test MOCES1 %28medarbejdercertificat 1%29.pfx</Link>
@@ -133,6 +141,10 @@
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TRUST2408 Systemtest VII Primary CA.cer">
+      <Link>Resources\Certificates\TRUST2408 Systemtest VII Primary CA.cer</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd">

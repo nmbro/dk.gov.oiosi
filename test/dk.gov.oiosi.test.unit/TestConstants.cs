@@ -40,6 +40,7 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
         public const string PASSWORD_CERTIFICATE_DEVICE = "Test1234";
         public const string PATH_CERTIFICATE_ROOT = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
+        public const string PATH_CERTIFICATE_ROOT2 = "Resources/Certificates/TRUST2408 Systemtest VII Primary CA.cer";
 
         public const string PATH_INVOICE_XML_IDENTIFIER_EAN = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
         public const string PATH_INVOICE_XML_IDENTIFIER_OVT = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ovt_v2p1.xml";
