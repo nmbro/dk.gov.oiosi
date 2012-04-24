@@ -154,12 +154,14 @@ namespace dk.gov.oiosi.security.validation {
                     case X509ChainStatusFlags.Revoked:
                     case X509ChainStatusFlags.UntrustedRoot:
                     {
+                        this.logger.Warn("X509ChainStatusFlags '" + status.Status + "' is not valid, so the certificate '" + certificate.Subject + "' is not valid.");
+                        this.logger.Debug("x509Chain.ChainStatus.Length:" + x509Chain.ChainStatus.Length +". Index: "+index+".");
                         isValid = false;
                         break;
                     }
                     default:
                         {
-                            logger.Warn("The certificate chain.ChainStatus '" + status.Status + "' is not implemented.");
+                            this.logger.Warn("The certificate chain.ChainStatus '" + status.Status + "' is not implemented.");
                             isValid = false;
                             break;
                         }
@@ -202,6 +204,8 @@ namespace dk.gov.oiosi.security.validation {
                             // now the loop will break, as we have found a trusted root certificate
                         }
                     }
+
+                    this.logger.Debug("Found root certificate in the root certificate list: " +isValid.ToString());
                 }
             }
 

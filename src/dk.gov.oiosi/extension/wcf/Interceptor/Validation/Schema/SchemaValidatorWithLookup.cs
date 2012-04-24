@@ -135,17 +135,19 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                 schemaValidator.SchemaValidateXmlDocument(documentAsString, XmlSchemaSet, validationEventHandler);
 
             }
-            catch (SchemaValidateDocumentFailedException)
+            catch (SchemaValidateDocumentFailedException ex)
             {
-                throw;
+                this.logger.Debug("Schema validate xml document.", ex);
+                throw ex;
             }
-            catch (SchemaValidationFailedException)
+            catch (SchemaValidationFailedException ex)
             {
-                throw;
+                this.logger.Debug("Schema validate xml document.", ex);
+                throw ex;
             }
             catch (Exception ex)
             {
-                this.logger.Debug("Schema validate xml document.", ex);
+                this.logger.Error("Schema validate xml document.", ex);
                 throw new SchemaValidateDocumentFailedException(ex);
             }
 
