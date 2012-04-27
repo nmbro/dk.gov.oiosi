@@ -117,7 +117,7 @@
       <!-- arg file="${IntegrationTest.file}" / -->
 		</exec>
 	</target>
-	<target name="Distribute" depends="RunTests">
+	<target name="Distribute" depends="Init, RunTests">
 		<!-- Executable -->
 		<zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
 			<fileset basedir="${Oiosi.dir}\bin\Release">
