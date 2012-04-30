@@ -45,13 +45,19 @@ namespace dk.gov.oiosi.samples.ClientExample
                     case UddiType.Production:
                         {
                             ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Live.xml";
-                            Console.WriteLine("Sending the document though production uddi.");
+                            Console.WriteLine("Sending the document through production uddi.");
                             break;
                         }
                     case UddiType.Test:
                         {
                             ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Test.xml";
-                            Console.WriteLine("Sending the document though test uddi.");
+                            Console.WriteLine("Sending the document through test uddi.");
+                            break;
+                        }
+                    case UddiType.Test_Oces2:
+                        {
+                            ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Oces2.xml";
+                            Console.WriteLine("Sending the document through test uddi (oces2).");
                             break;
                         }
                     default:
@@ -100,6 +106,7 @@ namespace dk.gov.oiosi.samples.ClientExample
                     // Use the OIOSI library class Request to send the document
                     Console.WriteLine("Starting to send...");
                     Response response;
+
                     request.GetResponse(message, Guid.NewGuid().ToString(),  out response);
 
                     // Print out the reply

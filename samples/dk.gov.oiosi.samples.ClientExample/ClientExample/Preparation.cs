@@ -266,6 +266,19 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             *  Installed from https://www.certifikat.dk/export/sites/dk.certifikat.oc/da/developer/eksempler/
             */
 
+            /*
+           * Certificat 
+           * Issued To      TU GENEREL FOCES gyldig (funktionscertifikat)
+           * Issued by      TRUST2408 Systemtest VIII CA
+           * Valid From     26-10-2011
+           * Valid To       26-10-2015
+           * Serial number  4c 05 5a 37
+           * StoreName      My
+           * StoreLocation  CurrentUser
+           * 
+           *  Installed from http://view.svn.softwareborsen.dk/cgi-bin/index.cgi/openebusiness/dk.gov.oiosi/common/resources/Certificates/
+           */
+
             X509Certificate2 clientCert = null;
             string serial = null;
 
@@ -273,13 +286,17 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             {
                 case UddiType.Production:
                     {
-                        //serial = "45 be bc 3e";
                         serial = "45 be bc 3e";
                         break;
                     }
                 case UddiType.Test:
                     {
                         serial = "40 37 fb 49";
+                        break;
+                    }
+                case UddiType.Test_Oces2:
+                    {
+                        serial = "4c 05 5a 37";
                         break;
                     }
                 default:

@@ -81,9 +81,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Copy of Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -101,9 +98,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>8008</DevelopmentServerPort>
-          <DevelopmentServerVPath>/Oiosi/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/Oiosi</IISUrl>
+          <DevelopmentServerPort>80</DevelopmentServerPort>
+          <DevelopmentServerVPath>/integration/RASPNET/1.3.0/oces2</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8080/integration/RASPNET/1.3.0/oces2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>

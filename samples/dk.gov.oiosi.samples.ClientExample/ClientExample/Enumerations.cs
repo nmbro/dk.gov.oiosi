@@ -8,6 +8,10 @@ namespace dk.gov.oiosi.samples.ClientExample
     public enum UddiType
     {
         Production,
-        Test
+        Test,
+        /// <summary>
+        /// Test using a test oces 2 endpoint
+        /// </summary>
+        Test_Oces2
     }
 }
