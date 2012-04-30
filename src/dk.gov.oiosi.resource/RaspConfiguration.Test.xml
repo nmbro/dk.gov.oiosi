@@ -4620,8 +4620,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>1</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4634,16 +4634,16 @@
       </CacheConfigurationCollection>
     </OcspLookupCache>
     <CrlLookupCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>-1</Value>
+          <Key>maxSize</Key>
+          <Value>10</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
-          <Value>-1</Value>
+          <Value>10</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
@@ -4656,8 +4656,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>1</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4674,8 +4674,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>24</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4692,8 +4692,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>24</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4711,7 +4711,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>maxSize</Key>
-          <Value>10</Value>
+          <Value>20</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
@@ -4725,7 +4725,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>maxSize</Key>
-          <Value>10</Value>
+          <Value>20</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
@@ -4739,7 +4739,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>validityTimeInMinutes</Key>
-          <Value>10</Value>
+          <Value>60</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4757,7 +4757,7 @@
       <CacheConfigurationCollection>
         <Configuration>
           <Key>validityTimeInMinutes</Key>
-          <Value>10</Value>
+          <Value>60</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>

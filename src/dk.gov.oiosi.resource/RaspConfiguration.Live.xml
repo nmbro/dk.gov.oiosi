@@ -4573,6 +4573,7 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
     <Host>dir.certifikat.dk</Host>
+    <!-- Host>crtdir.certifikat.dk</Host -->
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -4615,8 +4616,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>1</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4629,16 +4630,16 @@
       </CacheConfigurationCollection>
     </OcspLookupCache>
     <CrlLookupCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>-1</Value>
+          <Key>maxSize</Key>
+          <Value>10</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
-          <Value>-1</Value>
+          <Value>10</Value>
         </Configuration>
         <Configuration>
           <Key>CacheName</Key>
@@ -4651,8 +4652,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>1</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4669,8 +4670,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>24</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4687,8 +4688,8 @@
       <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
       <CacheConfigurationCollection>
         <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
+          <Key>validityTimeInHours</Key>
+          <Value>24</Value>
         </Configuration>
         <Configuration>
           <Key>frequencyInMinutes</Key>
@@ -4770,14 +4771,14 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>4bea6e94</SerialNumber>
-        <Description>TRUST2408 Systemtest VII Primary CA</Description>
+        <SerialNumber>3E48BDC4</SerialNumber>
+        <Description>TDC OCES CA</Description>
       </RootCertificateLocation>
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>3E48BDC4</SerialNumber>
-        <Description>TDC OCES CA</Description>
+        <SerialNumber>4bea6e94</SerialNumber>
+        <Description>TRUST2408 Systemtest VII Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
