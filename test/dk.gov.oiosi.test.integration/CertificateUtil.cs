@@ -24,7 +24,7 @@ namespace dk.gov.oiosi.test.integration
         {
             const string certificateSerialNumber = "4c 05 5a 37";
 
-            string certificateFile = "CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
+            string certificateFile = "Resources/Certificates/CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
             string rootCertificateFile = "Resources/Certificates/TRUST2408 Systemtest VII Primary CA.cer";
             string certificatePassword = "Test1234";
             CertificateUtil.EnsurePfxCertificate(StoreName.My, StoreLocation.CurrentUser, certificateFile, certificatePassword);
