@@ -44,12 +44,14 @@ namespace dk.gov.oiosi.security.validation
         /// Constructor
         /// </summary>
         /// <param name="expireDate">the date the certificate expired</param>
-        public CertificateExpiredException(DateTime expireDate) : base(GetKeywords(expireDate)) { }
+        public CertificateExpiredException(DateTime expireDate, string subject) : base(GetKeywords(expireDate, subject)) { }
         
-        private static Dictionary<string, string> GetKeywords(DateTime expireDate) 
+        private static Dictionary<string, string> GetKeywords(DateTime expireDate, string subject) 
         {
             Dictionary<string, string> keywords = new Dictionary<string, string>();
             keywords.Add("expiredate", expireDate.ToShortDateString());
+            keywords.Add("subject", subject);
+
             return keywords;
         }
     }
