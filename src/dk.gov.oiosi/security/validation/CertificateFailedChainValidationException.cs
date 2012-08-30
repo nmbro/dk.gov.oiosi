@@ -44,26 +44,26 @@ namespace dk.gov.oiosi.security.validation
         /// Constructor with chainstatus as keyword
         /// </summary>
         /// <param name="chainStatus">chainstatus as keyword</param>
-        public CertificateFailedChainValidationException(X509ChainStatus chainStatus) 
-            : base(GetKeywords(chainStatus)) { }
+        public CertificateFailedChainValidationException(X509ChainStatus chainStatus, string subject)
+            : base(GetKeywords(chainStatus, subject)) { }
 
         /// <summary>
         /// Constructor with status
         /// </summary>
         /// <param name="chainStatusString">chainstatus as string</param>
-        public CertificateFailedChainValidationException(string chainStatusString) 
-            : base(GetKeywords(chainStatusString)) { }
+        public CertificateFailedChainValidationException(string chainStatusString, string subject)
+            : base(GetKeywords(chainStatusString, subject)) { }
         
-        private static Dictionary<string, string> GetKeywords(X509ChainStatus chainStatus)
+        private static Dictionary<string, string> GetKeywords(X509ChainStatus chainStatus, string subject)
         {
-            Dictionary<string, string> keywords = new Dictionary<string, string>();
-            keywords.Add("chainstatus", chainStatus.Status.ToString());
-            return keywords;
+            return GetKeywords(chainStatus.Status.ToString(), subject);
         }
 
-        private static Dictionary<string, string> GetKeywords(string chainStatus) {
+        private static Dictionary<string, string> GetKeywords(string chainStatus, string subject)
+        {
             Dictionary<string, string> keywords = new Dictionary<string, string>();
             keywords.Add("chainstatus", chainStatus);
+            keywords.Add("subject", subject);
             return keywords;
         }
     }

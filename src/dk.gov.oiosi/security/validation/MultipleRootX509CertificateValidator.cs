@@ -87,12 +87,12 @@ namespace dk.gov.oiosi.security.validation {
 
             if (certificate.NotAfter < DateTime.Now)
             {
-                throw new CertificateExpiredException(certificate.NotAfter);
+                throw new CertificateExpiredException(certificate.NotAfter, certificate.Subject);
             }
             else if (certificate.NotBefore > DateTime.Now)
             {
                 // yet valid
-                throw new CertificateNotActiveException(certificate.NotBefore);
+                throw new CertificateNotActiveException(certificate.NotBefore, certificate.Subject);
             }
             else
             {

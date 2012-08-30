@@ -44,12 +44,13 @@ namespace dk.gov.oiosi.security.validation
         /// Constructor with the date the certificate was made active
         /// </summary>
         /// <param name="activeDate">the date the certificate was activated</param>
-        public CertificateNotActiveException(DateTime activeDate) : base(GetKeywords(activeDate)) { }
-        
-        private static Dictionary<string, string> GetKeywords(DateTime activeDate) 
+        public CertificateNotActiveException(DateTime activeDate, string subject) : base(GetKeywords(activeDate, subject)) { }
+
+        private static Dictionary<string, string> GetKeywords(DateTime activeDate, string subject) 
         {
             Dictionary<string, string> keywords = new Dictionary<string, string>();
             keywords.Add("activedate", activeDate.ToShortDateString());
+            keywords.Add("subject", subject);
             return keywords;
         }
     }

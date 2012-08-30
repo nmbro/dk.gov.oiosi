@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.security.validation
                     case X509ChainStatusFlags.OfflineRevocation:
                         break;
                     default:
-                        throw new CertificateFailedChainValidationException(status);
+                        throw new CertificateFailedChainValidationException(status, certificate.Subject);
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace dk.gov.oiosi.security.validation
                     case X509ChainStatusFlags.OfflineRevocation:
                         break;
                     default:
-                        throw new CertificateFailedChainValidationException(status);
+                        throw new CertificateFailedChainValidationException(status, certificate.Subject);
                 }
             }
 
@@ -138,12 +138,12 @@ namespace dk.gov.oiosi.security.validation
             }
             else
             {
-                throw new CertificateFailedChainValidationException("The root certificate and certificate must be different");
+                throw new CertificateFailedChainValidationException("The root certificate and certificate must be different", certificate.Subject);
             }
 
             if (rootIsInChain == false)
             {
-                throw new CertificateFailedChainValidationException("The specified root certificate was not part of the certificate chain");
+                throw new CertificateFailedChainValidationException("The specified root certificate was not part of the certificate chain", certificate.Subject);
             }
 
 
@@ -182,7 +182,7 @@ namespace dk.gov.oiosi.security.validation
         {
             if (certificate.NotBefore > DateTime.Now)
             {
-                throw new CertificateNotActiveException(certificate.NotBefore);
+                throw new CertificateNotActiveException(certificate.NotBefore, certificate.Subject);
             }
         }
 
@@ -194,7 +194,7 @@ namespace dk.gov.oiosi.security.validation
         {
             if (certificate.NotAfter < DateTime.Now)
             {
-                throw new CertificateExpiredException(certificate.NotAfter);
+                throw new CertificateExpiredException(certificate.NotAfter, certificate.Subject);
             }
         }
     }

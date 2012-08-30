@@ -70,7 +70,7 @@ namespace dk.gov.oiosi.security.validation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Afsender Certifikatet fejlede kædevalideringen med status &quot;[chainstatus]&quot;.
+        ///   Looks up a localized string similar to Certifikatet &quot;[subject]&quot; fejlede kædevalideringen med status &quot;[chainstatus]&quot;.
         /// </summary>
         internal static string dk_gov_oiosi_security_validation_CertificateFailedChainValidationException {
             get {
@@ -79,7 +79,7 @@ namespace dk.gov.oiosi.security.validation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Afsender certifikatet er ikke aktivt endnu, aktiveres den &quot;[activedate]&quot;.
+        ///   Looks up a localized string similar to Certifikatet &quot;[subject]&quot; er ikke aktivt endnu, aktiveres den &quot;[activedate]&quot;.
         /// </summary>
         internal static string dk_gov_oiosi_security_validation_CertificateNotActiveException {
             get {
