@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{79042BE3-3F98-4C5E-BEA2-F82F497F8526}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -295,10 +295,10 @@
     <Content Include="RaspConfiguration.Live.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RaspConfiguration.Oces2.xml" />
     <Content Include="RaspConfiguration.Test.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Licenses\RaspClientLicense.txt" />
     <Content Include="Resources\Licenses\RaspLicense.txt" />
     <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
