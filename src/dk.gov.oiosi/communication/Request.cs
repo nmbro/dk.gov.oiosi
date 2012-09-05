@@ -487,7 +487,6 @@ namespace dk.gov.oiosi.communication
             }
             catch (ProtocolException e)
             {
-
                 // Minor hack to fix interop problems with the Java/Axis2 1.2 NemHandel stack
                 // SOAP faults might be returned with a http code 400 (Bad request),
                 // if that is the case we need to manually get the SOAP fault from the WebException
@@ -528,7 +527,7 @@ namespace dk.gov.oiosi.communication
             // ToDo : should this string builder has ha max size? ~ new StringBuilder("", 65536);
             StringBuilder sb = new StringBuilder();
             Stream s = e.Response.GetResponseStream();
-
+            //e.
             // Try to read the fault
             try
             {
@@ -562,26 +561,30 @@ namespace dk.gov.oiosi.communication
             }
 
             // Try to make it a SOAP faultobject
+            // move declarion here, for easy debugging
             MemoryStream memStream = null;
+            Message message;
+            MessageFault msgFault;
+            Exception exception;
             try
             {
-                memStream = new MemoryStream(Encoding.Default.GetBytes(sb.ToString()));
-                XmlTextReader xmlReader = new XmlTextReader(memStream);
-                Message msg = Message.CreateMessage(xmlReader, int.MaxValue, MessageVersion.Soap12WSAddressing10);
-                MessageFault msgFault = MessageFault.CreateFault(msg, int.MaxValue);
-                return CreateFaultWasReceivedException(new FaultException(msgFault));
+                ;
+                using (memStream = new MemoryStream(Encoding.Default.GetBytes(sb.ToString())))
+                {
+                    XmlTextReader xmlReader = new XmlTextReader(memStream);
+                    message = Message.CreateMessage(xmlReader, int.MaxValue, MessageVersion.Soap12WSAddressing10);
+                }
+
+                //OiosiMessage oio = new OiosiMessage(message);
+                msgFault = MessageFault.CreateFault(message, int.MaxValue);
+                exception = CreateFaultWasReceivedException(new FaultException(msgFault));
             }
-            catch
+            catch (Exception ex)
             {
                 return new Exception(sb.ToString());
-            }
-            finally
-            {
-                if (memStream != null)
-                {
-                    memStream.Close();
-                }
-            }
+            }            
+
+            return exception;
         }
 
         /// <summary>
