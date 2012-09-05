@@ -38,6 +38,7 @@ using dk.gov.oiosi.common.cache;
 using Org.BouncyCastle.X509;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.logging;
+using dk.gov.oiosi.security.revocation.ocsp;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {
@@ -89,8 +90,6 @@ namespace dk.gov.oiosi.security.revocation.crl
 
             if (certificate != null)
             {
-
-
                 X509Chain x509Chain = new X509Chain();
                 x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
                 x509Chain.Build(certificate);
@@ -165,8 +164,7 @@ namespace dk.gov.oiosi.security.revocation.crl
                         }
                         catch (CheckCertificateRevokedUnexpectedException exception)
                         {
-                            // There was an error in checking the certificate. Try the next url.
-                            // implicit the certificate is true, until other whise proven invalid
+                            // could not validate the certificate - so i don't trust it
                             response.Exception = exception;
                             response.IsValid = false;
 
@@ -174,7 +172,7 @@ namespace dk.gov.oiosi.security.revocation.crl
                     }
                     else
                     {
-                        // url server ot identified, so we don't trust this certificate
+                        // url server not identified, so we don't trust this certificate
                         response.IsValid = false;
                     }
 
@@ -200,39 +198,8 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>A list of CRL URLs in the certificate</returns>
         private List<Uri> GetURLs(X509Certificate2 cert)
         {
-            List<Uri> urls = new List<Uri>();
-
-            foreach (System.Security.Cryptography.X509Certificates.X509Extension extension in cert.Extensions)
-            {
-
-                if (extension.Oid.Value == X509Extensions.CrlDistributionPoints.Id)
-                {
-                    // Retrieves the raw ASN1 data of the CRL Dist Points X509 extension, and wraps it in a container class
-                    CrlDistPoint crldp = CrlDistPoint.GetInstance(Asn1Object.FromByteArray(extension.RawData));
-
-                    DistributionPoint[] distPoints = crldp.GetDistributionPoints();
-
-                    foreach (DistributionPoint dp in crldp.GetDistributionPoints())
-                    {
-                        // Only use the "General name" data in the distribution point entry.
-                        GeneralNames gns = (GeneralNames)dp.DistributionPointName.Name;
-
-                        foreach (GeneralName name in gns.GetNames())
-                        {
-                            // Only retrieve URLs
-                            if (name.TagNo == GeneralName.UniformResourceIdentifier)
-                            {
-                                DerStringBase s = (DerStringBase)name.Name;
-                                urls.Add(new Uri(s.GetString()));
-                            }
-                        }
-                    }
-
-                    // There is only one CRL list so faster to break.
-                    break;
-                }
-            }
-
+            CertificateUtil util = new CertificateUtil();
+            List<Uri> urls = util.getCrlURLs(cert);
             return urls;
         }
 

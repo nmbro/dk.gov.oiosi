@@ -213,99 +213,101 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         private RevocationResponse RevocationResponseOnline(X509Certificate2 x509Certificate2)
         {
             RevocationResponse revocationResponse = new RevocationResponse();
-           
-                if (x509Certificate2 == null)
-                {
-                    throw new CheckCertificateOcspUnexpectedException();
-                }
-                // http://bouncy-castle.1462172.n4.nabble.com/c-ocsp-verification-td3160243.html
-                X509Certificate2 issuerX509Certificate2 = this.FindIssuerCertificate(x509Certificate2);
 
-                if (issuerX509Certificate2.Thumbprint.Equals(x509Certificate2.Thumbprint, StringComparison.OrdinalIgnoreCase))
-                {
-                    // the certificate and the issuer certificace is the same
-                    // this mean that the root certificate is not trusted
-                    revocationResponse = null;
-                }
-                else
-                {
-                    revocationResponse = this.RevocationResponseOnline(x509Certificate2, issuerX509Certificate2); 
+            if (x509Certificate2 == null)
+            {
+                throw new CheckCertificateOcspUnexpectedException();
+            }
+            // http://bouncy-castle.1462172.n4.nabble.com/c-ocsp-verification-td3160243.html
+            X509Certificate2 issuerX509Certificate2 = this.FindIssuerCertificate(x509Certificate2);
 
-                    if(revocationResponse != null)
+            if (issuerX509Certificate2.Thumbprint.Equals(x509Certificate2.Thumbprint, StringComparison.OrdinalIgnoreCase))
+            {
+                // the certificate and the issuer certificace is the same
+                // this mean that the root certificate is not trusted
+                revocationResponse = null;
+            }
+            else
+            {
+                revocationResponse = this.RevocationResponseOnline(x509Certificate2, issuerX509Certificate2);
+
+                if (revocationResponse != null)
+                {
+                    if (revocationResponse.Exception == null)
                     {
-                        if (revocationResponse.Exception == null)
+                        // no exception recorded
+                        if (revocationResponse.IsValid)
                         {
-                            // no exception recorded
-                            if (revocationResponse.IsValid)
-                            {                                
-                                // now we know the certificate is valid.
-                                // if the issuer is a trusted root certificate, all is good
-                                if (this.rootCertificateDirectory.ContainsKey(issuerX509Certificate2.Thumbprint.ToLowerInvariant()))
-                                {
-                                    // the root certificate is trusted, so the RevocationResponse can be put on the cache
-                                    this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
-                                }
-                                else
-                                {
-                                    // we do not yet know if the certificate is valid.
-                                    // the certificate migth be good, but if the issueing certificate is revoked,
-                                    // then the certificate should also be revoked.
-                                    // Validate the issuer certificate
-                                    // this is required, because certificate can have a chain that is longer then 2
-                                    
-                                    // The only problem is, that we can not ocsp validate the intermiddel certificate (the issuer certificate).
-                                    // acording to DanID - that certificate can only be validated with CRL
-                                    // Note : The crl list will be/should be very short. Only containing the issuer certificate that has been revoked.
-                                    //        A good guess is that there at all time will be most 10 issuer certificate, so the list of revoked issuer certificate is short.
-                                    IList<string> issuerUrl = this.GetAuthorityInformationAccessOcspUrl(issuerX509Certificate2);
-                                    RevocationResponse issuerRevocationResponse;
-
-                                    if (issuerUrl.Count > 0)
-                                    {
-                                        // hey, wow some url exist - lets use that
-                                        // don't thing this will ever happens anyway
-                                        issuerRevocationResponse = RevocationResponseOnline(issuerX509Certificate2);
-
-                                    }
-                                    else
-                                    {
-                                        // we need to validate with crl instead
-                                        // It does not contain the Authority Info Access, containng the rl to where the certificate must be validated
-                                        // We must therefore gues, that the certificate is valid.
-                                        CrlLookup crlLookupClient = new CrlLookup();
-                                        issuerRevocationResponse = crlLookupClient.CheckCertificate(issuerX509Certificate2);
-                                    }
-
-                                    // now to handle the issuerRevocationResponse
-                                    if (issuerRevocationResponse != null)
-                                    {
-                                        // the issuer certificate is validated, the validity of the issuer certificate
-                                        // is copied to the revocationResponse
-                                        revocationResponse.IsValid = issuerRevocationResponse.IsValid;
-                                        revocationResponse.Exception = issuerRevocationResponse.Exception;
-                                    }
-                                    else
-                                    {
-                                        revocationResponse.IsValid = false;
-                                        revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("The issueing certificate could not be validated.");
-                                    }
-                                }
+                            // now we know the certificate is valid.
+                            // if the issuer is a trusted root certificate, all is good
+                            if (this.rootCertificateDirectory.ContainsKey(issuerX509Certificate2.Thumbprint.ToLowerInvariant()))
+                            {
+                                // the root certificate is trusted, so the RevocationResponse can be put on the cache
+                                this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
                             }
                             else
                             {
-                                // the certificate is not valid
-                                // no need to check the issuer certificate
+                                // we do not yet know if the certificate is valid.
+                                // the certificate migth be good, but if the issueing certificate is revoked,
+                                // then the certificate should also be revoked.
+                                // Validate the issuer certificate
+                                // this is required, because certificate can have a chain that is longer then 2
+
+                                // The only problem is, that we can not ocsp validate the intermiddel certificate (the issuer certificate).
+                                // acording to DanID - that certificate can only be validated with CRL
+                                // Note : The crl list will be/should be very short. Only containing the issuer certificate that has been revoked.
+                                //        A good guess is that there at all time will be most 10 issuer certificate, so the list of revoked issuer certificate is short.
+                                IList<string> issuerUrl = this.GetAuthorityInformationAccessOcspUrl(issuerX509Certificate2);
+                                RevocationResponse issuerRevocationResponse;
+
+                                if (issuerUrl.Count > 0)
+                                {
+                                    // hey, wow some url exist - lets use that
+                                    // don't thing this will ever happens anyway
+                                    issuerRevocationResponse = this.RevocationResponse(issuerX509Certificate2);
+                                }
+                                else
+                                {
+                                    // we need to validate with crl instead
+                                    // It does not contain the Authority Info Access, containng the rl to where the certificate must be validated
+                                    // We must therefore gues, that the certificate is valid.
+                                    CrlLookup crlLookupClient = new CrlLookup();
+                                    issuerRevocationResponse = crlLookupClient.CheckCertificate(issuerX509Certificate2);
+                                }
+
+                                // now to handle the issuerRevocationResponse
+                                if (issuerRevocationResponse != null)
+                                {
+                                    // the issuer certificate is validated, the validity of the issuer certificate
+                                    // is copied to the revocationResponse
+                                    revocationResponse.IsValid = issuerRevocationResponse.IsValid;
+                                    revocationResponse.Exception = issuerRevocationResponse.Exception;
+                                }
+                                else
+                                {
+                                    revocationResponse.IsValid = false;
+                                    revocationResponse.Exception = new CheckCertificateOcspUnexpectedException("The issueing certificate could not be validated.");
+                                }
+
+                                // update the cache
                                 this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
                             }
                         }
                         else
                         {
-                            // some exception returned.
-                            // do not add to cache
-                        }                            
+                            // the certificate is NOT valid
+                            // no need to check the issuer certificate
+                            this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                        }
                     }
-
+                    else
+                    {
+                        // some exception returned.
+                        // do not add to cache
+                    }
                 }
+
+            }
 
             return revocationResponse;
         }
@@ -371,7 +373,8 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 OcspReq req = this.GenerateOcspRequest(issuerX509Certificate, serverX509Certificate.SerialNumber);
 
                 // 2. make binary request online
-                byte[] binaryResp = this.PostData(url, req.GetEncoded(), "application/ocsp-request", "application/ocsp-response");
+                byte[] encoded = req.GetEncoded();
+                byte[] binaryResp = this.PostData(url, encoded, "application/ocsp-request", "application/ocsp-response");
 
                 //3. check result
                 revocationResponse = this.ProcessOcspResponse(serverX509Certificate, issuerX509Certificate, binaryResp);
@@ -728,6 +731,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                                 else if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
                                 {
                                     // this is the expected certificateStatus for valid certificates
+                                    // however if the status is good the certificateStatus is null
                                     revocationResponse.IsValid = true;
                                     revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
                                 }
@@ -811,20 +815,6 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 // respons is not in cache
                 revocationResponse = this.CheckCertificateAsync(x509Certificate2);
             }
-
-            /*// now to validate the result
-            if (revocationResponse.Exception == null)
-            {
-                // no exception recorded
-                // update the cache
-                ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
-                //return response;
-            }
-            else
-            {
-                // some exception returned.
-                // do not add to cache
-            }*/
 
             return revocationResponse;
         }
