@@ -61,6 +61,7 @@ namespace dk.gov.oiosi.communication.configuration
         private XpathDiscriminatorConfigCollection _identifierDiscriminators = new XpathDiscriminatorConfigCollection();
         private CustomHeaderConfiguration _customHeaderConfiguration = new CustomHeaderConfiguration();
         private ProfileIdXPath _profileIdXPath = new ProfileIdXPath();
+        private DocumentIdXPath _documentIdXPath = new DocumentIdXPath();
 
         /// <summary>
         /// Constructor
@@ -139,7 +140,8 @@ namespace dk.gov.oiosi.communication.configuration
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
             SchematronValidationConfig schematronValidationConfig,
-            ProfileIdXPath profileIdXPath
+            ProfileIdXPath profileIdXPath,
+            DocumentIdXPath documentIdXPath
             )
             : this(id, rootName, rootNamespace, identifierDiscriminators)
         {
@@ -159,7 +161,46 @@ namespace dk.gov.oiosi.communication.configuration
             _endpointType = endpointType;
             _schematronValidationConfig = schematronValidationConfig;
             _profileIdXPath = profileIdXPath;
+            _documentIdXPath = documentIdXPath;
         }
+
+        /*
+        public DocumentTypeConfig(
+            Guid id,
+            string friendlyName,
+            string rootName,
+            string rootNamespace,
+            string schemaPath,
+            string stylesheetPath,
+            string serviceContractTModel,
+            string xsltTransformStylesheetPath,
+            DocumentEndpointInformation endpointType,
+            XpathDiscriminatorConfigCollection identifierDiscriminators,
+            SchematronValidationConfig schematronValidationConfig,
+            ProfileIdXPath profileIdXPath,
+            DocumentIdXPath documentIdXPath
+            )
+            : this(id, rootName, rootNamespace, identifierDiscriminators)
+        {
+            if (friendlyName == null) throw new NullArgumentException("friendlyName");
+            if (schemaPath == null) throw new NullArgumentException("schemaPath");
+            if (stylesheetPath == null) throw new NullArgumentException("stylesheetPath");
+            if (serviceContractTModel == null) throw new NullArgumentException("serviceContractTModel");
+            if (xsltTransformStylesheetPath == null) throw new NullArgumentException("xsltTransformStylesheetPath");
+            if (endpointType == null) throw new NullArgumentException("endpointType");
+            if (schematronValidationConfig == null) throw new NullArgumentException("schematronValidationConfig");
+
+            _friendlyName = friendlyName;
+            _schemaPath = schemaPath;
+            _stylesheetPath = stylesheetPath;
+            _serviceContractTModel = serviceContractTModel;
+            _xsltTransformStylesheetPath = xsltTransformStylesheetPath;
+            _endpointType = endpointType;
+            _schematronValidationConfig = schematronValidationConfig;
+            _profileIdXPath = profileIdXPath;
+            _documentIdXPath = documentIdXPath;
+        }
+        */
 
         /// <summary>
         /// Constructor
@@ -189,11 +230,12 @@ namespace dk.gov.oiosi.communication.configuration
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
             SchematronValidationConfig schematronValidationConfig,
-            ProfileIdXPath profileIdXPath
+            ProfileIdXPath profileIdXPath,
+            DocumentIdXPath documentIdXPath
         )
             : this(id, friendlyName, rootName, rootNamespace, schemaPath,
               stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath,
-              endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath)
+              endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath,documentIdXPath)
         {
             if (namespaces == null) throw new NullArgumentException("namespaces");
             _namespaces = namespaces;
@@ -396,6 +438,20 @@ namespace dk.gov.oiosi.communication.configuration
             {
                 if (value == null) throw new NullArgumentException("ProfileIdXPath value");
                 _profileIdXPath = value;
+            }
+        }
+
+        /// <summary>
+        /// Name of the document type
+        /// </summary>
+        [XmlElement("DocumentIdXPath")]
+        public DocumentIdXPath DocumentIdXPath
+        {
+            get { return _documentIdXPath; }
+            set
+            {
+                if (value == null) throw new NullArgumentException("_documentIdXPath value");
+                _documentIdXPath = value;
             }
         }
 

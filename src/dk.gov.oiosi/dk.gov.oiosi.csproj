@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -555,6 +555,9 @@
     <Content Include="..\dk.gov.oiosi.resource\Resources\Licenses\RaspClientLicense.txt">
       <Link>Resources\Licenses\RaspClientLicense.txt</Link>
     </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Licenses\RaspLicense.txt">
+      <Link>Resources\Licenses\RaspLicense.txt</Link>
+    </Content>
     <Content Include="Resources\Certificates\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -636,9 +639,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\dk.gov.oiosi.resource\Resources\Licenses\License.rtf">
-      <Link>Resources\Licenses\License.rtf</Link>
-    </None>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

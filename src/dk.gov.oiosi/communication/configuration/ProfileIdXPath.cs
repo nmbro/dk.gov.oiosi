@@ -32,16 +32,19 @@
   */
 using System.Xml.Serialization;
 
-namespace dk.gov.oiosi.communication.configuration {
+namespace dk.gov.oiosi.communication.configuration
+{
     /// <summary>
     /// Profile Id
     /// </summary>
-    public class ProfileIdXPath {
+    public class ProfileIdXPath
+    {
         /// <summary>
         /// XPath expression to where the Profile Id can be found in an UBL document
         /// </summary>
         [XmlElement("XPath")]
-        public string XPath {
+        public string XPath
+        {
             get { return _xPath; }
             set { _xPath = value; }
         }
@@ -56,8 +59,38 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Constructor
         /// </summary>
         /// <param name="xPath">XPath expression to where the friendly name can be found in an UBL document</param>
-        public ProfileIdXPath(string xPath) {
+        public ProfileIdXPath(string xPath)
+        {
             _xPath = xPath;
         }
     }
+
+    public class DocumentIdXPath
+    {
+        /// <summary>
+        /// XPath expression to where the Profile Id can be found in an UBL document
+        /// </summary>
+        [XmlElement("XPath")]
+        public string XPath
+        {
+            get { return _xPath; }
+            set { _xPath = value; }
+        }
+        private string _xPath = "";
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public DocumentIdXPath() { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="xPath">XPath expression to where the friendly name can be found in an UBL document</param>
+        public DocumentIdXPath(string xPath)
+        {
+            _xPath = xPath;
+        }
+    }
+
 }
