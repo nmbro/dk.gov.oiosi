@@ -197,6 +197,7 @@
     <Compile Include="security\oces\OcesCertificateException.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKey.cs" />
     <Compile Include="security\oces\OcesX509CertificateConfig.cs" />
+    <Compile Include="security\revocation\crl\CertificateUtil.cs" />
     <Compile Include="security\revocation\crl\CrlInstance.cs" />
     <Compile Include="security\revocation\crl\CrlLookup.cs" />
     <Compile Include="security\InvalidOcesCertificateException.cs" />
