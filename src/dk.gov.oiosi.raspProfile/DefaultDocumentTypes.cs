@@ -67,8 +67,8 @@ namespace dk.gov.oiosi.raspProfile
             this.Add(this.GetCreditNoteV07);
 
             // Læs ind
-            // Add(this.GetScanInvoiceV07);
-            // Add(this.GetScanCreditNoteV07);
+            //this.Add(this.GetScanInvoiceV07);
+            //this.Add(this.GetScanCreditNoteV07);
 
             this.Add(this.GetApplicationResponse);               // Applikationsmeddelelse
             this.Add(this.GetCatalogue);                         // Katalog
