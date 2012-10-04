@@ -14,11 +14,11 @@ Steps
 
 4. Update your RaspConfiguration.xml file - remember to adjust path to resources (schema + schematron files), as the path has benn changed.
 
-5. When a document is received though RASP OiosiMessage, a new method MessageAsString is proveded to extract the document. Use this new method to take advantage of the improved processing speed, that has been implemented.
+5. When a document is received though RASP OiosiMessage, a new method MessageAsString is provided to extract the document. Use this new method to take advantage of the improved processing speed, that has been implemented.
 
 6. Some classes/method is no longer static, and must in initialized.
 
-7. Log4Net har been implmeneted to be used by RASP .Net. Update the configuration fil log4net4Rasp.xml, to fit you needes.
+7. Log4Net har been implemented to be used by RASP .Net. Update the configuration fil log4net4Rasp.xml, to fit you needs.
 
 That should be it..!
 
