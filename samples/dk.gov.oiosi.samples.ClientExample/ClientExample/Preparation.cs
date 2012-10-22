@@ -296,13 +296,6 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
                         serial = "4c 05 5a 37";
                         break;
                     }
-                case UddiType.Test_Oces2:
-                    {
-                        //serial = "4c 05 5a 37";
-                        serial = "4c 73 e6 ab";
-                        
-                        break;
-                    }
                 default:
                     {
                         throw new NotImplementedException("The uddi type '" + UddiType.ToString() + "' is unknown.");

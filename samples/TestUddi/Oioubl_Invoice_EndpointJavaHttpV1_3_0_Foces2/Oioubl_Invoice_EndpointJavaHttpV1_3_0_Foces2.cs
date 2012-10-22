@@ -15,7 +15,7 @@ namespace dk.gov.oiosi.samples.TestUddi
             this.client = new OiosiRaspClient(UddiType.Test, "./Resources/xml/TestUddi/TestUddi_Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2.xml");
         }
 
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
             new Oioubl_Invoice_EndpointJavaHttpV1_3_0_Foces2().Perform();
             Console.WriteLine("Finish");

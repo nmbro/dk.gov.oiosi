@@ -12,6 +12,5 @@ namespace dk.gov.oiosi.samples.ClientExample
         /// <summary>
         /// Test using a test oces 2 endpoint
         /// </summary>
-        Test_Oces2
     }
 }

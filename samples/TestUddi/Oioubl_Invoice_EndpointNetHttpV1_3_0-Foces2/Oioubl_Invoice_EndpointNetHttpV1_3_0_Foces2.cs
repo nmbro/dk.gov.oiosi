@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.samples.TestUddi
     {
         public Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces2()
         {
-            this.client = new OiosiRaspClient(UddiType.Test_Oces2, "./Resources/xml/TestUddi/TestUddi_Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces2.xml");
+            this.client = new OiosiRaspClient(UddiType.Test, "./Resources/xml/TestUddi/TestUddi_Oioubl_Invoice_EndpointNetHttpV1_3_0_Foces2.xml");
         }
 
         static void Main(string[] args)

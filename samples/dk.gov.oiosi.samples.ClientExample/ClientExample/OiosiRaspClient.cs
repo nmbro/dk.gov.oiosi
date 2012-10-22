@@ -56,13 +56,6 @@ namespace dk.gov.oiosi.samples.ClientExample
                             break;
                         }
 
-                    case UddiType.Test_Oces2:
-                        {
-                            ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Oces2.xml";
-                            Console.WriteLine("Sending the document through test uddi (oces2).");
-                            break;
-                        }
-
                     default:
                         {
                             throw new NotImplementedException("The uddiType '" + this.uddiType.ToString() + "' not regonized.");
