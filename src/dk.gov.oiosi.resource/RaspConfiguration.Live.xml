@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.3.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.0.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
@@ -4580,8 +4580,8 @@
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass -->
-    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass>
+    <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -4776,8 +4776,8 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>4bea6e94</SerialNumber>
-        <Description>TRUST2408 Systemtest VII Primary CA</Description>
+        <SerialNumber>4b 8e 60 03</SerialNumber>
+        <Description>TRUST2408 OCES Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
@@ -4798,12 +4798,5 @@
   <ConfigurationSection xsi:type="SendingOptionConfig">
     <SchemaValidation>True</SchemaValidation>
     <SchematronValidation>True</SchematronValidation>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="SendingProcessConfiguration">
-    <Timeout>1.00:00:00</Timeout>
-    <MaxResendCount>24</MaxResendCount>
-    <ResendingPattern>RecursiveBackoff</ResendingPattern>
-    <ResendingIntervalInitialInSeconds>1800</ResendingIntervalInitialInSeconds>
-    <MaxResendingIntervalInSeconds>10800</MaxResendingIntervalInSeconds>
   </ConfigurationSection>
 </RaspConfiguration>

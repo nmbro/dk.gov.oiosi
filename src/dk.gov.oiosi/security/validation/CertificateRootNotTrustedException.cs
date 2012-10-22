@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.security.validation
     /// <summary>
     /// Custom exception is used when checking if the certificate is valid
     /// </summary>
-    class CertificateRootNotTrustedException : CertificateValidationException
+    public class CertificateRootNotTrustedException : CertificateValidationException
     {
         /// <summary>
         /// Constructor with the date the certificate was made active

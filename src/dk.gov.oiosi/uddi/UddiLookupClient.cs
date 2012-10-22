@@ -84,7 +84,8 @@ namespace dk.gov.oiosi.uddi
                 throw;
             }
 
-            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address);
+            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address+"?version=2");
+            Console.WriteLine(address + "?version=2");
         }
 
         #region IUddiLookupClient Members

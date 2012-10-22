@@ -5,41 +5,23 @@ using System.Text;
 using NUnit.Framework;
 using System.Configuration;
 using dk.gov.oiosi.security.validation.configuration;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.security;
+using dk.gov.oiosi.security.lookup;
 
 namespace dk.gov.oiosi.test.unit.security.validation.configuration {
     
     public class MultipleRootX509CertificateValidatorAppConfigurationTest {
         
         [Test]
-        public void _01_TestInitConfigurationEmpty() {
-            var configuration = (MultipleRootX509CertificateValidatorAppConfiguration)ConfigurationManager.GetSection(MultipleRootX509CertificateValidatorAppConfiguration.MultipleRootX509CertificateValidatorAppConfigurationName + "_01");
-            Assert.IsNotNull(configuration.CertificateStoreIdentificationConfigurationCollection);
-        }
-
-        [Test]
-        public void _02_TestInitConfigurationOneElement()
+        public void _01_TestInitConfigurationEmpty() 
         {
-            var configuration = (MultipleRootX509CertificateValidatorAppConfiguration)ConfigurationManager.GetSection(MultipleRootX509CertificateValidatorAppConfiguration.MultipleRootX509CertificateValidatorAppConfigurationName + "_02");
-            Assert.IsNotNull(configuration.CertificateStoreIdentificationConfigurationCollection);
-            int count = 0;
-            foreach (var element in configuration.CertificateStoreIdentificationConfigurationCollection)
-            {
-                count++;
-            }
-            Assert.AreEqual(1, count);
-        }
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.Reset();
+            RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
+            RootCertificateLocation[] rootCertificateLocation = rootCertificateCollectionConfig.RootCertificateCollection;
 
-        [Test]
-        public void _03_TestInitConfigurationOneElement()
-        {
-            var configuration = (MultipleRootX509CertificateValidatorAppConfiguration)ConfigurationManager.GetSection(MultipleRootX509CertificateValidatorAppConfiguration.MultipleRootX509CertificateValidatorAppConfigurationName + "_03");
-            Assert.IsNotNull(configuration.CertificateStoreIdentificationConfigurationCollection);
-            int count = 0;
-            foreach (var element in configuration.CertificateStoreIdentificationConfigurationCollection)
-            {
-                count++;
-            }
-            Assert.AreEqual(2, count);
+            Assert.AreEqual(2, rootCertificateLocation.Length, "Expected 2 root certificated.");
         }
     }
 }

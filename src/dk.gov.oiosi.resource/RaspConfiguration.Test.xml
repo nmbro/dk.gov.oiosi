@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.3.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.0.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
@@ -90,6 +90,7 @@
                   </Mapping>
                   <Mapping>
                     <Value>cpr</Value>
+
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>

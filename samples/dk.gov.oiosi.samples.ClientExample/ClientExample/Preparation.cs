@@ -287,16 +287,20 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
                 case UddiType.Production:
                     {
                         serial = "45 be bc 3e";
+                        
                         break;
                     }
                 case UddiType.Test:
                     {
-                        serial = "40 37 fb 49";
+                        //serial = "40 37 fb 49";
+                        serial = "4c 05 5a 37";
                         break;
                     }
                 case UddiType.Test_Oces2:
                     {
-                        serial = "4c 05 5a 37";
+                        //serial = "4c 05 5a 37";
+                        serial = "4c 73 e6 ab";
+                        
                         break;
                     }
                 default:

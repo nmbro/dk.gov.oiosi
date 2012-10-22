@@ -48,18 +48,21 @@ namespace dk.gov.oiosi.samples.ClientExample
                             Console.WriteLine("Sending the document through production uddi.");
                             break;
                         }
+
                     case UddiType.Test:
                         {
                             ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Test.xml";
                             Console.WriteLine("Sending the document through test uddi.");
                             break;
                         }
+
                     case UddiType.Test_Oces2:
                         {
                             ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Oces2.xml";
                             Console.WriteLine("Sending the document through test uddi (oces2).");
                             break;
                         }
+
                     default:
                         {
                             throw new NotImplementedException("The uddiType '" + this.uddiType.ToString() + "' not regonized.");
