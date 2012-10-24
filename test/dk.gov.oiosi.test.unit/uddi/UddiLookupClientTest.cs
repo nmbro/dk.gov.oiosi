@@ -23,7 +23,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         private readonly UddiId nonExistingProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c1111", true);
         private readonly UddiId procurementOrdAdvBilSimProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true);
-        private readonly UddiId nesublProfilesProfile5 = new UddiGuidId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true);
+        private readonly UddiId nesublProfilesProfile5UddiId = new UddiGuidId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true);
 
         private const string nonExistingRoleIdentifier = "NonExistingSellerParty";
         private const string sellerPartyRoleIdentifier = "SellerParty";
@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             UddiConfig config = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiServerUri = new Uri(config.LookupRegistryFallbackConfig.PrioritizedRegistryList[0].Endpoints[0]);
         }
-
+              
 
         [Test]
         public void CacheTest() 
@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithTwoProfilesThatBothExistMustReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId, nesublProfilesProfile5 };
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId, nesublProfilesProfile5UddiId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -129,7 +129,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithTwoProfilesWhereOnlyOneExistsMustReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { nonExistingProfileUddiId, nesublProfilesProfile5 };
+            List<UddiId> profileIds = new List<UddiId> { nonExistingProfileUddiId, nesublProfilesProfile5UddiId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -145,7 +145,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithDunsIdentifierShouldReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { nesublProfilesProfile5 };
+            List<UddiId> profileIds = new List<UddiId> { nesublProfilesProfile5UddiId };
 
             var lookupParameters = new LookupParameters(dunsIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
