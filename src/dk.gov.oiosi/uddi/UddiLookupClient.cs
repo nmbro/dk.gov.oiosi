@@ -55,11 +55,14 @@ namespace dk.gov.oiosi.uddi
 
         private UDDI_Inquiry_PortTypeClient uddiProxy;
 
+        private string raspVersion = string.Empty;
+
         public UddiLookupClient()
         {
             this.uddiServiceCache = this.CreateUddiServiceCache();
             this.uddiTModelCache = this.CreateUddiTModelCache();
             this.logger = LoggerFactory.Create(this.GetType());
+            this.raspVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace dk.gov.oiosi.uddi
             this.uddiServiceCache = this.CreateUddiServiceCache();
             this.uddiTModelCache = this.CreateUddiTModelCache();
             this.logger = LoggerFactory.Create(this.GetType());
+            this.raspVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             try
             {
@@ -84,8 +88,7 @@ namespace dk.gov.oiosi.uddi
                 throw;
             }
 
-            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address+"?version=2");
-            Console.WriteLine(address + "?version=2");
+            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address + "?platform=Net&raspVersion=" + raspVersion);
         }
 
         #region IUddiLookupClient Members
