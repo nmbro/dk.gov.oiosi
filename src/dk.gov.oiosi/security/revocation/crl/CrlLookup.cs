@@ -119,6 +119,8 @@ namespace dk.gov.oiosi.security.revocation.crl
                 // we needed to validate all certificates, except the root certificates
                 // The question wheather the root certificates is trusted, is validated in MultipleRootX509CertificateValidator
 
+                this.logger.Info("Certificate list count is '" + list.Count + "'.");
+
                 int index = 0;
                 bool chainValid = true;
                 while (index < (list.Count - 1) && response.IsValid == true)
