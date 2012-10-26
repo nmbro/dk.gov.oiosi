@@ -36,8 +36,10 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
             Assert.IsNotNull(certificate, "Test certificate was null.");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
-
+            
             Assert.IsNull(response.Exception, "The lookup return an exception.");
+            Assert.AreSame(response.RevocationCheckStatus, RevocationCheckStatus.AllChecksPassed, "The revokation validation did not parse all check");
+            
             Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
         }
 
