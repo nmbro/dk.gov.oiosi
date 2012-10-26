@@ -90,6 +90,7 @@ namespace dk.gov.oiosi.security.revocation.crl
 
             if (certificate != null)
             {
+                this.logger.Info("Revocation checking certificate: " + certificate.FriendlyName);
                 X509Chain x509Chain = new X509Chain();
                 x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
                 x509Chain.Build(certificate);
@@ -179,11 +180,22 @@ namespace dk.gov.oiosi.security.revocation.crl
                     // increase the index, to check the next certificate
                     index++;
                 }
+
+                // all the certificate in the chain is now checked.
+                if (response.IsValid == true)
+                {
+                    response.RevocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
+                }
+                else
+                {
+                    response.RevocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
+                }
             }
             else
             {
                 response.IsValid = false;
-                response.Exception = new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. The certificate did not have any CRL DistPoints. Certificate: " + certificate));
+                response.Exception = new CheckCertificateRevokedUnexpectedException(new Exception("Error during CRL lookup. The certificate is null"));//did not have any CRL DistPoints. Certificate: " + certificate));
+                response.RevocationCheckStatus = RevocationCheckStatus.UnknownIssue;
             }
 
             return response;

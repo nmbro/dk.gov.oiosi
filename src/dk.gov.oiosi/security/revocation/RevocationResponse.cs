@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.security.revocation {
     /// </summary>
     public class RevocationResponse {
 
-        private bool _isValid;
+        private bool _isValid = false;
         private DateTime _nextUpdate = new DateTime();
         private Exception exception = null;
         private RevocationCheckStatus revocationCheckStatus;
