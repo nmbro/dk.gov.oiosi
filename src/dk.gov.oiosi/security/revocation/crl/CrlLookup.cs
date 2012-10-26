@@ -125,6 +125,7 @@ namespace dk.gov.oiosi.security.revocation.crl
                 bool chainValid = true;
                 while (index < (list.Count - 1) && response.IsValid == true)
                 {
+                    this.logger.Info("CRL validation the certificate: " + list[index].FriendlyName);
                     // Retrieve URL distribution points
                     List<Uri> URLs = this.GetURLs(list[index]);
 
