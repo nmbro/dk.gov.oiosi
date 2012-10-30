@@ -172,7 +172,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                     else
                     {
                         // arg - certificate is not valid
-                        Assert.IsTrue(response.IsValid);
+                        Assert.IsTrue(response.IsValid, "Foces certifiate should have been valid.");
                         Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 not all checked parsed ", DateTime.Now, i);
                     }
                 }
@@ -202,13 +202,10 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                     else
                     {
                         // arg - certificate is valid
-                        Assert.IsFalse(response.IsValid);
+                        Assert.IsFalse(response.IsValid, "Moces certificate should have been revoked.");
                         Console.WriteLine("{0} ThreadCertificateCheck number:{1} moces1 certificate is not revoked as expected.", DateTime.Now, i);
                         
                     }
-                    
-                    
-                    Assert.IsFalse(response.IsValid);
                 }
 
                 Console.WriteLine("{0} ThreadCertificateCheck number:{1} done", DateTime.Now, i);
