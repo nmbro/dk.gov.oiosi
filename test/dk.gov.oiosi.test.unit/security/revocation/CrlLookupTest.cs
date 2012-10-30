@@ -11,8 +11,15 @@ namespace dk.gov.oiosi.test.unit.security.revocation
     [TestFixture]
     public class CrlLookupTest
     {
-        private string funkttionscertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
+        private string foces1RevokedCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES2(revoked).pfx";
+        private string foces1ExpiredCertificat = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
+        private string foces1OkayCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
+        
         private string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES1 (medarbejdercertificat 2)(Spærret).pfx";
+
+        private string foces2RevokedCertificate = "Resources/Certificates/CVR30808460.Expire20151025.TU GENEREL FOCES2 (Spærret) (Funktionscertifikat).pfx";
+        private string foces2ExpiredCertificate = "Resources/Certificates/CVR30808460.Expire20111105.TU GENEREL FOCES2 (Udløbet) (Funktionscertifikat).pfx";
+        private string foces2OkayCertificate = "Resources/Certificates/CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
 
         [TestFixtureSetUp]
         public void Setup()
@@ -21,41 +28,94 @@ namespace dk.gov.oiosi.test.unit.security.revocation
         }
 
         [Test]
-        public void LookupTestValidCertificate()
+        public void LookupTestOkayFoces1()
         {
             CrlLookup crlLookup = new CrlLookup();
-            X509Certificate2 certificate = new X509Certificate2(funkttionscertificat, "Test1234");
+            X509Certificate2 certificate = new X509Certificate2(foces1OkayCertificat, "Test1234");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
             Assert.IsTrue(response.IsValid);
         }
 
         [Test]
-        public void LookupTestRevokedCertificate()
+        public void LookupTestOkayFoces2()
+        {
+            CrlLookup crlLookup = new CrlLookup();
+            X509Certificate2 certificate = new X509Certificate2(foces2OkayCertificate, "Test1234");
+            RevocationResponse response = crlLookup.CheckCertificate(certificate);
+            Assert.IsTrue(response.IsValid);
+        }
+
+        [Test]
+        public void LookupTestRevokedFoces1()
+        {
+            CrlLookup crlLookup = new CrlLookup();
+            X509Certificate2 certificate = new X509Certificate2(foces1RevokedCertificat, "Test1234");
+            Assert.IsNotNull(certificate, "Test certificate was null.");
+            RevocationResponse response = crlLookup.CheckCertificate(certificate);            
+
+            Assert.IsNull(response.Exception, "The lookup return an exception.");
+            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "The revokation validation did not parse all check");
+            
+            Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
+        }
+        
+
+
+        [Test]
+        public void LookupTestRevokedFoces2()
+        {
+            CrlLookup crlLookup = new CrlLookup();
+            X509Certificate2 certificate = new X509Certificate2(foces2RevokedCertificate, "Test1234");
+            Assert.IsNotNull(certificate, "Test certificate was null.");
+            RevocationResponse response = crlLookup.CheckCertificate(certificate);
+
+            Assert.IsNull(response.Exception, "The lookup return an exception.");
+            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "The revokation validation did not parse all check");
+
+            Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
+        }
+
+        [Test]
+        public void LookupTestExpiredFoces1()
+        {
+            CrlLookup crlLookup = new CrlLookup();
+            X509Certificate2 certificate = new X509Certificate2(foces2RevokedCertificate, "Test1234");
+            Assert.IsNotNull(certificate, "Test certificate was null.");
+            RevocationResponse response = crlLookup.CheckCertificate(certificate);
+
+            Assert.IsNull(response.Exception, "The lookup return an exception.");
+            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "The revokation validation did not parse all check");
+
+            Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
+        }
+
+        [Test]
+        public void LookupTestRevokedMoces1()
         {
             CrlLookup crlLookup = new CrlLookup();
             X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
             Assert.IsNotNull(certificate, "Test certificate was null.");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
-            
+
             Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreSame(response.RevocationCheckStatus, RevocationCheckStatus.AllChecksPassed, "The revokation validation did not parse all check");
-            
+            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "The revokation validation did not parse all check");
+
             Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
         }
 
-      /*  static void Main(string[] args)
+        [Test]
+        public void LookupTestExpiredFoces2()
         {
-            new CrlLookupTest().ffFF();
-
-        }
-
-        public void ffFF()
-        {
-            Setup();            
-            X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
             CrlLookup crlLookup = new CrlLookup();
+            X509Certificate2 certificate = new X509Certificate2(foces2RevokedCertificate, "Test1234");
+            Assert.IsNotNull(certificate, "Test certificate was null.");
             RevocationResponse response = crlLookup.CheckCertificate(certificate);
-        }*/
+
+            Assert.IsNull(response.Exception, "The lookup return an exception.");
+            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "The revokation validation did not parse all check");
+
+            Assert.IsFalse(response.IsValid, "The revoked certifikate was valid");
+        }
 
         [Test]
         public void LookTestMultiThread()
@@ -87,7 +147,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                 if (select < 1)
                 {
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:0", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2(funkttionscertificat, "Test1234");
+                    X509Certificate2 certificate = new X509Certificate2(foces1OkayCertificat, "Test1234");
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsTrue(response.IsValid);
                 }

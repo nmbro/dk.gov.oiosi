@@ -42,6 +42,11 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_CERTIFICATE_ROOT = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
         public const string PATH_CERTIFICATE_ROOT2 = "Resources/Certificates/TRUST2408 Systemtest VII Primary CA.cer";
 
+        public const string SERIAL_CERTIFICATE_TEST_ROOT_OCES1 = "403617fc";
+        public const string SERIAL_CERTIFICATE_TEST_ROOT_OCES2 = "4b ea 6e 94";
+        public const string SERIAL_CERTIFICATE_PROD_ROOT_OCES1 = "3E48BDC4";
+        public const string SERIAL_CERTIFICATE_PROD_ROOT_OCES2 = "4b 8e 60 03";
+
         public const string PATH_INVOICE_XML_IDENTIFIER_EAN = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ean_v2p1.xml";
         public const string PATH_INVOICE_XML_IDENTIFIER_OVT = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_ovt_v2p1.xml";
         public const string PATH_INVOICE_XML_IDENTIFIER_CVR = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_cvr_v2p1.xml";
