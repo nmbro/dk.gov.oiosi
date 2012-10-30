@@ -3,11 +3,13 @@ using dk.gov.oiosi.security.revocation.ocsp;
 using NUnit.Framework;
 using System.Security.Cryptography.X509Certificates;
 using System.Collections.Generic;
+using System;
 
-namespace dk.gov.oiosi.test.unit.security.revocation {
+namespace dk.gov.oiosi.test.unit.security.revocation
+{
 
     [TestFixture]
-    public class OcspLookupTest 
+    public class OcspLookupTest
     {
         private string foces1RevokedCertificate = "Resources/Certificates/CVR30808460.Expire20131101.FOCES2(revoked).pfx";
         private string foces1ExpiredCertificate = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
@@ -48,68 +50,110 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
         [Test]
         public void LookupTestOkayFoces1()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces1OkayCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsTrue(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.AllChecksPassed, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces1OkayCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsTrue(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.AllChecksPassed, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
 
         [Test]
         public void LookupTestOkayFoces2()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces2OkayCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsTrue(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.AllChecksPassed, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces2OkayCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsTrue(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.AllChecksPassed, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
 
         [Test]
         public void LookupTestRevokedFoces1()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces1RevokedCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsFalse(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces1RevokedCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsFalse(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
 
         [Test]
         public void LookupTestRevokedFoces2()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces2RevokedCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsFalse(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces2RevokedCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsFalse(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
 
 
         [Test]
         public void LookupTestExpiredFoces1()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces1ExpiredCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsFalse(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces1ExpiredCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsFalse(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
 
         [Test]
         public void LookupTestExpiredFoces2()
         {
-            OcspLookup ocspLookup = this.CreateOcesLookup();
-            X509Certificate2 certificate = new X509Certificate2(this.foces2ExpiredCertificate, "Test1234");
-            RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-            Assert.IsFalse(response.IsValid, "Certificate is not valid.");
-            Assert.IsNull(response.Exception, "The lookup return an exception.");
-            Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            try
+            {
+                OcspLookup ocspLookup = this.CreateOcesLookup();
+                X509Certificate2 certificate = new X509Certificate2(this.foces2ExpiredCertificate, "Test1234");
+                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+                Assert.IsFalse(response.IsValid, "Certificate is not valid.");
+                Assert.IsNull(response.Exception, "The lookup return an exception.");
+                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail(exception.ToString());
+            }
         }
     }
 }
