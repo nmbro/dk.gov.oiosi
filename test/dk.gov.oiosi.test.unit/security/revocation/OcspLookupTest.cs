@@ -47,7 +47,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             return ocspLookup;
         }
 
-        [Test]
+        /*[Test]
         public void LookupTestOkayFoces1()
         {
             try
@@ -63,7 +63,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             {
                 Assert.Fail(exception.ToString());
             }
-        }
+        }*/
 
         [Test]
         public void LookupTestOkayFoces2()
@@ -83,7 +83,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             }
         }
 
-        [Test]
+      /*  [Test]
         public void LookupTestRevokedFoces1()
         {
             try
@@ -99,7 +99,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             {
                 Assert.Fail(exception.ToString());
             }
-        }
+        }*/
 
         [Test]
         public void LookupTestRevokedFoces2()
@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
         }
 
 
-        [Test]
+       /* [Test]
         public void LookupTestExpiredFoces1()
         {
             try
@@ -136,9 +136,9 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             {
                 Assert.Fail(exception.ToString());
             }
-        }
+        }*/
 
-        [Test]
+       /* [Test]
         public void LookupTestExpiredFoces2()
         {
             try
@@ -154,6 +154,6 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             {
                 Assert.Fail(exception.ToString());
             }
-        }
+        }*/
     }
 }
