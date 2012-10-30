@@ -11,15 +11,15 @@ namespace dk.gov.oiosi.test.unit.security.revocation
     [TestFixture]
     public class CrlLookupTest
     {
-        private string foces1RevokedCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES2(revoked).pfx";
-        private string foces1ExpiredCertificat = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
-        private string foces1OkayCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
-        
-        private string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES1 (medarbejdercertificat 2)(Spærret).pfx";
+        private const string foces1RevokedCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES2(revoked).pfx";
+        private const string foces1ExpiredCertificat = "Resources/Certificates/CVR30808460.Expire20111016.FOCES1.pfx";
+        private const string foces1OkayCertificat = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
 
-        private string foces2RevokedCertificate = "Resources/Certificates/CVR30808460.Expire20151025.TU GENEREL FOCES2 (Spærret) (Funktionscertifikat).pfx";
-        private string foces2ExpiredCertificate = "Resources/Certificates/CVR30808460.Expire20111105.TU GENEREL FOCES2 (Udløbet) (Funktionscertifikat).pfx";
-        private string foces2OkayCertificate = "Resources/Certificates/CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
+        private const string medarbejdercertifikatRevoked = "Resources/Certificates/CVR30808460.Expire20130307.Test MOCES1 (medarbejdercertificat 2)(Spærret).pfx";
+
+        private const string foces2RevokedCertificate = "Resources/Certificates/CVR30808460.Expire20151025.TU GENEREL FOCES2 (Spærret) (Funktionscertifikat).pfx";
+        private const string foces2ExpiredCertificate = "Resources/Certificates/CVR30808460.Expire20111105.TU GENEREL FOCES2 (Udløbet) (Funktionscertifikat).pfx";
+        private const string foces2OkayCertificate = "Resources/Certificates/CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
 
         [TestFixtureSetUp]
         public void Setup()
@@ -137,6 +137,9 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             }
         }
 
+        private X509Certificate2 certificateFoces = new X509Certificate2(CrlLookupTest.foces1OkayCertificat, "Test1234");
+        private X509Certificate2 certificateMoces = new X509Certificate2(CrlLookupTest.medarbejdercertifikatRevoked, "Test1234");
+
         private void ThreadCertificateCheck()
         {
             CrlLookup crlLookup = new CrlLookup();
@@ -146,16 +149,16 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                 int select = random.Next(2);
                 if (select < 1)
                 {
-                    Console.WriteLine("{0} ThreadCertificateCheck foces1 allOkay number:{1} certificate:0", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2(foces1OkayCertificat, "Test1234");
-                    RevocationResponse response = crlLookup.CheckCertificate(certificate);
+                    Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 allOkay", DateTime.Now, i);
+
+                    RevocationResponse response = crlLookup.CheckCertificate(certificateFoces);
                     Assert.IsTrue(response.IsValid);
                 }
                 else
                 {
-                    Console.WriteLine("{0} ThreadCertificateCheck moces1 revoked number:{1} certificate:1", DateTime.Now, i);
-                    X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
-                    RevocationResponse response = crlLookup.CheckCertificate(certificate);
+                    Console.WriteLine("{0} ThreadCertificateCheck number:{1} moces1 revoked", DateTime.Now, i);
+
+                    RevocationResponse response = crlLookup.CheckCertificate(certificateMoces);
                     Assert.IsFalse(response.IsValid);
                 }
 
