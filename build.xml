@@ -103,23 +103,22 @@
     
 	</target>
 	<target name="BuildVisualStudioSolutionNet35" depends="SetVersion">
-		<msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+    <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
 			<property name="Configuration" value="Debug" />
 			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
-		</msbuild>
+		</msbuild -->
 		<msbuild project="${VisualStudioSolution.file}" target="Rebuild">
 			<property name="Configuration" value="Release" />
 			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
 		</msbuild>
 	</target>
-  <!-- target name="RunTests">
+  <target name="RunTests">
 		<exec program="${teamcity.dotnet.nunitlauncher2.0}">
 			<arg file="${UnitTest.file}" />
-      < ! - - arg file="${IntegrationTest.file}" / - - >
+      <!-- arg file="${IntegrationTest.file}" / -->
 		</exec>
-	</target -->
-  <!-- target name="Distribute" depends="Init, RunTests" -->
-  <target name="Distribute" depends="Init">
+	</target>
+  <target name="Distribute" depends="Init, RunTests">
 		<!-- Executable -->
 		<zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
 			<fileset basedir="${Oiosi.dir}\bin\Release">
