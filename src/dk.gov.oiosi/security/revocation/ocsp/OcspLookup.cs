@@ -221,6 +221,11 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             // http://bouncy-castle.1462172.n4.nabble.com/c-ocsp-verification-td3160243.html
             X509Certificate2 issuerX509Certificate2 = this.FindIssuerCertificate(x509Certificate2);
 
+            if (issuerX509Certificate2 == null)
+            {
+                throw new CheckCertificateOcspUnexpectedException("Issuer certificate "+ x509Certificate2.Issuer +" not identified.");
+            }
+
             if (issuerX509Certificate2.Thumbprint.Equals(x509Certificate2.Thumbprint, StringComparison.OrdinalIgnoreCase))
             {
                 // the certificate and the issuer certificace is the same
