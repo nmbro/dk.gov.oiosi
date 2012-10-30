@@ -134,7 +134,6 @@ namespace dk.gov.oiosi.security.revocation.crl
                     // If no data - crl server is not online
                     // default: true/false?
                     isRevoked = true;
-
                 }
                 else
                 {

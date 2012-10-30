@@ -41,7 +41,7 @@ namespace dk.gov.oiosi.security.revocation {
         private bool _isValid = false;
         private DateTime _nextUpdate = new DateTime();
         private Exception exception = null;
-        private RevocationCheckStatus revocationCheckStatus;
+        private RevocationCheckStatus revocationCheckStatus = RevocationCheckStatus.NotChecked;
 
         /// <summary>
         /// This property is used to store the time at or before which newer information will be available

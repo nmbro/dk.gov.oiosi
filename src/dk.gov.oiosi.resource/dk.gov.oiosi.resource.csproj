@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{79042BE3-3F98-4C5E-BEA2-F82F497F8526}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -56,6 +56,8 @@
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20120427.Test NemHandelservice.cer" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20111016.FOCES1.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20130307.FOCES1.pfx" />
+    <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151025.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx" />
+    <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx" />
     <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES1 %28medarbejdercertificat 3%29%28Expired%29.pfx" />
     <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 1%29.pfx" />
     <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20130307.Test MOCES1 %28medarbejdercertificat 2%29%28Spærret%29.pfx" />

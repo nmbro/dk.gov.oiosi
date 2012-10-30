@@ -54,6 +54,9 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// </summary>
         private ICache<Uri, CrlInstance> cache;
 
+        /// <summary>
+        /// The logger
+        /// </summary>
         private ILogger logger;
 
         /// <summary>
@@ -90,7 +93,6 @@ namespace dk.gov.oiosi.security.revocation.crl
 
             if (certificate != null)
             {
-                this.logger.Info("Revocation checking certificate: " + certificate.FriendlyName);
                 X509Chain x509Chain = new X509Chain();
                 x509Chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
                 x509Chain.Build(certificate);
@@ -118,14 +120,15 @@ namespace dk.gov.oiosi.security.revocation.crl
                 // list[list.Count] - > root certificate
                 // we needed to validate all certificates, except the root certificates
                 // The question wheather the root certificates is trusted, is validated in MultipleRootX509CertificateValidator
+                // However - In the case where the root certificate is not installed,
+                // the chain list will only be 1 length, so no validation is perfored at all.
 
-                this.logger.Info("Certificate list count is '" + list.Count + "'.");
 
                 int index = 0;
                 bool chainValid = true;
-                while (index < list.Count && response.IsValid == true)
+                while (index < (list.Count -1) && response.IsValid == true)
                 {
-                    this.logger.Info("CRL validation the certificate: " + list[index].Subject);
+                    // this.logger.Info("CRL validation the certificate: " + list[index].Subject);
                     // Retrieve URL distribution points
                     List<Uri> URLs = this.GetURLs(list[index]);
 

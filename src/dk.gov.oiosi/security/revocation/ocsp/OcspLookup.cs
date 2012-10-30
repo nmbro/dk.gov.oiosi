@@ -727,6 +727,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                                     // no revocation data exist - the certificate must be valid
                                     revocationResponse.IsValid = true;
                                     revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                    revocationResponse.RevocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
                                 }
                                 else if (certificateStatus == Org.BouncyCastle.Ocsp.CertificateStatus.Good)
                                 {
@@ -734,11 +735,13 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                                     // however if the status is good the certificateStatus is null
                                     revocationResponse.IsValid = true;
                                     revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                    revocationResponse.RevocationCheckStatus = RevocationCheckStatus.AllChecksPassed;
                                 }
                                 else if (certificateStatus is Org.BouncyCastle.Ocsp.RevokedStatus)
                                 {
                                     revocationResponse.IsValid = false;
                                     revocationResponse.NextUpdate = singleResp.NextUpdate.Value;
+                                    revocationResponse.RevocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
                                 }
                                 else if (certificateStatus is Org.BouncyCastle.Ocsp.UnknownStatus)
                                 {
