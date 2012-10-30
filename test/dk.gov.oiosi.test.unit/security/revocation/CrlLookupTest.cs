@@ -152,13 +152,62 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 allOkay", DateTime.Now, i);
 
                     RevocationResponse response = crlLookup.CheckCertificate(certificateFoces);
-                    Assert.IsTrue(response.IsValid);
+                    if (response.Exception != null)
+                    {
+                        Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 Exception: " + response.Exception.ToString(), DateTime.Now, i);
+                    }
+                    
+                    if (response.IsValid)
+                    {
+                        // yes - certificate is valid
+                        if (response.RevocationCheckStatus == RevocationCheckStatus.AllChecksPassed)
+                        {
+                            // yes - check all parsed
+                        }
+                        else
+                        {
+                            Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 not all checked parsed ", DateTime.Now, i);
+                        }
+                    }
+                    else
+                    {
+                        // arg - certificate is not valid
+                        Assert.IsTrue(response.IsValid);
+                        Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 not all checked parsed ", DateTime.Now, i);
+                    }
                 }
                 else
                 {
+                    // moces1
                     Console.WriteLine("{0} ThreadCertificateCheck number:{1} moces1 revoked", DateTime.Now, i);
 
                     RevocationResponse response = crlLookup.CheckCertificate(certificateMoces);
+                    if (response.Exception != null)
+                    {
+                        Console.WriteLine("{0} ThreadCertificateCheck number:{1} foces1 Exception: " + response.Exception.ToString(), DateTime.Now, i);
+                    }
+
+                    if (!response.IsValid)
+                    {
+                        // yes - certificate is revoked
+                        if (response.RevocationCheckStatus == RevocationCheckStatus.CertificateRevoked)
+                        {
+                            // yes - check all parsed
+                        }
+                        else
+                        {
+                            Console.WriteLine("{0} ThreadCertificateCheck number:{1} moces1 RevocationCheckStatus is not revoked as expected.", DateTime.Now, i);
+                        }
+                    }
+                    else
+                    {
+                        // arg - certificate is valid
+                        Assert.IsFalse(response.IsValid);
+                        Console.WriteLine("{0} ThreadCertificateCheck number:{1} moces1 certificate is not revoked as expected.", DateTime.Now, i);
+                        
+                    }
+                    
+                    
                     Assert.IsFalse(response.IsValid);
                 }
 
