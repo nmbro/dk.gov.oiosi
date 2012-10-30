@@ -223,7 +223,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
             if (issuerX509Certificate2 == null)
             {
-                throw new CheckCertificateOcspUnexpectedException("Issuer certificate "+ x509Certificate2.Issuer +" not identified.");
+                throw new CheckCertificateOcspUnexpectedException("Issuer certificate '"+ x509Certificate2.Issuer +"' not found.");
             }
 
             if (issuerX509Certificate2.Thumbprint.Equals(x509Certificate2.Thumbprint, StringComparison.OrdinalIgnoreCase))
