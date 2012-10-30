@@ -146,18 +146,19 @@ namespace dk.gov.oiosi.test.unit.security.revocation
                 int select = random.Next(2);
                 if (select < 1)
                 {
-                    Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:0", DateTime.Now, i);
+                    Console.WriteLine("{0} ThreadCertificateCheck foces1 allOkay number:{1} certificate:0", DateTime.Now, i);
                     X509Certificate2 certificate = new X509Certificate2(foces1OkayCertificat, "Test1234");
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsTrue(response.IsValid);
                 }
                 else
                 {
-                    Console.WriteLine("{0} ThreadCertificateCheck number:{1} certificate:1", DateTime.Now, i);
+                    Console.WriteLine("{0} ThreadCertificateCheck moces1 revoked number:{1} certificate:1", DateTime.Now, i);
                     X509Certificate2 certificate = new X509Certificate2(medarbejdercertifikatRevoked, "Test1234");
                     RevocationResponse response = crlLookup.CheckCertificate(certificate);
                     Assert.IsFalse(response.IsValid);
                 }
+
                 Console.WriteLine("{0} ThreadCertificateCheck number:{1} done", DateTime.Now, i);
             }
         }
