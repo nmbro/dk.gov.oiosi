@@ -20,7 +20,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
         private string foces2OkayCertificate = "Resources/Certificates/CVR30808460.Expire20151026.TU GENEREL FOCES2 (Funktionscertifikat).pfx";
 
 
-        private string oces1RootCertificate = TestConstants.PATH_CERTIFICATE_ROOT2;
+        private string oces1RootCertificate = TestConstants.PATH_CERTIFICATE_ROOT1;
         private string oces2RootCertificate = TestConstants.PATH_CERTIFICATE_ROOT2;
 
         [TestFixtureSetUp]

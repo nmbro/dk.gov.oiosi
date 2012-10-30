@@ -14,7 +14,7 @@ namespace dk.gov.oiosi.test.unit.security.validation
         [Test]
         public void _01_TestWithOneRootCertificate() 
         {
-            X509Certificate2 rootCertificate1 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT);
+            X509Certificate2 rootCertificate1 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT1);
             X509Certificate2 rootCertificate2 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT2);
             X509Certificate2 functionCertificate = new X509Certificate2(TestConstants.PATH_CERTIFICATE_DEVICE, TestConstants.PASSWORD_CERTIFICATE_DEVICE);
 
@@ -27,7 +27,7 @@ namespace dk.gov.oiosi.test.unit.security.validation
         [Test]
         public void _02_TestWithOneRootCertificate()
         {
-            X509Certificate2 rootCertificate1 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT);
+            X509Certificate2 rootCertificate1 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT1);
             X509Certificate2 rootCertificate2 = new X509Certificate2(TestConstants.PATH_CERTIFICATE_ROOT2);
             X509Certificate2 functionCertificate = new X509Certificate2(TestConstants.PATH_CERTIFICATE_DEVICE, TestConstants.PASSWORD_CERTIFICATE_DEVICE);
 

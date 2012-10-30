@@ -39,7 +39,7 @@ namespace dk.gov.oiosi.test.unit
         public const string PASSWORD_CERTIFICATE_EMPLOYEE = "Test1234";
         public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
         public const string PASSWORD_CERTIFICATE_DEVICE = "Test1234";
-        public const string PATH_CERTIFICATE_ROOT = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
+        public const string PATH_CERTIFICATE_ROOT1 = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
         public const string PATH_CERTIFICATE_ROOT2 = "Resources/Certificates/TRUST2408 Systemtest VII Primary CA.cer";
 
         public const string SERIAL_CERTIFICATE_TEST_ROOT_OCES1 = "403617fc";
