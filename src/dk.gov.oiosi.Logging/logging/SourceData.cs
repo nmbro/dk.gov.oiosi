@@ -89,7 +89,7 @@ namespace dk.gov.oiosi.logging
             }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(this.ModuleName);
