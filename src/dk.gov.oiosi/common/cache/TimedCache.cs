@@ -153,7 +153,7 @@ namespace dk.gov.oiosi.common.cache {
             else
             {
                 // the timeperiod the cached valud is valid.
-                this.timeOut = new TimeSpan(validityInMinutes * TimeSpan.TicksPerHour);
+                this.timeOut = new TimeSpan(validityInMinutes * TimeSpan.TicksPerMinute);
             }
 
             // Frequency in checks

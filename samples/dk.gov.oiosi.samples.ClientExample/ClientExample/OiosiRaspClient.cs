@@ -10,6 +10,7 @@ using dk.gov.oiosi.test.request;
 using dk.gov.oiosi.raspProfile.communication;
 using System.Configuration;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.samples.ClientExample
 {
@@ -35,6 +36,10 @@ namespace dk.gov.oiosi.samples.ClientExample
 
         public bool SendDocument()
         {
+            // Test logging
+            ILogger loggger = LoggerFactory.Create();
+            loggger.Info("Logging works.");
+
             bool result = false;
 
             try

@@ -65,6 +65,7 @@
     <Compile Include="configuration\ConfigurationHandlerTest.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
     <Compile Include="Print.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="raspProfile\communication\RaspRequestTest.cs" />
     <Compile Include="raspProfile\RaspConfigurationTest.cs" />

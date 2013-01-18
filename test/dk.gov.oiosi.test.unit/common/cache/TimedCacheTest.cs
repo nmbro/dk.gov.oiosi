@@ -15,6 +15,40 @@ namespace dk.gov.oiosi.test.unit.common.cache {
         private ICache<string, string> _cache;
 
         [Test]
+        public void GetValidUntilDateTimeTest()
+        {
+            TimedCache<string, string> timedCache  = new TimedCache<string, string>(TimeSpan.FromHours(5.0));
+            DateTime validUntil = timedCache.GetValidUntilDateTime();
+
+            TimeSpan timeSpan = validUntil - DateTime.UtcNow;
+            TimeSpan greaterTimeSpan = new TimeSpan(5, 1, 0);
+            TimeSpan lesserTimeSpan = new TimeSpan(4, 59, 0);
+
+            Assert.LessOrEqual(timeSpan.Milliseconds, greaterTimeSpan.Milliseconds);
+            Assert.GreaterOrEqual(timeSpan.Milliseconds, lesserTimeSpan.Milliseconds);
+        }
+
+        [Test]
+        public void GetValidUntilDateTimeConfigTest()
+        {
+            /// Tester the TimeCache with the constructor, that is used i Rasp
+            /// https://bugs.softwareborsen.dk/show_bug.cgi?id=1210
+            Dictionary<string, string> config = new Dictionary<string, string>();
+            config.Add("validityTimeInHours", "24");
+            config.Add("frequencyInMinutes", "10");
+
+            TimedCache<string, string> timedCache = new TimedCache<string, string>(config);
+            DateTime validUntil = timedCache.GetValidUntilDateTime();
+
+            TimeSpan timeSpan = validUntil - DateTime.UtcNow;
+            TimeSpan greaterTimeSpan = new TimeSpan(24, 1, 0);
+            TimeSpan lesserTimeSpan = new TimeSpan(23, 59, 0);
+
+            Assert.LessOrEqual(timeSpan.Milliseconds, greaterTimeSpan.Milliseconds);
+            Assert.GreaterOrEqual(timeSpan.Milliseconds, lesserTimeSpan.Milliseconds);
+        }
+
+        [Test]
         public void SingleAddRemoveTest() {
             Console.WriteLine("{0} Single Add Remove Test Started", DateTime.Now);
 
