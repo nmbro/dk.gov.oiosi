@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.test.request")]
-[assembly: AssemblyCopyright("Copyright © DIGST 2012")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.0.0.*")]
+[assembly: AssemblyVersion("2.0.1.*")]

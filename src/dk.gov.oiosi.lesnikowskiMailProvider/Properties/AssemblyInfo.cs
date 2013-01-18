@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DIGST")]
 [assembly: AssemblyProduct("dk.gov.oiosi.lesnikowskiMailProvider")]
-[assembly: AssemblyCopyright("Copyright © DIGST 2012")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.0.0.*")]
+[assembly: AssemblyVersion("2.0.1.*")]
