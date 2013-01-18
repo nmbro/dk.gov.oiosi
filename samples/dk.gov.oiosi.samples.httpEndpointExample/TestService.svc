@@ -1,0 +1,7 @@
+﻿<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Factory="dk.gov.oiosi.raspProfile.extension.wcf.RaspServiceHostFactory" 
+    Service="dk.gov.oiosi.samples.httpEndpointExample.TestService" 
+    CodeBehind="TestService.svc.cs" %>
+

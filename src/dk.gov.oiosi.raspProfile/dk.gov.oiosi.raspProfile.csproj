@@ -1,0 +1,482 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dk.gov.oiosi.raspProfile</RootNamespace>
+    <AssemblyName>dk.gov.oiosi.raspProfile</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\dk.gov.oiosi.raspProfile.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="communication\IRaspRequest.cs" />
+    <Compile Include="communication\RaspRequest.cs" />
+    <Compile Include="communication\service\RaspServiceImplementation.cs" />
+    <Compile Include="DefaultRevocationCrlConfig.cs" />
+    <Compile Include="DefaultRevocationOcspConfig.cs" />
+    <Compile Include="DefaultSendingOptionConfig.cs" />
+    <Compile Include="DefaultCacheConfig.cs" />
+    <Compile Include="DefaultDocumentTypes.cs" />
+    <Compile Include="DefaultLdapConfig.cs" />
+    <Compile Include="DefaultOcesCertificate.cs" />
+    <Compile Include="DefaultRevocationConfig.cs" />
+    <Compile Include="DefaultRootCertificateCollectionConfig.cs" />
+    <Compile Include="DefaultUddiConfig.cs" />
+    <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />
+    <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingExtensionElement.cs" />
+    <Compile Include="extension\wcf\Interceptor\CustomHeader\PartyIdentifierHeaderSettings.cs" />
+    <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingElement.cs" />
+    <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingExtensionElement.cs" />
+    <Compile Include="extension\wcf\RaspServiceHostFactory.cs" />
+    <Compile Include="DefaultProfileMappingConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Certificates\Live\Root\TDC OCES CA.cer">
+      <Link>Resources\Certificates\TDC OCES CA.cer</Link>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
+      <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_CurrencyCode_ISO_7_04.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_CurrencyCode_ISO_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_LanguageCode_ISO_7_04.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_LanguageCode_ISO_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_UnitCode_UNECE_7_04.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CodeList_UnitCode_UNECE_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonAggregateComponents-2.1.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonBasicComponents-2.1.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\OIOUBL_UTS-CommonBasicComponents-2.1.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonAggregateComponents-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonAggregateComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonBasicComponents-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonBasicComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonExtensionComponents-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CommonExtensionComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CoreComponentParameters-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-CoreComponentParameters-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-ExtensionContentDatatype-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-ExtensionContentDatatype-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UBL-QualifiedDatatypes-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UBL-QualifiedDatatypes-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\common\UnqualifiedDataTypeSchemaModule-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\maindoc\UBL-UtilityStatement-2.1.xsd">
+      <Link>Resources\Schemas\OIOUBL_v2.1-b\maindoc\UBL-UtilityStatement-2.1.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\0p70dk_Reusable.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\0p70dk_Reusable.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\CoreComponentParametersDk.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\CoreComponentParametersDk.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\CoreComponentTypesDk.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\CoreComponentTypesDk.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\Invoice.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\Invoice.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\nonCardinalTypes.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\nonCardinalTypes.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pcmLax.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pcmLax.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pcmStrict.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pcmStrict.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pcpLax.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pcpLax.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pcpStrict.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pcpStrict.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\PIECOMredefines.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\PIECOMredefines.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pieLax.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pieLax.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\PIEredefines.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\PIEredefines.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pieStrict.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pieStrict.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pipCOMredefines.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pipCOMredefines.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pipLax.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pipLax.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\Pipredefines.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\Pipredefines.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\pipStrict.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\pipStrict.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\reusabletypes.xsd">
+      <Link>Resources\Schemas\OIOXML_v0.7\reusabletypes.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\CCTS_CCT_SchemaModule-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\CCTS_CCT_SchemaModule-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\CodeList_CurrencyCode_ISO_7_04.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\CodeList_CurrencyCode_ISO_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\CodeList_LanguageCode_ISO_7_04.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\CodeList_LanguageCode_ISO_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\CodeList_MIMEMediaTypeCode_IANA_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\CodeList_UnitCode_UNECE_7_04.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\CodeList_UnitCode_UNECE_7_04.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-CommonAggregateComponents-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-CommonAggregateComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-CommonBasicComponents-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-CommonBasicComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-CommonExtensionComponents-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-CommonExtensionComponents-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-CoreComponentParameters-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-CoreComponentParameters-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-ExtensionContentDatatype-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-ExtensionContentDatatype-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UBL-QualifiedDatatypes-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UBL-QualifiedDatatypes-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\common\UnqualifiedDataTypeSchemaModule-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\common\UnqualifiedDataTypeSchemaModule-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-ApplicationResponse-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-ApplicationResponse-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-AttachedDocument-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-AttachedDocument-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-BillOfLading-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-BillOfLading-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Catalogue-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Catalogue-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueDeletion-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueDeletion-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueItemSpecificationUpdate-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueItemSpecificationUpdate-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CataloguePricingUpdate-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CataloguePricingUpdate-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueRequest-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CatalogueRequest-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CertificateOfOrigin-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CertificateOfOrigin-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-CreditNote-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-CreditNote-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-DebitNote-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-DebitNote-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-DespatchAdvice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-DespatchAdvice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-ForwardingInstructions-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-ForwardingInstructions-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-FreightInvoice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-FreightInvoice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Invoice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Invoice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Order-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Order-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderCancellation-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderCancellation-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderChange-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderChange-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponse-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponse-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponseSimple-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-OrderResponseSimple-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-PackingList-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-PackingList-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Quotation-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Quotation-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-ReceiptAdvice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-ReceiptAdvice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Reminder-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Reminder-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-RemittanceAdvice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-RemittanceAdvice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-RequestForQuotation-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-RequestForQuotation-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledCreditNote-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledCreditNote-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledInvoice-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-SelfBilledInvoice-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Statement-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Statement-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-TransportationStatus-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-TransportationStatus-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.0\maindoc\UBL-Waybill-2.0.xsd">
+      <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Waybill-2.0.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\readme.txt">
+      <Link>Resources\Schemas\OIOXML_v0.7\readme.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueRequest_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueRequest_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Catalogue_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Catalogue_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CreditNote_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CreditNote_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Invoice_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Invoice_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderCancellation_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderCancellation_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderChange_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderChange_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponse_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponse_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Order_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Order_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Reminder_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Reminder_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
+      <Link>Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
+      <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
+      <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
+      <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
+      <Name>dk.gov.oiosi.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dk.gov.oiosi\dk.gov.oiosi.csproj">
+      <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
+      <Name>dk.gov.oiosi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

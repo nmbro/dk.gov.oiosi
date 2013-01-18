@@ -1,0 +1,68 @@
+Possibility to configure caches (new functionality from RASP version 1.3.0)
+
+By default, after updating OIORASP library, cache configuration is changed. See "OIOSI RASP Library for Java Cache Overview 1.3.0.xlsx" for details.
+The new cache configuration settings can be seen in the default RaspConfiguration file located in /dk.gov.oiosi/src/dk.gov.oiosi.resource/RaspConfiguration.xml.
+
+How to change cache configuration:
+
+1. The cache is configurated in the ConfigurationSection element (type =CacheConfig) as demostrated below:
+
+  <ConfigurationSection xsi:type="CacheConfig">
+    <OcspLookupCache>
+      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache</ImplementationNamespaceClass>
+      <ImplementationAssembly>dk.gov.oiosi.RaspLibrary</ImplementationAssembly>
+      <CacheConfigurationCollection>
+        <Configuration>
+          <Key>validityTimeInHours</Key>
+          <Value>1</Value>
+        </Configuration>
+        <Configuration>
+          <Key>frequencyInMinutes</Key>
+          <Value>10</Value>
+        </Configuration>
+      </CacheConfigurationCollection>
+    </OcspLookupCache>
+    ...
+  </ConfigurationSection>
+
+
+2. Possible nested tags inside this section are: 
+ - CertificateCache - The certificated downloaded from LDAP 
+ - OcspLookupCache - A ocsp validation result (if the certificate has been revoked).
+ - UddiServiceCache - The registration downloaded from UDDI (NemHandelsRegisteret).
+ - UddiTModelCache - The special TModel key, that is used i UDDI.
+ - SchemaCache - The build xml schema
+ - SchematronCache - The build schematron
+ - CrlLookupCache - Cache crl lists (list over the certificates, that has been revoked). 
+ - MessageIdUnfinishedSignaturesCache - Used in RASP communication
+ - SequenceIdUnfinishedSignaturesCache - Used in RASP communication
+
+ 
+These tags should have sub-tags:
+
+ImplementationNamespaceClass - class name of the cache to use
+ImplementationAssembly - not used in OIORASP java, optional
+CacheConfigurationCollection - list of configuration parameters, which depend on cache implementation class.
+
+
+Detailed description:
+
+In OIORASP 1.3.0 there are 4 configurable cache implementations:
+
+1) dk.gov.oiosi.common.cache.TimedCache - contains unlimited number of cached values, which are removed from cache with some expiration time.
+Parameters:
+validityTimeInHours or validityTimeInMinutes - integer with number of hours or minutes during which cache entry is considered as not expired
+frequencyInHours or frequencyInMinutes - integer with number of hours or minutes to check expiration state of cached values.
+Default values:
+1 hour validity period and 10 minutes expiration check.
+By default this cache is used for certificates, OCSP revocation and UDDI requests caching.
+
+2) dk.gov.oiosi.common.cache.LeastFrequentlyUsedQuantityCache - limited number of cached values, no expiration, least frequently used values are removed from cache if it is overloaded.
+Parameters:
+maxSize - integer with maximum number of cached entries.
+
+3) dk.gov.oiosi.common.cache.LeastRecentlyUsedQuantityCache - similar to LeastFrequentlyUsedQuantityCache, limited number of cached values, no expiration, but least recently used values are removed from cache if it is overloaded.
+Parameters:
+maxSize - integer with maximum number of cached entries.
+
+4) dk.gov.oiosi.common.cache.ZeroCache - cache nothing, no parameters. Primarily used in debugging and development

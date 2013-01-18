@@ -1,0 +1,36 @@
+﻿using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("dk.gov.oiosi.lesnikowskiMailProvider")]
+[assembly: AssemblyDescription("The OIOSI open source library")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("DIGST")]
+[assembly: AssemblyProduct("dk.gov.oiosi.lesnikowskiMailProvider")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+[assembly: CLSCompliant(true)]
+
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
+// COM, set the ComVisible attribute to true on that type.
+[assembly: ComVisible(false)]
+
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("2451b108-3f4c-42fc-a4f5-8193d0f2ed34")]
+
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+[assembly: AssemblyVersion("2.0.1.*")]
