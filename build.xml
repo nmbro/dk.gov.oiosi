@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="NemHandel" default="all">
-  <property name="Version" value="2.0.0.0" />
-  <property name="Revision" value="${build.number}" />
+  <property name="Version" value="2.0.1.0" />
+  <property name="Revision" value="2.0.1.${build.number}" />
 	<property name="Dist.dir" value="target\dist" />
 	<property name="Temp.dir" value="target\temp" />
 	<property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln" />

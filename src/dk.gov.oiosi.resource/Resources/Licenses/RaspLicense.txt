@@ -1,7 +1,7 @@
 
 RASP license
 -------------------
-Copyright (c) 2007-2912, Danish National Agency for Digitisation, Ministry of Finance. All rights reserved.
+Copyright (c) 2007-2013, Danish National Agency for Digitisation, Ministry of Finance. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -128,7 +128,7 @@ the Software solely in object code form, or modifications in either source or ob
 That you will 
 not use Microsoft's or its suppliers' names, logos, or trademarks in conjunction with distribution of the Software or modifications, unless we give you prior written permission or instruction to do so; 
 display the following copyright notice on copies of modifications you distribute: 
-"Contains software or other content adapted from Microsoft patterns & practices Enterprise dk.gov.oiosi.library, © 2006 Microsoft Corporation. All rights reserved."; and 
+"Contains software or other content adapted from Microsoft patterns & practices Enterprise dk.gov.oiosi.library, ï¿½ 2006 Microsoft Corporation. All rights reserved."; and 
 
 defend, indemnify, and hold harmless us and our suppliers from any claims or lawsuits and associated losses, damages, liabilities, penalties fines, costs, and expenses, including reasonable attorneys' fees, that arise from or relate to the use or distribution of your modifications and any additional software or content you distribute in conjunction with the Software or modifications. 
 That if you distribute modifications, you will cause the modified files to carry prominent notices so that recipients know they are not receiving the original Software. Such notices must (a) state that you have changed the Software, (b) include the date of any changes, and (c) to the extent reasonably practicable, comply with any guidelines about modifications in the documentation accompanying the Software. 
