@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Sï¿½gaard, Accenture
+  *   Dennis Søgaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -330,7 +330,7 @@ namespace dk.gov.oiosi.uddi
                 endPointUddiIds.Add(service.serviceKey);
             }
 
-            // Har uddiid pï¿½ service endpoint, skal finde endpoint uri
+            // Har uddi-ID på service endpoint, skal finde endpoint uri
             get_serviceDetail getServiceDetail = new get_serviceDetail();
             getServiceDetail.serviceKey = endPointUddiIds.ToArray();
             serviceDetail detail = this.uddiProxy.get_serviceDetail(getServiceDetail);
