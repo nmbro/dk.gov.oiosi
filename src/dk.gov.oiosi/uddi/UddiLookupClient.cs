@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis Sï¿½gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -82,7 +82,7 @@ namespace dk.gov.oiosi.uddi
             catch(Exception)                
             {
                 // If this creation failed, it is possible that you are missing the app.config file in your project
-                // If it still failes, the library version in in configuration file must be update to current version. 
+                // If it still fails, the library version in in configuration file must be update to current version.
                 // Se configuration/system.serviceModel/extensions/behaviorExtensions/add[name="signCustomHeaders"]
                 this.logger.Error("Creation of UDDI_Inquiry_PortTypeClient failed. It is possible that you are missing the app.config file in your project, or the library version in in configuration file must be update to current version. configuration/system.serviceModel/extensions/behaviorExtensions/add[@name=signCustomHeaders)/@type=... ");
                 throw;
@@ -330,7 +330,7 @@ namespace dk.gov.oiosi.uddi
                 endPointUddiIds.Add(service.serviceKey);
             }
 
-            // Har uddiid på service endpoint, skal finde endpoint uri
+            // Har uddiid pï¿½ service endpoint, skal finde endpoint uri
             get_serviceDetail getServiceDetail = new get_serviceDetail();
             getServiceDetail.serviceKey = endPointUddiIds.ToArray();
             serviceDetail detail = this.uddiProxy.get_serviceDetail(getServiceDetail);
