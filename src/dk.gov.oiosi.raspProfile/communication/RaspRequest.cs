@@ -81,7 +81,7 @@ namespace dk.gov.oiosi.raspProfile.communication
                 }
                 else
                 {
-                    throw new Exception("Receiver ID is not allowed to be added to header. It was not possible to retreive ID from certificate");
+                    throw new Exception("Receiver ID is not allowed to be added to header. It was not possible to retrieve ID from certificate");
                 }
             }
 
@@ -106,7 +106,7 @@ namespace dk.gov.oiosi.raspProfile.communication
                 }
                 else
                 {
-                    throw new Exception("Sender ID is not allowed to be added to header. It was not possible to retreive ID from certificate");
+                    throw new Exception("Sender ID is not allowed to be added to header. It was not possible to retrieve ID from certificate");
                 }
             }
 
