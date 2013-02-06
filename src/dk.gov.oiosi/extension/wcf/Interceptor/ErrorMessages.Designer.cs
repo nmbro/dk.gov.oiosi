@@ -92,8 +92,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperExceptio" +
-                        "n", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorChannelWrapperException", resourceCulture);
             }
         }
         
@@ -102,8 +101,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorInternalFailureException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorInternalFailureExcepti" +
-                        "on", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Channels_InterceptorInternalFailureException", resourceCulture);
             }
         }
         
@@ -130,8 +128,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_AuthorisationProcessFailedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_AuthorisationProces" +
-                        "sFailedException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_AuthorisationProcessFailedException", resourceCulture);
             }
         }
         
@@ -140,8 +137,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_NotAuthorisedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_NotAuthorisedExcept" +
-                        "ion", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_authorisation_NotAuthorisedException", resourceCulture);
             }
         }
         
@@ -159,8 +155,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFailedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFaile" +
-                        "dException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_CertificateRevokedValidationFailedException", resourceCulture);
             }
         }
         
@@ -169,8 +164,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_FailedToGetCertificateSubjectException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_FailedToGetCertificateSubjectExce" +
-                        "ption", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_FailedToGetCertificateSubjectException", resourceCulture);
             }
         }
         
@@ -188,8 +182,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Security_Header_ToManyElementsFoundException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_Header_ToManyElementsFoundExcepti" +
-                        "on", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Security_Header_ToManyElementsFoundException", resourceCulture);
             }
         }
         
@@ -198,8 +191,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_FailedToLoadSchemaException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_FailedToLoadSchemaExcept" +
-                        "ion", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_FailedToLoadSchemaException", resourceCulture);
             }
         }
         
@@ -208,8 +200,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidateDocumentFailedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidateDocumentFa" +
-                        "iledException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidateDocumentFailedException", resourceCulture);
             }
         }
         
@@ -218,8 +209,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidationInterceptionEmptyBodyException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidationIntercep" +
-                        "tionEmptyBodyException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schema_SchemaValidationInterceptionEmptyBodyException", resourceCulture);
             }
         }
         
@@ -228,8 +218,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidateDocumentFailedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidateDo" +
-                        "cumentFailedException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidateDocumentFailedException", resourceCulture);
             }
         }
         
@@ -238,8 +227,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidationInterceptionEmptyBodyException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidation" +
-                        "InterceptionEmptyBodyException", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_Validation_Schematron_SchematronValidationInterceptionEmptyBodyException", resourceCulture);
             }
         }
         
@@ -248,8 +236,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// </summary>
         internal static string dk_gov_oiosi_extension_wcf_Interceptor_XsltTransform_XsltTransformFailedException {
             get {
-                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_XsltTransform_XsltTransformFailedException" +
-                        "", resourceCulture);
+                return ResourceManager.GetString("dk_gov_oiosi_extension_wcf_Interceptor_XsltTransform_XsltTransformFailedException", resourceCulture);
             }
         }
     }
