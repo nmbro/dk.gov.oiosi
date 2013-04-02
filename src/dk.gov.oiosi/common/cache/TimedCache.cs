@@ -93,7 +93,6 @@ namespace dk.gov.oiosi.common.cache {
             this.CreateExpiredCheckTask(frequencyInMinutes);
         }
 
-
         public TimedCache(IDictionary<string, string> configuration)
         {
             this.logger = LoggerFactory.Create(this.GetType());
@@ -141,7 +140,7 @@ namespace dk.gov.oiosi.common.cache {
             else
             {
                 // dafault value
-                this.logger.Info("The validityInMinutes/validityInHours was now defined for the TimeCache, default to '" + DEFAULT_FREQUENCY_IN_MINUTES + "' minutes.");
+                this.logger.Info("The validityInMinutes/validityInHours was now defined for the TimeCache, default to '" + DEFAULT_VALIDITY_IN_MINUTES + "' minutes.");
                 validityInMinutes = DEFAULT_VALIDITY_IN_MINUTES;
             }
 
