@@ -300,7 +300,6 @@
     <Content Include="RaspConfiguration.Test.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Licenses\RaspClientLicense.txt" />
     <Content Include="Resources\Licenses\RaspLicense.txt" />
     <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
