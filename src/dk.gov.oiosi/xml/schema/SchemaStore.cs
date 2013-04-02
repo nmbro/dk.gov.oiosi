@@ -80,7 +80,7 @@ namespace dk.gov.oiosi.xml.schema
 
             lock (lockObject)
             {
-                string key = documentType.RootNamespace;
+                string key = this.CacheKey(documentType);
                 if (cache.TryGetValue(key, out xmlSchemaSet))
                 {
                     // XmlSchemaSet found, returning the cached XmlSchemaSet
@@ -221,6 +221,13 @@ namespace dk.gov.oiosi.xml.schema
             {
                 throw new UnexpectedNamespaceException(documentNamespace, expectedNamespace);
             }
+        }
+
+        public string CacheKey(DocumentTypeConfig documentType)
+        {
+            string key = documentType.SchemaPath;// documentType.RootNamespace + "_" + documentType.RootName;
+
+            return key;
         }
     }
 }
