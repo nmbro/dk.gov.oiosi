@@ -37,7 +37,6 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
             // This is mutch faster, as not converstion between xml an string is performed
             string xmlDocumentAsString = oiosiMessage.MessageAsString;
             
-
             DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
 
             // Create the reply message (The body can be empty)
