@@ -472,7 +472,7 @@
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ApplicationResponseHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -1960,7 +1960,7 @@
         <RootName>CreditNote</RootName>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CreditNote-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_CreditNote.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/CreditNoteHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2208,7 +2208,7 @@
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Invoice-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2456,7 +2456,7 @@
         <RootName>Order</RootName>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Order-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2704,7 +2704,7 @@
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderCancellation-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderCancellationHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2952,7 +2952,7 @@
         <RootName>OrderResponse</RootName>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3200,7 +3200,7 @@
         <RootName>OrderChange</RootName>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderChange-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderChangeHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3448,7 +3448,7 @@
         <RootName>OrderResponseSimple</RootName>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseSimpleHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3696,7 +3696,7 @@
         <RootName>Reminder</RootName>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Reminder-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ReminderHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3944,7 +3944,7 @@
         <RootName>Statement</RootName>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Statement-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/StatementHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -4192,8 +4192,8 @@
         <RootName>UtilityStatement</RootName>
         <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOUBL_v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd</SchemaPath>
-        <StylesheetPath />
-        <Namespaces>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/UtilityStatementHTML.xsl</StylesheetPath>
+          <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:CommonAggregateComponents-2</Namespace>
             <Prefix>cac</Prefix>
