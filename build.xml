@@ -110,14 +110,14 @@
 			<property name="Configuration" value="Debug" />
 			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
 		</msbuild -->
-    <solution configuration="${configuration}" solutionfile="${VisualStudioSolution.file}">
+    <!-- solution configuration="${configuration}" solutionfile="${VisualStudioSolution.file}">
       <property name="Configuration" value="Release" />
       <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
-    </solution>
-    <!--msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+    </solution -->
+    <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
       <property name="Configuration" value="Release" />
       <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
-    </msbuild -->
+    </msbuild>
   </target>
   <target name="RunTests">
     <exec program="${teamcity.dotnet.nunitlauncher2.0}">
