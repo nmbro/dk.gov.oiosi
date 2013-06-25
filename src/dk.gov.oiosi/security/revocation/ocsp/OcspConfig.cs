@@ -130,7 +130,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 // and throw the latest exception
                 if (exceptions.Count > 0)
                 {
-                    throw exceptions[exceptions.Count];
+                    throw exceptions[exceptions.Count - 1];
                 }
                 else
                 {
