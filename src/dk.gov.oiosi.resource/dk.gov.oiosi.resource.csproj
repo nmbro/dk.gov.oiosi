@@ -346,7 +346,7 @@
     <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl">
+    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_UtilityStatement_Schematron.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">

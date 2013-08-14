@@ -507,7 +507,7 @@ namespace dk.gov.oiosi.raspProfile
             const string rootName = "UtilityStatement";
             const string rootNamespace = "urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2";
             const string xsdPath = "Resources/Schemas/OIOUBL_v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd";
-            const string xslPath = "Resources/Schematrons/OIOUTS_v2.1/OIOUBL_UtilityStatement_Schematron.xsl";
+            const string xslPath = "Resources/Schematrons/OIOUBL_v2.0/OIOUBL_UtilityStatement_Schematron.xsl";
             const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/UtilityStatementHTML.xsl";
             const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:PartyName/cbc:Name";

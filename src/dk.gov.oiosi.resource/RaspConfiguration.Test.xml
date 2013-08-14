@@ -4422,7 +4422,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUTS_v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL_v2.0/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>

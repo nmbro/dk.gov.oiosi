@@ -480,8 +480,8 @@
       <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\src\dk.gov.oiosi.resource\Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl">
-      <Link>Resources\Schematrons\OIOUTS_v2.1\OIOUBL_UtilityStatement_Schematron.xsl</Link>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_UtilityStatement_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_UtilityStatement_Schematron.xsl</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\src\dk.gov.oiosi.resource\Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
