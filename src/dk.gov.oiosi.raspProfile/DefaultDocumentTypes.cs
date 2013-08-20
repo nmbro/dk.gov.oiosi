@@ -759,7 +759,7 @@ namespace dk.gov.oiosi.raspProfile
             KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
             KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
 
-            KeyTypeMapping ovtMapping = new KeyTypeMapping("ISO 6523", "ovt");
+            KeyTypeMapping ovtMapping = new KeyTypeMapping("FI:OVT", "ovt");
 
             KeyTypeMapping vansMapping = new KeyTypeMapping("VANS", "vans");
 

@@ -96,7 +96,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -131,7 +131,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -226,7 +226,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -261,7 +261,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -356,7 +356,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -391,7 +391,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -486,7 +486,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -521,7 +521,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -616,7 +616,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -651,7 +651,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -746,7 +746,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
@@ -781,7 +781,7 @@
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                 </Mappings>
