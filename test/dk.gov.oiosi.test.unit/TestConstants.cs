@@ -59,6 +59,6 @@ namespace dk.gov.oiosi.test.unit
         public const string ITST_CERTIFICATE_SUBJECT = "CN=NemHandel Test 2 + SERIALNUMBER=CVR:26769388-DID:00000002, O=IT- og Telestyrelsen // CVR:26769388, C=DK";
 
 
-        public const string TESTEAN = "5798009811738";
+        public const string TESTEAN = "5798009811578";
     }
 }
