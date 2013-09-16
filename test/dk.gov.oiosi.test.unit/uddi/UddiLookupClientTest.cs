@@ -191,7 +191,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             var expectedIdentifierActual = TestConstants.TESTEAN;
             Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
 
-            var expectedExpirationDate = new DateTime(2030, 9, 9, 0, 0, 0);
+            var expectedExpirationDate = new DateTime(2039, 12, 31, 0, 59, 0);
             Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
 
             Assert.AreEqual(false, response.HasNewerVersion);
