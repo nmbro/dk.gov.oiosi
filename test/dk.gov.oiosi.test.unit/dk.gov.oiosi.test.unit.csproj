@@ -72,6 +72,7 @@
     <Compile Include="security\CertificateSubjectTest.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
     <Compile Include="security\oces\OcesX509CertificateTest.cs" />
+    <Compile Include="security\revocation\LookupTest.cs" />
     <Compile Include="security\RootCertificate.cs" />
     <Compile Include="security\revocation\CrlLookupTest.cs" />
     <Compile Include="security\revocation\OcspLookupTest.cs" />
@@ -143,6 +144,10 @@
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20131101.FOCES2%28revoked%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20131101.FOCES2%28revoked%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20150804.FOCES1.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20150804.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151025.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx">

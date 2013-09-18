@@ -82,8 +82,9 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }
 
-        [Test, ExpectedException(typeof(FaultException<DispositionReport>))]
-        public void LookingUpNonExistingServiceShouldReturnFault() {
+        [Test]
+        public void LookingUpNonExistingServiceShouldReturnZeroResponse()
+        {
             List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
             
             var lookupParameters = new LookupParameters(eanIdentifier, nonExistingServiceId, profileIds, acceptHttpProtocol);
