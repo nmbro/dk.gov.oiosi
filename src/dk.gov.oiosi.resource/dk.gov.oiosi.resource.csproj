@@ -56,6 +56,7 @@
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20120427.Test NemHandelservice.cer" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20111016.FOCES1.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20130307.FOCES1.pfx" />
+    <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20150804.FOCES1.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151025.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx" />
     <None Include="Resources\Certificates\Test\Medarbejdercertifikat\CVR30808460.Expire20091126.Test MOCES1 %28medarbejdercertificat 3%29%28Expired%29.pfx" />
