@@ -161,21 +161,21 @@
                 <include name="**/*"/>
             </fileset>
         </zip>
-        <!-- Source section -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
-            <fileset basedir="${Root.dir}">
-                <include name="**/*"/>
-                <exclude name="**/bin"/>
-                <exclude name="**/bin/**"/>
-                <exclude name="**/obj"/>
-                <exclude name="**/obj/**"/>
-                <exclude name="target/**"/>
-                <exclude name="*.resharper"/>
-                <exclude name="*.cache"/>
-                <exclude name="build.xml"/>
-                <exclude name="doc/*.doc"/>
-            </fileset>
-        </zip>
+        <!-- Source section: To be removed (SRC is not liked in SVN as tag  -->
+        <!--<zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">-->
+            <!--<fileset basedir="${Root.dir}">-->
+                <!--<include name="**/*"/>-->
+                <!--<exclude name="**/bin"/>-->
+                <!--<exclude name="**/bin/**"/>-->
+                <!--<exclude name="**/obj"/>-->
+                <!--<exclude name="**/obj/**"/>-->
+                <!--<exclude name="target/**"/>-->
+                <!--<exclude name="*.resharper"/>-->
+                <!--<exclude name="*.cache"/>-->
+                <!--<exclude name="build.xml"/>-->
+                <!--<exclude name="doc/*.doc"/>-->
+            <!--</fileset>-->
+        <!--</zip>-->
         <!-- Source with bin folder - input to help file -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
             <fileset basedir="${Root.dir}">
