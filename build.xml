@@ -143,21 +143,15 @@
                 <include name="**/*"/>
             </fileset>
         </zip>
-        <!-- Rasp profile library -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
-            <fileset basedir="${RaspProfile.dir}\bin\Release">
-                <include name="**/*"/>
-            </fileset>
-        </zip>
+        <!-- Rasp profile library: To be removed -->
+        <!--<zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">-->
+            <!--<fileset basedir="${RaspProfile.dir}\bin\Release">-->
+                <!--<include name="**/*"/>-->
+            <!--</fileset>-->
+        <!--</zip>-->
         <!-- XML shared library -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
             <fileset basedir="${Xml.dir}\bin\Release">
-                <include name="**/*"/>
-            </fileset>
-        </zip>
-        <!-- Rasp profile resources - input to msi -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
-            <fileset basedir="${RaspProfile.dir}\Resources">
                 <include name="**/*"/>
             </fileset>
         </zip>
@@ -176,11 +170,5 @@
                 <!--<exclude name="doc/*.doc"/>-->
             <!--</fileset>-->
         <!--</zip>-->
-        <!-- Source with bin folder - input to help file -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
-            <fileset basedir="${Root.dir}">
-                <include name="**/*"/>
-            </fileset>
-        </zip>
     </target>
 </project>
