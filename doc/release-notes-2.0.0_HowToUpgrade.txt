@@ -10,8 +10,10 @@ Steps
 
 2. Replace your old .dll files with the new .dll and .config files
 
-3. Update your RaspConfiguration.xml file - remember to adjust path to resources (schema + schematron files),
-   One thing has changed: <ConfigurationSection xsi:type="LdapSettings">/Host has changed to crtdir.certifikat.dk
+3. Update your RaspConfiguration.xml file - remember to:
+ - adjust path to resources (schema + schematron files)
+ - change ConfigurationSection "LdapSettings": Host has changed to crtdir.certifikat.dk
+ - add Oces2 root certificate in ConfigurationSection "RootCertificateCollectionConfig"
 
 That should be it..!
 
