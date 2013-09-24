@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="NemHandel" default="all">
     <property name="configuration" value="Release"/>
-    <property name="Version" value="2.0.2.0"/>
-    <property name="Revision" value="2.0.2.${build.number}"/>
+    <property name="Version" value="2.0.3.0"/>
+    <property name="Revision" value="2.0.3.${build.number}"/>
     <echo message="##teamcity[buildNumber '${Revision}']" />
 
     <property name="Dist.dir" value="target\dist"/>
