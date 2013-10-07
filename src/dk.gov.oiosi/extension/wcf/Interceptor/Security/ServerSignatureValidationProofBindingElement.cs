@@ -181,7 +181,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                                 }
                             default:
                                 {
-                                    throw new CertificateRevokedValidationFailedException("The certificate faild in revocation check - reason unknown.");
+                                    throw new CertificateRevokedValidationFailedException("The certificate failed in revocation check - reason unknown.");
                                     //break;
                                 }
                         }
