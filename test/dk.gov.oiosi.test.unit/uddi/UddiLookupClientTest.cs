@@ -77,7 +77,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             
             Assert.Greater(lookupResponses.Count, 0);
 
-            var expectedCertificateSubjectString = "SERIALNUMBER=CVR:34051178-FID:1359538750995 + CN=DIGST Demo endpoint (funktionscertifikat), O=Digitaliseringsstyrelsen // CVR:34051178, C=DK";
+            var expectedCertificateSubjectString = "OID.2.5.4.5=CVR:34051178-FID:1359538750995 + CN=DIGST Demo endpoint (funktionscertifikat), O=Digitaliseringsstyrelsen // CVR:34051178, C=DK";
             var actualCertificateSubjectString = lookupResponses[0].CertificateSubjectSerialNumber.SubjectString;
             Assert.AreEqual(expectedCertificateSubjectString, actualCertificateSubjectString);
         }
