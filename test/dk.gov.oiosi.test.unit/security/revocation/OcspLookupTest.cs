@@ -53,25 +53,27 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             }
         }
 
-        [Test]
-        public void LookupTestRevokedFoces1()
-        {
-            try
-            {
-                X509Certificate2 certificate = new X509Certificate2(LookupTest.foces1RevokedCertificate, "Test1234");
-                Assert.IsNotNull(certificate, "Test certificate was null.");
 
-                OcspLookup ocspLookup = this.CreateOcesLookup();                
-                RevocationResponse response = ocspLookup.CheckCertificate(certificate);
-                Assert.IsFalse(response.IsValid, "Certificate is not valid.");
-                Assert.IsNull(response.Exception, "The lookup return an exception.");
-                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
-            }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.ToString());
-            }
-        }
+        // Foces1 certificate is not used anymore - can not get a general foces1 that is revoked
+        //[Test]
+        //public void LookupTestRevokedFoces1()
+        //{
+        //    try
+        //    {
+        //        X509Certificate2 certificate = new X509Certificate2(LookupTest.foces1RevokedCertificate, "Test1234");
+        //        Assert.IsNotNull(certificate, "Test certificate was null.");
+
+        //        OcspLookup ocspLookup = this.CreateOcesLookup();                
+        //        RevocationResponse response = ocspLookup.CheckCertificate(certificate);
+        //        Assert.IsFalse(response.IsValid, "Certificate is not valid.");
+        //        Assert.IsNull(response.Exception, "The lookup return an exception.");
+        //        Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        Assert.Fail(exception.ToString());
+        //    }
+        //}
 
  
        /*
