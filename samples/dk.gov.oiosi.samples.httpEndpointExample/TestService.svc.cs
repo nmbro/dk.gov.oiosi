@@ -13,6 +13,8 @@ using dk.gov.oiosi.raspProfile.communication.service;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.common;
 using System.Xml;
+using System.Configuration;
+using dk.gov.oiosi.configuration;
 
 namespace dk.gov.oiosi.samples.httpEndpointExample
 {
@@ -40,7 +42,19 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
             DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
 
             // Create the reply message (The body can be empty)
-            string body = "Request was received " + DateTime.Now.ToString();
+            string responseText;
+            try
+            {
+                string version = ConfigurationHandler.Version;
+                responseText = ConfigurationManager.AppSettings["ResponseText"];
+                responseText = string.Format(responseText, DateTime.Now.ToString(), version);
+            }
+            catch(Exception ex)
+            {
+                responseText = "Request was received " + DateTime.Now.ToString();
+            }
+
+            string body = responseText;
             Message message = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, docTypeConfig.EndpointType.ReplyAction, body);
             
             return message;

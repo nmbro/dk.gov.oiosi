@@ -57,6 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
+      <Link>App_Data\RaspConfiguration.Live.xml</Link>
+    </Content>
     <Content Include="TestService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -67,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
+      <Project>{57C0192D-6D8F-4FDF-A349-B30CC5F96A67}</Project>
+      <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
       <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
       <Name>dk.gov.oiosi.Logging</Name>
@@ -79,9 +86,6 @@
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
       <Name>dk.gov.oiosi</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />-->
@@ -97,10 +101,10 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>80</DevelopmentServerPort>
-          <DevelopmentServerVPath>/integration/RASPNET/1.3.0/oces2</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/integration/RASPNET/1.3.0/oces2</IISUrl>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerVPath>/Oiosi/TestService.svc</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8080/Oiosi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
