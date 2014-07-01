@@ -318,7 +318,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         }
 
 
-        private RevocationResponse RevocationResponseOnline(X509Certificate2 serverX509Certificate2, X509Certificate2 issuerX509Certificate2)
+        public RevocationResponse RevocationResponseOnline(X509Certificate2 serverX509Certificate2, X509Certificate2 issuerX509Certificate2)
         {
             RevocationResponse revocationResponse = new RevocationResponse();
             try
@@ -699,7 +699,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             RevocationResponse revocationResponse = new RevocationResponse();
 
             //X509CertificateParser parser = null;
-            
+            //OcspRespStatus.Unauthorized
 
             switch (r.Status)
             {
@@ -850,7 +850,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             else
             {
                 // Note - The validation is still running, and is not closed
-
+                
                 // operation timeout
                 throw new CertificateRevokedTimeoutException(TimeSpan.FromMilliseconds(_configuration.DefaultTimeoutMsec));
             }

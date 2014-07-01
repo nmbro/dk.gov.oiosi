@@ -83,7 +83,7 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetDefaultLdapConfig() {
             LdapSettings ldapSettings = ConfigurationHandler.GetConfigurationSection<LdapSettings>();
             // Lookup for live OCES certificates
-            //ldapSettings.Host = "dir.certifikat.dk";
+            // ldapSettings.Host = "dir.certifikat.dk";
             ldapSettings.Host = "crtdir.certifikat.dk";
             ldapSettings.MaxResults = 1;
             ldapSettings.Port = 389;
@@ -98,6 +98,7 @@ namespace dk.gov.oiosi.raspProfile {
         public void SetTestCertificateDefaultLdapConfig() {
             LdapSettings ldapSettings = ConfigurationHandler.GetConfigurationSection<LdapSettings>();
             // Lookup for test OCES certificates
+            // ldapSettings.Host = "fenris.certifikat.dk";
             ldapSettings.Host = "crtdir.pp.certifikat.dk";
             ldapSettings.MaxResults = 1;
             ldapSettings.Port = 389;

@@ -65,8 +65,7 @@ using dk.gov.oiosi.logging;
                 //string document = oiosiMessage.MessageXml
                 XmlDocument document = oiosiMessage.MessageXml;
                 schemaValidatorWithLookup.Validate(document);
-                result = true;
-                
+                result = true;                
             }
 
             if (result && sendingOptionConfig.SchematronValidationBool)

@@ -38,7 +38,6 @@ using dk.gov.oiosi.common.cache;
 using Org.BouncyCastle.X509;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.logging;
-using dk.gov.oiosi.security.revocation.ocsp;
 
 namespace dk.gov.oiosi.security.revocation.crl
 {

@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -20,7 +21,7 @@
     </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -87,6 +88,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\AssemblyInfoFileVersion.cs">
+      <Link>Properties\AssemblyInfoFileVersion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\AssemblyInfoVersion.cs">
+      <Link>Properties\AssemblyInfoVersion.cs</Link>
+    </Compile>
     <Compile Include="addressing\IdentifierCpr.cs" />
     <Compile Include="addressing\IdentifierDuns.cs" />
     <Compile Include="addressing\IdentifierIban.cs" />
@@ -197,10 +207,10 @@
     <Compile Include="security\oces\OcesCertificateException.cs" />
     <Compile Include="security\oces\OcesCertificateSubjectKey.cs" />
     <Compile Include="security\oces\OcesX509CertificateConfig.cs" />
-    <Compile Include="security\revocation\crl\CertificateUtil.cs" />
     <Compile Include="security\revocation\crl\CrlInstance.cs" />
     <Compile Include="security\revocation\crl\CrlLookup.cs" />
     <Compile Include="security\InvalidOcesCertificateException.cs" />
+    <Compile Include="security\revocation\crl\CertificateUtil.cs" />
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\RootCertificateCollectionConfig.cs" />

@@ -95,6 +95,17 @@ namespace dk.gov.oiosi.raspProfile {
             // OIOUBL Utility
             AddMapping("Reference-Utility-1.0", "uddi:570b3009-3f9f-46d2-b533-31d0bb4a37a0");
             AddMapping("Reference-UtilityR-1.0", "uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6");
+
+            // New profiles in Schematron release 20140915
+            AddMapping("urn:www.cenbii.eu:profile:bii30:ver2.0", "uddi:nemhandel.dk:urn:www.cenbii.eu:profile:bii30:ver2.0");
+
+            AddMapping("Catalogue-CatPriUpd-1.0",  "uddi:nemhandel.dk:Catalogue-CatPriUpd-1.0");
+            AddMapping("Catalogue-CatPriUpdR-1.0", "uddi:nemhandel.dk:Catalogue-CatPriUpdR-1.0");
+            AddMapping("Procurement-OrdSim-1.0",  "uddi:nemhandel.dk:Procurement-OrdSim-1.0");
+            AddMapping("Procurement-OrdSimR-1.0", "uddi:nemhandel.dk:Procurement-OrdSimR-1.0");
+            
+            AddMapping("Procurement-TecRes-1.0", "uddi:nemhandel.dk:Procurement-TecRes-1.0");
+            AddMapping("Reference-Attachment-1.0", "uddi:nemhandel.dk:Reference-Attachment-1.0");
         }
 
         private void AddMapping(string name, string tModelGuid) {
