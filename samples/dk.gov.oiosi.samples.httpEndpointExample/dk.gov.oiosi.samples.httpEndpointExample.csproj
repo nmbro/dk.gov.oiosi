@@ -13,8 +13,8 @@
     <RootNamespace>dk.gov.oiosi.samples.httpEndpointExample</RootNamespace>
     <AssemblyName>dk.gov.oiosi.samples.httpEndpointExample</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileUpgradeFlags>0</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\VisualStudio\ITST.open.ebusiness\Reference Client\trunk\dk.gov.oiosi\Backup3\</UpgradeBackupLocation>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>D:\VisualStudio\ITST.open.ebusiness\Reference Client\trunk\dk.gov.oiosi\Backup\</UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

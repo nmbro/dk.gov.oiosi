@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="NemHandel" default="all">
-<!-- In order to user the msbuild element, the NAntContrib must be included -->
+    <!-- In order to user the msbuild element, the NAntContrib must be included -->
     <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
 	
 	<property name="Number_Major" value="2" />
