@@ -25,6 +25,7 @@ namespace dk.gov.oiosi.xml.validator {
         public void Validate(Stream source) {
             if (source == null) throw new ArgumentNullException("source");
             XmlReaderSettings settings = new XmlReaderSettings();
+                settings.ProhibitDtd = true;
             List<string> errors = new List<string>();
             ValidationEventHandler validationEventHandler = delegate(object sender, ValidationEventArgs e) { errors.Add(e.Message); };
             settings.ValidationEventHandler += new ValidationEventHandler(validationEventHandler);
@@ -34,6 +35,7 @@ namespace dk.gov.oiosi.xml.validator {
             while (reader.Read()) { }
             if (errors.Count > 0) throw new SchemaValidationFailedException("Schema validation failed with: " + errors[0]);
         }
+
 
         #endregion
 
