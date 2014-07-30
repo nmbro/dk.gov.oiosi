@@ -654,7 +654,10 @@ namespace dk.gov.oiosi.raspProfile
             const string documentName = "Forsendelsesadvis";
             const string rootName = "DespatchAdvice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1-PRD3/maindoc/UBL-DespatchAdvice-2.1.xsd";
+
+            // Note - We use version 2.1, even though the documentation state that the correct version is 2.1-PRD3.
+            //        We have ask PEPPOL, and they have stated, that the documentation is wrong
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
             const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_DespatchAdvice_Schematron.xsl";
             const string xslUIPath = "";
             const string destinationKeyXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID";
@@ -681,16 +684,16 @@ namespace dk.gov.oiosi.raspProfile
 
             DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, SCHEMATRON_ERROR_XPATH, SCHEMATRON_ERRORMESSAGE_XPATH, this.GetUblNamespaces());
 
-            // Add extra namespace
-            List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
-            namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
-            documentTypeConfig.Namespaces = namespaces.ToArray();
+            //// Add extra namespace - Schema issue fix in updating the schema
+            //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
+            //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
+            //documentTypeConfig.Namespaces = namespaces.ToArray();
 
             return documentTypeConfig;
         }
 
         ///// <summary>
-        ///// Settings for UBL AttachedDocument 2.1 PD4
+        ///// Settings for UBL AttachedDocument 2.1
         ///// </summary>
         ///// <returns>The document definition</returns>
         //public DocumentTypeConfig GetAttachedDocument()
@@ -699,7 +702,7 @@ namespace dk.gov.oiosi.raspProfile
         //    const string documentName = "Indlejret dokument";
         //    const string rootName = "AttachedDocument";
         //    const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2";
-        //    const string xsdPath = "Resources/Schemas/UBL_v2.1-PRD4/maindoc/UBL-AttachedDocument-2.1.xsd";
+        //    const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-AttachedDocument-2.1.xsd";
         //    const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_AttachedDocument_Schematron.xsl";
         //    const string xslUIPath = "";
         //    const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
