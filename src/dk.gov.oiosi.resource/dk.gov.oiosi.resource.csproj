@@ -470,6 +470,66 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Schemas\UBL_v2.1-PRD4\source.url" />
+    <None Include="Resources\Schemas\UBL_v2.1\common\CCTS_CCT_SchemaModule-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-CommonAggregateComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-CommonBasicComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-CommonExtensionComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-CommonSignatureComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-CoreComponentParameters-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-ExtensionContentDataType-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-QualifiedDataTypes-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-SignatureAggregateComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-SignatureBasicComponents-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-UnqualifiedDataTypes-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-XAdESv132-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-XAdESv141-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\common\UBL-xmldsig-core-schema-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Schemas\UBL_v2.1\maindoc\UBL-DespatchAdvice-2.1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="RaspConfiguration.Live.xml">

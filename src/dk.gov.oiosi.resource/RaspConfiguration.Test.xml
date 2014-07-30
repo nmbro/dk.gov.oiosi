@@ -4192,7 +4192,7 @@
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2</RootNamespace>
         <RootName>DespatchAdvice</RootName>
         <ServiceContractTModel>uddi:nemhandel.dk:DespatchAdvice-2</ServiceContractTModel>
-        <SchemaPath>Resources/Schemas/UBL_v2.1-PRD3/maindoc/UBL-DespatchAdvice-2.1.xsd</SchemaPath>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
           <PrefixedNamespace>
