@@ -37,29 +37,29 @@ namespace dk.gov.oiosi.test.unit.security.revocation
             }
         }
 
-        [Test]
-        public void LookupTestRevokedFoces1()
-        {
-            try
-            {
-                X509Certificate2 certificate = new X509Certificate2(LookupTest.foces1RevokedCertificate, "Test1234");
-                Assert.IsNotNull(certificate, "Test certificate was null.");
+        //[Test]
+        //public void LookupTestRevokedFoces1()
+        //{
+        //    try
+        //    {
+        //        X509Certificate2 certificate = new X509Certificate2(LookupTest.foces1RevokedCertificate, "Test1234");
+        //        Assert.IsNotNull(certificate, "Test certificate was null.");
 
-                CrlLookup crlLookup = new CrlLookup();
-                RevocationResponse response = crlLookup.CheckCertificate(certificate);
-                Assert.IsFalse(response.IsValid);
-                Assert.IsNull(response.Exception, "The lookup return an exception.");
-                Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
+        //        CrlLookup crlLookup = new CrlLookup();
+        //        RevocationResponse response = crlLookup.CheckCertificate(certificate);
+        //        Assert.IsFalse(response.IsValid);
+        //        Assert.IsNull(response.Exception, "The lookup return an exception.");
+        //        Assert.AreEqual(RevocationCheckStatus.CertificateRevoked, response.RevocationCheckStatus, "Not all check was performed.");
 
-                /*OcspLookup ocspLookup = new OcspLookup();
-                RevocationResponse ocspResponse = ocspLookup.CheckCertificate(certificate);
-                Assert.IsFalse(ocspResponse.IsValid);*/
-            }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.ToString());
-            }
-        }
+        //        /*OcspLookup ocspLookup = new OcspLookup();
+        //        RevocationResponse ocspResponse = ocspLookup.CheckCertificate(certificate);
+        //        Assert.IsFalse(ocspResponse.IsValid);*/
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        Assert.Fail(exception.ToString());
+        //    }
+        //}
 
         /*
          * Not the CRL job to check for expired certificate
