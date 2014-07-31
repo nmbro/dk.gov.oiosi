@@ -389,11 +389,89 @@
       <Link>Resources\Schemas\UBL_v2.0\maindoc\UBL-Waybill-2.0.xsd</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\CCTS_CCT_SchemaModule-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\CCTS_CCT_SchemaModule-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-CommonAggregateComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-CommonAggregateComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-CommonBasicComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-CommonBasicComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-CommonExtensionComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-CommonExtensionComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-CommonSignatureComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-CommonSignatureComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-CoreComponentParameters-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-CoreComponentParameters-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-ExtensionContentDataType-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-ExtensionContentDataType-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-QualifiedDataTypes-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-QualifiedDataTypes-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-SignatureAggregateComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-SignatureAggregateComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-SignatureBasicComponents-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-SignatureBasicComponents-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-UnqualifiedDataTypes-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-UnqualifiedDataTypes-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-XAdESv132-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-XAdESv132-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-XAdESv141-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-XAdESv141-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\common\UBL-xmldsig-core-schema-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\common\UBL-xmldsig-core-schema-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-DespatchAdvice-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-DespatchAdvice-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\readme.txt">
       <Link>Resources\Schemas\OIOXML_v0.7\readme.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl">
+      <Link>Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl</Link>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl</Link>

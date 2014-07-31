@@ -681,8 +681,9 @@ namespace dk.gov.oiosi.raspProfile
             ids.Add(xPathDiscriminatorConfig);
 
             // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection= this.GetUblNamespaces();
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, SCHEMATRON_ERROR_XPATH, SCHEMATRON_ERRORMESSAGE_XPATH, this.GetUblNamespaces());
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, SCHEMATRON_ERROR_XPATH, SCHEMATRON_ERRORMESSAGE_XPATH, prefixedNamespaceCollection);
 
             //// Add extra namespace - Schema issue fix in updating the schema
             //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
