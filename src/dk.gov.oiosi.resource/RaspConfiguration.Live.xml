@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.0.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.2.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
@@ -90,7 +90,6 @@
                   </Mapping>
                   <Mapping>
                     <Value>cpr</Value>
-
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -102,7 +101,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -193,7 +192,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -216,9 +215,6 @@
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath />
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -230,9 +226,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
-        <ProfileIdXPath>
-          <XPath />
-        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Invoice/com:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>7bd520d7-6ae5-4a3c-8604-082e69414092</Id>
@@ -333,7 +329,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -424,7 +420,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -447,9 +443,6 @@
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath />
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <IdentifierDiscriminators />
@@ -461,9 +454,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
-        <ProfileIdXPath>
-          <XPath />
-        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Invoice/com:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>40c9fbee-ad39-48ed-9e04-c28cbbf8a38c</Id>
@@ -472,7 +465,7 @@
         <RootName>ApplicationResponse</RootName>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_ApplicationResponse.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ApplicationResponseHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -576,7 +569,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -667,7 +660,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -712,6 +705,9 @@
         <ProfileIdXPath>
           <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:ApplicationResponse/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>68db0c6f-ec2c-44ad-b1c3-bdfae65ee5f0</Id>
@@ -824,7 +820,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -915,7 +911,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -960,6 +956,9 @@
         <ProfileIdXPath>
           <XPath>/root:Catalogue/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Catalogue/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>463984d1-4ba5-44d6-8903-565cc56dd4cb</Id>
@@ -1072,7 +1071,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1163,7 +1162,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1208,6 +1207,9 @@
         <ProfileIdXPath>
           <XPath>/root:CatalogueRequest/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CatalogueRequest/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>fb3034ea-eaaf-434b-8798-0433db497e66</Id>
@@ -1320,7 +1322,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1411,7 +1413,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1456,6 +1458,9 @@
         <ProfileIdXPath>
           <XPath>/root:CatalogueItemSpecificationUpdate/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CatalogueItemSpecificationUpdate/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>02092e85-c2e4-4bb2-b22d-3eec04007a36</Id>
@@ -1568,7 +1573,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1659,7 +1664,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1704,6 +1709,9 @@
         <ProfileIdXPath>
           <XPath>/root:CataloguePricingUpdate/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CataloguePricingUpdate/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>0efa1c48-b5e3-4eb8-bc5f-3fbd78daba10</Id>
@@ -1816,7 +1824,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1907,7 +1915,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -1952,6 +1960,9 @@
         <ProfileIdXPath>
           <XPath>/root:CatalogueDeletion/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CatalogueDeletion/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>a25f2c30-cb5b-404d-886a-9030621f7eea</Id>
@@ -1960,7 +1971,7 @@
         <RootName>CreditNote</RootName>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CreditNote-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_CreditNote.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/CreditNoteHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2064,7 +2075,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2155,7 +2166,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2200,6 +2211,9 @@
         <ProfileIdXPath>
           <XPath>/root:CreditNote/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CreditNote/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>c0220657-c101-4d7d-9670-c9463e1559d5</Id>
@@ -2208,7 +2222,7 @@
         <RootName>Invoice</RootName>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Invoice-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Invoice.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2312,7 +2326,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2403,7 +2417,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2448,6 +2462,9 @@
         <ProfileIdXPath>
           <XPath>/root:Invoice/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Invoice/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>5b84d1f6-f315-4a2c-a84d-095b10cc5a2c</Id>
@@ -2456,7 +2473,7 @@
         <RootName>Order</RootName>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Order-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Order.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2560,7 +2577,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2651,7 +2668,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2696,6 +2713,9 @@
         <ProfileIdXPath>
           <XPath>/root:Order/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Order/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>c4a09991-d038-4e51-bb06-2cdffe6c1b77</Id>
@@ -2704,7 +2724,7 @@
         <RootName>OrderCancellation</RootName>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderCancellation-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderCancellation.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderCancellationHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -2808,7 +2828,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2899,7 +2919,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -2944,6 +2964,9 @@
         <ProfileIdXPath>
           <XPath>/root:OrderCancellation/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:OrderCancellation/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>ba652e7d-e8bd-4926-8bd8-9e19a5ca23e6</Id>
@@ -2952,7 +2975,7 @@
         <RootName>OrderResponse</RootName>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponse-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponse.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3056,7 +3079,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3147,7 +3170,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3192,6 +3215,9 @@
         <ProfileIdXPath>
           <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:OrderResponse/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>0412fdc2-5f07-4e6f-a8fd-c0dc7d780dce</Id>
@@ -3200,7 +3226,7 @@
         <RootName>OrderChange</RootName>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderChange-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderChange.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderChangeHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3304,7 +3330,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3395,7 +3421,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3440,6 +3466,9 @@
         <ProfileIdXPath>
           <XPath>/root:OrderChange/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:OrderChange/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>c8577e35-7de6-49f6-926c-c061f5a7d1b6</Id>
@@ -3448,7 +3477,7 @@
         <RootName>OrderResponseSimple</RootName>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_OrderResponseSimple.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseSimpleHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3552,7 +3581,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3643,7 +3672,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3688,6 +3717,9 @@
         <ProfileIdXPath>
           <XPath>/root:OrderResponseSimple/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:OrderResponseSimple/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>b552710b-e4c2-44f6-a89e-1b158375b5f3</Id>
@@ -3696,7 +3728,7 @@
         <RootName>Reminder</RootName>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Reminder-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Reminder.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ReminderHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -3800,7 +3832,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3891,7 +3923,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -3936,6 +3968,9 @@
         <ProfileIdXPath>
           <XPath>/root:Reminder/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Reminder/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>76c4f0fa-e969-4360-9a04-8de3c675d4f2</Id>
@@ -3944,7 +3979,7 @@
         <RootName>Statement</RootName>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Statement-2.0.xsd</SchemaPath>
-        <StylesheetPath>Resources/UI/OIOUBL_v2.0/Stylesheets/OIOUBL_Statement.xsl</StylesheetPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/StatementHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -4048,7 +4083,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4139,7 +4174,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4184,6 +4219,9 @@
         <ProfileIdXPath>
           <XPath>/root:Statement/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Statement/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>eee3da84-27b7-4b37-81b1-cfb9d2942a00</Id>
@@ -4192,7 +4230,7 @@
         <RootName>UtilityStatement</RootName>
         <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOUBL_v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd</SchemaPath>
-        <StylesheetPath />
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/UtilityStatementHTML.xsl</StylesheetPath>
         <Namespaces>
           <PrefixedNamespace>
             <Namespace>urn:oioubl:names:specification:oioubl:schema:xsd:CommonAggregateComponents-2</Namespace>
@@ -4296,7 +4334,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4387,7 +4425,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4422,7 +4460,7 @@
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUTS_v2.1/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+          <SchematronDocumentPath>Resources/Schematrons/OIOUBL_v2.0/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
           <ErrorXPath>/Schematron/Error</ErrorXPath>
           <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
         </SchematronValidationConfig>
@@ -4432,6 +4470,9 @@
         <ProfileIdXPath>
           <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
         </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:UtilityStatement/cbc:ID</XPath>
+        </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>9e8b18e5-416e-4c41-9b9f-adadc3de6598</Id>
@@ -4465,10 +4506,6 @@
           <PrefixedNamespace>
             <Namespace>urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2</Namespace>
             <Prefix>root</Prefix>
-          </PrefixedNamespace>
-          <PrefixedNamespace>
-            <Namespace>http://www.w3.org/2000/09/xmldsig#</Namespace>
-            <Prefix>ds</Prefix>
           </PrefixedNamespace>
         </Namespaces>
         <EndpointType>
@@ -4548,7 +4585,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4639,7 +4676,7 @@
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>ISO 6523</Value>
+                    <Value>FI:OVT</Value>
                     <MapsTo>ovt</MapsTo>
                   </Mapping>
                   <Mapping>
@@ -4820,9 +4857,13 @@
         <Name>Reference-UtilityR-1.0</Name>
         <TModelGuid>uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6</TModelGuid>
       </ProfileMapping>
-	  <ProfileMapping>
+      <ProfileMapping>
         <Name>urn:www.cenbii.eu:profile:bii30:ver2.0</Name>
         <TModelGuid>uddi:nemhandel.dk:urn:www.cenbii.eu:profile:bii30:ver2.0</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Catalogue-CatPriUpd-1.0</Name>
+        <TModelGuid>uddi:nemhandel.dk:Catalogue-CatPriUpd-1.0</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatPriUpdR-1.0</Name>
@@ -4837,12 +4878,12 @@
         <TModelGuid>uddi:nemhandel.dk:Procurement-OrdSimR-1.0</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>Catalogue-CatPriUpd-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Catalogue-CatPriUpd-1.0</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>Procurement-TecRes-1.0</Name>
         <TModelGuid>uddi:nemhandel.dk:Procurement-TecRes-1.0</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>Reference-Attachment-1.0</Name>
+        <TModelGuid>uddi:nemhandel.dk:Reference-Attachment-1.0</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
@@ -4860,7 +4901,6 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -4916,7 +4956,7 @@
           <Value>10</Value>
         </Configuration>
         <Configuration>
-          <Key>frequencyInMinutes</Key>
+          <Key>validityTimeInMinutes</Key>
           <Value>10</Value>
         </Configuration>
         <Configuration>
@@ -5055,7 +5095,7 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>4b 8e 60 03</SerialNumber>
+        <SerialNumber>4b8e6003</SerialNumber>
         <Description>TRUST2408 OCES Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
