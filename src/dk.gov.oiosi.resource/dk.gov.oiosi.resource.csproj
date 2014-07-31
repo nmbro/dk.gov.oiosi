@@ -375,56 +375,26 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Licenses\RaspLicense.txt" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_ApplicationResponse_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_AttachedDocument_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CatalogueDeletion_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CataloguePricingUpdate_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CatalogueRequest_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Catalogue_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CreditNote_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_ApplicationResponse_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueDeletion_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CatalogueRequest_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Catalogue_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_CreditNote_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Invoice_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderCancellation_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderChange_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponseSimple_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_OrderResponse_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Order_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Reminder_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_Statement_Schematron.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\OIOUBL_v2.0\OIOUBL_UtilityStatement_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderCancellation_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderChange_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderResponseSimple_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderResponse_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Order_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Reminder_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Statement_Schematron.xsl" />
+    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_UtilityStatement_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
