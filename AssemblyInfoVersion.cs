@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 
 // We use the format: major.minor.patch. Must be automatic updated by the build server
-[assembly: AssemblyVersion("2.0.3.0")]
+[assembly: AssemblyVersion("2.0.3")]
 
 // right-click -> properties -> Product Version. Must be automatic updated by the build server
 [assembly: AssemblyInformationalVersionAttribute("2.0.3 DEV")]

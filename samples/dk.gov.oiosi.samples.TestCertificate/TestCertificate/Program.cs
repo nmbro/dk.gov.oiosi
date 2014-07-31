@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.samples
             // specifie the subject to test
             // Production certificates valid
             // subject = "CN = NemHandel test service (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1200406941690, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
-            // subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
+             //subject = "SERIALNUMBER=CVR:30808460-FID:1320135775022 + CN=TEST FOCES1 (funktionscertifikat), O=DANID A/S // CVR:30808460, C=DK";
             
             // Production certificates not valid
 
@@ -59,16 +59,18 @@ namespace dk.gov.oiosi.samples
             //
             // Test certificates valid
             // subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
-            // subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
+            //subject = "CN = Testendpoint (funktionscertifikat) + SERIALNUMBER = CVR:26769388-FID:1208430425605, O = IT- og Telestyrelsen // CVR:26769388, C = DK";
             // Test certificates not valid
-            // subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
+             //subject = "CN = TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
             // subject = "CN=Navision (funktionscertifikat) + OID.2.5.4.5=CVR:23267519-FID:1257424251148, O=TIETGENSKOLEN // CVR:23267519, C=DK";
-            // subject = "CN = TEST FOCES1 (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
+            //subject = "CN = TEST FOCES1 (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:1320135775022, O = DANID A/S // CVR:30808460, C = DK";
             // not valid any more
-            // subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
+             //subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER = CVR:30808460-FID:94731315, O = Danid A/S // CVR:30808460, C = DK";
             // subject = "CN=TU GENEREL FOCES gyldig (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:94731315, O=Danid A/S // CVR:30808460, C=DK";
             // subject = "CN=FOCES1 (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:1255692730737, O=DANID A/S // CVR:30808460, C=DK";
             // subject = "CN=TU GENEREL MOCES gyldig + SERIALNUMBER=CVR:30808460-RID:45490598, O=Danid A/S // CVR:30808460, C=DK";
+
+            subject = "SERIALNUMBER=CVR:15231599-FID:1299510243552 + CN=CSC Nemhandel (funktionscertifikat), O=CSC DANMARK // CVR:15231599, C=DK";
 
             // Now - retrive the certificate in LDAP, if the certificate is pressen...
             CertificateSubject certificateSubject = new CertificateSubject(subject);
