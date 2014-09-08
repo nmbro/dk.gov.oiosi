@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis Sï¿½gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -66,13 +66,13 @@ namespace dk.gov.oiosi.raspProfile
             this.Add(this.GetInvoiceV07);
             this.Add(this.GetCreditNoteV07);
 
-            // Læs ind
+            // Lï¿½s ind
             //this.Add(this.GetScanInvoiceV07);
             //this.Add(this.GetScanCreditNoteV07);
 
             this.Add(this.GetApplicationResponse);               // Applikationsmeddelelse
             this.Add(this.GetCatalogue);                         // Katalog
-            this.Add(this.GetCatalogueRequest);                  // Katalogforespørgsel
+            this.Add(this.GetCatalogueRequest);                  // Katalogforespï¿½rgsel
             this.Add(this.GetCatalogueItemSpecificationUpdate);  // Opdatering af katalogelement
             this.Add(this.GetCataloguePricingUpdate);            // Opdatering af katalogpriser
             this.Add(this.GetCatalogueDeletion);                 // Sletning af katalog
@@ -80,9 +80,9 @@ namespace dk.gov.oiosi.raspProfile
             this.Add(this.GetInvoice);                           // Faktura
             this.Add(this.GetOrder);                             // Ordre
             this.Add(this.GetOrderCancellation);                 // Ordreannulering
-            this.Add(this.GetOrderResponse);                     // Ordrebekræftelse
-            this.Add(this.GetOrderChange);                       // Ordreændring
-            this.Add(this.GetOrderResponseSimple);               // Simpel ordrebekræftelse
+            this.Add(this.GetOrderResponse);                     // Ordrebekrï¿½ftelse
+            this.Add(this.GetOrderChange);                       // Ordreï¿½ndring
+            this.Add(this.GetOrderResponseSimple);               // Simpel ordrebekrï¿½ftelse
             this.Add(this.GetReminder);                          // Rykker
             this.Add(this.GetStatement);                         // KontoUdtog
             this.Add(this.GetUtilityStatement);                  // Forsynings specifikation
@@ -235,7 +235,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetCatalogueRequest()
         {
             const string id = "463984d1-4ba5-44d6-8903-565cc56dd4cb";
-            const string documentName = "Katalogforespørgsel";
+            const string documentName = "Katalogforespï¿½rgsel";
             const string rootName = "CatalogueRequest";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueRequest-2.0.xsd";
@@ -371,7 +371,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetOrderChange()
         {
             const string id = "0412fdc2-5f07-4e6f-a8fd-c0dc7d780dce";
-            const string documentName = "Ordreændring";
+            const string documentName = "Ordreï¿½ndring";
             const string rootName = "OrderChange";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderChange-2.0.xsd";
@@ -399,7 +399,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetOrderResponse()
         {
             const string id = "ba652e7d-e8bd-4926-8bd8-9e19a5ca23e6";
-            const string documentName = "Ordrebekræftelse";
+            const string documentName = "Ordrebekrï¿½ftelse";
             const string rootName = "OrderResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponse-2.0.xsd";
@@ -426,7 +426,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetOrderResponseSimple()
         {
             const string id = "c8577e35-7de6-49f6-926c-c061f5a7d1b6";
-            const string documentName = "Simpel ordrebekræftelse";
+            const string documentName = "Simpel ordrebekrï¿½ftelse";
             const string rootName = "OrderResponseSimple";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd";
@@ -572,7 +572,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetScanInvoiceV07()
         {
             const string id = "ef6f9602-7752-40a0-8b95-15440686c491";
-            const string documentName = "Faktura v0.7 - Læs ind";
+            const string documentName = "Faktura v0.7 - Lï¿½s ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pip/";
             const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pipStrict.xsd";
@@ -624,7 +624,7 @@ namespace dk.gov.oiosi.raspProfile
         public DocumentTypeConfig GetScanCreditNoteV07()
         {
             const string id = "d430da7c-b4fd-4ac2-bd08-3ae77d680ffa";
-            const string documentName = "Kreditnota v0.7 - Læs ind";
+            const string documentName = "Kreditnota v0.7 - Lï¿½s ind";
             const string rootName = "Invoice";
             const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
             const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcpStrict.xsd";
@@ -671,7 +671,7 @@ namespace dk.gov.oiosi.raspProfile
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
 
-            const string SCHEMATRON_ERROR_XPATH = "schematron-output/failed-assert[@flag='fatal']";
+            const string SCHEMATRON_ERROR_XPATH = "schematron-output/failed-assert";
             const string SCHEMATRON_ERRORMESSAGE_XPATH = "schematron-output/failed-assert/text";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();

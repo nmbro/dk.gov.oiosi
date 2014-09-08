@@ -4712,7 +4712,7 @@
         </IdentifierDiscriminators>
         <SchematronValidationConfig>
           <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_DespatchAdvice_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>schematron-output/failed-assert[@flag='fatal']</ErrorXPath>
+          <ErrorXPath>schematron-output/failed-assert</ErrorXPath>
           <ErrorMessageXPath>schematron-output/failed-assert/text</ErrorMessageXPath>
         </SchematronValidationConfig>
         <CustomHeaderConfiguration>
