@@ -63,7 +63,7 @@ namespace dk.gov.oiosi.test.unit.xml.documentType {
 
         [Test]
         public void SearchForCatalogueRequestTest() {
-            AssertFindDocument("Katalogforespørgsel", TestConstants.PATH_CATALOGUEREQUEST_XML);
+            AssertFindDocument("KatalogforespÃ¸rgsel", TestConstants.PATH_CATALOGUEREQUEST_XML);
         }
 
         [Test]
@@ -87,17 +87,17 @@ namespace dk.gov.oiosi.test.unit.xml.documentType {
 
         [Test]
         public void SearchForOrderChangeTest() {
-            AssertFindDocument("Ordreændring", TestConstants.PATH_ORDERCHANGE_XML);
+            AssertFindDocument("OrdreÃ¦ndring", TestConstants.PATH_ORDERCHANGE_XML);
         }
 
         [Test]
         public void SearchForOrderResponseTest() {
-            AssertFindDocument("Ordrebekræftelse", TestConstants.PATH_ORDERRESPONSE_XML);
+            AssertFindDocument("OrdrebekrÃ¦ftelse", TestConstants.PATH_ORDERRESPONSE_XML);
         }
 
         [Test]
         public void SearchForOrderResponseSimpleTest() {
-            AssertFindDocument("Simpel ordrebekræftelse", TestConstants.PATH_ORDERRESPONSESIMPLE_XML);
+            AssertFindDocument("Simpel ordrebekrÃ¦ftelse", TestConstants.PATH_ORDERRESPONSESIMPLE_XML);
         }
 
         [Test]
