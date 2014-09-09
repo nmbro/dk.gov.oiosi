@@ -59,15 +59,17 @@
     <Compile Include="communication\IRaspRequest.cs" />
     <Compile Include="communication\RaspRequest.cs" />
     <Compile Include="communication\service\RaspServiceImplementation.cs" />
-    <Compile Include="DefaultRevocationCrlConfig.cs" />
-    <Compile Include="DefaultRevocationOcspConfig.cs" />
-    <Compile Include="DefaultSendingOptionConfig.cs" />
     <Compile Include="DefaultCacheConfig.cs" />
     <Compile Include="DefaultDocumentTypes.cs" />
     <Compile Include="DefaultLdapConfig.cs" />
     <Compile Include="DefaultOcesCertificate.cs" />
+    <Compile Include="DefaultProfileMappingConfig.cs" />
     <Compile Include="DefaultRevocationConfig.cs" />
+    <Compile Include="DefaultRevocationCrlConfig.cs" />
+    <Compile Include="DefaultRevocationOcspConfig.cs" />
     <Compile Include="DefaultRootCertificateCollectionConfig.cs" />
+    <Compile Include="DefaultSchematronConfig.cs" />
+    <Compile Include="DefaultSendingOptionConfig.cs" />
     <Compile Include="DefaultUddiConfig.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingExtensionElement.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingElement.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ServerPartyIdentifierHeaderBindingExtensionElement.cs" />
     <Compile Include="extension\wcf\RaspServiceHostFactory.cs" />
-    <Compile Include="DefaultProfileMappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

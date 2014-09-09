@@ -644,54 +644,54 @@ namespace dk.gov.oiosi.raspProfile
         }
 		
 		
-        /// <summary>
-        /// Settings for UBL DespatchAdvice 2.1 - PD2
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public DocumentTypeConfig GetDespatchAdvice()
-        {
-            const string id = "9e8b18e5-416e-4c41-9b9f-adadc3de6598";
-            const string documentName = "Forsendelsesadvis";
-            const string rootName = "DespatchAdvice";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2";
+        ///// <summary>
+        ///// Settings for UBL DespatchAdvice 2.1 -
+        ///// </summary>
+        ///// <returns>The document definition</returns>
+        //public DocumentTypeConfig GetDespatchAdvice()
+        //{
+        //    const string id = "9e8b18e5-416e-4c41-9b9f-adadc3de6598";
+        //    const string documentName = "Forsendelsesadvis";
+        //    const string rootName = "DespatchAdvice";
+        //    const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2";
 
-            // Note - We use version 2.1, even though the documentation state that the correct version is 2.1-PRD3.
-            //        We have ask PEPPOL, and they have stated, that the documentation is wrong
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
-            const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_DespatchAdvice_Schematron.xsl";
-            const string xslUIPath = "";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceResponse";
-            const string serviceContractTModel = "uddi:nemhandel.dk:DespatchAdvice-2";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+        //    // Note - We use version 2.1, even though the documentation state that the correct version is 2.1-PRD3.
+        //    //        We have ask PEPPOL, and they have stated, that the documentation is wrong
+        //    const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
+        //    const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_DespatchAdvice_Schematron.xsl";
+        //    const string xslUIPath = "";
+        //    const string destinationKeyXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID";
+        //    const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+        //    const string senderKeyXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID";
+        //    const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+        //    const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+        //    const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest";
+        //    const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceResponse";
+        //    const string serviceContractTModel = "uddi:nemhandel.dk:DespatchAdvice-2";
+        //    const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
 
-            const string SCHEMATRON_ERROR_XPATH = "schematron-output/failed-assert";
-            const string SCHEMATRON_ERRORMESSAGE_XPATH = "schematron-output/failed-assert/text";
+        //    const string SCHEMATRON_ERROR_XPATH = "schematron-output/failed-assert";
+        //    const string SCHEMATRON_ERRORMESSAGE_XPATH = "schematron-output/failed-assert/text";
 
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
+        //    XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+        //    string expectedResult = "urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0";
+        //    string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+        //    XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+        //    ids.Add(xPathDiscriminatorConfig);
 
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection= this.GetUblNamespaces();
+        //    // more XPathDiscriminatorConfig ???
+        //    List<PrefixedNamespace> prefixedNamespaceCollection= this.GetUblNamespaces();
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, SCHEMATRON_ERROR_XPATH, SCHEMATRON_ERRORMESSAGE_XPATH, prefixedNamespaceCollection);
+        //    DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, SCHEMATRON_ERROR_XPATH, SCHEMATRON_ERRORMESSAGE_XPATH, prefixedNamespaceCollection);
 
-            //// Add extra namespace - Schema issue fix in updating the schema
-            //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
-            //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
-            //documentTypeConfig.Namespaces = namespaces.ToArray();
+        //    //// Add extra namespace - Schema issue fix in updating the schema
+        //    //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
+        //    //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
+        //    //documentTypeConfig.Namespaces = namespaces.ToArray();
 
-            return documentTypeConfig;
-        }
+        //    return documentTypeConfig;
+        //}
 
         ///// <summary>
         ///// Settings for UBL AttachedDocument 2.1
