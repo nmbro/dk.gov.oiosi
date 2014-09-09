@@ -68,7 +68,6 @@
     <Compile Include="DefaultRevocationCrlConfig.cs" />
     <Compile Include="DefaultRevocationOcspConfig.cs" />
     <Compile Include="DefaultRootCertificateCollectionConfig.cs" />
-    <Compile Include="DefaultSchematronConfig.cs" />
     <Compile Include="DefaultSendingOptionConfig.cs" />
     <Compile Include="DefaultUddiConfig.cs" />
     <Compile Include="extension\wcf\Interceptor\CustomHeader\ClientPartyIdentifierHeaderBindingElement.cs" />
