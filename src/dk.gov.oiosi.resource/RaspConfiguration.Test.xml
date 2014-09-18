@@ -4479,7 +4479,7 @@
         <FriendlyName>Forsendelsesadvis</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2</RootNamespace>
         <RootName>DespatchAdvice</RootName>
-        <ServiceContractTModel>uddi:nemhandel.dk:DespatchAdvice-2</ServiceContractTModel>
+        <ServiceContractTModel>uddi:96dbec86-aa58-4f1e-ae03-ebb13079ce61</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd</SchemaPath>
         <StylesheetPath />
         <Namespaces>
@@ -4829,18 +4829,18 @@
         <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
         <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
       </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
-        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
-      </ProfileMapping>
+            <!--<ProfileMapping>-->
+            <!--<Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>-->
+            <!--<TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>-->
+            <!--</ProfileMapping>-->
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
         <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
       </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
-        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
-      </ProfileMapping>
+            <!--<ProfileMapping>-->
+            <!--<Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>-->
+            <!--<TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>-->
+            <!--</ProfileMapping>-->
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
         <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
@@ -4859,31 +4859,31 @@
       </ProfileMapping>
       <ProfileMapping>
         <Name>urn:www.cenbii.eu:profile:bii30:ver2.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:urn:www.cenbii.eu:profile:bii30:ver2.0</TModelGuid>
+                <TModelGuid>uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatPriUpd-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Catalogue-CatPriUpd-1.0</TModelGuid>
+                <TModelGuid>uddi:a7f4c627-d459-4ef2-a132-fc6df0971db1</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatPriUpdR-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Catalogue-CatPriUpdR-1.0</TModelGuid>
+                <TModelGuid>uddi:fc5313f8-19e0-408b-85ca-87c364f2a41c</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-OrdSim-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Procurement-OrdSim-1.0</TModelGuid>
+                <TModelGuid>uddi:5f2d93a7-bdb7-4543-b667-ba71192e5c5f</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-OrdSimR-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Procurement-OrdSimR-1.0</TModelGuid>
+                <TModelGuid>uddi:7fe5938c-1b3a-403c-8155-039b49a06cef</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-TecRes-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Procurement-TecRes-1.0</TModelGuid>
+                <TModelGuid>uddi:ce80ccce-3ef9-47ea-8cf4-120913a87dc2</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-Attachment-1.0</Name>
-        <TModelGuid>uddi:nemhandel.dk:Reference-Attachment-1.0</TModelGuid>
+                <TModelGuid>uddi:10faffb1-1303-485e-924a-e8b551f31949</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
