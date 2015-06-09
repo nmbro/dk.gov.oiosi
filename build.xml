@@ -4,8 +4,8 @@
     <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
 	
 	<property name="Number_Major" value="2" />
-	<property name="Number_Minor" value="0" />
-	<property name="Number_Patch" value="3" />
+	<property name="Number_Minor" value="1" />
+	<property name="Number_Patch" value="0" />
 	
 	<!-- Should be Dev, and the build server set it to Prod -->
 	<property name="buildType" value="Prod" />
