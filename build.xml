@@ -13,7 +13,13 @@
     ./test/dk.gov.oiosi.test.unit/App.config
     ./test/dk.gov.oiosi.test.request/App.Config
     ./test/dk.gov.oiosi.test.integration/App.Config
-    ./
+    
+    Udover disse file, kan/vil det være 'smart' at opdater NHK også, hvis den skal releases med den nyester version af RASP
+    nrk/src/dk.gov.oiosi.client.ui/App.Config
+    nrk/lib/dk.gov.oiosi.verify/dk.gov.oiosi.verify.Console.exe.config
+    
+    Samt opdater check toolet (hvis der skal releases en ny version af NHK'en).
+    checkTool/...?
   -->
   
 	<!-- Should be Dev, and the build server set it to Prod -->
