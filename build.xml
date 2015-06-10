@@ -6,7 +6,16 @@
 	<property name="Number_Major" value="2" />
 	<property name="Number_Minor" value="1" />
 	<property name="Number_Patch" value="0" />
-	
+	<!-- When updating the version number, remember to update theses files.
+      They have a reference to the actual version, almost at the end of the file.
+      The number should be like this (note, it must end with '.0').
+        <Number_Major>.<Number_Minor>.<Number_Patch>.0
+    ./test/dk.gov.oiosi.test.unit/App.config
+    ./test/dk.gov.oiosi.test.request/App.Config
+    ./test/dk.gov.oiosi.test.integration/App.Config
+    ./
+  -->
+  
 	<!-- Should be Dev, and the build server set it to Prod -->
 	<property name="buildType" value="Prod" />
 	
