@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -33,19 +33,20 @@
   */
 
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Xsl;
 using dk.gov.oiosi.communication.configuration;
+using dk.gov.oiosi.logging;
 using dk.gov.oiosi.xml.documentType;
 using dk.gov.oiosi.xml.schematron;
-using dk.gov.oiosi.logging;
 
-namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
-
+namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron
+{
     /// <summary>
     /// Schematron validator with lookup
     /// </summary>
-    public class SchematronValidatorWithLookup 
+    public class SchematronValidatorWithLookup
     {
         private DocumentTypeConfigSearcher searcher;
         private ILogger logger;
@@ -53,7 +54,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// <summary>
         /// Constructor
         /// </summary>
-        public SchematronValidatorWithLookup() {
+        public SchematronValidatorWithLookup()
+        {
             this.searcher = new DocumentTypeConfigSearcher();
             this.logger = LoggerFactory.Create(this.GetType());
         }
@@ -63,7 +65,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
         /// </summary>
         /// <param name="document">the document to validate</param>
         [Obsolete("It is much faster to use Validate(string documentAsString)", false)]
-        public void Validate(XmlDocument document) {
+        public void Validate(XmlDocument document)
+        {
             try
             {
                 this.logger.Trace("SchematronValidation");
@@ -73,11 +76,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
                 }
 
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(document);
-                SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
                 SchematronStore store = new SchematronStore();
-                XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
-                SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
-                validator.SchematronValidateXmlDocument(document, compiledStylesheet);
+                SchematronValidationConfig[] schematronValidationConfigCollection = documentType.SchematronValidationConfigs;
+                foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+                {
+                    XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
+                    validator.SchematronValidateXmlDocument(document, compiledStylesheet);
+                }
             }
             catch (SchematronErrorException ex)
             {
@@ -105,18 +111,19 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron {
                     throw new SchematronValidationInterceptionEmptyBodyException();
                 }
 
-
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(documentAsString);
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(xmlDoc);
 
+                SchematronValidationConfig[] schematronValidationConfigCollection = documentType.SchematronValidationConfigs;
+                foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+                {
+                    SchematronStore store = new SchematronStore();
+                    XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
 
-                SchematronValidationConfig schematronValidationConfig = documentType.SchematronValidationConfig;
-                SchematronStore store = new SchematronStore();
-                XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
-                SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
-
-                validator.SchematronValidateXmlDocument(documentAsString, compiledStylesheet);
+                    validator.SchematronValidateXmlDocument(documentAsString, compiledStylesheet);
+                }
             }
             catch (SchematronErrorException ex)
             {

@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,6 +30,8 @@
   *   Christian Lanng, ITST
   *
   */
+
+using System;
 using System.Xml.Serialization;
 
 namespace dk.gov.oiosi.communication.configuration
@@ -42,23 +44,28 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// XPath expression to where the Profile Id can be found in an UBL document
         /// </summary>
-        [XmlElement("XPath")]
+		[XmlElement("XPath")]
         public string XPath
         {
             get { return _xPath; }
             set { _xPath = value; }
         }
-        private string _xPath = "";
+
+        private string _xPath = string.Empty;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProfileIdXPath() { }
+        public ProfileIdXPath()
+        {
+        }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="xPath">XPath expression to where the friendly name can be found in an UBL document</param>
+        /// <param name="xPath">
+        /// XPath expression to where the friendly name can be found in an UBL document
+        /// </param>
         public ProfileIdXPath(string xPath)
         {
             _xPath = xPath;
@@ -70,27 +77,31 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// XPath expression to where the Profile Id can be found in an UBL document
         /// </summary>
-        [XmlElement("XPath")]
+		[XmlElement("XPath")]
         public string XPath
         {
             get { return _xPath; }
             set { _xPath = value; }
         }
-        private string _xPath = "";
+
+        private string _xPath = string.Empty;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public DocumentIdXPath() { }
+        public DocumentIdXPath()
+        {
+        }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="xPath">XPath expression to where the friendly name can be found in an UBL document</param>
+        /// <param name="xPath">
+        /// XPath expression to where the friendly name can be found in an UBL document
+        /// </param>
         public DocumentIdXPath(string xPath)
         {
             _xPath = xPath;
         }
     }
-
 }

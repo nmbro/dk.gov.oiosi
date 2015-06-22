@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -55,7 +55,7 @@ namespace dk.gov.oiosi.communication.configuration
         private string _stylesheetPath = "";
         private string _xsltTransformStylesheetPath = "";
         private Guid _id;
-        private SchematronValidationConfig _schematronValidationConfig = new SchematronValidationConfig();
+        private List<SchematronValidationConfig> _schematronValidationConfigCollection = new List<SchematronValidationConfig>();
         private List<PrefixedNamespace> _namespaces = new List<PrefixedNamespace>();
         private DocumentEndpointInformation _endpointType = new DocumentEndpointInformation();
         private XpathDiscriminatorConfigCollection _identifierDiscriminators = new XpathDiscriminatorConfigCollection();
@@ -66,11 +66,12 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// Constructor
         /// </summary>
-        public DocumentTypeConfig() { }
+        public DocumentTypeConfig()
+        {
+        }
 
         /// <summary>
-        /// Constructor that only takes the parameters to uniquely identify
-        /// the document type.
+        /// Constructor that only takes the parameters to uniquely identify the document type.
         /// </summary>
         /// <param name="rootName"></param>
         /// <param name="rootNamespace"></param>
@@ -91,8 +92,7 @@ namespace dk.gov.oiosi.communication.configuration
         }
 
         /// <summary>
-        /// Constructor that only takes the parameters to uniquely identify
-        /// the document type.
+        /// Constructor that only takes the parameters to uniquely identify the document type.
         /// </summary>
         /// <param name="rootName"></param>
         /// <param name="rootNamespace"></param>
@@ -133,13 +133,14 @@ namespace dk.gov.oiosi.communication.configuration
             string friendlyName,
             string rootName,
             string rootNamespace,
+
             string schemaPath,
             string stylesheetPath,
             string serviceContractTModel,
             string xsltTransformStylesheetPath,
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
-            SchematronValidationConfig schematronValidationConfig,
+            List<SchematronValidationConfig> schematronValidationConfigCollection,
             ProfileIdXPath profileIdXPath,
             DocumentIdXPath documentIdXPath
             )
@@ -151,7 +152,7 @@ namespace dk.gov.oiosi.communication.configuration
             if (serviceContractTModel == null) throw new NullArgumentException("serviceContractTModel");
             if (xsltTransformStylesheetPath == null) throw new NullArgumentException("xsltTransformStylesheetPath");
             if (endpointType == null) throw new NullArgumentException("endpointType");
-            if (schematronValidationConfig == null) throw new NullArgumentException("schematronValidationConfig");
+            if (schematronValidationConfigCollection == null) throw new NullArgumentException("schematronValidationConfigs");
 
             _friendlyName = friendlyName;
             _schemaPath = schemaPath;
@@ -159,7 +160,7 @@ namespace dk.gov.oiosi.communication.configuration
             _serviceContractTModel = serviceContractTModel;
             _xsltTransformStylesheetPath = xsltTransformStylesheetPath;
             _endpointType = endpointType;
-            _schematronValidationConfig = schematronValidationConfig;
+            this._schematronValidationConfigCollection = schematronValidationConfigCollection;
             _profileIdXPath = profileIdXPath;
             _documentIdXPath = documentIdXPath;
         }
@@ -205,16 +206,22 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="friendlyName">Friendly name of the document type e.g. for use in the UI</param>
+        /// <param name="friendlyName">
+        /// Friendly name of the document type e.g. for use in the UI
+        /// </param>
         /// <param name="rootName">The name of the document root element</param>
         /// <param name="rootNamespace">The namespace of the document root element</param>
         /// <param name="schemaPath">Path to the schema used for validating this document type</param>
-        /// <param name="stylesheetPath">Path to the stylesheet used for displaying documents of this type</param>
+        /// <param name="stylesheetPath">
+        /// Path to the stylesheet used for displaying documents of this type
+        /// </param>
         /// <param name="serviceContractTModel">The Service contract TModel, used for UDDI lookups</param>
         /// <param name="xsltTransformStylesheetPath">Pthe to the xslt stylesheet</param>
         /// <param name="namespaces">Namespaces used by the document.</param>
         /// <param name="endpointType">Definition of a RASP endpoint type</param>
-        /// <param name="identifierDiscriminators">XPath discriminators used for aditionel identification of document type</param>
+        /// <param name="identifierDiscriminators">
+        /// XPath discriminators used for aditionel identification of document type
+        /// </param>
         /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
         /// <param name="profileIdXPath">Xpath expression</param>
         public DocumentTypeConfig(
@@ -229,13 +236,13 @@ namespace dk.gov.oiosi.communication.configuration
             List<PrefixedNamespace> namespaces,
             DocumentEndpointInformation endpointType,
             XpathDiscriminatorConfigCollection identifierDiscriminators,
-            SchematronValidationConfig schematronValidationConfig,
+            List<SchematronValidationConfig> schematronValidationConfigCollection,
             ProfileIdXPath profileIdXPath,
             DocumentIdXPath documentIdXPath
         )
             : this(id, friendlyName, rootName, rootNamespace, schemaPath,
               stylesheetPath, serviceContractTModel, xsltTransformStylesheetPath,
-              endpointType, identifierDiscriminators, schematronValidationConfig, profileIdXPath,documentIdXPath)
+              endpointType, identifierDiscriminators, schematronValidationConfigCollection, profileIdXPath, documentIdXPath)
         {
             if (namespaces == null) throw new NullArgumentException("namespaces");
             _namespaces = namespaces;
@@ -244,14 +251,12 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// Gets and sets the ID of the documenttype.
         /// </summary>
-        /// <remarks>
-        /// Do not use the set property it is used for xml serialization
-        /// </remarks>
+        /// <remarks>Do not use the set property it is used for xml serialization</remarks>
         [XmlElement("Id")]
         public Guid Id
         {
             get { return this._id; }
-            set 
+            set
             {
                 if (value == null)
                 {
@@ -303,6 +308,19 @@ namespace dk.gov.oiosi.communication.configuration
             {
                 if (value == null) throw new NullArgumentException("value");
                 _rootName = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the IdentifierDiscriminators
+        /// </summary>
+        public XPathDiscriminatorConfig[] IdentifierDiscriminators
+        {
+            get { return _identifierDiscriminators.XPathDiscriminatorConfigs; }
+            set
+            {
+                if (value == null) throw new NullArgumentException("value");
+                _identifierDiscriminators.XPathDiscriminatorConfigs = value;
             }
         }
 
@@ -390,29 +408,38 @@ namespace dk.gov.oiosi.communication.configuration
         }
 
         /// <summary>
-        /// Gets and sets the IdentifierDiscriminators
+        /// Gets and sets the schematron validation configuration
         /// </summary>
-        public XpathDiscriminatorConfigCollection IdentifierDiscriminators
+        [XmlElement("SchematronValidationConfig")]
+        public SchematronValidationConfig SchematronValidationConfig
         {
-            get { return _identifierDiscriminators; }
+            get
+            {
+                return null;
+                //throw new ArgumentException("The SchematronValidationConfig element, is now only allowed in a SchematronValidationConfigs collection.");
+            }
             set
             {
-                if (value == null) throw new NullArgumentException("value");
-                _identifierDiscriminators = value;
+                if (value != null)
+                {
+                    this._schematronValidationConfigCollection.Add(value);
+                    logging.ILogger logger = logging.LoggerFactory.Create(this.GetType());
+                    logger.Warn("In DocumentTypeConfig, the SchematronValidationConfig element is no longer allowed. Moved Into SchematronValidationConfigs collection.");
+                }
             }
         }
 
         /// <summary>
         /// Gets and sets the schematron validation configuration
         /// </summary>
-        [XmlElement("SchematronValidationConfig")]
-        public SchematronValidationConfig SchematronValidationConfig
+        [XmlArray("SchematronValidationConfigs")]
+        public SchematronValidationConfig[] SchematronValidationConfigs
         {
-            get { return _schematronValidationConfig; }
+            get { return this._schematronValidationConfigCollection.ToArray(); }
             set
             {
                 if (value == null) throw new NullArgumentException("value");
-                _schematronValidationConfig = value;
+                _schematronValidationConfigCollection = new List<SchematronValidationConfig>(value);
             }
         }
 
@@ -425,7 +452,6 @@ namespace dk.gov.oiosi.communication.configuration
             get { return _customHeaderConfiguration; }
             set { _customHeaderConfiguration = value; }
         }
-
 
         /// <summary>
         /// Name of the document type
@@ -491,9 +517,8 @@ namespace dk.gov.oiosi.communication.configuration
         #region IEquatable<RaspDocumentTypeConfig> Members
 
         /// <summary>
-        /// Return whether the given document type config is equal to another.
-        /// They are equal if they have the same id or if they have the same
-        /// root name, root namespace and identifier discriminators.
+        /// Return whether the given document type config is equal to another. They are equal if
+        /// they have the same id or if they have the same root name, root namespace and identifier discriminators.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -505,6 +530,6 @@ namespace dk.gov.oiosi.communication.configuration
             return _identifierDiscriminators.Equals(other._identifierDiscriminators);
         }
 
-        #endregion
+        #endregion IEquatable<RaspDocumentTypeConfig> Members
     }
 }

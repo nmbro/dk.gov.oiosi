@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,19 +30,24 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Xml.Serialization;
-using System.Collections;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace dk.gov.oiosi.configuration {
+namespace dk.gov.oiosi.configuration
+{
     /// <summary>
     /// An XML configuration file. Used by RaspConfigHandler
     /// </summary>
     [XmlRoot("RaspConfiguration", Namespace = "http://oiosi.dk/rasp/xml/2007/04/01/")]
-    public class ConfigurationDocument {
+    public class ConfigurationDocument
+    {
         private static string _configFilePath = null;
 
         /// <summary>
@@ -50,7 +55,6 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         [XmlAttribute("version")]
         public string Version;
-
 
         /// <summary>
         /// Contains all the types of configuration sections currently used
@@ -62,7 +66,7 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         protected ArrayList configurationSections = new ArrayList();
 
-        static ConfigurationDocument() 
+        static ConfigurationDocument()
         {
             _configFilePath = ConfigurationManager.AppSettings["RaspConfigurationFile"];
             if (_configFilePath == null)
@@ -75,7 +79,8 @@ namespace dk.gov.oiosi.configuration {
         /// A list of configuration sections
         /// </summary>
         [XmlElement("ConfigurationSection")]
-        public ArrayList ConfigurationSections {
+        public ArrayList ConfigurationSections
+        {
             get { return configurationSections; }
             set { configurationSections = value; }
         }
@@ -84,7 +89,8 @@ namespace dk.gov.oiosi.configuration {
         /// The path to the config file
         /// </summary>
         [XmlIgnore]
-        public static string ConfigFilePath {
+        public static string ConfigFilePath
+        {
             get { return _configFilePath; }
             set { _configFilePath = value; }
         }
@@ -92,18 +98,22 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Saves the configuration to a file
         /// </summary>
-        public void SaveToFile() {
+        public void SaveToFile()
+        {
             StreamWriter streamWriter = null;
-            try {
+            try
+            {
                 XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), configurationTypes.ToArray());
                 streamWriter = new StreamWriter(ConfigFilePath);
                 xmlSerializer.Serialize(streamWriter, this);
                 streamWriter.Flush();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new ConfigurationCouldNotBeWrittenException(ConfigFilePath, e);
             }
-            finally {
+            finally
+            {
                 if (streamWriter != null) streamWriter.Close();
             }
         }
@@ -111,33 +121,87 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Reads generic RASP configuration from a file
         /// </summary>
-        public ConfigurationDocument GetFromFile() {
+        public ConfigurationDocument GetFromFile()
+        {
             if (!File.Exists(ConfigFilePath))
             {
                 return this;
             }
 
             StreamReader streamReader = null;
-            try {
+            try
+            {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationDocument), configurationTypes.ToArray());
+                xmlSerializer.UnknownAttribute += new XmlAttributeEventHandler(Serializer_UnknownAttribute);
+                xmlSerializer.UnknownElement += xmlSerializer_UnknownElement;
+                xmlSerializer.UnknownNode += xmlSerializer_UnknownNode;
+                xmlSerializer.UnreferencedObject += xmlSerializer_UnreferencedObject;
                 streamReader = new StreamReader(ConfigFilePath);
                 ConfigurationDocument newDoc = (ConfigurationDocument)xmlSerializer.Deserialize(streamReader);
                 return newDoc;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new ConfigurationCouldNotBeReadFromFileException(ConfigFilePath, e);
             }
-            finally {
+            finally
+            {
                 if (streamReader != null) streamReader.Close();
             }
         }
 
+        private void xmlSerializer_UnreferencedObject(object sender, UnreferencedObjectEventArgs e)
+        {
+#if DEBUG
+            //Console.WriteLine("UnreferencedObject:");
+            //Console.WriteLine("ID: " + e.UnreferencedId);
+            //Console.WriteLine("UnreferencedObject: " + e.UnreferencedObject);
+#else
+#endif
+        }
+
+        private void xmlSerializer_UnknownNode(object sender, XmlNodeEventArgs e)
+        {
+#if DEBUG
+            //Console.WriteLine("UnknownNode Name: {0}", e.Name);
+            //Console.WriteLine("UnknownNode LocalName: {0}", e.LocalName);
+            //Console.WriteLine("UnknownNode Namespace URI: {0}", e.NamespaceURI);
+            //Console.WriteLine("UnknownNode Text: {0}", e.Text);
+
+            //XmlNodeType myNodeType = e.NodeType;
+            //Console.WriteLine("NodeType: {0}", myNodeType);
+#else
+#endif
+        }
+
+        private void xmlSerializer_UnknownElement(object sender, XmlElementEventArgs e)
+        {
+#if DEBUG
+            //Console.WriteLine("Unknown Element");
+            //Console.WriteLine("\t" + e.Element.Name + " " + e.Element.InnerXml);
+            //Console.WriteLine("\t LineNumber: " + e.LineNumber);
+            //Console.WriteLine("\t LinePosition: " + e.LinePosition);
+#else
+#endif
+        }
+
+        private void Serializer_UnknownAttribute(object sender, XmlAttributeEventArgs e)
+        {
+#if DEBUG
+            //Console.WriteLine("Unknown Attribute");
+            //Console.WriteLine("\t" + e.Attr.Name + " " + e.Attr.InnerXml);
+            //Console.WriteLine("\t LineNumber: " + e.LineNumber);
+            //Console.WriteLine("\t LinePosition: " + e.LinePosition);
+#else
+#endif
+        }
 
         /// <summary>
         /// Registers a new configuration section type with the configuration handler
         /// </summary>
-        internal void RegisterType<T>() where T: new() {
-            Type configSectionType = typeof (T);
+        internal void RegisterType<T>() where T : new()
+        {
+            Type configSectionType = typeof(T);
             if (configurationTypes.Contains(configSectionType))
             {
                 // allready there
@@ -151,21 +215,25 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Deserializes the configuration to a string
         /// </summary>
-        public override string ToString() {
+        public override string ToString()
+        {
             MemoryStream memoryStream = new MemoryStream();
             StreamWriter streamWriter = null;
 
-            try {
+            try
+            {
                 XmlSerializer xmlSerializer = new XmlSerializer(this.GetType(), configurationTypes.ToArray());
                 streamWriter = new StreamWriter(memoryStream);
                 xmlSerializer.Serialize(streamWriter, this);
                 streamWriter.Flush();
                 return System.Text.UTF8Encoding.UTF8.GetString(memoryStream.ToArray());
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new ConfigurationCouldNotBeWrittenException(ConfigFilePath, e);
             }
-            finally {
+            finally
+            {
                 if (streamWriter != null) streamWriter.Close();
                 if (memoryStream != null) memoryStream.Close();
             }
@@ -176,7 +244,7 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <param name="t">Type to be found</param>
         /// <returns>Index in the configuration section table</returns>
-        internal int IndexOfConfigurationSection(Type desiredType) 
+        internal int IndexOfConfigurationSection(Type desiredType)
         {
             Type type;
             for (int i = 0; i < configurationSections.Count; i++)
@@ -190,50 +258,60 @@ namespace dk.gov.oiosi.configuration {
             return -1;
         }
 
-        internal bool HasConfigurationSection(Type configSectionType) {
+        internal bool HasConfigurationSection(Type configSectionType)
+        {
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
             if (indexOfConfigurationSection == -1) return false;
             return true;
         }
 
-        internal T GetConfigurationSection<T>(Type configSectionType) where T : new() {
+        internal T GetConfigurationSection<T>(Type configSectionType) where T : new()
+        {
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
-            return (T)configurationSections[indexOfConfigurationSection];    
+            return (T)configurationSections[indexOfConfigurationSection];
         }
 
-
-        internal T AddNewConfigurationSection<T>(Type configSectionType) where T : new() {
+        internal T AddNewConfigurationSection<T>(Type configSectionType) where T : new()
+        {
             T configSection = GetNewConfigSection<T>(configSectionType);
             AddConfigurationSection(configSection);
             return configSection;
         }
 
-        internal void AddReplaceConfigurationSection(object configurationSection) {
+        internal void AddReplaceConfigurationSection(object configurationSection)
+        {
             Type configSectionType = configurationSection.GetType();
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
-            if (indexOfConfigurationSection == -1) {
+            if (indexOfConfigurationSection == -1)
+            {
                 AddConfigurationSection(configurationSection);
             }
-            else {
-                configurationSections[indexOfConfigurationSection] = configurationSection;    
+            else
+            {
+                configurationSections[indexOfConfigurationSection] = configurationSection;
             }
         }
 
-        internal void ReloadConfigurationFile() {
+        internal void ReloadConfigurationFile()
+        {
             ConfigurationDocument configurationDocumentFromFile = GetFromFile();
             var configurationsSectionsFromFile = configurationDocumentFromFile.GetConfigurationSectionsCopy();
-            foreach (var configurationSection in configurationsSectionsFromFile) {
-                if (configurationTypes.Contains(configurationSection.GetType())) {
+            foreach (var configurationSection in configurationsSectionsFromFile)
+            {
+                if (configurationTypes.Contains(configurationSection.GetType()))
+                {
                     AddReplaceConfigurationSection(configurationSection);
                 }
             }
         }
 
-        internal T ReloadConfigSectionFromFile<T>(Type configSectionType) where T: new() {
+        internal T ReloadConfigSectionFromFile<T>(Type configSectionType) where T : new()
+        {
             DeleteUnrecognizedConfigurationSections();
             RegisterType<T>();
             ConfigurationDocument configurationDocumentFromFile = GetFromFile();
-            if (configurationDocumentFromFile.HasConfigurationSection(configSectionType)) {
+            if (configurationDocumentFromFile.HasConfigurationSection(configSectionType))
+            {
                 T configSection = configurationDocumentFromFile.GetConfigurationSection<T>(configSectionType);
                 AddReplaceConfigurationSection(configSection);
                 return configSection;
@@ -242,27 +320,34 @@ namespace dk.gov.oiosi.configuration {
         }
 
         /// <summary>
-        /// Adds all configuration sections from the configuration file, that hasn't been loaded/modified in the session
+        /// Adds all configuration sections from the configuration file, that hasn't been
+        /// loaded/modified in the session
         /// </summary>
-        internal void AddUnrecognizedSectionsFromFile() {
+        internal void AddUnrecognizedSectionsFromFile()
+        {
             ConfigurationDocument configurationFromFile = GetFromFile();
-            foreach (var configurationSection in configurationFromFile.ConfigurationSections) {
-                if (HasConfigurationSection(configurationSection.GetType()) == false) {
+            foreach (var configurationSection in configurationFromFile.ConfigurationSections)
+            {
+                if (HasConfigurationSection(configurationSection.GetType()) == false)
+                {
                     AddConfigurationSection(configurationSection);
                 }
             }
         }
 
-        private void AddConfigurationSection(object configSection) {
+        private void AddConfigurationSection(object configSection)
+        {
             configurationSections.Add(configSection);
         }
 
-        private T GetNewConfigSection<T>(Type configSectionType) where T : new() {
+        private T GetNewConfigSection<T>(Type configSectionType) where T : new()
+        {
             object[] attributes = configSectionType.GetCustomAttributes(typeof(XmlRootAttribute), true);
             if (attributes.Length != 1) throw new ConfigurationSectionMissingXmlRootAttributeException();
 
             XmlRootAttribute rootAttribute = (XmlRootAttribute)attributes[0];
-            if (String.IsNullOrEmpty(rootAttribute.Namespace)) {
+            if (String.IsNullOrEmpty(rootAttribute.Namespace))
+            {
                 throw new ConfigurationSectionMissingXmlRootAttributeException();
             }
 
@@ -270,7 +355,8 @@ namespace dk.gov.oiosi.configuration {
                 throw new ConfigurationTypeHasNoDefaultConstructorException();
             RegisterType<T>();
             int indexOfConfigurationSection = IndexOfConfigurationSection(configSectionType);
-            if (indexOfConfigurationSection >= 0) {
+            if (indexOfConfigurationSection >= 0)
+            {
                 throw new ConfigurationSectionAlreadyExistsException();
             }
 
@@ -278,7 +364,8 @@ namespace dk.gov.oiosi.configuration {
             return newConfigSection;
         }
 
-        private void DeleteUnrecognizedConfigurationSections() {
+        private void DeleteUnrecognizedConfigurationSections()
+        {
             var sectionsToDelete = new List<object>();
             foreach (var configurationSection in configurationSections)
             {
@@ -289,18 +376,20 @@ namespace dk.gov.oiosi.configuration {
                 }
             }
 
-            foreach (var indexToDelete in sectionsToDelete) {
+            foreach (var indexToDelete in sectionsToDelete)
+            {
                 configurationSections.Remove(indexToDelete);
             }
         }
 
-        private ArrayList GetConfigurationSectionsCopy() {
+        private ArrayList GetConfigurationSectionsCopy()
+        {
             ArrayList sections = new ArrayList();
-            foreach (var section in configurationSections) {
+            foreach (var section in configurationSections)
+            {
                 sections.Add(section);
             }
             return sections;
         }
-
     }
 }

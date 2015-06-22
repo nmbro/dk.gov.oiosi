@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,20 +30,25 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
-namespace dk.gov.oiosi.xml.xpath.discriminator {
+namespace dk.gov.oiosi.xml.xpath.discriminator
+{
     /// <summary>
     /// A collection of XPath discriminator configruations
     /// </summary>
-    public class XpathDiscriminatorConfigCollection : IEnumerable<XPathDiscriminatorConfig>, IEquatable<XpathDiscriminatorConfigCollection> {
+    public class XpathDiscriminatorConfigCollection : IEnumerable<XPathDiscriminatorConfig>, IEquatable<XpathDiscriminatorConfigCollection>
+    {
         private List<XPathDiscriminatorConfig> _xpathDiscriminatorConfigs;
-        
+
         /// <summary>
         /// Defatult constructor that initializes the collection.
         /// </summary>
-        public XpathDiscriminatorConfigCollection() {
+        public XpathDiscriminatorConfigCollection()
+        {
             _xpathDiscriminatorConfigs = new List<XPathDiscriminatorConfig>();
         }
 
@@ -51,10 +56,11 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         /// Gets and sets the configurations of the collection
         /// </summary>
         /// <remarks>
-        /// This is used by the XML serialization, used the add and remove
-        /// functions instead.
+        /// This is used by the XML serialization, used the add and remove functions instead.
         /// </remarks>
-        public XPathDiscriminatorConfig[] XPathDiscriminatorConfigs {
+        ///[XmlElement("XPathDiscriminatorConfig")]
+        public XPathDiscriminatorConfig[] XPathDiscriminatorConfigs
+        {
             get { return _xpathDiscriminatorConfigs.ToArray(); }
             set { _xpathDiscriminatorConfigs = new List<XPathDiscriminatorConfig>(value); }
         }
@@ -63,17 +69,18 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         /// Adds an XPath discriminator configuration to the collection.
         /// </summary>
         /// <param name="xpathDiscriminatorConfig"></param>
-        public void Add(XPathDiscriminatorConfig xpathDiscriminatorConfig) {
+        public void Add(XPathDiscriminatorConfig xpathDiscriminatorConfig)
+        {
             _xpathDiscriminatorConfigs.Add(xpathDiscriminatorConfig);
         }
 
         /// <summary>
-        /// Removes an XPath discriminator configuration from the 
-        /// collection.
+        /// Removes an XPath discriminator configuration from the collection.
         /// </summary>
         /// <param name="xpathDiscriminatorConfig"></param>
         /// <returns></returns>
-        public bool Remove(XPathDiscriminatorConfig xpathDiscriminatorConfig) {
+        public bool Remove(XPathDiscriminatorConfig xpathDiscriminatorConfig)
+        {
             return _xpathDiscriminatorConfigs.Remove(xpathDiscriminatorConfig);
         }
 
@@ -83,11 +90,12 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         /// Gets an IEnumerator to traverse the collection
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<XPathDiscriminatorConfig> GetEnumerator() {
+        public IEnumerator<XPathDiscriminatorConfig> GetEnumerator()
+        {
             return _xpathDiscriminatorConfigs.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable<XPathDiscriminatorConfig> Members
 
         #region IEnumerable Members
 
@@ -95,39 +103,43 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         /// Gets an IEnumerator to traverse the collection
         /// </summary>
         /// <returns></returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
             return _xpathDiscriminatorConfigs.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
         #region IEquatable<XpathDiscriminatorConfigCollection> Members
 
         /// <summary>
-        /// Returns whether the collection is equal with another collection.
-        /// This is done by value comparering and not reference.
+        /// Returns whether the collection is equal with another collection. This is done by value
+        /// comparering and not reference.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(XpathDiscriminatorConfigCollection other) {
+        public bool Equals(XpathDiscriminatorConfigCollection other)
+        {
             int thisCount = _xpathDiscriminatorConfigs.Count;
             int otherCount = other._xpathDiscriminatorConfigs.Count;
             if (thisCount != otherCount) return false;
             Comparison<XPathDiscriminatorConfig> comparer =
-                delegate(XPathDiscriminatorConfig x, XPathDiscriminatorConfig y) {
+                delegate(XPathDiscriminatorConfig x, XPathDiscriminatorConfig y)
+                {
                     if (x.XPathExpression != y.XPathExpression)
                         return x.XPathExpression.CompareTo(y.XPathExpression);
                     return x.XPathExpectedResult.CompareTo(y.XPathExpectedResult);
                 };
             _xpathDiscriminatorConfigs.Sort(comparer);
             other._xpathDiscriminatorConfigs.Sort(comparer);
-            for(int i = 0; i<thisCount; i++) {
+            for (int i = 0; i < thisCount; i++)
+            {
                 int compare = comparer(_xpathDiscriminatorConfigs[i], other._xpathDiscriminatorConfigs[i]);
                 if (compare != 0) return false;
             }
             return true;
         }
 
-        #endregion
+        #endregion IEquatable<XpathDiscriminatorConfigCollection> Members
     }
 }
