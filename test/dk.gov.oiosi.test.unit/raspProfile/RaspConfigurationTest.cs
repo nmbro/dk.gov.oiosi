@@ -68,7 +68,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile
 
             DocumentTypeCollectionConfig docTypeConfig =
                 ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            Assert.AreEqual(28, docTypeConfig.DocumentTypes.Length, "Expected number of document types not found.");
+            Assert.AreEqual(25, docTypeConfig.DocumentTypes.Length, "Expected number of document types not found.");
 
             ProfileMappingCollectionConfig profileMappingConfig =
                 ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
