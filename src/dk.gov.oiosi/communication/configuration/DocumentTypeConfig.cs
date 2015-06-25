@@ -312,15 +312,15 @@ namespace dk.gov.oiosi.communication.configuration
         }
 
         /// <summary>
-        /// Gets and sets the IdentifierDiscriminators
+        /// Gets and sets the XpathDiscriminatorConfigCollection
         /// </summary>
-        public XPathDiscriminatorConfig[] IdentifierDiscriminators
+        public XpathDiscriminatorConfigCollection IdentifierDiscriminators
         {
-            get { return _identifierDiscriminators.XPathDiscriminatorConfigs; }
+            get { return _identifierDiscriminators; }
             set
             {
                 if (value == null) throw new NullArgumentException("value");
-                _identifierDiscriminators.XPathDiscriminatorConfigs = value;
+                _identifierDiscriminators = value;
             }
         }
 

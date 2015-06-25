@@ -1353,7 +1353,7 @@ namespace dk.gov.oiosi.raspProfile
             if (configuration.ContainsDocumentTypeByValue(documentType))
             {
                 // already added
-                Debug.Fail("already added");
+                //Debug.Fail("already added");
                 configuration.AddDocumentType(documentType);
             }
             else

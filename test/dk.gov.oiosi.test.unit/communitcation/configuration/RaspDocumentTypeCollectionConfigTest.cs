@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-using NUnit.Framework;
-
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.xml.xpath.discriminator;
+using NUnit.Framework;
 
-namespace dk.gov.oiosi.test.unit.communitcation.configuration {
+namespace dk.gov.oiosi.test.unit.communitcation.configuration
+{
     [TestFixture]
-    public class RaspDocumentTypeCollectionConfigTest {
+    public class RaspDocumentTypeCollectionConfigTest
+    {
         [Test]
-        public void _01_AddRemoveDocumentTypeTest() {
-            try {
+        public void _01_AddRemoveDocumentTypeTest()
+        {
+            try
+            {
                 Print.Started("_01_AddRemoveDocumentTypeTest");
                 string rootName = "Test";
                 string rootNamespace = "http://oio.dk/test";
@@ -31,14 +33,21 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 bool anyDocument = documentTypeCollection.TryGetDocumentType(rootName, rootNamespace, identifierDiscriminators, out documentTypeFromCollection);
                 Assert.IsFalse(anyDocument);
             }
-            finally {
+            catch (Exception)
+            {
+                // easy debug
+            }
+            finally
+            {
                 Print.Completed("_01_AddRemoveDocumentTypeTest");
             }
         }
 
         [Test, ExpectedException(typeof(DocumentAllreadyAddedException))]
-        public void _02_InsertDocumentWithSameIdTest() {
-            try {
+        public void _02_InsertDocumentWithSameIdTest()
+        {
+            try
+            {
                 Print.Started("_02_InsertDocumentWithSameIdTest");
                 string rootNameA = "TestA";
                 string rootNameB = "TestB";
@@ -55,14 +64,17 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 documentTypeB.Id = documentTypeA.Id;
                 documentTypeCollection.AddDocumentType(documentTypeB);
             }
-            finally {
+            finally
+            {
                 Print.Completed("_02_InsertDocumentWithSameIdTest");
             }
         }
 
         [Test, ExpectedException(typeof(DocumentAllreadyAddedException))]
-        public void _03_InsertDocumentTypeWithSameKeyValuesTest() {
-            try {
+        public void _03_InsertDocumentTypeWithSameKeyValuesTest()
+        {
+            try
+            {
                 Print.Started("_03_InsertDocumentTypeWithSameKeyValuesTest");
                 string rootName = "Test";
                 string rootNamespace = "http://oio.dk/test";
@@ -77,14 +89,17 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 documentTypeCollection.AddDocumentType(documentTypeA);
                 documentTypeCollection.AddDocumentType(documentTypeB);
             }
-            finally {
+            finally
+            {
                 Print.Completed("_03_InsertDocumentTypeWithSameKeyValuesTest");
             }
         }
 
         [Test]
-        public void _04_GetNonExistingDocumentTypeFromIdTest() {
-            try {
+        public void _04_GetNonExistingDocumentTypeFromIdTest()
+        {
+            try
+            {
                 Print.Started("_04_GetNonExistingDocumentTypeFromIdTest");
                 string rootName = "Test";
                 string rootNamespace = "http://oio.dk/test";
@@ -101,14 +116,17 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 Assert.IsFalse(any);
                 Assert.IsNull(documentTypeFromCollection);
             }
-            finally {
+            finally
+            {
                 Print.Completed("_04_GetNonExistingDocumentTypeFromIdTest");
             }
         }
 
         [Test]
-        public void _05_GetNonExistingDocumentTypeFromParameters() {
-            try {
+        public void _05_GetNonExistingDocumentTypeFromParameters()
+        {
+            try
+            {
                 Print.Started("_05_GetNonExistingDocumentTypeFromParameters");
                 string rootName = "TestA";
                 string rootNamespace = "http://oio.dk/test";
@@ -125,14 +143,17 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 Assert.IsFalse(any);
                 Assert.IsNull(documentTypeFromCollection);
             }
-            finally {
+            finally
+            {
                 Print.Completed("_05_GetNonExistingDocumentTypeFromParameters");
             }
         }
 
         [Test, ExpectedException(typeof(NoDocumentTypeFoundFromIdException))]
-        public void _06_GetNonExistingDocumentTypeFromIdTest() {
-            try {
+        public void _06_GetNonExistingDocumentTypeFromIdTest()
+        {
+            try
+            {
                 Print.Started("_06_GetNonExistingDocumentTypeFromIdTest");
                 string rootName = "Test";
                 string rootNamespace = "http://oio.dk/test";
@@ -146,14 +167,17 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 documentTypeCollection.AddDocumentType(documentType);
                 documentTypeCollection.GetDocumentType(Guid.NewGuid());
             }
-            finally {
+            finally
+            {
                 Print.Completed("_06_GetNonExistingDocumentTypeFromIdTest");
             }
         }
 
         [Test, ExpectedException(typeof(NoDocumentTypeFoundFromParametersException))]
-        public void _07_GetNonExistingDocumentTypeFromParameters() {
-            try {
+        public void _07_GetNonExistingDocumentTypeFromParameters()
+        {
+            try
+            {
                 Print.Started("_07_GetNonExistingDocumentTypeFromParameters");
                 string rootName = "TestA";
                 string rootNamespace = "http://oio.dk/test";
@@ -167,7 +191,8 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration {
                 documentTypeCollection.AddDocumentType(documentType);
                 documentTypeCollection.GetDocumentType("TestB", rootNamespace, identifierDiscriminators);
             }
-            finally {
+            finally
+            {
                 Print.Completed("_07_GetNonExistingDocumentTypeFromParameters");
             }
         }

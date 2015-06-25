@@ -129,7 +129,11 @@
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Root\TDC OCES CA.cer">
       <Link>Resources\Certificates\TDC OCES CA.cer</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Live\Root\TRUST2408 OCES Primary CA.cer">
+      <Link>Resources\Certificates\TRUST2408 OCES Primary CA.cer</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20111016.FOCES1.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20111016.FOCES1.pfx</Link>
@@ -173,11 +177,11 @@
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TDC OCES Systemtest CA II.cer">
       <Link>Resources\Certificates\TDC OCES Systemtest CA II.cer</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Root\TRUST2408 Systemtest VII Primary CA.cer">
       <Link>Resources\Certificates\TRUST2408 Systemtest VII Primary CA.cer</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd">
       <Link>Resources\Schemas\OIOUBL_v2.1-b\common\CCTS_CCT_SchemaModule-2.0.xsd</Link>

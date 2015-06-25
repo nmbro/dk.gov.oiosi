@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -37,29 +37,32 @@ using System.Xml.Serialization;
 using dk.gov.oiosi.exception;
 using dk.gov.oiosi.xml.xpath.discriminator;
 
-namespace dk.gov.oiosi.communication.configuration {
-
+namespace dk.gov.oiosi.communication.configuration
+{
     /// <summary>
     /// A collection of RaspDocumentTypeConfig
     /// </summary>
     [System.Xml.Serialization.XmlRoot(Namespace = dk.gov.oiosi.configuration.ConfigurationHandler.RaspNamespaceUrl)]
-    public class DocumentTypeCollectionConfig {
+    public class DocumentTypeCollectionConfig
+    {
         private List<DocumentTypeConfig> _documentTypes = new List<DocumentTypeConfig>();
 
         /// <summary>
         /// A list of RASP document types supported by the client (e.g. Invoices, Notifications...)
         /// </summary>
         [XmlArray("DocumentTypes")]
-        public DocumentTypeConfig[] DocumentTypes { 
-            get { return _documentTypes.ToArray(); } 
-            set { _documentTypes = new List<DocumentTypeConfig>(value); } 
+        public DocumentTypeConfig[] DocumentTypes
+        {
+            get { return _documentTypes.ToArray(); }
+            set { _documentTypes = new List<DocumentTypeConfig>(value); }
         }
 
         /// <summary>
         /// Adds a new RASP document type to the configuration
         /// </summary>
         /// <param name="documentType">documenttype to add</param>
-        public void AddDocumentType(DocumentTypeConfig documentType) {
+        public void AddDocumentType(DocumentTypeConfig documentType)
+        {
             if (documentType == null)
                 throw new NullArgumentException("documentType");
             if (ContainsDocumentTypeByValue(documentType))
@@ -71,7 +74,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Removes a specific document type from the configuration
         /// </summary>
         /// <param name="documentType"></param>
-        public void RemoveDocumentType(DocumentTypeConfig documentType) {
+        public void RemoveDocumentType(DocumentTypeConfig documentType)
+        {
             if (documentType == null)
                 throw new NullArgumentException("documentType");
             _documentTypes.Remove(documentType);
@@ -80,67 +84,72 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <summary>
         /// Clears the document list
         /// </summary>
-        public void Clear() {
-            if (_documentTypes != null) {
+        public void Clear()
+        {
+            if (_documentTypes != null)
+            {
                 _documentTypes.Clear();
             }
         }
 
         /// <summary>
-        /// Returns whether a certain document type is in the collection.
-        /// The document type is in the collection if it has the same id 
-        /// or has the same root name, root namespace and identifier 
-        /// discriminators.
+        /// Returns whether a certain document type is in the collection. The document type is in
+        /// the collection if it has the same id or has the same root name, root namespace and
+        /// identifier discriminators.
         /// </summary>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public bool ContainsDocumentTypeByValue(DocumentTypeConfig documentType) {
-            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current) { 
+        public bool ContainsDocumentTypeByValue(DocumentTypeConfig documentType)
+        {
+            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current)
+            {
                 return current.Equals(documentType);
             };
             return _documentTypes.Exists(match);
         }
 
         /// <summary>
-        /// Returns whether a certain document type is in the collection.
-        /// The document type is in the collectio if the reference is the 
-        /// same.
+        /// Returns whether a certain document type is in the collection. The document type is in
+        /// the collectio if the reference is the same.
         /// </summary>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public bool ContainsDocumentTypeByReference(DocumentTypeConfig documentType) {
+        public bool ContainsDocumentTypeByReference(DocumentTypeConfig documentType)
+        {
             return _documentTypes.Contains(documentType);
         }
 
         /// <summary>
-        /// Gets the documents types with a certain root name and root namespace.
-        /// This does not uniqely identfies a certain document type hence multiple
-        /// document types can be returned as result.
+        /// Gets the documents types with a certain root name and root namespace. This does not
+        /// uniqely identfies a certain document type hence multiple document types can be returned
+        /// as result.
         /// </summary>
         /// <param name="rootName"></param>
         /// <param name="rootNamespace"></param>
         /// <returns></returns>
-        public IEnumerable<DocumentTypeConfig> GetDocumentTypes(string rootName, string rootNamespace) {
+        public IEnumerable<DocumentTypeConfig> GetDocumentTypes(string rootName, string rootNamespace)
+        {
             Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current) { return current.RootName == rootName && current.RootNamespace == rootNamespace; };
             List<DocumentTypeConfig> results = _documentTypes.FindAll(match);
             return results;
         }
 
         /// <summary>
-        /// Get a document type from a root name, root namespace and a collection of 
-        /// identifier expressions. 
+        /// Get a document type from a root name, root namespace and a collection of identifier expressions.
         /// </summary>
         /// <param name="rootName"></param>
         /// <param name="rootNamespace"></param>
         /// <param name="identifierDiscriminators"></param>
         /// <returns></returns>
-        public DocumentTypeConfig GetDocumentType(string rootName, string rootNamespace, XpathDiscriminatorConfigCollection identifierDiscriminators) {
+        public DocumentTypeConfig GetDocumentType(string rootName, string rootNamespace, XpathDiscriminatorConfigCollection identifierDiscriminators)
+        {
             if (rootName == null) throw new ArgumentNullException("rootName");
             if (rootNamespace == null) throw new ArgumentNullException("rootNamespace");
             if (identifierDiscriminators == null) throw new ArgumentNullException("identifierDiscriminators");
 
             DocumentTypeConfig documentType = null;
-            if (!TryGetDocumentType(rootName, rootNamespace, identifierDiscriminators, out documentType)) {
+            if (!TryGetDocumentType(rootName, rootNamespace, identifierDiscriminators, out documentType))
+            {
                 throw new NoDocumentTypeFoundFromParametersException(rootName, rootNamespace, identifierDiscriminators);
             }
             return documentType;
@@ -151,7 +160,8 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public DocumentTypeConfig GetDocumentType(Guid guid) {
+        public DocumentTypeConfig GetDocumentType(Guid guid)
+        {
             DocumentTypeConfig documentType = null;
             if (!TryGetDocumentType(guid, out documentType))
                 throw new NoDocumentTypeFoundFromIdException(guid);
@@ -169,21 +179,23 @@ namespace dk.gov.oiosi.communication.configuration {
         }
 
         /// <summary>
-        /// Try to get the document type from a root name, root namespace and a 
-        /// collection of identifier expressions.
+        /// Try to get the document type from a root name, root namespace and a collection of
+        /// identifier expressions.
         /// </summary>
         /// <param name="rootName"></param>
         /// <param name="rootNamespace"></param>
         /// <param name="identifierDiscriminators"></param>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public bool TryGetDocumentType(string rootName, string rootNamespace, XpathDiscriminatorConfigCollection identifierDiscriminators, out DocumentTypeConfig documentType) {
+        public bool TryGetDocumentType(string rootName, string rootNamespace, XpathDiscriminatorConfigCollection identifierDiscriminators, out DocumentTypeConfig documentType)
+        {
             if (rootName == null) throw new ArgumentNullException("rootName");
             if (rootNamespace == null) throw new ArgumentNullException("rootNamespace");
             if (identifierDiscriminators == null) throw new ArgumentNullException("identifierDiscriminators");
 
             documentType = null;
-            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current) {
+            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current)
+            {
                 if (rootName != current.RootName) return false;
                 if (rootNamespace != current.RootNamespace) return false;
                 return identifierDiscriminators.Equals(current.IdentifierDiscriminators);
@@ -201,9 +213,11 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="id"></param>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public bool TryGetDocumentType(Guid id, out DocumentTypeConfig documentType) {
+        public bool TryGetDocumentType(Guid id, out DocumentTypeConfig documentType)
+        {
             documentType = null;
-            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current) {
+            Predicate<DocumentTypeConfig> match = delegate(DocumentTypeConfig current)
+            {
                 return id == current.Id;
             };
             List<DocumentTypeConfig> documentTypes = _documentTypes.FindAll(match);

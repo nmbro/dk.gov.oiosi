@@ -65,6 +65,7 @@
     <None Include="Resources\Certificates\Certifikate.xlsx" />
     <None Include="Resources\Certificates\Live\Funktionscertifikat\CVR26769388.Expire20100115.NemHandel test service.cer" />
     <None Include="Resources\Certificates\Live\Funktionscertifikat\CVR26769388.Expire20120104.NemHandel test service.cer" />
+    <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20170324.TU GENEREL FOCES.p12" />
     <None Include="Resources\Certificates\Live\Root\TDC OCES CA.cer" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20100417.Testendpoint.pfx" />
     <None Include="Resources\Certificates\Test\Funktionscertifikat\CVR26769388.Expire20120427.Test NemHandelservice.cer" />

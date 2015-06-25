@@ -58,6 +58,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             SetupDefaultLdapConfig();
             SetupDefaultOscpConfig();
             SetupDefaultUddiConfig();
+            SetupDefaultCacheConfig();
             SetupDefaultRootCertificateConfig();
             SetupDefaultOcesCertificates();
             ConfigurationHandler.SaveToFile();
@@ -131,6 +132,12 @@ namespace dk.gov.oiosi.test.unit.raspProfile
         {
             DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
             ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
+        }
+
+        private void SetupDefaultCacheConfig()
+        {
+            DefaultCacheConfig defaultCacheConfig = new DefaultCacheConfig();
+            defaultCacheConfig.SetIfNotExistsDefaulCacheConfig();
         }
     }
 }
