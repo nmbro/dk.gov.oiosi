@@ -88,15 +88,16 @@ namespace dk.gov.oiosi.raspProfile
             this.Add(this.GetOioUblUtilityStatement);                  // Forsynings specifikation
 
             // Peppol
-            this.Add(this.GetPeppol36aApplicationResponse);            // Applikationsmeddelelse
+            //this.Add(this.GetPeppol36aApplicationResponse);            // Applikationsmeddelelse
             this.Add(this.GetPeppol1aCatalogue);                       // Faktura
             this.Add(this.GetPeppol1aApplicationResponse);             // Applikationsmeddelelse
             this.Add(this.GetPeppol5aCreditNote);                      // Kreditnota
+            this.Add(this.GetPeppol5aInvoice);                         // Faktura
             this.Add(this.GetPeppol30aDespatchAdvice);                 // Forsendelsesadvis
             this.Add(this.GetPeppol4aInvoice);                         // Faktura
             this.Add(this.GetPeppol3aOrder);                           // Ordre
-            this.Add(this.GetPeppol28aOrder);                          // Ordre
-            this.Add(this.GetPeppol28aOrderResponse);                  // Ordrebekræftelse
+            //this.Add(this.GetPeppol28aOrder);                          // Ordre
+            //this.Add(this.GetPeppol28aOrderResponse);                  // Ordrebekræftelse
             //this.Add(this.GetAttachedDocument);
         }
 
@@ -838,7 +839,7 @@ namespace dk.gov.oiosi.raspProfile
             const string documentName = "Kreditnota";
             const string rootName = "CreditNote";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-CreditNote-2.1.xsd";
 
             const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/CreditNoteHTML.xsl";
             const string destinationKeyXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
@@ -872,6 +873,47 @@ namespace dk.gov.oiosi.raspProfile
             //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
             //documentTypeConfig.Namespaces = namespaces.ToArray();
 
+            return documentTypeConfig;
+        }
+
+        /// <summary>
+        /// The Peppol Credit Note - BIS2.0-billing4a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public DocumentTypeConfig GetPeppol5aInvoice()
+        {
+            const string id = "c9f45e05-8cc0-44df-ab1e-111c5167b0b5";
+            const string documentName = "Faktura";
+            const string rootName = "Invoice";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd";
+
+            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse";
+            const string serviceContractTModel = "uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 

@@ -1,3 +1,8 @@
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+
 /*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
@@ -14,7 +19,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,19 +35,18 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System.Xml;
-using System.Xml.Xsl;
 using System.Xml.XPath;
-using System.IO;
+using System.Xml.Xsl;
 using dk.gov.oiosi.logging;
-using System.Text;
 
-namespace dk.gov.oiosi.xml.xslt {
-
+namespace dk.gov.oiosi.xml.xslt
+{
     /// <summary>
     /// This utility is used for xslt transforming documents
     /// </summary>
-    public class XsltUtility 
+    public class XsltUtility
     {
         private ILogger logger;
 
@@ -59,22 +63,61 @@ namespace dk.gov.oiosi.xml.xslt {
         /// <returns>The transformed xml document</returns>
         public XmlDocument TransformXml(XmlDocument xmlDoc, XmlDocument stylesheet)
         {
+            XmlDocument xmlDocument = null;
             XslCompiledTransform transform = PrecompiledStyleSheet(stylesheet);
-            return this.TransformXml(xmlDoc, transform);
+            if (transform != null)
+            {
+                xmlDocument = this.TransformXml(xmlDoc, transform);
+            }
+
+            return xmlDocument;
         }
 
         /// <summary>
         /// Method that returns the precompiled XSLT stylesheet from the given XML document.
         /// 
-        /// document() function and embedded script blocks is disabled
-        /// it doesn't resolve external XML resources
+        /// document() function and embedded script blocks is disabled it doesn't resolve external
+        /// XML resources
         /// </summary>
         /// <param name="stylesheet"></param>
         /// <returns></returns>
-        public XslCompiledTransform PrecompiledStyleSheet(XmlDocument stylesheet) 
+        public XslCompiledTransform PrecompiledStyleSheet(XmlDocument stylesheet)
         {
-            XslCompiledTransform transform = new XslCompiledTransform();
-            transform.Load(stylesheet, XsltSettings.Default, null);
+            XslCompiledTransform transform = null;
+
+            try
+            {
+                // Get XSLT version
+                XPathNavigator navigator = stylesheet.CreateNavigator();
+                XPathNodeIterator node = navigator.Select("/*/@version");
+                node.MoveNext();
+                string xsltVersionInResource = node.Current.Value;
+                string xsltVersion = string.Empty;
+                if (!string.IsNullOrEmpty(xsltVersionInResource))
+                {
+                    xsltVersion = xsltVersionInResource;
+                }
+
+                if (xsltVersion.Equals("1.0"))
+                {
+                    // The XslCompiledTransform can only handle xslt version 1.0
+                    transform = new XslCompiledTransform(false);
+                    transform.Load(stylesheet, XsltSettings.Default, null);
+                }
+            }
+            catch (System.Xml.Xsl.XsltException ex)
+            {
+                if (!ex.Message.Equals("Too complex!"))
+                {
+                    Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+                throw;
+            }
             return transform;
         }
 
@@ -86,7 +129,7 @@ namespace dk.gov.oiosi.xml.xslt {
         /// <param name="document"></param>
         /// <param name="transform"></param>
         /// <returns></returns>
-        public XmlDocument TransformXPath(XPathDocument document, XslCompiledTransform transform) 
+        public XmlDocument TransformXPath(XPathDocument document, XslCompiledTransform transform)
         {
             XmlDocument transformedXml = new XmlDocument();
 
@@ -97,7 +140,7 @@ namespace dk.gov.oiosi.xml.xslt {
 
             return transformedXml;
         }
-        
+
         public XmlDocument TransformXml(string documentAsString, XslCompiledTransform transform)
         {
             this.logger.Trace("Start TransformXml");
@@ -115,12 +158,11 @@ namespace dk.gov.oiosi.xml.xslt {
 
                 using (StreamWriter sw = new StreamWriter(stream))
                 {
-                    // write document to memory stream 
+                    // write document to memory stream
                     sw.Write(documentAsString);
                     sw.Flush();
 
-                    // document is now in a memory stream
-                    // set stream index to 0.
+                    // document is now in a memory stream set stream index to 0.
                     stream.Seek(0, SeekOrigin.Begin);
 
                     // create the writer, that holds the styled xml document (schematron result).
@@ -144,7 +186,7 @@ namespace dk.gov.oiosi.xml.xslt {
                             transform.Transform(reader, schematronResultXmlWriter);
                         }
 
-                        // create the schematron result from 
+                        // create the schematron result from
                         resultStream.Seek(0, SeekOrigin.Begin);
 
                         transformedXml.Load(resultStream);
@@ -156,7 +198,6 @@ namespace dk.gov.oiosi.xml.xslt {
 
             return transformedXml;
         }
-        
 
         public XmlDocument TransformXml(XmlDocument document, XslCompiledTransform transform)
         {
@@ -175,13 +216,11 @@ namespace dk.gov.oiosi.xml.xslt {
 
                 using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlDocumentWriterSettings))
                 {
-                    // write document to memory stream 
-                    // Note - this line is expensive in processing time
+                    // write document to memory stream Note - this line is expensive in processing time
                     document.WriteTo(xmlWriter);
                 }
 
-                // document is now in a memory stream
-                // set stream index to 0.
+                // document is now in a memory stream set stream index to 0.
                 stream.Seek(0, SeekOrigin.Begin);
 
                 // create the writer, that holds the styled xml document (schematron result).
@@ -192,7 +231,6 @@ namespace dk.gov.oiosi.xml.xslt {
                   //TextReader textReader = new StringReader(document.OuterXml);
                   //XmlReader xmlReader = new XmlTextReader(textReader);
                   */
-                
 
                 using (XmlReader reader = XmlReader.Create(stream, readerSettings))
                 {
@@ -211,7 +249,7 @@ namespace dk.gov.oiosi.xml.xslt {
                         transform.Transform(reader, schematronResultXmlWriter);
                     }
 
-                    // create the schematron result from 
+                    // create the schematron result from
                     resultStream.Seek(0, SeekOrigin.Begin);
 
                     transformedXml.Load(resultStream);
@@ -222,8 +260,6 @@ namespace dk.gov.oiosi.xml.xslt {
 
             return transformedXml;
         }
-
-        
 
         // just as fast - can be improved?
         private XmlDocument TransformXml2(XmlDocument document, XslCompiledTransform transform)
@@ -252,7 +288,7 @@ namespace dk.gov.oiosi.xml.xslt {
                     transform.Transform(reader, writer);
                 }
 
-                // create the schematron result from 
+                // create the schematron result from
                 resultStream.Seek(0, SeekOrigin.Begin);
 
                 transformedXml.Load(resultStream);
@@ -260,7 +296,7 @@ namespace dk.gov.oiosi.xml.xslt {
 
             this.logger.Trace("Finish");
 
-            return transformedXml;         
+            return transformedXml;
         }
 
         // just as fast - can be improved?
@@ -274,37 +310,37 @@ namespace dk.gov.oiosi.xml.xslt {
 
             // Note - this line is expensive in processing time
 
-           // XmlNodeReader xnr = new XmlNodeReader(document.DocumentElement);
-            //XmlReader r = XmlTextReader.Create( 
+            // XmlNodeReader xnr = new XmlNodeReader(document.DocumentElement);
+            //XmlReader r = XmlTextReader.Create(
             this.logger.Trace("TransformXml1");
             XmlNode node = document.DocumentElement;
             this.logger.Trace("TransformXml2");
             using (XmlNodeReader nodeReader = new XmlNodeReader(node))
             {
-                using(XmlReader reader = XmlReader.Create(nodeReader, readerSettings))
+                using (XmlReader reader = XmlReader.Create(nodeReader, readerSettings))
                 {
-                this.logger.Trace("TransformXml3");
+                    this.logger.Trace("TransformXml3");
 
-                XmlWriterSettings writerSettings = new XmlWriterSettings();
-                writerSettings.Encoding = Encoding.UTF8;
-                writerSettings.Indent = true;
-                writerSettings.IndentChars = " ";
-                writerSettings.NewLineOnAttributes = true;
-                writerSettings.OmitXmlDeclaration = false;
-                writerSettings.CloseOutput = false;
+                    XmlWriterSettings writerSettings = new XmlWriterSettings();
+                    writerSettings.Encoding = Encoding.UTF8;
+                    writerSettings.Indent = true;
+                    writerSettings.IndentChars = " ";
+                    writerSettings.NewLineOnAttributes = true;
+                    writerSettings.OmitXmlDeclaration = false;
+                    writerSettings.CloseOutput = false;
 
-                MemoryStream resultStream = new MemoryStream();
-                this.logger.Trace("TransformXml4");
-                using (XmlWriter writer = XmlWriter.Create(resultStream, writerSettings))
-                {
-                    this.logger.Trace("TransformXml4,1");
-                    transform.Transform(reader, writer);
-                }
-                this.logger.Trace("TransformXml5");
-                // create the schematron result from 
-                resultStream.Seek(0, SeekOrigin.Begin);
+                    MemoryStream resultStream = new MemoryStream();
+                    this.logger.Trace("TransformXml4");
+                    using (XmlWriter writer = XmlWriter.Create(resultStream, writerSettings))
+                    {
+                        this.logger.Trace("TransformXml4,1");
+                        transform.Transform(reader, writer);
+                    }
+                    this.logger.Trace("TransformXml5");
+                    // create the schematron result from
+                    resultStream.Seek(0, SeekOrigin.Begin);
 
-                transformedXml.Load(resultStream);
+                    transformedXml.Load(resultStream);
                 }
             }
 

@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.test.unit.configuration {
             ConfigurationHandler.PreloadRegisteredConfigurationSections();
 
             DocumentTypeCollectionConfig documentTypeCollectionConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetCatalogue());
+            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetOioUblCatalogue());
 
             ConfigurationHandler.SaveToFile();
 
@@ -102,7 +102,7 @@ namespace dk.gov.oiosi.test.unit.configuration {
             ConfigurationHandler.Reset();
 
             var documentTypeCollectionConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetCatalogue());
+            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetOioUblCatalogue());
 
             ConfigurationHandler.SaveToFile();
 

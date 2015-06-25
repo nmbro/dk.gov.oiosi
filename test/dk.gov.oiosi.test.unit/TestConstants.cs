@@ -2,10 +2,11 @@ namespace dk.gov.oiosi.test.unit
 {
     public class TestConstants
     {
-
         private const string raspProfileResources = "Resources/";
 
+        // OIOUBL
         public const string PATH_APPLICATIONRESPONSE201_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p1.xml";
+
         public const string PATH_APPLICATIONRESPONSE202_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p2.xml";
         public const string PATH_CATALOGUE_XML = raspProfileResources + "Documents/Examples/OIOUBL_Catalogue_v2p2.xml";
         public const string PATH_CATALOGUEDELETION_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueDeletion_v2p2.xml";
@@ -27,15 +28,59 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_REMINDER_XML = raspProfileResources + "Documents/Examples/OIOUBL_Reminder_v2p2.xml";
         public const string PATH_STATEMENT_XML = raspProfileResources + "Documents/Examples/OIOUBL_Statement_v2p2.xml";
         public const string PATH_UTILITYSTATEMENT_XML = raspProfileResources + "Documents/Examples/OIOUBL_UtilityStatement_v2p2.xml";
+
+        // PEPPOL
+        public const string PATH_PEPPOL_Peppol1a_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/PEPPOL_4.0_Catalogue_Valid_bii01_ver2.0.xml";
+
+        public const string PATH_PEPPOL_Peppol1a_UseCase1_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Use case 1.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase1_CatalogueResponse_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Response use case 1 TP.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase2_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Use case 2.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase2_CatalogueResponse_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Response use case 2 TP.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase3_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Use case 3.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase3_CatalogueResponse_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Response use case 3 TP.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase4_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Use case 4.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase4_CatalogueResponse_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Response use case 4 TP.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase5_Catalogue_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Use case 5.xml";
+        public const string PATH_PEPPOL_Peppol1a_UseCase5_CatalogueResponse_XML = raspProfileResources + "Documents/Examples/Peppol1a/Catalogue Response use case 5 TP.xml";
+
+        public const string PATH_PEPPOL_Peppol3a_UserCase1_Order_XML = raspProfileResources + "Documents/Examples/Peppol3a/UC1_Order.xml";
+        public const string PATH_PEPPOL_Peppol3a_UserCase2_Order_XML = raspProfileResources + "Documents/Examples/Peppol3a/UC2_Order.xml";
+        public const string PATH_PEPPOL_Peppol3a_UserCase3_Order_XML = raspProfileResources + "Documents/Examples/Peppol3a/UC3_Order.xml";
+        public const string PATH_PEPPOL_Peppol3a_UserCase4_Order_XML = raspProfileResources + "Documents/Examples/Peppol3a/UC4_Order.xml";
+
+        public const string PATH_PEPPOL_Peppol4a_UserCase1a_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 1.a_ExampleFile_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol4a_UserCase1b_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 1.b_ExampleFile_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol4a_UserCase2_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 2_ExampleFile_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol4a_UserCase3_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 3_ExampleFile_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol4a_UserCase4_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 4_ExampleFile_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol4a_UserCase5_Invoice_XML = raspProfileResources + "Documents/Examples/Peppol4a/Use Case 5_ExampleFile_PEPPOL BIS.xml";
+
+        public const string PATH_PEPPOL_Peppol5a_UserCase1a_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 1.a_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_UserCase1b_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 1.b_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_UserCase2_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 2_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_UserCase3_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 3_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_UserCase4_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 4_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_UserCase5_CreditNote_XML = raspProfileResources + "Documents/Examples/Peppol5a/Use Case 5_CreditNote_PEPPOL BIS.xml";
+        public const string PATH_PEPPOL_Peppol5a_Invocie_XML = raspProfileResources + "Documents/Examples/Peppol5a/PEPPOL_2.0_Invoice_Valid_bii05_ver2.0.xml";
+
+        public const string PATH_PEPPOL_Peppol30a_UserCase1_DespatchAdvice_XML = raspProfileResources + "Documents/Examples/Peppol30a/UBL-DespatchAdvice-2.1BII2 openPEPPOL BIS_UseCase1.xml";
+        public const string PATH_PEPPOL_Peppol30a_UserCase2_DespatchAdvice_XML = raspProfileResources + "Documents/Examples/Peppol30a/UBL-DespatchAdvice-2.1BII2 openPEPPOL BIS_UseCase2.xml";
+        public const string PATH_PEPPOL_Peppol30a_UserCase3_DespatchAdvice_XML = raspProfileResources + "Documents/Examples/Peppol30a/UBL-DespatchAdvice-2.1BII2 openPEPPOL BIS_UseCase3.xml";
+        public const string PATH_PEPPOL_Peppol30a_UserCase4_DespatchAdvice_XML = raspProfileResources + "Documents/Examples/Peppol30a/UBL-DespatchAdvice-2_1BII2 openPEPPOL BIS_UseCase4.xml";
+        public const string PATH_PEPPOL_Peppol30a_UserCase5_DespatchAdvice_XML = raspProfileResources + "Documents/Examples/Peppol30a/UBL-DespatchAdvice-2_1BII2 openPEPPOL BIS_UseCase5.xml";
+
         public const string PATH_UNKNOWNTYPE_XML = raspProfileResources + "Documents/Examples_Invalid/UnknownType.xml";
         public const string PATH_NONAMESPACE_XML = raspProfileResources + "Documents/Examples_Invalid/NoNamespace.xml";
 
         public const string PATH_SCHEMAS20 = raspProfileResources + "Schemas/UBL v2.0/";
         public const string PATH_SCHEMAS07 = raspProfileResources + "Schemas/OIOXML v0.7/";
         public const string PATH_SCHEMAS21b = raspProfileResources + "Schemas/OIOUBL v2.1-b/";
+        public const string PATH_SCHEMAS21 = raspProfileResources + "Schemas/UBL v2.1/";
 
-        // public const string PATH_CERTIFICATE_ORGANISATION = "Resources/Certificates/CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer";
+        // public const string PATH_CERTIFICATE_ORGANISATION =
+        // "Resources/Certificates/CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer";
         public const string PATH_CERTIFICATE_EMPLOYEE = "Resources/Certificates/CVR30808460.Expire20131101.Test MOCES1 (medarbejdercertificat 1).pfx";
+
         public const string PASSWORD_CERTIFICATE_EMPLOYEE = "Test1234";
         public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
         public const string PASSWORD_CERTIFICATE_DEVICE = "Test1234";
@@ -57,7 +102,6 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_INVOICE_XML_IDENTIFIER_DUNS = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_identifier_duns_v2p1.xml";
 
         public const string ITST_CERTIFICATE_SUBJECT = "CN=NemHandel Test 2 + SERIALNUMBER=CVR:26769388-DID:00000002, O=IT- og Telestyrelsen // CVR:26769388, C=DK";
-
 
         public const string TESTEAN = "5798009811578";
     }

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using System.IO;
 using dk.gov.oiosi.communication;
-using dk.gov.oiosi.samples.consoleClientExample;
-using dk.gov.oiosi.test.request;
-using dk.gov.oiosi.raspProfile.communication;
-using System.Configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.logging;
+using dk.gov.oiosi.raspProfile.communication;
+using dk.gov.oiosi.samples.consoleClientExample;
+using dk.gov.oiosi.test.request;
 
 namespace dk.gov.oiosi.samples.ClientExample
 {
@@ -87,28 +87,28 @@ namespace dk.gov.oiosi.samples.ClientExample
 
                     xdoc.Load(fileInfo.FullName);
 
-                    // Create the OIOSI message object to send, and add the mandatory MessageIdentifier header
+                    // Create the OIOSI message object to send, and add the mandatory
+                    // MessageIdentifier header
                     OiosiMessage message = new OiosiMessage(xdoc);
 
                     // Prepare the request
 
                     Preparation preparation = new Preparation();
 
-
                     IRaspRequest request = preparation.PrepareRequest(message, this.uddiType);
 
                     // Let the user configure his mail account
                     if (request.RequestUri.Scheme == "mailto")
                     {
-                        //throw new NotImplementedException("Mail sending not implemented.");
-                        GUI.GetMailSettings(request);
+                        throw new NotImplementedException("Mail sending not implemented - no longer part of RASP.");
+                        //GUI.GetMailSettings(request);
                     }
 
                     // Use the OIOSI library class Request to send the document
                     Console.WriteLine("Starting to send...");
                     Response response;
 
-                    request.GetResponse(message, Guid.NewGuid().ToString(),  out response);
+                    request.GetResponse(message, Guid.NewGuid().ToString(), out response);
 
                     // Print out the reply
                     GUI.PrintResponse(response);
@@ -123,12 +123,6 @@ namespace dk.gov.oiosi.samples.ClientExample
 
             return result;
         }
-
-
-
-
-
-
 
         private void Exit()
         {

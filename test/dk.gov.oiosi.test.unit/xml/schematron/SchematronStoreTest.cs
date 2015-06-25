@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-using NUnit.Framework;
-
-using dk.gov.oiosi.xml.schematron;
 using System.Xml;
-using dk.gov.oiosi.xml.documentType;
-using dk.gov.oiosi.communication.configuration;
 using System.Xml.Xsl;
+using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
+using dk.gov.oiosi.xml.documentType;
+using dk.gov.oiosi.xml.schematron;
+using NUnit.Framework;
 
-namespace dk.gov.oiosi.test.unit.xml.schematron {
-
+namespace dk.gov.oiosi.test.unit.xml.schematron
+{
     [TestFixture]
-    public class SchematronStoreTest {
-
-        public SchematronStoreTest() {
+    public class SchematronStoreTest
+    {
+        public SchematronStoreTest()
+        {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
             ConfigurationHandler.Reset();
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
@@ -26,48 +25,69 @@ namespace dk.gov.oiosi.test.unit.xml.schematron {
         }
 
         [Test]
-        public void _01_GetOnceTest() {
+        public void _01_GetOnceTest()
+        {
             Console.WriteLine(DateTime.Now + " GetOnceTest start");
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML);
             DocumentTypeConfigSearcher searcher = new DocumentTypeConfigSearcher();
             DocumentTypeConfig documentTypeConfig = searcher.FindUniqueDocumentType(document);
             SchematronStore store = new SchematronStore();
-            XslCompiledTransform transform = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
-            Assert.IsNotNull(transform);
+            SchematronValidationConfig[] schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
+            foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+            {
+                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                Assert.IsNotNull(transform);
+            }
             Console.WriteLine(DateTime.Now + " GetOnceTest stop");
         }
 
         [Test]
-        public void _02_GetTwiceTest() {
+        public void _02_GetTwiceTest()
+        {
             Console.WriteLine(DateTime.Now + " GetTwiceTest start");
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML);
             DocumentTypeConfigSearcher searcher = new DocumentTypeConfigSearcher();
             DocumentTypeConfig documentTypeConfig = searcher.FindUniqueDocumentType(document);
             SchematronStore store = new SchematronStore();
-            XslCompiledTransform transform1 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
-            Assert.IsNotNull(transform1);
-            XslCompiledTransform transform2 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
-            Assert.IsNotNull(transform2);
+            SchematronValidationConfig[] schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
+            foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+            {
+                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                Assert.IsNotNull(transform);
+            }
+
+            schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
+            foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+            {
+                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                Assert.IsNotNull(transform);
+            }
+
             Console.WriteLine(DateTime.Now + " GetTwiceTest stop");
         }
 
         [Test]
-        public void _03_GetTenTimesTest() {
+        public void _03_GetTenTimesTest()
+        {
             Console.WriteLine(DateTime.Now + " GetTenTimesTest start");
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML);
             DocumentTypeConfigSearcher searcher = new DocumentTypeConfigSearcher();
             DocumentTypeConfig documentTypeConfig = searcher.FindUniqueDocumentType(document);
             SchematronStore store = new SchematronStore();
-            XslCompiledTransform transform1 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
-            Assert.IsNotNull(transform1);
+            SchematronValidationConfig[] schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
 
-            for (int i = 0; i < 9; i++) {
-                XslCompiledTransform transform2 = store.GetCompiledSchematron(documentTypeConfig.SchematronValidationConfig.SchematronDocumentPath);
-                Assert.IsNotNull(transform2);
+            for (int i = 0; i < 9; i++)
+            {
+                foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
+                {
+                    XslCompiledTransform transform2 = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    Assert.IsNotNull(transform2);
+                }
             }
+
             Console.WriteLine(DateTime.Now + " GetTenTimesTest stop");
         }
     }

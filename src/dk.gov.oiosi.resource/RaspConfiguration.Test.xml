@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="2.2.0.0" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
+<?xml version="1.0" encoding="utf-8"?>
+<RaspConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://oiosi.dk/rasp/xml/2007/04/01/">
   <ConfigurationSection xsi:type="DocumentTypeCollectionConfig">
     <DocumentTypes>
       <DocumentTypeConfig>
@@ -7,6 +7,7 @@
         <FriendlyName>Faktura v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pie/</RootNamespace>
         <RootName>Invoice</RootName>
+        <IdentifierDiscriminators />
         <ServiceContractTModel>uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOXML_v0.7/pieStrict.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
@@ -217,12 +218,13 @@
           </SenderKey>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators />
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
-          <ErrorXPath>/schematron/error</ErrorXPath>
-          <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
+            <ErrorXPath>/schematron/error</ErrorXPath>
+            <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
@@ -235,6 +237,7 @@
         <FriendlyName>Kreditnota v0.7</FriendlyName>
         <RootNamespace>http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/</RootNamespace>
         <RootName>Invoice</RootName>
+        <IdentifierDiscriminators />
         <ServiceContractTModel>uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOXML_v0.7/pcmStrict.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl</StylesheetPath>
@@ -445,12 +448,13 @@
           </SenderKey>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators />
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
-          <ErrorXPath>/schematron/error</ErrorXPath>
-          <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl</SchematronDocumentPath>
+            <ErrorXPath>/schematron/error</ErrorXPath>
+            <ErrorMessageXPath>/schematron/error</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
@@ -463,6 +467,12 @@
         <FriendlyName>Applikationsmeddelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:42F92342-C3ED-46ff-8A8A-6518F55D5CD5</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-ApplicationResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ApplicationResponseHTML.xsl</StylesheetPath>
@@ -684,25 +694,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_ApplicationResponse_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -714,6 +722,12 @@
         <FriendlyName>Katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
         <RootName>Catalogue</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Catalogue/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:b8a5a5d0-df9f-11dc-889a-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Catalogue-2.0.xsd</SchemaPath>
         <StylesheetPath />
@@ -935,25 +949,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:Catalogue/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:Catalogue/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Catalogue_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:Catalogue/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -965,6 +977,12 @@
         <FriendlyName>Katalogforespørgsel</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2</RootNamespace>
         <RootName>CatalogueRequest</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CatalogueRequest/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:0cb0ff80-dfa0-11dc-889a-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueRequest-2.0.xsd</SchemaPath>
         <StylesheetPath />
@@ -1186,25 +1204,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:CatalogueRequest/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:CatalogueRequest/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueRequest_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:CatalogueRequest/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -1216,6 +1232,12 @@
         <FriendlyName>Opdatering af katalogelement</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2</RootNamespace>
         <RootName>CatalogueItemSpecificationUpdate</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CatalogueItemSpecificationUpdate/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:63eab5c0-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueItemSpecificationUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
@@ -1437,25 +1459,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:CatalogueItemSpecificationUpdate/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:CatalogueItemSpecificationUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:CatalogueItemSpecificationUpdate/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -1467,6 +1487,12 @@
         <FriendlyName>Opdatering af katalogpriser</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2</RootNamespace>
         <RootName>CataloguePricingUpdate</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CataloguePricingUpdate/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:abdb2720-dfa0-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CataloguePricingUpdate-2.0.xsd</SchemaPath>
         <StylesheetPath />
@@ -1688,25 +1714,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:CataloguePricingUpdate/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:CataloguePricingUpdate/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CataloguePricingUpdate_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:CataloguePricingUpdate/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -1718,6 +1742,12 @@
         <FriendlyName>Sletning af katalog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2</RootNamespace>
         <RootName>CatalogueDeletion</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CatalogueDeletion/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:40e5cbd0-dfa2-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CatalogueDeletion-2.0.xsd</SchemaPath>
         <StylesheetPath />
@@ -1939,25 +1969,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:CatalogueDeletion/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:CatalogueDeletion/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CatalogueDeletion_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:CatalogueDeletion/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -1969,6 +1997,12 @@
         <FriendlyName>Kreditnota</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
         <RootName>CreditNote</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CreditNote/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:E4EC9613-4830-4bab-AFEE-C37AB1C67AEC</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-CreditNote-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/CreditNoteHTML.xsl</StylesheetPath>
@@ -2190,25 +2224,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:CreditNote/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:CreditNote/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_CreditNote_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:CreditNote/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -2220,6 +2252,12 @@
         <FriendlyName>Faktura</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Invoice-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
@@ -2441,25 +2479,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:Invoice/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Invoice_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:Invoice/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -2471,6 +2507,12 @@
         <FriendlyName>Ordre</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
         <RootName>Order</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Order-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl</StylesheetPath>
@@ -2692,25 +2734,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:Order/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Order_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:Order/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -2722,6 +2762,12 @@
         <FriendlyName>Ordreannulering</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2</RootNamespace>
         <RootName>OrderCancellation</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:OrderCancellation/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:7ba80590-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderCancellation-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderCancellationHTML.xsl</StylesheetPath>
@@ -2943,25 +2989,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:OrderCancellation/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:OrderCancellation/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderCancellation_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:OrderCancellation/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -2973,6 +3017,12 @@
         <FriendlyName>Ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</RootNamespace>
         <RootName>OrderResponse</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:OrderResponse/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:ed6d3c40-dfa1-11dc-889b-1a827c218899</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponse-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl</StylesheetPath>
@@ -3194,25 +3244,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:OrderResponse/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderResponse_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -3224,6 +3272,12 @@
         <FriendlyName>Ordreændring</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2</RootNamespace>
         <RootName>OrderChange</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:OrderChange/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:ea4bc88f-9479-4f9b-a354-4acabdb99336</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderChange-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderChangeHTML.xsl</StylesheetPath>
@@ -3445,25 +3499,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:OrderChange/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:OrderChange/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderChange_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:OrderChange/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -3475,6 +3527,12 @@
         <FriendlyName>Simpel ordrebekræftelse</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2</RootNamespace>
         <RootName>OrderResponseSimple</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:OrderResponseSimple/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:3B0B1309-B575-4d69-9C8F-4126C53CD7B0</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-OrderResponseSimple-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseSimpleHTML.xsl</StylesheetPath>
@@ -3696,25 +3754,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:OrderResponseSimple/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:OrderResponseSimple/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_OrderResponseSimple_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:OrderResponseSimple/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -3726,6 +3782,12 @@
         <FriendlyName>Rykker</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Reminder-2</RootNamespace>
         <RootName>Reminder</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Reminder/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:4FBBBDEF-0A8E-4d5e-9B9D-23C8FD98E9CE</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Reminder-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ReminderHTML.xsl</StylesheetPath>
@@ -3947,25 +4009,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:Reminder/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:Reminder/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Reminder_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:Reminder/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -3977,6 +4037,12 @@
         <FriendlyName>KontoUdtog</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Statement-2</RootNamespace>
         <RootName>Statement</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Statement/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:4e383840-bcfc-11dc-a81b-bfc65441a808</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.0/maindoc/UBL-Statement-2.0.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/StatementHTML.xsl</StylesheetPath>
@@ -4198,25 +4264,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:Statement/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:Statement/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_Statement_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:Statement/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -4228,6 +4292,12 @@
         <FriendlyName>Forsynings Specifikation</FriendlyName>
         <RootNamespace>urn:oioubl:names:specification:oioubl:schema:xsd:UtilityStatement-2</RootNamespace>
         <RootName>UtilityStatement</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:UtilityStatement/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:236f277d-a786-4724-a16e-26398b685a07</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/OIOUBL_v2.1-b/maindoc/UBL-UtilityStatement-2.1.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/UtilityStatementHTML.xsl</StylesheetPath>
@@ -4449,25 +4519,23 @@
             </MappingExpressions>
           </SenderKey>
           <ProfileIdXPath>
+            <myCount>-1</myCount>
             <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
           </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:UtilityStatement/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>OIOUBL-2.0(1|2)</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>/Schematron/Error</ErrorXPath>
-          <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_UtilityStatement_Schematron.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
@@ -4475,10 +4543,1066 @@
         </DocumentIdXPath>
       </DocumentTypeConfig>
       <DocumentTypeConfig>
+        <Id>5b2de589-832d-4901-bbbb-8eba23e00709</Id>
+        <FriendlyName>Applikationsmeddelse</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
+        <RootName>ApplicationResponse</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns071:ver2.0:extended:urn:www.peppol.eu:bis:peppol36a:ver1.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:c2552794-76ee-4ee8-8600-09283086492d</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-ApplicationResponse-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ApplicationResponseHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/BIIRULES-UBL-T71.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOL-UBL-T71.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:ApplicationResponse/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>24750a44-9a18-46f4-85ef-50f00c90068b</Id>
+        <FriendlyName>Katalog</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
+        <RootName>Catalogue</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Catalogue/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns019:ver2.0:extended:urn:www.peppol.eu:bis:peppol1a:ver4.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:6c917ef1-5143-4123-879a-471215dbd373</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Catalogue-2.1.xsd</SchemaPath>
+        <StylesheetPath />
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CataloguePeppol1aInterface/SubmitCataloguRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CataloguePeppol1aInterface/SubmitCatalogueResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:Catalogue/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:Catalogue/cac:ProviderParty/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:Catalogue/cac:ReceiverParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Catalogue/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:Catalogue/cac:ProviderParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Catalogue/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:Catalogue/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIICORE-UBL-T19-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T19.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:Catalogue/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Catalogue/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>551e8437-f543-46cf-bd56-492a25e723fc</Id>
+        <FriendlyName>Applikationsmeddelse</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
+        <RootName>ApplicationResponse</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:ApplicationResponse/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns058:ver2.0:extended:urn:www.peppol.eu:bis:peppol1a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:e79dd402-8f60-4811-9f59-1acb0c036d05</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-ApplicationResponse-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/ApplicationResponseHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:ApplicationResponse/cac:ReceiverParty/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:ApplicationResponse/cac:SenderParty/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:ApplicationResponse/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>21671b33-58a2-4ab5-96bd-42f6c4f22af6</Id>
+        <FriendlyName>Kreditnota</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
+        <RootName>CreditNote</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:CreditNote/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:4db3f358-6184-4979-bbc9-5d65aee27132</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/CreditNoteHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNotePeppol5aInterface/SubmitCreditNoteRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/CreditNotePeppol5aInterface/SubmitCreditNoteResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:CreditNote/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIICORE-UBL-T14-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOL-UBL-T14.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:CreditNote/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:CreditNote/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
         <Id>9e8b18e5-416e-4c41-9b9f-adadc3de6598</Id>
         <FriendlyName>Forsendelsesadvis</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2</RootNamespace>
         <RootName>DespatchAdvice</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:DespatchAdvice/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:96dbec86-aa58-4f1e-ae03-ebb13079ce61</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd</SchemaPath>
         <StylesheetPath />
@@ -4508,221 +5632,1284 @@
             <Prefix>root</Prefix>
           </PrefixedNamespace>
         </Namespaces>
-          <EndpointType>
-              <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceRequest</RequestAction>
-              <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceResponse</ReplyAction>
-              <EndpointFriendlyName>
-                  <XPath>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
-              </EndpointFriendlyName>
-              <SenderFriendlyName>
-                  <XPath>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
-              </SenderFriendlyName>
-              <Key>
-                  <Xpath>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID</Xpath>
-                  <MappingExpressions>
-                      <KeyTypeMappingExpressions>
-                          <Name>EndpointKeyType</Name>
-                          <XPathExpression>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
-                          <Mappings>
-                              <Mapping>
-                                  <Value>ean</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>EAN</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>GLN</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>cvr</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>CVR</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:CVR</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>p</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>P</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:P</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>se</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>SE</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:SE</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>cpr</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>CPR</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:CPR</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>FI:OVT</Value>
-                                  <MapsTo>ovt</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>VANS</Value>
-                                  <MapsTo>vans</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:VANS</Value>
-                                  <MapsTo>vans</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>IBAN</Value>
-                                  <MapsTo>iban</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DUNS</Value>
-                                  <MapsTo>duns</MapsTo>
-                              </Mapping>
-                          </Mappings>
-                      </KeyTypeMappingExpressions>
-                  </MappingExpressions>
-              </Key>
-              <SenderKey>
-                  <Xpath>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID</Xpath>
-                  <MappingExpressions>
-                      <KeyTypeMappingExpressions>
-                          <Name>EndpointKeyType</Name>
-                          <XPathExpression>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
-                          <Mappings>
-                              <Mapping>
-                                  <Value>ean</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>EAN</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>GLN</Value>
-                                  <MapsTo>ean</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>cvr</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>CVR</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:CVR</Value>
-                                  <MapsTo>cvr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>p</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>P</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:P</Value>
-                                  <MapsTo>p</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>se</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>SE</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:SE</Value>
-                                  <MapsTo>se</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>cpr</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>CPR</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:CPR</Value>
-                                  <MapsTo>cpr</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>FI:OVT</Value>
-                                  <MapsTo>ovt</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>VANS</Value>
-                                  <MapsTo>vans</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DK:VANS</Value>
-                                  <MapsTo>vans</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>IBAN</Value>
-                                  <MapsTo>iban</MapsTo>
-                              </Mapping>
-                              <Mapping>
-                                  <Value>DUNS</Value>
-                                  <MapsTo>duns</MapsTo>
-                              </Mapping>
-                          </Mappings>
-                      </KeyTypeMappingExpressions>
-                  </MappingExpressions>
-              </SenderKey>
-              <ProfileIdXPath>
-                  <XPath>/root:DespatchAdvice/cbc:ProfileID</XPath>
-              </ProfileIdXPath>
-          </EndpointType>
-          <XsltTransformStylesheetPath />
-        <IdentifierDiscriminators>
-          <XPathDiscriminatorConfig>
-            <XPathExpression>/root:DespatchAdvice/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0</XPathExpectedResult>
-          </XPathDiscriminatorConfig>
-        </IdentifierDiscriminators>
-        <SchematronValidationConfig>
-          <SchematronDocumentPath>Resources/Schematrons/OIOUBL/OIOUBL_DespatchAdvice_Schematron.xsl</SchematronDocumentPath>
-          <ErrorXPath>schematron-output/failed-assert</ErrorXPath>
-          <ErrorMessageXPath>schematron-output/failed-assert/text</ErrorMessageXPath>
-        </SchematronValidationConfig>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:DespatchAdvice/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
         <ProfileIdXPath>
+          <myCount>-1</myCount>
           <XPath>/root:DespatchAdvice/cbc:ProfileID</XPath>
         </ProfileIdXPath>
         <DocumentIdXPath>
           <XPath>/root:DespatchAdvice/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>c1061668-0549-452c-b0cb-7d6428fdc5f7</Id>
+        <FriendlyName>Faktura</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
+        <RootName>Invoice</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol4a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:Invoice/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:Invoice/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Invoice/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>db2f9050-2adb-49c2-8f05-af9e440d12ca</Id>
+        <FriendlyName>Ordre</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
+        <RootName>Order</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol03a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:873c25f6-23d2-4019-830e-89cc89386930</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:Order/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:Order/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:Order/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:Order/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Order/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>fe16f395-6d83-42ba-8ce1-cf79cc02fc08</Id>
+        <FriendlyName>Ordre</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
+        <RootName>Order</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:f6680c9e-6d67-47cc-acde-cb97d0bce321</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:Order/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:Order/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:Order/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIICORE-UBL-T01-V1.0.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:Order/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Order/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>1557aed8-e4e5-4cec-9824-4cf5eeaa268b</Id>
+        <FriendlyName>Ordrebekræftelse</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</RootNamespace>
+        <RootName>OrderResponse</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:OrderResponse/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns076:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0</XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:900a898a-567e-4a05-9846-7d140fddb03c</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-OrderResponse-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2</Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:OrderResponse/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:OrderResponse/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:OrderResponse/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:OrderResponse/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:OrderResponse/cac:SellerSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>/root:OrderResponse/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>ean</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>EAN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cvr</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>p</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>se</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>cpr</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>FI:OVT</Value>
+                    <MapsTo>ovt</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>IBAN</Value>
+                    <MapsTo>iban</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DUNS</Value>
+                    <MapsTo>duns</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+          <ProfileIdXPath>
+            <myCount>-1</myCount>
+            <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
+          </ProfileIdXPath>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T76.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T76.xsl</SchematronDocumentPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <myCount>-1</myCount>
+          <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:OrderResponse/cbc:ID</XPath>
         </DocumentIdXPath>
       </DocumentTypeConfig>
     </DocumentTypes>
@@ -4829,18 +7016,18 @@
         <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
         <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
       </ProfileMapping>
-            <!--<ProfileMapping>-->
-            <!--<Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>-->
-            <!--<TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>-->
-            <!--</ProfileMapping>-->
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
+        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
+      </ProfileMapping>
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
         <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
       </ProfileMapping>
-            <!--<ProfileMapping>-->
-            <!--<Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>-->
-            <!--<TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>-->
-            <!--</ProfileMapping>-->
+      <ProfileMapping>
+        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
+        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
+      </ProfileMapping>
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
         <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
@@ -4858,32 +7045,56 @@
         <TModelGuid>uddi:1bfd82e6-0eca-47df-9230-37b97c9788c6</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>urn:www.cenbii.eu:profile:bii30:ver2.0</Name>
-                <TModelGuid>uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>Catalogue-CatPriUpd-1.0</Name>
-                <TModelGuid>uddi:a7f4c627-d459-4ef2-a132-fc6df0971db1</TModelGuid>
+        <TModelGuid>uddi:a7f4c627-d459-4ef2-a132-fc6df0971db1</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatPriUpdR-1.0</Name>
-                <TModelGuid>uddi:fc5313f8-19e0-408b-85ca-87c364f2a41c</TModelGuid>
+        <TModelGuid>uddi:fc5313f8-19e0-408b-85ca-87c364f2a41c</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-OrdSim-1.0</Name>
-                <TModelGuid>uddi:5f2d93a7-bdb7-4543-b667-ba71192e5c5f</TModelGuid>
+        <TModelGuid>uddi:5f2d93a7-bdb7-4543-b667-ba71192e5c5f</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-OrdSimR-1.0</Name>
-                <TModelGuid>uddi:7fe5938c-1b3a-403c-8155-039b49a06cef</TModelGuid>
+        <TModelGuid>uddi:7fe5938c-1b3a-403c-8155-039b49a06cef</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Procurement-TecRes-1.0</Name>
-                <TModelGuid>uddi:ce80ccce-3ef9-47ea-8cf4-120913a87dc2</TModelGuid>
+        <TModelGuid>uddi:ce80ccce-3ef9-47ea-8cf4-120913a87dc2</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>Reference-Attachment-1.0</Name>
-                <TModelGuid>uddi:10faffb1-1303-485e-924a-e8b551f31949</TModelGuid>
+        <TModelGuid>uddi:10faffb1-1303-485e-924a-e8b551f31949</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii04:ver2.0</Name>
+        <TModelGuid>uddi:553e78e6-7de4-4926-8384-53ef82566560</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii28:ver2.0</Name>
+        <TModelGuid>uddi:e15ac48e-e679-46fa-937d-10d69c558998</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii01:ver2.0</Name>
+        <TModelGuid>uddi:c7cb8dd0-af00-42c6-a8b7-48204aa7b30f</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii30:ver2.0</Name>
+        <TModelGuid>uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii05:ver2.0</Name>
+        <TModelGuid>uddi:8dde0481-9055-41fe-94f7-5102ce3672e7</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii03:ver2.0</Name>
+        <TModelGuid>uddi:90043120-5eab-468c-be4a-5562d95a73a7</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>urn:www.cenbii.eu:profile:bii36:ver2.0</Name>
+        <TModelGuid>uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
@@ -4892,7 +7103,7 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>crtdir.pp.certifikat.dk</Host>
+    <Host>crtdir.certifikat.dk</Host>
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -4901,7 +7112,7 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass-->
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -4918,7 +7129,7 @@
   <ConfigurationSection xsi:type="UddiConfig">
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupRegistryFallbackConfig>
-      <PrioritizedRegistryList>
+       <PrioritizedRegistryList>
         <Registry>
           <!-- Test UDDI -->
           <EndpointCollection>
@@ -4934,170 +7145,8 @@
     </LookupRegistryFallbackConfig>
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
-  <ConfigurationSection xsi:type="CacheConfig">
-    <OcspLookupCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInHours</Key>
-          <Value>1</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>OcspLookupCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </OcspLookupCache>
-    <CrlLookupCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[dk.gov.oiosi.security.revocation.crl.CrlInstance, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>maxSize</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>CrlLookupCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </CrlLookupCache>
-    <UddiServiceCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiLookupKey, dk.gov.oiosi.library],[System.Collections.Generic.IList`1[[dk.gov.oiosi.uddi.UddiService, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInHours</Key>
-          <Value>1</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>UddiServiceCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </UddiServiceCache>
-    <UddiTModelCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.uddi.UddiId, dk.gov.oiosi.library],[dk.gov.oiosi.uddi.UddiTModel, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInHours</Key>
-          <Value>24</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>UddiTModelCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </UddiTModelCache>
-    <CertificateCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[dk.gov.oiosi.security.CertificateSubject, dk.gov.oiosi.library],[System.Security.Cryptography.X509Certificates.X509Certificate2, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInHours</Key>
-          <Value>24</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>CertificateCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </CertificateCache>
-    <SchemaStoreCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Schema.XmlSchemaSet, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>maxSize</Key>
-          <Value>20</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>SchemaStoreCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </SchemaStoreCache>
-    <SchematronStoreCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>maxSize</Key>
-          <Value>20</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>SchematronStoreCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </SchematronStoreCache>
-    <MessageIdUnfinishedSignaturesCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>MessageIdUnfinishedSignaturesCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </MessageIdUnfinishedSignaturesCache>
-    <SequenceIdUnfinishedSignaturesCache>
-      <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[dk.gov.oiosi.extension.wcf.Interceptor.Security.UnfinishedSignatureValidationProof, dk.gov.oiosi.library]], mscorlib]]</ImplementationNamespaceClass>
-      <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
-      <CacheConfigurationCollection>
-        <Configuration>
-          <Key>validityTimeInMinutes</Key>
-          <Value>60</Value>
-        </Configuration>
-        <Configuration>
-          <Key>frequencyInMinutes</Key>
-          <Value>10</Value>
-        </Configuration>
-        <Configuration>
-          <Key>CacheName</Key>
-          <Value>SequenceIdUnfinishedSignaturesCache</Value>
-        </Configuration>
-      </CacheConfigurationCollection>
-    </SequenceIdUnfinishedSignaturesCache>
-  </ConfigurationSection>
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
     <RootCertificateLocationCollection>
-      <RootCertificateLocation>
-        <StoreLocation>LocalMachine</StoreLocation>
-        <StoreName>Root</StoreName>
-        <SerialNumber>403617fc</SerialNumber>
-        <Description>TDC OCES Systemtest CA II</Description>
-      </RootCertificateLocation>
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
@@ -5119,9 +7168,5 @@
     <FunctionCertificateSubjetKey>
       <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
-  </ConfigurationSection>
-  <ConfigurationSection xsi:type="SendingOptionConfig">
-    <SchemaValidation>True</SchemaValidation>
-    <SchematronValidation>True</SchematronValidation>
   </ConfigurationSection>
 </RaspConfiguration>

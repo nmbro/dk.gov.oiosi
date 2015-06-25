@@ -459,30 +459,40 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-ApplicationResponse-2.1.xsd">
+      <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-ApplicationResponse-2.1.xsd</Link>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-Catalogue-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-Catalogue-2.1.xsd</Link>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-CreditNote-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-CreditNote-2.1.xsd</Link>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-DespatchAdvice-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-DespatchAdvice-2.1.xsd</Link>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-Invoice-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-Invoice-2.1.xsd</Link>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-Order-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-Order-2.1.xsd</Link>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\dk.gov.oiosi.resource\Resources\Schemas\UBL_v2.1\maindoc\UBL-OrderResponse-2.1.xsd">
       <Link>Resources\Schemas\UBL_v2.1\maindoc\UBL-OrderResponse-2.1.xsd</Link>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

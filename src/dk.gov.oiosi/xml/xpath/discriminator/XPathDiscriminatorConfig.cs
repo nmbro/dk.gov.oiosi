@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,46 +30,54 @@
   *   Christian Lanng, ITST
   *
   */
-using System;
 
-namespace dk.gov.oiosi.xml.xpath.discriminator {
+using System;
+using System.Xml.Serialization;
+
+namespace dk.gov.oiosi.xml.xpath.discriminator
+{
     /// <summary>
     /// Configuration to an XPath discrimination
     /// </summary>
-    public class XPathDiscriminatorConfig : IEquatable<XPathDiscriminatorConfig> {
+    public class XPathDiscriminatorConfig : IEquatable<XPathDiscriminatorConfig>
+    {
         private string _xpathExpression = "";
         private string _xpathExpectedResult = "";
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public XPathDiscriminatorConfig() { }
+        public XPathDiscriminatorConfig()
+        {
+        }
 
         /// <summary>
-        /// Constructor that takes the XPath expression and the expected result 
-        /// as paramters.
+        /// Constructor that takes the XPath expression and the expected result as paramters.
         /// </summary>
         /// <param name="xpathExpression"></param>
         /// <param name="xpathExpectedResult"></param>
-        public XPathDiscriminatorConfig(string xpathExpression, string xpathExpectedResult) {
+        public XPathDiscriminatorConfig(string xpathExpression, string xpathExpectedResult)
+        {
             _xpathExpression = xpathExpression;
             _xpathExpectedResult = xpathExpectedResult;
         }
 
         /// <summary>
-        /// Gets and sets the XPath expression used by the 
-        /// XPath discriminator
+        /// Gets and sets the XPath expression used by the XPath discriminator
         /// </summary>
-        public string XPathExpression {
+        //[XmlElement("XPathExpression")]
+        public string XPathExpression
+        {
             get { return _xpathExpression; }
             set { _xpathExpression = value; }
         }
 
         /// <summary>
-        /// Gets and sets the XPath expected result used by the 
-        /// XPath discriminator
+        /// Gets and sets the XPath expected result used by the XPath discriminator
         /// </summary>
-        public string XPathExpectedResult {
+        //[XmlElement("XPathExpectedResult")]
+        public string XPathExpectedResult
+        {
             get { return _xpathExpectedResult; }
             set { _xpathExpectedResult = value; }
         }
@@ -77,16 +85,16 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         #region IEquatable<XPathDiscriminatorConfig> Members
 
         /// <summary>
-        /// Returns whether the other XPathDiscriminator given is equals
-        /// to this.
+        /// Returns whether the other XPathDiscriminator given is equals to this.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(XPathDiscriminatorConfig other) {
+        public bool Equals(XPathDiscriminatorConfig other)
+        {
             if (_xpathExpression != other._xpathExpression) return false;
             return _xpathExpectedResult == other._xpathExpectedResult;
         }
 
-        #endregion
+        #endregion IEquatable<XPathDiscriminatorConfig> Members
     }
 }

@@ -29,7 +29,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile.communication {
             ConfigurationHandler.PreloadRegisteredConfigurationSections();
 
             DocumentTypeCollectionConfig documentTypeCollectionConfig = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetInvoice());
+            documentTypeCollectionConfig.AddDocumentType(new DefaultDocumentTypes().GetOioUblInvoice());
             new DefaultOcesCertificate().SetIfNotExistsOcesCertificateConfig();
 
             ConfigurationHandler.SaveToFile();
