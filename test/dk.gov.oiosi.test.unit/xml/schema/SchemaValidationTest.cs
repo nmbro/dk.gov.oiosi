@@ -293,6 +293,7 @@ namespace dk.gov.oiosi.test.unit.xml.schema
         {
             // Need the schema cache from the cacheConfiguration
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.Reset();
 
             XmlDocument document = new XmlDocument();
             document.Load(xmlDocumentPath);

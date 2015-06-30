@@ -61,6 +61,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             }
 
             ConfigurationHandler.ConfigFilePath = fileName;
+            ConfigurationHandler.Reset();
 
             SetupDefaultDocumentTypes();
             SetupProfileMappings();

@@ -109,7 +109,7 @@ namespace dk.gov.oiosi.xml.xslt
             {
                 if (!ex.Message.Equals("Too complex!"))
                 {
-                    Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+                    //Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
                     throw;
                 }
             }

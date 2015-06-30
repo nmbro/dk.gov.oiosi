@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,18 +30,18 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using dk.gov.oiosi.logging;
 using System.IO;
+using dk.gov.oiosi.logging;
 
-
-namespace dk.gov.oiosi.configuration {
-
-    
+namespace dk.gov.oiosi.configuration
+{
     /// <summary>
-    /// A configuration handler that saves and reads configuration sections to and from file. The configuration holds only one section of a certain class.
+    /// A configuration handler that saves and reads configuration sections to and from file. The
+    /// configuration holds only one section of a certain class.
     /// </summary>
     /// <example>
     /// <code>
@@ -60,10 +60,11 @@ namespace dk.gov.oiosi.configuration {
     /// RaspConfigurationHandler.SaveToFile();
     /// </code>
     /// </example>
-    /// <remarks>Always make sure your configuration sections have a constructor that takes no arguments</remarks>
+    /// <remarks>
+    /// Always make sure your configuration sections have a constructor that takes no arguments
+    /// </remarks>
     public class ConfigurationHandler
     {
-        
         private Dictionary<Type, object> configSectionsCache;
         private static object lockObject = new object();
 
@@ -75,7 +76,7 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// The config document
         /// </summary>
-        private ConfigurationDocument configurationDocument = new ConfigurationDocument();
+        private ConfigurationDocument configurationDocument;
 
         /// <summary>
         /// The default rasp namespace url
@@ -83,7 +84,6 @@ namespace dk.gov.oiosi.configuration {
         public const string RaspNamespaceUrl = "http://oiosi.dk/rasp/xml/2007/04/01/";
 
         private static ConfigurationHandler configurationHandler = new ConfigurationHandler();
-
 
         /// <summary>
         /// Singleton implementation
@@ -99,7 +99,7 @@ namespace dk.gov.oiosi.configuration {
         /// The path to the config file
         /// </summary>
         public static string ConfigFilePath
-        { 
+        {
             get
             {
                 return ConfigurationDocument.ConfigFilePath;
@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Gets and sets the configuration version.
         /// </summary>
-        public static string Version 
+        public static string Version
         {
             get { return configurationHandler.configurationDocument.Version; }
             set { configurationHandler.configurationDocument.Version = value; }
@@ -129,7 +129,8 @@ namespace dk.gov.oiosi.configuration {
         /// <summary>
         /// Used by the Unit Test to reset the static information.
         /// </summary>
-        public static void Reset() {
+        public static void Reset()
+        {
             configurationHandler.configSectionsCache = new Dictionary<Type, object>();
             configurationHandler.configurationDocument.ConfigurationSections = new ArrayList();
             configurationHandler.configurationDocument = configurationHandler.configurationDocument.GetFromFile();
@@ -140,10 +141,11 @@ namespace dk.gov.oiosi.configuration {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool HasConfigurationSection<T>() where T : new() 
+        public static bool HasConfigurationSection<T>() where T : new()
         {
             Type configSectionType = typeof(T);
-            lock (lockObject) {
+            lock (lockObject)
+            {
                 bool sectionExistsInCache = configurationHandler.configSectionsCache.ContainsKey(typeof(T));
                 if (sectionExistsInCache) return true;
 
@@ -158,17 +160,20 @@ namespace dk.gov.oiosi.configuration {
         /// Gets the first configuration section of the type T
         /// </summary>
         /// <typeparam name="T">A serializable class type with a default constructor</typeparam>
-        /// <returns>A configuration section. If the configuration section is not found a new instance of the configuration section class is returned.</returns>
-        public static T GetConfigurationSection<T>() where T : new() 
+        /// <returns>
+        /// A configuration section. If the configuration section is not found a new instance of the
+        /// configuration section class is returned.
+        /// </returns>
+        public static T GetConfigurationSection<T>() where T : new()
         {
-            Type configSectionType = typeof (T);
-            lock (lockObject) 
+            Type configSectionType = typeof(T);
+            lock (lockObject)
             {
                 object section;
                 bool sectionExistsInCache = configurationHandler.configSectionsCache.TryGetValue(typeof(T), out section);
                 if (sectionExistsInCache)
                 {
-                    return (T) section;
+                    return (T)section;
                 }
 
                 bool sectionExistsInConfigurationDocument = configurationHandler.configurationDocument.HasConfigurationSection(configSectionType);
@@ -176,19 +181,19 @@ namespace dk.gov.oiosi.configuration {
                 {
                     section = configurationHandler.configurationDocument.GetConfigurationSection<T>(configSectionType);
                     configurationHandler.configSectionsCache.Add(configSectionType, section);
-                    return (T) section;
+                    return (T)section;
                 }
 
                 section = configurationHandler.configurationDocument.ReloadConfigSectionFromFile<T>(configSectionType);
                 configurationHandler.configSectionsCache.Add(configSectionType, section);
-                return (T) section;
+                return (T)section;
             }
         }
 
         /// <summary>
         /// Saves the configuration to file
         /// </summary>
-        public static void SaveToFile() 
+        public static void SaveToFile()
         {
             lock (lockObject)
             {
@@ -198,11 +203,12 @@ namespace dk.gov.oiosi.configuration {
         }
 
         /// <summary>
-        /// Register a configuration section.
-        /// By registering configuration sections up front, the load time is improved.
+        /// Register a configuration section. By registering configuration sections up front, the
+        /// load time is improved.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public static void RegisterConfigurationSection<T>() where T: new() {
+        public static void RegisterConfigurationSection<T>() where T : new()
+        {
             lock (lockObject)
             {
                 configurationHandler.configurationDocument.RegisterType<T>();
@@ -210,10 +216,12 @@ namespace dk.gov.oiosi.configuration {
         }
 
         /// <summary>
-        /// Preloads all registered configuration sections in order to speed up load time of the configuration file
+        /// Preloads all registered configuration sections in order to speed up load time of the
+        /// configuration file
         /// </summary>
-        public static void PreloadRegisteredConfigurationSections() {
-            lock (lockObject) 
+        public static void PreloadRegisteredConfigurationSections()
+        {
+            lock (lockObject)
             {
                 configurationHandler.configurationDocument.ReloadConfigurationFile();
             }

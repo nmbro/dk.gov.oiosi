@@ -156,7 +156,7 @@ namespace dk.gov.oiosi.xml.schematron
             }
             catch (Exception ex)
             {
-                Debug.Assert(false, ex.Message);
+                //Debug.Assert(false, ex.Message);
             }
 
             if (documentValidated == false)
