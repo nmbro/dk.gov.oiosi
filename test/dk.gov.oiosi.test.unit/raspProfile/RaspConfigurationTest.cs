@@ -29,6 +29,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.raspProfile;
@@ -51,6 +52,12 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             if (fileInfo.Exists)
             {
                 fileInfo.Delete();
+            }
+
+            while (fileInfo.Exists)
+            {
+                // wait
+                Thread.Sleep(10);
             }
 
             ConfigurationHandler.ConfigFilePath = fileName;
