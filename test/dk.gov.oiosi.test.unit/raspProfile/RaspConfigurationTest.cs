@@ -46,9 +46,11 @@ namespace dk.gov.oiosi.test.unit.raspProfile
         public void SetupAllSections()
         {
             string fileName = "RaspConfiguration.UnitTest.SetupAllSections.xml";
-            if (File.Exists(fileName))
+            FileInfo fileInfo = new FileInfo(fileName);
+
+            if (fileInfo.Exists)
             {
-                File.Delete(fileName);
+                fileInfo.Delete();
             }
 
             ConfigurationHandler.ConfigFilePath = fileName;
