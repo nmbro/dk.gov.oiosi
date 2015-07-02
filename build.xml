@@ -179,7 +179,7 @@
     </trycatch>
   </target>
   
-	<target name="BuildVisualStudioSolutionNet35" depends="NuGetRestore, SetVersion">
+	<target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore">
     <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
 			<property name="Configuration" value="Debug" />
 			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
@@ -201,6 +201,15 @@
 		<zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
 			<fileset basedir="${Oiosi.dir}\bin\Release">
 				<include name="**/*" />
+        <exclude name="**/*.pdb" />
+			</fileset>
+      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
+      <fileset basedir="${RaspProfile.dir}\bin\Release">
+				<include name="dk.gov.oiosi.raspProfile.dll" />
+			</fileset>
+       <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
+      <fileset basedir="${Xml.dir}\bin\Release">
+				<include name="dk.gov.oiosi.xml.dll" />
 			</fileset>
 		</zip>
 		<!-- Lesnikowski Mail Provider -->
@@ -210,23 +219,23 @@
 			</fileset>
 		</zip>
 		<!-- Rasp profile library -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
+		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
 			<fileset basedir="${RaspProfile.dir}\bin\Release">
 				<include name="**/*" />
 			</fileset>
-		</zip>
+		</zip -->
 		<!-- XML shared library -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
+		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
 			<fileset basedir="${Xml.dir}\bin\Release">
 				<include name="**/*" />
 			</fileset>
-		</zip>
+		</zip -->
 		<!-- Rasp profile resources - input to msi -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
+		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
 			<fileset basedir="${RaspProfile.dir}\Resources">
 				<include name="**/*" />
 			</fileset>
-		</zip>
+		</zip -->
 		<!-- Source section -->
 		<zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
 			<fileset basedir="${Root.dir}">
@@ -238,7 +247,9 @@
 				<exclude name="target/**" />
 				<exclude name="*.resharper" />
 				<exclude name="*.cache" />
-				<exclude name="build.xml" />
+				<exclude name="**/bin" />
+        <exclude name=".nuget/**" />
+        <exclude name="packages/**" />
         <exclude name="doc/*.doc" />
 			</fileset>
 		</zip>
