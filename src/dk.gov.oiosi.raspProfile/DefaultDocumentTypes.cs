@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.raspProfile
     /// </summary>
     public class DefaultDocumentTypes
     {
-        private delegate DocumentTypeConfig DocumentTypeConfigDelegate();
+        protected delegate DocumentTypeConfig DocumentTypeConfigDelegate();
 
         /// <summary>
         /// Adds all the document types from configuration, clears collection first
@@ -935,8 +935,8 @@ namespace dk.gov.oiosi.raspProfile
             const string senderKeyXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceResponse";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceResponse";
             const string serviceContractTModel = "uddi:96dbec86-aa58-4f1e-ae03-ebb13079ce61";
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
@@ -1131,45 +1131,39 @@ namespace dk.gov.oiosi.raspProfile
         ///// Settings for UBL AttachedDocument 2.1
         ///// </summary>
         ///// <returns>The document definition</returns>
-        //public DocumentTypeConfig GetAttachedDocument()
-        //{
-        //    const string id = "0ec853ab-a4f0-47f3-8270-e487f79f4dc1";
-        //    const string documentName = "Indlejret dokument";
-        //    const string rootName = "AttachedDocument";
-        //    const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2";
-        //    const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-AttachedDocument-2.1.xsd";
-        //    const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_AttachedDocument_Schematron.xsl";
-        //    const string xslUIPath = "";
-        //    const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
-        //    const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:PartyName/cbc:Name";
-        //    const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
-        //    const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
-        //    const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-        //    const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceRequest";
-        //    const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice201Interface/SubmitInvoiceResponse";
-        //    const string serviceContractTModel = "uddi:942f29ac-60dd-4b4d-b7d3-f5791737d084";
-        //    const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+        ////public DocumentTypeConfig GetAttachedDocument()
+        ////{
+        ////    const string id = "0ec853ab-a4f0-47f3-8270-e487f79f4dc1";
+        ////    const string documentName = "Indlejret dokument";
+        ////    const string rootName = "AttachedDocument";
+        ////    const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2";
+        ////    const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-AttachedDocument-2.1.xsd";
+        ////    const string xslPath = "Resources/Schematrons/OIOUBL/OIOUBL_AttachedDocument_Schematron.xsl";
+        ////    const string xslUIPath = "";
+        ////    const string destinationKeyXPath = "/root:" + rootName + "/cac:ReceiverParty/cbc:EndpointID";
+        ////    const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:ReceiverParty/cac:PartyName/cbc:Name";
+        ////    const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
+        ////    const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
+        ////    const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+        ////    const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/AttachedDocument201Interface/SubmitAttachedDocumentRequest";
+        ////    const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/AttachedDocument201Interface/SubmitAttachedDocumentResponse";
+        ////    const string serviceContractTModel = "uddi:942f29ac-60dd-4b4d-b7d3-f5791737d084";
+        ////    const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
-        // //const string SCHEMATRON_ERROR_XPATH = "/Schematron/Error"; //const string
-        // SCHEMATRON_ERRORMESSAGE_XPATH = "/Schematron/Error/Description";
-        // //XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-        // //string expectedResult =
-        // "urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0";
-        // //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-        // //XPathDiscriminatorConfig xPathDiscriminatorConfig = new
-        // XPathDiscriminatorConfig(xpathExpression, expectedResult);
-        // //ids.Add(xPathDiscriminatorConfig); // more XPathDiscriminatorConfig ???
+        //// const string SCHEMATRON_ERROR_XPATH = "/Schematron/Error";
+        //// const string SCHEMATRON_ERRORMESSAGE_XPATH = "/Schematron/Error/Description";
+        //// XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+        //// string expectedResult = "OIOUBL-2.0(1|2)";
+        //// string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+        //// XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+        //// ids.Add(xPathDiscriminatorConfig); // more XPathDiscriminatorConfig ???
 
-        // DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigOioublV2(id,
-        // destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath,
-        // senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction,
-        // documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath,
-        // xslUIPath, serviceContractTModel, documentIdXPath);
+        //// DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
 
-        //    return documentTypeConfig;
-        //}
+        ////    return documentTypeConfig;
+        ////}
 
-        private DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
+        public DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
@@ -1190,7 +1184,7 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
-        private DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        public DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
@@ -1215,7 +1209,7 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
-        private DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        public DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
@@ -1236,7 +1230,7 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
-        private XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root)
+        public XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root)
         {
             string expectedResult = "OIOUBL-2.0(1|2)";
             string xpathExpression = "/root:" + root + "/cbc:CustomizationID";
@@ -1244,7 +1238,7 @@ namespace dk.gov.oiosi.raspProfile
             return id;
         }
 
-        private List<PrefixedNamespace> GetOioxmlNamespaces()
+        public List<PrefixedNamespace> GetOioxmlNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/common/", "com"));
@@ -1252,7 +1246,7 @@ namespace dk.gov.oiosi.raspProfile
             return namespaces;
         }
 
-        private List<PrefixedNamespace> GetUblNamespaces()
+        public List<PrefixedNamespace> GetUblNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2", "cac"));
@@ -1263,7 +1257,7 @@ namespace dk.gov.oiosi.raspProfile
             return namespaces;
         }
 
-        private ServiceEndpointKey CreateSenderKey(string xpath)
+        public ServiceEndpointKey CreateSenderKey(string xpath)
         {
             // Why is there a differents between CreateSenderKey and CreateKey ??? It is not the
             // configuration file job, to limith the use of NemHandel If the xml document contain
@@ -1274,7 +1268,7 @@ namespace dk.gov.oiosi.raspProfile
             return key;
         }
 
-        private ServiceEndpointKey CreateKey(string xpath)
+        public ServiceEndpointKey CreateKey(string xpath)
         {
             ServiceEndpointKey key = new ServiceEndpointKey(xpath);
             string keyTypeXpath = xpath + "/@schemeID";
@@ -1346,7 +1340,7 @@ namespace dk.gov.oiosi.raspProfile
         /// Adds a document type definition to the collection
         /// </summary>
         /// <param name="documentTypeConfigDelegate"></param>
-        private void Add(DocumentTypeConfigDelegate documentTypeConfigDelegate)
+        public void Add(DocumentTypeConfigDelegate documentTypeConfigDelegate)
         {
             DocumentTypeConfig documentType = documentTypeConfigDelegate();
             DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
@@ -1362,7 +1356,7 @@ namespace dk.gov.oiosi.raspProfile
             }
         }
 
-        private SchematronValidationConfig CreateSchematronValidationConfig_OioUbl(string xslPath)
+        public SchematronValidationConfig CreateSchematronValidationConfig_OioUbl(string xslPath)
         {
             const string schematronErrorXPath = "/Schematron/Error";
             const string schematronErorMessageXPath = "/Schematron/Error/Description";
@@ -1371,7 +1365,7 @@ namespace dk.gov.oiosi.raspProfile
             return schematronValidationConfig;
         }
 
-        private SchematronValidationConfig CreateSchematronValidationConfig_OioXml(string xslPath)
+        public SchematronValidationConfig CreateSchematronValidationConfig_OioXml(string xslPath)
         {
             const string schematronErrorXPath = "/schematron/error";
             const string schematronErorMessageXPath = "/schematron/error";
@@ -1380,28 +1374,31 @@ namespace dk.gov.oiosi.raspProfile
             return schematronValidationConfig;
         }
 
-        private SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
+        public SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
         {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+            // The flag='fatal' is removed, as both warning and fatal is considered as errors
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
             return schematronValidationConfig;
         }
 
-        private SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
+        public SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
         {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+            // The flag='fatal' is removed, as both warning and fatal is considered as errors
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
             return schematronValidationConfig;
         }
 
-        private SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
+        public SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
         {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+            // The flag='fatal' is removed, as both warning and fatal is considered as errors
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
             return schematronValidationConfig;

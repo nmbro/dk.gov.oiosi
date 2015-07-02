@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,6 +30,7 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,17 +38,18 @@ using System.Text;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.raspProfile {
-
+namespace dk.gov.oiosi.raspProfile
+{
     /// <summary>
     /// Creates the default UDDI configuration
     /// </summary>
-    public class DefaultUddiConfig {
-
+    public class DefaultUddiConfig
+    {
         /// <summary>
         /// Sets the default UDDI lookup factory configuration
         /// </summary>
-        public void SetUddiLookupFactoryConfig() {
+        public void SetUddiLookupFactoryConfig()
+        {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.UddiLookupClient";
@@ -60,7 +62,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the test UDDI lookup factory configuration
         /// </summary>
-        public void SetTestUddiLookupFactoryConfig() {
+        public void SetTestUddiLookupFactoryConfig()
+        {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             uddiFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.uddi.UddiLookupClientTest";
@@ -73,7 +76,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the lookup factory configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsUddiLookupFactoryConfig() {
+        public void SetIfNotExistsUddiLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>())
                 return;
             SetUddiLookupFactoryConfig();
@@ -82,7 +86,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the test uddi lookup factory configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsTestUddiLookupFactoryConfig() {
+        public void SetIfNotExistsTestUddiLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>())
                 return;
             SetTestUddiLookupFactoryConfig();
@@ -91,7 +96,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the default uddi configuration
         /// </summary>
-        public void SetDefaultUddiConfig() {
+        public void SetDefaultUddiConfig()
+        {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiConfig.TryOtherHostsOnFailure = true;
             uddiConfig.FallbackTimeoutMinutes = 15;
@@ -99,7 +105,8 @@ namespace dk.gov.oiosi.raspProfile {
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));
         }
 
-        private void SetDefaultUddiConfigTest() {
+        public void SetDefaultUddiConfigTest()
+        {
             // Set UDDI test config:
             UddiLookupClientTestConfig uddiTestConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientTestConfig>();
             // The oiosi test VOCES certificate:
@@ -123,7 +130,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the default uddi configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsDefaultUddiConfig() {
+        public void SetIfNotExistsDefaultUddiConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<UddiConfig>())
                 return;
             SetDefaultUddiConfig();
@@ -132,7 +140,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets the default test uddi configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsDefaultUddiConfigTest() {
+        public void SetIfNotExistsDefaultUddiConfigTest()
+        {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientTestConfig>())
                 return;
             SetDefaultUddiConfigTest();

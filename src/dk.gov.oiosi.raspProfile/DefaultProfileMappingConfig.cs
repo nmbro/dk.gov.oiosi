@@ -113,7 +113,7 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
         }
 
-        private void AddMapping(string name, string tModelGuid)
+        public void AddMapping(string name, string tModelGuid)
         {
             ProfileMapping profileMapping = new ProfileMapping(name, tModelGuid);
             Add(profileMapping);
@@ -123,7 +123,7 @@ namespace dk.gov.oiosi.raspProfile
         /// Adds a document type definition to the collection
         /// </summary>
         /// <param name="profileMapping"></param>
-        private void Add(ProfileMapping profileMapping)
+        public void Add(ProfileMapping profileMapping)
         {
             ProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
             if (!configuration.ContainsProfileMappingByName(profileMapping.Name))
