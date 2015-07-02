@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.raspProfile
     /// </summary>
     public class DefaultDocumentTypes
     {
-        protected delegate DocumentTypeConfig DocumentTypeConfigDelegate();
+        public delegate DocumentTypeConfig DocumentTypeConfigDelegate();
 
         /// <summary>
         /// Adds all the document types from configuration, clears collection first
