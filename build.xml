@@ -46,6 +46,7 @@
 	
 	<target name="Clean" description="Remove all build products">
 		<delete dir="${Dist.dir}" if="${directory::exists('${Dist.dir}')}" />
+    <delete dir="${Temp.dir}" if="${directory::exists('${Temp.dir}')}" />
 	</target>
 	
 	<target name="Init" depends="Clean">
@@ -242,13 +243,15 @@
 			</fileset>
 		</zip>
 		<!-- Source with bin folder - input to help file -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
+		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
 			<fileset basedir="${Root.dir}">
 				<include name="**/*" />
 			</fileset>
-		</zip>
+		</zip -->
 	</target>
 	
+  <target name="Release" depends="BuildVisualStudioSolutionNet35, RunTests, Distribute" />
+  
 	<target name="DevBuild" depends="BuildVisualStudioSolutionNet35" />
 	
 </project>
