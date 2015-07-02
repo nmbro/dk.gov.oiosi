@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,21 +30,23 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System.Security.Cryptography.X509Certificates;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.ldap;
 
-namespace dk.gov.oiosi.raspProfile {
-
+namespace dk.gov.oiosi.raspProfile
+{
     /// <summary>
     /// A default LDAP connection configuration
     /// </summary>
-    public class DefaultLdapConfig {
-
+    public class DefaultLdapConfig
+    {
         /// <summary>
         /// Use default (live) Ldap config factory
         /// </summary>
-        public void SetLdapLookupFactoryConfig() {
+        public virtual void SetLdapLookupFactoryConfig()
+        {
             LdapLookupFactoryConfig ldapFactoryConfig = ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
             ldapFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             ldapFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ldap.LdapCertificateLookup";
@@ -53,7 +55,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use test Ldap config factory
         /// </summary>
-        public void SetTestLdapLookupFactoryConfig() {
+        public virtual void SetTestLdapLookupFactoryConfig()
+        {
             LdapLookupFactoryConfig ldapFactoryConfig = ConfigurationHandler.GetConfigurationSection<LdapLookupFactoryConfig>();
             ldapFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
             ldapFactoryConfig.ImplementationNamespaceClass = "dk.gov.oiosi.security.ldap.LdapCertificateLookupTest";
@@ -62,7 +65,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use the dafult, live factory
         /// </summary>
-        public void SetIfNotExistsLdapLookupFactoryConfig() {
+        public virtual void SetIfNotExistsLdapLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<LdapLookupFactoryConfig>())
                 return;
             SetLdapLookupFactoryConfig();
@@ -71,7 +75,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use test factory
         /// </summary>
-        public void SetIfNotExistsTestLdapLookupFactoryConfig() {
+        public virtual void SetIfNotExistsTestLdapLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<LdapLookupFactoryConfig>())
                 return;
             SetTestLdapLookupFactoryConfig();
@@ -80,10 +85,10 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Fill configuration section with default live values
         /// </summary>
-        public void SetDefaultLdapConfig() {
+        public virtual void SetDefaultLdapConfig()
+        {
             LdapSettings ldapSettings = ConfigurationHandler.GetConfigurationSection<LdapSettings>();
-            // Lookup for live OCES certificates
-            // ldapSettings.Host = "dir.certifikat.dk";
+            // Lookup for live OCES certificates ldapSettings.Host = "dir.certifikat.dk";
             ldapSettings.Host = "crtdir.certifikat.dk";
             ldapSettings.MaxResults = 1;
             ldapSettings.Port = 389;
@@ -95,10 +100,10 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Fill configuration section with default test values
         /// </summary>
-        public void SetTestCertificateDefaultLdapConfig() {
+        public virtual void SetTestCertificateDefaultLdapConfig()
+        {
             LdapSettings ldapSettings = ConfigurationHandler.GetConfigurationSection<LdapSettings>();
-            // Lookup for test OCES certificates
-            // ldapSettings.Host = "fenris.certifikat.dk";
+            // Lookup for test OCES certificates ldapSettings.Host = "fenris.certifikat.dk";
             ldapSettings.Host = "crtdir.pp.certifikat.dk";
             ldapSettings.MaxResults = 1;
             ldapSettings.Port = 389;
@@ -110,7 +115,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Set default, test certificate root location
         /// </summary>
-        public void SetDefaultLdapConfigTest() {
+        public virtual void SetDefaultLdapConfigTest()
+        {
             LdapCertificateLookupTestConfig ldapTestConfig = ConfigurationHandler.GetConfigurationSection<LdapCertificateLookupTestConfig>();
             ldapTestConfig.StoreLocation = StoreLocation.LocalMachine;
             ldapTestConfig.StoreName = StoreName.Root;
@@ -119,11 +125,11 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use default, live values
         /// </summary>
-        public void SetIfNotExistsDefaultLdapConfig() {
+        public virtual void SetIfNotExistsDefaultLdapConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<LdapSettings>())
                 return;
             SetDefaultLdapConfig();
         }
-
     }
 }

@@ -44,7 +44,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Adds all the mappings
         /// </summary>
-        public void AddAll()
+        public virtual void AddAll()
         {
             // oioxml The xml profiles is not used by the RASP, as there is no profiles in xml. But
             // it still works. When Rasp sends a xml document, no profile is added in the lookup
@@ -113,7 +113,7 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
         }
 
-        public void AddMapping(string name, string tModelGuid)
+        public virtual void AddMapping(string name, string tModelGuid)
         {
             ProfileMapping profileMapping = new ProfileMapping(name, tModelGuid);
             Add(profileMapping);
@@ -123,7 +123,7 @@ namespace dk.gov.oiosi.raspProfile
         /// Adds a document type definition to the collection
         /// </summary>
         /// <param name="profileMapping"></param>
-        public void Add(ProfileMapping profileMapping)
+        public virtual void Add(ProfileMapping profileMapping)
         {
             ProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
             if (!configuration.ContainsProfileMappingByName(profileMapping.Name))

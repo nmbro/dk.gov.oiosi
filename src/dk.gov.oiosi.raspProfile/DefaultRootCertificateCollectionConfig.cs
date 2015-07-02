@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Test default root certificate configuration
         /// </summary>
-        public void SetTestDefaultRootCertificateCollectionConfig()
+        public virtual void SetTestDefaultRootCertificateCollectionConfig()
         {
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             RootCertificateLocation certificatLocation;
@@ -75,7 +75,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Liver certificate default root certificate configuration
         /// </summary>
-        public void SetProductionDefaultRootCertificateCollectionConfig()
+        public virtual void SetProductionDefaultRootCertificateCollectionConfig()
         {
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             RootCertificateLocation certificatLocation;
@@ -100,7 +100,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the test default root certificate configuration if it does not exist in configuration
         /// </summary>
-        public void SetIfNotExistsTestDefaultRootCertificateCollectionConfig()
+        public virtual void SetIfNotExistsTestDefaultRootCertificateCollectionConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>())
                 return;
@@ -110,7 +110,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default live root certificate configuration if it does not exist in configuration
         /// </summary>
-        public void SetIfNotExistsProductionDefaultRootCertificateCollectionConfig()
+        public virtual void SetIfNotExistsProductionDefaultRootCertificateCollectionConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<RootCertificateCollectionConfig>())
                 return;

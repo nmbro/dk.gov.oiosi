@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default UDDI lookup factory configuration
         /// </summary>
-        public void SetUddiLookupFactoryConfig()
+        public virtual void SetUddiLookupFactoryConfig()
         {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
@@ -62,7 +62,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the test UDDI lookup factory configuration
         /// </summary>
-        public void SetTestUddiLookupFactoryConfig()
+        public virtual void SetTestUddiLookupFactoryConfig()
         {
             UddiLookupClientFactoryConfig uddiFactoryConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientFactoryConfig>();
             uddiFactoryConfig.ImplementationAssembly = "dk.gov.oiosi.library";
@@ -76,7 +76,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the lookup factory configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsUddiLookupFactoryConfig()
+        public virtual void SetIfNotExistsUddiLookupFactoryConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>())
                 return;
@@ -86,7 +86,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the test uddi lookup factory configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsTestUddiLookupFactoryConfig()
+        public virtual void SetIfNotExistsTestUddiLookupFactoryConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientFactoryConfig>())
                 return;
@@ -96,7 +96,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default uddi configuration
         /// </summary>
-        public void SetDefaultUddiConfig()
+        public virtual void SetDefaultUddiConfig()
         {
             UddiConfig uddiConfig = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiConfig.TryOtherHostsOnFailure = true;
@@ -105,7 +105,7 @@ namespace dk.gov.oiosi.raspProfile
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));
         }
 
-        public void SetDefaultUddiConfigTest()
+        public virtual void SetDefaultUddiConfigTest()
         {
             // Set UDDI test config:
             UddiLookupClientTestConfig uddiTestConfig = ConfigurationHandler.GetConfigurationSection<UddiLookupClientTestConfig>();
@@ -130,7 +130,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default uddi configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsDefaultUddiConfig()
+        public virtual void SetIfNotExistsDefaultUddiConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<UddiConfig>())
                 return;
@@ -140,7 +140,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default test uddi configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsDefaultUddiConfigTest()
+        public virtual void SetIfNotExistsDefaultUddiConfigTest()
         {
             if (ConfigurationHandler.HasConfigurationSection<UddiLookupClientTestConfig>())
                 return;

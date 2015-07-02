@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -31,6 +31,7 @@
   *   Jacob Mogensen, mySupply ApS
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,7 +41,6 @@ using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.raspProfile
 {
-
     /// <summary>
     /// Creates the default Cache configuration
     /// </summary>
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Set default cache config values
         /// </summary>
-        public void SetDefaultCacheConfig()
+        public virtual void SetDefaultCacheConfig()
         {
             CacheConfig cacheConfig = ConfigurationHandler.GetConfigurationSection<CacheConfig>();
             string implementationAssembly = "dk.gov.oiosi.library";
@@ -130,7 +130,7 @@ namespace dk.gov.oiosi.raspProfile
         /// <summary>
         /// Sets the default cache configuration if it does not exist
         /// </summary>
-        public void SetIfNotExistsDefaulCacheConfig()
+        public virtual void SetIfNotExistsDefaulCacheConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<CacheConfig>())
             {

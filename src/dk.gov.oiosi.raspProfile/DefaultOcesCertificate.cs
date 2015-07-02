@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -30,6 +30,7 @@
   *   Christian Lanng, ITST
   *
   */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,17 +38,18 @@ using System.Text;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.oces;
 
-namespace dk.gov.oiosi.raspProfile {
-
+namespace dk.gov.oiosi.raspProfile
+{
     /// <summary>
     /// Some default Oces certificate configuration values
     /// </summary>
-    public class DefaultOcesCertificate {
-
+    public class DefaultOcesCertificate
+    {
         /// <summary>
         /// Set default, live values
         /// </summary>
-        public void SetOcesCertificateConfig() {
+        public virtual void SetOcesCertificateConfig()
+        {
             OcesX509CertificateConfig config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
 
             string personalOcesCertificateSubjectKey = "PID";
@@ -64,7 +66,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Set default, test values
         /// </summary>
-        public void SetTestOcesCertificateConfig() {
+        public virtual void SetTestOcesCertificateConfig()
+        {
             OcesX509CertificateConfig config = ConfigurationHandler.GetConfigurationSection<OcesX509CertificateConfig>();
 
             string personalOcesCertificateSubjectKey = "PID";
@@ -81,7 +84,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use the default values
         /// </summary>
-        public void SetIfNotExistsOcesCertificateConfig() {
+        public virtual void SetIfNotExistsOcesCertificateConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>())
                 return;
             SetOcesCertificateConfig();
@@ -90,7 +94,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use the test values
         /// </summary>
-        public void SetIfNotExistsTestOcesCertificateConfig() {
+        public virtual void SetIfNotExistsTestOcesCertificateConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>())
                 return;
             SetTestOcesCertificateConfig();

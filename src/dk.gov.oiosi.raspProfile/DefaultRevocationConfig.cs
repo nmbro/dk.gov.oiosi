@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -35,21 +35,22 @@ using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.security.revocation;
 using dk.gov.oiosi.security.revocation.ocsp;
 
-namespace dk.gov.oiosi.raspProfile {
-
+namespace dk.gov.oiosi.raspProfile
+{
     /// <summary>
     /// Default revocation values class
     /// </summary>
     public abstract class DefaultRevocationConfig
     {
-
         public abstract void SetRevocationLookupFactoryConfig();
+
         public abstract void SetTestRevocationLookupFactoryConfig();
 
         /// <summary>
-        /// Use default live factory as default 
+        /// Use default live factory as default
         /// </summary>
-        public void SetIfNotExistsRevocationLookupFactoryConfig() {
+        public virtual void SetIfNotExistsRevocationLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
             SetRevocationLookupFactoryConfig();
@@ -58,7 +59,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use default test factory as default
         /// </summary>
-        public void SetIfNotExistsTestRevocationLookupFactoryConfig() {
+        public virtual void SetIfNotExistsTestRevocationLookupFactoryConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<RevocationLookupFactoryConfig>())
                 return;
             SetTestRevocationLookupFactoryConfig();
@@ -67,7 +69,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Set default test config values
         /// </summary>
-        public void SetTestCertificatesOscpConfig() {
+        public virtual void SetTestCertificatesOscpConfig()
+        {
             // Test certificates here
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ocspConfig.DefaultTimeoutMsec = 20000;
@@ -76,7 +79,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Set default live config values
         /// </summary>
-        public void SetOscpConfig() {
+        public virtual void SetOscpConfig()
+        {
             // Live certificates here
             OcspConfig ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ocspConfig.DefaultTimeoutMsec = 20000;
@@ -85,7 +89,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use test lookup
         /// </summary>
-        public void SetTestOscpConfig() {
+        public virtual void SetTestOscpConfig()
+        {
             OcspLookupTestConfig ocspTestConfig = ConfigurationHandler.GetConfigurationSection<OcspLookupTestConfig>();
             ocspTestConfig.ReturnPositiveResponse = true;
         }
@@ -93,7 +98,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use test Ocsp server as default
         /// </summary>
-        public void SetIfNotExistsTestCertificatesOscpConfig() {
+        public virtual void SetIfNotExistsTestCertificatesOscpConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<OcspConfig>())
                 return;
             SetTestCertificatesOscpConfig();
@@ -102,7 +108,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Set live Ocsp server as default
         /// </summary>
-        public void SetIfNotExistsOscpConfig() {
+        public virtual void SetIfNotExistsOscpConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<OcspConfig>())
                 return;
             SetOscpConfig();
@@ -111,7 +118,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Use test lookup Ocsp
         /// </summary>
-        public void SetIfNotExistsTestOscpConfig() {
+        public virtual void SetIfNotExistsTestOscpConfig()
+        {
             if (ConfigurationHandler.HasConfigurationSection<OcspLookupTestConfig>())
                 return;
             SetTestOscpConfig();
@@ -120,7 +128,8 @@ namespace dk.gov.oiosi.raspProfile {
         /// <summary>
         /// Sets ocsp test server url
         /// </summary>
-        public void SetOcspConfigToUseTestOcspServer() {
+        public virtual void SetOcspConfigToUseTestOcspServer()
+        {
             var ocspConfig = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
             ocspConfig.ServerUrl = "http://test.ocsp.certifikat.dk/ocsp/status";
         }

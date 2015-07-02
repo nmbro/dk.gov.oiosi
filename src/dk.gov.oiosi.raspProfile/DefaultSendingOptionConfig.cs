@@ -14,7 +14,7 @@
   *
   * The Initial Developer of the Original Code is Accenture and Avanade.
   * Portions created by Accenture and Avanade are Copyright (C) 2009
-  * Danish National IT and Telecom Agency (http://www.itst.dk). 
+  * Danish National IT and Telecom Agency (http://www.itst.dk).
   * All Rights Reserved.
   *
   * Contributor(s):
@@ -32,19 +32,19 @@
   *
   */
 
-namespace dk.gov.oiosi.raspProfile 
+namespace dk.gov.oiosi.raspProfile
 {
     using dk.gov.oiosi.configuration;
 
     /// <summary>
     /// A default LDAP connection configuration
     /// </summary>
-    public class DefaultSendingOptionConfig 
+    public class DefaultSendingOptionConfig
     {
         /// <summary>
         /// Use the dafult, live factory
         /// </summary>
-        public void SetIfNotExistsSendingOptionConfig()
+        public virtual void SetIfNotExistsSendingOptionConfig()
         {
             if (ConfigurationHandler.HasConfigurationSection<SendingOptionConfig>())
             {
@@ -56,11 +56,10 @@ namespace dk.gov.oiosi.raspProfile
             }
         }
 
- 
         /// <summary>
         /// Fill configuration section with default live values
         /// </summary>
-        public void SetSendingOptionConfig()
+        public virtual void SetSendingOptionConfig()
         {
             SendingOptionConfig SendingOptionConfig = ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();
             SendingOptionConfig.SchemaValidation = bool.TrueString;
