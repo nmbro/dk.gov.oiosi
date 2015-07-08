@@ -105,7 +105,8 @@ namespace dk.gov.oiosi.raspProfile
 
             // Peppol profiles - 7
             this.AddMapping("urn:www.cenbii.eu:profile:bii04:ver2.0", "uddi:553e78e6-7de4-4926-8384-53ef82566560");
-            this.AddMapping("urn:www.cenbii.eu:profile:bii28:ver2.0", "uddi:e15ac48e-e679-46fa-937d-10d69c558998");
+            // Ordering
+//            this.AddMapping("urn:www.cenbii.eu:profile:bii28:ver2.0", "uddi:e15ac48e-e679-46fa-937d-10d69c558998");
             this.AddMapping("urn:www.cenbii.eu:profile:bii01:ver2.0", "uddi:c7cb8dd0-af00-42c6-a8b7-48204aa7b30f");
             this.AddMapping("urn:www.cenbii.eu:profile:bii30:ver2.0", "uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f");
             this.AddMapping("urn:www.cenbii.eu:profile:bii05:ver2.0", "uddi:8dde0481-9055-41fe-94f7-5102ce3672e7");
