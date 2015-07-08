@@ -6450,10 +6450,10 @@
         <Name>urn:www.nesubl.eu:profiles:profile3:ver2.0</Name>
         <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
       </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
-        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
-      </ProfileMapping>
+      <!--<ProfileMapping>-->
+        <!--<Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>-->
+        <!--<TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>-->
+      <!--</ProfileMapping>-->
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
         <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
