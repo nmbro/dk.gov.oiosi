@@ -6526,10 +6526,10 @@
         <Name>urn:www.cenbii.eu:profile:bii03:ver2.0</Name>
         <TModelGuid>uddi:90043120-5eab-468c-be4a-5562d95a73a7</TModelGuid>
       </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.cenbii.eu:profile:bii36:ver2.0</Name>
-        <TModelGuid>uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca</TModelGuid>
-      </ProfileMapping>
+      <!--<ProfileMapping>-->
+        <!--<Name>urn:www.cenbii.eu:profile:bii36:ver2.0</Name>-->
+        <!--<TModelGuid>uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca</TModelGuid>-->
+      <!--</ProfileMapping>-->
     </ProfileMappingCollection>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapLookupFactoryConfig">

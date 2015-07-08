@@ -111,7 +111,7 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("urn:www.cenbii.eu:profile:bii30:ver2.0", "uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f");
             this.AddMapping("urn:www.cenbii.eu:profile:bii05:ver2.0", "uddi:8dde0481-9055-41fe-94f7-5102ce3672e7");
             this.AddMapping("urn:www.cenbii.eu:profile:bii03:ver2.0", "uddi:90043120-5eab-468c-be4a-5562d95a73a7");
-            this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
+//            this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
         }
 
         public virtual void AddMapping(string name, string tModelGuid)
