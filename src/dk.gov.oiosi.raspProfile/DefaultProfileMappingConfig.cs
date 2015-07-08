@@ -87,7 +87,7 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("urn:www.nesubl.eu:profiles:profile3:ver2.0", "uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35");
             //this.AddMapping("urn:www.nesubl.eu:profiles:profile4:ver2.0", "uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile5:ver2.0", "uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31");
-            this.AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
+//            this.AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile7:ver2.0", "uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile8:ver2.0", "uddi:F4240370-CCA6-401e-9B5B-4531F413421D");
 

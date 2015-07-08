@@ -6458,10 +6458,10 @@
         <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
         <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
       </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
-        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
-      </ProfileMapping>
+      <!--<ProfileMapping>-->
+        <!--<Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>-->
+        <!--<TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>-->
+      <!--</ProfileMapping>-->
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
         <TModelGuid>uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D</TModelGuid>
