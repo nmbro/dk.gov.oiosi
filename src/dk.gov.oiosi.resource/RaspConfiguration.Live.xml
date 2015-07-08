@@ -5305,7 +5305,7 @@
             <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
-        <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
+        <ServiceContractTModel>uddi:ea27f0c4-cb68-4e39-b0eb-5c96af8c1759</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>
@@ -5831,7 +5831,7 @@
             <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol4a:ver2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
-        <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
+        <ServiceContractTModel>uddi:e956ca42-0be2-487a-8573-580b523c248d</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>

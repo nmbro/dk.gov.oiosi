@@ -28,7 +28,6 @@
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
   */
 
 using System;
@@ -896,7 +895,7 @@ namespace dk.gov.oiosi.raspProfile
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse";
-            const string serviceContractTModel = "uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47";
+            const string serviceContractTModel = "uddi:ea27f0c4-cb68-4e39-b0eb-5c96af8c1759";
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
@@ -984,7 +983,7 @@ namespace dk.gov.oiosi.raspProfile
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse";
-            const string serviceContractTModel = "uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47";
+            const string serviceContractTModel = "uddi:e956ca42-0be2-487a-8573-580b523c248d";
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
