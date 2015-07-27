@@ -4749,18 +4749,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIICORE-UBL-T19-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T19.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -5012,13 +5012,13 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -5270,18 +5270,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIICORE-UBL-T14-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOL-UBL-T14.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -5533,18 +5533,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -5796,18 +5796,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -6059,18 +6059,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -6322,18 +6322,18 @@
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl</SchematronDocumentPath>
-            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>

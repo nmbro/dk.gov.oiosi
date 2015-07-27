@@ -42,6 +42,17 @@ namespace dk.gov.oiosi.raspProfile
     public class DefaultProfileMappingConfig
     {
         /// <summary>
+        /// Adds a document type definition to the collection
+        /// </summary>
+        /// <param name="profileMapping"></param>
+        public virtual void Add(ProfileMapping profileMapping)
+        {
+            ProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
+            if (!configuration.ContainsProfileMappingByName(profileMapping.Name))
+                configuration.AddProfileMapping(profileMapping);
+        }
+
+        /// <summary>
         /// Adds all the mappings
         /// </summary>
         public virtual void AddAll()
@@ -51,11 +62,11 @@ namespace dk.gov.oiosi.raspProfile
             // parameters, and the UDDI returns all registrated endpoints (uddiResponse), for that
             // document type (all profiles). In xml there is only on profile, so just one endpoint
             // (uddiResponse) is returned, and if just one uddiResponse is returned, that one is
-            // used. AddMapping("OIOXML elektronisk handel",
-            // "uddi:c001daa0-8ba3-11dd-894e-770465b08940"); AddMapping("OIOXML elektronisk handel -
-            // læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940"); AddMapping("OIOXML
-            // Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
-            // AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
+            // used.
+            ////AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
+            ////AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
+            ////AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
+            ////AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
 
             // OIOUBL - 22
             this.AddMapping("Catalogue-CatBas-1.0", "uddi:4697A391-741F-4534-A21E-8F0A460013BB");
@@ -81,13 +92,13 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("Procurement-OrdSel-BilSim-1.0", "uddi:46D94D6B-E835-4916-BBB5-F27DC655876A");
             this.AddMapping("Procurement-OrdSel-BilSimR-1.0", "uddi:42AD3EDE-BBD4-434d-AAE6-044CE3EF8D1F");
 
-            // OIOUBL nesubl - 8
+            // OIOUBL nesubl - 6
             this.AddMapping("urn:www.nesubl.eu:profiles:profile1:ver2.0", "uddi:FC1D4A1C-1538-4bdb-A718-2EFD712256C5");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile2:ver2.0", "uddi:3A3BFE67-AD35-43f0-9AE7-CDF268AE221D");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile3:ver2.0", "uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35");
             //this.AddMapping("urn:www.nesubl.eu:profiles:profile4:ver2.0", "uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile5:ver2.0", "uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31");
-//            this.AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
+            // this.AddMapping("urn:www.nesubl.eu:profiles:profile6:ver2.0", "uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile7:ver2.0", "uddi:BB0B4FD4-F6AF-489f-98D9-7130424E7F8D");
             this.AddMapping("urn:www.nesubl.eu:profiles:profile8:ver2.0", "uddi:F4240370-CCA6-401e-9B5B-4531F413421D");
 
@@ -103,32 +114,21 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("Procurement-TecRes-1.0", "uddi:ce80ccce-3ef9-47ea-8cf4-120913a87dc2");
             this.AddMapping("Reference-Attachment-1.0", "uddi:10faffb1-1303-485e-924a-e8b551f31949");
 
-            // Peppol profiles - 7
+            // Peppol profiles - 5
             this.AddMapping("urn:www.cenbii.eu:profile:bii04:ver2.0", "uddi:553e78e6-7de4-4926-8384-53ef82566560");
             // Ordering
-//            this.AddMapping("urn:www.cenbii.eu:profile:bii28:ver2.0", "uddi:e15ac48e-e679-46fa-937d-10d69c558998");
+			//// this.AddMapping("urn:www.cenbii.eu:profile:bii28:ver2.0", "uddi:e15ac48e-e679-46fa-937d-10d69c558998");
             this.AddMapping("urn:www.cenbii.eu:profile:bii01:ver2.0", "uddi:c7cb8dd0-af00-42c6-a8b7-48204aa7b30f");
             this.AddMapping("urn:www.cenbii.eu:profile:bii30:ver2.0", "uddi:19ec7bb2-a39b-438c-a6ce-2124d6148f8f");
             this.AddMapping("urn:www.cenbii.eu:profile:bii05:ver2.0", "uddi:8dde0481-9055-41fe-94f7-5102ce3672e7");
             this.AddMapping("urn:www.cenbii.eu:profile:bii03:ver2.0", "uddi:90043120-5eab-468c-be4a-5562d95a73a7");
-//            this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
+            //// this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
         }
 
         public virtual void AddMapping(string name, string tModelGuid)
         {
             ProfileMapping profileMapping = new ProfileMapping(name, tModelGuid);
             Add(profileMapping);
-        }
-
-        /// <summary>
-        /// Adds a document type definition to the collection
-        /// </summary>
-        /// <param name="profileMapping"></param>
-        public virtual void Add(ProfileMapping profileMapping)
-        {
-            ProfileMappingCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
-            if (!configuration.ContainsProfileMappingByName(profileMapping.Name))
-                configuration.AddProfileMapping(profileMapping);
         }
     }
 }

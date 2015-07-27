@@ -33,13 +33,6 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test]
-        public void OioublCatalogueValidation()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblCatalogue();
-            Validate(TestConstants.PATH_CATALOGUE_XML, documentType);
-        }
-
-        [Test]
         public void OioublCatalogueDeletionValidation()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblCatalogueDeletion();
@@ -68,6 +61,13 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test]
+        public void OioublCatalogueValidation()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblCatalogue();
+            Validate(TestConstants.PATH_CATALOGUE_XML, documentType);
+        }
+
+        [Test]
         public void OioublCreditNoteValidation()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblCreditNote();
@@ -81,11 +81,11 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             Validate(TestConstants.PATH_INVOICE_XML, documentType);
         }
 
-        [Test]
-        public void OioublOrderValidation()
+        [Test, ExpectedException(typeof(SchematronErrorException))]
+        public void OioublNoIdInvoiceValidation()
         {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblOrder();
-            Validate(TestConstants.PATH_ORDER_XML, documentType);
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblInvoice();
+            Validate(TestConstants.PATH_INVOICENOID_XML, documentType);
         }
 
         [Test]
@@ -103,6 +103,13 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test]
+        public void OioublOrderResponseSimpleValidation()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblOrderResponseSimple();
+            Validate(TestConstants.PATH_ORDERRESPONSESIMPLE_XML, documentType);
+        }
+
+        [Test]
         public void OioublOrderResponseValidation()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblOrderResponse();
@@ -110,10 +117,10 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test]
-        public void OioublOrderResponseSimpleValidation()
+        public void OioublOrderValidation()
         {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblOrderResponseSimple();
-            Validate(TestConstants.PATH_ORDERRESPONSESIMPLE_XML, documentType);
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblOrder();
+            Validate(TestConstants.PATH_ORDER_XML, documentType);
         }
 
         [Test]
@@ -138,10 +145,10 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test, ExpectedException(typeof(SchematronErrorException))]
-        public void OioublNoIdInvoiceValidation()
+        public void OioxmlInvalidEanNumberInvoiceValidation()
         {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblInvoice();
-            Validate(TestConstants.PATH_INVOICENOID_XML, documentType);
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioXmlInvoiceV07();
+            Validate(TestConstants.PATH_INVOICEN7INVALIDEANNUMBER_XML, documentType);
         }
 
         [Test]
@@ -151,13 +158,6 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             Validate(TestConstants.PATH_INVOICE07_XML, documentType);
         }
 
-        [Test, ExpectedException(typeof(SchematronErrorException))]
-        public void OioxmlInvalidEanNumberInvoiceValidation()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioXmlInvoiceV07();
-            Validate(TestConstants.PATH_INVOICEN7INVALIDEANNUMBER_XML, documentType);
-        }
-
         // Peppol
         ////[Test]
         ////public void Peppol36aApplicationResponse()
@@ -165,6 +165,17 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         ////    DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol36aApplicationResponse();
         ////    Validate(TestConstants.PATH_PEPPOL_Peppol36aApplicationResponse_XML, documentType);
         ////}
+
+        [Test]
+        public void Peppol1aApplicationResponse()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol1aApplicationResponse();
+            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase1_CatalogueResponse_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase2_CatalogueResponse_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase3_CatalogueResponse_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase4_CatalogueResponse_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase5_CatalogueResponse_XML, documentType);
+        }
 
         [Test]
         public void Peppol1aCatalogue()
@@ -181,61 +192,16 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         }
 
         [Test]
-        public void Peppol1aApplicationResponse()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol1aApplicationResponse();
-            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase1_CatalogueResponse_XML, documentType);
-            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase2_CatalogueResponse_XML, documentType);
-            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase3_CatalogueResponse_XML, documentType);
-            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase4_CatalogueResponse_XML, documentType);
-            Validate(TestConstants.PATH_PEPPOL_Peppol1a_UseCase5_CatalogueResponse_XML, documentType);
-        }
-
-        [Test]
-        public void Peppol5aCreditNote()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol5aCreditNote();
-            //// warning
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase1a_CreditNote_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase1b_CreditNote_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase2_CreditNote_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase3_CreditNote_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase4_CreditNote_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase5_CreditNote_XML, documentType);
-        }
-
-        [Test]
-        public void Peppol5aInvoice()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol5aInvoice();
-            //// warning
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol5a_Invocie_XML, documentType);
-        }
-
-        [Test]
         public void Peppol30aDespatchAdvice()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol30aDespatchAdvice();
             //// warning
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase1_DespatchAdvice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase2_DespatchAdvice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase3_DespatchAdvice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase1_DespatchAdvice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase2_DespatchAdvice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase3_DespatchAdvice_XML, documentType);
 
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase4_DespatchAdvice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase5_DespatchAdvice_XML, documentType);
-        }
-
-        [Test]
-        public void Peppol4aInvoice()
-        {
-            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol4aInvoice();
-            //// warning
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase1a_Invoice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase1b_Invoice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase2_Invoice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase3_Invoice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase4_Invoice_XML, documentType);
-            ////Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase5_Invoice_XML, documentType);
+            ValidateFailer(TestConstants.PATH_PEPPOL_Peppol30a_UserCase4_DespatchAdvice_XML, documentType);
+            ValidateFailer(TestConstants.PATH_PEPPOL_Peppol30a_UserCase5_DespatchAdvice_XML, documentType);
         }
 
         [Test]
@@ -246,6 +212,40 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             Validate(TestConstants.PATH_PEPPOL_Peppol3a_UserCase2_Order_XML, documentType);
             Validate(TestConstants.PATH_PEPPOL_Peppol3a_UserCase3_Order_XML, documentType);
             Validate(TestConstants.PATH_PEPPOL_Peppol3a_UserCase4_Order_XML, documentType);
+        }
+
+        [Test]
+        public void Peppol4aInvoice()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol4aInvoice();
+            //// warning
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase1a_Invoice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase1b_Invoice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase2_Invoice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase3_Invoice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase4_Invoice_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol4a_UserCase5_Invoice_XML, documentType);
+        }
+
+        [Test]
+        public void Peppol5aCreditNote()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol5aCreditNote();
+            //// warning
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase1a_CreditNote_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase1b_CreditNote_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase2_CreditNote_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase3_CreditNote_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase4_CreditNote_XML, documentType);
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_UserCase5_CreditNote_XML, documentType);
+        }
+
+        [Test]
+        public void Peppol5aInvoice()
+        {
+            DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol5aInvoice();
+            //// warning
+            Validate(TestConstants.PATH_PEPPOL_Peppol5a_Invocie_XML, documentType);
         }
 
         ////[Test]
@@ -261,6 +261,23 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
         ////    DocumentTypeConfig documentType = _defaultDocumentTypes.GetPeppol28aOrderResponse();
         ////    Validate(TestConstants.PATH_PEPPOL_Peppol28aOrderResponse_XML, documentType);
         ////}
+
+        public void ValidateFailer(string xmlDocumentPath, DocumentTypeConfig documentType)
+        {
+            try
+            {
+                Validate(TestConstants.PATH_PEPPOL_Peppol30a_UserCase4_DespatchAdvice_XML, documentType);
+                Assert.Fail("Expected schematron error");
+            }
+            catch (SchematronErrorException)
+            {
+                // as expected
+            }
+            catch (Exception)
+            {
+                Assert.Fail("Wrong type of exception");
+            }
+        }
 
         private void Validate(string xmlDocumentPath, DocumentTypeConfig documentType)
         {

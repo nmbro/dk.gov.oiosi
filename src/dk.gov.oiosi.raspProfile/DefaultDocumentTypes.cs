@@ -32,7 +32,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.xml.schematron;
@@ -46,16 +45,6 @@ namespace dk.gov.oiosi.raspProfile
     public class DefaultDocumentTypes
     {
         public delegate DocumentTypeConfig DocumentTypeConfigDelegate();
-
-        /// <summary>
-        /// Adds all the document types from configuration, clears collection first
-        /// </summary>
-        public virtual void CleanAdd()
-        {
-            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            configuration.Clear();
-            Add();
-        }
 
         /// <summary>
         /// Adds all the document types
@@ -98,6 +87,237 @@ namespace dk.gov.oiosi.raspProfile
             //this.Add(this.GetPeppol28aOrder);                          // Ordre
             //this.Add(this.GetPeppol28aOrderResponse);                  // Ordrebekræftelse
             //this.Add(this.GetAttachedDocument);
+        }
+
+        /// <summary>
+        /// Adds a document type definition to the collection
+        /// </summary>
+        /// <param name="documentTypeConfigDelegate"></param>
+        public virtual void Add(DocumentTypeConfigDelegate documentTypeConfigDelegate)
+        {
+            DocumentTypeConfig documentType = documentTypeConfigDelegate();
+            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+            if (configuration.ContainsDocumentTypeByValue(documentType))
+            {
+                // already added
+                //Debug.Fail("already added");
+                configuration.AddDocumentType(documentType);
+            }
+            else
+            {
+                configuration.AddDocumentType(documentType);
+            }
+        }
+
+        /// <summary>
+        /// Adds all the document types from configuration, clears collection first
+        /// </summary>
+        public virtual void CleanAdd()
+        {
+            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+            configuration.Clear();
+            Add();
+        }
+
+        public virtual ServiceEndpointKey CreateKey(string xpath)
+        {
+            ServiceEndpointKey key = new ServiceEndpointKey(xpath);
+            string keyTypeXpath = xpath + "/@schemeID";
+            KeyTypeMappingExpression mappingExpression = new KeyTypeMappingExpression("EndpointKeyType", keyTypeXpath);
+
+            KeyTypeMapping eanMapping = new KeyTypeMapping("ean", "ean");
+            KeyTypeMapping uppercasedEanMapping = new KeyTypeMapping("EAN", "ean");
+            KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
+
+            KeyTypeMapping cvrMapping = new KeyTypeMapping("cvr", "cvr");
+            KeyTypeMapping uppercasedCVRMapping = new KeyTypeMapping("CVR", "cvr");
+            KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
+
+            KeyTypeMapping pMapping = new KeyTypeMapping("p", "p");
+            KeyTypeMapping uppercasedPMapping = new KeyTypeMapping("P", "p");
+            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+
+            KeyTypeMapping seMapping = new KeyTypeMapping("se", "se");
+            KeyTypeMapping uppercasedSEMapping = new KeyTypeMapping("SE", "se");
+            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
+
+            KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
+            KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
+            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
+
+            KeyTypeMapping ovtMapping = new KeyTypeMapping("FI:OVT", "ovt");
+
+            KeyTypeMapping vansMapping = new KeyTypeMapping("VANS", "vans");
+
+            KeyTypeMapping dkvansMapping = new KeyTypeMapping("DK:VANS", "vans");
+            KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
+
+            KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
+
+            mappingExpression.AddMapping(eanMapping);
+            mappingExpression.AddMapping(uppercasedEanMapping);
+            mappingExpression.AddMapping(glnMapping);
+
+            mappingExpression.AddMapping(cvrMapping);
+            mappingExpression.AddMapping(uppercasedCVRMapping);
+            mappingExpression.AddMapping(dkcvrMapping);
+
+            mappingExpression.AddMapping(pMapping);
+            mappingExpression.AddMapping(uppercasedPMapping);
+            mappingExpression.AddMapping(dkpMapping);
+
+            mappingExpression.AddMapping(seMapping);
+            mappingExpression.AddMapping(uppercasedSEMapping);
+            mappingExpression.AddMapping(dkseMapping);
+
+            mappingExpression.AddMapping(cprMapping);
+            mappingExpression.AddMapping(uppercasedCPRMapping);
+            mappingExpression.AddMapping(dkcprMapping);
+
+            mappingExpression.AddMapping(ovtMapping);
+
+            mappingExpression.AddMapping(vansMapping);
+            mappingExpression.AddMapping(dkvansMapping);
+
+            mappingExpression.AddMapping(ibanMapping);
+            mappingExpression.AddMapping(dunsMapping);
+
+            key.AddMappingExpression(mappingExpression);
+
+            return key;
+        }
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioUbl(string xslPath)
+        {
+            const string schematronErrorXPath = "/Schematron/Error";
+            const string schematronErorMessageXPath = "/Schematron/Error/Description";
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+            return schematronValidationConfig;
+        }
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioXml(string xslPath)
+        {
+            const string schematronErrorXPath = "/schematron/error";
+            const string schematronErorMessageXPath = "/schematron/error";
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+            return schematronValidationConfig;
+        }
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
+        {
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+            return schematronValidationConfig;
+        }
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
+        {
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+            return schematronValidationConfig;
+        }
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
+        {
+            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+            return schematronValidationConfig;
+        }
+
+        public virtual ServiceEndpointKey CreateSenderKey(string xpath)
+        {
+            // Why is there a differents between CreateSenderKey and CreateKey ??? It is not the
+            // configuration file job, to limith the use of NemHandel If the xml document contain
+            // errors, the errors should be handled be schema or schematron validation
+
+            ServiceEndpointKey key = CreateKey(xpath);
+
+            return key;
+        }
+
+        public virtual XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root)
+        {
+            string expectedResult = "OIOUBL-2.0(1|2)";
+            string xpathExpression = "/root:" + root + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig id = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            return id;
+        }
+
+        public virtual DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
+        {
+            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+
+            //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematrongErrorXPath, schematronErorMessageXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+
+            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        {
+            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
+            const ProfileIdXPath profileIdXPath = null;
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = GetOioxmlNamespaces();
+            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        ////    return documentTypeConfig;
+        ////}
+        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        {
+            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOoiubl2_01(rootName);
+            ids.Add(xPathDiscriminatorConfig);
+
+            //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = GetUblNamespaces();
+            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
         }
 
         /// <summary>
@@ -592,6 +812,35 @@ namespace dk.gov.oiosi.raspProfile
         }
 
         /// <summary>
+        /// The OioXml Credit Note 0.7 document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetOioXmlCreditNoteV07()
+        {
+            const string id = "7bd520d7-6ae5-4a3c-8604-082e69414092";
+            const string documentName = "Kreditnota v0.7";
+            const string rootName = "Invoice";
+            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcmStrict.xsd";
+            const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
+            const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/com:BuyersReferenceID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Response";
+            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
+            const string documentIdXPath = "/root:" + rootName + "/com:ID";
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
+
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
         /// The OioXml Invoice 0.7 document definition
         /// </summary>
         /// <returns>The document definition</returns>
@@ -611,6 +860,44 @@ namespace dk.gov.oiosi.raspProfile
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Request";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Response";
             const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
+            const string documentIdXPath = "/root:" + rootName + "/com:ID";
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
+
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            return documentTypeConfig;
+        }
+
+        //// DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+        public virtual List<PrefixedNamespace> GetOioxmlNamespaces()
+        {
+            List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/common/", "com"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/", "main"));
+            return namespaces;
+        }
+
+        /// <summary>
+        /// The OioXml scanned Credit Note 0.7 document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetOioXmlScanCreditNoteV07()
+        {
+            const string id = "d430da7c-b4fd-4ac2-bd08-3ae77d680ffa";
+            const string documentName = "Kreditnota v0.7 - Læs ind";
+            const string rootName = "Invoice";
+            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
+            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcpStrict.xsd";
+            const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
+            const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/com:BuyersReferenceID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpResponse";
+            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
             const string documentIdXPath = "/root:" + rootName + "/com:ID";
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
@@ -650,70 +937,12 @@ namespace dk.gov.oiosi.raspProfile
         }
 
         /// <summary>
-        /// The OioXml Credit Note 0.7 document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetOioXmlCreditNoteV07()
-        {
-            const string id = "7bd520d7-6ae5-4a3c-8604-082e69414092";
-            const string documentName = "Kreditnota v0.7";
-            const string rootName = "Invoice";
-            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcm/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcmStrict.xsd";
-            const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
-            const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/com:BuyersReferenceID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Response";
-            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
-            const string documentIdXPath = "/root:" + rootName + "/com:ID";
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
-
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
-            return documentTypeConfig;
-        }
-
-        /// <summary>
-        /// The OioXml scanned Credit Note 0.7 document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetOioXmlScanCreditNoteV07()
-        {
-            const string id = "d430da7c-b4fd-4ac2-bd08-3ae77d680ffa";
-            const string documentName = "Kreditnota v0.7 - Læs ind";
-            const string rootName = "Invoice";
-            const string rootNamespace = "http://rep.oio.dk/ubl/xml/schemas/0p71/pcp/";
-            const string xsdPath = "Resources/Schemas/OIOXML_v0.7/pcpStrict.xsd";
-            const string xslPath = "Resources/Schematrons/OIOXML_v0.7/ublinvoice.xsl";
-            const string xslUIPath = "Resources/UI/OIOXML_v0.7/StyleSheets/html.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/com:BuyersReferenceID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpResponse";
-            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
-            const string documentIdXPath = "/root:" + rootName + "/com:ID";
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
-
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
-            return documentTypeConfig;
-        }
-
-        /// <summary>
         /// The Peppol Application Response - BIS2.0-messagelevelresponse36a document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol36aApplicationResponse()
+        public virtual DocumentTypeConfig GetPeppol1aApplicationResponse()
         {
-            const string id = "5b2de589-832d-4901-bbbb-8eba23e00709";
+            const string id = "551e8437-f543-46cf-bd56-492a25e723fc";
             const string documentName = "Applikationsmeddelse";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
@@ -725,13 +954,13 @@ namespace dk.gov.oiosi.raspProfile
             const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseResponse";
-            const string serviceContractTModel = "uddi:c2552794-76ee-4ee8-8600-09283086492d";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseResponse";
+            const string serviceContractTModel = "uddi:e79dd402-8f60-4811-9f59-1acb0c036d05";
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns071:ver2.0:extended:urn:www.peppol.eu:bis:peppol36a:ver1.0";
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns058:ver2.0:extended:urn:www.peppol.eu:bis:peppol1a:ver2.0";
             string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
             XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             ids.Add(xPathDiscriminatorConfig);
@@ -740,8 +969,8 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/BIIRULES-UBL-T71.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOL-UBL-T71.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl"));
 
             DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
@@ -789,12 +1018,140 @@ namespace dk.gov.oiosi.raspProfile
         }
 
         /// <summary>
+        /// The Peppol Order - BIS2.0-ordering28a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetPeppol28aOrder()
+        {
+            const string id = "fe16f395-6d83-42ba-8ce1-cf79cc02fc08";
+            const string documentName = "Ordre";
+            const string rootName = "Order";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
+
+            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderResponse";
+            const string serviceContractTModel = "uddi:f6680c9e-6d67-47cc-acde-cb97d0bce321";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
+        /// The OioUbl Order Response - BIS2.0-ordering28a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetPeppol28aOrderResponse()
+        {
+            const string id = "1557aed8-e4e5-4cec-9824-4cf5eeaa268b";
+            const string documentName = "Ordrebekræftelse";
+            const string rootName = "OrderResponse";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-OrderResponse-2.1.xsd";
+
+            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseResponse";
+            const string serviceContractTModel = "uddi:900a898a-567e-4a05-9846-7d140fddb03c";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns076:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T76.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T76.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
+        /// The Peppol DespatchAdvice - BIS2.0-despatchadvice30a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetPeppol30aDespatchAdvice()
+        {
+            const string id = "9e8b18e5-416e-4c41-9b9f-adadc3de6598";
+            const string documentName = "Forsendelsesadvis";
+            const string rootName = "DespatchAdvice";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
+
+            const string xslUIPath = "";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceResponse";
+            const string serviceContractTModel = "uddi:96dbec86-aa58-4f1e-ae03-ebb13079ce61";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+
+            //// Add extra namespace - Schema issue fix in updating the schema
+            //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
+            //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
+            //documentTypeConfig.Namespaces = namespaces.ToArray();
+
+            return documentTypeConfig;
+        }
+
+        /// <summary>
         /// The Peppol Application Response - BIS2.0-messagelevelresponse36a document definition
         /// </summary>
         /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol1aApplicationResponse()
+        public virtual DocumentTypeConfig GetPeppol36aApplicationResponse()
         {
-            const string id = "551e8437-f543-46cf-bd56-492a25e723fc";
+            const string id = "5b2de589-832d-4901-bbbb-8eba23e00709";
             const string documentName = "Applikationsmeddelse";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
@@ -806,13 +1163,13 @@ namespace dk.gov.oiosi.raspProfile
             const string senderKeyXPath = "/root:" + rootName + "/cac:SenderParty/cbc:EndpointID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SenderParty/cac:PartyName/cbc:Name";
             const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol1aInterface/SubmitApplicationResponseResponse";
-            const string serviceContractTModel = "uddi:e79dd402-8f60-4811-9f59-1acb0c036d05";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/ApplicationResponsePeppol36aInterface/SubmitApplicationResponseResponse";
+            const string serviceContractTModel = "uddi:c2552794-76ee-4ee8-8600-09283086492d";
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns058:ver2.0:extended:urn:www.peppol.eu:bis:peppol1a:ver2.0";
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns071:ver2.0:extended:urn:www.peppol.eu:bis:peppol36a:ver1.0";
             string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
             XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             ids.Add(xPathDiscriminatorConfig);
@@ -821,8 +1178,90 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/BIIRULES-UBL-T71.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOL-UBL-T71.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
+        /// The Peppol Order - BIS2.0-order3a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetPeppol3aOrder()
+        {
+            const string id = "db2f9050-2adb-49c2-8f05-af9e440d12ca";
+            const string documentName = "Ordre";
+            const string rootName = "Order";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
+
+            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderResponse";
+            const string serviceContractTModel = "uddi:873c25f6-23d2-4019-830e-89cc89386930";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol03a:ver2.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
+
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            return documentTypeConfig;
+        }
+
+        /// <summary>
+        /// The Peppol Invoice - BIS2.0-invoice4a document definition
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetPeppol4aInvoice()
+        {
+            const string id = "c1061668-0549-452c-b0cb-7d6428fdc5f7";
+            const string documentName = "Faktura";
+            const string rootName = "Invoice";
+            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
+            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd";
+
+            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl";
+            const string destinationKeyXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
+            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
+            const string senderKeyXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
+            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
+            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse";
+            const string serviceContractTModel = "uddi:e956ca42-0be2-487a-8573-580b523c248d";
+            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol4a:ver2.0";
+            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
 
             DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
@@ -916,216 +1355,6 @@ namespace dk.gov.oiosi.raspProfile
             return documentTypeConfig;
         }
 
-        /// <summary>
-        /// The Peppol DespatchAdvice - BIS2.0-despatchadvice30a document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol30aDespatchAdvice()
-        {
-            const string id = "9e8b18e5-416e-4c41-9b9f-adadc3de6598";
-            const string documentName = "Forsendelsesadvis";
-            const string rootName = "DespatchAdvice";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-DespatchAdvice-2.1.xsd";
-
-            const string xslUIPath = "";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:DespatchSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceResponse";
-            const string serviceContractTModel = "uddi:96dbec86-aa58-4f1e-ae03-ebb13079ce61";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns016:ver1.0:extended:urn:www.peppol.eu:bis:peppol30a:ver1.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
-
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl"));
-
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
-
-            //// Add extra namespace - Schema issue fix in updating the schema
-            //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
-            //namespaces.Add(new PrefixedNamespace("http://www.w3.org/2000/09/xmldsig#", "ds"));
-            //documentTypeConfig.Namespaces = namespaces.ToArray();
-
-            return documentTypeConfig;
-        }
-
-        /// <summary>
-        /// The Peppol Invoice - BIS2.0-invoice4a document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol4aInvoice()
-        {
-            const string id = "c1061668-0549-452c-b0cb-7d6428fdc5f7";
-            const string documentName = "Faktura";
-            const string rootName = "Invoice";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd";
-
-            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse";
-            const string serviceContractTModel = "uddi:e956ca42-0be2-487a-8573-580b523c248d";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol4a:ver2.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
-
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
-
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
-            return documentTypeConfig;
-        }
-
-        /// <summary>
-        /// The Peppol Order - BIS2.0-order3a document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol3aOrder()
-        {
-            const string id = "db2f9050-2adb-49c2-8f05-af9e440d12ca";
-            const string documentName = "Ordre";
-            const string rootName = "Order";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
-
-            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol3aInterface/SubmitOrderResponse";
-            const string serviceContractTModel = "uddi:873c25f6-23d2-4019-830e-89cc89386930";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol03a:ver2.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
-
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
-
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
-            return documentTypeConfig;
-        }
-
-        /// <summary>
-        /// The Peppol Order - BIS2.0-ordering28a document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol28aOrder()
-        {
-            const string id = "fe16f395-6d83-42ba-8ce1-cf79cc02fc08";
-            const string documentName = "Ordre";
-            const string rootName = "Order";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
-
-            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderHTML.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderPeppol28aInterface/SubmitOrderResponse";
-            const string serviceContractTModel = "uddi:f6680c9e-6d67-47cc-acde-cb97d0bce321";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
-
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T01.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
-
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
-            return documentTypeConfig;
-        }
-
-        /// <summary>
-        /// The OioUbl Order Response - BIS2.0-ordering28a document definition
-        /// </summary>
-        /// <returns>The document definition</returns>
-        public virtual DocumentTypeConfig GetPeppol28aOrderResponse()
-        {
-            const string id = "1557aed8-e4e5-4cec-9824-4cf5eeaa268b";
-            const string documentName = "Ordrebekræftelse";
-            const string rootName = "OrderResponse";
-            const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
-            const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-OrderResponse-2.1.xsd";
-
-            const string xslUIPath = "Resources/UI/OIOUBL/Stylesheets/OrderResponseHTML.xsl";
-            const string destinationKeyXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID";
-            const string destinationFriendlyNameXPath = "/root:" + rootName + "/cac:BuyerCustomerParty/cac:Party/cac:PartyName/cbc:Name";
-            const string senderKeyXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cbc:EndpointID";
-            const string senderFriendlyNameXPath = "/root:" + rootName + "/cac:SellerSupplierParty/cac:Party/cac:PartyName/cbc:Name";
-            const string profileIdXPathStr = "/root:" + rootName + "/cbc:ProfileID";
-            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseRequest";
-            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/OrderResponsePeppol28aInterface/SubmitOrderResponseResponse";
-            const string serviceContractTModel = "uddi:900a898a-567e-4a05-9846-7d140fddb03c";
-            const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns076:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
-            string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            ids.Add(xPathDiscriminatorConfig);
-
-            // more XPathDiscriminatorConfig ???
-            List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
-
-            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T76.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T76.xsl"));
-
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
-            return documentTypeConfig;
-        }
-
         ///// <summary>
         ///// Settings for UBL AttachedDocument 2.1
         ///// </summary>
@@ -1156,95 +1385,6 @@ namespace dk.gov.oiosi.raspProfile
         //// string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
         //// XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
         //// ids.Add(xPathDiscriminatorConfig); // more XPathDiscriminatorConfig ???
-
-        //// DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
-
-        ////    return documentTypeConfig;
-        ////}
-
-        public virtual DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
-        {
-            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
-            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
-            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
-            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
-            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
-
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
-
-            //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematrongErrorXPath, schematronErorMessageXPath);
-
-            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
-
-            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
-            documentType.Namespaces = namespaces.ToArray();
-
-            return documentType;
-        }
-
-        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
-        {
-            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
-            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
-            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
-            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
-            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
-
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOoiubl2_01(rootName);
-            ids.Add(xPathDiscriminatorConfig);
-
-            //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
-
-            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
-            List<PrefixedNamespace> namespaces = GetUblNamespaces();
-            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
-            documentType.Namespaces = namespaces.ToArray();
-
-            return documentType;
-        }
-
-        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
-        {
-            ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
-            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
-            ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
-            const ProfileIdXPath profileIdXPath = null;
-            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
-
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
-
-            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-
-            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
-            List<PrefixedNamespace> namespaces = GetOioxmlNamespaces();
-            namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
-            documentType.Namespaces = namespaces.ToArray();
-
-            return documentType;
-        }
-
-        public virtual XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root)
-        {
-            string expectedResult = "OIOUBL-2.0(1|2)";
-            string xpathExpression = "/root:" + root + "/cbc:CustomizationID";
-            XPathDiscriminatorConfig id = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
-            return id;
-        }
-
-        public virtual List<PrefixedNamespace> GetOioxmlNamespaces()
-        {
-            List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
-            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/common/", "com"));
-            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/", "main"));
-            return namespaces;
-        }
-
         public virtual List<PrefixedNamespace> GetUblNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
@@ -1254,153 +1394,6 @@ namespace dk.gov.oiosi.raspProfile
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2", "sdt"));
             namespaces.Add(new PrefixedNamespace("urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", "udt"));
             return namespaces;
-        }
-
-        public virtual ServiceEndpointKey CreateSenderKey(string xpath)
-        {
-            // Why is there a differents between CreateSenderKey and CreateKey ??? It is not the
-            // configuration file job, to limith the use of NemHandel If the xml document contain
-            // errors, the errors should be handled be schema or schematron validation
-
-            ServiceEndpointKey key = CreateKey(xpath);
-
-            return key;
-        }
-
-        public virtual ServiceEndpointKey CreateKey(string xpath)
-        {
-            ServiceEndpointKey key = new ServiceEndpointKey(xpath);
-            string keyTypeXpath = xpath + "/@schemeID";
-            KeyTypeMappingExpression mappingExpression = new KeyTypeMappingExpression("EndpointKeyType", keyTypeXpath);
-
-            KeyTypeMapping eanMapping = new KeyTypeMapping("ean", "ean");
-            KeyTypeMapping uppercasedEanMapping = new KeyTypeMapping("EAN", "ean");
-            KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
-
-            KeyTypeMapping cvrMapping = new KeyTypeMapping("cvr", "cvr");
-            KeyTypeMapping uppercasedCVRMapping = new KeyTypeMapping("CVR", "cvr");
-            KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
-
-            KeyTypeMapping pMapping = new KeyTypeMapping("p", "p");
-            KeyTypeMapping uppercasedPMapping = new KeyTypeMapping("P", "p");
-            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
-
-            KeyTypeMapping seMapping = new KeyTypeMapping("se", "se");
-            KeyTypeMapping uppercasedSEMapping = new KeyTypeMapping("SE", "se");
-            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
-
-            KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
-            KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
-            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
-
-            KeyTypeMapping ovtMapping = new KeyTypeMapping("FI:OVT", "ovt");
-
-            KeyTypeMapping vansMapping = new KeyTypeMapping("VANS", "vans");
-
-            KeyTypeMapping dkvansMapping = new KeyTypeMapping("DK:VANS", "vans");
-            KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
-
-            KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
-
-            mappingExpression.AddMapping(eanMapping);
-            mappingExpression.AddMapping(uppercasedEanMapping);
-            mappingExpression.AddMapping(glnMapping);
-
-            mappingExpression.AddMapping(cvrMapping);
-            mappingExpression.AddMapping(uppercasedCVRMapping);
-            mappingExpression.AddMapping(dkcvrMapping);
-
-            mappingExpression.AddMapping(pMapping);
-            mappingExpression.AddMapping(uppercasedPMapping);
-            mappingExpression.AddMapping(dkpMapping);
-
-            mappingExpression.AddMapping(seMapping);
-            mappingExpression.AddMapping(uppercasedSEMapping);
-            mappingExpression.AddMapping(dkseMapping);
-
-            mappingExpression.AddMapping(cprMapping);
-            mappingExpression.AddMapping(uppercasedCPRMapping);
-            mappingExpression.AddMapping(dkcprMapping);
-
-            mappingExpression.AddMapping(ovtMapping);
-
-            mappingExpression.AddMapping(vansMapping);
-            mappingExpression.AddMapping(dkvansMapping);
-
-            mappingExpression.AddMapping(ibanMapping);
-            mappingExpression.AddMapping(dunsMapping);
-
-            key.AddMappingExpression(mappingExpression);
-
-            return key;
-        }
-
-        /// <summary>
-        /// Adds a document type definition to the collection
-        /// </summary>
-        /// <param name="documentTypeConfigDelegate"></param>
-        public virtual void Add(DocumentTypeConfigDelegate documentTypeConfigDelegate)
-        {
-            DocumentTypeConfig documentType = documentTypeConfigDelegate();
-            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            if (configuration.ContainsDocumentTypeByValue(documentType))
-            {
-                // already added
-                //Debug.Fail("already added");
-                configuration.AddDocumentType(documentType);
-            }
-            else
-            {
-                configuration.AddDocumentType(documentType);
-            }
-        }
-
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioUbl(string xslPath)
-        {
-            const string schematronErrorXPath = "/Schematron/Error";
-            const string schematronErorMessageXPath = "/Schematron/Error/Description";
-
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
-        }
-
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioXml(string xslPath)
-        {
-            const string schematronErrorXPath = "/schematron/error";
-            const string schematronErorMessageXPath = "/schematron/error";
-
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
-        }
-
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
-        {
-            // The flag='fatal' is removed, as both warning and fatal is considered as errors
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
-
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
-        }
-
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
-        {
-            // The flag='fatal' is removed, as both warning and fatal is considered as errors
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
-
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
-        }
-
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
-        {
-            // The flag='fatal' is removed, as both warning and fatal is considered as errors
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert/svrl:text";
-
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
         }
     }
 }

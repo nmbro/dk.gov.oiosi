@@ -27,7 +27,6 @@
  *
  */
 
-using System;
 using System.IO;
 using System.Threading;
 using dk.gov.oiosi.communication.configuration;
@@ -86,20 +85,20 @@ namespace dk.gov.oiosi.test.unit.raspProfile
 
             //// Count : 32 - OIOUBL + UTS Count : 39 - OIOUBL1.6
             //// Rasp 2.1.0: Peppol 7 new profiles ->
-            //// Count 46
-            Assert.AreEqual(45, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
+            //// Count 41
+            Assert.AreEqual(41, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
+        }
+
+        private void SetupDefaultCacheConfig()
+        {
+            DefaultCacheConfig defaultCacheConfig = new DefaultCacheConfig();
+            defaultCacheConfig.SetIfNotExistsDefaulCacheConfig();
         }
 
         private void SetupDefaultDocumentTypes()
         {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.Add();
-        }
-
-        private void SetupProfileMappings()
-        {
-            DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
-            profileMappings.AddAll();
         }
 
         /// <summary>
@@ -112,6 +111,12 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             ldapConfig.SetIfNotExistsDefaultLdapConfig();
         }
 
+        private void SetupDefaultOcesCertificates()
+        {
+            DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
+            ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
+        }
+
         /// <summary>
         /// Setup default OSCP settings
         /// </summary>
@@ -120,6 +125,12 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             DefaultRevocationConfig revocationConfig = new DefaultRevocationOcspConfig();
             revocationConfig.SetIfNotExistsRevocationLookupFactoryConfig();
             revocationConfig.SetIfNotExistsOscpConfig();
+        }
+
+        private void SetupDefaultRootCertificateConfig()
+        {
+            DefaultRootCertificateCollectionConfig rootCertificateConfig = new DefaultRootCertificateCollectionConfig();
+            rootCertificateConfig.SetIfNotExistsProductionDefaultRootCertificateCollectionConfig();
         }
 
         /// <summary>
@@ -132,22 +143,10 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             uddiConfig.SetIfNotExistsDefaultUddiConfig();
         }
 
-        private void SetupDefaultRootCertificateConfig()
+        private void SetupProfileMappings()
         {
-            DefaultRootCertificateCollectionConfig rootCertificateConfig = new DefaultRootCertificateCollectionConfig();
-            rootCertificateConfig.SetIfNotExistsProductionDefaultRootCertificateCollectionConfig();
-        }
-
-        private void SetupDefaultOcesCertificates()
-        {
-            DefaultOcesCertificate ocesCertifcates = new DefaultOcesCertificate();
-            ocesCertifcates.SetIfNotExistsOcesCertificateConfig();
-        }
-
-        private void SetupDefaultCacheConfig()
-        {
-            DefaultCacheConfig defaultCacheConfig = new DefaultCacheConfig();
-            defaultCacheConfig.SetIfNotExistsDefaulCacheConfig();
+            DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
+            profileMappings.AddAll();
         }
     }
 }
