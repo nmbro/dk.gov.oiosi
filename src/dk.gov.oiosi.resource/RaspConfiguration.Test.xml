@@ -5305,7 +5305,7 @@
             <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
-        <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
+        <ServiceContractTModel>uddi:ea27f0c4-cb68-4e39-b0eb-5c96af8c1759</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>
@@ -5598,8 +5598,8 @@
           </PrefixedNamespace>
         </Namespaces>
         <EndpointType>
-          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceRequest</RequestAction>
-          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/DespatchAdvicePeppol30aInterface/SubmitDespatchAdviceResponse</ReplyAction>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2014/09/15/DespatchAdvice10Interface/SubmitDespatchAdviceResponse</ReplyAction>
           <EndpointFriendlyName>
             <XPath>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
           </EndpointFriendlyName>
@@ -5831,7 +5831,7 @@
             <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns010:ver2.0:extended:urn:www.peppol.eu:bis:peppol4a:ver2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
-        <ServiceContractTModel>uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47</ServiceContractTModel>
+        <ServiceContractTModel>uddi:e956ca42-0be2-487a-8573-580b523c248d</ServiceContractTModel>
         <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
         <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
         <Namespaces>
@@ -6451,16 +6451,8 @@
         <TModelGuid>uddi:F5231EDB-FBB4-4a3b-A46C-3BCF1B3C3F35</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile4:ver2.0</Name>
-        <TModelGuid>uddi:80BAAA62-4F27-40a5-A434-B3578F5AA424</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile5:ver2.0</Name>
         <TModelGuid>uddi:aee8b6de-298f-4cbc-a96d-9ae8aed0ac31</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.nesubl.eu:profiles:profile6:ver2.0</Name>
-        <TModelGuid>uddi:ACE3E6E7-8702-40fa-9A5D-1926122AE215</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
         <Name>urn:www.nesubl.eu:profiles:profile7:ver2.0</Name>
@@ -6507,10 +6499,6 @@
         <TModelGuid>uddi:553e78e6-7de4-4926-8384-53ef82566560</TModelGuid>
       </ProfileMapping>
       <ProfileMapping>
-        <Name>urn:www.cenbii.eu:profile:bii28:ver2.0</Name>
-        <TModelGuid>uddi:e15ac48e-e679-46fa-937d-10d69c558998</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
         <Name>urn:www.cenbii.eu:profile:bii01:ver2.0</Name>
         <TModelGuid>uddi:c7cb8dd0-af00-42c6-a8b7-48204aa7b30f</TModelGuid>
       </ProfileMapping>
@@ -6525,10 +6513,6 @@
       <ProfileMapping>
         <Name>urn:www.cenbii.eu:profile:bii03:ver2.0</Name>
         <TModelGuid>uddi:90043120-5eab-468c-be4a-5562d95a73a7</TModelGuid>
-      </ProfileMapping>
-      <ProfileMapping>
-        <Name>urn:www.cenbii.eu:profile:bii36:ver2.0</Name>
-        <TModelGuid>uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
