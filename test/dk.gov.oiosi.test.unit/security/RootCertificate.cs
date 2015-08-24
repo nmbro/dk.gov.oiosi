@@ -9,50 +9,48 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
     [TestFixture]
     public class RootCertificate 
     {
-        [Test]
-        public void CertificateTestRootOces1()
-        {
-            StoreName storeName = StoreName.Root;
-            StoreLocation storeLocation = StoreLocation.LocalMachine;
-            X509Store certStore = new X509Store(storeName, storeLocation);
+        ////[Test]
+        ////public void CertificateTestRootOces1()
+        ////{
+        ////    StoreName storeName = StoreName.Root;
+        ////    StoreLocation storeLocation = StoreLocation.LocalMachine;
+        ////    X509Store certStore = new X509Store(storeName, storeLocation);
            
-            certStore.Open(OpenFlags.ReadOnly);
-            X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_TEST_ROOT_OCES1, true);
-            certStore.Close();
+        ////    certStore.Open(OpenFlags.ReadOnly);
+        ////    X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_TEST_ROOT_OCES1, true);
+        ////    certStore.Close();
 
-            //Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");
-            
-        }
+        ////    Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");            
+        ////}
 
-        [Test]
-        public void CertificateTestRootOces2()
-        {
-            StoreName storeName = StoreName.Root;
-            StoreLocation storeLocation = StoreLocation.LocalMachine;
-            X509Store certStore = new X509Store(storeName, storeLocation);
+        ////[Test]
+        ////public void CertificateTestRootOces2()
+        ////{
+        ////    StoreName storeName = StoreName.Root;
+        ////    StoreLocation storeLocation = StoreLocation.LocalMachine;
+        ////    X509Store certStore = new X509Store(storeName, storeLocation);
             
-            certStore.Open(OpenFlags.ReadOnly);
-            X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_TEST_ROOT_OCES2, true);
-            certStore.Close();
+        ////    certStore.Open(OpenFlags.ReadOnly);
+        ////    X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_TEST_ROOT_OCES2, true);
+        ////    certStore.Close();
 
-            //Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");
-            
-        }
+        ////    Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");            
+        ////}
 
-        [Test]
-        public void CertificateProdRootOces1()
-        {
-            StoreName storeName = StoreName.Root;
-            StoreLocation storeLocation = StoreLocation.LocalMachine;
-            X509Store certStore = new X509Store(storeName, storeLocation);
+        ////[Test]
+        ////public void CertificateProdRootOces1()
+        ////{
+        ////    StoreName storeName = StoreName.Root;
+        ////    StoreLocation storeLocation = StoreLocation.LocalMachine;
+        ////    X509Store certStore = new X509Store(storeName, storeLocation);
             
-            certStore.Open(OpenFlags.ReadOnly);
-            X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_PROD_ROOT_OCES1, true);
-            certStore.Close();
+        ////    certStore.Open(OpenFlags.ReadOnly);
+        ////    X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_PROD_ROOT_OCES1, true);
+        ////    certStore.Close();
 
-            Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");
+        ////    Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");
             
-        }
+        ////}
 
         [Test]
         public void CertificateProdRootOces2()
@@ -66,8 +64,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation {
             X509Certificate2Collection collection = certStore.Certificates.Find(X509FindType.FindBySerialNumber, TestConstants.SERIAL_CERTIFICATE_PROD_ROOT_OCES2, true);
             certStore.Close();
 
-           // Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");
-            
+            Assert.AreEqual(1, collection.Count, "The root certificate is not installed.");            
         }
     }
 }
