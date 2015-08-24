@@ -53,10 +53,14 @@ namespace dk.gov.oiosi.test.unit.raspProfile
                 fileInfo.Delete();
             }
 
-            while (fileInfo.Exists)
+            while (File.Exists(fileName))
             {
                 // wait
-                Thread.Sleep(10);
+                Thread.Sleep(1);
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
             }
 
             ConfigurationHandler.ConfigFilePath = fileName;
