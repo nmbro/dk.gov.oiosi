@@ -214,11 +214,11 @@
 			</fileset>
 		</zip>
 		<!-- Lesnikowski Mail Provider -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
+		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
 			<fileset basedir="${Lesnikowski.dir}\bin\Release">
 				<include name="**/*" />
 			</fileset>
-		</zip>
+		</zip -->
 		<!-- Rasp profile library -->
 		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
 			<fileset basedir="${RaspProfile.dir}\bin\Release">
