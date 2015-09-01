@@ -251,9 +251,7 @@
     <Compile Include="security\validation\CertificateRootNotTrustedException.cs" />
     <Compile Include="security\validation\MultipleRootX509CertificateValidator.cs" />
     <Compile Include="uddi\EndpointAddressTypeCode.cs" />
-    <Compile Include="uddi\EndpointKeyTypeCode.cs" />
     <Compile Include="uddi\FindQualifiers.cs" />
-    <Compile Include="uddi\KeyType.cs" />
     <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
     <Compile Include="uddi\ProcessDefinition.cs" />
     <Compile Include="uddi\RegistryLookupClientFactory.cs" />
