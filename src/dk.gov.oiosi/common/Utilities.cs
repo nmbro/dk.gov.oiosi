@@ -81,7 +81,7 @@ namespace dk.gov.oiosi.common
             XmlDocument xmlDoc,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces,
-            EndpointKeyTypeCode keyType
+            string keyType
         )
         {
             // 1. Get the endpoint as string:
@@ -218,10 +218,10 @@ namespace dk.gov.oiosi.common
         /// <param name="message"></param>
         /// <param name="documentType"></param>
         /// <returns></returns>
-        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(OiosiMessage message, DocumentTypeConfig documentType)
+        public static string GetEndpointKeyTypeCode(OiosiMessage message, DocumentTypeConfig documentType)
         {
             XmlDocument xmlDocument = message.MessageXml;
-            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(xmlDocument, documentType);
+            string endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(xmlDocument, documentType);
 
             return endpointKeyTypeCode;
         }
@@ -230,7 +230,7 @@ namespace dk.gov.oiosi.common
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        public static EndpointKeyTypeCode GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
+        public static string GetEndpointKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
         {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
@@ -243,7 +243,7 @@ namespace dk.gov.oiosi.common
                     xpathExpression,
                     documentType.Namespaces);
             KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
-            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.ParseKeyTypeCode(mapping.MapsTo);
+            string endpointKeyTypeCode = mapping.MapsTo;//Utilities.ParseKeyTypeCode(mapping.MapsTo);
 
             return endpointKeyTypeCode;
         }
@@ -252,7 +252,7 @@ namespace dk.gov.oiosi.common
         /// Gets the endpoint key type code from a Message and a 
         /// DocumentTypeConfig.
         /// </summary>
-        public static EndpointKeyTypeCode GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
+        public static string GetSenderKeyTypeCode(XmlDocument xmlDocument, DocumentTypeConfig documentType)
         {
             //Finds all mapping expressions with the name "EndpointKeyType"
             DocumentEndpointInformation endpointType = documentType.EndpointType;
@@ -265,36 +265,9 @@ namespace dk.gov.oiosi.common
                     xpathExpression,
                     documentType.Namespaces);
             KeyTypeMapping mapping = mappingExpression.GetMapping(endPointKeyTypeValue);
-            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.ParseKeyTypeCode(mapping.MapsTo);
+            string endpointKeyTypeCode = mapping.MapsTo;
 
             return endpointKeyTypeCode;
-        }
-
-        private static EndpointKeyTypeCode ParseKeyTypeCode(string code)
-        {
-            switch (code)
-            {
-                case "cvr":
-                    return EndpointKeyTypeCode.cvr;
-                case "ean":
-                    return EndpointKeyTypeCode.ean;
-                case "ovt":
-                    return EndpointKeyTypeCode.ovt;
-                case "p":
-                    return EndpointKeyTypeCode.p;
-                case "se":
-                    return EndpointKeyTypeCode.se;
-                case "vans":
-                    return EndpointKeyTypeCode.vans;
-                case "iban":
-                    return EndpointKeyTypeCode.iban;
-                case "duns":
-                    return EndpointKeyTypeCode.duns;
-                case "cpr":
-                    return EndpointKeyTypeCode.cpr;
-                default:
-                    return EndpointKeyTypeCode.other;
-            }
         }
     }
 }

@@ -71,11 +71,11 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
         /// <summary>
         /// The type of the Receiver party ID
         /// </summary>
-        public EndpointKeyTypeCode ReceiverPartyKeyType { get; set; }
+        public string ReceiverPartyKeyType { get; set; }
 
         /// <summary>
         /// The type of the Sender party ID
         /// </summary>
-        public EndpointKeyTypeCode SenderPartyKeyType { get; set; }
+        public string SenderPartyKeyType { get; set; }
     }
 }

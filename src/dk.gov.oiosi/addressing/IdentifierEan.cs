@@ -41,64 +41,16 @@ namespace dk.gov.oiosi.addressing {
     /// Represents an EAN identifier
     /// </summary>
     public class IdentifierEan : Identifier {
-        private string _eanNumber;
-        private const string keyTypeValue = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/";
-
-        /// <summary>
-        /// Identifier key type value
-        /// </summary>
-        public override string KeyTypeValue {
-            get { return keyTypeValue; }
-        }
-
-        public override EndpointKeyTypeCode KeyTypeCode
-        {
-            get { return EndpointKeyTypeCode.ean; }
-        }
-
-        public override bool IsAllowedInPublic
-        {
-            get { return true; }
-        }
+       
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="eanNumber">The EAN identifier</param>
-        public IdentifierEan(string eanNumber) {
-            Set(eanNumber);
-        }
-
-        /// <summary>
-        /// Validates and sets the EAN identifier
-        /// </summary>
-        /// <param name="eanNumber">The EAN number</param>
-        public override void Set(string eanNumber) {
-            if (String.IsNullOrEmpty(eanNumber)) {
-                throw new NullOrEmptyArgumentException("eanNumber");
-            }
-            _eanNumber = eanNumber;
-        }
-
-        /// <summary>
-        /// Returns the EAN identifier as a string
-        /// </summary>
-        /// <returns>Returns the EAN identifier</returns>
-        public override string GetAsString() {
-            return _eanNumber;
-        }
-
-        /// <summary>
-        /// Compares the two objects and returns true if they have equal values
-        /// </summary>
-        /// <param name="other">The object to compare to</param>
-        /// <returns>Returns true if the two objects have identical values</returns>
-        public override bool Equals(Identifier other) {
-            if (other == null) return false;
-
-            if (GetAsString() != other.GetAsString()) return false;
-            return true;
-        }
-
+        public IdentifierEan(string eanNumber)
+            : base("ean", eanNumber)
+        {
+        
+        }       
     }
 }

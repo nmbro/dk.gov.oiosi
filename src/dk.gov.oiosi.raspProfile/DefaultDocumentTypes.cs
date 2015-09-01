@@ -121,67 +121,10 @@ namespace dk.gov.oiosi.raspProfile
 
         public virtual ServiceEndpointKey CreateKey(string xpath)
         {
+            // Note - most key mapping is handled by NHR.
             ServiceEndpointKey key = new ServiceEndpointKey(xpath);
             string keyTypeXpath = xpath + "/@schemeID";
             KeyTypeMappingExpression mappingExpression = new KeyTypeMappingExpression("EndpointKeyType", keyTypeXpath);
-
-            KeyTypeMapping eanMapping = new KeyTypeMapping("ean", "ean");
-            KeyTypeMapping uppercasedEanMapping = new KeyTypeMapping("EAN", "ean");
-            KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
-
-            KeyTypeMapping cvrMapping = new KeyTypeMapping("cvr", "cvr");
-            KeyTypeMapping uppercasedCVRMapping = new KeyTypeMapping("CVR", "cvr");
-            KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
-
-            KeyTypeMapping pMapping = new KeyTypeMapping("p", "p");
-            KeyTypeMapping uppercasedPMapping = new KeyTypeMapping("P", "p");
-            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
-
-            KeyTypeMapping seMapping = new KeyTypeMapping("se", "se");
-            KeyTypeMapping uppercasedSEMapping = new KeyTypeMapping("SE", "se");
-            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
-
-            KeyTypeMapping cprMapping = new KeyTypeMapping("cpr", "cpr");
-            KeyTypeMapping uppercasedCPRMapping = new KeyTypeMapping("CPR", "cpr");
-            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
-
-            KeyTypeMapping ovtMapping = new KeyTypeMapping("FI:OVT", "ovt");
-
-            KeyTypeMapping vansMapping = new KeyTypeMapping("VANS", "vans");
-
-            KeyTypeMapping dkvansMapping = new KeyTypeMapping("DK:VANS", "vans");
-            KeyTypeMapping ibanMapping = new KeyTypeMapping("IBAN", "iban");
-
-            KeyTypeMapping dunsMapping = new KeyTypeMapping("DUNS", "duns");
-
-            mappingExpression.AddMapping(eanMapping);
-            mappingExpression.AddMapping(uppercasedEanMapping);
-            mappingExpression.AddMapping(glnMapping);
-
-            mappingExpression.AddMapping(cvrMapping);
-            mappingExpression.AddMapping(uppercasedCVRMapping);
-            mappingExpression.AddMapping(dkcvrMapping);
-
-            mappingExpression.AddMapping(pMapping);
-            mappingExpression.AddMapping(uppercasedPMapping);
-            mappingExpression.AddMapping(dkpMapping);
-
-            mappingExpression.AddMapping(seMapping);
-            mappingExpression.AddMapping(uppercasedSEMapping);
-            mappingExpression.AddMapping(dkseMapping);
-
-            mappingExpression.AddMapping(cprMapping);
-            mappingExpression.AddMapping(uppercasedCPRMapping);
-            mappingExpression.AddMapping(dkcprMapping);
-
-            mappingExpression.AddMapping(ovtMapping);
-
-            mappingExpression.AddMapping(vansMapping);
-            mappingExpression.AddMapping(dkvansMapping);
-
-            mappingExpression.AddMapping(ibanMapping);
-            mappingExpression.AddMapping(dunsMapping);
-
             key.AddMappingExpression(mappingExpression);
 
             return key;

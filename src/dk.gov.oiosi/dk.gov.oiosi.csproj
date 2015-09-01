@@ -128,12 +128,11 @@
     <Compile Include="..\..\AssemblyInfoVersion.cs">
       <Link>Properties\AssemblyInfoVersion.cs</Link>
     </Compile>
+    <Compile Include="addressing\IdentifierEan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="addressing\IdentifierNonePublic.cs" />
     <Compile Include="addressing\IdentifierCpr.cs" />
-    <Compile Include="addressing\IdentifierDuns.cs" />
-    <Compile Include="addressing\IdentifierIban.cs" />
-    <Compile Include="addressing\IdentifierVans.cs" />
-    <Compile Include="addressing\IdentifierSe.cs" />
-    <Compile Include="addressing\IdentifierP.cs" />
     <Compile Include="addressing\ErrorMessages.Designer.cs">
       <DependentUpon>ErrorMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -143,6 +142,7 @@
     <Compile Include="common\cache\QuantityCache.cs" />
     <Compile Include="common\cache\TimedCacheValue.cs" />
     <Compile Include="common\cache\ZeroCache.cs" />
+    <Compile Include="common\UnknownKeyTypeValueException.cs" />
     <Compile Include="common\CreateInstanceFailedException.cs" />
     <Compile Include="common\Definitions.cs" />
     <Compile Include="common\ExternalCodeFactory.cs" />
@@ -253,6 +253,7 @@
     <Compile Include="uddi\EndpointAddressTypeCode.cs" />
     <Compile Include="uddi\EndpointKeyTypeCode.cs" />
     <Compile Include="uddi\FindQualifiers.cs" />
+    <Compile Include="uddi\KeyType.cs" />
     <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
     <Compile Include="uddi\ProcessDefinition.cs" />
     <Compile Include="uddi\RegistryLookupClientFactory.cs" />
@@ -274,8 +275,6 @@
     <Compile Include="addressing\IncorrectBusinessIdentifierException.cs" />
     <Compile Include="addressing\IncorrectCountryCodeException.cs" />
     <Compile Include="addressing\IdentifierCvr.cs" />
-    <Compile Include="addressing\IdentifierEan.cs" />
-    <Compile Include="addressing\IdentifierOvt.cs" />
     <Compile Include="addressing\Identifier.cs" />
     <Compile Include="addressing\IncorrectOvtNumberException.cs" />
     <Compile Include="addressing\IncorrectSerialNumberException.cs" />

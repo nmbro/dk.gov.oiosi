@@ -1,4 +1,4 @@
-﻿/*
+/*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
   * file except in compliance with the License. You may obtain
@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis S�gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -31,32 +31,20 @@
   *
   */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using dk.gov.oiosi.exception;
+using dk.gov.oiosi.exception.Keyword;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.addressing
-{
-    public class IdentifierCpr : IdentifierNonePublic
-    {
+namespace dk.gov.oiosi.common {
+
+    /// <summary>
+    /// Custom exception used when an unknown endpoint type is encountered
+    /// </summary>
+    public class UnknownKeyTypeValueException : UtilityException {
         
         /// <summary>
-        /// Constructor.
+        /// Constructor with keyword
         /// </summary>
-        /// <param name="cprNumber">A CPR number</param>
-        public IdentifierCpr(string cprNumber)
-        : base("dk:cpr", cprNumber)
-        { }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="cprNumber">A CPR number</param>
-        public IdentifierCpr(string type, string value)
-            : base(type, value)
-        { }  
+        /// <param name="endpointKeyTypeCode">endpoint keytype as keyword</param>
+        public UnknownKeyTypeValueException(string endpointKeyTypeCode) : base(KeywordFromString.GetKeyword("KeyType", endpointKeyTypeCode.ToString())) { }
     }
 }

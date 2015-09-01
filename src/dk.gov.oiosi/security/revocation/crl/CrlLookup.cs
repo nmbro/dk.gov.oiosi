@@ -124,7 +124,7 @@ namespace dk.gov.oiosi.security.revocation.crl
 
 
                 int index = 0;
-                bool chainValid = true;
+                //bool chainValid = true;
                 while (index < (list.Count -1) && response.IsValid == true)
                 {
                     // this.logger.Info("CRL validation the certificate: " + list[index].Subject);
@@ -195,6 +195,8 @@ namespace dk.gov.oiosi.security.revocation.crl
                 {
                     response.RevocationCheckStatus = RevocationCheckStatus.CertificateRevoked;
                 }
+
+                x509Chain.Reset();
             }
             else
             {

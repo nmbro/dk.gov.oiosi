@@ -131,7 +131,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
         static LookupParameters GetUddiParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig) 
         {
             // Use an OIOSI utility to find the endpoint type in the XML document to be sent
-            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
+            string endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
 
             // Use the XPath expression from the UBL type configuration (found in the RaspConfiguration.xml file) 
             // to find the endpoint identifier in the XML document to be sent

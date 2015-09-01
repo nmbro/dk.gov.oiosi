@@ -44,70 +44,52 @@ namespace dk.gov.oiosi.addressing {
     /// 
     /// If the "DK"-format is used, "DK" is stripped off during construction.
     /// </summary>
-    public class IdentifierCvr : Identifier {
-        private string _cvrNumber;
-        private const string keyTypeValue = "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/";
-
+    public class IdentifierCvr : Identifier
+    {
         /// <summary>
-        /// Identifier key type value
+        /// Constructor.
         /// </summary>
-        public override string KeyTypeValue {
-            get { return keyTypeValue; }
-        }
-
-        public override EndpointKeyTypeCode KeyTypeCode
-        {
-            get { return EndpointKeyTypeCode.cvr; }
-        }
-
-        public override bool IsAllowedInPublic
-        {
-            get { return true; }
-        }
+        /// <param name="cvrNumber">A CVR number</param>
+        public IdentifierCvr(string cvrNumber)
+            : base ("DK:CVR", cvrNumber) 
+        { }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="cvrNumber">A CVR number</param>
-        public IdentifierCvr(string cvrNumber) {
-            Set(cvrNumber);
-        }
+        public IdentifierCvr(string type, string value)
+            : base(type, value)
+        { }  
 
         /// <summary>
         /// Sets the CVR number
         /// </summary>
         /// <param name="cvrNumber">The CVR number</param>
-        public override void Set(string cvrNumber) {
-            if (String.IsNullOrEmpty(cvrNumber)) throw new NullOrEmptyArgumentException("cvrNumber");
+        public override void Set(string cvrNumber) 
+        {
+            if (String.IsNullOrEmpty(cvrNumber))
+            {
+                throw new NullOrEmptyArgumentException("cvrNumber");
+            }
+
             // If string starts with "dk", strip it away
             if (cvrNumber.ToLower().StartsWith("dk") && cvrNumber.Length > 2) {
                 cvrNumber = cvrNumber.Substring(2);
             }
-            if (cvrNumber.Length != 8) throw new Exception("Not a valid cvr number, length is not 8.");
+
+            if (cvrNumber.Length != 8)
+            {
+                throw new Exception("Not a valid cvr number, length is not 8.");
+            }
+
             int cvrNumberAsInteger = 0;
-            if (!int.TryParse(cvrNumber, out cvrNumberAsInteger)) throw new Exception("Not a valid cvr number, contains non digits.");
-            _cvrNumber = cvrNumber;
-        }
+            if (!int.TryParse(cvrNumber, out cvrNumberAsInteger))
+            {
+                throw new Exception("Not a valid cvr number, contains non digits.");
+            }
 
-        /// <summary>
-        /// Returns the CVR number as string
-        /// </summary>
-        /// <returns>Returns the CVR number as string</returns>
-        public override string GetAsString() {
-            return _cvrNumber;
-        }
-
-        /// <summary>
-        /// Compares the two objects and returns true if they have equal values
-        /// </summary>
-        /// <param name="other">The object to compare to</param>
-        /// <returns>Returns true if the two objects have identical values</returns>
-        public override bool Equals(Identifier other) {
-            if (other == null) return false;
-
-            if (GetAsString() != other.GetAsString()) return false;
-            return true;
-        }
-
+            base.Set(cvrNumber);
+        }       
     }
 }

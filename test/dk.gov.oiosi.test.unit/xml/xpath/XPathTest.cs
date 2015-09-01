@@ -56,7 +56,7 @@ namespace dk.gov.oiosi.test.unit.xml.xpath {
             DocumentTypeConfig config = _searcher.FindUniqueDocumentType(document);
             string keyXpath = config.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = config.Namespaces;
-            EndpointKeyTypeCode code = EndpointKeyTypeCode.ean;
+            string code = "ean";
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
             return identifier;
         }

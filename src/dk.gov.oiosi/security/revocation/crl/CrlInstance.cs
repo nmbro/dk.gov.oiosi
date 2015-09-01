@@ -161,34 +161,35 @@ namespace dk.gov.oiosi.security.revocation.crl
                 // Only download .crl file if it is present on the server.
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    Stream stream = response.GetResponseStream();
-
-                    if (stream == null)
+                    // Everything went well.
+                    using (Stream stream = response.GetResponseStream())
                     {
-                        this.logger.Warn("The stream is null.");
+                        if (stream == null)
+                        {
+                            this.logger.Warn("The stream is null.");
+                        }
+
+                        this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
+
+                        // Downloads the .crl file into an X509CRL object.
+                        this.data = crlParser.ReadCrl(stream);
+                        this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
+
+                        DateTime f = data.NextUpdate.Value;                        
                     }
-
-                    this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
-                   
-                    
-                    // Downloads the .crl file into an X509CRL object.
-                    this.data = crlParser.ReadCrl(stream);
-
-                    this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
-
-                    DateTime f = data.NextUpdate.Value;
-                    stream.Close();
-
-                    return; // Everything went well.
                 }
-
-                throw new CheckCertificateRevokedUnexpectedException(new Exception("CRL could not be downloaded: " + response.StatusDescription));
+                else
+                {
+                    throw new CheckCertificateRevokedUnexpectedException(new Exception("CRL could not be downloaded: " + response.StatusDescription));
+                }
             }
             catch (IOException e)
             {
                 // Could not download new crl
                 throw new CheckCertificateRevokedUnexpectedException(e);                
             }
+
+            return; 
         }
 
         /// <summary>

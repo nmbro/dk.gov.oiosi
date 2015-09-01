@@ -103,6 +103,16 @@ namespace dk.gov.oiosi.raspProfile
             uddiConfig.FallbackTimeoutMinutes = 15;
             uddiConfig.LookupRegistryFallbackConfig = new LookupRegistryFallbackConfig();
             uddiConfig.LookupRegistryFallbackConfig.PrioritizedRegistryList.Add(new Registry(new List<string>() { "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", "http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry" }));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("cpr", "http://oio.dk/profiles/OIOSI/1.2/UDDI/Identifiers/cprNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("cvr", "http://oio.dk/profiles/OWSA/modelT/1.0/UDDI/Identifiers/cvrNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("duns", "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/dunsNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("ean", "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/eanNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("iban", "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/ibanNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("ovt", "http://oio.dk/profiles/OIOSI/1.0/UDDI/Identifiers/ovtNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("p", "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/pNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("se", "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/seNumber/"));
+            ////uddiConfig.KeyTypeMappings.Add(new KeyType("vans", "http://oio.dk/profiles/OIOSI/1.1/UDDI/Identifiers/vansNumber/"));
+            ///////uddiConfig.KeyTypeMappings.Add(new KeyType("", ""));
         }
 
         public virtual void SetDefaultUddiConfigTest()

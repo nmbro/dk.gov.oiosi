@@ -53,10 +53,10 @@ namespace dk.gov.oiosi.test.unit.uddi{
 		private Uri fourthFallback2 = new Uri("http://fallback42.com");
 
         // The fake endpoints
-		private IdentifierEan endpointInNoRegistry = new IdentifierEan("5700000000000");
-    	private IdentifierEan endpointInFirstRegistry = new IdentifierEan("5700000000001");
-    	private IdentifierEan endpointInSecondRegistry = new IdentifierEan("5700000000002");
-		private IdentifierEan endpointInFourthRegistry = new IdentifierEan("5700000000004");
+		private Identifier endpointInNoRegistry = new IdentifierEan("5700000000000");
+    	private Identifier endpointInFirstRegistry = new IdentifierEan("5700000000001");
+    	private Identifier endpointInSecondRegistry = new IdentifierEan("5700000000002");
+		private Identifier endpointInFourthRegistry = new IdentifierEan("5700000000004");
 
 
         [SetUp]
@@ -137,7 +137,7 @@ namespace dk.gov.oiosi.test.unit.uddi{
             Assert.IsEmpty(result);
         }
 
-        private LookupParameters CreateParams(IdentifierEan ean) {
+        private LookupParameters CreateParams(Identifier ean) {
             return new LookupParameters(
                 ean,
                 new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true),

@@ -126,6 +126,9 @@
   <data name="dk_gov_oiosi_common_UnknownEndpointTypeException" xml:space="preserve">
     <value>Ukendt servicenøgle type kode "[endpointkeytypecode]".</value>
   </data>
+  <data name="dk_gov_oiosi_common_UnknownKeyTypeValueException" xml:space="preserve">
+    <value>Kunne ikke finde KeyType [KeyType] i KeyTypeMappings listen.</value>
+  </data>
   <data name="dk_gov_oiosi_common_UtilityException" xml:space="preserve">
     <value>Generel fejl i en hjælpeklasse.</value>
     <comment>This message should never be shown.</comment>

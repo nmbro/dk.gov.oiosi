@@ -33,7 +33,7 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811561
         {
             //CertificateUtil.InstallAndGetOces1FunctionCertificateFromCertificateStore();
             this.ClientCertificate = CertificateUtil.InstallAndGetOces1FunctionCertificateFromCertificateStore();
-            ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Test.xml");
+            ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Live.xml");
         }
 
         [Test]

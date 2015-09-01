@@ -31,6 +31,7 @@
   *
   */
 
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using dk.gov.oiosi.configuration;
 
@@ -46,6 +47,10 @@ namespace dk.gov.oiosi.uddi {
 
         private int _fallbackTimeoutMinutes = 0;
         private bool _tryOtherHostsOnFailure;
+
+        ////private List<KeyType> keyTypeCollection = new List<KeyType>();
+
+        
 
         /// <summary>
         /// Gets or sets the fallback timeout in minutes
@@ -70,5 +75,36 @@ namespace dk.gov.oiosi.uddi {
             get { return _tryOtherHostsOnFailure; }
             set { _tryOtherHostsOnFailure = value; }
         }
+
+        ////// [XmlArrayItem("Registry")]
+        ////public List<KeyType> KeyTypeMappings
+        ////{
+        ////    get { return this.keyTypeCollection; }
+        ////    set { this.keyTypeCollection = value; }
+        ////}
+
+        ////public bool TryGetKeyTypeValue(string KeyTypeCode, out string keyTypeValue)
+        ////{
+        ////    keyTypeValue = string.Empty;
+        ////    bool found = false;
+        ////    foreach (KeyType keyType in this.KeyTypeMappings)
+        ////    {
+        ////        if (keyType.Key.Equals(KeyTypeCode, System.StringComparison.OrdinalIgnoreCase))
+        ////        {
+        ////            keyTypeValue = keyType.Value;
+        ////            found = true;
+        ////            break;
+        ////        }
+        ////    }
+
+        ////    ////if (!found)
+        ////    ////{
+        ////    ////    keyTypeValue = string.Empty;
+        ////    ////}
+
+        ////    return found;
+        ////}
+
+
     }
 }

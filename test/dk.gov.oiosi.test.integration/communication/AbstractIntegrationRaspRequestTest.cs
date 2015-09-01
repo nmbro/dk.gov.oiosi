@@ -143,7 +143,7 @@ namespace dk.gov.oiosi.test.integration.communication
 
         protected LookupParameters GetMessageParameters(OiosiMessage message, DocumentTypeConfig docTypeConfig)
         {
-            EndpointKeyTypeCode endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
+            string endpointKeyTypeCode = Utilities.GetEndpointKeyTypeCode(message, docTypeConfig);
 
             Identifier endpointKey = Utilities.GetEndpointKeyByXpath(
                 message.MessageXml,

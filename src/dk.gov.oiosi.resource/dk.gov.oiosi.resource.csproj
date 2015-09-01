@@ -394,6 +394,7 @@
   <ItemGroup>
     <Content Include="RaspConfiguration.Live.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="RaspConfiguration.Test.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

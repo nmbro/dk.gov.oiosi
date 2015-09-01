@@ -32,6 +32,9 @@
   */
 
 using System;
+using dk.gov.oiosi.common;
+using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.exception;
 using dk.gov.oiosi.uddi;
 
 namespace dk.gov.oiosi.addressing {
@@ -39,65 +42,122 @@ namespace dk.gov.oiosi.addressing {
     /// <summary>
     /// Represents and endpoint or businesEntity type identifier
     /// </summary>
-    public abstract class Identifier: IEquatable<Identifier> {
+    public class Identifier: IEquatable<Identifier> 
+    {
+        /// <summary>
+        /// The value, Eg. 12345678
+        /// </summary>
+        private string value;
+
+        /// <summary>
+        /// The type of identifier, Eg. CVR
+        /// </summary>
+        private string type;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="cprNumber">A CPR number</param>
+        public Identifier(string type, string value)
+        {
+            if (string.IsNullOrEmpty(type))
+            {
+                throw new NullOrEmptyArgumentException("identifierType");
+            }
+
+            this.type = type;
+            this.Set(value);        
+            
+        }
+
 
         /// <summary>
         /// Gets the KeyTypeValue of the Identifier
         /// </summary>
-        public abstract string KeyTypeValue {
-            get;
+        public virtual string KeyTypeValue 
+        {
+            get
+            {
+                return this.value;
+            }
         }
 
         /// <summary>
         /// Gets the Type of the IIdentifier. E.g. "CPR"
         /// </summary>
-        public abstract EndpointKeyTypeCode KeyTypeCode
+        ////public abstract EndpointKeyTypeCode KeyTypeCode
+        ////{
+        ////    get;
+        ////}
+        public virtual string KeyTypeCode
         {
-            get;
+            get
+            {
+                return this.type;
+            }
         }
 
         /// <summary>
         /// Determines whether the type of identifier is allowed in the custom rasp headers.
         /// </summary>
-        public abstract bool IsAllowedInPublic {
-            get;
+        public virtual bool IsAllowedInPublic 
+        {
+            get
+            {
+                return true;
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract string GetAsString();
+        public virtual string GetAsString()
+        {
+            return this.value;
+        }
 
         /// <summary>
-        /// 
+        /// Set the value
         /// </summary>
         /// <param name="identifier"></param>
-        public abstract void Set(string identifier);
+        public virtual void Set(string identifier)
+        {
+            if (string.IsNullOrEmpty(identifier))
+            {
+                throw new NullOrEmptyArgumentException("identifier");
+            }
 
+            this.value = identifier;
+        }
+
+        
         /// <summary>
-        /// Compares the value of this instance with another instance of the same type
+        /// Compares the two objects and returns true if they have equal values
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public abstract bool Equals(Identifier other);
+        /// <param name="other">The object to compare to</param>
+        /// <returns>Returns true if the two objects have identical values</returns>
+        public virtual bool Equals(Identifier other)
+        {
+            bool result = true;
+            if (other == null)
+            {
+                result = false;
+            }
+            else if (!this.GetAsString().Equals(other.GetAsString()))
+            {
+                result = false;
+            }
+            else if (!this.KeyTypeValue.Equals(other.KeyTypeValue))
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+            }
 
-        /// <summary>
-        /// Equals values
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj) {
-            if (obj == null) return false;
-
-            if (GetType() != obj.GetType()) return false;
-            Identifier other = (Identifier)obj;
-
-            if (!GetAsString().Equals(other.GetAsString())) return false;
-
-            if (!KeyTypeValue.Equals(other.KeyTypeValue)) return false;
-
-            return true;
+            return result;
         }
 
         /// <summary>
@@ -106,12 +166,12 @@ namespace dk.gov.oiosi.addressing {
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return GetAsString().GetHashCode();
+            return this.GetAsString().GetHashCode();
         }
 
         public override string ToString()
         {
-            return GetAsString();
+            return this.GetAsString();
         }
     }
 }

@@ -301,7 +301,7 @@ namespace dk.gov.oiosi.uddi
             keyedReference endpointKeyType = new keyedReference();
             endpointKeyType.tModelKey = "uddi:182a4a2b-3717-4283-b97c-55cc3b684dae";
             endpointKeyType.keyName = "http://oio.dk/profiles/OIOSI/1.0/UDDI/Categories/endpointKeyType/";
-            endpointKeyType.keyValue = organizationIdentifier.KeyTypeValue;
+            endpointKeyType.keyValue = organizationIdentifier.KeyTypeCode;
 
             keyedReference endpointKey = new keyedReference();
             endpointKey.tModelKey = "uddi:e733684d-9f40-40ff-8807-1d80abc7c665";
@@ -313,10 +313,10 @@ namespace dk.gov.oiosi.uddi
             categoryBag serviceCategories = new categoryBag { Items = categories };
 
             find_service findService = new find_service();
-            findService.findQualifiers = new[] { FindQualifers.andAllKeys.ToString() };
+            findService.findQualifiers = new string[] { FindQualifers.andAllKeys.ToString() };
             if (serviceUddiId != null)
             {
-                findService.tModelBag = new[] { serviceUddiId.ID };
+                findService.tModelBag = new string[] { serviceUddiId.ID };
             }
             findService.categoryBag = serviceCategories;
 

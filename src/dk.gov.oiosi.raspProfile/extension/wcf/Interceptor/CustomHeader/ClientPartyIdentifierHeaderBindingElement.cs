@@ -56,8 +56,8 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader {
 
         string _senderPartyIdentifier = DefaultSenderPartyIdentifier;
         string _receiverPartyIdentifier = DefaultReceiverPartyIdentifier;
-        EndpointKeyTypeCode _senderPartyIdentifierType = EndpointKeyTypeCode.other;
-        EndpointKeyTypeCode _receiverPartyIdentifierType = EndpointKeyTypeCode.other;
+        string _senderPartyIdentifierType = "other";
+        string _receiverPartyIdentifierType = "other";
 
         XmlQualifiedName _senderPartyIdentifierHeaderName;
         XmlQualifiedName _receiverPartyIdentifierHeaderName;

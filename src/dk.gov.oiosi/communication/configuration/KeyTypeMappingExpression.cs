@@ -48,7 +48,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// Default constructor used by the XmlSerializer.
         /// </summary>
         /// <remarks>Do not use this constructor</remarks>
-        public KeyTypeMappingExpression() : this("", "") { }
+        public KeyTypeMappingExpression() : this(string.Empty, string.Empty) { }
 
         /// <summary>
         /// Constructor that creates a mapping expression with the given name
@@ -115,13 +115,26 @@ namespace dk.gov.oiosi.communication.configuration {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public KeyTypeMapping GetMapping(string value) {
-            try {
-                return _mappings[value];
-            } 
-            catch (Exception ex) {
+        public KeyTypeMapping GetMapping(string value)
+        {
+            KeyTypeMapping result;
+            try
+            {
+                if (this._mappings.ContainsKey(value))
+                {
+                    result = _mappings[value];
+                }
+                else
+                {
+                    result = new KeyTypeMapping(value, value);
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new KeyTypeMappingFailedException(value, ex);
             }
+
+            return result;
         }
 
         /// <summary>

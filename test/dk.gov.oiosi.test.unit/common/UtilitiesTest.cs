@@ -28,8 +28,8 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_EAN);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.ean, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual(new IdentifierEan("5798009811578").KeyTypeCode, code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
@@ -44,14 +44,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_OVT);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.ovt, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("ovt", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierOvt), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }
 
         [Test]
@@ -59,8 +59,8 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_CVR);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.cvr, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("cvr", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
@@ -74,14 +74,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_P);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.p, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("p", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierP), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }
 
         [Test]
@@ -89,14 +89,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_SE);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.se, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("se", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierSe), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }
 
         [Test]
@@ -104,14 +104,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_VANS);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.vans, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("vans", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierVans), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }
 
         [Test]
@@ -119,14 +119,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_IBAN);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.iban, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("iban", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierIban), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }
 
         [Test]
@@ -134,14 +134,14 @@ namespace dk.gov.oiosi.test.unit.common
             XmlDocument document = new XmlDocument();
             document.Load(TestConstants.PATH_INVOICE_XML_IDENTIFIER_DUNS);
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
-            EndpointKeyTypeCode code = Utilities.GetEndpointKeyTypeCode(document, documentType);
-            Assert.AreEqual(EndpointKeyTypeCode.duns, code);
+            string code = Utilities.GetEndpointKeyTypeCode(document, documentType);
+            Assert.AreEqual("duns", code);
 
             string keyXpath = documentType.EndpointType.Key.XPath;
             PrefixedNamespace[] namespaces = documentType.Namespaces;
 
             Identifier identifier = Utilities.GetEndpointKeyByXpath(document, keyXpath, namespaces, code);
-            Assert.AreEqual(typeof(IdentifierDuns), identifier.GetType());
+            Assert.AreEqual(typeof(Identifier), identifier.GetType());
         }     
           
     }

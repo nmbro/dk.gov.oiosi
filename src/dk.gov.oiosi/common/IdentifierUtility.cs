@@ -70,81 +70,33 @@ namespace dk.gov.oiosi.common {
             }
         }
 
-        /// <summary>
-        /// From an identifier string and identifier type, returns the right
-        /// IIdentifier subclass
-        /// </summary>
-        /// <param name="endpointKey">The endpoint key as string</param>
-        /// <param name="endpointKeyType">The type of the key</param>
-        /// <returns>Returns the relevant IIdentifier subclass</returns>
-        public static Identifier GetIdentifierFromKeyType(
-            string endpointKey,
-            EndpointKeyTypeCode endpointKeyType
-        ) {
-            Identifier id;
-            switch (endpointKeyType) {
-                case EndpointKeyTypeCode.cvr:
-                    id = new IdentifierCvr(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.ean:
-                    id = new IdentifierEan(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.ovt:
-                    id = new IdentifierOvt(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.p:
-                    id = new IdentifierP(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.se:
-                    id = new IdentifierSe(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.vans:
-                    id = new IdentifierVans(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.iban:
-                    id = new IdentifierIban(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.duns:
-                    id = new IdentifierDuns(endpointKey);
-                    break;
-                case EndpointKeyTypeCode.cpr:
-                    id = new IdentifierCpr(endpointKey);
-                    break;
-                default:
-                    throw new UnknownEndpointTypeException(endpointKeyType);
-            }
-
-            return id;
-        }
-
 
         public static Identifier GetIdentifierFromKeyType(
             string endpointKey,
-            string endpointKeyType
-        ) {
-            EndpointKeyTypeCode code = ParseKeyTypeCode(endpointKeyType);
-            switch (code) {
-                case EndpointKeyTypeCode.cvr:
-                    return new IdentifierCvr(endpointKey);
-                case EndpointKeyTypeCode.ean:
-                    return new IdentifierEan(endpointKey);
-                case EndpointKeyTypeCode.ovt:
-                    return new IdentifierOvt(endpointKey);
-                case EndpointKeyTypeCode.p:
-                    return new IdentifierP(endpointKey);
-                case EndpointKeyTypeCode.se:
-                    return new IdentifierSe(endpointKey);
-                case EndpointKeyTypeCode.vans:
-                    return new IdentifierVans(endpointKey);
-                case EndpointKeyTypeCode.iban:
-                    return new IdentifierIban(endpointKey);
-                case EndpointKeyTypeCode.duns:
-                    return new IdentifierDuns(endpointKey);
-                case EndpointKeyTypeCode.cpr:
-                    return new IdentifierCpr(endpointKey);
+            string endpointKeyType)
+        {
+            Identifier identifier;
+            //EndpointKeyTypeCode code = ParseKeyTypeCode(endpointKeyType);
+            switch (endpointKeyType.ToLowerInvariant())
+            {
+                case "dk:cvr":                
+                    {
+                        identifier = new IdentifierCvr(endpointKeyType, endpointKey);
+                        break;
+                    }
+                 case "dk:cpr":
+                    {
+                        identifier = new IdentifierNonePublic(endpointKeyType, endpointKey);
+                        break;
+                    }
                 default:
-                    throw new UnknownEndpointTypeException(code);
+                    {
+                        identifier = new Identifier(endpointKeyType, endpointKey);
+                        break;
+                    }
             }
+
+            return identifier;
         }
 
         /// <summary>
@@ -164,36 +116,6 @@ namespace dk.gov.oiosi.common {
                 address = new EndpointAddressSMTP(new System.Net.Mail.MailAddress(endpointAddress));
             }
             return address;
-        }
-
-        /// <summary>
-        /// Parses the key type code
-        /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        public static EndpointKeyTypeCode ParseKeyTypeCode(string code) {
-            switch (code) {
-                case "cvr":
-                    return EndpointKeyTypeCode.cvr;
-                case "ean":
-                    return EndpointKeyTypeCode.ean;
-                case "ovt":
-                    return EndpointKeyTypeCode.ovt;
-                case "p":
-                    return EndpointKeyTypeCode.p;
-                case "se":
-                    return EndpointKeyTypeCode.se;
-                case "vans":
-                    return EndpointKeyTypeCode.vans;
-                case "iban":
-                    return EndpointKeyTypeCode.iban;
-                case "duns":
-                    return EndpointKeyTypeCode.duns;
-                case "cpr":
-                    return EndpointKeyTypeCode.cpr;
-                default:
-                    return EndpointKeyTypeCode.other;
-            }
         }
     }
 }

@@ -502,57 +502,75 @@
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_ApplicationResponse_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_ApplicationResponse_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_AttachedDocument_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_AttachedDocument_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_CatalogueDeletion_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CatalogueDeletion_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CatalogueItemSpecificationUpdate_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_CataloguePricingUpdate_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CataloguePricingUpdate_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_CatalogueRequest_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CatalogueRequest_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Catalogue_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Catalogue_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_CreditNote_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CreditNote_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_OrderCancellation_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_OrderCancellation_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_OrderChange_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_OrderChange_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_OrderResponseSimple_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_OrderResponseSimple_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_OrderResponse_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_OrderResponse_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Order_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Order_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Reminder_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Reminder_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Statement_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Statement_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_UtilityStatement_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_UtilityStatement_Schematron.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
       <Link>Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl</Link>

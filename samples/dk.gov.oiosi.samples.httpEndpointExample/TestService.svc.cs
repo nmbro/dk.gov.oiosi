@@ -1,30 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Configuration;
 using System.ServiceModel;
-using System.Text;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.configuration;
-using dk.gov.oiosi.communication.fault;
 using dk.gov.oiosi.communication.service;
-using dk.gov.oiosi.raspProfile.communication.service;
-using dk.gov.oiosi.xml.documentType;
-using dk.gov.oiosi.common;
-using System.Xml;
-using System.Configuration;
 using dk.gov.oiosi.configuration;
+using dk.gov.oiosi.xml.documentType;
 
 namespace dk.gov.oiosi.samples.httpEndpointExample
 {
-
     /// <summary>
-    /// The service implementation
-    /// Implements the general RASP contract and takes any form of SOAP (hence the Message object as a parameter)
+    /// The service implementation Implements the general RASP contract and takes any form of SOAP
+    /// (hence the Message object as a parameter)
     /// </summary>
-    [ServiceBehavior(IncludeExceptionDetailInFaults=true)]
-    public class TestService : IServiceContract 
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+    public class TestService : IServiceContract
     {
         public Message RequestRespond(Message request)
         {
@@ -38,7 +29,7 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
 
             // This is mutch faster, as not converstion between xml an string is performed
             string xmlDocumentAsString = oiosiMessage.MessageAsString;
-            
+
             DocumentTypeConfig docTypeConfig = typeSearcher.FindUniqueDocumentType(oiosiMessage.MessageXml);
 
             // Create the reply message (The body can be empty)
@@ -49,14 +40,14 @@ namespace dk.gov.oiosi.samples.httpEndpointExample
                 responseText = ConfigurationManager.AppSettings["ResponseText"];
                 responseText = string.Format(responseText, DateTime.Now.ToString(), version);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 responseText = "Request was received " + DateTime.Now.ToString();
             }
 
             string body = responseText;
             Message message = Message.CreateMessage(MessageVersion.Soap12WSAddressing10, docTypeConfig.EndpointType.ReplyAction, body);
-            
+
             return message;
         }
     }

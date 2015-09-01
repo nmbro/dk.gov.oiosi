@@ -1,4 +1,4 @@
-/*
+﻿/*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
   * file except in compliance with the License. You may obtain
@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis S�gaard, Accenture
+  *   Dennis Søgaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -30,60 +30,32 @@
   *   Christian Lanng, ITST
   *
   */
-namespace dk.gov.oiosi.uddi {
-    /// <summary>
-    /// List of endpoint key types
-    /// </summary>
-    public enum EndpointKeyTypeCode {
 
-        /// <summary>
-        /// ean number
-        /// </summary>
-        ean,
-        
-        /// <summary>
-        /// ovt number
-        /// </summary>
-        ovt,
-        
-        /// <summary>
-        /// cvr number
-        /// </summary>
-        cvr,
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using dk.gov.oiosi.exception;
+using dk.gov.oiosi.uddi;
 
-        /// <summary>
-        /// p number
+namespace dk.gov.oiosi.addressing
+{
+    public class IdentifierNonePublic : Identifier
+    {
+       /// <summary>
+        /// Constructor.
         /// </summary>
-        p,
+        /// <param name="cprNumber">A CPR number</param>
+        public IdentifierNonePublic(string type, string value)
+            : base(type, value)
+        { }
 
-        /// <summary>
-        /// se number
-        /// </summary>
-        se,
-
-        /// <summary>
-        /// vans number
-        /// </summary>
-        vans,
-
-        /// <summary>
-        /// iban number
-        /// </summary>
-        iban,
-
-        /// <summary>
-        /// duns number
-        /// </summary>
-        duns,
-
-        /// <summary>
-        /// cpr number
-        /// </summary>
-        cpr,
-        
-        /// <summary>
-        /// other
-        /// </summary>
-        other
+        public override bool IsAllowedInPublic
+        {
+            get
+            {
+                return false;
+            }
+        }
     }
 }

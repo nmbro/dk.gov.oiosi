@@ -45,6 +45,6 @@ namespace dk.gov.oiosi.common {
         /// Constructor with keyword
         /// </summary>
         /// <param name="endpointKeyTypeCode">endpoint keytype as keyword</param>
-        public UnknownEndpointTypeException(EndpointKeyTypeCode endpointKeyTypeCode) : base(KeywordFromString.GetKeyword("endpointkeytypecode", endpointKeyTypeCode.ToString())) { }
+        public UnknownEndpointTypeException(string endpointKeyTypeCode) : base(KeywordFromString.GetKeyword("endpointkeytypecode", endpointKeyTypeCode.ToString())) { }
     }
 }

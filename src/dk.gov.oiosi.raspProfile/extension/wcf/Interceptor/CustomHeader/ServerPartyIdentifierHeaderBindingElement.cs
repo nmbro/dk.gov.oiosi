@@ -60,8 +60,8 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
         
         string _senderPartyIdentifier = DefaultSenderPartyIdentifier;
         string _receiverPartyIdentifier = DefaultReceiverPartyIdentifier;
-        string _senderPartyIdentifierType = EndpointKeyTypeCode.other.ToString();
-        string _receiverPartyIdentifierType = EndpointKeyTypeCode.other.ToString();
+        string _senderPartyIdentifierType = "other";
+        string _receiverPartyIdentifierType = "other";
 
         XmlQualifiedName _senderPartyIdentifierHeaderName;
         XmlQualifiedName _receiverPartyIdentifierHeaderName;
@@ -90,9 +90,9 @@ namespace dk.gov.oiosi.raspProfile.extension.wcf.Interceptor.CustomHeader
 
             // Extract headers and switch sender for receiver
             _senderPartyIdentifier = ExtractHeaderValue(msg, _receiverPartyIdentifierHeaderName.Name, _receiverPartyIdentifierHeaderName.Namespace, DefaultReceiverPartyIdentifier);
-            _senderPartyIdentifierType = ExtractHeaderValue(msg, _receiverPartyIdentifierTypeHeaderName.Name, _receiverPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
+            _senderPartyIdentifierType = ExtractHeaderValue(msg, _receiverPartyIdentifierTypeHeaderName.Name, _receiverPartyIdentifierTypeHeaderName.Namespace, "other");
             _receiverPartyIdentifier = ExtractHeaderValue(msg, _senderPartyIdentifierHeaderName.Name, _senderPartyIdentifierHeaderName.Namespace, DefaultSenderPartyIdentifier);
-            _receiverPartyIdentifierType = ExtractHeaderValue(msg, _senderPartyIdentifierTypeHeaderName.Name, _senderPartyIdentifierTypeHeaderName.Namespace, EndpointKeyTypeCode.other.ToString());
+            _receiverPartyIdentifierType = ExtractHeaderValue(msg, _senderPartyIdentifierTypeHeaderName.Name, _senderPartyIdentifierTypeHeaderName.Namespace, "other");
 
         }
 
