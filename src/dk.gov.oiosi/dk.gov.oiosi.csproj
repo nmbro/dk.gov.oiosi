@@ -242,6 +242,7 @@
     <Compile Include="security\revocation\crl\CrlLookup.cs" />
     <Compile Include="security\InvalidOcesCertificateException.cs" />
     <Compile Include="security\revocation\crl\CertificateUtil.cs" />
+    <Compile Include="security\revocation\crl\CrlUnavailableForDownloadException.cs" />
     <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
     <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
     <Compile Include="security\RootCertificateCollectionConfig.cs" />

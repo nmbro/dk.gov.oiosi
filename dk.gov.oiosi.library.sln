@@ -78,6 +78,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.TestUddi", "samples\dk.gov.oiosi.samples.TestUddi\dk.gov.oiosi.samples.TestUddi.csproj", "{942B8034-0548-4798-BB0B-9417311CA883}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -225,9 +229,5 @@ Global
 		{6FC972F7-8791-4E97-9161-EFB059698D84} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
 		{09D22A10-FF14-4CB4-999F-1DB1661AA52A} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}
 		{CB3B7203-8EE9-49D8-9ABC-5DC5025C525E} = {8EFB3AB8-82D3-4A39-9B7C-15512395B555}
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal

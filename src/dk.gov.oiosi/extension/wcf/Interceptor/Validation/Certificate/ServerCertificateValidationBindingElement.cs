@@ -36,6 +36,7 @@
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
+using dk.gov.oiosi.logging;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
 {
@@ -45,6 +46,8 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
     /// </summary>
     public class ServerCertificateValidationBindingElement : ValidationServerBindingElement
     {
+        private ILogger logger;
+
         private CertificateValidatorWithLookup certificateValidator;
 
         /// <summary>

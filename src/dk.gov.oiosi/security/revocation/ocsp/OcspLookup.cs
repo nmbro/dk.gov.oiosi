@@ -49,6 +49,7 @@ using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.X509;
 using dk.gov.oiosi.security.revocation.crl;
 using Org.BouncyCastle.Security.Certificates;
+using dk.gov.oiosi.logging;
 //using Novell.Directory.Ldap.Asn1;
 
 namespace dk.gov.oiosi.security.revocation.ocsp {
@@ -56,8 +57,9 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
     /// <summary>
     /// Class for checking certificate revocation status against an OCSP (Online Certificate Status Protocol) server.
     /// </summary>
-    public class OcspLookup : IRevocationLookup {
-
+    public class OcspLookup : IRevocationLookup 
+    {
+        private ILogger logger;
         private OcspConfig _configuration;
 
         private readonly int BufferSize = 4096 * 8;
@@ -75,8 +77,10 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// Instantiates OcspLookup and loads the OCES default root certificate
         /// </summary>
         /// <param name="configuration">Configuration parameters</param>
-        public OcspLookup(OcspConfig configuration) {
-            Init(configuration, null);
+        public OcspLookup(OcspConfig configuration) 
+        {
+            this.logger = LoggerFactory.Create(this);
+            this.Init(configuration, null);
         }
 
         /// <summary>
@@ -84,16 +88,20 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// </summary>
         /// <param name="configuration">Configuration</param>
         /// <param name="defaultRootCertificateList">The default root certificate</param>
-        public OcspLookup(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList) {
-            Init(configuration, defaultRootCertificateList);
+        public OcspLookup(OcspConfig configuration, IList<X509Certificate2> defaultRootCertificateList)
+        {
+            this.logger = LoggerFactory.Create(this);
+            this.Init(configuration, defaultRootCertificateList);
         }
 
         /// <summary>
         /// Default constructor. Attempts to load configuration from configuration file.
         /// </summary>
-        public OcspLookup() {
+        public OcspLookup()
+        {
+            this.logger = LoggerFactory.Create(this);
             OcspConfig configuration = ConfigurationHandler.GetConfigurationSection<OcspConfig>();
-            Init(configuration, null);
+            this.Init(configuration, null);
         }
         
 
@@ -183,6 +191,8 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             // this method can be call requsiv, so check the cache first
             RevocationResponse revocationResponse;
 
+            this.logger.Debug(string.Format("OCSP validation the certificate '{0}'.", x509Certificate2.ToString()));
+
             bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
             if (ocspResponseExistsInCache)
             {
@@ -199,6 +209,14 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             {
                 // respons is not in cache
                 revocationResponse = this.RevocationResponseOnline(x509Certificate2);
+            }
+
+            if (this.logger.IsInfoEnabled)
+            {
+                if (!revocationResponse.IsValid)
+                {
+                    this.logger.Info(string.Format("Certificate '{0}' is revoked.", x509Certificate2.ToString()));
+                }
             }
 
             return revocationResponse;

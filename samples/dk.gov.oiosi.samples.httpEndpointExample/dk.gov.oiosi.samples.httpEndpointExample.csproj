@@ -13,9 +13,16 @@
     <RootNamespace>dk.gov.oiosi.samples.httpEndpointExample</RootNamespace>
     <AssemblyName>dk.gov.oiosi.samples.httpEndpointExample</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\VisualStudio\ITST.open.ebusiness\Reference Client\trunk\dk.gov.oiosi\Backup\</UpgradeBackupLocation>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +69,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\src\dk.gov.oiosi.Logging\log4net4Rasp.xml">
+      <Link>log4net4Rasp.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
+      <Link>App_Data\RaspConfiguration.Live.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
+      <Link>App_Data\RaspConfiguration.Test.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -72,6 +91,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\dk.gov.oiosi.configuration\dk.gov.oiosi.configuration.csproj">
+      <Project>{57c0192d-6d8f-4fdf-a349-b30cc5f96a67}</Project>
+      <Name>dk.gov.oiosi.configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
       <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
       <Name>dk.gov.oiosi.Logging</Name>
@@ -85,8 +108,9 @@
       <Name>dk.gov.oiosi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <None Include="Properties\PublishProfiles\Publish2Folder.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -111,6 +135,9 @@
           <DevelopmentServerVPath>/integration/RASPNET/2.0</DevelopmentServerVPath>
           <IISUrl>http://localhost:8080/integration/RASPNET/2.0</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

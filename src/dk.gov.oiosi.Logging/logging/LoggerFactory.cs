@@ -43,6 +43,16 @@ namespace dk.gov.oiosi.logging
         /// </summary>
         /// <param name="type">The type of the logger</param>
         /// <returns>A instance of a logger</returns>
+        public static ILogger Create(object source)
+        {
+            return loggerCreator.Create(source.GetType());
+        }
+
+        /// <summary>
+        /// Create a logger
+        /// </summary>
+        /// <param name="type">The type of the logger</param>
+        /// <returns>A instance of a logger</returns>
         public static ILogger Create(Type type)
         {
             return loggerCreator.Create(type);

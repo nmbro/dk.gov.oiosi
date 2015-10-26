@@ -46,6 +46,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
     /// <summary>
     /// Serverside interceptor that attaches proof of signature validations on 
     /// messages send in the system.
+    /// Validate if a certificate has been revoked. It does NOT validate activation, expired or trusted root - for this look at CertificateValidatorWithLookup.
     /// </summary>
     public class ServerSignatureValidationProofBindingElement : dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerBindingElement //CommonBindingElement 
     {
@@ -64,7 +65,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         public ServerSignatureValidationProofBindingElement(dk.gov.oiosi.extension.wcf.Interceptor.Validation.ValidationServerConfiguration configuration) // (ServerSignatureValidationProofBindingExtensionElement configuration)
             : base(configuration)
         {
-            this.logger = LoggerFactory.Create(this.GetType());
+            this.logger = LoggerFactory.Create(this);
             RevocationLookupFactory ocspLookupFactory = new RevocationLookupFactory();
             this.revocationLookup = ocspLookupFactory.CreateRevocationLookupClient();
             //this.stackCheck = new SignatureValidationStackCheck(GetType());
@@ -133,6 +134,19 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
 
                     if (response.Exception != null)
                     {
+                        string msg;
+                        try
+                        {
+                            msg = response.Exception.Message;
+                        }
+                        catch (Exception ex)
+                        {
+                            this.logger.Debug("Error finding the correct error message.", ex);
+                            msg = "unknown";
+                        }
+
+                        this.logger.Info(string.Format("The certificate '{0}' revocation check failed. Reason is: ", ocesCertificate.Certificate.ToString(), msg));
+
                         // some error checking the certificate
                         // make sure the error is of the correct type, and throw it
                         // note - if the original exception was not a communikation exception, it is wraped in a communikation exception
@@ -176,11 +190,13 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                                 }
                             case RevocationCheckStatus.CertificateRevoked:
                                 {
+                                    this.logger.Info(string.Format("The certificate '{0}' is revoked.", ocesCertificate.Certificate.ToString()));
                                     throw new CertificateRevokedException();
                                     //break;
                                 }
                             default:
                                 {
+                                    this.logger.Info(string.Format("The certificate '{0}' failed in revocation check - reason unknown", ocesCertificate.Certificate.ToString()));
                                     throw new CertificateRevokedValidationFailedException("The certificate failed in revocation check - reason unknown.");
                                     //break;
                                 }

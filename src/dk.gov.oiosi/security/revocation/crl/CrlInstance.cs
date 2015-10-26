@@ -41,6 +41,8 @@ namespace dk.gov.oiosi.security.revocation.crl
     using Org.BouncyCastle.X509;
     using dk.gov.oiosi.logging;
     using Org.BouncyCastle.Asn1;
+    using Org.BouncyCastle.Utilities.Collections;
+using System.Text;
 
     /// <summary>
     /// Class used for storing CRLs retrieved from URL's in X509 certificates
@@ -63,10 +65,10 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <param name="url">The URL corresponding to the CRL.</param>
         public CrlInstance(Uri url)
         {
+            this.logger = LoggerFactory.Create(this);
             this.crlParser = new X509CrlParser();
             this.data = null;
-            this.url = url;
-            this.logger = LoggerFactory.Create(this.GetType());
+            this.url = url;            
         }
 
         /// <summary>
@@ -76,6 +78,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <param name="url">The URL corresponding to the CRL.</param>
         public CrlInstance(X509CrlParser crlParser, Uri url)
         {
+            this.logger = LoggerFactory.Create(this);
             this.crlParser = crlParser;
             this.data = null;
             this.url = url;
@@ -88,6 +91,12 @@ namespace dk.gov.oiosi.security.revocation.crl
         /// <returns>Returns true if revoked, false otherwise.</returns>
         public bool IsRevoked(X509Certificate2 cert)
         {
+            bool isRevoked;
+            if (this.logger.IsDebugEnabled)
+            {
+                this.logger.Debug(string.Format("Checking certificate '{0}'. containing CRL url '{1}'.", cert.ToString(), url.ToString()));
+            }
+
             // Looks the data for reading.
             rwl.EnterReadLock();
             try
@@ -126,26 +135,30 @@ namespace dk.gov.oiosi.security.revocation.crl
                 }
 
                 // Reads the data and unlocks.
-                bool isRevoked;
-
-                Org.BouncyCastle.X509.X509Certificate certificateToValidate = cp.ReadCertificate(cert.RawData);
+                Org.BouncyCastle.X509.X509Certificate certificateToValidate = this.cp.ReadCertificate(cert.RawData);
                 if (this.data == null)
                 {
-                    // If no data - crl server is not online
-                    // default: true/false?
-                    isRevoked = true;
+                    throw new CrlUnavailableForDownloadException(url.ToString());
                 }
                 else
                 {
                     isRevoked = data.IsRevoked(certificateToValidate);
                 }
-                
-                return isRevoked;
             }
             finally
             {
                 rwl.ExitReadLock();
             }
+
+            if (this.logger.IsInfoEnabled)
+            {
+                if (isRevoked)
+                {
+                    this.logger.Info(string.Format("Certificate '{0}' is revoked.", cert.ToString()));
+                }
+            }
+
+            return isRevoked;
         }
 
         /// <summary>
@@ -155,6 +168,7 @@ namespace dk.gov.oiosi.security.revocation.crl
         {
             try
             {
+                this.logger.Info(string.Format("Downloading CRL from: '{0}'.", url.ToString()));
                 WebRequest request = WebRequest.Create(url);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
@@ -167,13 +181,28 @@ namespace dk.gov.oiosi.security.revocation.crl
                         if (stream == null)
                         {
                             this.logger.Warn("The stream is null.");
-                        }
-
-                        this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
+                        }                       
 
                         // Downloads the .crl file into an X509CRL object.
-                        this.data = crlParser.ReadCrl(stream);
+                        this.logger.Debug(string.Format("Parsing the CRL data ({1}) retrieved from: '{0}'.", url.ToString(), stream.Length));
+                       
+                        this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
+                        this.data = this.crlParser.ReadCrl(stream);
                         this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
+                        
+
+                        if (this.logger.IsDebugEnabled)
+                        {
+                            ISet revokedCertificates = this.data.GetRevokedCertificates();
+                            StringBuilder sb = new StringBuilder();
+                            sb.AppendLine(string.Format("There exist {1} revoked certificates in the CRL from '{0}'.", url.ToString(), revokedCertificates.Count));
+                            foreach (object obj in revokedCertificates)
+                            {
+                                sb.AppendLine(string.Format("  {0}", obj.ToString()));
+                            }
+
+                            this.logger.Debug(sb.ToString());                            
+                        }
 
                         DateTime f = data.NextUpdate.Value;                        
                     }

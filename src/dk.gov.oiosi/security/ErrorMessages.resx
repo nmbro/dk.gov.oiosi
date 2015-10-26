@@ -222,4 +222,7 @@
   <data name="dk_gov_oiosi_security_revocation_RevocationNoImplementingClassException" xml:space="preserve">
     <value>Ikke angivet nogen implementerende klasse i revocation konfigurationen</value>
   </data>
+  <data name="dk_gov_oiosi_security_revocation_crl_CrlUnavailableForDownloadException" xml:space="preserve">
+    <value>Fejl under downloading af CRL: '"[url]"'.</value>
+  </data>
 </root>
