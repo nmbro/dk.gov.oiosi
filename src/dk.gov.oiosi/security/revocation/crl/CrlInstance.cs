@@ -184,7 +184,7 @@ using System.Text;
                         }                       
 
                         // Downloads the .crl file into an X509CRL object.
-                        this.logger.Debug(string.Format("Parsing the CRL data ({1}) retrieved from: '{0}'.", url.ToString(), stream.Length));
+                        this.logger.Debug(string.Format("Parsing the CRL data ({1}) retrieved from: '{0}'.", url.ToString(), response.ContentLength));
                        
                         this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
                         this.data = this.crlParser.ReadCrl(stream);
