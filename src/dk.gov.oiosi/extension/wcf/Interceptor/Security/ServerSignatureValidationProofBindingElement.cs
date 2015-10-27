@@ -184,6 +184,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                             case RevocationCheckStatus.AllChecksPassed:
                                 {
                                     // all good
+                                    this.logger.Debug(string.Format("Certificate '{0}' has parsed the revocation validate.", certificate.SubjectName.Name));
                                     SignatureValidationProof signatureValidationProof = new SignatureValidationProof(certificate.Subject);
                                     interceptorMessage.AddProperty(ServerSignatureValidationProofBindingExtensionElement.SignatureValidationProofKey, signatureValidationProof);
                                     break;
