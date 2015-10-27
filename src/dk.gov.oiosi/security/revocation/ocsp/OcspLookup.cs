@@ -191,7 +191,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             // this method can be call requsiv, so check the cache first
             RevocationResponse revocationResponse;
 
-            this.logger.Debug(string.Format("OCSP validation the certificate '{0}'.", x509Certificate2.ToString()));
+            this.logger.Debug(string.Format("OCSP validation the certificate '{0}'.", x509Certificate2.SubjectName.Name));
 
             bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
             if (ocspResponseExistsInCache)
@@ -215,7 +215,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             {
                 if (!revocationResponse.IsValid)
                 {
-                    this.logger.Info(string.Format("Certificate '{0}' is revoked.", x509Certificate2.ToString()));
+                    this.logger.Info(string.Format("Certificate '{0}' is revoked.", x509Certificate2.SubjectName.Name));
                 }
             }
 

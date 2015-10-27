@@ -94,7 +94,7 @@ using System.Text;
             bool isRevoked;
             if (this.logger.IsDebugEnabled)
             {
-                this.logger.Debug(string.Format("Checking certificate '{0}'. containing CRL url '{1}'.", cert.ToString(), url.ToString()));
+                this.logger.Debug(string.Format("Checking certificate '{0}'. containing CRL url '{1}'.", cert.SubjectName.Name, url.ToString()));
             }
 
             // Looks the data for reading.
@@ -154,7 +154,7 @@ using System.Text;
             {
                 if (isRevoked)
                 {
-                    this.logger.Debug(string.Format("Certificate '{0}' is revoked.", cert.ToString()));
+                    this.logger.Debug(string.Format("Certificate '{0}' is revoked.", cert.SubjectName.Name));
                 }
             }
 
@@ -181,41 +181,82 @@ using System.Text;
                         if (stream == null)
                         {
                             this.logger.Warn(string.Format("The downloaded CRL stream from {0} is null.", url.ToString()));
-                        }                       
+                        }
 
                         // Downloads the .crl file into an X509CRL object.
                         this.logger.Debug(string.Format("Parsing the CRL data ({1}) retrieved from: '{0}'.", url.ToString(), response.ContentLength));
-                       
+
                         this.logger.Trace("Start 'crlParser.ReadCrl(stream)'");
                         this.data = this.crlParser.ReadCrl(stream);
                         this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
-                        
+
 
                         if (this.logger.IsDebugEnabled)
                         {
                             ISet revokedCertificates = this.data.GetRevokedCertificates();
-                            StringBuilder sb = new StringBuilder();
-                            sb.AppendLine(string.Format("There exist {1} revoked certificates in the CRL from '{0}'.", url.ToString(), revokedCertificates.Count));
-                            foreach (object obj in revokedCertificates)
+                            if (revokedCertificates == null)
                             {
-                                sb.AppendLine(string.Format("  {0}", obj.ToString()));
+                                this.logger.Debug(string.Format("There exist {1} revoked certificates in the CRL from '{0}'.", url.ToString(), 0));
                             }
+                            else
+                            {
+                                StringBuilder sb = new StringBuilder();
+                                sb.AppendLine(string.Format("There exist {1} revoked certificates in the CRL from '{0}'.", url.ToString(), revokedCertificates.Count));
+                                foreach (object obj in revokedCertificates)
+                                {
+                                    sb.AppendLine(string.Format("  {0}", obj.ToString()));
+                                }
 
-                            this.logger.Debug(sb.ToString());                            
+                                this.logger.Debug(sb.ToString());
+                            }
                         }
 
-                        DateTime f = data.NextUpdate.Value;                        
+                        DateTime f = data.NextUpdate.Value;
                     }
                 }
                 else
                 {
+                    string urlString = string.Empty;
+                    if (url != null)
+                    {
+                        urlString = url.ToString();
+                    }
+
+                    this.logger.Error(string.Format("Error downloading CRL from url '{0}'. Reason was {1}.", urlString, response.StatusDescription));
                     throw new CheckCertificateRevokedUnexpectedException(new Exception("CRL could not be downloaded: " + response.StatusDescription));
                 }
+            }
+            catch (CheckCertificateRevokedUnexpectedException)
+            {
+                // This has already been logged.
+                // Re-throw original exception
+                throw;
             }
             catch (IOException e)
             {
                 // Could not download new crl
-                throw new CheckCertificateRevokedUnexpectedException(e);                
+                string urlString = string.Empty;
+                if (url != null)
+                {
+                    urlString = url.ToString();
+                }
+
+                this.logger.Error(string.Format("Error downloading/parsing the CRL from url: '{0}'.", urlString), e);
+                throw new CheckCertificateRevokedUnexpectedException(e);
+            }
+            catch (Exception e)
+            {
+                // Could not download new crl
+                string urlString = string.Empty;
+                if (url != null)
+                {
+                    urlString = url.ToString();
+                }
+
+                this.logger.Error(string.Format("Error downolading/parsing the CRL from url: '{0}'.", urlString), e);
+
+                // Re-throw original exception
+                throw;
             }
 
             return; 

@@ -102,13 +102,13 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
 
                 //Check if the certificate is valid (Activated, and not expired, and from trusted root)
                 this.validator.Validate(certificate);
-
+                this.logger.Debug(string.Format("Certificate '{0}' has parsed the trusted validate.", certificate.SubjectName.Name));
             }
             catch (CertificateExpiredException ex)
             {
                 if (certificate != null)
                 {
-                    this.logger.Warn(string.Format("Certificate '{0}' is expired.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Certificate '{0}' is expired.", certificate.SubjectName.Name));
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Warn(string.Format("Certificate '{0}' is not activated.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Certificate '{0}' is not activated.", certificate.SubjectName.Name));
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Warn(string.Format("The root certificate for certificate '{0}' is not trusted.", certificate.ToString()));
+                    this.logger.Warn(string.Format("The root certificate for certificate '{0}' is not trusted.", certificate.SubjectName.Name));
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Warn(string.Format("Subject for certificate '{0}' was not found.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Subject for certificate '{0}' was not found.", certificate.SubjectName.Name));
                 }
                 else
                 {
@@ -160,7 +160,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Warn(string.Format("The certificate '{0}' was rejected.", certificate.ToString()));
+                    this.logger.Warn(string.Format("The certificate '{0}' was rejected.", certificate.SubjectName.Name));
                 }
                 else
                 {

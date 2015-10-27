@@ -155,12 +155,12 @@
       <Link>Resources\Certificates\CVR30808460.Expire20150804.FOCES1.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151025.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx">
-      <Link>Resources\Certificates\CVR30808460.Expire20151025.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx">
       <Link>Resources\Certificates\CVR30808460.Expire20151026.TU GENEREL FOCES2 %28Funktionscertifikat%29.pfx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20170324.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx">
+      <Link>Resources\Certificates\CVR30808460.Expire20170324.TU GENEREL FOCES2 %28Spærret%29 %28Funktionscertifikat%29.pfx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="..\..\src\dk.gov.oiosi.resource\Resources\Certificates\Test\Funktionscertifikat\CVR30808460.Expire20170324.TU GENEREL FOCES2 gyldig %28Funktionscertifikat%29.pfx">
