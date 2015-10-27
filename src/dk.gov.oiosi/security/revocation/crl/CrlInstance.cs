@@ -150,11 +150,11 @@ using System.Text;
                 rwl.ExitReadLock();
             }
 
-            if (this.logger.IsInfoEnabled)
+            if (this.logger.IsDebugEnabled)
             {
                 if (isRevoked)
                 {
-                    this.logger.Info(string.Format("Certificate '{0}' is revoked.", cert.ToString()));
+                    this.logger.Debug(string.Format("Certificate '{0}' is revoked.", cert.ToString()));
                 }
             }
 
@@ -168,7 +168,7 @@ using System.Text;
         {
             try
             {
-                this.logger.Info(string.Format("Downloading CRL from: '{0}'.", url.ToString()));
+                this.logger.Debug(string.Format("Downloading CRL from: '{0}'.", url.ToString()));
                 WebRequest request = WebRequest.Create(url);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
@@ -180,7 +180,7 @@ using System.Text;
                     {
                         if (stream == null)
                         {
-                            this.logger.Warn("The stream is null.");
+                            this.logger.Warn(string.Format("The downloaded CRL stream from {0} is null.", url.ToString()));
                         }                       
 
                         // Downloads the .crl file into an X509CRL object.

@@ -145,7 +145,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                             msg = "unknown";
                         }
 
-                        this.logger.Info(string.Format("The certificate '{0}' revocation check failed. Reason is: ", ocesCertificate.Certificate.ToString(), msg));
+                        this.logger.Warn(string.Format("The certificate '{0}' revocation check failed. Reason is: ", ocesCertificate.Certificate.ToString(), msg));
 
                         // some error checking the certificate
                         // make sure the error is of the correct type, and throw it
@@ -190,13 +190,13 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                                 }
                             case RevocationCheckStatus.CertificateRevoked:
                                 {
-                                    this.logger.Info(string.Format("The certificate '{0}' is revoked.", ocesCertificate.Certificate.ToString()));
+                                    this.logger.Warn(string.Format("The certificate '{0}' is revoked.", ocesCertificate.Certificate.ToString()));
                                     throw new CertificateRevokedException();
                                     //break;
                                 }
                             default:
                                 {
-                                    this.logger.Info(string.Format("The certificate '{0}' failed in revocation check - reason unknown", ocesCertificate.Certificate.ToString()));
+                                    this.logger.Warn(string.Format("The certificate '{0}' failed in revocation check - reason unknown", ocesCertificate.Certificate.ToString()));
                                     throw new CertificateRevokedValidationFailedException("The certificate failed in revocation check - reason unknown.");
                                     //break;
                                 }

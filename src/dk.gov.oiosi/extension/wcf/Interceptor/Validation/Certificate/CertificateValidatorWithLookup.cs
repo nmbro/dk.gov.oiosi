@@ -108,11 +108,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Info(string.Format("Certificate '{0}' is expired.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Certificate '{0}' is expired.", certificate.ToString()));
                 }
                 else
                 {
-                    this.logger.Info("Unknown certificate is expired.");
+                    this.logger.Warn("Unknown certificate is expired.");
                 }
 
                 throw new InterceptorChannelWrapperException(OiosiFaultCode.Sender, OiosiInnerFaultCode.SignatureNotValidFault, ex);
@@ -121,11 +121,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Info(string.Format("Certificate '{0}' is not activated.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Certificate '{0}' is not activated.", certificate.ToString()));
                 }
                 else
                 {
-                    this.logger.Info("Unknown certificate is not activated.");
+                    this.logger.Warn("Unknown certificate is not activated.");
                 }
 
                 throw new InterceptorChannelWrapperException(OiosiFaultCode.Sender, OiosiInnerFaultCode.SignatureNotValidFault, ex);
@@ -134,11 +134,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Info(string.Format("The root certificate for certificate '{0}' is not trusted.", certificate.ToString()));
+                    this.logger.Warn(string.Format("The root certificate for certificate '{0}' is not trusted.", certificate.ToString()));
                 }
                 else
                 {
-                    this.logger.Info("The root certificate for a unknown certificate is not trusted.");
+                    this.logger.Warn("The root certificate for a unknown certificate is not trusted.");
                 }
 
                 throw new InterceptorChannelWrapperException(OiosiFaultCode.Sender, OiosiInnerFaultCode.SignatureNotValidFault, ex);
@@ -147,11 +147,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Info(string.Format("Subject for certificate '{0}' was not found.", certificate.ToString()));
+                    this.logger.Warn(string.Format("Subject for certificate '{0}' was not found.", certificate.ToString()));
                 }
                 else
                 {
-                    this.logger.Info("Subject for unknown certificate was not found.");
+                    this.logger.Warn("Subject for unknown certificate was not found.");
                 }
 
                 throw;
@@ -160,11 +160,11 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
             {
                 if (certificate != null)
                 {
-                    this.logger.Info(string.Format("The certificate '{0}' was rejected.", certificate.ToString()));
+                    this.logger.Warn(string.Format("The certificate '{0}' was rejected.", certificate.ToString()));
                 }
                 else
                 {
-                    this.logger.Info("Unknown certificate was rejected.");
+                    this.logger.Warn("Unknown certificate was rejected.");
                 }
 
                 this.logger.Debug("Security validate the foces certificate", ex);
