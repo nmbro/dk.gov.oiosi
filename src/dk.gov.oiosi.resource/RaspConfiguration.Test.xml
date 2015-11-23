@@ -3521,7 +3521,7 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>crtdir.certifikat.dk</Host>
+    <Host>crtdir.pp.certifikat.dk</Host>
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -3530,6 +3530,7 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
+    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -3548,9 +3549,14 @@
     <LookupRegistryFallbackConfig>
       <PrioritizedRegistryList>
         <Registry>
+          <!-- Test UDDI -->
           <EndpointCollection>
-            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
+            <Endpoint>http://lookup-test.nemhandel.dk/uddi/services/inquiry</Endpoint>
+          </EndpointCollection>
+        </Registry>
+        <Registry>
+          <EndpointCollection>
+            <!-- other endpoint collection here -->
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
@@ -3718,8 +3724,8 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>4b8e6003</SerialNumber>
-        <Description>TRUST2408 OCES Primary CA</Description>
+        <SerialNumber>4b ea 6e 94</SerialNumber>
+        <Description>TRUST2408 Systemtest VII Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
