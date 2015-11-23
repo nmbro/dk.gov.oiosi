@@ -127,6 +127,27 @@ namespace dk.gov.oiosi.raspProfile
             KeyTypeMappingExpression mappingExpression = new KeyTypeMappingExpression("EndpointKeyType", keyTypeXpath);
             key.AddMappingExpression(mappingExpression);
 
+            //// NOTE:
+            //// Old JAVaRasp requires some mappings keys, when receiving.
+            //// oioxml
+            ////KeyTypeMapping uppercasedEanMapping = new KeyTypeMapping("EAN", "ean");
+            ////KeyTypeMapping uppercasedCVRMapping = new KeyTypeMapping("CVR", "cvr");
+
+            //// oioubl
+            KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
+            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");           
+            KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
+            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
+            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+
+            ////mappingExpression.AddMapping(uppercasedEanMapping);
+            ////mappingExpression.AddMapping(uppercasedCVRMapping);
+            mappingExpression.AddMapping(glnMapping);
+            mappingExpression.AddMapping(dkcprMapping);
+            mappingExpression.AddMapping(dkcvrMapping);
+            mappingExpression.AddMapping(dkseMapping);
+            mappingExpression.AddMapping(dkpMapping);
+
             return key;
         }
 
@@ -218,7 +239,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointKey key = this.CreateKey(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
             ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             const ProfileIdXPath profileIdXPath = null;
