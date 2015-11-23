@@ -42,14 +42,6 @@
                 <XPathExpression>/root:Invoice/com:BuyersReferenceID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -60,6 +52,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -73,14 +73,6 @@
                 <XPathExpression>/root:Invoice/com:SellerParty/com:ID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -91,6 +83,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -152,14 +152,6 @@
                 <XPathExpression>/root:Invoice/com:BuyersReferenceID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -170,6 +162,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -183,14 +183,6 @@
                 <XPathExpression>/root:Invoice/com:SellerParty/com:ID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -201,6 +193,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -279,14 +279,6 @@
                 <XPathExpression>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -297,6 +289,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -310,14 +310,6 @@
                 <XPathExpression>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -328,6 +320,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -412,14 +412,6 @@
                 <XPathExpression>/root:Catalogue/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -430,6 +422,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -443,14 +443,6 @@
                 <XPathExpression>/root:Catalogue/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -461,6 +453,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -545,14 +545,6 @@
                 <XPathExpression>/root:CatalogueRequest/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -563,6 +555,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -576,14 +576,6 @@
                 <XPathExpression>/root:CatalogueRequest/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -594,6 +586,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -678,14 +678,6 @@
                 <XPathExpression>/root:CatalogueItemSpecificationUpdate/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -696,6 +688,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -709,14 +709,6 @@
                 <XPathExpression>/root:CatalogueItemSpecificationUpdate/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -727,6 +719,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -811,14 +811,6 @@
                 <XPathExpression>/root:CataloguePricingUpdate/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -829,6 +821,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -842,14 +842,6 @@
                 <XPathExpression>/root:CataloguePricingUpdate/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -860,6 +852,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -944,14 +944,6 @@
                 <XPathExpression>/root:CatalogueDeletion/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -962,6 +954,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -975,14 +975,6 @@
                 <XPathExpression>/root:CatalogueDeletion/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -993,6 +985,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1077,14 +1077,6 @@
                 <XPathExpression>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1095,6 +1087,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1108,14 +1108,6 @@
                 <XPathExpression>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1126,6 +1118,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1210,14 +1210,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1228,6 +1220,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1241,14 +1241,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1259,6 +1251,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1343,14 +1343,6 @@
                 <XPathExpression>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1361,6 +1353,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1374,14 +1374,6 @@
                 <XPathExpression>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1392,6 +1384,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1476,14 +1476,6 @@
                 <XPathExpression>/root:OrderCancellation/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1494,6 +1486,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1507,14 +1507,6 @@
                 <XPathExpression>/root:OrderCancellation/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1525,6 +1517,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1609,14 +1609,6 @@
                 <XPathExpression>/root:OrderResponse/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1627,6 +1619,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1640,14 +1640,6 @@
                 <XPathExpression>/root:OrderResponse/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1658,6 +1650,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1742,14 +1742,6 @@
                 <XPathExpression>/root:OrderChange/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1760,6 +1752,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1773,14 +1773,6 @@
                 <XPathExpression>/root:OrderChange/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1791,6 +1783,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1875,14 +1875,6 @@
                 <XPathExpression>/root:OrderResponseSimple/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1893,6 +1885,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1906,14 +1906,6 @@
                 <XPathExpression>/root:OrderResponseSimple/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -1924,6 +1916,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2008,14 +2008,6 @@
                 <XPathExpression>/root:Reminder/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2026,6 +2018,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2039,14 +2039,6 @@
                 <XPathExpression>/root:Reminder/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2057,6 +2049,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2141,14 +2141,6 @@
                 <XPathExpression>/root:Statement/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2159,6 +2151,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2172,14 +2172,6 @@
                 <XPathExpression>/root:Statement/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2190,6 +2182,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2274,14 +2274,6 @@
                 <XPathExpression>/root:UtilityStatement/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2292,6 +2284,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2305,14 +2305,6 @@
                 <XPathExpression>/root:UtilityStatement/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2323,6 +2315,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2407,14 +2407,6 @@
                 <XPathExpression>/root:Catalogue/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2425,6 +2417,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2438,14 +2438,6 @@
                 <XPathExpression>/root:Catalogue/cac:ProviderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2456,6 +2448,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2550,14 +2550,6 @@
                 <XPathExpression>/root:ApplicationResponse/cac:ReceiverParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2568,6 +2560,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2581,14 +2581,6 @@
                 <XPathExpression>/root:ApplicationResponse/cac:SenderParty/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2599,6 +2591,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2688,14 +2688,6 @@
                 <XPathExpression>/root:CreditNote/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2706,6 +2698,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2719,14 +2719,6 @@
                 <XPathExpression>/root:CreditNote/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2737,6 +2729,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2831,14 +2831,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2849,6 +2841,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2862,14 +2862,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2880,6 +2872,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2974,14 +2974,6 @@
                 <XPathExpression>/root:DespatchAdvice/cac:DeliveryCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -2992,6 +2984,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3005,14 +3005,6 @@
                 <XPathExpression>/root:DespatchAdvice/cac:DespatchSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -3023,6 +3015,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3117,14 +3117,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -3135,6 +3127,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3148,14 +3148,6 @@
                 <XPathExpression>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -3166,6 +3158,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3260,14 +3260,6 @@
                 <XPathExpression>/root:Order/cac:SellerSupplierParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -3278,6 +3270,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3291,14 +3291,6 @@
                 <XPathExpression>/root:Order/cac:BuyerCustomerParty/cac:Party/cbc:EndpointID/@schemeID</XPathExpression>
                 <Mappings>
                   <Mapping>
-                    <Value>EAN</Value>
-                    <MapsTo>ean</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>CVR</Value>
-                    <MapsTo>cvr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>GLN</Value>
                     <MapsTo>ean</MapsTo>
                   </Mapping>
@@ -3309,6 +3301,14 @@
                   <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3521,7 +3521,7 @@
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="LdapSettings">
-    <Host>crtdir.pp.certifikat.dk</Host>
+    <Host>crtdir.certifikat.dk</Host>
     <Port>389</Port>
     <ConnectionTimeoutMsec>5000</ConnectionTimeoutMsec>
     <SearchServerTimeoutMsec>5000</SearchServerTimeoutMsec>
@@ -3530,7 +3530,6 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
-    <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
   <ConfigurationSection xsi:type="OcspConfig">
@@ -3549,14 +3548,9 @@
     <LookupRegistryFallbackConfig>
       <PrioritizedRegistryList>
         <Registry>
-          <!-- Test UDDI -->
           <EndpointCollection>
-            <Endpoint>http://lookup-test.nemhandel.dk/uddi/services/inquiry</Endpoint>
-          </EndpointCollection>
-        </Registry>
-        <Registry>
-          <EndpointCollection>
-            <!-- other endpoint collection here -->
+            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
+            <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>
@@ -3724,8 +3718,8 @@
       <RootCertificateLocation>
         <StoreLocation>LocalMachine</StoreLocation>
         <StoreName>Root</StoreName>
-        <SerialNumber>4b ea 6e 94</SerialNumber>
-        <Description>TRUST2408 Systemtest VII Primary CA</Description>
+        <SerialNumber>4b8e6003</SerialNumber>
+        <Description>TRUST2408 OCES Primary CA</Description>
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
