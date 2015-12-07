@@ -1,3 +1,4 @@
+
 /*
   * The contents of this file are subject to the Mozilla Public
   * License Version 1.1 (the "License"); you may not use this
@@ -190,7 +191,7 @@ using System.Text;
                         this.data = this.crlParser.ReadCrl(stream);
                         this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
 
-
+                        
                         if (this.logger.IsDebugEnabled)
                         {
                             ISet revokedCertificates = this.data.GetRevokedCertificates();

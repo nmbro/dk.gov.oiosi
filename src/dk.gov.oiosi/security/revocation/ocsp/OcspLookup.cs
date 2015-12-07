@@ -523,7 +523,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 }
                 else
                 {
-                    Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess authorityInformationAccess = Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess.GetInstance(x509Extension);
+                    Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess authorityInformationAccess = Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess.GetInstance(x509Extension.GetParsedValue());
                     Org.BouncyCastle.Asn1.X509.AccessDescription[] accessDescription = authorityInformationAccess.GetAccessDescriptions();
                     string ocspUrl = this.GetAccessDescriptionUrlForOid(AccessDescription.IdADOcsp, accessDescription);
                     ocspUrls.Add(ocspUrl);
