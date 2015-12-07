@@ -516,10 +516,13 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                  // DanID test code shows how to do it
                 Org.BouncyCastle.Asn1.X509.X509Extensions x509Extensions = this.GetX509Extensions(x509Certificate2);
                 Org.BouncyCastle.Asn1.X509.X509Extension x509Extension = x509Extensions.GetExtension(Org.BouncyCastle.Asn1.X509.X509Extensions.AuthorityInfoAccess);
-                if (x509Extension != null)
+                if (x509Extension == null)
                 {
                     // The desired info does not exist
                     // Meaning the certificate does not contain ocsp urls
+                }
+                else
+                {
                     Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess authorityInformationAccess = Org.BouncyCastle.Asn1.X509.AuthorityInformationAccess.GetInstance(x509Extension);
                     Org.BouncyCastle.Asn1.X509.AccessDescription[] accessDescription = authorityInformationAccess.GetAccessDescriptions();
                     string ocspUrl = this.GetAccessDescriptionUrlForOid(AccessDescription.IdADOcsp, accessDescription);
