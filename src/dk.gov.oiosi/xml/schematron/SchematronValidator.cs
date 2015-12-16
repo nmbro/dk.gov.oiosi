@@ -22,13 +22,13 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis SÃ¸gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
   *   Finn Hartmann Jordal, ITST
   *   Christian Lanng, ITST
-  *
+  *   Jacob Mogensen, mySupply
   */
 
 using System;
@@ -161,7 +161,7 @@ namespace dk.gov.oiosi.xml.schematron
 
             if (documentValidated == false)
             {
-                // Not xslt 1.0, or complex xlst 1.0 try Saxon xslt
+                // Not xslt 1.0, or complex xslt 1.0  - so try Saxon xslt
                 try
                 {
                     using (MemoryStream schematronResultMemoryStream = new MemoryStream())
