@@ -259,7 +259,7 @@ namespace dk.gov.oiosi.test.unit.configuration {
 
         private FileInfo GetConfigFileWithCacheConfig()
         {
-            FileInfo sourceFile = new FileInfo("Resources\\RaspConfiguration.Test.xml");
+            FileInfo sourceFile = new FileInfo("Resources\\RaspConfiguration.Live.xml");
             if (!sourceFile.Exists)
             {
                 throw new Exception("Rasp Config file does not exist.");

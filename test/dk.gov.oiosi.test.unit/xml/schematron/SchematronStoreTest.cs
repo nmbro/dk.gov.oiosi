@@ -17,7 +17,7 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
     {
         public SchematronStoreTest()
         {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";
             ConfigurationHandler.Reset();
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.CleanAdd();

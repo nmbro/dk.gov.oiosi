@@ -20,7 +20,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="innerException">The inner exception</param>
+        /// <param name="oiosiFaultCode"></param>
+        /// <param name="oiosiInnerFaultCode"></param>
+        /// <param name="message">The message</param>
         public InterceptorChannelWrapperException(OiosiFaultCode oiosiFaultCode, OiosiInnerFaultCode oiosiInnerFaultCode, string message)
             : base(oiosiFaultCode, oiosiInnerFaultCode, CreatKeywords(message))
         { }

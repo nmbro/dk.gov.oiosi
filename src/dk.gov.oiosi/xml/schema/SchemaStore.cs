@@ -210,7 +210,7 @@ namespace dk.gov.oiosi.xml.schema
         /// Controls that the schema and the document has the same namespace.
         /// </summary>
         /// <exception cref="UnexpectedNamespaceException"></exception>
-        /// <param name="xmlDocument"></param>
+        /// <param name="documentType"></param>
         /// <param name="xmlSchema"></param>
         private void CheckNamespace(DocumentTypeConfig documentType, XmlSchema xmlSchema)
         {

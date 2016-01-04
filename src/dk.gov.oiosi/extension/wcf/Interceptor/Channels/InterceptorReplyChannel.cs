@@ -330,7 +330,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
             {
 
                 Message wcfMessage = innerContext.RequestMessage;
-                RequestContext wrappedContext;
+               // RequestContext wrappedContext;
                 InterceptorMessage message = new InterceptorMessage(wcfMessage);
                 try
                 {

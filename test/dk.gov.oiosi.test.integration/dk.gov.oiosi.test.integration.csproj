@@ -150,6 +150,7 @@
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
       <Link>Resources\RaspConfiguration.Live.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
       <Link>Resources\RaspConfiguration.Test.xml</Link>

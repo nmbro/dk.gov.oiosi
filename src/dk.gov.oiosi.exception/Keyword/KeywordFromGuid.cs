@@ -55,7 +55,7 @@ namespace dk.gov.oiosi.exception.Keyword {
         /// <summary>
         /// Creates an dictionary with the given guid.
         /// </summary>
-        /// <param name="guid">The guid to get the keyword dictionary from</param>
+        /// <param name="id">The guid to get the keyword dictionary from</param>
         /// <returns>A keyword dictionary</returns>
         public static Dictionary<string, string> GetKeyword(string id)
         {
@@ -78,7 +78,7 @@ namespace dk.gov.oiosi.exception.Keyword {
         /// Adds the guid keyword to the given dictionary.
         /// </summary>
         /// <param name="keywords">The keyword dictionary</param>
-        /// <param name="guid">The guid to add</param>
+        /// <param name="id">The guid to add</param>
         public static void GetKeyword(Dictionary<string, string> keywords, string id)
         {
             keywords.Add("guid", id);

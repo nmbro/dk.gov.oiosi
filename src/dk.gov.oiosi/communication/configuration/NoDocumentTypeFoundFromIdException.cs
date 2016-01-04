@@ -44,7 +44,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <summary>
         /// Constructor that takes the id of the document.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         public NoDocumentTypeFoundFromIdException(Guid guid) : base(KeywordFromGuid.GetKeyword(guid)) { }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <summary>
         /// Constructor that takes the id of the document and an exception as the reason.
         /// </summary>
-        /// <param name="id">The ID of the document</param>
+        /// <param name="guid">The ID of the document</param>
         /// <param name="innerException">The inner exception</param>
         public NoDocumentTypeFoundFromIdException(Guid guid, Exception innerException) : base(KeywordFromGuid.GetKeyword(guid), innerException) { } 
     }

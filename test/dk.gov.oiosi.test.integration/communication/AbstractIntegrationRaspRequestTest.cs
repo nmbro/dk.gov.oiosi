@@ -112,22 +112,22 @@ namespace dk.gov.oiosi.test.integration.communication
                 case RevocationCheckStatus.CertificateRevoked:
                     {
                         throw new Exception("Certificate validation error - CertificateRevoked");
-                        break;
+                        //break;
                     }
                 case RevocationCheckStatus.NotChecked:
                     {
                         throw new Exception("Certificate validation error - NotChecked");
-                        break;
+                        //break;
                     }
                 case RevocationCheckStatus.UnknownIssue:
                     {
                         throw new Exception("Certificate validation error - UnknownIssue");
-                        break;
+                       // break;
                     }
                 default:
                     {
                         throw new Exception("Certificate validation error");
-                        break;
+                       // break;
                     }
             }
         }

@@ -15,7 +15,7 @@ namespace dk.gov.oiosi.test.integration.uddi
         [TestFixtureSetUp]
         public void Setup()
         {
-            ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Test.xml");
+            ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Live.xml");
         }
 
         [Test]

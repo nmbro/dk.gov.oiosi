@@ -126,7 +126,7 @@ namespace dk.gov.oiosi.communication.configuration
         /// <param name="xsltTransformStylesheetPath">The path to the transformation stylesheet</param>
         /// <param name="endpointType">The endpoint type</param>
         /// <param name="identifierDiscriminators">Identifier discriminators</param>
-        /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
+        /// <param name="schematronValidationConfigCollection">Settings to the schematron validation</param>
         /// <param name="profileIdXPath">XPath expression</param>
         public DocumentTypeConfig(
             Guid id,
@@ -222,7 +222,7 @@ namespace dk.gov.oiosi.communication.configuration
         /// <param name="identifierDiscriminators">
         /// XPath discriminators used for aditionel identification of document type
         /// </param>
-        /// <param name="schematronValidationConfig">Settings to the schematron validation</param>
+        /// <param name="schematronValidationConfigCollection">Settings to the schematron validation</param>
         /// <param name="profileIdXPath">Xpath expression</param>
         public DocumentTypeConfig(
             Guid id,

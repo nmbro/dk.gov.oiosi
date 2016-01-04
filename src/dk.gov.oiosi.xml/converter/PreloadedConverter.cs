@@ -15,6 +15,7 @@ namespace dk.gov.oiosi.xml.converter {
     /// Class that can convert XML. It can also validate both the source XML and
     /// the result XML, before returning the result.
     /// </summary>
+    [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
     public class PreloadedConverter {
         private bool _closeSourceStream;
         private XslCompiledTransform _transform;
@@ -24,6 +25,7 @@ namespace dk.gov.oiosi.xml.converter {
         /// <summary>
         /// Default constructor that initiated a configuration from app.config or web.config.
         /// </summary>
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         public PreloadedConverter() {
             IPreloadedConverterConfiguration configuration = (IPreloadedConverterConfiguration)ConfigurationManager.GetSection(PreloadedConverterAppConfiguration.PreloadedConverterConfigurationName);
             InitFromConfiguration(configuration);
@@ -33,7 +35,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// Constructor that takes the configuration the converter uses as parameter
         /// </summary>
         /// <param name="configuration"></param>
-        public PreloadedConverter(IPreloadedConverterConfiguration configuration) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public PreloadedConverter(IPreloadedConverterConfiguration configuration)
+        {
             if (configuration == null) throw new ArgumentNullException("configuration");
             InitFromConfiguration(configuration);
         }
@@ -45,7 +49,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// <param name="transform"></param>
         /// <param name="resultValidators"></param>
         /// <param name="sourceValidators"></param>
-        public PreloadedConverter(bool closeSourceStream, XslCompiledTransform transform, List<IValidator> resultValidators, List<IValidator> sourceValidators) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public PreloadedConverter(bool closeSourceStream, XslCompiledTransform transform, List<IValidator> resultValidators, List<IValidator> sourceValidators)
+        {
             if (transform == null) throw new ArgumentNullException("transform");
             if (resultValidators == null) throw new ArgumentNullException("resultValidators");
             if (sourceValidators == null) throw new ArgumentNullException("sourceValidators");
@@ -63,7 +69,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public Stream ValidatedConvert(Stream source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public Stream ValidatedConvert(Stream source)
+        {
             Stream result;
             ValidateSource(source);
             result = Convert(source);
@@ -77,7 +85,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public Stream Convert(Stream source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public Stream Convert(Stream source)
+        {
             try {
                 source.Position = 0;
                 MemoryStream result = new MemoryStream();
@@ -93,7 +103,9 @@ namespace dk.gov.oiosi.xml.converter {
             }
         }
 
-        private void InitFromConfiguration(IPreloadedConverterConfiguration configuration) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void InitFromConfiguration(IPreloadedConverterConfiguration configuration)
+        {
             if (configuration.TransformStylesheetPath == null) throw new ArgumentNullException("configuration.TransformStylesheetPath");
             try {
                 XsltSettings xsltSettings = new XsltSettings(true, true);
@@ -142,14 +154,18 @@ namespace dk.gov.oiosi.xml.converter {
             }
         }
 
-        private bool TryInitSchemaValidator(ISchemaValidatorConfiguration configuration, out IValidator schemaValidator) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private bool TryInitSchemaValidator(ISchemaValidatorConfiguration configuration, out IValidator schemaValidator)
+        {
             schemaValidator = null;
             if (configuration == null) return false;
             if (string.IsNullOrEmpty(configuration.Path)) return false;
             schemaValidator = new SchemaValidator(configuration);
             return true;
         }
-        private void ValidateSource(Stream source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void ValidateSource(Stream source)
+        {
             try {
                 Validate(source, _sourceValidators);
             }
@@ -157,7 +173,9 @@ namespace dk.gov.oiosi.xml.converter {
                 throw new ConverterException("Source validation failed.", ex);
             }
         }
-        private void ValidateResult(Stream result) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void ValidateResult(Stream result)
+        {
             try {
                 Validate(result, _resultValidators);
             }
@@ -165,7 +183,9 @@ namespace dk.gov.oiosi.xml.converter {
                 throw new ConverterException("Result validation failed.", ex);
             }
         }
-        private void Validate(Stream source, IEnumerable<IValidator> validators) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void Validate(Stream source, IEnumerable<IValidator> validators)
+        {
             source.Position = 0;
             foreach (IValidator validator in validators) {
                 validator.Validate(source);

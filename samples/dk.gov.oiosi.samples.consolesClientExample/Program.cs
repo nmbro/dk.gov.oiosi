@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
 
             if (string.IsNullOrEmpty(answer))
             {
-                ConfigurationDocument.ConfigFilePath = "RaspConfiguration.Test.xml";
+                ConfigurationDocument.ConfigFilePath = "RaspConfiguration.Live.xml";
             }
             else
             {
@@ -48,8 +48,12 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
                 }
                 else
                 {
-                    ConfigurationDocument.ConfigFilePath = "RaspConfiguration.Test.xml";
+                    throw new NotImplementedException();
                 }
+                ////else
+                ////{
+                ////    ConfigurationDocument.ConfigFilePath = "RaspConfiguration.Test.xml";
+                ////}
             }
 
             while (true) {

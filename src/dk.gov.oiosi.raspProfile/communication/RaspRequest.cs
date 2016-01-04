@@ -119,7 +119,7 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// <summary>
         /// Synchronously sends a request and gets a response
         /// </summary>
-        /// <param name="message">Request message</param>
+        /// <param name="request">Request message</param>
         /// <param name="documentId">The document Id used in the MessageIdentifier header</param>
         /// <param name="response">The response. If this parameter is set the sending went well and the response is safe to use</param>
         public void GetResponse(OiosiMessage request, string documentId, out Response response)

@@ -13,7 +13,7 @@ namespace dk.gov.oiosi.test.integration {
     public class ConfigurationUtil {
         public static void SetupConfiguration() 
         {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";
             ConfigurationHandler.Reset();
 
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();

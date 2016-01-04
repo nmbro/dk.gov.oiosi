@@ -67,7 +67,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <summary>
         /// List of the default OCES (OCES1 and OCES2) root certificate
         /// </summary>
-        private IList<X509Certificate2> defaultOcesRootCertificateList;
+        //private IList<X509Certificate2> defaultOcesRootCertificateList;
 
         private IDictionary<string, X509Certificate2> rootCertificateDirectory;
 
@@ -150,7 +150,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                     this.rootCertificateDirectory.Add(x509Certificate2.Thumbprint.ToLowerInvariant(), x509Certificate2);
                 }
             }
-            catch (UriFormatException e)
+            catch (UriFormatException)
             {
                 throw;
             }
@@ -183,7 +183,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>
-        /// <param name="certificate">The certificate to check</param>
+        /// <param name="x509Certificate2">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
         private RevocationResponse RevocationResponse(X509Certificate2 x509Certificate2)
@@ -225,7 +225,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>
-        /// <param name="certificate">The certificate to check</param>
+        /// <param name="x509Certificate2">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
         private RevocationResponse RevocationResponseOnline(X509Certificate2 x509Certificate2)
@@ -820,7 +820,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <summary>
         /// Checks a certificate status on a ocsp server
         /// </summary>
-        /// <param name="certificate">The certificate to check</param>
+        /// <param name="x509Certificate2">The certificate to check</param>
         /// <returns>The RevocationResponse object that contains the result</returns>
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
         public RevocationResponse CheckCertificate(X509Certificate2 x509Certificate2) {

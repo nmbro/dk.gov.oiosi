@@ -9,14 +9,18 @@ using dk.gov.oiosi.xml.validator.configuration;
 using System.IO;
 
 namespace dk.gov.oiosi.xml.validator {
-    public class SchematronValidator : IValidator {
+    [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+    public class SchematronValidator : IValidator
+    {
         private uint _minSizeForErrors;
         private string _errorXPath;
         private string _errorMessageXPath;
         private PreloadedConverter _converter;
 
 
-        public SchematronValidator(ISchematronValidatorConfiguration configuration) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public SchematronValidator(ISchematronValidatorConfiguration configuration)
+        {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (configuration.ErrorMessageXPath == null) throw new ArgumentNullException("configuration.ErrorMessageXPath");
             if (configuration.ErrorXPath == null) throw new ArgumentNullException("configuration.ErrorXPath");
@@ -28,7 +32,9 @@ namespace dk.gov.oiosi.xml.validator {
 
         #region IValidator Members
 
-        public void Validate(Stream source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public void Validate(Stream source)
+        {
             Stream result = _converter.ValidatedConvert(source);
             //The resulting stream must be over this size to assume any errors
             if (result.Length < _minSizeForErrors) return;

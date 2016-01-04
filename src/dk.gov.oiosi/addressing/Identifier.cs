@@ -57,7 +57,8 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="cprNumber">A CPR number</param>
+        /// <param name="type">A identifying type</param>
+        /// <param name="value">The value</param>
         public Identifier(string type, string value)
         {
             if (string.IsNullOrEmpty(type))
@@ -66,10 +67,8 @@ namespace dk.gov.oiosi.addressing {
             }
 
             this.type = type;
-            this.Set(value);        
-            
+            this.Set(value);            
         }
-
 
         /// <summary>
         /// Gets the KeyTypeValue of the Identifier

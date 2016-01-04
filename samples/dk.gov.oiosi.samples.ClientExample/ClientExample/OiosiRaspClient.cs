@@ -54,12 +54,12 @@ namespace dk.gov.oiosi.samples.ClientExample
                             break;
                         }
 
-                    case UddiType.Test:
-                        {
-                            ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Test.xml";
-                            Console.WriteLine("Sending the document through test uddi.");
-                            break;
-                        }
+                    ////case UddiType.Test:
+                    ////    {
+                    ////        ConfigurationManager.AppSettings["RaspConfigurationFile"] = "RaspConfiguration.Test.xml";
+                    ////        Console.WriteLine("Sending the document through test uddi.");
+                    ////        break;
+                    ////    }
 
                     default:
                         {

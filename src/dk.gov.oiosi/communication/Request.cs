@@ -402,7 +402,7 @@ namespace dk.gov.oiosi.communication
                 {
                     this.proxy.Close();
                 }
-                catch (CommunicationObjectAbortedException ex)
+                catch (CommunicationObjectAbortedException)
                 {
                     // The Communication Object hass already been aborted, so we can not close it
                     // Exception should no be handled.
@@ -579,7 +579,7 @@ namespace dk.gov.oiosi.communication
                 msgFault = MessageFault.CreateFault(message, int.MaxValue);
                 exception = CreateFaultWasReceivedException(new FaultException(msgFault));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new Exception(sb.ToString());
             }            

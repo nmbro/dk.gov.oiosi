@@ -242,7 +242,7 @@ namespace dk.gov.oiosi.configuration
         /// <summary>
         /// Finds a configuration section of a certain type
         /// </summary>
-        /// <param name="t">Type to be found</param>
+        /// <param name="desiredType">Type to be found</param>
         /// <returns>Index in the configuration section table</returns>
         internal int IndexOfConfigurationSection(Type desiredType)
         {

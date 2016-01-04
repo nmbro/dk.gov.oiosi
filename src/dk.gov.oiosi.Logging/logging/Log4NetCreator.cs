@@ -38,7 +38,7 @@ namespace dk.gov.oiosi.logging
         /// <summary>
         /// Create a typed logger, that can be used to log though log4net
         /// </summary>
-        /// <param name="loggerName">The typed of the logger</param>
+        /// <param name="type">The typed of the logger</param>
         /// <returns>A class that can be used to log though log4net</returns>
         public ILogger Create(Type type)
         {

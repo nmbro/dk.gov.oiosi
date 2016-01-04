@@ -21,11 +21,11 @@ namespace dk.gov.oiosi.test.unit.security.revocation
         {
             OcspConfig ocspConfig = new OcspConfig();
             ocspConfig.DefaultTimeoutMsec = 20000;
-            X509Certificate2 oces1RootCertificate = new X509Certificate2(LookupTest.oces1RootCertificate);
+            
             X509Certificate2 oces2RootCertificate = new X509Certificate2(LookupTest.oces2RootCertificate);
 
             IList<X509Certificate2> list = new List<X509Certificate2>();
-            list.Add(oces1RootCertificate);
+            
             list.Add(oces2RootCertificate);
 
             OcspLookup ocspLookup = new OcspLookup(ocspConfig, list);

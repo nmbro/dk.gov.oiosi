@@ -35,7 +35,6 @@ namespace dk.gov.oiosi.test.unit.security.validation
             X509Certificate2[] rootCertificates = new X509Certificate2[] { rootCertificate2 };
             MultipleRootX509CertificateValidator validator = new MultipleRootX509CertificateValidator(rootCertificates);
 
-            bool result;
             try
             {
                 validator.Validate(functionCertificate);
@@ -47,7 +46,7 @@ namespace dk.gov.oiosi.test.unit.security.validation
                 Console.WriteLine(exception.ToString());
                 Assert.IsTrue(true);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 // Not correct type of exception
                 Assert.IsFalse(true);

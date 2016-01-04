@@ -57,7 +57,8 @@ namespace dk.gov.oiosi.addressing {
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="cvrNumber">A CVR number</param>
+        /// <param name="type"></param>
+        /// <param name="value">A CVR number</param>
         public IdentifierCvr(string type, string value)
             : base(type, value)
         { }  

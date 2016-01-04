@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="id">The ID of the document</param>
+        /// <param name="guid">The ID of the document</param>
         public AmbiguousDocumentTypeResultFromIdException(Guid guid) : base(KeywordFromGuid.GetKeyword(guid)) { }
 
         /// <summary>

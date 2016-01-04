@@ -46,7 +46,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Certificate
     /// </summary>
     public class ServerCertificateValidationBindingElement : ValidationServerBindingElement
     {
-        private ILogger logger;
+        //private ILogger logger;
 
         private CertificateValidatorWithLookup certificateValidator;
 

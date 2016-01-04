@@ -8,21 +8,29 @@ using System.Xml.Schema;
 using dk.gov.oiosi.xml.validator.configuration;
 
 namespace dk.gov.oiosi.xml.validator {
-    public class SchemaValidator : IValidator {
+    [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+    public class SchemaValidator : IValidator
+    {
         private XmlSchema _schema;
 
-        public SchemaValidator(string path) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public SchemaValidator(string path)
+        {
             InitSchema(path);
         }
 
-        public SchemaValidator(ISchemaValidatorConfiguration configuration) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public SchemaValidator(ISchemaValidatorConfiguration configuration)
+        {
             if (configuration == null) throw new ArgumentNullException("configuration");
             InitSchema(configuration.Path);
         }
 
         #region IValidator Members
 
-        public void Validate(Stream source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public void Validate(Stream source)
+        {
             if (source == null) throw new ArgumentNullException("source");
             XmlReaderSettings settings = new XmlReaderSettings();
                 settings.ProhibitDtd = true;
@@ -39,7 +47,9 @@ namespace dk.gov.oiosi.xml.validator {
 
         #endregion
 
-        private void InitSchema(string path) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void InitSchema(string path)
+        {
             if (string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             //Tries to load the transformation path, if the path is not absolute and the file
             //does not exists then try with the appdomain base directory as root folder

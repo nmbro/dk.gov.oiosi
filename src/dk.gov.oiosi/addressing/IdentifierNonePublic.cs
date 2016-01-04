@@ -45,7 +45,8 @@ namespace dk.gov.oiosi.addressing
        /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="cprNumber">A CPR number</param>
+        /// <param name="type">The type, eg. CPR</param>
+        /// <param name="value">The value</param>
         public IdentifierNonePublic(string type, string value)
             : base(type, value)
         { }

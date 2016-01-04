@@ -47,7 +47,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Constructor that takes the interceptor message that did not contain a certificate
         /// subject.
         /// </summary>
-        /// <param name="interceptorMessage"></param>
+        /// <param name="message"></param>
         public CertificateRevokedValidationFailedException(string message)
             : base(OiosiFaultCode.Receiver, OiosiInnerFaultCode.InternalSystemFailureFault, CreateKeyWords(message))
         { }
@@ -56,9 +56,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Constructor that takes the interceptor message that did not contain a certificate
         /// subject.
         /// </summary>
-        /// <param name="interceptorMessage"></param>
+        /// <param name="exception"></param>
         public CertificateRevokedValidationFailedException(Exception exception)
-            : base(OiosiFaultCode.Receiver, OiosiInnerFaultCode.InternalSystemFailureFault, CreateKeyWords(exception.Message))//, exception) 
+            : base(OiosiFaultCode.Receiver, OiosiInnerFaultCode.InternalSystemFailureFault, CreateKeyWords(exception.Message))
         { }
 
         private static Dictionary<string, string> CreateKeyWords(string message)

@@ -19,7 +19,7 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
         [TestFixtureSetUp]
         public void Setup()
         {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";
             ConfigurationHandler.Reset();
         }
 

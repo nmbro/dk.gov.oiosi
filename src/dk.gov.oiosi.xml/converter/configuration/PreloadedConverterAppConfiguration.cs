@@ -6,6 +6,7 @@ using System.Configuration;
 using dk.gov.oiosi.xml.validator.configuration;
 
 namespace dk.gov.oiosi.xml.converter.configuration {
+    [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
     public class PreloadedConverterAppConfiguration : ConfigurationElement, IPreloadedConverterConfiguration {
         public const string PreloadedConverterConfigurationName = "preloadedConverterAppConfiguration";
         public const string CloseSourceStreamName = "closeSourceStream";
@@ -21,25 +22,25 @@ namespace dk.gov.oiosi.xml.converter.configuration {
         public PreloadedConverterAppConfiguration() { }
 
         #region IXmlConverterConfiguration Members
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(CloseSourceStreamName, DefaultValue = false)]
         public bool CloseSourceStream {
             get { return (bool)this[CloseSourceStreamName]; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(TransformStylesheetPathName, IsRequired = true)]
         public string TransformStylesheetPath {
             get { return (string)this[TransformStylesheetPathName]; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         public ISchemaValidatorConfiguration SourceSchemaConfiguration {
             get { return this.SourceSchemaAppConfiguration; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         public ISchemaValidatorConfiguration ResultSchemaConfiguration {
             get { return this.ResultSchemaAppConfiguration; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         public IEnumerable<ISchematronValidatorConfiguration> GetSourceSchematronConfigurations() {
             lock (_sourceInitLock) {
                 if (_sourceSchematronConfigurations != null) return _sourceSchematronConfigurations;
@@ -51,7 +52,7 @@ namespace dk.gov.oiosi.xml.converter.configuration {
                 return _sourceSchematronConfigurations;
             }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         public IEnumerable<ISchematronValidatorConfiguration> GetResultSchematronConfigurations()  {
             lock (_resultInitLock) {
                 if (_resultSchematronConfigurations != null) return _resultSchematronConfigurations;
@@ -65,23 +66,23 @@ namespace dk.gov.oiosi.xml.converter.configuration {
         }
 
         #endregion
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(SourceSchemaConfigurationName, IsRequired = false)]
         public SchemaValidatorAppConfiguration SourceSchemaAppConfiguration {
             get { return (SchemaValidatorAppConfiguration)this[SourceSchemaConfigurationName]; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(ResultSchemaConfigurationName, IsRequired = false)]
         public SchemaValidatorAppConfiguration ResultSchemaAppConfiguration {
             get { return (SchemaValidatorAppConfiguration)this[ResultSchemaConfigurationName]; }
         }
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(SourceSchematronValidatorAppConfigurationCollection.SourceSchematronConfigurationsName, IsRequired = false)]
         public SourceSchematronValidatorAppConfigurationCollection SourceSchematronAppConfigurationCollection {
             get { return (SourceSchematronValidatorAppConfigurationCollection)this[SourceSchematronValidatorAppConfigurationCollection.SourceSchematronConfigurationsName]; }
         }
 
-
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
         [ConfigurationProperty(ResultSchematronValidatorAppConfigurationCollection.ResultSchematronConfigurationsName, IsRequired = false)]
         public ResultSchematronValidatorAppConfigurationCollection ResultSchematronAppConfigurationCollection {
             get { return (ResultSchematronValidatorAppConfigurationCollection)this[ResultSchematronValidatorAppConfigurationCollection.ResultSchematronConfigurationsName]; }

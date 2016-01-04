@@ -456,7 +456,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
                         int index = 1;
                         X509Certificate x509Certificate;
                         IDictionary<int, X509Certificate> map = new Dictionary<int, X509Certificate>();
-                        int subjectMax = 45;
+                        //int subjectMax = 45;
                         while (x509Certificate2Enumerator.MoveNext())
                         {
                             x509Certificate = x509Certificate2Enumerator.Current;

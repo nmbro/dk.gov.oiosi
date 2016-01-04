@@ -8,7 +8,11 @@ using System.Configuration;
 using System.IO;
 
 namespace dk.gov.oiosi.xml.converter {
-    public class TypedPreloadedConverter<ALPHA, BETA> where ALPHA:class where BETA:class {
+    [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+    public class TypedPreloadedConverter<ALPHA, BETA>
+        where ALPHA : class
+        where BETA : class
+    {
         private PreloadedConverter _innerConverter;
         private Serializer<ALPHA> _alphaSerializer;
         private Serializer<BETA> _betaSerializer;
@@ -16,7 +20,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// <summary>
         /// Default constructor that initiated a configuration from app.config or web.config.
         /// </summary>
-        public TypedPreloadedConverter() {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public TypedPreloadedConverter()
+        {
             Init();
             _innerConverter = new PreloadedConverter();
         }
@@ -25,7 +31,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// Constructor that takes the configuration the converter uses as parameter
         /// </summary>
         /// <param name="configuration"></param>
-        public TypedPreloadedConverter(IPreloadedConverterConfiguration configuration) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public TypedPreloadedConverter(IPreloadedConverterConfiguration configuration)
+        {
             Init();
             _innerConverter = new PreloadedConverter(configuration);
         }
@@ -37,7 +45,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// <param name="transform"></param>
         /// <param name="resultValidators"></param>
         /// <param name="sourceValidators"></param>
-        public TypedPreloadedConverter(bool closeSourceStream, XslCompiledTransform transform, List<IValidator> resultValidators, List<IValidator> sourceValidators) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public TypedPreloadedConverter(bool closeSourceStream, XslCompiledTransform transform, List<IValidator> resultValidators, List<IValidator> sourceValidators)
+        {
             Init();
             _innerConverter = new PreloadedConverter(closeSourceStream, transform, resultValidators, sourceValidators);
         }
@@ -50,7 +60,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public BETA ValidatedConvert(ALPHA source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public BETA ValidatedConvert(ALPHA source)
+        {
             using (MemoryStream alphaStream = new MemoryStream()) {
                 _alphaSerializer.Serialise(source, alphaStream);
                 alphaStream.Position = 0;
@@ -66,7 +78,9 @@ namespace dk.gov.oiosi.xml.converter {
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public BETA Convert(ALPHA source) {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        public BETA Convert(ALPHA source)
+        {
             try {
                 using (MemoryStream alphaStream = new MemoryStream()) {
                     _alphaSerializer.Serialise(source, alphaStream);
@@ -82,7 +96,9 @@ namespace dk.gov.oiosi.xml.converter {
         }
 
 
-        private void Init() {
+        [Obsolete("No registered uses and is therefore marked for deletion. Please inform us of any use for this class/interface/method.")]
+        private void Init()
+        {
             _alphaSerializer = new Serializer<ALPHA>();
             _betaSerializer = new Serializer<BETA>();
         }

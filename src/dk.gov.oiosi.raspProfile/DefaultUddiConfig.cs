@@ -115,6 +115,9 @@ namespace dk.gov.oiosi.raspProfile
             ///////uddiConfig.KeyTypeMappings.Add(new KeyType("", ""));
         }
 
+        /// <summary>
+        /// Setup default test
+        /// </summary>
         public virtual void SetDefaultUddiConfigTest()
         {
             // Set UDDI test config:

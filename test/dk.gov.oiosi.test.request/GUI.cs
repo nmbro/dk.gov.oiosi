@@ -311,10 +311,10 @@ namespace dk.gov.oiosi.test.request {
             {
                 defaultSerial = "45A2F4A1";
             }
-            else if (string.Equals(ConfigurationDocument.ConfigFilePath, "RaspConfiguration.Test.xml", StringComparison.OrdinalIgnoreCase))
-            {
-                defaultSerial = "4037fb49";
-            }
+            ////else if (string.Equals(ConfigurationDocument.ConfigFilePath, "RaspConfiguration.Test.xml", StringComparison.OrdinalIgnoreCase))
+            ////{
+            ////    defaultSerial = "4037fb49";
+            ////}
              
             Console.Write("Serial number (empty line will result in " + defaultSerial + "): ");
             string serial = Console.ReadLine();

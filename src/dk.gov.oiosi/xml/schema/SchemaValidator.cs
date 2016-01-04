@@ -53,7 +53,6 @@ namespace dk.gov.oiosi.xml.schema {
         /// <summary>
         /// Constructor that takes the directory where the schemas are located.
         /// </summary>
-        /// <param name="localSchemaLocation"></param>
         public SchemaValidator()
         {
             this.logger = LoggerFactory.Create(this.GetType());    

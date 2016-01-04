@@ -53,7 +53,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Channels {
         /// Constructor
         /// </summary>
         /// <param name="context">binding context</param>
-        /// <param name="ChannelInterceptor">channel interceptor</param>
+        /// <param name="channelInterceptor">channel interceptor</param>
         public ChannelListenerChannelListener(BindingContext context, IChannelInterceptor channelInterceptor) {
             this.context = context;
             this.innerChannelListener = context.BuildInnerChannelListener<TChannel>();

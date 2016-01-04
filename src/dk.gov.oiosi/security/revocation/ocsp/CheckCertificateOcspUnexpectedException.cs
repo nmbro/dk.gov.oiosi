@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <summary>
         /// Constructor with innerexception
         /// </summary>
-        /// <param name="innerException">innerexception of the thrown exception</param>
+        /// <param name="message">innerexception of the thrown exception</param>
         public CheckCertificateOcspUnexpectedException(string message) 
             : base(message)
         { }

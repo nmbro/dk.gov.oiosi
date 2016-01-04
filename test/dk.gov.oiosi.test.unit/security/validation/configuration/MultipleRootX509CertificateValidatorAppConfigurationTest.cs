@@ -16,7 +16,7 @@ namespace dk.gov.oiosi.test.unit.security.validation.configuration
         [Test]
         public void _01_TestInitConfigurationEmpty()
         {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Test.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";
             ConfigurationHandler.Reset();
             RootCertificateCollectionConfig rootCertificateCollectionConfig = ConfigurationHandler.GetConfigurationSection<RootCertificateCollectionConfig>();
             RootCertificateLocation[] rootCertificateLocation = rootCertificateCollectionConfig.RootCertificateCollection;

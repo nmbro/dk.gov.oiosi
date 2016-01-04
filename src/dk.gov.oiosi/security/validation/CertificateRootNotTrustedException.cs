@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.security.validation
         /// <summary>
         /// Constructor with the date the certificate was made active
         /// </summary>
-        /// <param name="activeDate">the date the certificate was activated</param>
+        /// <param name="rootCertificate">the date the certificate was activated</param>
         public CertificateRootNotTrustedException(string rootCertificate) : base(GetKeywords(rootCertificate)) { }
 
         private static Dictionary<string, string> GetKeywords(string rootCertificate) 

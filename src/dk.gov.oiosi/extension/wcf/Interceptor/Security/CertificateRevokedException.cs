@@ -47,7 +47,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
         /// Constructor that takes the interceptor message that did not contain a certificate
         /// subject.
         /// </summary>
-        /// <param name="interceptorMessage"></param>
         public CertificateRevokedException()
             : base(OiosiFaultCode.Sender, OiosiInnerFaultCode.SignatureNotValidFault)
         { }

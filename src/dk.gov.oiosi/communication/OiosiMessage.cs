@@ -72,7 +72,7 @@ namespace dk.gov.oiosi.communication
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="xml">the message</param>
+        /// <param name="document">The message</param>
         public OiosiMessage(string document)
             : this()
         {

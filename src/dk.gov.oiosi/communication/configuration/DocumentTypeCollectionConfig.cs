@@ -158,7 +158,7 @@ namespace dk.gov.oiosi.communication.configuration
         /// <summary>
         /// Get a document type from the id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="guid"></param>
         /// <returns></returns>
         public DocumentTypeConfig GetDocumentType(Guid guid)
         {
