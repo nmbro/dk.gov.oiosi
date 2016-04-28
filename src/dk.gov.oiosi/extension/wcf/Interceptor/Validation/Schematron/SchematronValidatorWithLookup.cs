@@ -80,9 +80,9 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron
                 SchematronValidationConfig[] schematronValidationConfigCollection = documentType.SchematronValidationConfigs;
                 foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
                 {
-                    XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    CompiledXslt compiledXsltEntry = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                     SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
-                    validator.SchematronValidateXmlDocument(document, compiledStylesheet);
+                    validator.SchematronValidateXmlDocument(document, compiledXsltEntry);
                 }
             }
             catch (SchematronErrorException ex)
@@ -119,10 +119,10 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schematron
                 foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
                 {
                     SchematronStore store = new SchematronStore();
-                    XslCompiledTransform compiledStylesheet = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    CompiledXslt compiledXsltEntry = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                     SchematronValidator validator = new SchematronValidator(schematronValidationConfig.ErrorXPath, schematronValidationConfig.ErrorMessageXPath);
 
-                    validator.SchematronValidateXmlDocument(documentAsString, compiledStylesheet);
+                    validator.SchematronValidateXmlDocument(documentAsString, compiledXsltEntry);
                 }
             }
             catch (SchematronErrorException ex)

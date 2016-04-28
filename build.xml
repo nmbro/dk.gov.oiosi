@@ -5,7 +5,7 @@
 	
 	<property name="Number_Major" value="2" />
 	<property name="Number_Minor" value="1" />
-	<property name="Number_Patch" value="0" />
+	<property name="Number_Patch" value="1" />
   <property name="Directory.packages" value="packages" />
 	<!-- When updating the version number, remember to update theses files.
       They have a reference to the actual version, almost at the end of the file.

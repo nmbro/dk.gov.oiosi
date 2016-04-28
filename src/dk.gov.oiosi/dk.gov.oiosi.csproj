@@ -64,9 +64,9 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.4.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Charsets, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,6 +117,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\AssemblyInfoCommon.cs">
@@ -142,6 +143,7 @@
     <Compile Include="common\cache\QuantityCache.cs" />
     <Compile Include="common\cache\TimedCacheValue.cs" />
     <Compile Include="common\cache\ZeroCache.cs" />
+    <Compile Include="common\StringUtil.cs" />
     <Compile Include="common\UnknownKeyTypeValueException.cs" />
     <Compile Include="common\CreateInstanceFailedException.cs" />
     <Compile Include="common\Definitions.cs" />
@@ -389,6 +391,7 @@
     <Compile Include="common\UtilityException.cs" />
     <Compile Include="communication\configuration\NoDocumentTypeFoundFromIdException.cs" />
     <Compile Include="xml\documentType\SearchForDocumentTypeFromXmlDocumentFailedException.cs" />
+    <Compile Include="xml\schematron\CompiledXslt.cs" />
     <Compile Include="xml\schematron\SchematronStore.cs" />
     <Compile Include="xml\schematron\ISchematronStoreConfig.cs" />
     <Compile Include="xml\schematron\SchematronValidationConfig.cs" />

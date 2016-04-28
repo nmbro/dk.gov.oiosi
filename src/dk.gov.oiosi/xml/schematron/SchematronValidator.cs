@@ -45,6 +45,7 @@ using dk.gov.oiosi.logging;
 using dk.gov.oiosi.xml.xpath;
 using dk.gov.oiosi.xml.xslt;
 using Saxon.Api;
+using dk.gov.oiosi.common;
 
 namespace dk.gov.oiosi.xml.schematron
 {
@@ -56,7 +57,7 @@ namespace dk.gov.oiosi.xml.schematron
     {
         private string errorXPath;
         private string errorMessageXPath;
-        private XmlDocument schematronDocument;
+        private CompiledXslt compiledXsltEntry;
         private XsltUtility xlstUtil;
 
         private ILogger logger;
@@ -91,7 +92,8 @@ namespace dk.gov.oiosi.xml.schematron
             this.xlstUtil = new XsltUtility();
             this.errorXPath = config.ErrorXPath;
             this.errorMessageXPath = config.ErrorMessageXPath;
-            this.schematronDocument = config.GetSchematronDocument();
+
+            this.compiledXsltEntry = new CompiledXslt(new FileInfo(config.SchematronDocumentPath));
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace dk.gov.oiosi.xml.schematron
         /// <param name="xmlDocument"></param>
         public void SchematronValidateXmlDocument(XmlDocument xmlDocument)
         {
-            if (this.schematronDocument == null)
+            if (this.compiledXsltEntry == null)
             {
                 throw new Exception("No schematron document is set");
             }
@@ -112,7 +114,7 @@ namespace dk.gov.oiosi.xml.schematron
                 throw new Exception("No error message XPath is set");
             }
 
-            this.SchematronValidateXmlDocument(xmlDocument, this.schematronDocument);
+            this.SchematronValidateXmlDocument(xmlDocument, this.compiledXsltEntry);
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace dk.gov.oiosi.xml.schematron
         /// </summary>
         /// <param name="xmlDocument">document to validate</param>
         /// <param name="xmlSchematronStylesheet">stylesheet to use</param>
-        public void SchematronValidateXmlDocument(XmlDocument xmlDocument, XmlDocument xmlSchematronStylesheet)
+        public void SchematronValidateXmlDocument(XmlDocument xmlDocument, CompiledXslt compiledXslt)
         {
             if (this.errorXPath == null)
             {
@@ -140,9 +142,10 @@ namespace dk.gov.oiosi.xml.schematron
             try
             {
                 // .Net build in xslt pserser - only xslt 1.0
-                schematronResultXmlDocument = xlstUtil.TransformXml(xmlDocument, xmlSchematronStylesheet);
-                if (schematronResultXmlDocument != null)
+                
+                if (compiledXslt != null && compiledXslt.XslCompiledTransform != null)
                 {
+                    schematronResultXmlDocument = xlstUtil.TransformXml(xmlDocument, compiledXslt.XslCompiledTransform);
                     byte[] schematronResultBytes = Encoding.Default.GetBytes(schematronResultXmlDocument.OuterXml);
                     using (MemoryStream schematronResultMemoryStream = new MemoryStream(schematronResultBytes))
                     {
@@ -154,9 +157,9 @@ namespace dk.gov.oiosi.xml.schematron
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Debug.Assert(false, ex.Message);
+                Debug.Fail(ex.Message);
             }
 
             if (documentValidated == false)
@@ -166,11 +169,8 @@ namespace dk.gov.oiosi.xml.schematron
                 {
                     using (MemoryStream schematronResultMemoryStream = new MemoryStream())
                     {
-                        using (MemoryStream xmlSchematronStylesheetMemoryStream = new MemoryStream())
+                        using (MemoryStream xmlSchematronStylesheetMemoryStream = compiledXslt.Stream)
                         {
-                            // put the resource into a stream
-                            xmlSchematronStylesheet.Save(xmlSchematronStylesheetMemoryStream);
-
                             xmlSchematronStylesheetMemoryStream.Flush();//Adjust this if you want read your data
                             xmlSchematronStylesheetMemoryStream.Position = 0;
 
@@ -225,6 +225,7 @@ namespace dk.gov.oiosi.xml.schematron
                 }
                 catch (Exception ex)
                 {
+                    Debug.Fail(ex.Message);
                     throw new SchematronValidationFailedException(xmlDocument, ex);
                 }
             }
@@ -286,48 +287,55 @@ namespace dk.gov.oiosi.xml.schematron
             return result;
         }
 
-        /// <summary>
-        /// Schematron validates a document.
-        /// 
-        /// If the validation process fails it throws a SchematronValidationFailedException If the
-        /// document has any schematron errors it throws a SchematronErrorException
-        /// </summary>
-        /// <param name="document">The document to be validated</param>
-        /// <param name="schematronStylesheet"></param>
-        public void SchematronValidateXmlDocument(XmlDocument document, XslCompiledTransform schematronStylesheet)
-        {
-            if (this.errorXPath == null)
-            {
-                throw new Exception("No error XPath is set");
-            }
-            if (this.errorMessageXPath == null)
-            {
-                throw new Exception("No error message XPath is set");
-            }
+        /////// <summary>
+        /////// Schematron validates a document.
+        /////// 
+        /////// If the validation process fails it throws a SchematronValidationFailedException If the
+        /////// document has any schematron errors it throws a SchematronErrorException
+        /////// </summary>
+        /////// <param name="document">The document to be validated</param>
+        /////// <param name="schematronStylesheet"></param>
+        ////public void SchematronValidateXmlDocument(XmlDocument document, CompiledXslt compiledXsltEntry)
+        ////{
+        ////    if (this.errorXPath == null)
+        ////    {
+        ////        throw new Exception("No error XPath is set");
+        ////    }
+        ////    if (this.errorMessageXPath == null)
+        ////    {
+        ////        throw new Exception("No error message XPath is set");
+        ////    }
 
-            XmlDocument result = null;
-            PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
-            bool hasAnyErrors;
-            try
-            {
-                result = xlstUtil.TransformXml(document, schematronStylesheet);
-                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
-            }
-            catch (Exception ex)
-            {
-                throw new SchematronValidationFailedException(document, ex);
-            }
+        ////    XmlDocument result = null;
+        ////    PrefixedNamespace[] prefixedNamespaces;
+        ////    bool hasAnyErrors;
+        ////    try
+        ////    {
+        ////        // this is fast and ugly...
+        ////        result = xlstUtil.TransformXml(document, schematronStylesheet);
+        ////        byte[] schematronResultBytes = Encoding.Default.GetBytes(result.OuterXml);
+        ////        using (MemoryStream schematronResultMemoryStream = new MemoryStream(schematronResultBytes))
+        ////        {
+        ////            XmlTextReader schematronResultXmlTextReader = new XmlTextReader(schematronResultMemoryStream);
+        ////            prefixedNamespaces = this.CreateDefaultNamespaceManager(schematronResultXmlTextReader);
+        ////            hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
+        ////        }                
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        throw new SchematronValidationFailedException(document, ex);
+        ////    }
 
-            if (hasAnyErrors)
-            {
-                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
-                throw new SchematronErrorException(result, firstErrorMessage);
-            }
-            else
-            {
-                // no schematron error
-            }
-        }
+        ////    if (hasAnyErrors)
+        ////    {
+        ////        string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
+        ////        throw new SchematronErrorException(result, firstErrorMessage);
+        ////    }
+        ////    else
+        ////    {
+        ////        // no schematron error
+        ////    }
+        ////}
 
         /// <summary>
         /// Schematron validates a document.
@@ -337,7 +345,7 @@ namespace dk.gov.oiosi.xml.schematron
         /// </summary>
         /// <param name="documentAsString">The document to be validated</param>
         /// <param name="schematronStylesheet"></param>
-        public void SchematronValidateXmlDocument(string documentAsString, XslCompiledTransform schematronStylesheet)
+        public void SchematronValidateXmlDocument(string documentAsString, CompiledXslt compiledXslt)
         {
             if (this.errorXPath == null)
             {
@@ -348,30 +356,143 @@ namespace dk.gov.oiosi.xml.schematron
                 throw new Exception("No error message XPath is set");
             }
 
-            XmlDocument result = null;
-            PrefixedNamespace[] prefixedNamespaces = new PrefixedNamespace[0];
-            bool hasAnyErrors;
+            XmlDocument schematronResultXmlDocument = null;
+            PrefixedNamespace[] prefixedNamespaces = null;
+            bool hasAnyErrors = false;
+            bool documentValidated = false;
+
+            //// try
+            ////{
+            ////    result = xlstUtil.TransformXml(documentAsString, schematronStylesheet);
+            ////    hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
+            ////}
+            ////catch (Exception ex)
+            ////{
+            ////    XmlDocument xmlDoc = new XmlDocument();
+            ////    xmlDoc.LoadXml(documentAsString);
+            ////    throw new SchematronValidationFailedException(xmlDoc, ex);
+            ////}
+
+            ////if (hasAnyErrors)
+            ////{
+            ////    string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
+            ////    throw new SchematronErrorException(result, firstErrorMessage);
+            ////}
+            ////else
+            ////{
+            ////    // no schematron error
+            ////}
+            // ---------
             try
             {
-                result = xlstUtil.TransformXml(documentAsString, schematronStylesheet);
-                hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(result, this.errorXPath, prefixedNamespaces);
+                // .Net build in xslt pserser - only xslt 1.0                
+                if (compiledXslt != null && compiledXslt.XslCompiledTransform != null)
+                {
+                    schematronResultXmlDocument = xlstUtil.TransformXml(documentAsString, compiledXslt.XslCompiledTransform);
+                    byte[] schematronResultBytes = Encoding.Default.GetBytes(schematronResultXmlDocument.OuterXml);
+                    using (MemoryStream schematronResultMemoryStream = new MemoryStream(schematronResultBytes))
+                    {
+                        XmlTextReader schematronResultXmlTextReader = new XmlTextReader(schematronResultMemoryStream);
+                        prefixedNamespaces = this.CreateDefaultNamespaceManager(schematronResultXmlTextReader);
+
+                        hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(schematronResultXmlDocument, this.errorXPath, prefixedNamespaces);
+                        documentValidated = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.LoadXml(documentAsString);
-                throw new SchematronValidationFailedException(xmlDoc, ex);
+                Debug.Fail(ex.Message);
+            }
+
+            if (documentValidated == false)
+            {
+                // Not xslt 1.0, or complex xslt 1.0  - so try Saxon xslt
+                try
+                {
+                    using (MemoryStream schematronResultMemoryStream = new MemoryStream())
+                    {
+                        using (MemoryStream xmlSchematronStylesheetMemoryStream = compiledXslt.Stream)
+                        {
+                            xmlSchematronStylesheetMemoryStream.Flush();//Adjust this if you want read your data
+                            xmlSchematronStylesheetMemoryStream.Position = 0;
+
+                            Processor processor = new Processor();
+                            XsltCompiler compiler = processor.NewXsltCompiler();
+                            Serializer serializer = new Serializer();
+
+                            try
+                            {
+                                XsltTransformer saxonTransformer = compiler.Compile(xmlSchematronStylesheetMemoryStream).Load();
+
+                                // Load the XML document. Input to the build method is the document.
+                                XdmNode docXdmNode = processor.NewDocumentBuilder().Build(documentAsString.ToStream());
+
+                                // Set the root node of the source document to be the initial
+                                // context node
+                                saxonTransformer.InitialContextNode = docXdmNode;
+
+                                // Init. the result object
+                                serializer.SetOutputProperty(Serializer.INDENT, "yes");
+                                serializer.SetOutputProperty(Serializer.ENCODING, Encoding.UTF8.BodyName);
+
+                                serializer.SetOutputStream(schematronResultMemoryStream);
+
+                                // Run the transformation with result object as input param.
+                                saxonTransformer.Run(serializer);
+                            }
+                            catch (Exception)
+                            {
+                                // easy debugging
+                                throw;
+                            }
+                            finally
+                            {
+                                // close/dispose
+                                serializer.Close();
+                            }
+                        }
+
+                        // convert the schematronResultMemoryStream, into a xmlDocument
+                        schematronResultMemoryStream.Position = 0;
+                        schematronResultXmlDocument = new XmlDocument();
+                        schematronResultXmlDocument.Load(schematronResultMemoryStream);
+
+                        schematronResultMemoryStream.Position = 0;
+                        XmlTextReader schematronResultXmlTextReader = new XmlTextReader(schematronResultMemoryStream);
+                        prefixedNamespaces = this.CreateDefaultNamespaceManager(schematronResultXmlTextReader);
+
+                        hasAnyErrors = DocumentXPathResolver.HasAnyElementsByXpath(schematronResultXmlDocument, this.errorXPath, prefixedNamespaces);
+                        documentValidated = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Fail(ex.Message);
+                    XmlDocument xmlDocument = new XmlDocument();
+                    xmlDocument.Load(documentAsString.ToStream());
+                    throw new SchematronValidationFailedException(xmlDocument, ex);
+                }
+            }
+
+            if (documentValidated == false)
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(documentAsString.ToStream());
+                throw new SchematronValidationFailedException(xmlDocument, new Exception("Failed to validate the document."));
             }
 
             if (hasAnyErrors)
             {
-                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(result, this.errorMessageXPath, prefixedNamespaces);
-                throw new SchematronErrorException(result, firstErrorMessage);
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(documentAsString.ToStream());
+                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(xmlDocument, this.errorMessageXPath, prefixedNamespaces);
+                throw new SchematronErrorException(schematronResultXmlDocument, firstErrorMessage);
             }
             else
             {
                 // no schematron error
             }
-        }
+        }        
     }
 }

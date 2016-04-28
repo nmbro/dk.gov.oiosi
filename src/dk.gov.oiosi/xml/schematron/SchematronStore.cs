@@ -6,6 +6,9 @@ using dk.gov.oiosi.common.cache;
 using dk.gov.oiosi.xml.xslt;
 using dk.gov.oiosi.configuration;
 using System.Configuration;
+using System.Xml.XPath;
+using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace dk.gov.oiosi.xml.schematron {
     
@@ -18,7 +21,7 @@ namespace dk.gov.oiosi.xml.schematron {
     {
         private static object lockObject = new object();
         private string basePath = string.Empty;
-        private ICache<string, XslCompiledTransform> cache;
+        private ICache<string, CompiledXslt> cache;
 
         /// <summary>
         /// Constructor that uses a default of max two cohierent compiled stylesheeets 
@@ -45,7 +48,7 @@ namespace dk.gov.oiosi.xml.schematron {
         /// </summary>
         /// <param name="path">The path where to find the </param>
         /// <returns></returns>
-        public XslCompiledTransform GetCompiledSchematron(string path)
+        public CompiledXslt GetCompiledSchematron(string path)
         {
             if (path == null)
             {
@@ -65,44 +68,22 @@ namespace dk.gov.oiosi.xml.schematron {
                 fileInfo = new FileInfo(combinedPath);
             }
 
-            XslCompiledTransform compiledSchematron = null;
+            CompiledXslt compiledXsltEntry = null;
 
             lock (lockObject)
             {
-                if (cache.TryGetValue(cacheKey, out compiledSchematron))
+                if (cache.TryGetValue(cacheKey, out compiledXsltEntry))
                 {
                     //  pre-compiled schematron found
                 }
                 else
                 {
-                    compiledSchematron = this.LoadCompiledSchematron(fileInfo);
-                    cache.Add(cacheKey, compiledSchematron);
+                    compiledXsltEntry = new CompiledXslt(fileInfo);
+                    cache.Add(cacheKey, compiledXsltEntry);
                 }
             }
 
-            return compiledSchematron;
-        }
-
-        private XslCompiledTransform LoadCompiledSchematron(FileInfo fileInfo) 
-        {
-            XslCompiledTransform xslCompiledTransform;
-            XmlDocument xmlStylesheet = new XmlDocument();
-            XsltUtility xsltUtility = new XsltUtility();
-            try 
-            {
-                DirectoryInfo directoryInfo = fileInfo.Directory;
-                UrlToLocalFilelResolver urlResolver = new UrlToLocalFilelResolver(directoryInfo.FullName);
-
-                xmlStylesheet.Load(fileInfo.FullName);
-                xmlStylesheet.XmlResolver = urlResolver;
-                xslCompiledTransform = xsltUtility.PrecompiledStyleSheet(xmlStylesheet);
-            }
-            catch (Exception ex) 
-            {
-                throw new FailedToLoadSchematronStylesheetException(fileInfo, ex);
-            }
-
-            return xslCompiledTransform;
-        }
+            return compiledXsltEntry;
+        }        
     }
 }

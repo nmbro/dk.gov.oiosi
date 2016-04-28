@@ -31,15 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.configuration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.Logging", "src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj", "{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.lesnikowskiMailProvider", "src\dk.gov.oiosi.lesnikowskiMailProvider\dk.gov.oiosi.lesnikowskiMailProvider.csproj", "{47A0BAAC-867E-47DD-93F2-372284D52CCA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.raspProfile", "src\dk.gov.oiosi.raspProfile\dk.gov.oiosi.raspProfile.csproj", "{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.interceptors", "test\dk.gov.oiosi.test.interceptors\dk.gov.oiosi.test.interceptors.csproj", "{E3543EED-B932-40FE-9986-1877DCEF3934}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.request", "test\dk.gov.oiosi.test.request\dk.gov.oiosi.test.request.csproj", "{5E505C7E-74B8-4B5C-9989-BFAC6279065B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.xml", "src\dk.gov.oiosi.xml\dk.gov.oiosi.xml.csproj", "{E103A780-78F2-497C-938B-FF8AF72F87F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.test.integration", "test\dk.gov.oiosi.test.integration\dk.gov.oiosi.test.integration.csproj", "{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}"
 EndProject
@@ -77,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oioubl_Invoice_EndpointNetH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.TestUddi", "samples\dk.gov.oiosi.samples.TestUddi\dk.gov.oiosi.samples.TestUddi.csproj", "{942B8034-0548-4798-BB0B-9417311CA883}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.gov.oiosi.samples.httpEndpointExample", "samples\dk.gov.oiosi.samples.httpEndpointExample\dk.gov.oiosi.samples.httpEndpointExample.csproj", "{D07CB4A1-8CB2-45C3-A242-6749796D4593}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -103,10 +101,6 @@ Global
 		{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47A0BAAC-867E-47DD-93F2-372284D52CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47A0BAAC-867E-47DD-93F2-372284D52CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47A0BAAC-867E-47DD-93F2-372284D52CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47A0BAAC-867E-47DD-93F2-372284D52CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -119,10 +113,6 @@ Global
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E505C7E-74B8-4B5C-9989-BFAC6279065B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E103A780-78F2-497C-938B-FF8AF72F87F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1E6C02C-D036-4E02-A66C-F7A5A75C8F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -195,6 +185,10 @@ Global
 		{942B8034-0548-4798-BB0B-9417311CA883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{942B8034-0548-4798-BB0B-9417311CA883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{942B8034-0548-4798-BB0B-9417311CA883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07CB4A1-8CB2-45C3-A242-6749796D4593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07CB4A1-8CB2-45C3-A242-6749796D4593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07CB4A1-8CB2-45C3-A242-6749796D4593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07CB4A1-8CB2-45C3-A242-6749796D4593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,13 +204,12 @@ Global
 		{E6B6BCEA-0DFC-4ECB-A1F2-E8A38B0C7222} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
 		{E186AC23-0A09-45E9-ABD7-E6123E200C52} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
 		{942B8034-0548-4798-BB0B-9417311CA883} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
+		{D07CB4A1-8CB2-45C3-A242-6749796D4593} = {04A5DF86-B19F-4F68-A9F2-24F64469E02B}
 		{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{64FADDE4-B1CC-431D-B646-37286621500F} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{57C0192D-6D8F-4FDF-A349-B30CC5F96A67} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{1D9FFCF0-992B-4533-A9B6-590C6CBDD399} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
-		{47A0BAAC-867E-47DD-93F2-372284D52CCA} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
-		{E103A780-78F2-497C-938B-FF8AF72F87F6} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{79042BE3-3F98-4C5E-BEA2-F82F497F8526} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{B62518D3-E81C-4937-B1F0-5A936D719693} = {B45E9AFC-CB67-4A69-A3B1-607CA9D33506}
 		{332FFFFB-D1B2-42A1-9B1A-4309AB70D1DB} = {2C4B63A1-2DEE-421C-8C41-5C5BD04F7E2A}

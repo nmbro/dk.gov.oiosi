@@ -40,6 +40,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 using dk.gov.oiosi.logging;
+using dk.gov.oiosi.xml.schematron;
 
 namespace dk.gov.oiosi.xml.xslt
 {
@@ -61,65 +62,71 @@ namespace dk.gov.oiosi.xml.xslt
         /// <param name="xmlDoc">The xml document to transform</param>
         /// <param name="stylesheet">The xslt to transform xml document with</param>
         /// <returns>The transformed xml document</returns>
-        public XmlDocument TransformXml(XmlDocument xmlDoc, XmlDocument stylesheet)
+        public XmlDocument TransformXml(XmlDocument xmlDoc, CompiledXslt stylesheet)
         {
             XmlDocument xmlDocument = null;
-            XslCompiledTransform transform = PrecompiledStyleSheet(stylesheet);
-            if (transform != null)
+            //XslCompiledTransform transform = PrecompiledStyleSheet(stylesheet);
+            if (stylesheet != null && stylesheet.XslCompiledTransform != null)
             {
-                xmlDocument = this.TransformXml(xmlDoc, transform);
+                xmlDocument = this.TransformXml(xmlDoc, stylesheet.XslCompiledTransform);
             }
 
             return xmlDocument;
         }
 
-        /// <summary>
-        /// Method that returns the precompiled XSLT stylesheet from the given XML document.
-        /// 
-        /// document() function and embedded script blocks is disabled it doesn't resolve external
-        /// XML resources
-        /// </summary>
-        /// <param name="stylesheet"></param>
-        /// <returns></returns>
-        public XslCompiledTransform PrecompiledStyleSheet(XmlDocument stylesheet)
-        {
-            XslCompiledTransform transform = null;
+        /////// <summary>
+        /////// Method that returns the precompiled XSLT stylesheet from the given XML document.
+        /////// 
+        /////// document() function and embedded script blocks is disabled it doesn't resolve external
+        /////// XML resources
+        /////// </summary>
+        /////// <param name="stylesheet"></param>
+        /////// <returns></returns>
+        ////public XslCompiledTransform PrecompiledStyleSheet(XmlDocument stylesheet)
+        ////{
+        ////    XslCompiledTransform transform = null;
 
-            try
-            {
-                // Get XSLT version
-                XPathNavigator navigator = stylesheet.CreateNavigator();
-                XPathNodeIterator node = navigator.Select("/*/@version");
-                node.MoveNext();
-                string xsltVersionInResource = node.Current.Value;
-                string xsltVersion = string.Empty;
-                if (!string.IsNullOrEmpty(xsltVersionInResource))
-                {
-                    xsltVersion = xsltVersionInResource;
-                }
+        ////    try
+        ////    {
+        ////        // Get XSLT version
+        ////        XPathNavigator navigator = stylesheet.CreateNavigator();
+        ////        XPathNodeIterator node = navigator.Select("/*/@version");
+        ////        node.MoveNext();
+        ////        string xsltVersionInResource = node.Current.Value;
+        ////        string xsltVersion = string.Empty;
+        ////        if (!string.IsNullOrEmpty(xsltVersionInResource))
+        ////        {
+        ////            xsltVersion = xsltVersionInResource;
+        ////        }
 
-                if (xsltVersion.Equals("1.0"))
-                {
-                    // The XslCompiledTransform can only handle xslt version 1.0
-                    transform = new XslCompiledTransform(false);
-                    transform.Load(stylesheet, XsltSettings.Default, null);
-                }
-            }
-            catch (System.Xml.Xsl.XsltException ex)
-            {
-                if (!ex.Message.Equals("Too complex!"))
-                {
-                    //Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
-                    throw;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
-                throw;
-            }
-            return transform;
-        }
+        ////        if (xsltVersion.Equals("1.0"))
+        ////        {
+        ////            // The XslCompiledTransform can only handle xslt version 1.0
+        ////            transform = new XslCompiledTransform(false);
+        ////            transform.Load(stylesheet, XsltSettings.Default, null);
+        ////        }
+        ////    }
+        ////    catch (System.Xml.Xsl.XsltException ex)
+        ////    {
+        ////        if (ex.Message.Equals("Too complex!"))
+        ////        {
+        ////            // To complex
+        ////            // using saxon
+        ////        }
+        ////        else
+        ////        {
+        ////            //Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+        ////            throw;
+        ////        }
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+        ////        throw;
+        ////    }
+
+        ////    return transform;
+        ////}       
 
         /// <summary>
         /// Method that transforms the XML document from a precompiled XSLT stylesheet
@@ -148,13 +155,13 @@ namespace dk.gov.oiosi.xml.xslt
 
             using (Stream stream = new MemoryStream())
             {
-                XmlWriterSettings xmlDocumentWriterSettings = new XmlWriterSettings();
-                xmlDocumentWriterSettings.Encoding = Encoding.UTF8;
-                xmlDocumentWriterSettings.Indent = true;
-                xmlDocumentWriterSettings.IndentChars = " ";
-                xmlDocumentWriterSettings.NewLineOnAttributes = true;
-                xmlDocumentWriterSettings.OmitXmlDeclaration = false;
-                xmlDocumentWriterSettings.CloseOutput = false;
+                ////XmlWriterSettings xmlDocumentWriterSettings = new XmlWriterSettings();
+                ////xmlDocumentWriterSettings.Encoding = Encoding.UTF8;
+                ////xmlDocumentWriterSettings.Indent = true;
+                ////xmlDocumentWriterSettings.IndentChars = " ";
+                ////xmlDocumentWriterSettings.NewLineOnAttributes = true;
+                ////xmlDocumentWriterSettings.OmitXmlDeclaration = false;
+                ////xmlDocumentWriterSettings.CloseOutput = false;
 
                 using (StreamWriter sw = new StreamWriter(stream))
                 {

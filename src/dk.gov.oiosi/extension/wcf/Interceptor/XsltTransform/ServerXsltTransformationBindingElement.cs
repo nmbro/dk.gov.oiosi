@@ -32,11 +32,13 @@
   */
 
 using System;
+using System.IO;
 using System.ServiceModel.Channels;
 using System.Xml;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.extension.wcf.Interceptor.Channels;
 using dk.gov.oiosi.xml.documentType;
+using dk.gov.oiosi.xml.schematron;
 using dk.gov.oiosi.xml.xslt;
 
 namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
@@ -103,7 +105,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
         public override void InterceptRequest(InterceptorMessage message) {
             try {
                 XmlDocument body = message.GetBody();
-                XmlDocument styleSheet = LoadStyleSheet(body);
+                CompiledXslt styleSheet = LoadStyleSheet(body);
                 XmlDocument transformedBody = _xsltUtility.TransformXml(body, styleSheet);
                 message.SetBody(transformedBody);
                 if (_configuration.PropagateOriginalMessage) {
@@ -124,12 +126,14 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
 
         #endregion
 
-        private XmlDocument LoadStyleSheet(XmlDocument body) {
+        private CompiledXslt LoadStyleSheet(XmlDocument body) {
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(body);
             string path = documentType.XsltTransformStylesheetPath;
-            XmlDocument styleSheet = new XmlDocument();
-            styleSheet.Load(path);
-            return styleSheet;
+            CompiledXslt compiledXslt = new CompiledXslt(new FileInfo(path));
+            
+            //XmlDocument styleSheet = new XmlDocument();
+            //styleSheet.Load(path);
+            return compiledXslt;
         }
     }
 }

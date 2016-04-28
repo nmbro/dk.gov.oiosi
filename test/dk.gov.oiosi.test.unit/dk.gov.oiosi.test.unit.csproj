@@ -113,10 +113,6 @@
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\dk.gov.oiosi.xml\dk.gov.oiosi.xml.csproj">
-      <Project>{E103A780-78F2-497C-938B-FF8AF72F87F6}</Project>
-      <Name>dk.gov.oiosi.xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>
       <Name>dk.gov.oiosi</Name>

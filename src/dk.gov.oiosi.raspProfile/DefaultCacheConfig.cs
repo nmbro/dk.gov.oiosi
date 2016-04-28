@@ -107,7 +107,7 @@ namespace dk.gov.oiosi.raspProfile
             cacheConfig.SchemaStoreCache.CacheConfigurationCollection.Add(new CacheConfiguration(cacheName, "SchemaStoreCache"));
 
             cacheConfig.SchematronStoreCache = new CacheConfigElement();
-            cacheConfig.SchematronStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[System.Xml.Xsl.XslCompiledTransform, System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]";
+            cacheConfig.SchematronStoreCache.ImplementationNamespaceClass = "dk.gov.oiosi.common.cache.QuantityCache`2[[System.String, mscorlib],[dk.gov.oiosi.xml.schematron.CompiledXslt, dk.gov.oiosi.library]]";
             cacheConfig.SchematronStoreCache.ImplementationAssembly = implementationAssembly;
             cacheConfig.SchematronStoreCache.CacheConfigurationCollection.Add(configurationMaxSize20);
             cacheConfig.SchematronStoreCache.CacheConfigurationCollection.Add(new CacheConfiguration(cacheName, "SchematronStoreCache"));

@@ -61,10 +61,6 @@
       <Project>{64FADDE4-B1CC-431D-B646-37286621500F}</Project>
       <Name>dk.gov.oiosi.exception</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\dk.gov.oiosi.lesnikowskiMailProvider\dk.gov.oiosi.lesnikowskiMailProvider.csproj">
-      <Project>{47A0BAAC-867E-47DD-93F2-372284D52CCA}</Project>
-      <Name>dk.gov.oiosi.lesnikowskiMailProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.Logging\dk.gov.oiosi.Logging.csproj">
       <Project>{1D9FFCF0-992B-4533-A9B6-590C6CBDD399}</Project>
       <Name>dk.gov.oiosi.Logging</Name>
@@ -76,10 +72,6 @@
     <ProjectReference Include="..\..\src\dk.gov.oiosi.resource\dk.gov.oiosi.resource.csproj">
       <Project>{79042BE3-3F98-4C5E-BEA2-F82F497F8526}</Project>
       <Name>dk.gov.oiosi.resource</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\dk.gov.oiosi.xml\dk.gov.oiosi.xml.csproj">
-      <Project>{E103A780-78F2-497C-938B-FF8AF72F87F6}</Project>
-      <Name>dk.gov.oiosi.xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\dk.gov.oiosi\dk.gov.oiosi.csproj">
       <Project>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</Project>

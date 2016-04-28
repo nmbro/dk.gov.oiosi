@@ -36,8 +36,9 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             SchematronValidationConfig[] schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
             foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
             {
-                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                CompiledXslt transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                 Assert.IsNotNull(transform);
+                Assert.IsNotNull(transform.XslCompiledTransform);
             }
             Console.WriteLine(DateTime.Now + " GetOnceTest stop");
         }
@@ -54,15 +55,17 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             SchematronValidationConfig[] schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
             foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
             {
-                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                CompiledXslt transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                 Assert.IsNotNull(transform);
+                Assert.IsNotNull(transform.XslCompiledTransform);
             }
 
             schematronValidationConfigCollection = documentTypeConfig.SchematronValidationConfigs;
             foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
             {
-                XslCompiledTransform transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                CompiledXslt transform = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                 Assert.IsNotNull(transform);
+                Assert.IsNotNull(transform.XslCompiledTransform);
             }
 
             Console.WriteLine(DateTime.Now + " GetTwiceTest stop");
@@ -83,8 +86,9 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             {
                 foreach (SchematronValidationConfig schematronValidationConfig in schematronValidationConfigCollection)
                 {
-                    XslCompiledTransform transform2 = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
+                    CompiledXslt transform2 = store.GetCompiledSchematron(schematronValidationConfig.SchematronDocumentPath);
                     Assert.IsNotNull(transform2);
+                    Assert.IsNotNull(transform2.XslCompiledTransform);
                 }
             }
 

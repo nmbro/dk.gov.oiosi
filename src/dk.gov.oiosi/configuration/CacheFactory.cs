@@ -17,6 +17,7 @@ namespace dk.gov.oiosi.configuration
     using System.Xml.Xsl;
     using System.Xml.Schema;
     using dk.gov.oiosi.extension.wcf.Interceptor.Security;
+    using dk.gov.oiosi.xml.schematron;
 
     /// <summary>
     /// The factory that create the differents caches 
@@ -61,7 +62,7 @@ namespace dk.gov.oiosi.configuration
         /// <summary>
         /// Cache to store the compiled schematron
         /// </summary>
-        private ICache<string, XslCompiledTransform> schematronStoreCache = null;
+        private ICache<string, CompiledXslt> schematronStoreCache = null;
         
         /// <summary>
         /// Cache to store the compiled schema file
@@ -113,7 +114,7 @@ namespace dk.gov.oiosi.configuration
 
             // schematronCache
             element = cacheConfig.SchematronStoreCache;
-            this.schematronStoreCache = this.Create<ICache<string, XslCompiledTransform>>(element, "SchematronStoreCache");
+            this.schematronStoreCache = this.Create<ICache<string, CompiledXslt>>(element, "SchematronStoreCache");
 
             // messageIdUnfinishedSignaturesCache
             element = cacheConfig.MessageIdUnfinishedSignaturesCache;
@@ -265,7 +266,7 @@ namespace dk.gov.oiosi.configuration
         /// <summary>
         /// Get the schematron cache
         /// </summary>
-        public ICache<string, XslCompiledTransform> SchematrongStoreCache
+        public ICache<string, CompiledXslt> SchematrongStoreCache
         {
             get
             {

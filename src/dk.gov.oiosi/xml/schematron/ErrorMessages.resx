@@ -128,6 +128,6 @@
     <comment>This message should not be shown.</comment>
   </data>
   <data name="dk_gov_oiosi_xml_schematron_SchematronValidationFailedException" xml:space="preserve">
-    <value>Kunne ikke  schematron-validere dokumentet "[documentname]" med namespace "[documentnamespace]".</value>
+    <value>Kunne ikke schematron-validere dokumentet "[documentname]" med namespace "[documentnamespace]".</value>
   </data>
 </root>
