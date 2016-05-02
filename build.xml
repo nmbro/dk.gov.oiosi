@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <project name="NemHandel" default="all">
     <!-- In order to user the msbuild element, the NAntContrib must be included -->
-    <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll" />
-	
-	<property name="Number_Major" value="2" />
-	<property name="Number_Minor" value="1" />
-	<property name="Number_Patch" value="1" />
-  <property name="Directory.packages" value="packages" />
-	<!-- When updating the version number, remember to update theses files.
+    <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll"/>
+
+    <property name="Number_Major" value="2"/>
+    <property name="Number_Minor" value="1"/>
+    <property name="Number_Patch" value="0"/>
+    <property name="Directory.packages" value="packages"/>
+    <!-- When updating the version number, remember to update theses files.
       They have a reference to the actual version, almost at the end of the file.
       The number should be like this (note, it must end with '.0').
         <Number_Major>.<Number_Minor>.<Number_Patch>.0
@@ -22,248 +22,248 @@
     Samt opdater check toolet (hvis der skal releases en ny version af NHK'en).
     checkTool/...?
   -->
-  
-  
-	<!-- Should be Dev, and the build server set it to Prod -->
-	<property name="buildType" value="Prod" />
-	
-    <property name="Version" value="${Number_Major}.${Number_Minor}.${Number_Patch}" />
-    <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}" />
-    <property name="InformationalVersion" value="${Number_Major}.${Number_Minor}.${Number_Patch} ${buildType}" />  
-	
-	<property name="Dist.dir" value="target\dist" />
-	<property name="Temp.dir" value="target\temp" />
-	<property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln" />
-	<property name="Root.dir" value="." />
-	<property name="Oiosi.dir" value="src\dk.gov.oiosi" />
-	<property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider" />
-	<property name="Xml.dir" value="src\dk.gov.oiosi.xml" />
-	<property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile" />
-	<property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll" />
-	<property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll" />
-	
-	<!-- Tell the build server what our actual build number is -->
-    <echo message="##teamcity[buildNumber '${Revision}']" />
-	
-	<target name="Clean" description="Remove all build products">
-		<delete dir="${Dist.dir}" />
-    <delete dir="${Temp.dir}" />
-	</target>
-	
-	<target name="Init" depends="Clean">
-		<mkdir dir="${Dist.dir}" />
-		<mkdir dir="${Temp.dir}" />
-	</target>
-	
-	<target name="SetVersion" depends="Init">
-		
-		<asminfo language="CSharp" output="AssemblyInfoFileVersion.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-			</attributes>
-		</asminfo>
-		
-		<asminfo language="CSharp" output="AssemblyInfoVersion.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyInformationalVersionAttribute" value="${InformationalVersion}" />
-			</attributes>
-		</asminfo>
-	
-	<!-- 
-		<asminfo language="CSharp" output="${Oiosi.dir}\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.appConfig\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.configuration\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.exception\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.lesnikowskiMailProvider\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.Logging\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.raspProfile\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-		<asminfo language="CSharp" output="src\dk.gov.oiosi.xml\Properties\AssemblyInfo.cs">
-			<imports>
-				<import namespace="System.Reflection" />
-			</imports>
-			<attributes>
-				<attribute type="AssemblyVersionAttribute" value="${Version}" />
-				<attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-				<attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-			</attributes>
-		</asminfo>
-    -->
-	
-	</target>
-  
-  <target name="NuGetRestore" description="Restores all nuget packages to a common package folder">
-    <trycatch>
-      <try>
-        <mkdir dir="${Directory.packages}"/>
-        <!-- Call NuGetRestore.bat using the specified package directory as output, 
-    and with NoPause arg to make sure it doesn't pause after execution -->
-        <exec program="NuGetRestore.bat">
-          <arg value="${Directory.packages}"/>
-          <arg value="NoPause"/>
+
+
+    <!-- Should be Dev, and the build server set it to Prod -->
+    <property name="buildType" value="Prod"/>
+
+    <property name="Version" value="${Number_Major}.${Number_Minor}.${Number_Patch}"/>
+    <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}"/>
+    <property name="InformationalVersion" value="${Number_Major}.${Number_Minor}.${Number_Patch} ${buildType}"/>
+
+    <property name="Dist.dir" value="target\dist"/>
+    <property name="Temp.dir" value="target\temp"/>
+    <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
+    <property name="Root.dir" value="."/>
+    <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
+    <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
+    <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
+    <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
+    <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
+    <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
+
+    <!-- Tell the build server what our actual build number is -->
+    <echo message="##teamcity[buildNumber '${Revision}']"/>
+
+    <target name="Clean" description="Remove all build products">
+        <delete dir="${Dist.dir}"/>
+        <delete dir="${Temp.dir}"/>
+    </target>
+
+    <target name="Init" depends="Clean">
+        <mkdir dir="${Dist.dir}"/>
+        <mkdir dir="${Temp.dir}"/>
+    </target>
+
+    <target name="SetVersion" depends="Init">
+
+        <asminfo language="CSharp" output="AssemblyInfoFileVersion.cs">
+            <imports>
+                <import namespace="System.Reflection"/>
+            </imports>
+            <attributes>
+                <attribute type="AssemblyFileVersionAttribute" value="${Revision}"/>
+            </attributes>
+        </asminfo>
+
+        <asminfo language="CSharp" output="AssemblyInfoVersion.cs">
+            <imports>
+                <import namespace="System.Reflection"/>
+            </imports>
+            <attributes>
+                <attribute type="AssemblyVersionAttribute" value="${Version}"/>
+                <attribute type="AssemblyInformationalVersionAttribute" value="${InformationalVersion}"/>
+            </attributes>
+        </asminfo>
+
+        <!--
+            <asminfo language="CSharp" output="${Oiosi.dir}\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.appConfig\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.configuration\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.exception\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.lesnikowskiMailProvider\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.Logging\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.raspProfile\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+            <asminfo language="CSharp" output="src\dk.gov.oiosi.xml\Properties\AssemblyInfo.cs">
+                <imports>
+                    <import namespace="System.Reflection" />
+                </imports>
+                <attributes>
+                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
+                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
+                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
+                </attributes>
+            </asminfo>
+        -->
+
+    </target>
+
+    <target name="NuGetRestore" description="Restores all nuget packages to a common package folder">
+        <trycatch>
+            <try>
+                <mkdir dir="${Directory.packages}"/>
+                <!-- Call NuGetRestore.bat using the specified package directory as output,
+            and with NoPause arg to make sure it doesn't pause after execution -->
+                <exec program="NuGetRestore.bat">
+                    <arg value="${Directory.packages}"/>
+                    <arg value="NoPause"/>
+                </exec>
+            </try>
+            <catch property="failure.message">
+                <echo message="${target::get-current-target()} failed:"/>
+                <echo message="${failure.message}"/>
+                <fail message="${failure.message}"/>
+            </catch>
+        </trycatch>
+    </target>
+
+    <target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore">
+        <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+                <property name="Configuration" value="Debug" />
+                <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
+            </msbuild -->
+        <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+            <property name="Configuration" value="Release"/>
+            <property name="teamcity_dotnet_use_msbuild_v35" value="true"/>
+        </msbuild>
+    </target>
+
+    <target name="RunTests">
+        <exec program="${teamcity.dotnet.nunitlauncher2.0}">
+            <arg file="${UnitTest.file}"/>
+            <!-- arg file="${IntegrationTest.file}" / -->
         </exec>
-      </try>
-      <catch property="failure.message">
-        <echo message="${target::get-current-target()} failed:"/>
-        <echo message="${failure.message}"/>
-        <fail message="${failure.message}"/>
-      </catch>
-    </trycatch>
-  </target>
-  
-	<target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore">
-    <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
-			<property name="Configuration" value="Debug" />
-			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
-		</msbuild -->
-		<msbuild project="${VisualStudioSolution.file}" target="Rebuild">
-			<property name="Configuration" value="Release" />
-			<property name="teamcity_dotnet_use_msbuild_v35" value="true" />
-		</msbuild>
-	</target>
-	
-  <target name="RunTests">
-		<exec program="${teamcity.dotnet.nunitlauncher2.0}">
-			<arg file="${UnitTest.file}" />
-      <!-- arg file="${IntegrationTest.file}" / -->
-		</exec>
-	</target>
-  <target name="Distribute" depends="Init, RunTests">
-		<!-- Executable -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
-			<fileset basedir="${Oiosi.dir}\bin\Release">
-				<include name="**/*" />
-        <exclude name="**/*.pdb" />
-			</fileset>
-      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
-      <fileset basedir="${RaspProfile.dir}\bin\Release">
-				<include name="dk.gov.oiosi.raspProfile.dll" />
-			</fileset>
-       <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
-      <fileset basedir="${Xml.dir}\bin\Release">
-				<include name="dk.gov.oiosi.xml.dll" />
-			</fileset>
-		</zip>
-		<!-- Lesnikowski Mail Provider -->
-		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
-			<fileset basedir="${Lesnikowski.dir}\bin\Release">
-				<include name="**/*" />
-			</fileset>
-		</zip -->
-		<!-- Rasp profile library -->
-		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
-			<fileset basedir="${RaspProfile.dir}\bin\Release">
-				<include name="**/*" />
-			</fileset>
-		</zip -->
-		<!-- XML shared library -->
-		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
-			<fileset basedir="${Xml.dir}\bin\Release">
-				<include name="**/*" />
-			</fileset>
-		</zip -->
-		<!-- Rasp profile resources - input to msi -->
-		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
-			<fileset basedir="${RaspProfile.dir}\Resources">
-				<include name="**/*" />
-			</fileset>
-		</zip -->
-		<!-- Source section -->
-		<zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
-			<fileset basedir="${Root.dir}">
-				<include name="**/*" />
-				<exclude name="**/bin" />
-				<exclude name="**/bin/**" />
-				<exclude name="**/obj" />
-				<exclude name="**/obj/**" />
-				<exclude name="target/**" />
-				<exclude name="*.resharper" />
-				<exclude name="*.cache" />
-				<exclude name="**/bin" />
-        <exclude name=".nuget/**" />
-        <exclude name="packages/**" />
-        <exclude name="doc/*.doc" />
-			</fileset>
-		</zip>
-		<!-- Source with bin folder - input to help file -->
-		<!-- zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
-			<fileset basedir="${Root.dir}">
-				<include name="**/*" />
-			</fileset>
-		</zip -->
-	</target>
-	
-  <target name="Release" depends="BuildVisualStudioSolutionNet35, RunTests, Distribute" />
-  
-	<target name="DevBuild" depends="BuildVisualStudioSolutionNet35" />
-	
+    </target>
+    <target name="Distribute" depends="Init, RunTests">
+        <!-- Executable -->
+        <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
+            <fileset basedir="${Oiosi.dir}\bin\Release">
+                <include name="**/*"/>
+                <exclude name="**/*.pdb"/>
+            </fileset>
+            <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
+            <fileset basedir="${RaspProfile.dir}\bin\Release">
+                <include name="dk.gov.oiosi.raspProfile.dll"/>
+            </fileset>
+            <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
+            <fileset basedir="${Xml.dir}\bin\Release">
+                <include name="dk.gov.oiosi.xml.dll"/>
+            </fileset>
+        </zip>
+        <!-- Lesnikowski Mail Provider -->
+        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
+            <fileset basedir="${Lesnikowski.dir}\bin\Release">
+                <include name="**/*" />
+            </fileset>
+        </zip -->
+        <!-- Rasp profile library -->
+        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
+            <fileset basedir="${RaspProfile.dir}\bin\Release">
+                <include name="**/*" />
+            </fileset>
+        </zip -->
+        <!-- XML shared library -->
+        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
+            <fileset basedir="${Xml.dir}\bin\Release">
+                <include name="**/*" />
+            </fileset>
+        </zip -->
+        <!-- Rasp profile resources - input to msi -->
+        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
+            <fileset basedir="${RaspProfile.dir}\Resources">
+                <include name="**/*" />
+            </fileset>
+        </zip -->
+        <!-- Source section -->
+        <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
+            <fileset basedir="${Root.dir}">
+                <include name="**/*"/>
+                <exclude name="**/bin"/>
+                <exclude name="**/bin/**"/>
+                <exclude name="**/obj"/>
+                <exclude name="**/obj/**"/>
+                <exclude name="target/**"/>
+                <exclude name="*.resharper"/>
+                <exclude name="*.cache"/>
+                <exclude name="**/bin"/>
+                <exclude name=".nuget/**"/>
+                <exclude name="packages/**"/>
+                <exclude name="doc/*.doc"/>
+            </fileset>
+        </zip>
+        <!-- Source with bin folder - input to help file -->
+        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
+            <fileset basedir="${Root.dir}">
+                <include name="**/*" />
+            </fileset>
+        </zip -->
+    </target>
+
+    <target name="Release" depends="BuildVisualStudioSolutionNet35, RunTests, Distribute"/>
+
+    <target name="DevBuild" depends="BuildVisualStudioSolutionNet35"/>
+
 </project>
