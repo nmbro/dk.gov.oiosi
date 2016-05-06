@@ -61,9 +61,16 @@ namespace dk.gov.oiosi.xml.schematron
                     // using saxon
                     this.transform = null;
                 }
+                else if (ex.Message.Equals("XSLT compile error."))
+                {
+                    // To complex - normally behavior
+                    // using saxon
+                    this.transform = null;
+                }
                 else
                 {
                     //Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());
+                    // what if the message has been translated to Danish???
                     throw;
                 }
             }
