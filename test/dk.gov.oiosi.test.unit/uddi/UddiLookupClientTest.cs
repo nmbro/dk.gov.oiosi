@@ -186,7 +186,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             var expectedActivationDate = new DateTime(2000, 1, 1, 0, 59, 0);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
-            var expectedEndpoint = "http://raspservice.nemhandel.gov.dk/RASP/1.2/reciever.svc";
+            var expectedEndpoint = "http://demo.nemhandel.dk/RaspNet/2.1.0/TestService.svc";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
             var expectedIdentifierActual = TestConstants.TESTEAN;
