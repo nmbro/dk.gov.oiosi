@@ -16,7 +16,7 @@ namespace dk.gov.oiosi.samples.TestUddi
 
 
         private Uri uddiServerUri;
-        private readonly Identifier eanIdentifier = new IdentifierEan("5790001865214");
+        private readonly Identifier eanIdentifier = new Identifier("ean","5790001865214");
 
         private readonly UddiId invoiceServiceId = new UddiGuidId("uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47", true);
 

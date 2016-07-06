@@ -14,7 +14,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
     public class UddiLookupClientTest {
 
         private Uri uddiServerUri;
-        private readonly Identifier eanIdentifier = new IdentifierEan(TestConstants.TESTEAN);
+        private readonly Identifier eanIdentifier = new Identifier(TestConstants.EAN, TestConstants.TESTEAN);
         private readonly Identifier dunsIdentifier = new Identifier("duns", "1234567890");
 
         private readonly UddiId nonExistingServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26fa1111", true);
@@ -49,7 +49,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
 
             List<UddiId> profileIds2 = new List<UddiId>() { new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true) };
-            Identifier eanIdentifier2 = new IdentifierEan("5798009811578");
+            Identifier eanIdentifier2 = new Identifier(TestConstants.EAN, "5798009811578");
             UddiId orderServiceId2 = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);
 
             var lookupParameters2 = new LookupParameters(eanIdentifier2, orderServiceId2, profileIds2, acceptHttpProtocol);

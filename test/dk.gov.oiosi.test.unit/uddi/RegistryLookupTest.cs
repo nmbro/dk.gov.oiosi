@@ -53,10 +53,10 @@ namespace dk.gov.oiosi.test.unit.uddi{
 		private Uri fourthFallback2 = new Uri("http://fallback42.com");
 
         // The fake endpoints
-		private Identifier endpointInNoRegistry = new IdentifierEan("5700000000000");
-    	private Identifier endpointInFirstRegistry = new IdentifierEan("5700000000001");
-    	private Identifier endpointInSecondRegistry = new IdentifierEan("5700000000002");
-		private Identifier endpointInFourthRegistry = new IdentifierEan("5700000000004");
+        private Identifier endpointInNoRegistry = new Identifier(TestConstants.EAN, "5700000000000");
+        private Identifier endpointInFirstRegistry = new Identifier(TestConstants.EAN, "5700000000001");
+        private Identifier endpointInSecondRegistry = new Identifier(TestConstants.EAN, "5700000000002");
+        private Identifier endpointInFourthRegistry = new Identifier(TestConstants.EAN, "5700000000004");
 
 
         [SetUp]
