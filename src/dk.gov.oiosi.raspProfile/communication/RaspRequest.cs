@@ -75,9 +75,10 @@ namespace dk.gov.oiosi.raspProfile.communication
             if (!id.IsAllowedInPublic)
             {
                 string cvrNumberString;
-                if (Credentials.ServerCertificate.TryGetCvrNumberString(out cvrNumberString))
+                string endpointType;
+                if (Credentials.ServerCertificate.TryGetCvrNumberString(out endpointType, out cvrNumberString))
                 {
-                    id = new IdentifierCvr(cvrNumberString);
+                    id = new Identifier(endpointType, cvrNumberString);
                 }
                 else
                 {
@@ -100,9 +101,10 @@ namespace dk.gov.oiosi.raspProfile.communication
             if (!id.IsAllowedInPublic)
             {
                 string cvrNumberString;
-                if (Credentials.ClientCertificate.TryGetCvrNumberString(out cvrNumberString))
+                string endpointType;
+                if (Credentials.ClientCertificate.TryGetCvrNumberString(out endpointType, out cvrNumberString))
                 {
-                    id = new IdentifierCvr(cvrNumberString);
+                    id = new Identifier(endpointType, cvrNumberString);
                 }
                 else
                 {

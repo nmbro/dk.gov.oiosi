@@ -75,28 +75,28 @@ namespace dk.gov.oiosi.common {
             string endpointKey,
             string endpointKeyType)
         {
-            Identifier identifier;
-            //EndpointKeyTypeCode code = ParseKeyTypeCode(endpointKeyType);
-            switch (endpointKeyType.ToLowerInvariant())
-            {
-                case "dk:cvr":                
-                    {
-                        identifier = new IdentifierCvr(endpointKeyType, endpointKey);
-                        break;
-                    }
-                 case "dk:cpr":
-                    {
-                        identifier = new IdentifierNonePublic(endpointKeyType, endpointKey);
-                        break;
-                    }
-                default:
-                    {
-                        identifier = new Identifier(endpointKeyType, endpointKey);
-                        break;
-                    }
-            }
+            ////Identifier identifier;
+            //////EndpointKeyTypeCode code = ParseKeyTypeCode(endpointKeyType);
+            ////switch (endpointKeyType.ToLowerInvariant())
+            ////{
+            ////    case "dk:cvr":                
+            ////        {
+            ////            identifier = new IdentifierCvr(endpointKeyType, endpointKey);
+            ////            break;
+            ////        }
+            ////     case "dk:cpr":
+            ////        {
+            ////            identifier = new IdentifierNonePublic(endpointKeyType, endpointKey);
+            ////            break;
+            ////        }
+            ////    default:
+            ////        {
+            ////            identifier = new Identifier(endpointKeyType, endpointKey);
+            ////            break;
+            ////        }
+            ////}
 
-            return identifier;
+            return new Identifier(endpointKeyType, endpointKey);
         }
 
         /// <summary>

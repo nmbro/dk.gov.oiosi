@@ -55,6 +55,11 @@ namespace dk.gov.oiosi.addressing {
         private string type;
 
         /// <summary>
+        /// Value indication whether or not the value is allowed in the transmitting header
+        /// </summary>
+        private bool isAllowedInPublic;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="type">A identifying type</param>
@@ -67,6 +72,10 @@ namespace dk.gov.oiosi.addressing {
             }
 
             this.type = type;
+            if(this.type.Equals("", StringComparison.OrdinalIgnoreCase))
+            {
+                this.isAllowedInPublic = false;
+            }
             this.Set(value);            
         }
 
@@ -103,7 +112,7 @@ namespace dk.gov.oiosi.addressing {
         {
             get
             {
-                return true;
+                return this.isAllowedInPublic;
             }
         }
 
@@ -127,7 +136,23 @@ namespace dk.gov.oiosi.addressing {
                 throw new NullOrEmptyArgumentException("identifier");
             }
 
-            this.value = identifier;
+            if (this.type.Equals("DK:CVR", StringComparison.OrdinalIgnoreCase) || this.type.Equals("CVR", StringComparison.OrdinalIgnoreCase))
+            {
+                // If endpoint type is DK:CVR, and the value starts with "dk", strip it away
+                if (identifier.StartsWith("dk", StringComparison.OrdinalIgnoreCase) && identifier.Length > 2)
+                {
+                    this.value = identifier.Substring(2);
+                }
+                else
+                {
+                    this.value = identifier;
+                }
+            }
+            else
+            {
+                // normal endpoint type
+                this.value = identifier;
+            }
         }
 
         

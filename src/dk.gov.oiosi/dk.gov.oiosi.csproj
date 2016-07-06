@@ -129,11 +129,6 @@
     <Compile Include="..\..\AssemblyInfoVersion.cs">
       <Link>Properties\AssemblyInfoVersion.cs</Link>
     </Compile>
-    <Compile Include="addressing\IdentifierEan.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="addressing\IdentifierNonePublic.cs" />
-    <Compile Include="addressing\IdentifierCpr.cs" />
     <Compile Include="addressing\ErrorMessages.Designer.cs">
       <DependentUpon>ErrorMessages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -275,7 +270,6 @@
     <Compile Include="communication\CurrentServiceHostSearchFailedException.cs" />
     <Compile Include="addressing\IncorrectBusinessIdentifierException.cs" />
     <Compile Include="addressing\IncorrectCountryCodeException.cs" />
-    <Compile Include="addressing\IdentifierCvr.cs" />
     <Compile Include="addressing\Identifier.cs" />
     <Compile Include="addressing\IncorrectOvtNumberException.cs" />
     <Compile Include="addressing\IncorrectSerialNumberException.cs" />

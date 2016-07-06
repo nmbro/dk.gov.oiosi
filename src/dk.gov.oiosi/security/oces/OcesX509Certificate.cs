@@ -187,6 +187,18 @@ namespace dk.gov.oiosi.security.oces {
         /// </summary>
         /// <param name="cvrNumberString">The resulting cvr string</param>
         /// <returns>Whether a cvr number string value could be parsed.</returns>
+        public bool TryGetCvrNumberString(out string endpointType, out string cvrNumberString)
+        {
+            // ToDo: The endpoint should be retrieved from certificate.
+            endpointType = "DK:CVR";
+            return this.TryGetCvrNumberString(out cvrNumberString);
+        }
+
+        /// <summary>
+        /// Try to get the cvr number as a string value from the certificate, if such exists
+        /// </summary>
+        /// <param name="cvrNumberString">The resulting cvr string</param>
+        /// <returns>Whether a cvr number string value could be parsed.</returns>
         public bool TryGetCvrNumberString(out string cvrNumberString) 
         {
             cvrNumberString = null;
