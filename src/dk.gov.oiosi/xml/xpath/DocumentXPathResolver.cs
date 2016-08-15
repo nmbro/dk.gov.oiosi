@@ -35,13 +35,17 @@ using System;
 using System.Xml;
 using dk.gov.oiosi.exception;
 using System.Collections.Generic;
+using System.Xml.XPath;
+using System.Diagnostics;
 
-namespace dk.gov.oiosi.xml.xpath {
+namespace dk.gov.oiosi.xml.xpath
+{
 
     /// <summary>
     /// Resolves xpaths
     /// </summary>
-    public class DocumentXPathResolver {
+    public class DocumentXPathResolver
+    {
 
         /// <summary>
         /// Returns whether the given xpath yields any results.
@@ -54,7 +58,7 @@ namespace dk.gov.oiosi.xml.xpath {
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-        ) 
+        )
         {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             XmlNodeList nodes = GetNodes(xmlDocument, xpath, prefixedNamespaces);
@@ -75,7 +79,8 @@ namespace dk.gov.oiosi.xml.xpath {
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-        ) {
+        )
+        {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             //Get the nodes from the xpath query
             XmlNodeList nodes = GetNodes(xmlDocument, xpath, prefixedNamespaces);
@@ -85,6 +90,31 @@ namespace dk.gov.oiosi.xml.xpath {
             if (nodesCount > 1) throw new TooManyXpathResultsException(xpath, nodesCount);
             XmlNode node = nodes[0];
             return node.InnerText;
+        }
+
+        public static string GetElementValueByXPathNavigator(
+            XmlDocument xmlDocument,
+            string xpath,
+            PrefixedNamespace[] prefixedNamespaces
+        )
+        {
+            DocumentXPathResolver.CheckParameters(xmlDocument, prefixedNamespaces);
+            string result;
+
+            if (string.IsNullOrEmpty(xpath))
+            {
+                result = string.Empty;
+            }
+            else
+            {
+                string[] lineIter = DocumentXPathResolver.GetXPathValues(xmlDocument, xpath, prefixedNamespaces);
+                int nodesCount = lineIter.Length;
+                if (nodesCount < 1) throw new NoXPathResultsException(xpath);
+                if (nodesCount > 1) throw new TooManyXpathResultsException(xpath, nodesCount);
+                result = lineIter[0];
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -97,13 +127,14 @@ namespace dk.gov.oiosi.xml.xpath {
         /// <param name="prefixedNamespaces">A list of namespace-prefixes used in the xpath expression</param>
         /// <returns>The first result value from the xpath expression</returns>
         public static string GetFirstElementValueByXPath(
-            XmlDocument xmlDocument, 
-            string xpath, 
+            XmlDocument xmlDocument,
+            string xpath,
             PrefixedNamespace[] prefixedNamespaces
-            ) {
+            )
+        {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             string value = null;
-            if(!TryGetFirstElementValueByXPath(xmlDocument, xpath, prefixedNamespaces, out value))
+            if (!TryGetFirstElementValueByXPath(xmlDocument, xpath, prefixedNamespaces, out value))
                 throw new NoXPathResultsException(xpath);
             return value;
         }
@@ -123,7 +154,8 @@ namespace dk.gov.oiosi.xml.xpath {
             string xpath,
             PrefixedNamespace[] prefixedNamespaces,
             out string value
-        ) {
+        )
+        {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             value = null;
             //Get the nodes from the xpath query
@@ -132,6 +164,42 @@ namespace dk.gov.oiosi.xml.xpath {
             if (nodesCount < 1) return false;
             value = nodes[0].InnerText;
             return true;
+        }
+
+        public static bool TryGetFirstElementValueByXPathNavigator(
+           XmlDocument xmlDocument,
+           string xpath,
+           PrefixedNamespace[] prefixedNamespaces,
+           out string value
+       )
+        {
+            DocumentXPathResolver.CheckParameters(xmlDocument, prefixedNamespaces);
+            bool result;
+
+            if (string.IsNullOrEmpty(xpath))
+            {
+                value = string.Empty;
+                result = true;
+            }
+            else
+            {
+                string[] lineIter = DocumentXPathResolver.GetXPathValues(xmlDocument, xpath, prefixedNamespaces);
+                int nodesCount = lineIter.Length;
+                if (nodesCount < 1) throw new NoXPathResultsException(xpath);
+
+                if (nodesCount >= 1)
+                {
+                    value = lineIter[0];
+                    result = true;
+                }
+                else
+                {
+                    value = string.Empty;
+                    result = false;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -145,13 +213,15 @@ namespace dk.gov.oiosi.xml.xpath {
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-            ) {
+            )
+        {
             CheckParameters(xmlDocument, xpath, prefixedNamespaces);
             //Get the nodes from the xpath query
             XmlNodeList nodes = GetNodes(xmlDocument, xpath, prefixedNamespaces);
             int nodesCount = nodes.Count;
             string[] values = new string[nodesCount];
-            for (int i = 0; i < nodesCount; i++) {
+            for (int i = 0; i < nodesCount; i++)
+            {
                 values[i] = nodes[i].InnerText;
             }
             return values;
@@ -161,7 +231,8 @@ namespace dk.gov.oiosi.xml.xpath {
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-            ) {
+            )
+        {
             if (String.IsNullOrEmpty(xpath))
                 throw new NullOrEmptyArgumentException("xpath");
             if (xmlDocument == null)
@@ -171,11 +242,25 @@ namespace dk.gov.oiosi.xml.xpath {
             if (xpath.Trim().Length <= 1) throw new XPathSizeTooSmallException(xpath);
         }
 
+        private static void CheckParameters(
+            XmlDocument xmlDocument,
+            PrefixedNamespace[] prefixedNamespaces
+            )
+        {
+            if (xmlDocument == null)
+                throw new NullArgumentException("xmlDocument");
+            if (prefixedNamespaces == null)
+                throw new NullArgumentException("prefixedNamespaces");
+        }
+
         private static XmlNodeList GetNodes(
             XmlDocument xmlDocument,
             string xpath,
             PrefixedNamespace[] prefixedNamespaces
-            ) {
+            )
+        {
+            // XmlNodeList x = new XmlNodeList();
+
             //Prepare xpath search
             XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xmlDocument.NameTable);
 
@@ -190,9 +275,8 @@ namespace dk.gov.oiosi.xml.xpath {
             IDictionary<string, string> nis3 = namespaceManager.GetNamespacesInScope(XmlNamespaceScope.Local);
             */
 
-
-
-            foreach (PrefixedNamespace preNs in prefixedNamespaces) {
+            foreach (PrefixedNamespace preNs in prefixedNamespaces)
+            {
                 namespaceManager.AddNamespace(preNs.Prefix, preNs.Namespace);
             }
 
@@ -209,7 +293,52 @@ namespace dk.gov.oiosi.xml.xpath {
             return nodes;
         }
 
+        private static string[] GetXPathValues(
+            XmlDocument xmlDocument,
+            string xpath,
+            PrefixedNamespace[] prefixedNamespaces
+            )
+        {
+            XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xmlDocument.NameTable);
 
+            foreach (PrefixedNamespace preNs in prefixedNamespaces)
+            {
+                namespaceManager.AddNamespace(preNs.Prefix, preNs.Namespace);
+            }
 
+            XPathNavigator navigator = xmlDocument.CreateNavigator();
+            XPathExpression expression = navigator.Compile(xpath);
+            expression.SetContext(namespaceManager);
+
+            List<string> collection = new List<string>();
+            switch (expression.ReturnType)
+            {
+                case XPathResultType.NodeSet:
+                    {
+                        XPathNodeIterator iterator = navigator.Select(expression);
+                        while (iterator.MoveNext())
+                        {
+                            collection.Add(iterator.Current.Value);
+                        }
+
+                        break;
+                    }
+                case XPathResultType.Boolean:
+                case XPathResultType.Number:
+                case XPathResultType.String:// Also convers XPathResultType.Navigator
+                    {
+                        object value = navigator.Evaluate(expression);
+                        collection.Add(value.ToString());
+                        break;
+                    }
+                case XPathResultType.Any:
+                case XPathResultType.Error:
+                    {
+                        break;
+                    }
+            }
+
+            return collection.ToArray();
+        }
     }
 }
