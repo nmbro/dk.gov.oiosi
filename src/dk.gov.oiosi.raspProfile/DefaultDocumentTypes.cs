@@ -87,6 +87,20 @@ namespace dk.gov.oiosi.raspProfile
             //this.Add(this.GetPeppol28aOrder);                          // Ordre
             //this.Add(this.GetPeppol28aOrderResponse);                  // Ordrebekræftelse
             //this.Add(this.GetAttachedDocument);
+
+            // NemKonto  (schemas - 2006/05/01/)
+            this.Add(this.GetNKSPayment);
+            this.Add(this.GetNKSReceipt0);
+            this.Add(this.GetNKSReceipt1);
+            this.Add(this.GetNKSResponse2);
+            this.Add(this.GetNKSResponse5);
+            this.Add(this.GetNKSResponse7);
+            this.Add(this.GetNKSResponse8);
+            this.Add(this.GetNKSResponse9);
+
+            // NemKonto PU (schemas - 2007/10/01/)
+            this.Add(this.GetNemKontoPURequest);
+            this.Add(this.GetNemKontoPUResponse);
         }
 
         /// <summary>
@@ -119,7 +133,13 @@ namespace dk.gov.oiosi.raspProfile
             Add();
         }
 
+        [Obsolete("Rename - use CreateKeyUbl")]
         public virtual ServiceEndpointKey CreateKey(string xpath)
+        {
+            return this.CreateKeyUbl(xpath);
+        }
+
+        public virtual ServiceEndpointKey CreateKeyUbl(string xpath)
         {
             // Note - most key mapping is handled by NHR.
             ServiceEndpointKey key = new ServiceEndpointKey(xpath);
@@ -135,18 +155,18 @@ namespace dk.gov.oiosi.raspProfile
 
             //// oioubl
             KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
-            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");           
             KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
-            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
-            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");           
+            ////KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
+            ////KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
 
             ////mappingExpression.AddMapping(uppercasedEanMapping);
             ////mappingExpression.AddMapping(uppercasedCVRMapping);
             mappingExpression.AddMapping(glnMapping);
-            mappingExpression.AddMapping(dkcprMapping);
             mappingExpression.AddMapping(dkcvrMapping);
-            mappingExpression.AddMapping(dkseMapping);
-            mappingExpression.AddMapping(dkpMapping);
+            mappingExpression.AddMapping(dkcprMapping);
+            ////mappingExpression.AddMapping(dkseMapping);
+            ////mappingExpression.AddMapping(dkpMapping);
 
             return key;
         }
@@ -169,32 +189,52 @@ namespace dk.gov.oiosi.raspProfile
             return schematronValidationConfig;
         }
 
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
+        ////public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIICore(string xslPath)
+        ////{
+        ////    const string schematronErrorXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+        ////    const string schematronErorMessageXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+        ////    SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+        ////    return schematronValidationConfig;
+        ////}
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_Peppol(string xslPath)
         {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+            const string schematronErrorXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+            const string schematronErorMessageXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
             return schematronValidationConfig;
         }
 
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
+        ////public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolBIIRules(string xslPath)
+        ////{
+        ////    const string schematronErrorXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+        ////    const string schematronErorMessageXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+        ////    SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+        ////    return schematronValidationConfig;
+        ////}
+
+        public virtual SchematronValidationConfig CreateSchematronValidationConfig_NKSPU(string xslPath)
         {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+            const string schematronErrorXPath = "/Schematron/Error";
+            const string schematronErorMessageXPath = "/Schematron/Error/Description";
 
             SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
             return schematronValidationConfig;
         }
 
-        public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
-        {
-            const string schematronErrorXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
-            const string schematronErorMessageXPath = "svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+        
 
-            SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
-            return schematronValidationConfig;
-        }
+        ////public virtual SchematronValidationConfig CreateSchematronValidationConfig_PeppolOpenPeppol(string xslPath)
+        ////{
+        ////    const string schematronErrorXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
+        ////    const string schematronErorMessageXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text";
+
+        ////    SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematronErrorXPath, schematronErorMessageXPath);
+        ////    return schematronValidationConfig;
+        ////}
 
         public virtual ServiceEndpointKey CreateSenderKey(string xpath)
         {
@@ -215,7 +255,13 @@ namespace dk.gov.oiosi.raspProfile
             return id;
         }
 
+        [Obsolete("use GetDocumentTypeConfigPeppol")]
         public virtual DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
+        {
+            return this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, namespaces);
+        }
+
+        public virtual DocumentTypeConfig GetDocumentTypeConfigPeppol(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = CreateKey(destinationKeyXPath);
@@ -224,7 +270,7 @@ namespace dk.gov.oiosi.raspProfile
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
             DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
 
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey);//, profileIdXPath);
 
             //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, schematrongErrorXPath, schematronErorMessageXPath);
 
@@ -245,7 +291,7 @@ namespace dk.gov.oiosi.raspProfile
             const ProfileIdXPath profileIdXPath = null;
             DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
 
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey);//, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
 
@@ -268,7 +314,7 @@ namespace dk.gov.oiosi.raspProfile
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
             DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
 
-            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey, profileIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey);//, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
             XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOoiubl2_01(rootName);
@@ -283,6 +329,11 @@ namespace dk.gov.oiosi.raspProfile
 
             return documentType;
         }
+
+        ////public virtual DocumentTypeConfig GetDocumentTypeConfigNKSPU(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        ////{
+           
+        ////}
 
         /// <summary>
         /// The OioUbl Application Response document definition
@@ -907,7 +958,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol1aApplicationResponse()
         {
             const string id = "551e8437-f543-46cf-bd56-492a25e723fc";
-            const string documentName = "Applikationsmeddelse";
+            const string documentName = "Applikationsmeddelse (PEPPOL)";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-ApplicationResponse-2.1.xsd";
@@ -933,10 +984,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOLCORE-UBL-T58.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -947,7 +999,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol1aCatalogue()
         {
             const string id = "24750a44-9a18-46f4-85ef-50f00c90068b";
-            const string documentName = "Katalog";
+            const string documentName = "Katalog (PEPPOL)";
             const string rootName = "Catalogue";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Catalogue-2.1.xsd";
@@ -973,11 +1025,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIICORE-UBL-T19-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T19.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOLCORE-UBL-T19.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T19.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -988,7 +1040,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol28aOrder()
         {
             const string id = "fe16f395-6d83-42ba-8ce1-cf79cc02fc08";
-            const string documentName = "Ordre";
+            const string documentName = "Ordre (PEPPOL)";
             const string rootName = "Order";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
@@ -1014,11 +1066,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T01.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOLCORE-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -1029,7 +1081,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol28aOrderResponse()
         {
             const string id = "1557aed8-e4e5-4cec-9824-4cf5eeaa268b";
-            const string documentName = "Ordrebekræftelse";
+            const string documentName = "Ordrebekræftelse (PEPPOL)";
             const string rootName = "OrderResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-OrderResponse-2.1.xsd";
@@ -1055,10 +1107,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T76.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T76.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/BIIRULES-UBL-T76.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOLCORE-UBL-T76.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-ordering28a/XSLT/OPENPEPPOL-UBL-T76.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -1095,11 +1148,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOLCORE-UBL-T16.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
 
             //// Add extra namespace - Schema issue fix in updating the schema
             //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
@@ -1116,7 +1169,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol36aApplicationResponse()
         {
             const string id = "5b2de589-832d-4901-bbbb-8eba23e00709";
-            const string documentName = "Applikationsmeddelse";
+            const string documentName = "Applikationsmeddelse (PEPPOL)";
             const string rootName = "ApplicationResponse";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-ApplicationResponse-2.1.xsd";
@@ -1142,10 +1195,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/BIIRULES-UBL-T71.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOL-UBL-T71.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/BIIRULES-UBL-T71.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOLCORE-UBL-T71.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-messagelevelresponse36a/XSLT/OPENPEPPOL-UBL-T71.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -1156,7 +1210,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol3aOrder()
         {
             const string id = "db2f9050-2adb-49c2-8f05-af9e440d12ca";
-            const string documentName = "Ordre";
+            const string documentName = "Ordre (PEPPOL)";
             const string rootName = "Order";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Order-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Order-2.1.xsd";
@@ -1182,11 +1236,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOLCORE-UBL-T01.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -1197,7 +1251,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol4aInvoice()
         {
             const string id = "c1061668-0549-452c-b0cb-7d6428fdc5f7";
-            const string documentName = "Faktura";
+            const string documentName = "Faktura (PEPPOL)";
             const string rootName = "Invoice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd";
@@ -1223,11 +1277,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOLCORE-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
@@ -1238,7 +1292,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol5aCreditNote()
         {
             const string id = "21671b33-58a2-4ab5-96bd-42f6c4f22af6";
-            const string documentName = "Kreditnota";
+            const string documentName = "Kreditnota (PEPPOL)";
             const string rootName = "CreditNote";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-CreditNote-2.1.xsd";
@@ -1264,11 +1318,11 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIICORE-UBL-T14-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOL-UBL-T14.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOLCORE-UBL-T14.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOL-UBL-T14.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
 
             //// Add extra namespace - Schema issue fix in updating the schema
             //List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>(documentTypeConfig.Namespaces);
@@ -1285,7 +1339,7 @@ namespace dk.gov.oiosi.raspProfile
         public virtual DocumentTypeConfig GetPeppol5aInvoice()
         {
             const string id = "c9f45e05-8cc0-44df-ab1e-111c5167b0b5";
-            const string documentName = "Faktura";
+            const string documentName = "Faktura (PEPPOL)";
             const string rootName = "Invoice";
             const string rootNamespace = "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2";
             const string xsdPath = "Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd";
@@ -1311,14 +1365,641 @@ namespace dk.gov.oiosi.raspProfile
             List<PrefixedNamespace> prefixedNamespaceCollection = this.GetUblNamespaces();
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIICore("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolBIIRules("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
-            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_PeppolOpenPeppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOLCORE-UBL-T10.xsl"));
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_Peppol("Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl"));
 
-            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfig(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
+            DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, prefixedNamespaceCollection);
             return documentTypeConfig;
         }
 
+
+        /* NemKonto*/
+
+        /// <summary>
+        /// The NKS Betalings Ordre
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSPayment()
+        {
+            const string id = "4873431b-fa84-4579-b789-2e3162d06038";
+            const string documentName = "NKS Betalings Ordre";
+            const string rootName = "NKSPayment";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPaymentOrderInterface/SubmitNKSPaymentOrderRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPaymentOrderInterface/SubmitNKSPaymentOrderResponse";
+            const string serviceContractTModel = "uddi:f283bd90-a247-11dc-a80b-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Kvittering 0
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSReceipt0()
+        {
+            const string id = "0e765453-7422-4d90-b13f-850fc0e5b309";
+            const string documentName = "NKS Kvittering 0";
+            const string rootName = "NKSReceipt0";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt0.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt0Interface/SubmitNKSReceipt0Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt0Interface/SubmitNKSReceipt0Response";
+            const string serviceContractTModel = "uddi:9910d270-a242-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";//"/root:NKSReceipt0/root:MessageHeader/@ebms:id";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+            ////KeyTypeMapping destMapping = new KeyTypeMapping("Kvitteringssvar 0 NKS2C", "ean");
+            ////destinationMappingExpression.AddMapping(destMapping);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";//"/root:NKSReceipt0/root:MessageHeader/@ebms:id";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+            ////KeyTypeMapping sendMapping = new KeyTypeMapping("Kvitteringssvar 0 NKS2C", "ean");
+            ////senderMappingExpression.AddMapping(sendMapping);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Kvittering 1
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSReceipt1()
+        {
+            const string id = "363237e6-dafc-4103-901a-36b499d0eeaa";
+            const string documentName = "NKS Kvittering 1";
+            const string rootName = "NKSReceipt1";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt1.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt1Interface/SubmitNKSReceipt1Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt1Interface/SubmitNKSReceipt1Response";
+            const string serviceContractTModel = "uddi:8df531b0-a242-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";//"/root:NKSReceipt1/root:MessageHeader/@ebms:id";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+            ////KeyTypeMapping destMapping = new KeyTypeMapping("Kvitteringssvar 1 NKS2C", "ean");
+            ////destinationMappingExpression.AddMapping(destMapping);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";// "/root:NKSReceipt1/root:MessageHeader/@ebms:id";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+            ////KeyTypeMapping sendMapping = new KeyTypeMapping("Kvitteringssvar 1 NKS2C", "ean");
+            ////senderMappingExpression.AddMapping(sendMapping);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Retursvar 2
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSResponse2()
+        {
+            const string id = "688df9d0-e564-44a1-8028-617ab625a724";
+            const string documentName = "NKS Retursvar 2";
+            const string rootName = "NKSResponse2";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse2.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse2Interface/SubmitNKSResponse2Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse2Interface/SubmitNKSResponse2Response";
+            const string serviceContractTModel = "uddi:41a37720-a244-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+            ////KeyTypeMapping destMapping = new KeyTypeMapping("Retursvar 2 NKS2C", "ean");
+            ////destinationMappingExpression.AddMapping(destMapping);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+            ////KeyTypeMapping sendMapping = new KeyTypeMapping("Retursvar 2 NKS2C", "ean");
+            ////senderMappingExpression.AddMapping(sendMapping);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Retursvar 5
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSResponse5()
+        {
+            const string id = "3d2b9c5b-5790-4aee-999b-c26a1d66a887";
+            const string documentName = "NKS Retursvar 5";
+            const string rootName = "NKSResponse5";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse5.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse5Interface/SubmitNKSResponse5Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse5Interface/SubmitNKSResponse5Response";
+            const string serviceContractTModel = "uddi:65ee1590-a244-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+            ////KeyTypeMapping destMapping = new KeyTypeMapping("Retursvar 5 NKS2C", "ean");
+            ////destinationMappingExpression.AddMapping(destMapping);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+            ////KeyTypeMapping sendMapping = new KeyTypeMapping("Retursvar 5 NKS2C", "ean");
+            ////senderMappingExpression.AddMapping(sendMapping);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Retursvar 7
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSResponse7()
+        {
+            const string id = "2cd298b8-eb8c-4f06-b7e8-6562cb54bc4e";
+            const string documentName = "NKS Retursvar 7";
+            const string rootName = "NKSResponse7";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse7.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "/root:NKSResponse7/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id";
+            const string destinationFriendlyNameXPath = "/root:NKSResponse7/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr";
+            const string senderKeyXPath = "/root:NKSResponse7/root:OrgnlGrpRefInfAndSts/swift:GrpId";
+            const string senderFriendlyNameXPath = "/root:NKSResponse7/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse7Interface/SubmitNKSResponse7Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse7Interface/SubmitNKSResponse7Response";
+            const string serviceContractTModel = "uddi:ec1ece70-a244-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Retursvar 8
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSResponse8()
+        {
+            const string id = "6ba94fca-368d-49d0-9976-ae497c85eb37";
+            const string documentName = "NKS Retursvar 8";
+            const string rootName = "NKSResponse8";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse8.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "/root:NKSResponse8/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id";
+            const string destinationFriendlyNameXPath = "/root:NKSResponse8/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr";
+            const string senderKeyXPath = "/root:NKSResponse8/root:OrgnlGrpRefInfAndSts/swift:GrpId";
+            const string senderFriendlyNameXPath = "/root:NKSResponse8/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse8Interface/SubmitNKSResponse8Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse8Interface/SubmitNKSResponse8Response";
+            const string serviceContractTModel = "uddi:0bc62390-a245-11dc-a80a-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /// <summary>
+        /// The NKS Retursvar 9
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNKSResponse9()
+        {
+            const string id = "1e780d55-1779-46dc-b438-b023c5e91183";
+            const string documentName = "NKS Retursvar 9";
+            const string rootName = "NKSResponse9";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/";
+            const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse9.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "/root:NKSResponse9/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id";
+            const string destinationFriendlyNameXPath = "/root:NKSResponse9/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr";
+            const string senderKeyXPath = "/root:NKSResponse9/root:OrgnlGrpRefInfAndSts/swift:GrpId";
+            const string senderFriendlyNameXPath = "/root:NKSResponse9/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp";
+            const string profileIdXPathStr = "string('NKS2.0')";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse9Interface/SubmitNKSResponse9Request";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse9Interface/SubmitNKSResponse9Response";
+            const string serviceContractTModel = "uddi:2dd3ca50-a245-11dc-a80b-bfc65441a808";
+            const string documentIdXPath = "";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSNamespaces();
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+        /* NemKonto PU */
+
+        /// <summary>
+        /// The NemKonto PU Request
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNemKontoPURequest()
+        {
+            const string id = "76e3b26b-28a2-4cfd-bf67-27c5ee41014d";
+            const string documentName = "NKS PU Request";
+            const string rootName = "NemkontoPrivatUdbetalerTransporterRequest";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/";
+            const string xsdPath = "";// "Resources/NemKonto/xsd/nemkonto-pu/xml/schemas/2007/10/01/NKSPU_Requester.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode";
+            const string destinationFriendlyNameXPath = "";//;"SimpleResult:DefaultValue=NemKonto";//"/root:" + rootName + "/root:NoneExixtingNode";
+            const string senderKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier";
+            const string senderFriendlyNameXPath = "";//"/root:" + rootName + "/root:NoneExixtingNode";
+            const string profileIdXPathStr = "string('NKS-PU')";//"/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPURequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPUResponse";
+            const string serviceContractTModel = "uddi:6b5fc8cb-5ec9-42bf-9a6f-1b3762f011ed";
+            const string documentIdXPath = "";//"/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSPUNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            //schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('DK:VANS')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSPUNamespaces();
+            //namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }
+
+
+        /// <summary>
+        /// The NemKonto PU Response
+        /// </summary>
+        /// <returns>The document definition</returns>
+        public virtual DocumentTypeConfig GetNemKontoPUResponse()
+        {
+            const string id = "1985c136-96df-4a04-add2-ca95b9de3371";
+            const string documentName = "NKS PU Response";
+            const string rootName = "NemkontoPrivatUdbetalerTransporterResponse";
+            const string rootNamespace = "http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/";
+            const string xsdPath = "";// "Resources/NemKonto/xsd/nemkonto-pu/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterResponse.xsd";
+
+            const string xslUIPath = "Resources/defaultss.xslt";
+            const string destinationKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier";
+            const string destinationFriendlyNameXPath = "";//;"SimpleResult:DefaultValue=NemKonto";//"/root:" + rootName + "/root:NoneExixtingNode";
+            const string senderKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode";
+            const string senderFriendlyNameXPath = "";//"/root:" + rootName + "/root:NoneExixtingNode";
+            const string profileIdXPathStr = "string('NKS-PU')";//"/root:" + rootName + "/cbc:ProfileID";
+            const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseRequest";
+            const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseResponse";
+            const string serviceContractTModel = "uddi:34c56e2a-f920-439b-80c7-831cc4ac523b";
+            const string documentIdXPath = "";//"/root:" + rootName + "/cbc:ID";
+
+            XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
+            //string expectedResult = "urn:www.cenbii.eu:transaction:biitrns014:ver2.0:extended:urn:www.peppol.eu:bis:peppol5a:ver2.0";
+            //string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
+            //XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
+            //ids.Add(xPathDiscriminatorConfig);
+
+            // more XPathDiscriminatorConfig ???
+            //List<PrefixedNamespace> prefixedNamespaceCollection = this.GetNKSPUNamespaces();
+
+            List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
+            //schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_NKSPU("Resources/NemKonto/Schematrons/NemKonto.xsl"));
+
+            // destination
+            ServiceEndpointFriendlyName destinationFriendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
+            ServiceEndpointKey destinationKey = new ServiceEndpointKey(destinationKeyXPath);
+            string destinationKeyTypeXpath = "string('EAN')";
+            KeyTypeMappingExpression destinationMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", destinationKeyTypeXpath);
+            destinationKey.AddMappingExpression(destinationMappingExpression);
+
+            // sender
+            ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
+            ServiceEndpointKey senderKey = new ServiceEndpointKey(senderKeyXPath);
+            string senderKeyTypeXpath = "string('DK:VANS')";
+            KeyTypeMappingExpression senderMappingExpression = new KeyTypeMappingExpression("EndpointKeyType", senderKeyTypeXpath);
+            senderKey.AddMappingExpression(senderMappingExpression);
+
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
+            DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
+            DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, destinationFriendlyName, destinationKey, senderFriendlyName, senderKey);//, profileIdXPath);
+
+            DocumentTypeConfig documentType = new DocumentTypeConfig(new Guid(id), documentName, rootName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, "", endpointInformation, ids, schematronValidationConfigCollection, profileIdXPath, docuIdXPath);
+            List<PrefixedNamespace> namespaces = this.GetNKSPUNamespaces();
+            //namespaces.Add(new PrefixedNamespace(rootNamespace, "root"));
+            documentType.Namespaces = namespaces.ToArray();
+
+            return documentType;
+        }       
+           
         ///// <summary>
         ///// Settings for UBL AttachedDocument 2.1
         ///// </summary>
@@ -1357,6 +2038,31 @@ namespace dk.gov.oiosi.raspProfile
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2", "ccts"));
             namespaces.Add(new PrefixedNamespace("urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2", "sdt"));
             namespaces.Add(new PrefixedNamespace("urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2", "udt"));
+
+            return namespaces;
+        }
+
+        public virtual List<PrefixedNamespace> GetNKSNamespaces()
+        {
+            List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/", "swift"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/", "ebms"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/", "root"));
+           
+            return namespaces;
+        }
+
+        public virtual List<PrefixedNamespace> GetNKSPUNamespaces()
+        {
+            List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/", "nkspu"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ean/xml/schemas/2005/01/10/", "ean"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/", "cvr"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/", "cpr"));
+            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/", "root"));
+            //namespaces.Add(new PrefixedNamespace("", "string"));
+            //namespaces.Add(new PrefixedNamespace("", ""));
+           
             return namespaces;
         }
     }

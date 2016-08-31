@@ -1,0 +1,1 @@
+﻿Schema and Schematron resources is linked though the project 'dk.gov.oiosi.raspProfile'.

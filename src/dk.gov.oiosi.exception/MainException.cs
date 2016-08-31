@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.exception
         private static List<ResourceManager> resources = new List<ResourceManager>();
         private IExceptionMessageStore exceptionMessageStore = new ResourceFileExceptionMessageStore();
         private string message;
-        private string notTranslated = "Not translated: ";
+        private string notTranslated = "Fejlkode ikke oversat: ";
 
         /// <summary>
         /// Construct an exception. It assumes that the error message text is 

@@ -532,10 +532,6 @@
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_CreditNote_Schematron.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl">
-      <Link>Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl">
       <Link>Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -576,10 +572,6 @@
       <Link>Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIICORE-UBL-T14-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIICORE-UBL-T14-V1.0.xsl</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl">
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -588,8 +580,8 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOL-UBL-T14.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\BIICORE-UBL-T19-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\BIICORE-UBL-T19-V1.0.xsl</Link>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOLCORE-UBL-T14.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOLCORE-UBL-T14.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\BIIRULES-UBL-T19.xsl">
@@ -608,8 +600,12 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOL-UBL-T58.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\BIICORE-UBL-T16-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\BIICORE-UBL-T16-V1.0.xsl</Link>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T19.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T19.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T58.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T58.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\BIIRULES-UBL-T16.xsl">
@@ -620,8 +616,8 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\OPENPEPPOL-UBL-T16.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\BIICORE-UBL-T10-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\BIICORE-UBL-T10-V1.0.xsl</Link>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\OPENPEPPOLCORE-UBL-T16.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\OPENPEPPOLCORE-UBL-T16.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\BIIRULES-UBL-T10.xsl">
@@ -632,6 +628,10 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\OPENPEPPOL-UBL-T10.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\OPENPEPPOLCORE-UBL-T10.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\OPENPEPPOLCORE-UBL-T10.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\BIIRULES-UBL-T71.xsl">
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\BIIRULES-UBL-T71.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -640,8 +640,8 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\OPENPEPPOL-UBL-T71.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\BIICORE-UBL-T01-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\BIICORE-UBL-T01-V1.0.xsl</Link>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\OPENPEPPOLCORE-UBL-T71.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\OPENPEPPOLCORE-UBL-T71.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\BIIRULES-UBL-T01.xsl">
@@ -652,8 +652,8 @@
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\OPENPEPPOL-UBL-T01.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\BIICORE-UBL-T01-V1.0.xsl">
-      <Link>Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\BIICORE-UBL-T01-V1.0.xsl</Link>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\BIIRULES-UBL-T01.xsl">
@@ -670,6 +670,14 @@
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOL-UBL-T76.xsl">
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOL-UBL-T76.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T76.xsl">
+      <Link>Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T76.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

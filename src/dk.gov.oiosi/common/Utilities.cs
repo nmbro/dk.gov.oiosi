@@ -238,7 +238,7 @@ namespace dk.gov.oiosi.common
             //Finds the endpoint key type value from the given xpath
             string xpathExpression = mappingExpression.XPathExpression;
             string endPointKeyTypeValue =
-                DocumentXPathResolver.GetElementValueByXpath(
+                DocumentXPathResolver.GetElementValueByXPathNavigator(
                     xmlDocument,
                     xpathExpression,
                     documentType.Namespaces);
@@ -260,7 +260,7 @@ namespace dk.gov.oiosi.common
             //Finds the endpoint key type value from the given xpath
             string xpathExpression = mappingExpression.XPathExpression;
             string endPointKeyTypeValue =
-                DocumentXPathResolver.GetElementValueByXpath(
+                DocumentXPathResolver.GetElementValueByXPathNavigator(
                     xmlDocument,
                     xpathExpression,
                     documentType.Namespaces);

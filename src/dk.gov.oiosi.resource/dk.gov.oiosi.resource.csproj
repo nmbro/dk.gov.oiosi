@@ -409,9 +409,6 @@
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CatalogueRequest_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Catalogue_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CreditNote_Schematron.xsl" />
-    <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_DespatchAdvice_Schematron.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Invoice_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderCancellation_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_OrderChange_Schematron.xsl" />
@@ -424,20 +421,11 @@
     <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\BIS2.0-billing5a-VA_V3.0.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIICORE-UBL-T14-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOL-UBL-T14.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\BIS2.0-catalogue1a-VA_V2.1 - Catalogue and ApplicationResponse.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\BIICORE-UBL-T19-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\CreditNote.txt" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOL-UBL-T14.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOLCORE-UBL-T14.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\Catalogue and ApplicationResponse.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\BIIRULES-UBL-T19.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -450,47 +438,41 @@
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOL-UBL-T58.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\BIS2.0-despatchadvice30a-VA_V2.2 - DespatchAdvice.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\BIICORE-UBL-T16-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T19.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-catalogue1a\XSLT\OPENPEPPOLCORE-UBL-T58.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\DespatchAdvice.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\BIIRULES-UBL-T16.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\OPENPEPPOL-UBL-T16.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\BIS2.0-invoice4a-VA_V3.0 - Invoice.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\BIICORE-UBL-T10-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-despatchadvice30a\XSLT\OPENPEPPOLCORE-UBL-T16.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\Invoice.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\BIIRULES-UBL-T10.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\OPENPEPPOL-UBL-T10.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-invoice4a\XSLT\OPENPEPPOLCORE-UBL-T10.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\MessageLevelResponse.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\BIIRULES-UBL-T71.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\BIS2.0-messagelevelresponse36a-VA_V2.1.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\OPENPEPPOL-UBL-T71.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\BIS2.0-order3a-VA_V2.3.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\BIICORE-UBL-T01-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-messagelevelresponse36a\XSLT\OPENPEPPOLCORE-UBL-T71.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\Order.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\BIIRULES-UBL-T01.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\OPENPEPPOL-UBL-T01.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\BIS2.0-ordering28a-VA_V3.0.txt" />
-    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\BIICORE-UBL-T01-V1.0.xsl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-order3a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\Order and OrderResponse.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\BIIRULES-UBL-T01.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -503,6 +485,8 @@
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOL-UBL-T76.xsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T01.xsl" />
+    <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-ordering28a\XSLT\OPENPEPPOLCORE-UBL-T76.xsl" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,8 +31,10 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811578
         [TestFixtureSetUp]
         public void Setup()
         {
-            CertificateLoader loader = new CertificateLoader();
-            this.ClientCertificate = loader.GetCertificateFromStoreWithSerialNumber("4C 8C F7 64", StoreLocation.CurrentUser, StoreName.My);
+            //CertificateLoader loader = new CertificateLoader();
+            //this.ClientCertificate = loader.GetCertificateFromStoreWithSerialNumber("4C 8C F7 64", StoreLocation.CurrentUser, StoreName.My);
+            this.ClientCertificate = CertificateUtil.InstallAndGetOces2FunctionCertificateFromCertificateStore();
+
             //X509Certificate2 clientCertificate2 = CertificateUtil.InstallAndGetOces2FunctionCertificateFromCertificateStore();
 
             ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Live.xml");

@@ -67,6 +67,12 @@ namespace dk.gov.oiosi.xml.schematron
                     // using saxon
                     this.transform = null;
                 }
+                else if (ex.Message.Contains("is an unknown XSLT function"))
+                {
+                    // To complex - normally behavior
+                    // using saxon
+                    this.transform = null;
+                }
                 else
                 {
                     //Debug.Assert(false, "XslCompiledTransform failed loading stylesheet.", ex.ToString());

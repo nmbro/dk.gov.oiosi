@@ -44,7 +44,7 @@ namespace dk.gov.oiosi.communication.configuration {
         private ServiceEndpointFriendlyName _senderFriendlyName = new ServiceEndpointFriendlyName();
         private ServiceEndpointKey _key = new ServiceEndpointKey();
         private ServiceEndpointKey _senderKey = new ServiceEndpointKey();
-        private ProfileIdXPath _profileIdXPath = new ProfileIdXPath();
+        //private ProfileIdXPath _profileIdXPath = new ProfileIdXPath();
 
         /// <summary>
         /// Constructor
@@ -67,15 +67,15 @@ namespace dk.gov.oiosi.communication.configuration {
             ServiceEndpointFriendlyName friendlyNameXpath,
             ServiceEndpointKey endpointKey,
             ServiceEndpointFriendlyName senderFriendlyNameXpath,
-            ServiceEndpointKey senderKey,
-            ProfileIdXPath profileIdXPath) {
+            ServiceEndpointKey senderKey) {
             _requestAction = requestAction;
             _replyAction = replyAction;
             _endpointFriendlyName = friendlyNameXpath;
             _key = endpointKey;
             _senderFriendlyName = senderFriendlyNameXpath;
             _senderKey = senderKey;
-            _profileIdXPath = profileIdXPath;
+            ////_profileIdXPath = profileIdXPath;
+            ////ProfileIdXPath profileIdXPath
         }
 
         /// <summary>
@@ -132,13 +132,13 @@ namespace dk.gov.oiosi.communication.configuration {
             set { _senderKey = value; } 
         }
 
-        /// <summary>
-        /// XPath expression to OIOUBL Profile
-        /// </summary>
-        [XmlElement("ProfileIdXPath")]
-        public ProfileIdXPath ProfileIdXPath {
-            get { return _profileIdXPath; }
-            set { _profileIdXPath = value; }
-        }
+        /////// <summary>
+        /////// XPath expression to OIOUBL Profile
+        /////// </summary>
+        ////[XmlElement("ProfileIdXPath")]
+        ////public ProfileIdXPath ProfileIdXPath {
+        ////    get { return _profileIdXPath; }
+        ////    set { _profileIdXPath = value; }
+        ////}
     }
 }

@@ -82,15 +82,16 @@ namespace dk.gov.oiosi.test.unit.raspProfile
 
             DocumentTypeCollectionConfig docTypeConfig =
                 ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-            Assert.AreEqual(25, docTypeConfig.DocumentTypes.Length, "Expected number of document types not found.");
+            Assert.AreEqual(35, docTypeConfig.DocumentTypes.Length, "Expected number of document types not found.");
 
             ProfileMappingCollectionConfig profileMappingConfig =
                 ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
 
             //// Count : 32 - OIOUBL + UTS Count : 39 - OIOUBL1.6
             //// Rasp 2.1.0: Peppol 7 new profiles ->
-            //// Count 41
-            Assert.AreEqual(41, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
+            //// NemKonto + 2.
+            //// Count 43
+            Assert.AreEqual(43, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
         }
 
         private void SetupDefaultCacheConfig()

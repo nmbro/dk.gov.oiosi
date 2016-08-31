@@ -57,19 +57,9 @@
     <Compile Include="CertificateUtil.cs" />
     <Compile Include="communication\CVR_99010080\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811578\IntegrationRaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814180\IntegrationOces1RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814197\IntegrationOces1RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814203\IntegrationOces2RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814203\IntegrationOces1RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814210\IntegrationOces2RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814210\IntegrationOces1RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814197\IntegrationOces2RaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009811530\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811547\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009811561\IntegrationRaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009811738\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\AbstractIntegrationRaspRequestTest.cs" />
-    <Compile Include="communication\EAN_5798009814180\IntegrationOces2RaspRequestTest.cs" />
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConstants.cs" />
@@ -153,14 +143,8 @@
     </Content>
     <Content Include="communication\CVR_99010080\local endpoint.txt" />
     <Content Include="communication\EAN_5798009811578\Demo endpoint.txt" />
-    <Content Include="communication\EAN_5798009814203\_Endpoint HTTP Java Version 1.3.0 Foces1.txt" />
-    <Content Include="communication\EAN_5798009814210\_Endpoint HTTP Java Version 1.3.0 Foces2.txt" />
-    <Content Include="communication\EAN_5798009814197\_Endpoint HTTP .Net Version 1.3.0 Foces2.txt" />
-    <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java Version 1.2.1.txt" />
-    <Content Include="communication\EAN_5798009811561\_Endpoint HTTP Java Version 1.2.3.txt" />
-    <Content Include="communication\EAN_5798009811738\_Endpoint HTTP .Net Version 1.2.3.txt" />
-    <Content Include="communication\EAN_5798009811530\_Endpoint HTTP .Net Version 1.2.1.txt" />
-    <Content Include="communication\EAN_5798009814180\_Endpoint HTTP .Net Version 1.3.0 Foces1.txt" />
+    <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java version 2.0.1.txt" />
+    <Content Include="communication\EAN_5798009811561\_Endpoint HTTP .NET version 2.0.2.txt" />
     <Content Include="Resources\Documents\CVR_99010080\OIOUBL_Invoice_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

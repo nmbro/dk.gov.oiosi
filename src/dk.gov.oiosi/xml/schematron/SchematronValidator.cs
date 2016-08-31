@@ -92,8 +92,7 @@ namespace dk.gov.oiosi.xml.schematron
             this.xlstUtil = new XsltUtility();
             this.errorXPath = config.ErrorXPath;
             this.errorMessageXPath = config.ErrorMessageXPath;
-
-            this.compiledXsltEntry = new CompiledXslt(new FileInfo(config.SchematronDocumentPath));
+            this.compiledXsltEntry = new CompiledXslt(new FileInfo(config.SchematronDocumentPath));            
         }
 
         /// <summary>
