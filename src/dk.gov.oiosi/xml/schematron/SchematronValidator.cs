@@ -137,10 +137,10 @@ namespace dk.gov.oiosi.xml.schematron
             bool hasAnyErrors = false;
             XmlDocument schematronResultXmlDocument = null;
             // First we try windows build in transformer. It handle xslt 1.0, but not xslt 2.0. Any
-            // stylesheet in xslt 2.0 will fail, and some xslt 1.0, as thay is too complex for the parser.
+            // stylesheet in xslt 2.0 will fail, and some xslt 1.0, as they is too complex for the parser.
             try
             {
-                // .Net build in xslt pserser - only xslt 1.0
+                // .Net build in xslt parser - only xslt 1.0
                 
                 if (compiledXslt != null && compiledXslt.XslCompiledTransform != null)
                 {
