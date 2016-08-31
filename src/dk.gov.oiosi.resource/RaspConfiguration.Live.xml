@@ -46,20 +46,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -77,20 +69,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -156,20 +140,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -187,20 +163,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -283,20 +251,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -314,28 +274,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -416,20 +365,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -447,28 +388,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Catalogue/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -549,20 +479,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -580,28 +502,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CatalogueRequest/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -682,20 +593,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -713,28 +616,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CatalogueItemSpecificationUpdate/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -815,20 +707,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -846,28 +730,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CataloguePricingUpdate/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -948,20 +821,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -979,28 +844,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CatalogueDeletion/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1081,20 +935,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1112,28 +958,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CreditNote/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1214,20 +1049,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1245,28 +1072,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Invoice/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1347,20 +1163,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1378,28 +1186,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Order/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1480,20 +1277,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1511,28 +1300,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:OrderCancellation/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1613,20 +1391,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1644,28 +1414,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:OrderResponse/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1746,20 +1505,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1777,28 +1528,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:OrderChange/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -1879,20 +1619,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1910,28 +1642,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:OrderResponseSimple/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -2012,20 +1733,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2043,28 +1756,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Reminder/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -2145,20 +1847,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2176,28 +1870,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Statement/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -2278,20 +1961,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2309,28 +1984,17 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:UtilityStatement/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
@@ -2352,7 +2016,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>24750a44-9a18-46f4-85ef-50f00c90068b</Id>
-        <FriendlyName>Katalog</FriendlyName>
+        <FriendlyName>Katalog (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2</RootNamespace>
         <RootName>Catalogue</RootName>
         <IdentifierDiscriminators>
@@ -2411,20 +2075,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2442,45 +2098,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Catalogue/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIICORE-UBL-T19-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T19.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOLCORE-UBL-T19.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T19.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -2495,7 +2140,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>551e8437-f543-46cf-bd56-492a25e723fc</Id>
-        <FriendlyName>Applikationsmeddelse</FriendlyName>
+        <FriendlyName>Applikationsmeddelse (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2</RootNamespace>
         <RootName>ApplicationResponse</RootName>
         <IdentifierDiscriminators>
@@ -2554,20 +2199,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2585,40 +2222,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:ApplicationResponse/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/BIIRULES-UBL-T58.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOLCORE-UBL-T58.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-catalogue1a/XSLT/OPENPEPPOL-UBL-T58.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -2633,7 +2264,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>21671b33-58a2-4ab5-96bd-42f6c4f22af6</Id>
-        <FriendlyName>Kreditnota</FriendlyName>
+        <FriendlyName>Kreditnota (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2</RootNamespace>
         <RootName>CreditNote</RootName>
         <IdentifierDiscriminators>
@@ -2692,20 +2323,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2723,45 +2346,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:CreditNote/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIICORE-UBL-T14-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/BIIRULES-UBL-T14.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOLCORE-UBL-T14.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-billing5a/XSLT/OPENPEPPOL-UBL-T14.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -2776,7 +2388,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>c9f45e05-8cc0-44df-ab1e-111c5167b0b5</Id>
-        <FriendlyName>Faktura</FriendlyName>
+        <FriendlyName>Faktura (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
         <IdentifierDiscriminators>
@@ -2835,20 +2447,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2866,45 +2470,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Invoice/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOLCORE-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -2978,20 +2571,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3009,45 +2594,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:DespatchAdvice/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIICORE-UBL-T16-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/BIIRULES-UBL-T16.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOLCORE-UBL-T16.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-despatchadvice30a/XSLT/OPENPEPPOL-UBL-T16.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -3062,7 +2636,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>c1061668-0549-452c-b0cb-7d6428fdc5f7</Id>
-        <FriendlyName>Faktura</FriendlyName>
+        <FriendlyName>Faktura (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
         <RootName>Invoice</RootName>
         <IdentifierDiscriminators>
@@ -3121,20 +2695,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3152,45 +2718,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Invoice/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIICORE-UBL-T10-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/BIIRULES-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOLCORE-UBL-T10.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-invoice4a/XSLT/OPENPEPPOL-UBL-T10.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -3205,7 +2760,7 @@
       </DocumentTypeConfig>
       <DocumentTypeConfig>
         <Id>db2f9050-2adb-49c2-8f05-af9e440d12ca</Id>
-        <FriendlyName>Ordre</FriendlyName>
+        <FriendlyName>Ordre (PEPPOL)</FriendlyName>
         <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Order-2</RootNamespace>
         <RootName>Order</RootName>
         <IdentifierDiscriminators>
@@ -3264,20 +2819,12 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -3295,45 +2842,34 @@
                     <MapsTo>ean</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:CPR</Value>
-                    <MapsTo>cpr</MapsTo>
-                  </Mapping>
-                  <Mapping>
                     <Value>DK:CVR</Value>
                     <MapsTo>cvr</MapsTo>
                   </Mapping>
                   <Mapping>
-                    <Value>DK:SE</Value>
-                    <MapsTo>se</MapsTo>
-                  </Mapping>
-                  <Mapping>
-                    <Value>DK:P</Value>
-                    <MapsTo>p</MapsTo>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
           </SenderKey>
-          <ProfileIdXPath>
-            <XPath>/root:Order/cbc:ProfileID</XPath>
-          </ProfileIdXPath>
         </EndpointType>
         <XsltTransformStylesheetPath />
         <SchematronValidationConfigs>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIICORE-UBL-T01-V1.0.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
-            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/BIIRULES-UBL-T01.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOLCORE-UBL-T01.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
           <SchematronValidationConfig>
             <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS2.0-order3a/XSLT/OPENPEPPOL-UBL-T01.xsl</SchematronDocumentPath>
-            <ErrorXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
-            <ErrorMessageXPath>svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
           </SchematronValidationConfig>
         </SchematronValidationConfigs>
         <CustomHeaderConfiguration>
@@ -3344,6 +2880,720 @@
         </ProfileIdXPath>
         <DocumentIdXPath>
           <XPath>/root:Order/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>4873431b-fa84-4579-b789-2e3162d06038</Id>
+        <FriendlyName>NKS Betalings Ordre</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSPayment</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:f283bd90-a247-11dc-a80b-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPaymentOrderInterface/SubmitNKSPaymentOrderRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPaymentOrderInterface/SubmitNKSPaymentOrderResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>//ebms:To/ebms:PartyId[1]</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>//ebms:From/ebms:PartyId[1]</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>0e765453-7422-4d90-b13f-850fc0e5b309</Id>
+        <FriendlyName>NKS Kvittering 0</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSReceipt0</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:9910d270-a242-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt0.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt0Interface/SubmitNKSReceipt0Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt0Interface/SubmitNKSReceipt0Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>//ebms:To/ebms:PartyId[1]</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>//ebms:From/ebms:PartyId[1]</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>363237e6-dafc-4103-901a-36b499d0eeaa</Id>
+        <FriendlyName>NKS Kvittering 1</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSReceipt1</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:8df531b0-a242-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt1.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt1Interface/SubmitNKSReceipt1Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt1Interface/SubmitNKSReceipt1Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>//ebms:To/ebms:PartyId[1]</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>//ebms:From/ebms:PartyId[1]</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>688df9d0-e564-44a1-8028-617ab625a724</Id>
+        <FriendlyName>NKS Retursvar 2</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSResponse2</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:41a37720-a244-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse2.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse2Interface/SubmitNKSResponse2Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse2Interface/SubmitNKSResponse2Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>//ebms:To/ebms:PartyId[1]</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>//ebms:From/ebms:PartyId[1]</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>3d2b9c5b-5790-4aee-999b-c26a1d66a887</Id>
+        <FriendlyName>NKS Retursvar 5</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSResponse5</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:65ee1590-a244-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse5.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse5Interface/SubmitNKSResponse5Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse5Interface/SubmitNKSResponse5Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>//ebms:To/ebms:PartyId[1]</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>//ebms:From/ebms:PartyId[1]</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>2cd298b8-eb8c-4f06-b7e8-6562cb54bc4e</Id>
+        <FriendlyName>NKS Retursvar 7</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSResponse7</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:ec1ece70-a244-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse7.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse7Interface/SubmitNKSResponse7Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse7Interface/SubmitNKSResponse7Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:NKSResponse7/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:NKSResponse7/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:NKSResponse7/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:NKSResponse7/root:OrgnlGrpRefInfAndSts/swift:GrpId</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>6ba94fca-368d-49d0-9976-ae497c85eb37</Id>
+        <FriendlyName>NKS Retursvar 8</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSResponse8</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:0bc62390-a245-11dc-a80a-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse8.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse8Interface/SubmitNKSResponse8Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse8Interface/SubmitNKSResponse8Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:NKSResponse8/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:NKSResponse8/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:NKSResponse8/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:NKSResponse8/root:OrgnlGrpRefInfAndSts/swift:GrpId</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>1e780d55-1779-46dc-b438-b023c5e91183</Id>
+        <FriendlyName>NKS Retursvar 9</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</RootNamespace>
+        <RootName>NKSResponse9</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:2dd3ca50-a245-11dc-a80b-bfc65441a808</ServiceContractTModel>
+        <SchemaPath>Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse9.xsd</SchemaPath>
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>swift</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>ebms</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse9Interface/SubmitNKSResponse9Request</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse9Interface/SubmitNKSResponse9Response</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:NKSResponse9/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Issr</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:NKSResponse9/root:OrgnlGrpRefInfAndSts/swift:OrgnlMsgTp</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:NKSResponse9/root:GnlInf/swift:InitgPty/swift:OrgId/swift:PrtryId/swift:Id</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:NKSResponse9/root:OrgnlGrpRefInfAndSts/swift:GrpId</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/NemKonto/Schematrons/NemKonto.xsl</SchematronDocumentPath>
+            <ErrorXPath>/Schematron/Error</ErrorXPath>
+            <ErrorMessageXPath>/Schematron/Error/Description</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS2.0')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>76e3b26b-28a2-4cfd-bf67-27c5ee41014d</Id>
+        <FriendlyName>NKS PU Request</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</RootNamespace>
+        <RootName>NemkontoPrivatUdbetalerTransporterRequest</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:6b5fc8cb-5ec9-42bf-9a6f-1b3762f011ed</ServiceContractTModel>
+        <SchemaPath />
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
+            <Prefix>nkspu</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/ean/xml/schemas/2005/01/10/</Namespace>
+            <Prefix>ean</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/</Namespace>
+            <Prefix>cvr</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/</Namespace>
+            <Prefix>cpr</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPURequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPUResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath />
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath />
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('DK:VANS')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs />
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS-PU')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+      <DocumentTypeConfig>
+        <Id>1985c136-96df-4a04-add2-ca95b9de3371</Id>
+        <FriendlyName>NKS PU Response</FriendlyName>
+        <RootNamespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</RootNamespace>
+        <RootName>NemkontoPrivatUdbetalerTransporterResponse</RootName>
+        <IdentifierDiscriminators />
+        <ServiceContractTModel>uddi:34c56e2a-f920-439b-80c7-831cc4ac523b</ServiceContractTModel>
+        <SchemaPath />
+        <StylesheetPath>Resources/defaultss.xslt</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
+            <Prefix>nkspu</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/ean/xml/schemas/2005/01/10/</Namespace>
+            <Prefix>ean</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/</Namespace>
+            <Prefix>cvr</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/</Namespace>
+            <Prefix>cpr</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseRequest</RequestAction>
+          <ReplyAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseResponse</ReplyAction>
+          <EndpointFriendlyName>
+            <XPath />
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath />
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('EAN')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>string('DK:VANS')</XPathExpression>
+                <Mappings />
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath />
+        <SchematronValidationConfigs />
+        <CustomHeaderConfiguration>
+          <XPaths />
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('NKS-PU')</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath />
         </DocumentIdXPath>
       </DocumentTypeConfig>
     </DocumentTypes>
@@ -3513,6 +3763,14 @@
       <ProfileMapping>
         <Name>urn:www.cenbii.eu:profile:bii03:ver2.0</Name>
         <TModelGuid>uddi:90043120-5eab-468c-be4a-5562d95a73a7</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>NKS2.0</Name>
+        <TModelGuid>uddi:fbc05a80-bde5-11dc-a81d-bfc65441a808</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>NKS-PU</Name>
+        <TModelGuid>uddi:736eed0e-b698-4b2c-946e-7b996009c345</TModelGuid>
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
