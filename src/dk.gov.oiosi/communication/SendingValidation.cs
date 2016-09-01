@@ -56,11 +56,11 @@ using dk.gov.oiosi.logging;
         {
             bool result = true;
             SendingOptionConfig sendingOptionConfig = ConfigurationHandler.GetConfigurationSection<SendingOptionConfig>();
-            this.logger.Trace("Strart SendingValidation");
+            this.logger.Trace("Start SendingValidation");
 
             if (sendingOptionConfig.SchemaValidationBool)
             {
-                this.logger.Trace("Strart schema");
+                this.logger.Trace("Start schema");
                 SchemaValidatorWithLookup schemaValidatorWithLookup = new SchemaValidatorWithLookup();
                 //string document = oiosiMessage.MessageXml
                 XmlDocument document = oiosiMessage.MessageXml;
@@ -70,7 +70,7 @@ using dk.gov.oiosi.logging;
 
             if (result && sendingOptionConfig.SchematronValidationBool)
             {
-                this.logger.Trace("Strart schematron");
+                this.logger.Trace("Start schematron");
                 SchematronValidatorWithLookup schematronValidatorWithLookup = new SchematronValidatorWithLookup();
                 //string document = oiosiMessage.MessageString;
                 XmlDocument document = oiosiMessage.MessageXml;
