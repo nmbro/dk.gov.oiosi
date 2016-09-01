@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Digitaliseringsstyrelsen")]
 [assembly: AssemblyProduct("RASP .Net")]
-[assembly: AssemblyCopyright("Copyright © DIGST 2007-2014")]
+[assembly: AssemblyCopyright("Copyright © DIGST 2007-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
