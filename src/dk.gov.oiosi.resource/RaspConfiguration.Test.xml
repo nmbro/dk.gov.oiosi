@@ -4001,4 +4001,8 @@
       <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
+    <ConfigurationSection xsi:type="SendingOptionConfig">
+    <SchemaValidation>True</SchemaValidation>
+    <SchematronValidation>True</SchematronValidation>
+  </ConfigurationSection>
 </RaspConfiguration>

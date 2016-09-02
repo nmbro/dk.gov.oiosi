@@ -74,6 +74,7 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             SetupDefaultCacheConfig();
             SetupDefaultRootCertificateConfig();
             SetupDefaultOcesCertificates();
+            SetupDefaultSendingOptionConfig();
             ConfigurationHandler.SaveToFile();
 
             Assert.IsTrue(File.Exists(ConfigurationHandler.ConfigFilePath));
@@ -152,6 +153,12 @@ namespace dk.gov.oiosi.test.unit.raspProfile
         {
             DefaultProfileMappingConfig profileMappings = new DefaultProfileMappingConfig();
             profileMappings.AddAll();
+        }
+
+        private void SetupDefaultSendingOptionConfig()
+        {
+            DefaultSendingOptionConfig defaultSendingOptionConfig = new DefaultSendingOptionConfig();
+            defaultSendingOptionConfig.SetIfNotExistsSendingOptionConfig();
         }
     }
 }
