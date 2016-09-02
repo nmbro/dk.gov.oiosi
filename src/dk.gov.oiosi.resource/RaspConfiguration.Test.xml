@@ -92,6 +92,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('OIOXML elektronisk handel')</XPath>
+        </ProfileIdXPath>
         <DocumentIdXPath>
           <XPath>/root:Invoice/com:ID</XPath>
         </DocumentIdXPath>
@@ -186,6 +189,9 @@
         <CustomHeaderConfiguration>
           <XPaths />
         </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>string('OIOXML elektronisk handel')</XPath>
+        </ProfileIdXPath>
         <DocumentIdXPath>
           <XPath>/root:Invoice/com:ID</XPath>
         </DocumentIdXPath>
@@ -3600,6 +3606,14 @@
   </ConfigurationSection>
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
+      <ProfileMapping>
+        <Name>OIOXML elektronisk handel</Name>
+        <TModelGuid>uddi:c001daa0-8ba3-11dd-894e-770465b08940</TModelGuid>
+      </ProfileMapping>
+      <ProfileMapping>
+        <Name>OIOXML elektronisk handel - læs ind</Name>
+        <TModelGuid>uddi:cac79330-8ba3-11dd-894e-770465b08940</TModelGuid>
+      </ProfileMapping>
       <ProfileMapping>
         <Name>Catalogue-CatBas-1.0</Name>
         <TModelGuid>uddi:4697A391-741F-4534-A21E-8F0A460013BB</TModelGuid>
