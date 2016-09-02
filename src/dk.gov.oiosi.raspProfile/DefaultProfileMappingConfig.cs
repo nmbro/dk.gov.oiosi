@@ -57,14 +57,11 @@ namespace dk.gov.oiosi.raspProfile
         /// </summary>
         public virtual void AddAll()
         {
-            // oioxml The xml profiles is not used by the RASP, as there is no profiles in xml. But
-            // it still works. When Rasp sends a xml document, no profile is added in the lookup
-            // parameters, and the UDDI returns all registrated endpoints (uddiResponse), for that
-            // document type (all profiles). In xml there is only on profile, so just one endpoint
-            // (uddiResponse) is returned, and if just one uddiResponse is returned, that one is
-            // used.
-            ////AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
-            ////AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
+            // OioXml - 2
+            this.AddMapping("OIOXML elektronisk handel", "uddi:c001daa0-8ba3-11dd-894e-770465b08940");
+            this.AddMapping("OIOXML elektronisk handel - læs ind", "uddi:cac79330-8ba3-11dd-894e-770465b08940");
+         
+            //// unknown use and unknown origin
             ////AddMapping("OIOXML Elektronisk Regning", "uddi:CD8A1434-AE29-4f6d-A26D-F0F25F2D3DA6");
             ////AddMapping("OIOXML Elektronisk Kreditnota", "uddi:45533597-5A1A-4c15-BEA1-FF3E9EBE5C29");
 
@@ -124,6 +121,7 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("urn:www.cenbii.eu:profile:bii03:ver2.0", "uddi:90043120-5eab-468c-be4a-5562d95a73a7");
             //// this.AddMapping("urn:www.cenbii.eu:profile:bii36:ver2.0", "uddi:d725cfb7-4080-4c72-91a6-3c54d368dbca");
 
+            //// NemKonto
             this.AddMapping("NKS2.0", "uddi:fbc05a80-bde5-11dc-a81d-bfc65441a808");
             this.AddMapping("NKS-PU", "uddi:736eed0e-b698-4b2c-946e-7b996009c345");
         }

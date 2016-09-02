@@ -21,9 +21,15 @@ namespace dk.gov.oiosi.test.integration.uddi {
         private readonly UddiId orderServiceId = new UddiGuidId("uddi:b138dc71-d301-42d1-8c2e-2c3a26faf56a", true);
         private readonly UddiId invoiceServiceId = new UddiGuidId("uddi:2e0b402a-7a5e-476b-8686-b33f54fd1f47", true);
 
-        private readonly UddiId nonExistingProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c1111", true);
-        private readonly UddiId procurementOrdAdvBilSimProfileUddiId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true);
-        private readonly UddiId nesublProfilesProfile5UddiId = new UddiGuidId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true);
+        private readonly UddiId oioxmlInvoiceServiceId =        new UddiGuidId("uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9", true);
+        private readonly UddiId oioxmlInvoiceLaesIndServiceId = new UddiGuidId("uddi:1867d8b0-a893-11dc-a813-bfc65441a808", true);
+        private readonly UddiId oioxmlCreditNoteServiceId =     new UddiGuidId("uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd", true);
+
+        private readonly UddiId nonExistingProfileProfileId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c1111", true);
+        private readonly UddiId procurementOrdAdvBilSimProfileProfileId = new UddiGuidId("uddi:88fbd6d5-6a25-4c08-91cc-5344c73c4d69", true);
+        private readonly UddiId nesublProfilesProfile5ProfileId = new UddiGuidId("uddi:AEE8B6DE-298F-4cbc-A96D-9AE8AED0AC31", true);
+        private readonly UddiId oioxmlElektroniskHandelProfileId = new UddiGuidId("uddi:c001daa0-8ba3-11dd-894e-770465b08940", true);
+        private readonly UddiId oioxmlElektroniskHandelLaesIndProfileId = new UddiGuidId("uddi:cac79330-8ba3-11dd-894e-770465b08940", true);
 
         private const string nonExistingRoleIdentifier = "NonExistingSellerParty";
         private const string sellerPartyRoleIdentifier = "SellerParty";
@@ -59,19 +65,19 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceMustReturnResponseWithValidProperties() {
-            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileProfileId };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
 
             List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.AreEqual(1, lookupResponses.Count, "Exactly 1 endpoint expected.");
 
             var response = lookupResponses[0];
-            AssertReponsePropertiesAreSetCorrectly(response);
+            AssertReponsePropertiesAreSetCorrectlyOrdAdvBilSim(response);
         }
 
         [Test]
         public void LookingUpExistingServiceMustReturnCertificateSubjectString() {
-            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileProfileId };
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
             List<UddiLookupResponse> lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
             
@@ -85,7 +91,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
         [Test]
         public void LookingUpNonExistingServiceShouldReturnZeroResponse()
         {
-            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileProfileId };
             
             var lookupParameters = new LookupParameters(eanIdentifier, nonExistingServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -94,7 +100,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithoutProfileMustReturnEmptyResponseList() {
-            List<UddiId> profileIds = new List<UddiId>() { nonExistingProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { nonExistingProfileProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -103,7 +109,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceProvidingNonExistingRoleMustReturnEmptyResult() {
-            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol, nonExistingRoleIdentifier);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -112,7 +118,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpServiceProvidingExistingRoleMustReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId>() { procurementOrdAdvBilSimProfileProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, orderServiceId, profileIds, acceptHttpProtocol, sellerPartyRoleIdentifier);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -121,7 +127,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithTwoProfilesThatBothExistMustReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId, nesublProfilesProfile5UddiId };
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileProfileId, nesublProfilesProfile5ProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -130,7 +136,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpExistingServiceWithTwoProfilesWhereOnlyOneExistsMustReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { nonExistingProfileUddiId, nesublProfilesProfile5UddiId };
+            List<UddiId> profileIds = new List<UddiId> { nonExistingProfileProfileId, nesublProfilesProfile5ProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -146,7 +152,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
 //        [Test] Temp. made comment, because there exists no DUNS data i NHR at the moment.
         public void LookingUpExistingServiceWithDunsIdentifierShouldReturnResponse() {
-            List<UddiId> profileIds = new List<UddiId> { nesublProfilesProfile5UddiId };
+            List<UddiId> profileIds = new List<UddiId> { nesublProfilesProfile5ProfileId };
 
             var lookupParameters = new LookupParameters(dunsIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -155,7 +161,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpHttpOnlyServiceWithAcceptedProtocolTypeSetToSmtpShouldReturnEmptyResponse() {
-            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileUddiId };
+            List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileProfileId };
 
             var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptSmtpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
@@ -180,36 +186,109 @@ namespace dk.gov.oiosi.test.integration.uddi {
             Assert.AreEqual(uddiIds.Count, processes.Count);
         }
 
-        # region Helper methods
+        [Test]
+        public void LookOioXmlWithProfile()
+        {
+            List<UddiId> profileIds = new List<UddiId>() { this.oioxmlElektroniskHandelProfileId };
+            LookupParameters lookupParameters = new LookupParameters(eanIdentifier, this.oioxmlInvoiceServiceId, profileIds, acceptHttpProtocol);
 
-        private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response) {
-            var expectedActivationDate = new DateTime(2000, 1, 1, 0, 59, 0);
+            List<UddiLookupResponse> lookupResponses = this.GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(1, lookupResponses.Count, "Exactly 1 endpoint expected.");
+
+            UddiLookupResponse response = lookupResponses[0];
+            AssertReponsePropertiesAreSetCorrectly(response, "OIOXML elektronisk handel BuyerParty");
+        }
+
+        [Test]
+        public void LookOioXmlLaesIndWithProfile()
+        {
+            List<UddiId> profileIds = new List<UddiId>() { this.oioxmlElektroniskHandelLaesIndProfileId };
+            LookupParameters lookupParameters = new LookupParameters(eanIdentifier, this.oioxmlInvoiceServiceId, profileIds, acceptHttpProtocol);
+
+            List<UddiLookupResponse> lookupResponses = this.GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(0, lookupResponses.Count, "No 'Læs Ind' should have been registrated.");
+        }
+
+        [Test]
+        public void LookOioXmlWithoutProfile()
+        {            
+            LookupParameters lookupParameters = new LookupParameters(eanIdentifier, this.oioxmlInvoiceServiceId, acceptHttpProtocol);
+
+            List<UddiLookupResponse> lookupResponses = this.GetEndpointsWithProfileFromUddi(lookupParameters);
+            Assert.AreEqual(1, lookupResponses.Count, "Exactly 1 endpoint expected.");
+
+            UddiLookupResponse response = lookupResponses[0];
+            this.AssertReponsePropertiesAreSetCorrectly(response, "OIOXML elektronisk handel BuyerParty");
+            this.AssertReponsePropertiesAreSetCorrectlyProfile(response, "IOXML elektronisk handel - læs ind BuyerParty", false);
+        }
+
+        # region Helper methods
+               
+
+        private void AssertReponsePropertiesAreSetCorrectlyOrdAdvBilSim(UddiLookupResponse response) 
+        {
+            this.AssertReponsePropertiesAreSetCorrectly(response, "Procurement-OrdAdv-BilSim-1.0 SellerParty");
+        }
+
+        private void AssertReponsePropertiesAreSetCorrectly(UddiLookupResponse response, string profile)
+        {
+            this.AssertReponsePropertiesAreSetCorrectlyDate(response);
+            this.AssertReponsePropertiesAreSetCorrectlyEndpoint(response);
+            this.AssertReponsePropertiesAreSetCorrectlyVersion(response);
+            this.AssertReponsePropertiesAreSetCorrectlyInfo(response);
+            this.AssertReponsePropertiesAreSetCorrectlyProfile(response, profile, true);
+        }
+
+        private void AssertReponsePropertiesAreSetCorrectlyDate(UddiLookupResponse response)
+        {
+            DateTime expectedActivationDate = new DateTime(2000, 1, 1, 0, 59, 0);
             Assert.AreEqual(expectedActivationDate, response.ActivationDate);
 
-            var expectedEndpoint = "http://demo.nemhandel.dk/RaspNet/2.1.0/TestService.svc";
+            DateTime expectedExpirationDate = new DateTime(2039, 12, 31, 0, 59, 0);
+            Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
+        }
+
+        private void AssertReponsePropertiesAreSetCorrectlyEndpoint(UddiLookupResponse response)
+        {
+            string expectedEndpoint = "http://demo.nemhandel.dk/RaspNet/2.1.0/TestService.svc";
             Assert.AreEqual(expectedEndpoint, response.EndpointAddress.GetAsUri().AbsoluteUri);
 
-            var expectedIdentifierActual = TestConstants.TESTEAN;
+            string expectedIdentifierActual = TestConstants.TESTEAN;
             Assert.AreEqual(expectedIdentifierActual, response.EndpointIdentifierActual.GetAsString());
+        }
 
-            var expectedExpirationDate = new DateTime(2039, 12, 31, 0, 59, 0);
-            Assert.AreEqual(expectedExpirationDate, response.ExpirationDate);
-
+        private void AssertReponsePropertiesAreSetCorrectlyVersion(UddiLookupResponse response)
+        {
             Assert.AreEqual(false, response.HasNewerVersion);
             Assert.AreEqual(null, response.NewerVersionReference);
 
-            var processRoles = new HashSet<string>();
+            Version expectedVersion = new Version(1, 0, 0);
+            Assert.AreEqual(expectedVersion, response.Version);
+        }
 
-            foreach (var processRoleDefinition in response.ProcessRoles) {
-                processRoles.Add(processRoleDefinition.Name);
-            }
-            Assert.IsTrue(processRoles.Contains("Procurement-OrdAdv-BilSim-1.0 SellerParty"));
-
+        private void AssertReponsePropertiesAreSetCorrectlyInfo(UddiLookupResponse response)
+        {
             Assert.IsNotNull(response.ServiceContactEmail);
             Assert.AreEqual(null, response.TermsOfUseUrl);
+        }
 
-            var expectedVersion = new Version(1, 0, 0);
-            Assert.AreEqual(expectedVersion, response.Version);
+        private void AssertReponsePropertiesAreSetCorrectlyProfile(UddiLookupResponse response, string profile, bool included)
+        {
+            var processRoles = new HashSet<string>();
+
+            foreach (ProcessRoleDefinition processRoleDefinition in response.ProcessRoles)
+            {
+                processRoles.Add(processRoleDefinition.Name);
+            }
+
+            if (included)
+            {
+                Assert.IsTrue(processRoles.Contains(profile));
+            }
+            else
+            {
+                Assert.IsFalse(processRoles.Contains(profile));
+            }
         }
 
         private List<UddiLookupResponse> GetEndpointsWithProfileFromUddi(LookupParameters lookupParameters) {

@@ -87,12 +87,15 @@ namespace dk.gov.oiosi.test.unit.raspProfile
 
             ProfileMappingCollectionConfig profileMappingConfig =
                 ConfigurationHandler.GetConfigurationSection<ProfileMappingCollectionConfig>();
-
-            //// Count : 32 - OIOUBL + UTS Count : 39 - OIOUBL1.6
-            //// Rasp 2.1.0: Peppol 7 new profiles ->
-            //// NemKonto + 2.
-            //// Count 43
-            Assert.AreEqual(43, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
+            //// OioXml           +2
+            //// OIOUBL:         +22
+            //// OIOUBL nesubl:   +6
+            //// OIOUBL Utility:  +2
+            //// OioUbl 20140915: +6
+            //// Peppol profiles: +5
+            //// NemKonto         +2
+            //// TotalCount       45
+            Assert.AreEqual(45, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
         }
 
         private void SetupDefaultCacheConfig()

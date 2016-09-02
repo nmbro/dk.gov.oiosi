@@ -282,13 +282,13 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
-        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
+        public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
             ServiceEndpointKey key = this.CreateKey(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
             ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
-            const ProfileIdXPath profileIdXPath = null;
+            ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileXPath);
             DocumentIdXPath docuIdXPath = new DocumentIdXPath(documentIdXPath);
 
             DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey);//, profileIdXPath);
@@ -843,6 +843,7 @@ namespace dk.gov.oiosi.raspProfile
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
             const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string profileIdXPathStr = "string('OIOXML elektronisk handel')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Request";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07Interface/SubmitCreditNote07Response";
             const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
@@ -851,7 +852,7 @@ namespace dk.gov.oiosi.raspProfile
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
             schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
             return documentTypeConfig;
         }
 
@@ -872,6 +873,7 @@ namespace dk.gov.oiosi.raspProfile
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
             const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string profileIdXPathStr = "string('OIOXML elektronisk handel')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Request";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07Interface/SubmitInvoice07Response";
             const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
@@ -880,7 +882,7 @@ namespace dk.gov.oiosi.raspProfile
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
             schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
             return documentTypeConfig;
         }
 
@@ -910,15 +912,16 @@ namespace dk.gov.oiosi.raspProfile
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
             const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string profileIdXPathStr = "string('OIOXML elektronisk handel - læs ind')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Creditnote07pcpInterface/SubmitCreditNote07pcpResponse";
-            const string serviceContractTModel = "uddi:3bbc9cf0-3c4c-11dc-98be-6976502198bd";
+            const string serviceContractTModel = "uddi:599fbfe0-a894-11dc-a813-bfc65441a808";
             const string documentIdXPath = "/root:" + rootName + "/com:ID";
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
             schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
             return documentTypeConfig;
         }
 
@@ -939,15 +942,16 @@ namespace dk.gov.oiosi.raspProfile
             const string destinationFriendlyNameXPath = "/root:" + rootName + "/com:BuyerParty/com:PartyName[count(../../com:BuyerParty)=1 or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='faktura' or translate(../com:Address/com:ID, 'FAKTUREING', 'faktureing') ='fakturering']/com:Name";
             const string senderKeyXPath = "/root:" + rootName + "/com:SellerParty/com:ID";
             const string senderFriendlyNameXPath = "/root:" + rootName + "/com:SellerParty/com:PartyName/com:Name";
+            const string profileIdXPathStr = "string('OIOXML elektronisk handel - læs ind')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07pipInterface/SubmitInvoice07pipRequest";
             const string documentEndpointResponseAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/Invoice07pipInterface/SubmitInvoice07pipResponse";
-            const string serviceContractTModel = "uddi:bc99bb01-80f9-4f52-89dc-edf7732c56f9";
+            const string serviceContractTModel = "uddi:1867d8b0-a893-11dc-a813-bfc65441a808";
             const string documentIdXPath = "/root:" + rootName + "/com:ID";
 
             List<SchematronValidationConfig> schematronValidationConfigCollection = new List<SchematronValidationConfig>();
             schematronValidationConfigCollection.Add(this.CreateSchematronValidationConfig_OioXml(xslPath));
 
-            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+            DocumentTypeConfig documentTypeConfig = GetDocumentTypeConfigOioublV07(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
             return documentTypeConfig;
         }
 

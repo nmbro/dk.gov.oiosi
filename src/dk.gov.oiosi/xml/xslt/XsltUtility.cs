@@ -220,7 +220,7 @@ namespace dk.gov.oiosi.xml.xslt
                 xmlDocumentWriterSettings.NewLineOnAttributes = true;
                 xmlDocumentWriterSettings.OmitXmlDeclaration = false;
                 xmlDocumentWriterSettings.CloseOutput = false;
-
+                
                 using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlDocumentWriterSettings))
                 {
                     // write document to memory stream Note - this line is expensive in processing time

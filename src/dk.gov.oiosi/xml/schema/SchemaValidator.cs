@@ -93,6 +93,7 @@ namespace dk.gov.oiosi.xml.schema {
                     xmlDocumentWriterSettings.NewLineOnAttributes = true;
                     xmlDocumentWriterSettings.OmitXmlDeclaration = false;
                     xmlDocumentWriterSettings.CloseOutput = false;
+                    
 
                     using (XmlWriter xmlWriter = XmlWriter.Create(stream, xmlDocumentWriterSettings))
                     {
@@ -109,7 +110,7 @@ namespace dk.gov.oiosi.xml.schema {
                     xmlReaderSettings.Schemas.Add(xmlSchemaSet);
                     xmlReaderSettings.ValidationEventHandler += validationEventHandler;
                     xmlReaderSettings.ValidationType = ValidationType.Schema;
-
+                    
                     //Create the schema validating reader.
                     using (XmlReader xmlReader = XmlReader.Create(stream, xmlReaderSettings))
                     {
