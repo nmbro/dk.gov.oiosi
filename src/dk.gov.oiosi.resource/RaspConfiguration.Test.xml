@@ -2915,7 +2915,7 @@
             <XPath>//ebms:From/ebms:PartyId[1]</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:To/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -2925,7 +2925,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:From/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -2986,7 +2986,7 @@
             <XPath>//ebms:From/ebms:PartyId[1]</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:To/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -2996,7 +2996,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:From/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3057,7 +3057,7 @@
             <XPath>//ebms:From/ebms:PartyId[1]</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:To/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3067,7 +3067,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:From/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3128,7 +3128,7 @@
             <XPath>//ebms:From/ebms:PartyId[1]</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:To/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3138,7 +3138,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:From/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3199,7 +3199,7 @@
             <XPath>//ebms:From/ebms:PartyId[1]</XPath>
           </SenderFriendlyName>
           <Key>
-            <Xpath>//ebms:To/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:To/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3209,7 +3209,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>//ebms:From/ebms:PartyId[2]</Xpath>
+            <Xpath>//ebms:From/ebms:PartyId[count(../ebms:PartyId)]</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>

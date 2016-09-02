@@ -1389,9 +1389,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[count(../ebms:PartyId)]";
             const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
-            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[count(../ebms:PartyId)]";
             const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
             const string profileIdXPathStr = "string('NKS2.0')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPaymentOrderInterface/SubmitNKSPaymentOrderRequest";
@@ -1449,9 +1449,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt0.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[count(../ebms:PartyId)]";
             const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
-            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[count(../ebms:PartyId)]";
             const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
             const string profileIdXPathStr = "string('NKS2.0')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt0Interface/SubmitNKSReceipt0Request";
@@ -1513,9 +1513,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt1.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[count(../ebms:PartyId)]";
             const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
-            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[count(../ebms:PartyId)]";
             const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
             const string profileIdXPathStr = "string('NKS2.0')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSReceipt1Interface/SubmitNKSReceipt1Request";
@@ -1577,9 +1577,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse2.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[count(../ebms:PartyId)]";
             const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
-            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[count(../ebms:PartyId)]";
             const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
             const string profileIdXPathStr = "string('NKS2.0')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse2Interface/SubmitNKSResponse2Request";
@@ -1641,9 +1641,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "Resources/NemKonto/xsd/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse5.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[2]";
+            const string destinationKeyXPath = "//ebms:To/ebms:PartyId[count(../ebms:PartyId)]";
             const string destinationFriendlyNameXPath = "//ebms:To/ebms:PartyId[1]";
-            const string senderKeyXPath = "//ebms:From/ebms:PartyId[2]";
+            const string senderKeyXPath = "//ebms:From/ebms:PartyId[count(../ebms:PartyId)]";
             const string senderFriendlyNameXPath = "//ebms:From/ebms:PartyId[1]";
             const string profileIdXPathStr = "string('NKS2.0')";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSResponse5Interface/SubmitNKSResponse5Request";
