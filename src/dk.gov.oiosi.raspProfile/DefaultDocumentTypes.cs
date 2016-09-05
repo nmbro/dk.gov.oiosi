@@ -1894,9 +1894,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "";// "Resources/NemKonto/xsd/nemkonto-pu/xml/schemas/2007/10/01/NKSPU_Requester.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode";
+            const string destinationKeyXPath = "/nkspu:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode";
             const string destinationFriendlyNameXPath = "";//;"SimpleResult:DefaultValue=NemKonto";//"/root:" + rootName + "/root:NoneExixtingNode";
-            const string senderKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier";
+            const string senderKeyXPath = "/nkspu:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier";
             const string senderFriendlyNameXPath = "";//"/root:" + rootName + "/root:NoneExixtingNode";
             const string profileIdXPathStr = "string('NKS-PU')";//"/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPURequest";
@@ -1956,9 +1956,9 @@ namespace dk.gov.oiosi.raspProfile
             const string xsdPath = "";// "Resources/NemKonto/xsd/nemkonto-pu/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterResponse.xsd";
 
             const string xslUIPath = "Resources/defaultss.xslt";
-            const string destinationKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier";
+            const string destinationKeyXPath = "/nkspu:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/ean:EAN13Identifier";
             const string destinationFriendlyNameXPath = "";//;"SimpleResult:DefaultValue=NemKonto";//"/root:" + rootName + "/root:NoneExixtingNode";
-            const string senderKeyXPath = "/root:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode";
+            const string senderKeyXPath = "/nkspu:" + rootName + "/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/nkspu:VansNemkontoEnvironmentCode";
             const string senderFriendlyNameXPath = "";//"/root:" + rootName + "/root:NoneExixtingNode";
             const string profileIdXPathStr = "string('NKS-PU')";//"/root:" + rootName + "/cbc:ProfileID";
             const string documentEndpointRequestAction = "http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseRequest";
@@ -2063,9 +2063,9 @@ namespace dk.gov.oiosi.raspProfile
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/ean/xml/schemas/2005/01/10/", "ean"));
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/", "cvr"));
             namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/", "cpr"));
-            namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/", "root"));
-            //namespaces.Add(new PrefixedNamespace("", "string"));
-            //namespaces.Add(new PrefixedNamespace("", ""));
+            ////namespaces.Add(new PrefixedNamespace("http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/", "root"));
+            ////namespaces.Add(new PrefixedNamespace("", "string"));
+            ////namespaces.Add(new PrefixedNamespace("", ""));
            
             return namespaces;
         }
