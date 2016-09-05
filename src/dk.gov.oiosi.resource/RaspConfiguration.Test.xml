@@ -3482,10 +3482,6 @@
             <Namespace>http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/</Namespace>
             <Prefix>cpr</Prefix>
           </PrefixedNamespace>
-          <PrefixedNamespace>
-            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
-            <Prefix>root</Prefix>
-          </PrefixedNamespace>
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPURequestInterface/SubmitNKSPURequest</RequestAction>
@@ -3497,7 +3493,7 @@
             <XPath />
           </SenderFriendlyName>
           <Key>
-            <Xpath>/root:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
+            <Xpath>/nkspu:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3507,7 +3503,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>/root:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier</Xpath>
+            <Xpath>/nkspu:NemkontoPrivatUdbetalerTransporterRequest/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3555,10 +3551,6 @@
             <Namespace>http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/</Namespace>
             <Prefix>cpr</Prefix>
           </PrefixedNamespace>
-          <PrefixedNamespace>
-            <Namespace>http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/</Namespace>
-            <Prefix>root</Prefix>
-          </PrefixedNamespace>
         </Namespaces>
         <EndpointType>
           <RequestAction>http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/NKSPUResponseInterface/SubmitNKSPUResponseRequest</RequestAction>
@@ -3570,7 +3562,7 @@
             <XPath />
           </SenderFriendlyName>
           <Key>
-            <Xpath>/root:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/ean:EAN13Identifier</Xpath>
+            <Xpath>/nkspu:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/ean:EAN13Identifier</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
@@ -3580,7 +3572,7 @@
             </MappingExpressions>
           </Key>
           <SenderKey>
-            <Xpath>/root:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansRecipientAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
+            <Xpath>/nkspu:NemkontoPrivatUdbetalerTransporterResponse/nkspu:TransporterHeader/nkspu:VansHeader/nkspu:VansSenderAddress/nkspu:VansNemkontoEnvironmentCode</Xpath>
             <MappingExpressions>
               <KeyTypeMappingExpressions>
                 <Name>EndpointKeyType</Name>
