@@ -46,5 +46,7 @@ namespace dk.gov.oiosi.addressing {
         /// <param name="businessIdentifier"></param>
         /// <param name="innerException"></param>
         public IncorrectBusinessIdentifierException(string businessIdentifier, Exception innerException) : base(KeywordFromString.GetKeyword("businessidentifier", businessIdentifier), innerException) { }
+
+        public IncorrectBusinessIdentifierException(string businessIdentifier) : base(KeywordFromString.GetKeyword("businessidentifier", businessIdentifier)) { }
     }
 }

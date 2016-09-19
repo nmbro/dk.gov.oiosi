@@ -55,28 +55,51 @@ namespace dk.gov.oiosi.addressing {
         private string type;
 
         /// <summary>
-        /// Value indication whether or not the value is allowed in the transmitting header
-        /// </summary>
-        private bool isAllowedInPublic;
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="type">A identifying type</param>
         /// <param name="value">The value</param>
         public Identifier(string type, string value)
         {
-            if (string.IsNullOrEmpty(type))
+            this.type = type;
+            this.value = value;
+            this.value = this.VerifyInput();                       
+        }
+
+        /// <summary>
+        /// Validate Identifier
+        /// </summary>
+        private string VerifyInput()
+        {
+            // value - DK99010080, 5798009811578
+            if (string.IsNullOrEmpty(this.value))
+            {
+                throw new NullOrEmptyArgumentException("Value/key is empty");
+            }
+            else if (this.value.Trim().Contains(" "))
+            {
+                throw new IncorrectBusinessIdentifierException(this.value);
+            }
+
+            // type - EAN, DK:CPR, 
+            if (string.IsNullOrEmpty(this.type))
             {
                 throw new NullOrEmptyArgumentException("identifierType");
             }
 
-            this.type = type;
-            if(this.type.Equals("", StringComparison.OrdinalIgnoreCase))
+            // For Type=DK:CVR, strip DK from start (if present)
+            string value;            
+            if (this.type.ToUpperInvariant().Contains("CVR") && this.value.ToUpperInvariant().StartsWith("DK") && this.value.Length > 2)
             {
-                this.isAllowedInPublic = false;
+                value = this.value.Substring(2);
             }
-            this.Set(value);            
+            else
+            {
+                // return the value without modification
+                value = this.value;
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -112,7 +135,7 @@ namespace dk.gov.oiosi.addressing {
         {
             get
             {
-                return this.isAllowedInPublic;
+                return !this.type.Equals("DK:CPR", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -125,35 +148,35 @@ namespace dk.gov.oiosi.addressing {
             return this.value;
         }
 
-        /// <summary>
-        /// Set the value
-        /// </summary>
-        /// <param name="identifier"></param>
-        public virtual void Set(string identifier)
-        {
-            if (string.IsNullOrEmpty(identifier))
-            {
-                throw new NullOrEmptyArgumentException("identifier");
-            }
+        /////// <summary>
+        /////// Set the value
+        /////// </summary>
+        /////// <param name="identifier"></param>
+        ////public virtual void Set(string identifier)
+        ////{
+        ////    if (string.IsNullOrEmpty(identifier))
+        ////    {
+        ////        throw new NullOrEmptyArgumentException("identifier");
+        ////    }
 
-            if (this.type.Equals("DK:CVR", StringComparison.OrdinalIgnoreCase) || this.type.Equals("CVR", StringComparison.OrdinalIgnoreCase))
-            {
-                // If endpoint type is DK:CVR, and the value starts with "dk", strip it away
-                if (identifier.StartsWith("dk", StringComparison.OrdinalIgnoreCase) && identifier.Length > 2)
-                {
-                    this.value = identifier.Substring(2);
-                }
-                else
-                {
-                    this.value = identifier;
-                }
-            }
-            else
-            {
-                // normal endpoint type
-                this.value = identifier;
-            }
-        }
+        ////    if (this.type.Equals("DK:CVR", StringComparison.OrdinalIgnoreCase) || this.type.Equals("CVR", StringComparison.OrdinalIgnoreCase))
+        ////    {
+        ////        // If endpoint type is DK:CVR, and the value starts with "dk", strip it away
+        ////        if (identifier.StartsWith("dk", StringComparison.OrdinalIgnoreCase) && identifier.Length > 2)
+        ////        {
+        ////            this.value = identifier.Substring(2);
+        ////        }
+        ////        else
+        ////        {
+        ////            this.value = identifier;
+        ////        }
+        ////    }
+        ////    else
+        ////    {
+        ////        // normal endpoint type
+        ////        this.value = identifier;
+        ////    }
+        ////}
 
         
         /// <summary>
