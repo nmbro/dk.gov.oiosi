@@ -98,6 +98,16 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             Assert.AreEqual(45, profileMappingConfig.ProfileMappings.Length, "Expected number of profilemappings not found.");
         }
 
+        [Test]
+        public void MyTest()
+        {
+            string fileName = "RaspConfiguration.UnitTest.SetupAllSections.xml";
+            ConfigurationHandler.ConfigFilePath = fileName;
+            DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
+
+
+        }
+
         private void SetupDefaultCacheConfig()
         {
             DefaultCacheConfig defaultCacheConfig = new DefaultCacheConfig();

@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addressing\IdentifierTest.cs" />
     <Compile Include="common\cache\QuantityCacheTest.cs" />
     <Compile Include="common\cache\TimedCacheTest.cs" />
     <Compile Include="common\UtilitiesTest.cs" />
