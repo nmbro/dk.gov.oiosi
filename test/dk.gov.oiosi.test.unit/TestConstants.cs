@@ -81,14 +81,14 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_SCHEMAS21 = raspProfileResources + "Schemas/UBL v2.1/";
 
         // NemKonto
-        public const string PATH_NemKonto_Kvittering0 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Kvittering0_Valid.xml";
-        public const string PATH_NemKonto_Kvittering1 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Kvittering1_Valid.xml";
-        public const string PATH_NemKonto_Payment = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Payment_Valid.xml";
-        public const string PATH_NemKonto_Retursvar2 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar2_Valid.xml";
-        public const string PATH_NemKonto_Retursvar5 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar5_Valid.xml";
-        public const string PATH_NemKonto_Retursvar7 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar7_Valid.xml";
-        public const string PATH_NemKonto_Retursvar8 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar8_Valid.xml";
-        public const string PATH_NemKonto_Retursvar9 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar9_Valid.xml";
+        public const string PATH_NemKonto_Kvittering0 = raspProfileResources + "Documents/NemKonto/Kvittering 0.xml";
+        public const string PATH_NemKonto_Kvittering1 = raspProfileResources + "Documents/NemKonto/Kvittering 1.xml";
+        public const string PATH_NemKonto_Payment = raspProfileResources + "Documents/NemKonto/Payment - komplette indenlandske og udenlandske.xml";
+        public const string PATH_NemKonto_Retursvar2 = raspProfileResources + "Documents/NemKonto/Retursvar 2 med ACPT.xml";
+        public const string PATH_NemKonto_Retursvar5 = raspProfileResources + "Documents/NemKonto/Retursvar 5 med PART.xml";
+        public const string PATH_NemKonto_Retursvar7 = raspProfileResources + "Documents/NemKonto/Retursvar 7.xml";
+        public const string PATH_NemKonto_Retursvar8 = raspProfileResources + "Documents/NemKonto/Retursvar 8.xml";
+        public const string PATH_NemKonto_Retursvar9 = raspProfileResources + "Documents/NemKonto/Retursvar 9.xml";
 
         // public const string PATH_CERTIFICATE_ORGANISATION =
         // "Resources/Certificates/CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer";

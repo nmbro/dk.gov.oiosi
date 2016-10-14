@@ -115,17 +115,6 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
         }
 
         [Test]
-        public void SchematronValidateOioUblAttachedDocument()
-        {
-            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.AttachedDocument.xml";
-            ConfigurationHandler.Reset();
-
-            SchematronValidatorWithLookup validator = new SchematronValidatorWithLookup();
-            string xmlDocument = File.ReadAllText(TestConstants.PATH_AttachedDocument202_XML);
-            validator.Validate(xmlDocument);
-        }
-
-        [Test]
         public void SchematronValidateNemKontoKvittering0()
         {
             SchematronValidatorWithLookup validator = new SchematronValidatorWithLookup();
