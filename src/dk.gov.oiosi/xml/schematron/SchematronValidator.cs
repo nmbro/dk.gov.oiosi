@@ -483,9 +483,7 @@ namespace dk.gov.oiosi.xml.schematron
 
             if (hasAnyErrors)
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.Load(documentAsString.ToStream());
-                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(xmlDocument, this.errorMessageXPath, prefixedNamespaces);
+                string firstErrorMessage = DocumentXPathResolver.GetFirstElementValueByXPath(schematronResultXmlDocument, this.errorMessageXPath, prefixedNamespaces);
                 throw new SchematronErrorException(schematronResultXmlDocument, firstErrorMessage);
             }
             else

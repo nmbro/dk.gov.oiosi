@@ -392,6 +392,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RaspConfiguration.AttacthedDocument.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RaspConfiguration.Live.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -401,6 +405,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\Licenses\RaspLicense.txt" />
+    <Content Include="Resources\NemKonto\Schematrons\NemKonto.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_ApplicationResponse_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_AttachedDocument_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_CatalogueDeletion_Schematron.xsl" />
@@ -418,9 +423,7 @@
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Reminder_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_Statement_Schematron.xsl" />
     <Content Include="Resources\Schematrons\OIOUBL\OIOUBL_UtilityStatement_Schematron.xsl" />
-    <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\CreditNote.txt" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl" />
     <Content Include="Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\OPENPEPPOL-UBL-T14.xsl" />

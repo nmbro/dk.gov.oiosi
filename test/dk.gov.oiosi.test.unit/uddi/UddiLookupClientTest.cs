@@ -170,8 +170,8 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         [Test]
         public void LookingUpAllRegistrationsOnEanNumber() {
-            var lookupParameters = new LookupParameters(eanIdentifier, acceptHttpProtocol);
-            var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
+            LookupParameters lookupParameters = new LookupParameters(eanIdentifier, acceptHttpProtocol);
+            List<UddiLookupResponse> lookupResponses = this.GetEndpointsWithProfileFromUddi(lookupParameters);
             Assert.Greater(lookupResponses.Count, 0);
         }
 

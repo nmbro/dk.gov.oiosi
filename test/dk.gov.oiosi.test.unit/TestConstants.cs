@@ -8,6 +8,7 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_APPLICATIONRESPONSE201_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p1.xml";
 
         public const string PATH_APPLICATIONRESPONSE202_XML = raspProfileResources + "Documents/Examples/OIOUBL_ApplicationResponse_v2p2.xml";
+        public const string PATH_AttachedDocument202_XML = raspProfileResources + "Documents/Examples/OIOUBL_AttachedDocument_v2p2.xml";
         public const string PATH_CATALOGUE_XML = raspProfileResources + "Documents/Examples/OIOUBL_Catalogue_v2p2.xml";
         public const string PATH_CATALOGUEDELETION_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueDeletion_v2p2.xml";
         public const string PATH_CATALOGUEITEMSPECIFICATIONUPDATE_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueItemSpecificationUpdate_v2p2.xml";
@@ -15,7 +16,9 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_CATALOGUEREQUEST_XML = raspProfileResources + "Documents/Examples/OIOUBL_CatalogueRequest_v2p2.xml";
         public const string PATH_CREDITNOTE_XML = raspProfileResources + "Documents/Examples/OIOUBL_CreditNote_v2p2.xml";
         public const string PATH_INVOICE_XML = raspProfileResources + "Documents/Examples/OIOUBL_Invoice_v2p2.xml";
+        public const string PATH_INVOICE_XML_Invalid = raspProfileResources + "Documents/Examples_Invalid/OIOUBL_Invoice_v2p2.xml";
         public const string PATH_INVOICE07_XML = raspProfileResources + "Documents/Examples/OIOXML_Invoice_v0.7.xml";
+        public const string PATH_INVOICE07_XML_Invalid = raspProfileResources + "Documents/Examples_Invalid/OIOXML_Invoice_v0.7.xml";
         public const string PATH_INVOICEWRONGELEMENT_XML = raspProfileResources + "Documents/Examples_Invalid/OIOUBL_Invoice_v2p1_WrongElement.xml";
         public const string PATH_INVOICEWRONGNAMESPACE_XML = raspProfileResources + "Documents/Examples_Invalid/OIOUBL_Invoice_v2p1_WrongNamespace.xml";
         public const string PATH_INVOICENOID_XML = raspProfileResources + "Documents/Examples_Invalid/OIOUBL_Invoice_v2p1_NoId.xml";
@@ -76,6 +79,16 @@ namespace dk.gov.oiosi.test.unit
         public const string PATH_SCHEMAS07 = raspProfileResources + "Schemas/OIOXML v0.7/";
         public const string PATH_SCHEMAS21b = raspProfileResources + "Schemas/OIOUBL v2.1-b/";
         public const string PATH_SCHEMAS21 = raspProfileResources + "Schemas/UBL v2.1/";
+
+        // NemKonto
+        public const string PATH_NemKonto_Kvittering0 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Kvittering0_Valid.xml";
+        public const string PATH_NemKonto_Kvittering1 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Kvittering1_Valid.xml";
+        public const string PATH_NemKonto_Payment = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Payment_Valid.xml";
+        public const string PATH_NemKonto_Retursvar2 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar2_Valid.xml";
+        public const string PATH_NemKonto_Retursvar5 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar5_Valid.xml";
+        public const string PATH_NemKonto_Retursvar7 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar7_Valid.xml";
+        public const string PATH_NemKonto_Retursvar8 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar8_Valid.xml";
+        public const string PATH_NemKonto_Retursvar9 = raspProfileResources + "Documents/Examples/NemKonto/NemKonto_Retursvar9_Valid.xml";
 
         // public const string PATH_CERTIFICATE_ORGANISATION =
         // "Resources/Certificates/CVR19343634.Expire20081121.JERNALDERBYENS VENNER - LDAP test.cer";

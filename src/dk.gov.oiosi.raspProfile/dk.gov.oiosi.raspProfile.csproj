@@ -496,6 +496,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\dk.gov.oiosi.resource\Resources\NemKonto\Schematrons\NemKonto.xsl">
+      <Link>Resources\NemKonto\Schematrons\NemKonto.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schemas\OIOXML_v0.7\readme.txt">
       <Link>Resources\Schemas\OIOXML_v0.7\readme.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -570,7 +574,7 @@
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl">
       <Link>Resources\Schematrons\OIOXML_v0.7\ublinvoice.xsl</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl">
       <Link>Resources\Schematrons\PEPPOL\BIS2.0-billing5a\XSLT\BIIRULES-UBL-T14.xsl</Link>

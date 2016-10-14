@@ -178,7 +178,6 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Security {
                     else
                     {
                         // no exception - all good so far
-
                         switch (response.RevocationCheckStatus)
                         {
                             case RevocationCheckStatus.AllChecksPassed:

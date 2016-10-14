@@ -65,6 +65,7 @@
     <Compile Include="ConfigurationUtil.cs" />
     <Compile Include="configuration\CacheConfigTest.cs" />
     <Compile Include="configuration\ConfigurationHandlerTest.cs" />
+    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupAttachedDocumentTest.cs" />
     <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Program.cs" />
@@ -185,6 +186,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.AttacthedDocument.xml">
+      <Link>Resources\RaspConfiguration.AttacthedDocument.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Live.xml">
       <Link>Resources\RaspConfiguration.Live.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -192,6 +197,33 @@
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
       <Link>Resources\RaspConfiguration.Test.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Kvittering0_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Kvittering1_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Payment_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Retursvar2_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Retursvar5_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Retursvar7_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Retursvar8_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\NemKonto\NemKonto_Retursvar9_Valid.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples\OIOUBL_AttachedDocument_v2p2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples\Peppol1a\Catalogue Response use case 1 TP.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -295,6 +327,9 @@
     <Content Include="Resources\Documents\Examples_Invalid\NoNamespace.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Documents\Examples_Invalid\OIOUBL_CreditNote_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\Examples_Invalid\OIOUBL_Invoice_v2p1_NoId.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -307,7 +342,13 @@
     <Content Include="Resources\Documents\Examples_Invalid\OIOUBL_Invoice_v2p1_WrongNamespace.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Documents\Examples_Invalid\OIOUBL_Invoice_v2p2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\Examples_Invalid\OIOXML_Invoice_Invalid_EanNumber_v0.7.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\Examples_Invalid\OIOXML_Invoice_v0.7.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\Examples_Invalid\UnknownType.xml">
@@ -451,6 +492,7 @@
     <Content Include="Resources\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\Documents\Examples_Invalid\Nemkonto\" />
     <Folder Include="Resources\Schemas\" />
     <Folder Include="Resources\Schematrons\" />
   </ItemGroup>
