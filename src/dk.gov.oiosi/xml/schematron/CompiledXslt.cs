@@ -30,7 +30,7 @@ namespace dk.gov.oiosi.xml.schematron
 
             try
             {
-                // Note, if not explicite marked as version 1.0, we default to SaXon
+                // Note, if not explicit marked as version 1.0, we default to SaXon
                 XsltUtility xsltUtility = new XsltUtility();
                 XmlDocument stylesheet = new XmlDocument();
                 stylesheet.Load(this.fileInfo.FullName);
