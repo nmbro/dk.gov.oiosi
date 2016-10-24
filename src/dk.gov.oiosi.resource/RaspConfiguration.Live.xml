@@ -53,6 +53,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -75,6 +87,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -150,6 +174,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -172,6 +208,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -264,6 +312,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -286,6 +346,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -378,6 +450,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -400,6 +484,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -492,6 +588,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -514,6 +622,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -606,6 +726,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -628,6 +760,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -720,6 +864,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -742,6 +898,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -834,6 +1002,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -856,6 +1036,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -948,6 +1140,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -970,6 +1174,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1062,6 +1278,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1084,6 +1312,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1176,6 +1416,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1198,6 +1450,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1290,6 +1554,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1312,6 +1588,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1404,6 +1692,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1426,6 +1726,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1518,6 +1830,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1540,6 +1864,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1632,6 +1968,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1654,6 +2002,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1746,6 +2106,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1768,6 +2140,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1860,6 +2244,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1882,6 +2278,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -1974,6 +2382,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -1996,6 +2416,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2088,6 +2520,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2110,6 +2554,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2212,6 +2668,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2234,6 +2702,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2336,6 +2816,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2358,6 +2850,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2460,6 +2964,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2482,6 +2998,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2584,6 +3112,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2606,6 +3146,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2708,6 +3260,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2730,6 +3294,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
@@ -2832,6 +3408,18 @@
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
                   </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>
             </MappingExpressions>
@@ -2854,6 +3442,18 @@
                   <Mapping>
                     <Value>DK:CPR</Value>
                     <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
                   </Mapping>
                 </Mappings>
               </KeyTypeMappingExpressions>

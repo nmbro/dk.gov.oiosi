@@ -156,17 +156,19 @@ namespace dk.gov.oiosi.raspProfile
             //// oioubl
             KeyTypeMapping glnMapping = new KeyTypeMapping("GLN", "ean");
             KeyTypeMapping dkcvrMapping = new KeyTypeMapping("DK:CVR", "cvr");
-            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");           
-            ////KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
-            ////KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+            KeyTypeMapping dkcprMapping = new KeyTypeMapping("DK:CPR", "cpr");
+            KeyTypeMapping dkseMapping = new KeyTypeMapping("DK:SE", "se");
+            KeyTypeMapping dkpMapping = new KeyTypeMapping("DK:P", "p");
+            KeyTypeMapping dkvansMapping = new KeyTypeMapping("DK:VANS", "vans");
 
             ////mappingExpression.AddMapping(uppercasedEanMapping);
             ////mappingExpression.AddMapping(uppercasedCVRMapping);
             mappingExpression.AddMapping(glnMapping);
             mappingExpression.AddMapping(dkcvrMapping);
             mappingExpression.AddMapping(dkcprMapping);
-            ////mappingExpression.AddMapping(dkseMapping);
-            ////mappingExpression.AddMapping(dkpMapping);
+            mappingExpression.AddMapping(dkseMapping);
+            mappingExpression.AddMapping(dkpMapping);
+            mappingExpression.AddMapping(dkvansMapping);
 
             return key;
         }
