@@ -34,12 +34,14 @@ using System;
 using dk.gov.oiosi.addressing;
 using dk.gov.oiosi.uddi;
 
-namespace dk.gov.oiosi.common {
+namespace dk.gov.oiosi.common
+{
 
     /// <summary>
     /// Utilities for converting identifiers between strings and other types
     /// </summary>
-    public class IdentifierUtility {
+    public class IdentifierUtility
+    {
         public const string ANONYMOUS = " http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/anonymous";
 
         /// <summary>
@@ -49,21 +51,31 @@ namespace dk.gov.oiosi.common {
         /// </summary>
         /// <param name="uddiIdentifier">The UDDI identifier to convert</param>
         /// <returns>Returns the UddiId subclass intance. Throws an exception if the format is not right</returns>
-        public static UddiId GetUddiIDFromString(string uddiIdentifier) {
+        public static UddiId GetUddiIDFromString(string uddiIdentifier)
+        {
             UddiId idObject;
-            if (uddiIdentifier.ToLower().StartsWith("uddi:")) {
-                if (UddiGuidId.IsValidGuidId(uddiIdentifier, true)) {
+            if (uddiIdentifier.ToLower().StartsWith("uddi:"))
+            {
+                if (UddiGuidId.IsValidGuidId(uddiIdentifier, true))
+                {
                     idObject = new UddiGuidId(uddiIdentifier, true);
                     return idObject;
-                } else {
+                }
+                else
+                {
                     idObject = new UddiStringId(uddiIdentifier, true);
                     return idObject;
                 }
-            } else {
-                if (UddiGuidId.IsValidGuidId(uddiIdentifier, false)) {
+            }
+            else
+            {
+                if (UddiGuidId.IsValidGuidId(uddiIdentifier, false))
+                {
                     idObject = new UddiGuidId(uddiIdentifier, false);
                     return idObject;
-                } else {
+                }
+                else
+                {
                     idObject = new UddiStringId(uddiIdentifier, false);
                     return idObject;
                 }
@@ -104,17 +116,25 @@ namespace dk.gov.oiosi.common {
         /// </summary>
         /// <param name="endpointAddress">the endpoint address</param>
         /// <returns>a specific endpointaddress</returns>
-        public static EndpointAddress GetEndpointAddressFromString(string endpointAddress) {
-
+        public static EndpointAddress GetEndpointAddressFromString(string endpointAddress)
+        {
             EndpointAddress address = null;
-
-            if (endpointAddress.ToLower().StartsWith("http://")) {
+            if (endpointAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            {
                 address = new EndpointAddressHttp(new Uri(endpointAddress));
-            } else if (endpointAddress.ToLower().StartsWith("mailto:")) {
-                address = new EndpointAddressSMTP(new Uri(endpointAddress));
-            } else {
-                address = new EndpointAddressSMTP(new System.Net.Mail.MailAddress(endpointAddress));
             }
+            else
+            {
+                try
+                {
+                    address = new EndpointAddressHttp(new Uri(endpointAddress));
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException("EndpointAddress could not be created from " + endpointAddress, e);
+                }
+            }
+
             return address;
         }
     }

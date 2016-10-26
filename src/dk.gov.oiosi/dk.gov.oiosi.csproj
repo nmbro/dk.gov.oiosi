@@ -562,7 +562,6 @@
     <Compile Include="uddi\UddiLookupConfigurationSection.cs" />
     <Compile Include="uddi\IUddiLookupClient.cs" />
     <Compile Include="addressing\EndpointAddress.cs" />
-    <Compile Include="addressing\EndpointAddressSMTP.cs" />
     <Compile Include="addressing\EndpointAddressHttp.cs" />
     <Compile Include="uddi\UddiLookupResponse.cs" />
     <Compile Include="xml\xslt\XsltUtility.cs" />

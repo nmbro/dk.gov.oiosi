@@ -121,7 +121,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             LookupParameters uddiLookupParameters = new LookupParameters(
                 endpointKey,
                 serviceContractTModel,
-                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http, EndpointAddressTypeCode.email});
+                new List<EndpointAddressTypeCode>() {EndpointAddressTypeCode.http});
             
             
             return uddiLookupParameters;

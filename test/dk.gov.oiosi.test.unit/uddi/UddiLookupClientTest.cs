@@ -35,7 +35,6 @@ namespace dk.gov.oiosi.test.integration.uddi {
         private const string sellerPartyRoleIdentifier = "SellerParty";
 
         private readonly List<EndpointAddressTypeCode> acceptHttpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.http };
-        private readonly List<EndpointAddressTypeCode> acceptSmtpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.email };
         
         [TestFixtureSetUp]
         public void SetupUddi() 
@@ -43,8 +42,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
             ConfigurationUtil.SetupConfiguration();
             UddiConfig config = ConfigurationHandler.GetConfigurationSection<UddiConfig>();
             uddiServerUri = new Uri(config.LookupRegistryFallbackConfig.PrioritizedRegistryList[0].Endpoints[0]);
-        }
-              
+        }              
 
         [Test]
         public void CacheTest() 
@@ -160,12 +158,12 @@ namespace dk.gov.oiosi.test.integration.uddi {
         }
 
         [Test]
-        public void LookingUpHttpOnlyServiceWithAcceptedProtocolTypeSetToSmtpShouldReturnEmptyResponse() {
+        public void LookingUpHttpOnlyServiceWithAcceptedProtocolType() {
             List<UddiId> profileIds = new List<UddiId> { procurementOrdAdvBilSimProfileProfileId };
 
-            var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptSmtpProtocol);
+            var lookupParameters = new LookupParameters(eanIdentifier, invoiceServiceId, profileIds, acceptHttpProtocol);
             var lookupResponses = GetEndpointsWithProfileFromUddi(lookupParameters);
-            Assert.AreEqual(0, lookupResponses.Count);
+            Assert.AreEqual(1, lookupResponses.Count);
         }
 
         [Test]

@@ -34,30 +34,31 @@ namespace dk.gov.oiosi.uddi {
     /// <summary>
     /// Enumeration of endpoint address type codes used in the context of UDDI.
     /// </summary>
-    public enum EndpointAddressTypeCode {
+    public enum EndpointAddressTypeCode  {
         /// <summary>
         /// Represents an http endpoint address type
         /// </summary>
         http,
 
-        /// <summary>
-        /// Represents an https endpoint address type
-        /// </summary>
-        https,
-
-        /// <summary>
-        /// Represents an email endpoint address type
-        /// </summary>
-        email,
-
-        /// <summary>
-        /// Represents an ftp endpoint address type
-        /// </summary>
-        ftp,
-
-        /// <summary>
-        /// Represents other endpoint address type
-        /// </summary>
-        other
+        //// removed in v2.1.0
+        /////// <summary>
+        /////// Represents an https endpoint address type
+        /////// </summary>
+        ////https,
+        //// removed in v2.1.0
+        /////// <summary>
+        /////// Represents an email endpoint address type
+        /////// </summary>
+        ////email,
+        //// removed in v2.1.0
+        /////// <summary>
+        /////// Represents an ftp endpoint address type
+        /////// </summary>
+        ////ftp,
+        //// removed in v2.1.0
+        /////// <summary>
+        /////// Represents other endpoint address type
+        /////// </summary>
+        ////other
     }
 }

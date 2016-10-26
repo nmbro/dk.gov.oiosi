@@ -1,6 +1,6 @@
 How to upgrade project from .NET 2.0.2 to version 2.1.0
 
-This file should be seen as a guide for migrating own code to OIORASP library 2.0.0
+This file should be seen as a guide for migrating own code to OIORASP library 2.1.0
 The guide might not be 100% accurate, depending on your use of the library! Some steps might be unnecessary in your setup, and others might be as detailed as need in your setup!
 
 Steps
@@ -8,10 +8,18 @@ Steps
 
 1. Download new release from https://digitaliser.dk/group/405467/resources
 
-2. Replace your old .dll files with the new .dll and .config files
+2. Replace your old .dll files with the new .dll and .config files.
+   Please note, there is several new file (IKVM and Saxon).
+   Remove the 'dk.gov.oiosi.xml.dll' file (it is not used).
 
 3. RaspConfiguration.xml must be updated!
    See RaspConfiguration-update-2.1.0.pdf
+
+4. Code  updates:
+   EndpointKeyTypeCode class has been removed. Now endpoint types is treated likes strings, so replace the class with 'string'.
+   enum EndpointAddressTypeCode has been cleaned for unusable values (https, email, ftp and other)
+   EndpointAddressSMTP.cs has been deleted.
+
 
 
 That should be it..!
