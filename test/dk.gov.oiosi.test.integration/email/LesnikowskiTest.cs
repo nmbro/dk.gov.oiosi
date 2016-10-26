@@ -5,7 +5,6 @@ using System.Text;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.communication.handlers.email;
 using NUnit.Framework;
-//using dk.gov.oiosi.lesnikowskiMailProvider;
 using System.Threading;
 
 namespace dk.gov.oiosi.test.integration.email {

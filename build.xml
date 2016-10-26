@@ -36,7 +36,6 @@
     <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
     <property name="Root.dir" value="."/>
     <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
-    <property name="Lesnikowski.dir" value="src\dk.gov.oiosi.lesnikowskiMailProvider"/>
     <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
     <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
     <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
@@ -108,16 +107,6 @@
                 </attributes>
             </asminfo>
             <asminfo language="CSharp" output="src\dk.gov.oiosi.exception\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.lesnikowskiMailProvider\Properties\AssemblyInfo.cs">
                 <imports>
                     <import namespace="System.Reflection" />
                 </imports>
@@ -213,12 +202,7 @@
                 <include name="dk.gov.oiosi.xml.dll"/>
             </fileset>
         </zip>
-        <!-- Lesnikowski Mail Provider -->
-        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.lesnikowskiMailProvider-${Revision}.zip">
-            <fileset basedir="${Lesnikowski.dir}\bin\Release">
-                <include name="**/*" />
-            </fileset>
-        </zip -->
+
         <!-- Rasp profile library -->
         <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
             <fileset basedir="${RaspProfile.dir}\bin\Release">
