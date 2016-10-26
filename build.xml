@@ -28,7 +28,7 @@
     <property name="buildType" value="Prod"/>
 
     <property name="Version" value="${Number_Major}.${Number_Minor}.${Number_Patch}"/>
-    <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}"/>
+    <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}_RC1"/>
     <property name="InformationalVersion" value="${Number_Major}.${Number_Minor}.${Number_Patch} ${buildType}"/>
 
     <property name="Dist.dir" value="target\dist"/>
