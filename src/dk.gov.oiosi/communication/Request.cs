@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis Sï¿½gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -67,11 +67,6 @@ namespace dk.gov.oiosi.communication
         /// Constant for http endpoint configuration name
         /// </summary>
         public const string HttpEndpointConfigurationName = "OiosiHttpEndpoint";
-
-        /// <summary>
-        /// Constant for smtp endpoint configuration name
-        /// </summary>
-        public const string MailtoEndpointConfigurationName = "OiosiEmailEndpoint";
 
         /// <summary>
         /// The name of the WCF endpoint configuration
@@ -174,15 +169,6 @@ namespace dk.gov.oiosi.communication
                 {
                     switch (this.requestUri.Scheme)
                     {
-
-                        case "mailto":
-                            {
-                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Mail transport inferred from request URI '" + RequestUri + "'");
-                                this.proxy = new ClientProxy(MailtoEndpointConfigurationName);
-                                logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "Default mail endpoint configuration section '" + MailtoEndpointConfigurationName + "' used to create proxy object");
-                                break;
-                            }
-
                         case "http":
                             {
                                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Verbose, "HTTP transport inferred from request URI '" + RequestUri + "'");
