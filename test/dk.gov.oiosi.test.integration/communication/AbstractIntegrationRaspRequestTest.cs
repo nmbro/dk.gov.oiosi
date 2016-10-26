@@ -199,7 +199,7 @@ namespace dk.gov.oiosi.test.integration.communication
             {
 
                 // Fetch the OIOUBL profile name
-                string profileName = DocumentXPathResolver.GetElementValueByXpath(
+                string profileName = DocumentXPathResolver.GetElementValueByXPathNavigator(
                         message.MessageXml,
                         docTypeConfig.ProfileIdXPath.XPath,
                         docTypeConfig.Namespaces);

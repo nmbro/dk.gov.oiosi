@@ -87,7 +87,7 @@ namespace dk.gov.oiosi.configuration
         }
 
         /// <summary>
-        /// Gets or sets the impmementations assembly
+        /// Gets or sets the implementations assembly
         /// </summary>
         [XmlElement("ImplementationAssembly")]
         public string ImplementationAssembly
@@ -120,6 +120,10 @@ namespace dk.gov.oiosi.configuration
             }
         }
 
+        /// <summary>
+        /// Get the caches key/value as a dictionary
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, string> GetDictionary()
         {
             IDictionary<string, string> map = new Dictionary<string, string>();

@@ -10,8 +10,14 @@ using System.Collections.Specialized;
 
 namespace dk.gov.oiosi.logging
 {
+    /// <summary>
+    /// Log4Net creator
+    /// </summary>
     public class Log4NetCreator : ILoggerCreator
     {
+        /// <summary>
+        /// The log 4 net creator
+        /// </summary>
         public Log4NetCreator()
         {
         }

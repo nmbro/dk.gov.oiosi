@@ -47,7 +47,7 @@ namespace dk.gov.oiosi.raspProfile.communication
 
             // Adds custom headers by xpaths
             foreach (CustomHeaderXPathConfiguration xpath in docTypeConfig.CustomHeaderConfiguration.XPaths) {
-                var value = DocumentXPathResolver.GetElementValueByXpath(message.MessageXml, xpath.XPath, docTypeConfig.Namespaces);
+                var value = DocumentXPathResolver.GetElementValueByXPathNavigator(message.MessageXml, xpath.XPath, docTypeConfig.Namespaces);
                 var qualifiedName = new XmlQualifiedName(xpath.Name, Definitions.DefaultOiosiNamespace2007);
                 message.MessageHeaders[qualifiedName] = MessageHeader.CreateHeader(qualifiedName.Name, qualifiedName.Namespace, value);
             }
@@ -65,7 +65,7 @@ namespace dk.gov.oiosi.raspProfile.communication
 
         private Identifier GetReceiverID(OiosiMessage message, DocumentTypeConfig docTypeConfig)
         {
-            string receiverID = DocumentXPathResolver.GetElementValueByXpath(
+            string receiverID = DocumentXPathResolver.GetElementValueByXPathNavigator(
                             message.MessageXml,
                             docTypeConfig.EndpointType.Key.XPath,
                             docTypeConfig.Namespaces);
@@ -91,7 +91,7 @@ namespace dk.gov.oiosi.raspProfile.communication
 
         private Identifier getSenderID(OiosiMessage message, DocumentTypeConfig docTypeConfig)
         {
-            string senderID = DocumentXPathResolver.GetElementValueByXpath(
+            string senderID = DocumentXPathResolver.GetElementValueByXPathNavigator(
                             message.MessageXml,
                             docTypeConfig.EndpointType.SenderKey.XPath,
                             docTypeConfig.Namespaces);
@@ -134,6 +134,12 @@ namespace dk.gov.oiosi.raspProfile.communication
             this.incapsulatedRequest.GetResponse(request, out response);
         }
 
+        /// <summary>
+        /// GetResponse
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="response"></param>
+        /// <param name="documentId"></param>
         [Obsolete("void GetResponse(OiosiMessage request, out Response response, string documentId", false)]
         public void GetResponse(OiosiMessage request, out Response response, string documentId)
         {

@@ -89,6 +89,10 @@ namespace dk.gov.oiosi.logging
             }
         }
 
+        /// <summary>
+        /// Print current frame
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();

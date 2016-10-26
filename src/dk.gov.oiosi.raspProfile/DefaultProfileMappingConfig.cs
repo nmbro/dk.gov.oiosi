@@ -126,6 +126,11 @@ namespace dk.gov.oiosi.raspProfile
             this.AddMapping("NKS-PU", "uddi:736eed0e-b698-4b2c-946e-7b996009c345");
         }
 
+        /// <summary>
+        /// add mapping
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="tModelGuid"></param>
         public virtual void AddMapping(string name, string tModelGuid)
         {
             ProfileMapping profileMapping = new ProfileMapping(name, tModelGuid);

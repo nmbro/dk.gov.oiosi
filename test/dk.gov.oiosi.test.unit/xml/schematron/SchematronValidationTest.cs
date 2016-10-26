@@ -298,7 +298,7 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
                 }
                 catch (Exception ex)
                 {
-                    Debug.Fail("Something is wrong");
+                    Debug.Fail("Something is wrong:" + ex.Message);
                     throw;
                 }
             }

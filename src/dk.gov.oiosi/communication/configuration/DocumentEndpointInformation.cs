@@ -60,7 +60,6 @@ namespace dk.gov.oiosi.communication.configuration {
         /// <param name="endpointKey">Information about the endpoint unique ID, used for UDDI lookups</param>
         /// <param name="senderFriendlyNameXpath">The xpath to the human reader friendly name of the sender</param>
         /// <param name="senderKey">The endpoint key of the sender</param>
-        /// <param name="profileIdXPath">XPath expression to UBL profile</param>
         public DocumentEndpointInformation(
             string requestAction,
             string replyAction,

@@ -223,7 +223,7 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
                 string xPath = docTypeConfig.ProfileIdXPath.XPath;
                 PrefixedNamespace[] nameSpaces = docTypeConfig.Namespaces;
 
-                profileName = DocumentXPathResolver.GetElementValueByXpath(message.MessageXml, xPath, nameSpaces);
+                profileName = DocumentXPathResolver.GetElementValueByXPathNavigator(message.MessageXml, xPath, nameSpaces);
             }
 
             return profileName;

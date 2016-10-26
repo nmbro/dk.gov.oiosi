@@ -5,6 +5,9 @@ using System.Text;
 
 namespace dk.gov.oiosi.logging
 {
+    /// <summary>
+    /// Log4Net logger
+    /// </summary>
     public class Log4Net : ILogger
     {
         /// <summary>

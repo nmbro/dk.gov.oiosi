@@ -44,6 +44,10 @@ namespace dk.gov.oiosi.raspProfile
     /// </summary>
     public class DefaultDocumentTypes
     {
+        /// <summary>
+        /// delegate DocumentTypeConfig
+        /// </summary>
+        /// <returns></returns>
         public delegate DocumentTypeConfig DocumentTypeConfigDelegate();
 
         /// <summary>
@@ -133,12 +137,22 @@ namespace dk.gov.oiosi.raspProfile
             Add();
         }
 
+        /// <summary>
+        /// CreateKey
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
         [Obsolete("Rename - use CreateKeyUbl")]
         public virtual ServiceEndpointKey CreateKey(string xpath)
         {
             return this.CreateKeyUbl(xpath);
         }
 
+        /// <summary>
+        /// Create key
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
         public virtual ServiceEndpointKey CreateKeyUbl(string xpath)
         {
             // Note - most key mapping is handled by NHR.
@@ -173,6 +187,11 @@ namespace dk.gov.oiosi.raspProfile
             return key;
         }
 
+        /// <summary>
+        /// CreateSchematronValidationConfig OioUbl
+        /// </summary>
+        /// <param name="xslPath"></param>
+        /// <returns></returns>
         public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioUbl(string xslPath)
         {
             const string schematronErrorXPath = "/Schematron/Error";
@@ -182,6 +201,11 @@ namespace dk.gov.oiosi.raspProfile
             return schematronValidationConfig;
         }
 
+        /// <summary>
+        /// CreateSchematronValidationConfig OioXml
+        /// </summary>
+        /// <param name="xslPath"></param>
+        /// <returns></returns>
         public virtual SchematronValidationConfig CreateSchematronValidationConfig_OioXml(string xslPath)
         {
             const string schematronErrorXPath = "/schematron/error";
@@ -200,6 +224,11 @@ namespace dk.gov.oiosi.raspProfile
         ////    return schematronValidationConfig;
         ////}
 
+        /// <summary>
+        /// CreateSchematronValidationConfig Peppol
+        /// </summary>
+        /// <param name="xslPath"></param>
+        /// <returns></returns>
         public virtual SchematronValidationConfig CreateSchematronValidationConfig_Peppol(string xslPath)
         {
             const string schematronErrorXPath = "/svrl:schematron-output/svrl:failed-assert[@flag='fatal']";
@@ -218,6 +247,11 @@ namespace dk.gov.oiosi.raspProfile
         ////    return schematronValidationConfig;
         ////}
 
+        /// <summary>
+        /// CreateSchematronValidationConfig NKSPU
+        /// </summary>
+        /// <param name="xslPath"></param>
+        /// <returns></returns>
         public virtual SchematronValidationConfig CreateSchematronValidationConfig_NKSPU(string xslPath)
         {
             const string schematronErrorXPath = "/Schematron/Error";
@@ -238,18 +272,28 @@ namespace dk.gov.oiosi.raspProfile
         ////    return schematronValidationConfig;
         ////}
 
+        /// <summary>
+        /// Create key
+        /// </summary>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
         public virtual ServiceEndpointKey CreateSenderKey(string xpath)
         {
             // Why is there a differents between CreateSenderKey and CreateKey ??? It is not the
             // configuration file job, to limith the use of NemHandel If the xml document contain
             // errors, the errors should be handled be schema or schematron validation
 
-            ServiceEndpointKey key = CreateKey(xpath);
+            ServiceEndpointKey key = this.CreateKeyUbl(xpath);
 
             return key;
         }
 
-        public virtual XPathDiscriminatorConfig GetCustomizationIdOoiubl2_01(string root)
+        /// <summary>
+        /// Get CustomizationId Oioubl 2_01
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public virtual XPathDiscriminatorConfig GetCustomizationIdOioUbl2_01(string root)
         {
             string expectedResult = "OIOUBL-2.0(1|2)";
             string xpathExpression = "/root:" + root + "/cbc:CustomizationID";
@@ -257,16 +301,60 @@ namespace dk.gov.oiosi.raspProfile
             return id;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="destinationFriendlyNameXPath"></param>
+        /// <param name="destinationKeyXPath"></param>
+        /// <param name="senderFriendlyNameXPath"></param>
+        /// <param name="senderKeyXPath"></param>
+        /// <param name="profileIdXPathStr"></param>
+        /// <param name="documentEndpointRequestAction"></param>
+        /// <param name="documentEndpointResponseAction"></param>
+        /// <param name="rootName"></param>
+        /// <param name="schematronValidationConfigCollection"></param>
+        /// <param name="documentName"></param>
+        /// <param name="rootNamespace"></param>
+        /// <param name="xsdPath"></param>
+        /// <param name="xslUIPath"></param>
+        /// <param name="serviceContractTModel"></param>
+        /// <param name="documentIdXPath"></param>
+        /// <param name="ids"></param>
+        /// <param name="namespaces"></param>
+        /// <returns></returns>
         [Obsolete("use GetDocumentTypeConfigPeppol")]
         public virtual DocumentTypeConfig GetDocumentTypeConfig(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
         {
             return this.GetDocumentTypeConfigPeppol(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, schematronValidationConfigCollection, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath, ids, namespaces);
         }
 
+        /// <summary>
+        /// GetDocumentTypeConfigPeppol
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="destinationFriendlyNameXPath"></param>
+        /// <param name="destinationKeyXPath"></param>
+        /// <param name="senderFriendlyNameXPath"></param>
+        /// <param name="senderKeyXPath"></param>
+        /// <param name="profileIdXPathStr"></param>
+        /// <param name="documentEndpointRequestAction"></param>
+        /// <param name="documentEndpointResponseAction"></param>
+        /// <param name="rootName"></param>
+        /// <param name="schematronValidationConfigCollection"></param>
+        /// <param name="documentName"></param>
+        /// <param name="rootNamespace"></param>
+        /// <param name="xsdPath"></param>
+        /// <param name="xslUIPath"></param>
+        /// <param name="serviceContractTModel"></param>
+        /// <param name="documentIdXPath"></param>
+        /// <param name="ids"></param>
+        /// <param name="namespaces"></param>
+        /// <returns></returns>
         public virtual DocumentTypeConfig GetDocumentTypeConfigPeppol(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath, XpathDiscriminatorConfigCollection ids, List<PrefixedNamespace> namespaces)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointKey key = this.CreateKeyUbl(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
             ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
@@ -284,10 +372,30 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
+        /// <summary>
+        /// GetDocumentTypeConfigOioublV07
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="destinationFriendlyNameXPath"></param>
+        /// <param name="destinationKeyXPath"></param>
+        /// <param name="senderFriendlyNameXPath"></param>
+        /// <param name="senderKeyXPath"></param>
+        /// <param name="profileXPath"></param>
+        /// <param name="documentEndpointRequestAction"></param>
+        /// <param name="documentEndpointResponseAction"></param>
+        /// <param name="rootName"></param>
+        /// <param name="schematronValidationConfigCollection"></param>
+        /// <param name="documentName"></param>
+        /// <param name="rootNamespace"></param>
+        /// <param name="xsdPath"></param>
+        /// <param name="xslUIPath"></param>
+        /// <param name="serviceContractTModel"></param>
+        /// <param name="documentIdXPath"></param>
+        /// <returns></returns>
         public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV07(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileXPath, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = this.CreateKey(destinationKeyXPath);
+            ServiceEndpointKey key = this.CreateKeyUbl(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
             ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileXPath);
@@ -305,12 +413,30 @@ namespace dk.gov.oiosi.raspProfile
             return documentType;
         }
 
-        ////    return documentTypeConfig;
-        ////}
+        /// <summary>
+        /// GetDocumentTypeConfigOioublV2
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="destinationFriendlyNameXPath"></param>
+        /// <param name="destinationKeyXPath"></param>
+        /// <param name="senderFriendlyNameXPath"></param>
+        /// <param name="senderKeyXPath"></param>
+        /// <param name="profileIdXPathStr"></param>
+        /// <param name="documentEndpointRequestAction"></param>
+        /// <param name="documentEndpointResponseAction"></param>
+        /// <param name="rootName"></param>
+        /// <param name="schematronValidationConfigCollection"></param>
+        /// <param name="documentName"></param>
+        /// <param name="rootNamespace"></param>
+        /// <param name="xsdPath"></param>
+        /// <param name="xslUIPath"></param>
+        /// <param name="serviceContractTModel"></param>
+        /// <param name="documentIdXPath"></param>
+        /// <returns></returns>
         public virtual DocumentTypeConfig GetDocumentTypeConfigOioublV2(string id, string destinationFriendlyNameXPath, string destinationKeyXPath, string senderFriendlyNameXPath, string senderKeyXPath, string profileIdXPathStr, string documentEndpointRequestAction, string documentEndpointResponseAction, string rootName, List<SchematronValidationConfig> schematronValidationConfigCollection, string documentName, string rootNamespace, string xsdPath, string xslUIPath, string serviceContractTModel, string documentIdXPath)
         {
             ServiceEndpointFriendlyName friendlyName = new ServiceEndpointFriendlyName(destinationFriendlyNameXPath);
-            ServiceEndpointKey key = CreateKey(destinationKeyXPath);
+            ServiceEndpointKey key = this.CreateKeyUbl(destinationKeyXPath);
             ServiceEndpointFriendlyName senderFriendlyName = new ServiceEndpointFriendlyName(senderFriendlyNameXPath);
             ServiceEndpointKey senderKey = CreateSenderKey(senderKeyXPath);
             ProfileIdXPath profileIdXPath = new ProfileIdXPath(profileIdXPathStr);
@@ -319,7 +445,7 @@ namespace dk.gov.oiosi.raspProfile
             DocumentEndpointInformation endpointInformation = new DocumentEndpointInformation(documentEndpointRequestAction, documentEndpointResponseAction, friendlyName, key, senderFriendlyName, senderKey);//, profileIdXPath);
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOoiubl2_01(rootName);
+            XPathDiscriminatorConfig xPathDiscriminatorConfig = GetCustomizationIdOioUbl2_01(rootName);
             ids.Add(xPathDiscriminatorConfig);
 
             //SchematronValidationConfig schematronValidationConfig = new SchematronValidationConfig(xslPath, OIOUBL_SCHEMATRON_ERROR_XPATH, OIOUBL_SCHEMATRON_ERRORMESSAGE_XPATH);
@@ -889,6 +1015,10 @@ namespace dk.gov.oiosi.raspProfile
         }
 
         //// DocumentTypeConfig documentTypeConfig = this.GetDocumentTypeConfigOioublV2(id, destinationFriendlyNameXPath, destinationKeyXPath, senderFriendlyNameXPath, senderKeyXPath, profileIdXPathStr, documentEndpointRequestAction, documentEndpointResponseAction, rootName, xslPath, documentName, rootNamespace, xsdPath, xslUIPath, serviceContractTModel, documentIdXPath);
+        /// <summary>
+        /// Get name-space
+        /// </summary>
+        /// <returns></returns>
         public virtual List<PrefixedNamespace> GetOioxmlNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
@@ -2036,6 +2166,11 @@ namespace dk.gov.oiosi.raspProfile
         //// string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
         //// XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
         //// ids.Add(xPathDiscriminatorConfig); // more XPathDiscriminatorConfig ???
+
+        /// <summary>
+        /// Get name-space
+        /// </summary>
+        /// <returns></returns>
         public virtual List<PrefixedNamespace> GetUblNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
@@ -2048,6 +2183,10 @@ namespace dk.gov.oiosi.raspProfile
             return namespaces;
         }
 
+        /// <summary>
+        /// Get name-space
+        /// </summary>
+        /// <returns></returns>
         public virtual List<PrefixedNamespace> GetNKSNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();
@@ -2058,6 +2197,10 @@ namespace dk.gov.oiosi.raspProfile
             return namespaces;
         }
 
+        /// <summary>
+        /// Get name-space
+        /// </summary>
+        /// <returns></returns>
         public virtual List<PrefixedNamespace> GetNKSPUNamespaces()
         {
             List<PrefixedNamespace> namespaces = new List<PrefixedNamespace>();

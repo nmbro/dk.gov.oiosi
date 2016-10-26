@@ -120,7 +120,7 @@ namespace dk.gov.oiosi.xml.schematron
         /// Validates a document
         /// </summary>
         /// <param name="xmlDocument">document to validate</param>
-        /// <param name="xmlSchematronStylesheet">stylesheet to use</param>
+        /// <param name="compiledXslt">stylesheet to use</param>
         public void SchematronValidateXmlDocument(XmlDocument xmlDocument, CompiledXslt compiledXslt)
         {
             if (this.errorXPath == null)
@@ -343,7 +343,7 @@ namespace dk.gov.oiosi.xml.schematron
         /// document has any schematron errors it throws a SchematronErrorException
         /// </summary>
         /// <param name="documentAsString">The document to be validated</param>
-        /// <param name="schematronStylesheet"></param>
+        /// <param name="compiledXslt"></param>
         public void SchematronValidateXmlDocument(string documentAsString, CompiledXslt compiledXslt)
         {
             if (this.errorXPath == null)

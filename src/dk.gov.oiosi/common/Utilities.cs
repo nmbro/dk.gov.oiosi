@@ -85,7 +85,7 @@ namespace dk.gov.oiosi.common
         )
         {
             // 1. Get the endpoint as string:
-            string endpointKeyString = DocumentXPathResolver.GetElementValueByXpath(xmlDoc, xpath, prefixedNamespaces);
+            string endpointKeyString = DocumentXPathResolver.GetElementValueByXPathNavigator(xmlDoc, xpath, prefixedNamespaces);
 
             // 2. Convert to the correct IIdentifierType:
             Identifier id = IdentifierUtility.GetIdentifierFromKeyType(endpointKeyString, keyType);

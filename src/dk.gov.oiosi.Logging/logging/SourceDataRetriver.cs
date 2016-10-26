@@ -8,18 +8,33 @@ namespace dk.gov.oiosi.logging
     using System.Diagnostics;
     using System.Reflection;
 
+    /// <summary>
+    /// Source data - used to skip certain frame to find the correct sender
+    /// </summary>
     public class SourceDataRetriver
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public SourceDataRetriver()
         {
         }
 
+        /// <summary>
+        /// Get the source data
+        /// </summary>
+        /// <returns></returns>
         public SourceData SourceData()
         {
             return this.SourceData(4);
 
         }
 
+        /// <summary>
+        /// Get the source data, by skipping stack
+        /// </summary>
+        /// <param name="skipStackTrace"></param>
+        /// <returns></returns>
         public SourceData SourceData(int skipStackTrace)
         {
             SourceData result;

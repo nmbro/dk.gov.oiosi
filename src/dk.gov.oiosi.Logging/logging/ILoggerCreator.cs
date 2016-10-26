@@ -5,6 +5,9 @@ using System.Text;
 
 namespace dk.gov.oiosi.logging
 {
+    /// <summary>
+    /// Logger creator interface
+    /// </summary>
     public interface ILoggerCreator
     {
         /// <summary>

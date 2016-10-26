@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.xml.xpath.discriminator {
         public static bool Discriminate(XPathDiscriminatorConfig config, XmlDocument xmlDocument, PrefixedNamespace[] namespaces) {
             string xpathExpression = config.XPathExpression;
             string xpathResult = config.XPathExpectedResult;
-            string result = DocumentXPathResolver.GetElementValueByXpath(xmlDocument, xpathExpression, namespaces);
+            string result = DocumentXPathResolver.GetElementValueByXPathNavigator(xmlDocument, xpathExpression, namespaces);
             Regex regex = new Regex(xpathResult);
             return regex.IsMatch(result);
         }

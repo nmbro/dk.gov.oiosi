@@ -71,8 +71,8 @@ namespace dk.gov.oiosi.test.request {
 
                         // Use the OIOSI library class Request to send the document
                         Console.WriteLine("Starting to send...");
-                        
-                        request.GetResponse(message, out response, Guid.NewGuid().ToString());
+
+                        request.GetResponse(message, Guid.NewGuid().ToString(), out response);
                         
                         #endregion
                     }
@@ -85,7 +85,7 @@ namespace dk.gov.oiosi.test.request {
                         // Use the OIOSI library class Request to send the document
                         Console.WriteLine("Starting to send...");
                         request = new RaspRequest(new Request("OiosiHttpEndpoint"));
-                        request.GetResponse(message, out response, Guid.NewGuid().ToString());
+                        request.GetResponse(message, Guid.NewGuid().ToString(), out response);
 
                         #endregion
                     }

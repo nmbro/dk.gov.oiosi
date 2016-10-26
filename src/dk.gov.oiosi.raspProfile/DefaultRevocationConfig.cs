@@ -42,8 +42,14 @@ namespace dk.gov.oiosi.raspProfile
     /// </summary>
     public abstract class DefaultRevocationConfig
     {
+        /// <summary>
+        /// set revocation
+        /// </summary>
         public abstract void SetRevocationLookupFactoryConfig();
 
+        /// <summary>
+        /// set test
+        /// </summary>
         public abstract void SetTestRevocationLookupFactoryConfig();
 
         /// <summary>

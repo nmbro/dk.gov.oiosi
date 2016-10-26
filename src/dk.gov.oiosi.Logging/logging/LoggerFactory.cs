@@ -9,11 +9,17 @@ using System.IO;
 
 namespace dk.gov.oiosi.logging
 {
+    /// <summary>
+    /// Log factory
+    /// </summary>
     public class LoggerFactory
     {
         private static LoggerFactory factory = new LoggerFactory();
         private static ILoggerCreator loggerCreator;
 
+        /// <summary>
+        /// Private constructor
+        /// </summary>
         private LoggerFactory()
         {
             loggerCreator = this.LoadConfiguration();
