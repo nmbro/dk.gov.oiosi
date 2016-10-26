@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis Sï¿½gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -41,7 +41,7 @@ namespace dk.gov.oiosi.security.ldap
     /// from this exception, except for those classes that implement interfaces that
     /// throws exceptions of a different type.
     /// 
-    /// The exception inherits the MainException from the ExceptionHandeling module. This is
+    /// The exception inherits the MainException from the ExceptionHandling module. This is
     /// to implement that the exception messages are stored in the ErrorMessage.resx file of 
     /// this module.
     /// </summary>

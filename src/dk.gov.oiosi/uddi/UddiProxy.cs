@@ -6482,7 +6482,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6506,7 +6506,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6531,7 +6531,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6556,7 +6556,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6581,7 +6581,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6606,7 +6606,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6631,7 +6631,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6657,7 +6657,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6682,7 +6682,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -6707,7 +6707,7 @@ public partial class UDDI_Inquiry_PortTypeClient : System.ServiceModel.ClientBas
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7218,7 +7218,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7242,7 +7242,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7266,7 +7266,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7290,7 +7290,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7314,7 +7314,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7338,7 +7338,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7362,7 +7362,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7387,7 +7387,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7412,7 +7412,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7437,7 +7437,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7462,7 +7462,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7487,7 +7487,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7512,7 +7512,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7537,7 +7537,7 @@ public partial class UDDI_Publication_PortTypeClient : System.ServiceModel.Clien
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7674,7 +7674,7 @@ public partial class UDDI_Security_PortTypeClient : System.ServiceModel.ClientBa
     }
     
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>
@@ -7698,7 +7698,7 @@ public partial class UDDI_Security_PortTypeClient : System.ServiceModel.ClientBa
     }
 
     /// <summary>
-    /// This method has been updated with custom fault handeling due to 
+    /// This method has been updated with custom fault handling due to 
     /// following problem in the WCF implementation
     /// http://social.msdn.microsoft.com/Forums/en-US/wcf/thread/435850aa-bf74-4158-a29a-256135207948
     /// </summary>

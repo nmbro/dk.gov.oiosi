@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis Sï¿½gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -41,7 +41,7 @@ namespace dk.gov.oiosi.security.lookup {
     /// instance of this exception, but all exceptions in the module inherits from this 
     /// exception.
     /// 
-    /// The exception inherits the MainException from the ExceptionHandeling module. This is
+    /// The exception inherits the MainException from the ExceptionHandling module. This is
     /// to implement that the exception messages are stored in the ErrorMessage.resx file of 
     /// this module.
     /// </summary>
