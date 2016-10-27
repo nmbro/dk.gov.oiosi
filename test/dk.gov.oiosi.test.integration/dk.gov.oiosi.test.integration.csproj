@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateUtil.cs" />
+    <Compile Include="communication\EAN_5798009883735\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009883940\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\EAN_5798009883933\IntegrationRaspRequestTest.cs" />
     <Compile Include="communication\CVR_99010080\IntegrationRaspRequestTest.cs" />
@@ -142,8 +143,14 @@
     <Content Include="..\..\src\dk.gov.oiosi.resource\RaspConfiguration.Test.xml">
       <Link>Resources\RaspConfiguration.Test.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="communication\CVR_99010080\local endpoint.txt" />
+    <Content Include="Resources\Documents\EAN_5798009883735\DIGST%27s VAX NemHandel.txt" />
+    <Content Include="Resources\Documents\EAN_5798009883735\OIOUBL_Invoice_v2p1.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\EAN_5798009883940\OIOUBL_Invoice_v2p1.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

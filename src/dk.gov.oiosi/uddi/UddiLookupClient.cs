@@ -77,18 +77,17 @@ namespace dk.gov.oiosi.uddi
 
             try
             {
-                this.uddiProxy = new UDDI_Inquiry_PortTypeClient("OiosiClientEndpointInquiry");
+                System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress(address + "?platform=Net&raspVersion=" + raspVersion);
+                System.ServiceModel.BasicHttpBinding binding = new System.ServiceModel.BasicHttpBinding("NHR_lookup");                
+                this.uddiProxy = new UDDI_Inquiry_PortTypeClient(binding, endpointAddress);                
             }
             catch(Exception)                
             {
-                // If this creation failed, it is possible that you are missing the app.config file in your project
-                // If it still fails, the library version in in configuration file must be update to current version.
+                // If this creation failed, it is possible that the library version in in configuration file must be update to current version.
                 // Se configuration/system.serviceModel/extensions/behaviorExtensions/add[name="signCustomHeaders"]
-                this.logger.Error("Creation of UDDI_Inquiry_PortTypeClient failed. It is possible that you are missing the app.config file in your project, or the library version in in configuration file must be update to current version. configuration/system.serviceModel/extensions/behaviorExtensions/add[@name=signCustomHeaders)/@type=... ");
+                this.logger.Error("Creation of lookup client failed. It is possible that you are missing the app.config file in your project, or the library version in in configuration file must be update to current version. configuration/system.serviceModel/extensions/behaviorExtensions/add[@name=signCustomHeaders)/@type=... ");
                 throw;
             }
-
-            this.uddiProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress(address + "?platform=Net&raspVersion=" + raspVersion);
         }
 
         #region IUddiLookupClient Members
