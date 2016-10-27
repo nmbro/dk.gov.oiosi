@@ -21,7 +21,7 @@ using dk.gov.oiosi.xml.xpath;
 using NUnit.Framework;
 using dk.gov.oiosi.security.lookup;
 
-namespace dk.gov.oiosi.test.integration.communication.EAN_5798009883933
+namespace dk.gov.oiosi.test.integration.communication.EAN_5798009883735
 {
 
     [TestFixture]
@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009883933
         [Test]
         public void OioublInvoice201MustBeSendableByRaspRequest()
         {
-            AssertSendable("Resources/Documents/EAN_5798009883933/OIOUBL_Invoice_v2p1.xml");
+            AssertSendable("Resources/Documents/EAN_5798009883735/OIOUBL_Invoice_v2p1.xml");
         }       
     }
 }
