@@ -54,15 +54,6 @@ namespace dk.gov.oiosi.test.request {
             // Configure the mail accounts in the dynamic configuration file
             // This code uses the same server address and account info for sending and receiving
             EmailTransportUserConfig mailConfig = ConfigurationHandler.GetConfigurationSection<EmailTransportUserConfig>();
-            mailConfig.SendInbox.ServerAddress = mailConfig.SendOutbox.ServerAddress = server;
-            mailConfig.SendInbox.UserName = mailConfig.SendOutbox.UserName = account;
-            mailConfig.SendInbox.Password = mailConfig.SendOutbox.Password = password;
-            mailConfig.SendInbox.ReplyAddress = mailConfig.SendOutbox.ReplyAddress = "mailto:" + replyAddress;
-
-            // Configure the request to use the settings
-            request.Policy.InboxMailConfiguration = mailConfig.SendInbox;
-            request.Policy.OutboxMailConfiguration = mailConfig.SendOutbox;
-
         }
         #endregion
 

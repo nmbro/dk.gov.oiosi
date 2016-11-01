@@ -44,67 +44,67 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
     /// </summary>
     [XmlRoot(Namespace = ConfigurationHandler.RaspNamespaceUrl)]
     public class EmailTransportUserConfig {
-        private const int DEFAULT_POP3_PORT = 110; // POP3
-        private const int DEFAULT_SMTP_PORT = 25;  // SMTP
+        ////private const int DEFAULT_POP3_PORT = 110; // POP3
+        ////private const int DEFAULT_SMTP_PORT = 25;  // SMTP
 
         private CertificateStoreIdentification _sendCertificate;
-        private CertificateStoreIdentification _receiveCertificate;
+        //private CertificateStoreIdentification _receiveCertificate;
 
-        private MailServerConfiguration _sendOutbox;
-        private MailServerConfiguration _sendInbox;
+        //private MailServerConfiguration _sendOutbox;
+        //private MailServerConfiguration _sendInbox;
 
-        private MailServerConfiguration _receiveInbox;
-        private MailServerConfiguration _receiveOutbox;
+        //private MailServerConfiguration _receiveInbox;
+        //private MailServerConfiguration _receiveOutbox;
 
         /// <summary>
         /// Deafult constructor
         /// </summary>
         public EmailTransportUserConfig() {
-            TcpPort defaultSmtpPort = (TcpPort)DEFAULT_SMTP_PORT;
-            TcpPort defaultPop3Port = (TcpPort)DEFAULT_POP3_PORT;
-            _receiveCertificate = new CertificateStoreIdentification();
+            //TcpPort defaultSmtpPort = (TcpPort)DEFAULT_SMTP_PORT;
+            //TcpPort defaultPop3Port = (TcpPort)DEFAULT_POP3_PORT;
+            //_receiveCertificate = new CertificateStoreIdentification();
             _sendCertificate = new CertificateStoreIdentification();
-            MailServerConnectionPolicy sendOutboxConnectionPolicy = new MailServerConnectionPolicy(defaultSmtpPort);
-            MailServerConnectionPolicy receiveOutboxConnectionPolicy = new MailServerConnectionPolicy(defaultSmtpPort);
-            MailServerConnectionPolicy sendInboxConnectionPolicy = new MailServerConnectionPolicy(defaultPop3Port);
-            MailServerConnectionPolicy receiveInboxConnectionPolicy = new MailServerConnectionPolicy(defaultPop3Port);
-            _sendOutbox = new MailServerConfiguration("", "", "", "", sendOutboxConnectionPolicy);
-            _sendInbox = new MailServerConfiguration("", "", "", "", sendInboxConnectionPolicy);
-            _receiveInbox = new MailServerConfiguration("", "", "", "", receiveInboxConnectionPolicy);
-            _receiveOutbox = new MailServerConfiguration("", "", "", "", receiveOutboxConnectionPolicy);
+        //    MailServerConnectionPolicy sendOutboxConnectionPolicy = new MailServerConnectionPolicy(defaultSmtpPort);
+        //    MailServerConnectionPolicy receiveOutboxConnectionPolicy = new MailServerConnectionPolicy(defaultSmtpPort);
+        //    MailServerConnectionPolicy sendInboxConnectionPolicy = new MailServerConnectionPolicy(defaultPop3Port);
+        //    MailServerConnectionPolicy receiveInboxConnectionPolicy = new MailServerConnectionPolicy(defaultPop3Port);
+        //    _sendOutbox = new MailServerConfiguration("", "", "", "", sendOutboxConnectionPolicy);
+        //    _sendInbox = new MailServerConfiguration("", "", "", "", sendInboxConnectionPolicy);
+        //    _receiveInbox = new MailServerConfiguration("", "", "", "", receiveInboxConnectionPolicy);
+        //    _receiveOutbox = new MailServerConfiguration("", "", "", "", receiveOutboxConnectionPolicy);
         }
 
-        /// <summary>
-        /// When initiating a send operation the SendOutbox is used
-        /// </summary>
-        public MailServerConfiguration SendOutbox {
-            get { return _sendOutbox; }
-            set { _sendOutbox = value; }
-        }
+        /////// <summary>
+        /////// When initiating a send operation the SendOutbox is used
+        /////// </summary>
+        ////public MailServerConfiguration SendOutbox {
+        ////    get { return _sendOutbox; }
+        ////    set { _sendOutbox = value; }
+        ////}
 
-        /// <summary>
-        /// When receiving reply to a send operation the SendInbox is used
-        /// </summary>
-        public MailServerConfiguration SendInbox {
-            get { return _sendInbox; }
-            set { _sendInbox = value; }
-        }
+        /////// <summary>
+        /////// When receiving reply to a send operation the SendInbox is used
+        /////// </summary>
+        ////public MailServerConfiguration SendInbox {
+        ////    get { return _sendInbox; }
+        ////    set { _sendInbox = value; }
+        ////}
 
-        /// <summary>
-        /// When receiving a send operation (initiated by other client) then the ReceiveInbox is used
-        /// </summary>
-        public MailServerConfiguration ReceiveInbox {
-            get { return _receiveInbox; }
-            set { _receiveInbox = value; }
-        }
+        /////// <summary>
+        /////// When receiving a send operation (initiated by other client) then the ReceiveInbox is used
+        /////// </summary>
+        ////public MailServerConfiguration ReceiveInbox {
+        ////    get { return _receiveInbox; }
+        ////    set { _receiveInbox = value; }
+        ////}
 
-        /// <summary>
-        /// when replying to send operation (initiated by other client) then the ReceiveOutbox is used
-        /// </summary>
-        public MailServerConfiguration ReceiveOutbox {
-            get { return _receiveOutbox; }
-            set { _receiveOutbox = value; }
-        }
+        /////// <summary>
+        /////// when replying to send operation (initiated by other client) then the ReceiveOutbox is used
+        /////// </summary>
+        ////public MailServerConfiguration ReceiveOutbox {
+        ////    get { return _receiveOutbox; }
+        ////    set { _receiveOutbox = value; }
+        ////}
 
         /// <summary>
         /// Gets and sets the send certificate x509 store indentification
@@ -114,12 +114,12 @@ namespace dk.gov.oiosi.extension.wcf.EmailTransport {
             set { _sendCertificate = value; }
         }
 
-        /// <summary>
-        /// Gets and sets the receive certificate x509 store indentification
-        /// </summary>
-        public CertificateStoreIdentification ReceiveCertificate {
-            get { return _receiveCertificate; }
-            set { _receiveCertificate = value; }
-        }
+        /////// <summary>
+        /////// Gets and sets the receive certificate x509 store indentification
+        /////// </summary>
+        ////public CertificateStoreIdentification ReceiveCertificate {
+        ////    get { return _receiveCertificate; }
+        ////    set { _receiveCertificate = value; }
+        ////}
     }
 }

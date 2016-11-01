@@ -567,7 +567,22 @@ namespace dk.gov.oiosi.communication
             }
             catch (Exception)
             {
-                return new Exception(sb.ToString());
+                string errorMessage = sb.ToString();
+                if (string.IsNullOrEmpty(errorMessage))
+                {
+                    if (e.GetBaseException() != null)
+                    {
+                        // The e.Message is just: 'Protocol Error'.
+                        // Better error description here:
+                        errorMessage = e.GetBaseException().Message;
+                    }
+                    else
+                    {
+                        errorMessage = e.Message;
+                    }                    
+                }
+
+                return new Exception(errorMessage);
             }            
 
             return exception;
