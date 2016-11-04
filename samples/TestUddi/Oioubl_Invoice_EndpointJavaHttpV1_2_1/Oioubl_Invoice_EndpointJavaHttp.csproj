@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7C3CE344-C17E-4804-8BD8-499423B05ECB}</ProjectGuid>
+    <ProjectGuid>{332FFFFB-D1B2-42A1-9B1A-4309AB70D1DB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.samples.TestUddi</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.samples.TestUddi.EndpointNetHttpV1_2_1</AssemblyName>
+    <RootNamespace>dk.gov.oiosi.samples.ProductionUddi</RootNamespace>
+    <AssemblyName>Oioubl_Invoice_EndpointJavaHttp</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Oioubl_Invoice_EndpointNetHttpV1_2_1.cs" />
+    <Compile Include="Oioubl_Invoice_EndpointJavaHttp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

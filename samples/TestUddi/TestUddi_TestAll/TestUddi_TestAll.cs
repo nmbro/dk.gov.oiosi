@@ -16,22 +16,10 @@ namespace dk.gov.oiosi.samples.TestUddi
         public override void Add(IList<MyKeyValuePair<AbstractRaspClient, Boolean>> list)
         {
             // Add all the test from the local service
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_Invoice_EndpointJavaHttpV1_2_1(), false));
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_Invoice_EndpointJavaHttpV1_2_3(), false));            
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_Invoice_EndpointNetHttpV1_2_1(), false));
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_Invoice_EndpointNetHttpV1_2_3(), false));
-            /*
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_UTS_EndpointJavaHttpV1_2_3.Program(), false));
-            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.TestUddi.Oioubl_UTS_EndpointNetHttpV1_2_3.Program(), false));*/
+            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_EndpointJavaHttp(), false));
 
-
-
-           /* LocalService_TestAll localService_testAll = new LocalService_TestAll();
-            localService_testAll.AddTest(list);
-
-            // Add all the test from the TestUddi
-            TestUddi_TestAll testUddi_TestAll = new TestUddi_TestAll();
-            testUddi_TestAll.AddTest(list);*/
+            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_EndpointNetHttp(), false));
+            list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_LiveTestEndpoint(), false));
         }
 
 
@@ -43,6 +31,5 @@ namespace dk.gov.oiosi.samples.TestUddi
             Console.WriteLine("Finish");
             Console.ReadKey();
         }
-
     }
 }

@@ -63,21 +63,17 @@
       <Project>{5DC53C0F-D4D1-4E78-9764-0F25F32FF14C}</Project>
       <Name>dk.gov.oiosi.raspProfile</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Oioubl_Invoice_EndpointJavaHttpV1_2_1\Oioubl_Invoice_EndpointJavaHttpV1_2_1.csproj">
+    <ProjectReference Include="..\..\ProductionUddi\Oioubl_Invoice_LiveTestEndpoint\Oioubl_Invoice_LiveTestEndpoint.csproj">
+      <Project>{cb3b7203-8ee9-49d8-9abc-5dc5025c525e}</Project>
+      <Name>Oioubl_Invoice_LiveTestEndpoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oioubl_Invoice_EndpointJavaHttpV1_2_1\Oioubl_Invoice_EndpointJavaHttp.csproj">
       <Project>{332FFFFB-D1B2-42A1-9B1A-4309AB70D1DB}</Project>
-      <Name>Oioubl_Invoice_EndpointJavaHttpV1_2_1</Name>
+      <Name>Oioubl_Invoice_EndpointJavaHttp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Oioubl_Invoice_EndpointJavaHttpV1_2_3\Oioubl_Invoice_EndpointJavaHttpV1_2_3.csproj">
-      <Project>{89238E09-536A-445B-B5E7-96A47D4A9B7A}</Project>
-      <Name>Oioubl_Invoice_EndpointJavaHttpV1_2_3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Oioubl_Invoice_EndpointNetHttpV1_2_1\Oioubl_Invoice_EndpointNetHttpV1_2_1.csproj">
+    <ProjectReference Include="..\Oioubl_Invoice_EndpointNetHttpV1_2_1\Oioubl_Invoice_EndpointNetHttp.csproj">
       <Project>{7C3CE344-C17E-4804-8BD8-499423B05ECB}</Project>
-      <Name>Oioubl_Invoice_EndpointNetHttpV1_2_1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Oioubl_Invoice_EndpointNetHttpV1_2_3\Oioubl_Invoice_EndpointNetHttpV1_2_3.csproj">
-      <Project>{09C01E99-7EDD-4FFF-9C86-16368D5D7320}</Project>
-      <Name>Oioubl_Invoice_EndpointNetHttpV1_2_3</Name>
+      <Name>Oioubl_Invoice_EndpointNetHttp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\dk.gov.oiosi.samples.ClientExample\dk.gov.oiosi.samples.ClientExample.csproj">
       <Project>{E6B6BCEA-0DFC-4ECB-A1F2-E8A38B0C7222}</Project>
