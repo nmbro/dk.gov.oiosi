@@ -20,19 +20,23 @@ Steps
    enum EndpointAddressTypeCode has been cleaned for unusable values (https, email, ftp and other)
    EndpointAddressSMTP.cs has been deleted.
    
-   A lot of cleanup in the (default) endpoint service WCF configuration files.
-   The WCF binding for lookup in the NemHandelRegisteret, must be present and named NHR_lookup.
-   The client endpoint can be removed (was only used to point to the binding below).
-      <basicHttpBinding>
-        <!-- Basic http binding is used to perform lookup calls in NemHandelsRegisteret. -->
-        <!-- The endpoint is hard-code implemented in RASP, and the binding must exist here with the name NHR_lookup -->
-        <binding name="NHR_lookup" textEncoding="utf-8" maxReceivedMessageSize="10000000" />
-      </basicHttpBinding>
-   
-   The Schematron Store Cache in RaspConfiguration.xml file must be updated from
-      dk.gov.oiosi.common.cache.QuantityCache`2[System.String,System.Xml.Xsl.XslCompiledTransform]
-   to
-      dk.gov.oiosi.common.cache.ICache`2[System.String,dk.gov.oiosi.xml.schematron.CompiledXslt]
+   A lot of cleanup in the (default) endpoint service WCF configuration files. 
+   See the test instances for how the configuration files could look, for more information.
+
+   Importen update are:
+4.1   The WCF binding for lookup in the NemHandelRegisteret, must be present and is now named NHR_lookup (was just call basic before).
+      The client endpoint can be removed (was only used to point to the binding below).
+        <basicHttpBinding>
+          <!-- Basic http binding is used to perform lookup calls in NemHandelsRegisteret. -->
+          <!-- The endpoint is hard-code implemented in RASP, and the binding must exist here with the name NHR_lookup -->
+          <binding name="NHR_lookup" textEncoding="utf-8" maxReceivedMessageSize="10000000" />
+        </basicHttpBinding>
+
+4.2   
+     The Schematron Store Cache in RaspConfiguration.xml file must be updated from
+        dk.gov.oiosi.common.cache.QuantityCache`2[System.String,System.Xml.Xsl.XslCompiledTransform]
+     to
+        dk.gov.oiosi.common.cache.ICache`2[System.String,dk.gov.oiosi.xml.schematron.CompiledXslt]
 
 
 
