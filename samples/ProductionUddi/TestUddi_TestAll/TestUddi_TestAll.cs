@@ -17,7 +17,6 @@ namespace dk.gov.oiosi.samples.TestUddi
         {
             // Add all the test from the local service
             list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_EndpointJavaHttp(), false));
-
             list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_EndpointNetHttp(), false));
             list.Add(new MyKeyValuePair<AbstractRaspClient, Boolean>(new dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_LiveTestEndpoint(), false));
         }

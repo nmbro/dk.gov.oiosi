@@ -71,6 +71,14 @@
       <Project>{E6B6BCEA-0DFC-4ECB-A1F2-E8A38B0C7222}</Project>
       <Name>dk.gov.oiosi.samples.ClientExample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Oioubl_Invoice_EndpointJavaHttp\Oioubl_Invoice_EndpointJavaHttp.csproj">
+      <Project>{332ffffb-d1b2-42a1-9b1a-4309ab70d1db}</Project>
+      <Name>Oioubl_Invoice_EndpointJavaHttp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oioubl_Invoice_EndpointNetHttp\Oioubl_Invoice_EndpointNetHttp.csproj">
+      <Project>{7c3ce344-c17e-4804-8bd8-499423b05ecb}</Project>
+      <Name>Oioubl_Invoice_EndpointNetHttp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
