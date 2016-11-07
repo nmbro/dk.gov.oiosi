@@ -282,11 +282,12 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             X509Certificate2 clientCert = null;
             string serial = null;
 
+            // You can define the default certificate to use here:
             switch (UddiType)
             {
                 case UddiType.Production:
                     {
-                        serial = "45 be bc 3e";
+                        serial = "56 df e9 a7";
                         
                         break;
                     }

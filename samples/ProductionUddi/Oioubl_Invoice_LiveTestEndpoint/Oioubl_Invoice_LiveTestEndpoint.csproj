@@ -8,8 +8,8 @@
     <ProjectGuid>{CB3B7203-8EE9-49D8-9ABC-5DC5025C525E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.samples.TestUddi</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.samples.TestUddi.EndpointJavaHttpV1_2_1</AssemblyName>
+    <RootNamespace>dk.gov.oiosi.samples.ProductionUddi</RootNamespace>
+    <AssemblyName>Oioubl_Invoice_LiveTestEndpoint</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>dk.gov.oiosi.samples.ProductionUddi.Oioubl_Invoice_LiveTestEndpoint</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -50,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Oioubl_Invoice_EndpointLiveTestEndpont.cs" />
+    <Compile Include="Oioubl_Invoice_LiveTestEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
