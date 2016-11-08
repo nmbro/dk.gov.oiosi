@@ -1,4 +1,4 @@
-How to upgrade project from .NET 2.0.2 to version 2.1.0
+How to upgrade project from .NET 2.0.X to version 2.1.0
 
 This file should be seen as a guide for migrating own code to OIORASP library 2.1.0
 The guide might not be 100% accurate, depending on your use of the library! Some steps might be unnecessary in your setup, and others might be as detailed as need in your setup!
@@ -9,13 +9,13 @@ Steps
 1. Download new release from https://digitaliser.dk/group/405467/resources
 
 2. Replace your old .dll files with the new .dll and .config files.
-   Please note, there is several new file (IKVM and Saxon).
+   Please note, there are several new files (IKVM and Saxon).
    Remove the 'dk.gov.oiosi.xml.dll' file (it is not used).
 
 3. RaspConfiguration.xml must be updated!
    See RaspConfiguration-update-2.1.0.pdf
 
-4. Code  updates:
+4. Code updates:
    EndpointKeyTypeCode class has been removed. Now endpoint types is treated likes strings, so replace the class with 'string'.
    enum EndpointAddressTypeCode has been cleaned for unusable values (https, email, ftp and other)
    EndpointAddressSMTP.cs has been deleted.
@@ -23,11 +23,11 @@ Steps
    A lot of cleanup in the (default) endpoint service WCF configuration files. 
    See the test instances for how the configuration files could look, for more information.
 
-   Importen update are:
-4.1   The WCF binding for lookup in the NemHandelRegisteret, must be present and is now named NHR_lookup (was just call basic before).
+   Important updates are:
+4.1   The WCF binding for lookup in NemHandelRegisteret (NHR), must be present and is now named NHR_lookup (was just call basic before).
       The client endpoint can be removed (was only used to point to the binding below).
         <basicHttpBinding>
-          <!-- Basic http binding is used to perform lookup calls in NemHandelsRegisteret. -->
+          <!-- Basic http binding is used to perform lookup calls in NemHandelsRegisteret (NHR). -->
           <!-- The endpoint is hard-code implemented in RASP, and the binding must exist here with the name NHR_lookup -->
           <binding name="NHR_lookup" textEncoding="utf-8" maxReceivedMessageSize="10000000" />
         </basicHttpBinding>
