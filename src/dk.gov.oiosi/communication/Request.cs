@@ -158,7 +158,7 @@ namespace dk.gov.oiosi.communication
             try
             {
                 // Is an endpoint in configuration given?
-                if (!string.IsNullOrEmpty(endpointConfigurationName))// != null)
+                if (!string.IsNullOrEmpty(endpointConfigurationName))
                 {
                     // ToDo: Should the implementing class not be configurable? The interface is defined in App.Config.....
                     this.proxy = new ClientProxy(endpointConfigurationName);

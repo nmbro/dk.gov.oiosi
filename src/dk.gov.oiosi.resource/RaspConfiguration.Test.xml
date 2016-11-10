@@ -3348,7 +3348,7 @@
         <IdentifierDiscriminators>
           <XPathDiscriminatorConfig>
             <XPathExpression>/root:Order/cbc:CustomizationID</XPathExpression>
-            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol03a:ver2.0</XPathExpectedResult>
+            <XPathExpectedResult>urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol3a:ver2.0</XPathExpectedResult>
           </XPathDiscriminatorConfig>
         </IdentifierDiscriminators>
         <ServiceContractTModel>uddi:873c25f6-23d2-4019-830e-89cc89386930</ServiceContractTModel>

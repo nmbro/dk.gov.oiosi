@@ -1,0 +1,1 @@
+﻿All documents point to the HTTP Java endpoint.

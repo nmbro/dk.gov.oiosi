@@ -418,6 +418,9 @@ namespace dk.gov.oiosi.xml.schematron
 
                             Processor processor = new Processor();
                             XsltCompiler compiler = processor.NewXsltCompiler();
+                            Uri uri = new Uri("file://" + compiledXslt.FileInfo.Directory.FullName);
+                            compiler.ErrorList = new List<object>();
+                            compiler.BaseUri = uri;
                             Serializer serializer = new Serializer();
 
                             try
@@ -425,7 +428,13 @@ namespace dk.gov.oiosi.xml.schematron
                                 XsltTransformer saxonTransformer = compiler.Compile(xmlSchematronStylesheetMemoryStream).Load();
 
                                 // Load the XML document. Input to the build method is the document.
-                                XdmNode docXdmNode = processor.NewDocumentBuilder().Build(documentAsString.ToStream());
+                                DocumentBuilder docBuilder = processor.NewDocumentBuilder();
+                                if (docBuilder.BaseUri == null)
+                                {
+                                    docBuilder.BaseUri = uri;
+                                }
+
+                                XdmNode docXdmNode = docBuilder.Build(documentAsString.ToStream());
 
                                 // Set the root node of the source document to be the initial
                                 // context node

@@ -1193,7 +1193,7 @@ namespace dk.gov.oiosi.raspProfile
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver1.0";
             string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
             XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             ids.Add(xPathDiscriminatorConfig);
@@ -1234,7 +1234,7 @@ namespace dk.gov.oiosi.raspProfile
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns076:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver2.0";
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns076:ver2.0:extended:urn:www.peppol.eu:bis:peppol28a:ver1.0";
             string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
             XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             ids.Add(xPathDiscriminatorConfig);
@@ -1363,7 +1363,7 @@ namespace dk.gov.oiosi.raspProfile
             const string documentIdXPath = "/root:" + rootName + "/cbc:ID";
 
             XpathDiscriminatorConfigCollection ids = new XpathDiscriminatorConfigCollection();
-            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol03a:ver2.0";
+            string expectedResult = "urn:www.cenbii.eu:transaction:biitrns001:ver2.0:extended:urn:www.peppol.eu:bis:peppol3a:ver2.0";
             string xpathExpression = "/root:" + rootName + "/cbc:CustomizationID";
             XPathDiscriminatorConfig xPathDiscriminatorConfig = new XPathDiscriminatorConfig(xpathExpression, expectedResult);
             ids.Add(xPathDiscriminatorConfig);

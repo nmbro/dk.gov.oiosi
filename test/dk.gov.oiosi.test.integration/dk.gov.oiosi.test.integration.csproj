@@ -146,6 +146,119 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="communication\CVR_99010080\local endpoint.txt" />
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_01a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_01a_Catalogue_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_03a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_04a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_05a_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_05a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\CVR_99010080\PEPPOL_30a_DespatchAdvice_2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_01a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_01a_Catalogue_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_03a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_04a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_05a_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_05a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_28a_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_28a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_30a_DespatchAdvice_2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\PEPPOL_36a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811547\_Endpoint HTTP Java.txt" />
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_01a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_01a_Catalogue_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_03a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_04a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_05a_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_05a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_28a_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_28a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_30a_DespatchAdvice_2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\PEPPOL_36a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811561\_Endpoint HTTP .Net.txt" />
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_01a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_01a_Catalogue_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_03a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_04a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_05a_CreditNote_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_05a_Invoice_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_28a_OrderResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_28a_Order_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_30a_DespatchAdvice_2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Documents\EAN_5798009811578\PEPPOL_36a_ApplicationResponse_v2p1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Documents\EAN_5798009883735\DIGST%27s VAX NemHandel.txt" />
     <Content Include="Resources\Documents\EAN_5798009883735\OIOUBL_Invoice_v2p1.xml">
       <SubType>Designer</SubType>
@@ -163,8 +276,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="communication\EAN_5798009811578\Demo endpoint.txt" />
-    <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java version 2.0.1.txt" />
-    <Content Include="communication\EAN_5798009811561\_Endpoint HTTP .NET version 2.0.2.txt" />
+    <Content Include="communication\EAN_5798009811547\_Endpoint HTTP Java.txt" />
+    <Content Include="communication\EAN_5798009811561\_Endpoint HTTP .NET.txt" />
     <Content Include="Resources\Documents\EAN_5790001968502\OIOUBL_Invoice_v2p1.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -371,7 +484,6 @@
     <Content Include="Resources\Documents\EAN_5798009811547\OIOXML_Invoice_v0.7_CPR_Sender.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\EAN_5798009811547\_Endpoint HTTP Java Version 1.2.1.txt" />
     <Content Include="Resources\Documents\EAN_5798009811561\OIOUBL_ApplicationResponse_v2p1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -471,7 +583,6 @@
     <Content Include="Resources\Documents\EAN_5798009811561\OIOXML_Invoice_v0.7_CPR_Sender.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Documents\EAN_5798009811561\_Endpoint HTTP Java Version 1.2.3.txt" />
     <Content Include="Resources\Documents\EAN_5798009811578\OIOUBL_Invoice_v2p1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -977,9 +1088,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Documents\EAN_5798009814210\OIOXML_Invoice_v0.7_CPR_Sender.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Documents\EAN_5798009814210\_Endpoint HTTP Java Version 1.3.0 Foces2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
