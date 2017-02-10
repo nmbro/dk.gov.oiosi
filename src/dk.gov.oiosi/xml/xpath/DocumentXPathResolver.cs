@@ -185,7 +185,6 @@ namespace dk.gov.oiosi.xml.xpath
             {
                 string[] lineIter = DocumentXPathResolver.GetXPathValues(xmlDocument, xpath, prefixedNamespaces);
                 int nodesCount = lineIter.Length;
-                if (nodesCount < 1) throw new NoXPathResultsException(xpath);
 
                 if (nodesCount >= 1)
                 {
