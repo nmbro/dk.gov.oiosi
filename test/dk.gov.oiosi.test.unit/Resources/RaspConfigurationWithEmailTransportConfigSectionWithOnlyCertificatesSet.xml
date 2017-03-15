@@ -2825,8 +2825,8 @@
       <PrioritizedRegistryList>
         <Registry>
           <EndpointCollection>
-            <Endpoint>http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
-            <Endpoint>http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry</Endpoint>
+            <Endpoint>http://discoverypublic.nemhandel.dk/uddi/services/inquiry</Endpoint>
+            <Endpoint>http://discoverybackup.nemhandel-backup.dk/uddi/services/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
       </PrioritizedRegistryList>

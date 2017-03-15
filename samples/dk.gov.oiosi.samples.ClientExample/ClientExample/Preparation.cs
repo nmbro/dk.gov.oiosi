@@ -63,9 +63,11 @@ namespace dk.gov.oiosi.samples.consoleClientExample {
             Credentials credentials = new Credentials(new OcesX509Certificate(clientCert), new OcesX509Certificate(serverCert));
 
             // Create request
-            return new RaspRequest(new Request(uddiResponse.EndpointAddress.GetAsUri(), credentials));
-        }
+            RaspRequest raspRequest = new RaspRequest(new Request(uddiResponse.EndpointAddress.GetAsUri(), credentials));
 
+
+            return raspRequest;
+        }
 
         #region 1 - UDDI
         

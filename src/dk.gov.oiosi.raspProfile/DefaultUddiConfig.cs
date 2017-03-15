@@ -106,8 +106,8 @@ namespace dk.gov.oiosi.raspProfile
                 new Registry(
                     new List<string>() 
                     {
-                        "http://discoverypublic.uddi.ehandel.gov.dk/registry/uddi/inquiry", 
-                        "http://discoverybackup.uddi.ehandel.gov.dk/registry/uddi/inquiry" 
+                        "http://discoverypublic.nemhandel.dk/uddi/services/inquiry", 
+                        "http://discoverybackup.nemhandel-backup.dk/uddi/services/inquiry"
                     })
                 );
         }
