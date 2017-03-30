@@ -36,7 +36,7 @@ Steps
      The Schematron Store Cache in RaspConfiguration.xml file must be updated from
         dk.gov.oiosi.common.cache.QuantityCache`2[System.String,System.Xml.Xsl.XslCompiledTransform]
      to
-        dk.gov.oiosi.common.cache.ICache`2[System.String,dk.gov.oiosi.xml.schematron.CompiledXslt]
+        dk.gov.oiosi.common.cache.QuantityCache`2[System.String,dk.gov.oiosi.xml.schematron.CompiledXslt]
 
 
 
