@@ -60,7 +60,7 @@ namespace dk.gov.oiosi.test.integration
             // live cert
             //X509Certificate2 certificate = certificateLoader.GetCertificateFromStoreWithSerialNumber("‎4c 8e 31 26", StoreLocation.CurrentUser, StoreName.My);
 
-            X509Certificate2 certificate = certificateLoader.GetCertificateFromStoreWithSerialNumber("56 df e9 a7", StoreLocation.CurrentUser, StoreName.My);
+            X509Certificate2 certificate = certificateLoader.GetCertificateFromStoreWithSerialNumber("58 18 c2 c6", StoreLocation.CurrentUser, StoreName.My);
 
             //X509Certificate2 certificate = new X509Certificate2(certificateFile, certificatePassword,
             //X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet);
