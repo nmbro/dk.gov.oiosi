@@ -97,8 +97,7 @@ namespace dk.gov.oiosi.test.unit
         public const string PASSWORD_CERTIFICATE_EMPLOYEE = "Test1234";
 
         //public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20131101.FOCES1.pfx";
-        public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20170324.TU GENEREL FOCES2 gyldig (Funktionscertifikat).pfx";
-
+        public const string PATH_CERTIFICATE_DEVICE = "Resources/Certificates/CVR30808460.Expire20200130.TU GENEREL FOCES gyldig (Funktionscertifikat).pfx";
         public const string PASSWORD_CERTIFICATE_DEVICE = "Test1234";
 
         ////public const string PATH_CERTIFICATE_ROOT1 = "Resources/Certificates/TDC OCES Systemtest CA II.cer";
