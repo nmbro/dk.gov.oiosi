@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="NemHandel" default="all">
     <!-- In order to user the msbuild element, the NAntContrib must be included -->
     <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll"/>
@@ -33,6 +33,7 @@
 
     <property name="Dist.dir" value="target\dist"/>
     <property name="Temp.dir" value="target\temp"/>
+     
     <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
     <property name="Root.dir" value="."/>
     <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
@@ -40,6 +41,14 @@
     <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
     <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
     <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
+    
+    <property name="sha1Hash" value="92b3f0931791847402b6f6f313edfb94b86a032f"/>
+    <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
+    
+    <!-- The SignTool.exe can exist in multi location, on different computers. -->
+    <!-- Therefore we must look after the file in all known places, where it can exist. -->
+    <property name="SignToolPath01" value="C:\Program Files (x86)\Windows Kits\8.0\bin\x64" />
+
 
     <!-- Tell the build server what our actual build number is -->
     <echo message="##teamcity[buildNumber '${Revision}']"/>
@@ -47,13 +56,34 @@
     <target name="Clean" description="Remove all build products">
         <delete dir="${Dist.dir}"/>
         <delete dir="${Temp.dir}"/>
+        <delete dir="${Directory.packages}"/>
     </target>
 
-    <target name="Init" depends="Clean">
+    <target name="Init" depends="Clean" description="Create release directories" >
         <mkdir dir="${Dist.dir}"/>
         <mkdir dir="${Temp.dir}"/>
+        <!-- NugetRestore create its own directory -->
     </target>
 
+    <target name="NuGetRestore" depends="Init" description="Restores all nuget packages to a common package folder">
+        <trycatch>
+            <try>
+                <mkdir dir="${Directory.packages}"/>
+                <!-- Call NuGetRestore.bat using the specified package directory as output,
+            and with NoPause arg to make sure it doesn't pause after execution -->
+                <exec program="NuGetRestore.bat">
+                    <arg value="${Directory.packages}"/>
+                    <arg value="NoPause"/>
+                </exec>
+            </try>
+            <catch property="failure.message">
+                <echo message="${target::get-current-target()} failed:"/>
+                <echo message="${failure.message}"/>
+                <fail message="${failure.message}"/>
+            </catch>
+        </trycatch>
+    </target>
+    
     <target name="SetVersion" depends="Init">
 
         <asminfo language="CSharp" output="AssemblyInfoFileVersion.cs">
@@ -73,101 +103,9 @@
                 <attribute type="AssemblyVersionAttribute" value="${Version}"/>
                 <attribute type="AssemblyInformationalVersionAttribute" value="${InformationalVersion}"/>
             </attributes>
-        </asminfo>
-
-        <!--
-            <asminfo language="CSharp" output="${Oiosi.dir}\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.appConfig\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.configuration\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.exception\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.Logging\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.raspProfile\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-            <asminfo language="CSharp" output="src\dk.gov.oiosi.xml\Properties\AssemblyInfo.cs">
-                <imports>
-                    <import namespace="System.Reflection" />
-                </imports>
-                <attributes>
-                    <attribute type="AssemblyVersionAttribute" value="${Version}" />
-                    <attribute type="AssemblyFileVersionAttribute" value="${Revision}" />
-                    <attribute type="AssemblyDescriptionAttribute" value="dk.gov.oiosi.library ${Revision}" />
-                </attributes>
-            </asminfo>
-        -->
-
+        </asminfo>       
     </target>
-
-    <target name="NuGetRestore" description="Restores all nuget packages to a common package folder">
-        <trycatch>
-            <try>
-                <mkdir dir="${Directory.packages}"/>
-                <!-- Call NuGetRestore.bat using the specified package directory as output,
-            and with NoPause arg to make sure it doesn't pause after execution -->
-                <exec program="NuGetRestore.bat">
-                    <arg value="${Directory.packages}"/>
-                    <arg value="NoPause"/>
-                </exec>
-            </try>
-            <catch property="failure.message">
-                <echo message="${target::get-current-target()} failed:"/>
-                <echo message="${failure.message}"/>
-                <fail message="${failure.message}"/>
-            </catch>
-        </trycatch>
-    </target>
+   
 
     <target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore">
         <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
@@ -180,13 +118,97 @@
         </msbuild>
     </target>
 
-    <target name="RunTests">
+    
+    <target name="RunTests" depends="BuildVisualStudioSolutionNet35" >
         <exec program="${teamcity.dotnet.nunitlauncher2.0}">
             <arg file="${UnitTest.file}"/>
             <!-- arg file="${IntegrationTest.file}" / -->
         </exec>
     </target>
-    <target name="Distribute" depends="Init, RunTests">
+    
+    
+    <target name="Execute.Sign" depends="" description="Execute signing, without dependensies">
+      <!-- There is multi files that must be signed. -->
+      <trycatch>
+        <try>
+
+          <property name="SignToolPassword" value="${environment::get-variable('DigstSignToolPassword')}"/>
+        
+          <!--Create a tmp file, that make our password fill keep going...  -->
+          <echo message="AutomaticPasswordFiller."/>
+          <property name="KeepGoingFile" value="${Temp.dir}\KeepGoingRaspLibrary" />
+          <touch file="${KeepGoingFile}" />          
+          <echo message="KeepGoingFile: '${KeepGoingFile}'."/>
+          <exec program="lib\AutomaticPasswordFiller.exe" pidproperty="Rasp.pid" spawn="true" >
+            <arg value="${KeepGoingFile}" />
+            <arg value="${SignToolPassword}" />
+          </exec>
+
+          
+          <property name="SignFile" value="${SignToolPath01}\SignTool.exe"/>       
+          <if test="${not file::exists(SignFile)}">
+            <echo message="Signing.exe was not located! '${SignFile}'."/>
+          </if>
+          <!-- If the signtool does not exist in this location, other locations should be tried. -->
+
+          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.appConfig.dll"/>
+          <call target="SignTheFile" />     
+          
+          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.configuration.dll"/>
+          <call target="SignTheFile" />
+          
+          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.exception.dll"/>
+          <call target="SignTheFile" />
+          
+          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.library.dll"/>
+          <call target="SignTheFile" />
+          
+          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.logging.dll"/>
+          <call target="SignTheFile" />
+          
+          <!-- <sleep seconds="5" /> -->
+          
+          <!-- cleanup -->
+          <delete file="${KeepGoingFile}" />
+
+          <!-- Wait max 5 seconds -->
+          <waitforexit pid="${Rasp.pid}" timeout="5000" />
+        </try>
+        <catch property="failure.message">
+          <echo message="${target::get-current-target()} failed:"/>
+          <echo message="${failure.message}"/>
+          <!-- always delete the file -->
+          <delete file="${KeepGoingFile}" />
+          <fail message="${failure.message}"/>
+        </catch>
+      </trycatch>
+    </target>    
+    <target name="Sign" depends="BuildVisualStudioSolutionNet35,Execute.Sign" description="Sign the dlls." />
+    
+    <target name="SignTheFile">
+      <trycatch>
+        <try>
+          
+          <echo message="Signing the file '${tmp.FileToSign}'."/>
+          <exec program="${SignFile}">
+            <arg value="sign" />
+            <arg value="/sha1 &quot;${sha1Hash}&quot;" />
+            <arg value="/tr &quot;${timestampingServer}&quot;" />
+            <arg value="/td &quot;SHA256&quot;" />
+            <arg value="${tmp.FileToSign}" />
+          </exec>
+       </try>
+        <catch property="failure.message">
+          <echo message="${target::get-current-target()} failed:"/>
+          <echo message="${failure.message}"/>
+          <fail message="${failure.message}"/>
+        </catch>
+      </trycatch>
+    </target> 
+    
+    <!-- can't add sign yet, as donkel is mapped yet -->
+    <!-- target name="Distribute" depends="RunTests,Sign" -->
+    <target name="Distribute" depends="RunTests">
         <!-- Executable -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
             <fileset basedir="${Oiosi.dir}\bin\Release">
@@ -220,7 +242,7 @@
             <fileset basedir="${RaspProfile.dir}\Resources">
                 <include name="**/*" />
             </fileset>
-        </zip -->
+        </zip --> 
         <!-- Source section -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
             <fileset basedir="${Root.dir}">
@@ -246,7 +268,7 @@
         </zip -->
     </target>
 
-    <target name="Release" depends="BuildVisualStudioSolutionNet35, RunTests, Distribute"/>
+    <target name="Release" depends="Distribute"/>
 
     <target name="DevBuild" depends="BuildVisualStudioSolutionNet35"/>
 
