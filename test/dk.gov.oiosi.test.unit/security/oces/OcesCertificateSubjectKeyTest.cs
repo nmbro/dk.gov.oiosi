@@ -58,14 +58,14 @@ namespace dk.gov.oiosi.test.unit.security.oces
         [Test]
         public void ConstructorInvalidValueTest()
         {
-            Assert.Throws<NullOrEmptyArgumentException>(() => new OcesCertificateSubjectKey(@"\w"));
+            Assert.Throws<Exception>(() => new OcesCertificateSubjectKey(@"\w"));
         }
 
         [Test]
         public void SetInvalidValueTest()
         {
             OcesCertificateSubjectKey subjectKey = new OcesCertificateSubjectKey();
-            Assert.Throws<NullOrEmptyArgumentException>(() => subjectKey.SubjectKeyString = @"\d");
+            Assert.Throws<Exception>(() => subjectKey.SubjectKeyString = @"\d");
         }
     }
 }
