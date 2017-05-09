@@ -19,10 +19,11 @@ namespace dk.gov.oiosi.addressing
         }
 
         [Test]
-        [ExpectedException(typeof(NullOrEmptyArgumentException))]
         public void ConstructorTest2()
         {
-            Identifier identifier = new Identifier("GLN", "");
+            Assert.Throws<NullOrEmptyArgumentException>(() => new Identifier("GLN", ""));
+
+           // Identifier identifier = new Identifier("GLN", "");
         }
 
         [Test]
