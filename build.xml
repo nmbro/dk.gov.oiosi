@@ -184,7 +184,9 @@
           <echo message="${target::get-current-target()} failed:"/>
           <echo message="${failure.message}"/>
           <!-- always delete the file -->
-          <delete file="${KeepGoingFile}" />
+          <if test="${not file::exists(KeepGoingFil)}">
+               <delete file="${KeepGoingFile}" />
+          </if>       
           <fail message="${failure.message}"/>
         </catch>
       </trycatch>
@@ -214,7 +216,7 @@
     
     <!-- can't add sign yet, as donkel is mapped yet -->
     <!-- target name="Distribute" depends="RunTests,Sign" -->
-    <target name="Distribute" depends="RunTests,Sign">
+    <target name="Distribute" depends="RunTests">
         <!-- Executable -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
             <fileset basedir="${Oiosi.dir}\bin\Release">
