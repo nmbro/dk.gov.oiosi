@@ -42,7 +42,8 @@
     <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
     <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
     
-    <property name="nunitlauncher" value="packages/NUnit.Runners.2.6.4/tools/nunit-console.exe" />
+    <!-- Property overrided by TeamCity -->
+    <property name="teamcity.dotnet.nunitlauncher2.0" value="packages/NUnit.Runners.2.6.4/tools/nunit-console.exe" />
     
     <property name="sha1Hash" value="92b3f0931791847402b6f6f313edfb94b86a032f"/>
     <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
@@ -122,7 +123,8 @@
 
     
     <target name="Execute.RunTests" >
-        <exec program="${nunitlauncher}">
+        <echo message="Using NUnit launcher ${teamcity.dotnet.nunitlauncher2.0}."/>
+        <exec program="${teamcity.dotnet.nunitlauncher2.0}">
             <arg file="${UnitTest.file}"/>
             <!-- arg file="${IntegrationTest.file}" / -->
         </exec>
