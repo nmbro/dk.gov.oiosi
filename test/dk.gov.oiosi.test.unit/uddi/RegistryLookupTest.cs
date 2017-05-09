@@ -87,14 +87,14 @@ namespace dk.gov.oiosi.test.unit.uddi{
             Assert.AreEqual(firstFallback.ToString(), result[0].EndpointAddress.GetKeyAsString());
         }
 
-        [Test, ExpectedException(typeof(UddiException))]
+        [Test]
         public void _03_TestFailureOnFirstRegistry() {
             AdvancedUddiDummyClient.AdvancedUddiDummyClientConfig config = GetClearDummyConfig();
             config.ErroneousEndpoints.Add(firstRegistry);
             config.ErroneousEndpoints.Add(firstFallback);
             IUddiLookupClient client = new RegistryLookupClientFactory().CreateUddiLookupClient();
-            List<UddiLookupResponse> result = client.Lookup(CreateParams(endpointInFirstRegistry));
-            Assert.IsEmpty(result);
+            List<UddiLookupResponse> result = null;
+            Assert.Throws<UddiException>(() => result = client.Lookup(CreateParams(endpointInFirstRegistry)));
         }
 
         [Test]

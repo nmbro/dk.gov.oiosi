@@ -125,14 +125,15 @@ namespace dk.gov.oiosi.test.unit.xml.documentType {
             AssertFindDocument(friendlyName, TestConstants.PATH_NONAMESPACE_XML);
         }
 
-        [Test, ExpectedException(typeof(NoDocumentTypeFoundFromXmlDocumentException))]
+        [Test]
         public void SearchForUnkownTypeTest() {
-            AssertFindDocument(null, TestConstants.PATH_UNKNOWNTYPE_XML);
+            Assert.Throws<NoDocumentTypeFoundFromXmlDocumentException>(() => this.AssertFindDocument(null, TestConstants.PATH_UNKNOWNTYPE_XML));
         }
 
-        [Test, ExpectedException(typeof(exception.NullArgumentException))]
-        public void NullArguementTest() {
-            _searcher.FindUniqueDocumentType(null);
+        [Test]
+        public void NullArguementTest() 
+        {
+            Assert.Throws<exception.NullArgumentException>(() => _searcher.FindUniqueDocumentType(null));
         }
 
         private DocumentTypeConfig SearchForDocument(string path) {

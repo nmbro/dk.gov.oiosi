@@ -282,11 +282,11 @@ namespace dk.gov.oiosi.test.unit.xml.schema
         //   _validator201.SchemaValidateXmlDocument(invalidXmlDocument, xmlSchemaSet);
         //}
 
-        [Test, ExpectedException(typeof(dk.gov.oiosi.xml.schema.SchemaValidationFailedException))]
+        [Test]
         public void InvoiceWrongElementValidationTest()
         {
             string xmlPath = TestConstants.PATH_INVOICEWRONGELEMENT_XML;
-            Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20);
+            Assert.Throws<dk.gov.oiosi.xml.schema.SchemaValidationFailedException>(() => this.Validate(xmlPath, _validator201, TestConstants.PATH_SCHEMAS20));
         }
 
         private void Validate(string xmlDocumentPath, SchemaValidator validator, string schemaPath)

@@ -82,11 +82,11 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             Validate(TestConstants.PATH_INVOICE_XML, documentType);
         }
 
-        [Test, ExpectedException(typeof(SchematronErrorException))]
+        [Test]
         public void OioublNoIdInvoiceValidation()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioUblInvoice();
-            Validate(TestConstants.PATH_INVOICENOID_XML, documentType);
+            Assert.Throws<SchematronErrorException>(() => Validate(TestConstants.PATH_INVOICENOID_XML, documentType));
         }
 
         [Test]
@@ -145,11 +145,11 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
             Validate(TestConstants.PATH_UTILITYSTATEMENT_XML, documentType);
         }
 
-        [Test, ExpectedException(typeof(SchematronErrorException))]
+        [Test]
         public void OioxmlInvalidEanNumberInvoiceValidation()
         {
             DocumentTypeConfig documentType = _defaultDocumentTypes.GetOioXmlInvoiceV07();
-            Validate(TestConstants.PATH_INVOICEN7INVALIDEANNUMBER_XML, documentType);
+             Assert.Throws<SchematronErrorException>(()=> Validate(TestConstants.PATH_INVOICEN7INVALIDEANNUMBER_XML, documentType));
         }
 
         [Test]

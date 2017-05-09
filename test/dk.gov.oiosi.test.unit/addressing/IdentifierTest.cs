@@ -35,16 +35,8 @@ namespace dk.gov.oiosi.addressing
         public void ConstructorTest4()
         {
             Assert.Throws<IncorrectBusinessIdentifierException>(() => new Identifier("GLN", "1 2"));
-
-
-
         }
 
-        [Test]
-        public void TestConstructorTest()
-        {
-            Assert.Throws<NullOrEmptyArgumentException>(() => new Identifier("GLN", "1 2"));
-        }
 
         [Test]
         public void IsAllowedInPublicTest()

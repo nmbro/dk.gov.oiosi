@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
             }
         }
 
-        [Test, ExpectedException(typeof(DocumentAllreadyAddedException))]
+        [Test]
         public void _02_InsertDocumentWithSameIdTest()
         {
             try
@@ -62,7 +62,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
                 DocumentTypeCollectionConfig documentTypeCollection = new DocumentTypeCollectionConfig();
                 documentTypeCollection.AddDocumentType(documentTypeA);
                 documentTypeB.Id = documentTypeA.Id;
-                documentTypeCollection.AddDocumentType(documentTypeB);
+                Assert.Throws<DocumentAllreadyAddedException>(()=> documentTypeCollection.AddDocumentType(documentTypeB));
             }
             finally
             {
@@ -70,7 +70,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
             }
         }
 
-        [Test, ExpectedException(typeof(DocumentAllreadyAddedException))]
+        [Test]
         public void _03_InsertDocumentTypeWithSameKeyValuesTest()
         {
             try
@@ -87,7 +87,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
                 DocumentTypeConfig documentTypeB = new DocumentTypeConfig(rootName, rootNamespace, identifierDiscriminators);
                 DocumentTypeCollectionConfig documentTypeCollection = new DocumentTypeCollectionConfig();
                 documentTypeCollection.AddDocumentType(documentTypeA);
-                documentTypeCollection.AddDocumentType(documentTypeB);
+                Assert.Throws<DocumentAllreadyAddedException>(()=> documentTypeCollection.AddDocumentType(documentTypeB));
             }
             finally
             {
@@ -149,7 +149,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
             }
         }
 
-        [Test, ExpectedException(typeof(NoDocumentTypeFoundFromIdException))]
+        [Test]
         public void _06_GetNonExistingDocumentTypeFromIdTest()
         {
             try
@@ -165,7 +165,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
                 DocumentTypeConfig documentType = new DocumentTypeConfig(rootName, rootNamespace, identifierDiscriminators);
                 DocumentTypeCollectionConfig documentTypeCollection = new DocumentTypeCollectionConfig();
                 documentTypeCollection.AddDocumentType(documentType);
-                documentTypeCollection.GetDocumentType(Guid.NewGuid());
+                Assert.Throws<NoDocumentTypeFoundFromIdException>(() => documentTypeCollection.GetDocumentType(Guid.NewGuid()));
             }
             finally
             {
@@ -173,7 +173,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
             }
         }
 
-        [Test, ExpectedException(typeof(NoDocumentTypeFoundFromParametersException))]
+        [Test]
         public void _07_GetNonExistingDocumentTypeFromParameters()
         {
             try
@@ -189,7 +189,7 @@ namespace dk.gov.oiosi.test.unit.communitcation.configuration
                 DocumentTypeConfig documentType = new DocumentTypeConfig(rootName, rootNamespace, identifierDiscriminators);
                 DocumentTypeCollectionConfig documentTypeCollection = new DocumentTypeCollectionConfig();
                 documentTypeCollection.AddDocumentType(documentType);
-                documentTypeCollection.GetDocumentType("TestB", rootNamespace, identifierDiscriminators);
+                Assert.Throws<NoDocumentTypeFoundFromParametersException>(() => documentTypeCollection.GetDocumentType("TestB", rootNamespace, identifierDiscriminators));
             }
             finally
             {

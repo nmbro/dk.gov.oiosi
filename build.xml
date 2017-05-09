@@ -126,7 +126,6 @@
         <echo message="Using NUnit launcher ${teamcity.dotnet.nunitlauncher2.0}."/>
         <exec program="${teamcity.dotnet.nunitlauncher2.0}">
             <arg file="${UnitTest.file}"/>
-            <!-- arg file="${IntegrationTest.file}" / -->
         </exec>
     </target>
     <target name="RunTests" depends="BuildVisualStudioSolutionNet35, Execute.RunTests" />        
