@@ -42,7 +42,7 @@
     <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
     <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
     
-    <property name="teamcity.dotnet.nunitlauncher2.0" value="packages/NUnit.Runners.2.6.4/tools/nunit.exe" />
+    <property name="nunitlauncher" value="packages/NUnit.Runners.2.6.4/tools/nunit-console.exe" />
     
     <property name="sha1Hash" value="92b3f0931791847402b6f6f313edfb94b86a032f"/>
     <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
@@ -121,13 +121,13 @@
     </target>
 
     
-    <target name="RunTests" depends="BuildVisualStudioSolutionNet35" >
-        <exec program="${teamcity.dotnet.nunitlauncher2.0}">
+    <target name="Execute.RunTests" >
+        <exec program="${nunitlauncher}">
             <arg file="${UnitTest.file}"/>
             <!-- arg file="${IntegrationTest.file}" / -->
         </exec>
     </target>
-    
+    <target name="RunTests" depends="BuildVisualStudioSolutionNet35, Execute.RunTests" />        
     
     <target name="Execute.Sign" depends="" description="Execute signing, without dependensies">
       <!-- There is multi files that must be signed. -->
