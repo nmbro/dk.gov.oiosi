@@ -22,22 +22,28 @@ namespace dk.gov.oiosi.addressing
         public void ConstructorTest2()
         {
             Assert.Throws<NullOrEmptyArgumentException>(() => new Identifier("GLN", ""));
-
-           // Identifier identifier = new Identifier("GLN", "");
         }
 
         [Test]
-        [ExpectedException(typeof(NullOrEmptyArgumentException))]
         public void ConstructorTest3()
         {
-            Identifier identifier = new Identifier("", "123456790123");
+            Assert.Throws<NullOrEmptyArgumentException>(() => new Identifier("", "123456790123"));
         }
 
         [Test]
         [ExpectedException(typeof(IncorrectBusinessIdentifierException))]
         public void ConstructorTest4()
         {
-            Identifier identifier = new Identifier("GLN", "1 2");
+            Assert.Throws<IncorrectBusinessIdentifierException>(() => new Identifier("GLN", "1 2"));
+
+
+
+        }
+
+        [Test]
+        public void TestConstructorTest()
+        {
+            Assert.Throws<NullOrEmptyArgumentException>(() => new Identifier("GLN", "1 2"));
         }
 
         [Test]
