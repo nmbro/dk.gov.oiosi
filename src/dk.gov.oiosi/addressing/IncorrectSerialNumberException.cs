@@ -32,6 +32,7 @@
   */
 
 using System;
+using System.Resources;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.exception.Keyword;
 
@@ -47,7 +48,8 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="serialNumber">The serial number</param>
         /// <param name="innerException">An exception to display as an inner exception</param>
-        public IncorrectSerialNumberException(string serialNumber, Exception innerException) 
-            : base(KeywordFromString.GetKeyword("serialNumber", serialNumber), innerException) { }
+        public IncorrectSerialNumberException(string serialNumber, Exception innerException)
+            : base(new ResourceManager(typeof(dk.gov.oiosi.addressing.ErrorMessages)), KeywordFromString.GetKeyword("serialNumber", serialNumber), innerException)
+        { }
     }
 }

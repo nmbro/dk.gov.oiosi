@@ -32,6 +32,7 @@
   */
 
 using System;
+using System.Resources;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.exception.Keyword;
 
@@ -47,6 +48,8 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="ovtNumber">The invalid OVT number</param>
         /// <param name="innerException">The inner exception from the OVT check</param>
-        public IncorrectOvtNumberException(string ovtNumber, Exception innerException) : base(KeywordFromString.GetKeyword("ovtnumber", ovtNumber), innerException) { }
+        public IncorrectOvtNumberException(string ovtNumber, Exception innerException) 
+            : base(new ResourceManager(typeof(dk.gov.oiosi.addressing.ErrorMessages)), KeywordFromString.GetKeyword("ovtnumber", ovtNumber), innerException)
+        { }
     }
 }

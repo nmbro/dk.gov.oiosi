@@ -32,6 +32,7 @@
   */
 
 using System;
+using System.Resources;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.exception.Keyword;
 
@@ -45,8 +46,12 @@ namespace dk.gov.oiosi.addressing {
         /// </summary>
         /// <param name="businessIdentifier"></param>
         /// <param name="innerException"></param>
-        public IncorrectBusinessIdentifierException(string businessIdentifier, Exception innerException) : base(KeywordFromString.GetKeyword("businessidentifier", businessIdentifier), innerException) { }
+        public IncorrectBusinessIdentifierException(string businessIdentifier, Exception innerException) 
+            : base(new ResourceManager(typeof(dk.gov.oiosi.addressing.ErrorMessages)), KeywordFromString.GetKeyword("businessidentifier", businessIdentifier), innerException) 
+            { }
 
-        public IncorrectBusinessIdentifierException(string businessIdentifier) : base(KeywordFromString.GetKeyword("businessidentifier", businessIdentifier)) { }
+        public IncorrectBusinessIdentifierException(string businessIdentifier) 
+            : base(new ResourceManager(typeof(dk.gov.oiosi.addressing.ErrorMessages)), KeywordFromString.GetKeyword("businessidentifier", businessIdentifier)) 
+            { }
     }
 }

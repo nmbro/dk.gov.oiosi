@@ -32,6 +32,7 @@
   */
 
 using System;
+using System.Resources;
 using dk.gov.oiosi.communication;
 using dk.gov.oiosi.exception.Keyword;
 
@@ -47,6 +48,8 @@ namespace dk.gov.oiosi.addressing
         /// </summary>
         /// <param name="countryCode">The country code</param>
         /// <param name="innerException">An exception to display as inner exception</param>
-        public IncorrectCountryCodeException(string countryCode, Exception innerException) : base(KeywordFromString.GetKeyword("countrycode", countryCode), innerException) { }
+        public IncorrectCountryCodeException(string countryCode, Exception innerException) 
+            : base(new ResourceManager(typeof(dk.gov.oiosi.addressing.ErrorMessages)), KeywordFromString.GetKeyword("countrycode", countryCode), innerException) 
+            { }
     }
 }

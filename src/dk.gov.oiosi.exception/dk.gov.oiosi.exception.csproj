@@ -64,13 +64,17 @@
     <Compile Include="Keyword\KeywordsFromFileInfo.cs" />
     <Compile Include="Keyword\KeywordsFromX509Certificate2.cs" />
     <Compile Include="Keyword\KeywordsFromX509Store.cs" />
+    <Compile Include="MessageStore\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="UnexpectedNumberOfCharactersException.cs" />
     <Compile Include="NullOrEmptyArgumentException.cs" />
     <Compile Include="EmptyStringException.cs" />
     <Compile Include="IAsyncExceptionThrower.cs" />
     <Compile Include="MainException.cs" />
     <Compile Include="MessageStore\DoubleStartOfKeywordException.cs" />
-    <Compile Include="MessageStore\ErrorMessages.Designer.cs" />
     <Compile Include="MessageStore\IExceptionMessageStore.cs" />
     <Compile Include="MessageStore\KeywordNotFoundException.cs" />
     <Compile Include="MessageStore\MessageToExceptionNotFoundException.cs" />
@@ -82,6 +86,8 @@
   <ItemGroup>
     <EmbeddedResource Include="MessageStore\ErrorMessages.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

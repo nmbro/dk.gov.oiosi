@@ -57,7 +57,7 @@ namespace dk.gov.oiosi.exception
     public class MainException : System.Exception 
     {
         private ILogger logger;
-        private static List<ResourceManager> resources = new List<ResourceManager>();
+        private static ICollection<ResourceManager> resources = new List<ResourceManager>();
         private IExceptionMessageStore exceptionMessageStore = new ResourceFileExceptionMessageStore();
         private string message;
         private string notTranslated = "Fejlkode ikke oversat: ";
@@ -77,8 +77,20 @@ namespace dk.gov.oiosi.exception
         /// error message can be in either the external resource or the main resource
         /// of this module
         /// </summary>
-        /// <param name="resourceManager">the resourcefile</param>
+        /// <param name="resourceManager">the resourceFile</param>
         public MainException(ResourceManager resourceManager) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, new Dictionary<string, string>(), null);
+        }
+
+        /// <summary>
+        /// Constructs an exception with a resource file but with no keywords. The
+        /// error message can be in either the external resource or the main resource
+        /// of this module
+        /// </summary>
+        /// <param name="resourceManager">the resourceFile</param>
+        public MainException(ICollection<ResourceManager> resourceManager)
         {
             this.logger = LoggerFactory.Create(this.GetType());
             this.SetMessage(resourceManager, new Dictionary<string, string>(), null);
@@ -96,10 +108,10 @@ namespace dk.gov.oiosi.exception
         }
 
         /// <summary>
-        /// Constructs an exception with an innner exception. It assumes that the 
+        /// Constructs an exception with an inner exception. It assumes that the 
         /// error message text is stored in the main resource file
         /// </summary>
-        /// <param name="innerException">the innerexception to throw</param>
+        /// <param name="innerException">the innerException to throw</param>
         public MainException(Exception innerException)
             : base("", innerException)
         {
@@ -112,9 +124,22 @@ namespace dk.gov.oiosi.exception
         /// error message can be in either the external resource or the main resource
         /// of this module
         /// </summary>
-        /// <param name="resourceManager">the resourcefile</param>
+        /// <param name="resourceManager">the resourceFile</param>
         /// <param name="keywords">the keyword for the message</param>
         public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, keywords, null);
+        }
+
+        /// <summary>
+        /// Constructs an exception with external error messages and keywords. The
+        /// error message can be in either the external resource or the main resource
+        /// of this module
+        /// </summary>
+        /// <param name="resourceManager">the resourceFile</param>
+        /// <param name="keywords">the keyword for the message</param>
+        public MainException(ICollection<ResourceManager> resourceManager, Dictionary<string, string> keywords)
         {
             this.logger = LoggerFactory.Create(this.GetType());
             this.SetMessage(resourceManager, keywords, null);
@@ -125,10 +150,23 @@ namespace dk.gov.oiosi.exception
         /// The error message can be in either the external resource or the main 
         /// resource of the module
         /// </summary>
-        /// <param name="resourceManager">the resourcefile</param>
-        /// <param name="innerException">the innerexception to throw</param>
+        /// <param name="resourceManager">the resourceFile</param>
+        /// <param name="innerException">the innerException to throw</param>
         public MainException(ResourceManager resourceManager, Exception innerException)
             : base(string.Empty, innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, new Dictionary<string, string>(), innerException);
+        }
+        /// <summary>
+        /// Constructs an exception with external error messages and an inner exception. 
+        /// The error message can be in either the external resource or the main 
+        /// resource of the module
+        /// </summary>
+        /// <param name="resourceManager">the resourceFile</param>
+        /// <param name="innerException">the innerException to throw</param>
+        public MainException(ICollection<ResourceManager> resourceManager, Exception innerException)
+            : base(string.Empty, innerException)
         {
             this.logger = LoggerFactory.Create(this.GetType());
             this.SetMessage(resourceManager, new Dictionary<string, string>(), innerException);
@@ -156,7 +194,22 @@ namespace dk.gov.oiosi.exception
         /// <param name="keywords">the keyword for the message</param>
         /// <param name="innerException">the innerexception of the thrown exception</param>
         public MainException(ResourceManager resourceManager, Dictionary<string, string> keywords, Exception innerException)
-            : base("", innerException) 
+            : base(string.Empty, innerException) 
+        {
+            this.logger = LoggerFactory.Create(this.GetType());
+            this.SetMessage(resourceManager, keywords, innerException);
+        }
+
+        /// <summary>
+        /// Constructs an exception with external error messages, keywords and an inner 
+        /// exception. The error message can be in either the external resource or the 
+        /// main resource of this module
+        /// </summary>
+        /// <param name="resourceManager">the resourcefile</param>
+        /// <param name="keywords">the keyword for the message</param>
+        /// <param name="innerException">the innerexception of the thrown exception</param>
+        public MainException(ICollection<ResourceManager> resourceManager, Dictionary<string, string> keywords, Exception innerException)
+            : base(string.Empty, innerException)
         {
             this.logger = LoggerFactory.Create(this.GetType());
             this.SetMessage(resourceManager, keywords, innerException);
@@ -245,12 +298,17 @@ namespace dk.gov.oiosi.exception
 
         private void SetMessage(ResourceManager resource, Dictionary<string, string> keywords, Exception originalException)
         {
-            Type exceptionType = this.GetType();
             List<ResourceManager> collectiveResources = new List<ResourceManager>(resources);
             collectiveResources.Add(resource);
+            this.SetMessage(collectiveResources, keywords, originalException);
+        }         
+
+        private void SetMessage(ICollection<ResourceManager> resourceManagerCollection, Dictionary<string, string> keywords, Exception originalException)
+        {
+            Type exceptionType = this.GetType();
             try
             {
-                message = exceptionMessageStore.GetExceptionMessage(collectiveResources, exceptionType, keywords);
+                message = exceptionMessageStore.GetExceptionMessage(resourceManagerCollection, exceptionType, keywords);
             }
             catch
             {
