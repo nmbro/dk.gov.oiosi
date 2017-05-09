@@ -4,7 +4,7 @@
     <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll"/>
 
     <property name="Number_Major" value="2"/>
-    <property name="Number_Minor" value="1"/>
+    <property name="Number_Minor" value="2"/>
     <property name="Number_Patch" value="0"/>
     <property name="Directory.packages" value="packages"/>
     <!-- When updating the version number, remember to update theses files.
@@ -41,6 +41,8 @@
     <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
     <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
     <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
+    
+    <property name="teamcity.dotnet.nunitlauncher2.0" value="packages/NUnit.Runners.2.6.4/tools/nunit.exe" />
     
     <property name="sha1Hash" value="92b3f0931791847402b6f6f313edfb94b86a032f"/>
     <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
@@ -166,6 +168,9 @@
           <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.logging.dll"/>
           <call target="SignTheFile" />
           
+          <property name="tmp.FileToSign" value="${RaspProfile.dir}\bin\Release\dk.gov.oiosi.raspProfile.dll"/>
+          <call target="SignTheFile" />
+          
           <!-- <sleep seconds="5" /> -->
           
           <!-- cleanup -->
@@ -208,7 +213,7 @@
     
     <!-- can't add sign yet, as donkel is mapped yet -->
     <!-- target name="Distribute" depends="RunTests,Sign" -->
-    <target name="Distribute" depends="RunTests">
+    <target name="Distribute" depends="RunTests,Sign">
         <!-- Executable -->
         <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
             <fileset basedir="${Oiosi.dir}\bin\Release">
@@ -220,9 +225,10 @@
                 <include name="dk.gov.oiosi.raspProfile.dll"/>
             </fileset>
             <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
-            <fileset basedir="${Xml.dir}\bin\Release">
-                <include name="dk.gov.oiosi.xml.dll"/>
-            </fileset>
+            <!-- dk.gov.oiosi.xml project is not used anymore. -->
+            <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
+                <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
+            <!-- </fileset> -->
         </zip>
 
         <!-- Rasp profile library -->
