@@ -266,6 +266,8 @@
                 <exclude name="**/bin"/>
                 <exclude name=".nuget/**"/>
                 <exclude name="packages/**"/>
+                <exclude name="*.bat"/>
+                <exclude name="*.log"/>
                 <exclude name="doc/*.doc"/>
             </fileset>
         </zip>
