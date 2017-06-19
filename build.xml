@@ -47,9 +47,10 @@
   <!-- The SignTool.exe can exist in multi location, on different computers. -->
   <!-- Therefore we must look after the file in all known places, where it can exist. -->
   <property name="SignToolPath01" value="C:\Program Files (x86)\Windows Kits\8.0\bin\x64"/>
-  <property name="ildasmPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/>
-  <property name="snPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/>
-  <property name="ilasmPath01" value="C:\Windows\Microsoft.NET\Framework64\v4.0.30319"/>
+  <!-- <property name="ildasmPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/> -->
+  <!-- <property name="snPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/> -->
+  <!-- <property name="ilasmPath01" value="C:\Windows\Microsoft.NET\Framework64\v4.0.30319"/> -->
+  <property name="File.StrongNameSigner" value="StrongNameSigner.Console.exe"/>
   <property name="File.dk.gov.oiosi.snk" value="certificates\StrongName\Release\dk.gov.oiosi.snk"/>
   
   <!-- Tell the build server what our actual build number is -->
@@ -167,186 +168,32 @@
   <target name="CopyToTmp" depends="RunTests, Execute.CopyToTmp"/>
 
   <!-- StrongName -->
-  <target name="Execute.Sign.StrongName.SingleFile.Perform" description="Execute StrongName signing, without dependensies">
-    <trycatch>
-      <try>
-        <mkdir dir="${tmp.Target.Dir.Il}"/>
-
-        <!-- First we disassemble the file -->
-        <property name="tmp.args.01.01" value="${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
-        <property name="tmp.args.01.02" value="/out:${tmp.Target.Dir.Il}\${tmp.FileToSign}.il"/>
-        
-        <!-- Debug infomation -->
-        <echo message="Execute program: ${SignTool.ildasm}" />
-        <echo message="  Args01: ${tmp.args.01.01}" />
-        <echo message="  Args01: ${tmp.args.01.02}" />
-        
-        <exec program="${SignTool.ildasm}">
-          <arg value="${tmp.args.01.01}"/>
-          <arg value="${tmp.args.01.02}"/>
-        </exec>
-        
-        <!-- and then we reassemble the file -->        
-        <property name="tmp.args.02.01" value="${tmp.Target.Dir.Il}\${tmp.FileToSign}.il"/>
-        <property name="tmp.args.02.02" value="/dll"/>
-        <property name="tmp.args.02.03" value="/key=${File.dk.gov.oiosi.snk}"/>
-        <property name="tmp.args.02.04" value="/output=${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
-        
-        <!-- Debug infomation -->
-        <echo message="Execute program: ${SignTool.ilasm}" />
-        <echo message="  Args01: ${tmp.args.02.01}" />
-        <echo message="  Args01: ${tmp.args.02.02}" />
-        <echo message="  Args01: ${tmp.args.02.03}" />
-        <echo message="  Args01: ${tmp.args.02.04}" />
-        
-        <exec program="${SignTool.ilasm}">
-          <arg value="${tmp.args.02.01}"/>
-          <arg value="${tmp.args.02.02}"/>
-          <arg value="${tmp.args.02.03}"/>
-          <arg value="${tmp.args.02.04}"/>
-        </exec>
-        
-        <!-- cleanup -->
-        <delete dir="${tmp.Target.Dir.Il}"/>
-        
-         <echo message="Test start" />
-        <if test="${file::exists(tmp.Target.Dir.Il)}">
-          <echo message="Directory exist: ${tmp.Target.Dir.Il}" />
-          <delete dir="${tmp.Target.Dir.Il}"/>
-        </if>
-        
-        <if test="${not file::exists(tmp.Target.Dir.Il)}">
-          <echo message="Directory does not exist: ${tmp.Target.Dir.Il}" />
-          <delete dir="${tmp.Target.Dir.Il}"/>
-        </if>
-        <echo message="Test finish" />
-        
-        <property name="tmp.args.01.01" value=""/>
-        <property name="tmp.args.01.02" value=""/>
-        <property name="tmp.args.02.01" value=""/>
-        <property name="tmp.args.02.02" value=""/>
-        <property name="tmp.args.02.03" value=""/>
-        <property name="tmp.args.02.04" value=""/>
-      </try>
-      <catch property="failure.message">
-        <echo message="${target::get-current-target()} failed:"/>
-        <echo message="${failure.message}"/>
-        <!-- always delete the file -->
-        <if test="${file::exists(tmp.Target.Dir.Il)}">
-          <echo message="Directory exist: ${tmp.Target.Dir.Il}" />
-          <delete dir="${tmp.Target.Dir.Il}"/>
-        </if>
-        <property name="tmp.args.01.01" value=""/>
-        <property name="tmp.args.01.02" value=""/>
-        <property name="tmp.args.02.01" value=""/>
-        <property name="tmp.args.02.02" value=""/>
-        <property name="tmp.args.02.03" value=""/>
-        <property name="tmp.args.02.04" value=""/>
-        <fail message="${failure.message}"/>
-      </catch>
-    </trycatch>
-  </target>
-  
-  <target name="Execute.Sign.StrongName.SingleFile.Validate" description="Validate that a files is StrongName signed">
-    <trycatch>
-      <try>
-        <property name="tmp.exec.outout.file" value="${Temp.dir}\Sn.Validation.Output.txt"/>
-        <property name="tmp.exec.outout.content" value=""/>
-        <property name="tmp.fileToTest" value="${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
-        
-        <if test="${not file::exists(tmp.exec.outout.file)}">
-          <delete file="${tmp.exec.outout.file}"/>
-        </if> 
-        <property name="tmp.args.01" value="-q"/>
-        <property name="tmp.args.02" value="-v"/>
-        <echo message="Execute program: ${SignTool.StrongName}" />
-        <echo message="  Args01: ${tmp.args.01}" />
-        <echo message="  Args02: ${tmp.args.02}" />
-        <echo message="  Args03: ${tmp.fileToTest}" />
-        <exec program="${SignTool.StrongName}" output="${tmp.exec.outout.file}" failonerror="false">
-          <arg value="${tmp.args.01}"/>
-          <arg value="${tmp.args.02}"/>
-          <arg value="${tmp.fileToTest}"/>
-        </exec>
-        
-        <loadfile file="${tmp.exec.outout.file}" property="tmp.exec.outout.content"/>
-        <property name="tmp.exec.outout.trimmed" value="${string::trim(tmp.exec.outout.content)}" />
-        <echo message="The result of 'SN.exe -q -v ${tmp.FileToSign}.${tmp.FileToSign.Extension}' test is: '${tmp.exec.outout.trimmed}'." />
-        
-        <if test="${tmp.exec.outout.trimmed == ''}">
-          <echo message="The file '${tmp.FileToSign}.${tmp.FileToSign.Extension}' is already StrongName signed." />
-          
-           <fail message="whf - we are the file already strongName signed?"/>
-        </if>
-        <if test="${tmp.exec.outout.trimmed != ''}">
-          <echo message="Strong name signer the file '${tmp.FileToSign}.${tmp.FileToSign.Extension}'." />
-          <call target="Execute.Sign.StrongName.SingleFile.Perform"/>
-        </if>
-        
-        <!-- cleanup -->
-        <if test="${not file::exists(tmp.exec.outout.file)}">
-          <delete file="${tmp.exec.outout.file}"/>
-        </if> 
-        <property name="tmp.exec.outout.content" value=""/>
-        <property name="tmp.args.01" value=""/>
-        <property name="tmp.args.02" value=""/>
-        <property name="tmp.fileToTest" value=""/>
-      </try>
-      <catch property="failure.message">
-        <echo message="${target::get-current-target()} failed:"/>
-        <echo message="${failure.message}"/>
-        <property name="tmp.exec.outout" value=""/>
-        <property name="tmp.fileToTest" value=""/>
-        
-        <fail message="${failure.message}"/>
-      </catch>
-    </trycatch>
-  </target>
-  
   <target name="Execute.Sign.StrongName.Files" description="Execute StrongName signing, without dependensies">
     <!-- There is multi files that must be signed. -->
     <trycatch>
       <try>
-        <property name="tmp.Target.Dir.Il" value="${tmp.Target.Dir}\Il"/>
-        <delete dir="${tmp.Target.Dir.Il}"/>
-        <!-- First we controll that we can fin the tools -->
-        <property name="SignTool.ildasm" value="${ildasmPath01}\ildasm.exe"/>
-        <if test="${not file::exists(SignTool.ildasm)}">
-          <echo message="ildasm.exe was not located! '${SignTool.ildasm}'."/>
-        </if>
-        <!-- If the ildasm.exe does not exist in this location, other locations should be tried. -->
-        <property name="SignTool.ilasm" value="${ilasmPath01}\ilasm.exe"/>
-        <if test="${not file::exists(SignTool.ilasm)}">
-          <echo message="ilasm.exe was not located! '${SignTool.ilasm}'."/>
-        </if>
-        <!-- If the ilasm.exe does not exist in this location, other locations should be tried. -->
-        <property name="SignTool.StrongName" value="${snPath01}\Sn.exe"/>
-        <if test="${not file::exists(SignTool.StrongName)}">
-          <echo message="sn.exe was not located! '${SignTool.StrongName}'."/>
-        </if>
+        <!-- First attemt failed. See svn log for more info. -->
+        <!-- Second attemt usehe free tool Brutal.Dev.StrongNameSigner -->
+      
+        <property name="SignTool" value="${Root.dir}\packages\Brutal.Dev.StrongNameSigner.2.1.3\build\${File.StrongNameSigner}"/>
+        <if test="${not file::exists(SignTool)}">
+          <echo message="StrongNameSigner.Console.exe was not located! '${SignTool}'."/>
+        </if>       
+
+        <property name="tmp.args.01.01" value="${Temp.Sn.dir}"/>
+        <property name="tmp.args.01.02" value="${Root.dir}\${File.dk.gov.oiosi.snk}"/>
+        <echo message="  Args01: ${tmp.args.01.01}" />
+        <echo message="  Args01: ${tmp.args.01.02}" />
+
+        <exec program="${SignTool}">
+          <arg value="-in"/>
+          <arg value="${tmp.args.01.01}"/>
+          <arg value="-out"/>
+          <arg value="${tmp.args.01.01}"/>
+          <arg value="-k"/>
+          <arg value="${tmp.args.01.02}"/>
+        </exec>
         
-        <!-- Note, the filenames is defines without extension -->
-        <property name="tmp.FileToSign.Extension" value="dll"/>
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.appConfig"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.configuration"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.exception"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.library"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.logging"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="dk.gov.oiosi.raspProfile"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
-        
-        <property name="tmp.FileToSign" value="Novell.Directory.Ldap"/>
-        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
         <!-- cleanup -->
       </try>
       <catch property="failure.message">
