@@ -259,13 +259,13 @@
     </trycatch>
   </target>
   <target name="Execute.Sign.SourceCodeSigningCertificate">
+   <property name="KeepGoingFile" value="${Temp.dir}\KeepGoingRaspLibrary.lock"/>
     <trycatch>
       <try>
         <!-- First we make the SourceCodeSigningCertificate setup -->
         <property name="SignToolPassword" value="${environment::get-variable('DigstSignToolPassword')}"/>
         <!--Create a tmp file, that make our password fill keep going...  -->
-        <echo message="AutomaticPasswordFiller."/>
-        <property name="KeepGoingFile" value="${Temp.dir}\KeepGoingRaspLibrary.lock"/>
+        <echo message="AutomaticPasswordFiller."/>      
         <touch file="${KeepGoingFile}"/>
         
         <if test="${not file::exists(KeepGoingFile)}">
@@ -317,7 +317,7 @@
     <!-- sourceCodeSigningcertificate |       x      |        x      | -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <call target="Execute.Sign.StrongName"/>
-    <call target="Execute.Sign.SourceCodeSigningCertificate"/>
+    <!-- call target="Execute.Sign.SourceCodeSigningCertificate"/ -->
   </target>
   <target name="Execute.myTestClean">
   
@@ -329,7 +329,7 @@
   <target name="SignDebug" depends="Execute.myTestClean, Execute.CopyToTmp, Execute.Sign" description="Sign the dlls."/>
   <target name="Sign" depends="CopyToTmp,Execute.Sign" description="Sign the dlls."/>
   <!-- can't add sign yet, as donkel is mapped yet -->
-  BuildVisualStudioSolutionNet35
+
   <!-- <target name="Distribute" depends="RunTests,Sign"> -->
   
   <target name="Distribute" depends="BuildVisualStudioSolutionNet35,Sign">
