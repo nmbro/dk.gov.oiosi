@@ -355,7 +355,7 @@
     <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.SignedAndStrongName.zip">
       <fileset basedir="${Temp.Sn.dir}">
         <include name="**/*"/>
-        <!-- <exclude name="**/*.pdb"/> -->
+        <exclude name="**/*.unsigned"/>
       </fileset>
       <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
       <!-- <fileset basedir="${RaspProfile.dir}\bin\Release"> -->
