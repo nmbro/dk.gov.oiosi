@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="NemHandel" default="all">
-    <!-- In order to user the msbuild element, the NAntContrib must be included -->
-    <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll"/>
-
-    <property name="Number_Major" value="2"/>
-    <property name="Number_Minor" value="2"/>
-    <property name="Number_Patch" value="0"/>
-    <property name="Directory.packages" value="packages"/>
-    <!-- When updating the version number, remember to update theses files.
+  <!-- In order to user the msbuild element, the NAntContrib must be included -->
+  <loadtasks assembly="./lib/NAntContrib/nantcontrib/bin/NAnt.Contrib.Tasks.dll"/>
+  <property name="Number_Major" value="2"/>
+  <property name="Number_Minor" value="2"/>
+  <property name="Number_Patch" value="0"/>
+  <property name="Directory.packages" value="packages"/>
+  <!-- When updating the version number, remember to update theses files.
       They have a reference to the actual version, almost at the end of the file.
       The number should be like this (note, it must end with '.0').
         <Number_Major>.<Number_Minor>.<Number_Patch>.0
@@ -22,265 +21,549 @@
     Samt opdater check toolet (hvis der skal releases en ny version af NHK'en).
     checkTool/...?
   -->
-
-
-    <!-- Should be Dev, and the build server set it to Prod -->
-    <property name="buildType" value="Prod"/>
-
-    <property name="Version" value="${Number_Major}.${Number_Minor}.${Number_Patch}"/>
-    <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}"/>
-    <property name="InformationalVersion" value="${Number_Major}.${Number_Minor}.${Number_Patch} ${buildType}"/>
-
-    <property name="Dist.dir" value="target\dist"/>
-    <property name="Temp.dir" value="target\temp"/>
-     
-    <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
-    <property name="Root.dir" value="."/>
-    <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
-    <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
-    <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
-    <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
-    <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
-    
-    <!-- Property overrided by TeamCity -->
-    <property name="teamcity.dotnet.nunitlauncher2.0" value="packages/NUnit.Runners.2.6.4/tools/nunit-console.exe" />
-    
-    <property name="sha1Hash" value="92b3f0931791847402b6f6f313edfb94b86a032f"/>
-    <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
-    
-    <!-- The SignTool.exe can exist in multi location, on different computers. -->
-    <!-- Therefore we must look after the file in all known places, where it can exist. -->
-    <property name="SignToolPath01" value="C:\Program Files (x86)\Windows Kits\8.0\bin\x64" />
-
-
-    <!-- Tell the build server what our actual build number is -->
-    <echo message="##teamcity[buildNumber '${Revision}']"/>
-
-    <target name="Clean" description="Remove all build products">
-        <delete dir="${Dist.dir}"/>
-        <delete dir="${Temp.dir}"/>
-        <delete dir="${Directory.packages}"/>
-    </target>
-
-    <target name="Init" depends="Clean" description="Create release directories" >
-        <mkdir dir="${Dist.dir}"/>
-        <mkdir dir="${Temp.dir}"/>
-        <!-- NugetRestore create its own directory -->
-    </target>
-
-    <target name="NuGetRestore" depends="Init" description="Restores all nuget packages to a common package folder">
-        <trycatch>
-            <try>
-                <mkdir dir="${Directory.packages}"/>
-                <!-- Call NuGetRestore.bat using the specified package directory as output,
+  <!-- Should be Dev, and the build server set it to Prod -->
+  <property name="buildType" value="Prod"/>
+  <property name="Version" value="${Number_Major}.${Number_Minor}.${Number_Patch}"/>
+  <property name="Revision" value="${Number_Major}.${Number_Minor}.${Number_Patch}.${build.number}"/>
+  <property name="InformationalVersion" value="${Number_Major}.${Number_Minor}.${Number_Patch} ${buildType}"/>
+  <property name="Dist.dir" value="target\dist"/>
+  <property name="Temp.dir" value="target\temp"/>
+  <property name="Temp.NoSn.dir" value="${Temp.dir}\NoStronName"/>
+  <property name="Temp.Sn.dir" value="${Temp.dir}\StronName"/>
+  
+  <property name="VisualStudioSolution.file" value="dk.gov.oiosi.library.sln"/>
+  <property name="Root.dir" value="."/>
+  <property name="Oiosi.dir" value="src\dk.gov.oiosi"/>
+  <property name="Xml.dir" value="src\dk.gov.oiosi.xml"/>
+  <property name="RaspProfile.dir" value="src\dk.gov.oiosi.raspProfile"/>
+  <property name="UnitTest.file" value="test/dk.gov.oiosi.test.unit/bin/release/dk.gov.oiosi.test.unit.dll"/>
+  <property name="IntegrationTest.file" value="test/dk.gov.oiosi.test.integration/bin/release/dk.gov.oiosi.test.integration.dll"/>
+  <!-- Property overrided by TeamCity -->
+  <property name="teamcity.dotnet.nunitlauncher2.0" value="packages/NUnit.Runners.2.6.4/tools/nunit-console.exe"/>
+  <!-- sha1Hash is the certificate Thrumprint -->
+  <property name="sha1Hash" value="e2f598642f19b787ec0386db8b52ce9e8ed4e49c"/>
+  <property name="timestampingServer" value="http://rfc3161timestamp.globalsign.com/advanced"/>
+  
+  <!-- The SignTool.exe can exist in multi location, on different computers. -->
+  <!-- Therefore we must look after the file in all known places, where it can exist. -->
+  <property name="SignToolPath01" value="C:\Program Files (x86)\Windows Kits\8.0\bin\x64"/>
+  <property name="ildasmPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/>
+  <property name="snPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/>
+  <property name="ilasmPath01" value="C:\Windows\Microsoft.NET\Framework64\v4.0.30319"/>
+  <property name="File.dk.gov.oiosi.snk" value="certificates\StrongName\Release\dk.gov.oiosi.snk"/>
+  
+  <!-- Tell the build server what our actual build number is -->
+  <echo message="##teamcity[buildNumber '${Revision}']"/>
+  
+  <target name="Execute.Clean" description="Remove all build products">
+    <delete dir="${Dist.dir}"/>
+    <delete dir="${Temp.dir}"/>
+    <delete dir="${Directory.packages}"/>
+  </target>
+  <target name="Clean" depends="Execute.Clean" />
+  
+  <target name="Execute.Init" depends="Clean" description="Create release directories">
+    <mkdir dir="${Dist.dir}"/>
+    <mkdir dir="${Temp.dir}"/>
+    <!-- NugetRestore create its own directory -->
+  </target>
+  <target name="Init" depends="Execute.Init" />
+  
+  <target name="NuGetRestore" depends="Init" description="Restores all nuget packages to a common package folder">
+    <trycatch>
+      <try>
+        <mkdir dir="${Directory.packages}"/>
+        <!-- Call NuGetRestore.bat using the specified package directory as output,
             and with NoPause arg to make sure it doesn't pause after execution -->
-                <exec program="NuGetRestore.bat">
-                    <arg value="${Directory.packages}"/>
-                    <arg value="NoPause"/>
-                </exec>
-            </try>
-            <catch property="failure.message">
-                <echo message="${target::get-current-target()} failed:"/>
-                <echo message="${failure.message}"/>
-                <fail message="${failure.message}"/>
-            </catch>
-        </trycatch>
-    </target>
-    
-    <target name="SetVersion" depends="Init">
-
-        <asminfo language="CSharp" output="AssemblyInfoFileVersion.cs">
-            <imports>
-                <import namespace="System.Reflection"/>
-            </imports>
-            <attributes>
-                <attribute type="AssemblyFileVersionAttribute" value="${Revision}"/>
-            </attributes>
-        </asminfo>
-
-        <asminfo language="CSharp" output="AssemblyInfoVersion.cs">
-            <imports>
-                <import namespace="System.Reflection"/>
-            </imports>
-            <attributes>
-                <attribute type="AssemblyVersionAttribute" value="${Version}"/>
-                <attribute type="AssemblyInformationalVersionAttribute" value="${InformationalVersion}"/>
-            </attributes>
-        </asminfo>       
-    </target>
-   
-
-    <target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore">
-        <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+        <exec program="NuGetRestore.bat">
+          <arg value="${Directory.packages}"/>
+          <arg value="NoPause"/>
+        </exec>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="SetVersion" depends="Init">
+    <asminfo language="CSharp" output="AssemblyInfoFileVersion.cs">
+      <imports>
+        <import namespace="System.Reflection"/>
+      </imports>
+      <attributes>
+        <attribute type="AssemblyFileVersionAttribute" value="${Revision}"/>
+      </attributes>
+    </asminfo>
+    <asminfo language="CSharp" output="AssemblyInfoVersion.cs">
+      <imports>
+        <import namespace="System.Reflection"/>
+      </imports>
+      <attributes>
+        <attribute type="AssemblyVersionAttribute" value="${Version}"/>
+        <attribute type="AssemblyInformationalVersionAttribute" value="${InformationalVersion}"/>
+      </attributes>
+    </asminfo>
+  </target>
+  
+  <target name="Execute.BuildVisualStudioSolutionNet35">
+    <!-- msbuild project="${VisualStudioSolution.file}" target="Rebuild">
                 <property name="Configuration" value="Debug" />
                 <property name="teamcity_dotnet_use_msbuild_v35" value="true" />
             </msbuild -->
-        <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
-            <property name="Configuration" value="Release"/>
-            <property name="teamcity_dotnet_use_msbuild_v35" value="true"/>
-        </msbuild>
-    </target>
+    <msbuild project="${VisualStudioSolution.file}" target="Rebuild">
+      <property name="Configuration" value="Release"/>
+      <property name="teamcity_dotnet_use_msbuild_v35" value="true"/>
+    </msbuild>
+  </target>
+  <target name="BuildVisualStudioSolutionNet35" depends="SetVersion, NuGetRestore, Execute.BuildVisualStudioSolutionNet35"/>
+  
+  <target name="Execute.RunTests">
+    <echo message="Using NUnit launcher ${teamcity.dotnet.nunitlauncher2.0}."/>
+    <exec program="${teamcity.dotnet.nunitlauncher2.0}">
+      <arg file="${UnitTest.file}"/>
+    </exec>
+  </target>
+  <target name="RunTests" depends="BuildVisualStudioSolutionNet35, Execute.RunTests"/>  
+  
+  <target name="Execute.CopyToTmp.DefinedTarget">
+    <echo message="Copy files to directory '${tmp.Target.Dir}'."/>
+    <copy todir="${tmp.Target.Dir}">
+      <fileset basedir="${Oiosi.dir}\bin\Release">
+        <include name="**/*"/>
+        <exclude name="**/*.pdb"/>
+      </fileset>
+    </copy>
+    <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
+    <copy todir="${tmp.Target.Dir}">      
+      <fileset basedir="${RaspProfile.dir}\bin\Release">
+        <include name="dk.gov.oiosi.raspProfile.dll"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="Execute.CopyToTmp">
+    <!-- We copy the all the resources to the two tmp directories: 'Temp.NoSn.dir' and 'Temp.Sn.dir'. -->
+    <!-- This is because we must make a release that is stronName signed and one that is NOT stronName signed. -->
+    <trycatch>
+      <try>
+        <!-- First to StrongName directory -->
+        <property name="tmp.Target.Dir" value="${Temp.Sn.dir}"/>
+        <call target="Execute.CopyToTmp.DefinedTarget"/>
+        <!-- Then to No StrongName directory -->
+        <property name="tmp.Target.Dir" value="${Temp.NoSn.dir}"/>
+        <call target="Execute.CopyToTmp.DefinedTarget"/>
+        <!-- Cleanup -->
+        <property name="tmp.Target.Dir" value=""/>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="CopyToTmp" depends="RunTests, Execute.CopyToTmp"/>
 
-    
-    <target name="Execute.RunTests" >
-        <echo message="Using NUnit launcher ${teamcity.dotnet.nunitlauncher2.0}."/>
-        <exec program="${teamcity.dotnet.nunitlauncher2.0}">
-            <arg file="${UnitTest.file}"/>
-        </exec>
-    </target>
-    <target name="RunTests" depends="BuildVisualStudioSolutionNet35, Execute.RunTests" />        
-    
-    <target name="Execute.Sign" depends="" description="Execute signing, without dependensies">
-      <!-- There is multi files that must be signed. -->
-      <trycatch>
-        <try>
+  <!-- StrongName -->
+  <target name="Execute.Sign.StrongName.SingleFile.Perform" description="Execute StrongName signing, without dependensies">
+    <trycatch>
+      <try>
+        <mkdir dir="${tmp.Target.Dir.Il}"/>
 
-          <property name="SignToolPassword" value="${environment::get-variable('DigstSignToolPassword')}"/>
+        <!-- First we disassemble the file -->
+        <property name="tmp.args.01.01" value="${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
+        <property name="tmp.args.01.02" value="/out:${tmp.Target.Dir.Il}\${tmp.FileToSign}.il"/>
         
-          <!--Create a tmp file, that make our password fill keep going...  -->
-          <echo message="AutomaticPasswordFiller."/>
-          <property name="KeepGoingFile" value="${Temp.dir}\KeepGoingRaspLibrary" />
-          <touch file="${KeepGoingFile}" />          
-          <echo message="KeepGoingFile: '${KeepGoingFile}'."/>
-          <exec program="lib\AutomaticPasswordFiller.exe" pidproperty="Rasp.pid" spawn="true" >
-            <arg value="${KeepGoingFile}" />
-            <arg value="${SignToolPassword}" />
-          </exec>
+        <!-- Debug infomation -->
+        <echo message="Execute program: ${SignTool.ildasm}" />
+        <echo message="  Args01: ${tmp.args.01.01}" />
+        <echo message="  Args01: ${tmp.args.01.02}" />
+        
+        <exec program="${SignTool.ildasm}">
+          <arg value="${tmp.args.01.01}"/>
+          <arg value="${tmp.args.01.02}"/>
+        </exec>
+        
+        <!-- and then we reassemble the file -->        
+        <property name="tmp.args.02.01" value="${tmp.Target.Dir.Il}\${tmp.FileToSign}.il"/>
+        <property name="tmp.args.02.02" value="/dll"/>
+        <property name="tmp.args.02.03" value="/key=${File.dk.gov.oiosi.snk}"/>
+        <property name="tmp.args.02.04" value="/output=${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
+        
+        <!-- Debug infomation -->
+        <echo message="Execute program: ${SignTool.ilasm}" />
+        <echo message="  Args01: ${tmp.args.02.01}" />
+        <echo message="  Args01: ${tmp.args.02.02}" />
+        <echo message="  Args01: ${tmp.args.02.03}" />
+        <echo message="  Args01: ${tmp.args.02.04}" />
+        
+        <exec program="${SignTool.ilasm}">
+          <arg value="${tmp.args.02.01}"/>
+          <arg value="${tmp.args.02.02}"/>
+          <arg value="${tmp.args.02.03}"/>
+          <arg value="${tmp.args.02.04}"/>
+        </exec>
+        
+        <!-- cleanup -->
+        <delete dir="${tmp.Target.Dir.Il}"/>
+        
+         <echo message="Test start" />
+        <if test="${file::exists(tmp.Target.Dir.Il)}">
+          <echo message="Directory exist: ${tmp.Target.Dir.Il}" />
+          <delete dir="${tmp.Target.Dir.Il}"/>
+        </if>
+        
+        <if test="${not file::exists(tmp.Target.Dir.Il)}">
+          <echo message="Directory does not exist: ${tmp.Target.Dir.Il}" />
+          <delete dir="${tmp.Target.Dir.Il}"/>
+        </if>
+        <echo message="Test finish" />
+        
+        <property name="tmp.args.01.01" value=""/>
+        <property name="tmp.args.01.02" value=""/>
+        <property name="tmp.args.02.01" value=""/>
+        <property name="tmp.args.02.02" value=""/>
+        <property name="tmp.args.02.03" value=""/>
+        <property name="tmp.args.02.04" value=""/>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <!-- always delete the file -->
+        <if test="${file::exists(tmp.Target.Dir.Il)}">
+          <echo message="Directory exist: ${tmp.Target.Dir.Il}" />
+          <delete dir="${tmp.Target.Dir.Il}"/>
+        </if>
+        <property name="tmp.args.01.01" value=""/>
+        <property name="tmp.args.01.02" value=""/>
+        <property name="tmp.args.02.01" value=""/>
+        <property name="tmp.args.02.02" value=""/>
+        <property name="tmp.args.02.03" value=""/>
+        <property name="tmp.args.02.04" value=""/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  
+  <target name="Execute.Sign.StrongName.SingleFile.Validate" description="Validate that a files is StrongName signed">
+    <trycatch>
+      <try>
+        <property name="tmp.exec.outout.file" value="${Temp.dir}\Sn.Validation.Output.txt"/>
+        <property name="tmp.exec.outout.content" value=""/>
+        <property name="tmp.fileToTest" value="${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
+        
+        <if test="${not file::exists(tmp.exec.outout.file)}">
+          <delete file="${tmp.exec.outout.file}"/>
+        </if> 
+        <property name="tmp.args.01" value="-q"/>
+        <property name="tmp.args.02" value="-v"/>
+        <echo message="Execute program: ${SignTool.StrongName}" />
+        <echo message="  Args01: ${tmp.args.01}" />
+        <echo message="  Args02: ${tmp.args.02}" />
+        <echo message="  Args03: ${tmp.fileToTest}" />
+        <exec program="${SignTool.StrongName}" output="${tmp.exec.outout.file}" failonerror="false">
+          <arg value="${tmp.args.01}"/>
+          <arg value="${tmp.args.02}"/>
+          <arg value="${tmp.fileToTest}"/>
+        </exec>
+        
+        <loadfile file="${tmp.exec.outout.file}" property="tmp.exec.outout.content"/>
+        <property name="tmp.exec.outout.trimmed" value="${string::trim(tmp.exec.outout.content)}" />
+        <echo message="The result of 'SN.exe -q -v ${tmp.FileToSign}.${tmp.FileToSign.Extension}' test is: '${tmp.exec.outout.trimmed}'." />
+        
+        <if test="${tmp.exec.outout.trimmed == ''}">
+          <echo message="The file '${tmp.FileToSign}.${tmp.FileToSign.Extension}' is already StrongName signed." />
+          
+           <fail message="whf - we are the file already strongName signed?"/>
+        </if>
+        <if test="${tmp.exec.outout.trimmed != ''}">
+          <echo message="Strong name signer the file '${tmp.FileToSign}.${tmp.FileToSign.Extension}'." />
+          <call target="Execute.Sign.StrongName.SingleFile.Perform"/>
+        </if>
+        
+        <!-- cleanup -->
+        <if test="${not file::exists(tmp.exec.outout.file)}">
+          <delete file="${tmp.exec.outout.file}"/>
+        </if> 
+        <property name="tmp.exec.outout.content" value=""/>
+        <property name="tmp.args.01" value=""/>
+        <property name="tmp.args.02" value=""/>
+        <property name="tmp.fileToTest" value=""/>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <property name="tmp.exec.outout" value=""/>
+        <property name="tmp.fileToTest" value=""/>
+        
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  
+  <target name="Execute.Sign.StrongName.Files" description="Execute StrongName signing, without dependensies">
+    <!-- There is multi files that must be signed. -->
+    <trycatch>
+      <try>
+        <property name="tmp.Target.Dir.Il" value="${tmp.Target.Dir}\Il"/>
+        <delete dir="${tmp.Target.Dir.Il}"/>
+        <!-- First we controll that we can fin the tools -->
+        <property name="SignTool.ildasm" value="${ildasmPath01}\ildasm.exe"/>
+        <if test="${not file::exists(SignTool.ildasm)}">
+          <echo message="ildasm.exe was not located! '${SignTool.ildasm}'."/>
+        </if>
+        <!-- If the ildasm.exe does not exist in this location, other locations should be tried. -->
+        <property name="SignTool.ilasm" value="${ilasmPath01}\ilasm.exe"/>
+        <if test="${not file::exists(SignTool.ilasm)}">
+          <echo message="ilasm.exe was not located! '${SignTool.ilasm}'."/>
+        </if>
+        <!-- If the ilasm.exe does not exist in this location, other locations should be tried. -->
+        <property name="SignTool.StrongName" value="${snPath01}\Sn.exe"/>
+        <if test="${not file::exists(SignTool.StrongName)}">
+          <echo message="sn.exe was not located! '${SignTool.StrongName}'."/>
+        </if>
+        
+        <!-- Note, the filenames is defines without extension -->
+        <property name="tmp.FileToSign.Extension" value="dll"/>
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.appConfig"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.configuration"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.exception"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.library"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.logging"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.raspProfile"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        
+        <property name="tmp.FileToSign" value="Novell.Directory.Ldap"/>
+        <call target="Execute.Sign.StrongName.SingleFile.Validate"/>
+        <!-- cleanup -->
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="Execute.Sign.StrongName" description="Sign with StrongName">
+    <property name="tmp.Target.Dir" value="${Temp.Sn.dir}"/>
+    <call target="Execute.Sign.StrongName.Files"/>
+  </target>
 
-          
-          <property name="SignFile" value="${SignToolPath01}\SignTool.exe"/>       
-          <if test="${not file::exists(SignFile)}">
-            <echo message="Signing.exe was not located! '${SignFile}'."/>
-          </if>
-          <!-- If the signtool does not exist in this location, other locations should be tried. -->
-
-          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.appConfig.dll"/>
-          <call target="SignTheFile" />     
-          
-          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.configuration.dll"/>
-          <call target="SignTheFile" />
-          
-          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.exception.dll"/>
-          <call target="SignTheFile" />
-          
-          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.library.dll"/>
-          <call target="SignTheFile" />
-          
-          <property name="tmp.FileToSign" value="${Oiosi.dir}\bin\Release\dk.gov.oiosi.logging.dll"/>
-          <call target="SignTheFile" />
-          
-          <property name="tmp.FileToSign" value="${RaspProfile.dir}\bin\Release\dk.gov.oiosi.raspProfile.dll"/>
-          <call target="SignTheFile" />
-          
-          <!-- <sleep seconds="5" /> -->
-          
-          <!-- cleanup -->
-          <delete file="${KeepGoingFile}" />
-
-          <!-- Wait max 5 seconds -->
-          <waitforexit pid="${Rasp.pid}" timeout="5000" />
-        </try>
-        <catch property="failure.message">
-          <echo message="${target::get-current-target()} failed:"/>
-          <echo message="${failure.message}"/>
-          <!-- always delete the file -->
-          <if test="${not file::exists(KeepGoingFil)}">
-               <delete file="${KeepGoingFile}" />
-          </if>       
-          <fail message="${failure.message}"/>
-        </catch>
-      </trycatch>
-    </target>    
-    <target name="Sign" depends="BuildVisualStudioSolutionNet35,Execute.Sign" description="Sign the dlls." />
+  <!-- SourceCodeSigningCertificate -->
+  <target name="Execute.Sign.SourceCodeSigningCertificate.SingleFile">
+    <trycatch>
+      <try>
+        <echo message="Signing the file '${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}'."/>
+        <exec program="${SignTool.File}">
+          <arg value="sign"/>
+          <arg value="/sha1 &quot;${sha1Hash}&quot;"/>
+          <arg value="/tr &quot;${timestampingServer}&quot;"/>
+          <arg value="/td &quot;SHA256&quot;"/>
+          <arg value="${tmp.Target.Dir}\${tmp.FileToSign}.${tmp.FileToSign.Extension}"/>
+        </exec>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="Execute.Sign.SourceCodeSigningCertificate.Files">
+    <!-- There is multi files that must be signed. -->
+    <trycatch>
+      <try>
+        <property name="tmp.FileToSign.Extension" value="dll"/>
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.appConfig"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.configuration"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.exception"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.library"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.logging"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+        
+        <property name="tmp.FileToSign" value="dk.gov.oiosi.raspProfile"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.SingleFile"/>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="Execute.Sign.SourceCodeSigningCertificate">
+    <trycatch>
+      <try>
+        <!-- First we make the SourceCodeSigningCertificate setup -->
+        <property name="SignToolPassword" value="${environment::get-variable('DigstSignToolPassword')}"/>
+        <!--Create a tmp file, that make our password fill keep going...  -->
+        <echo message="AutomaticPasswordFiller."/>
+        <property name="KeepGoingFile" value="${Temp.dir}\KeepGoingRaspLibrary.lock"/>
+        <touch file="${KeepGoingFile}"/>
+        
+        <if test="${not file::exists(KeepGoingFile)}">
+          <echo message="File not exit!!"/>
+        </if>
+        <echo message="KeepGoingFile: '${KeepGoingFile}'."/>
+        <exec program="lib\AutomaticPasswordFiller.exe" pidproperty="Rasp.pid" spawn="true">
+          <arg value="${KeepGoingFile}"/>
+          <arg value="${SignToolPassword}"/>
+        </exec>
+        
+        <echo message="AutomaticPasswordFiller program is running - remember to close it." />
+        
+        <property name="SignTool.File" value="${SignToolPath01}\SignTool.exe"/>
+        <if test="${not file::exists(SignTool.File)}">
+          <echo message="Signing.exe was not located! '${SignTool.File}'."/>
+        </if>
+        
+        <!-- If the signtool does not exist in this location, other locations should be tried. -->
+        <property name="tmp.Target.Dir" value="${Temp.Sn.dir}"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.Files"/>
+        
+        <property name="tmp.Target.Dir" value="${Temp.NoSn.dir}"/>
+        <call target="Execute.Sign.SourceCodeSigningCertificate.Files"/>
+        
+        <!-- cleanup -->
+        <delete file="${KeepGoingFile}"/>
+        
+        <!-- Wait max 5 seconds -->
+        <waitforexit pid="${Rasp.pid}" timeout="5000"/>
+      </try>
+      <catch property="failure.message">
+        <echo message="${target::get-current-target()} failed:"/>
+        <echo message="${failure.message}"/>
+        <!-- always delete the file -->
+        <if test="${not file::exists(KeepGoingFile)}">
+          <delete file="${KeepGoingFile}"/>
+        </if>
+        <fail message="${failure.message}"/>
+      </catch>
+    </trycatch>
+  </target>
+  <target name="Execute.Sign" depends="" description="Call the wo different signing methods">
+    <!-- Note - We must sign with both StrongName and sourceCodeSigningCertificate, in two location -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                              | Temp.Sn.dir  | Temp.NoSn.dir | -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--        StrongName            |       x      |               | -->
+    <!-- sourceCodeSigningcertificate |       x      |        x      | -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <call target="Execute.Sign.StrongName"/>
+    <call target="Execute.Sign.SourceCodeSigningCertificate"/>
+  </target>
+  <target name="Execute.myTestClean">
+  
+    <delete dir="${Temp.NoSn.dir}"/>
+    <delete dir="${Temp.Sn.dir}"/>
     
-    <target name="SignTheFile">
-      <trycatch>
-        <try>
-          
-          <echo message="Signing the file '${tmp.FileToSign}'."/>
-          <exec program="${SignFile}">
-            <arg value="sign" />
-            <arg value="/sha1 &quot;${sha1Hash}&quot;" />
-            <arg value="/tr &quot;${timestampingServer}&quot;" />
-            <arg value="/td &quot;SHA256&quot;" />
-            <arg value="${tmp.FileToSign}" />
-          </exec>
-       </try>
-        <catch property="failure.message">
-          <echo message="${target::get-current-target()} failed:"/>
-          <echo message="${failure.message}"/>
-          <fail message="${failure.message}"/>
-        </catch>
-      </trycatch>
-    </target> 
-    
-    <!-- can't add sign yet, as donkel is mapped yet -->
-    <!-- target name="Distribute" depends="RunTests,Sign" -->
-    <target name="Distribute" depends="RunTests">
-        <!-- Executable -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
-            <fileset basedir="${Oiosi.dir}\bin\Release">
-                <include name="**/*"/>
-                <exclude name="**/*.pdb"/>
-            </fileset>
-            <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
-            <fileset basedir="${RaspProfile.dir}\bin\Release">
-                <include name="dk.gov.oiosi.raspProfile.dll"/>
-            </fileset>
-            <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
-            <!-- dk.gov.oiosi.xml project is not used anymore. -->
-            <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
-                <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
-            <!-- </fileset> -->
-        </zip>
+  </target>
+  
+  <target name="SignDebug" depends="Execute.myTestClean, Execute.CopyToTmp, Execute.Sign" description="Sign the dlls."/>
+  <target name="Sign" depends="CopyToTmp,Execute.Sign" description="Sign the dlls."/>
+  <!-- can't add sign yet, as donkel is mapped yet -->
+  BuildVisualStudioSolutionNet35
+  <!-- <target name="Distribute" depends="RunTests,Sign"> -->
+  
+  <target name="Distribute" depends="BuildVisualStudioSolutionNet35,Sign">
+  <!-- <target name="Distribute" depends="RunTests"> -->
+    <!-- Executable -->
 
-        <!-- Rasp profile library -->
-        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.Signed.zip">
+      <fileset basedir="${Temp.NoSn.dir}">
+        <include name="**/*"/>
+        <!-- <exclude name="**/*.pdb"/> -->
+      </fileset>
+      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
+      <!-- <fileset basedir="${RaspProfile.dir}\bin\Release"> -->
+        <!-- <include name="dk.gov.oiosi.raspProfile.dll"/> -->
+      <!-- </fileset> -->
+      <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
+      <!-- dk.gov.oiosi.xml project is not used anymore. -->
+      <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
+      <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
+      <!-- </fileset> -->
+    </zip>
+    
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.SignedAndStrongName.zip">
+      <fileset basedir="${Temp.Sn.dir}">
+        <include name="**/*"/>
+        <!-- <exclude name="**/*.pdb"/> -->
+      </fileset>
+      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
+      <!-- <fileset basedir="${RaspProfile.dir}\bin\Release"> -->
+        <!-- <include name="dk.gov.oiosi.raspProfile.dll"/> -->
+      <!-- </fileset> -->
+      <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
+      <!-- dk.gov.oiosi.xml project is not used anymore. -->
+      <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
+      <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
+      <!-- </fileset> -->
+    </zip>
+    <!-- Rasp profile library -->
+    <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-${Revision}.zip">
             <fileset basedir="${RaspProfile.dir}\bin\Release">
                 <include name="**/*" />
             </fileset>
         </zip -->
-        <!-- XML shared library -->
-        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
+    <!-- XML shared library -->
+    <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.xml-${Revision}.zip">
             <fileset basedir="${Xml.dir}\bin\Release">
                 <include name="**/*" />
             </fileset>
         </zip -->
-        <!-- Rasp profile resources - input to msi -->
-        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
+    <!-- Rasp profile resources - input to msi -->
+    <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi.raspProfile-msi-input.zip">
             <fileset basedir="${RaspProfile.dir}\Resources">
                 <include name="**/*" />
             </fileset>
-        </zip --> 
-        <!-- Source section -->
-        <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
-            <fileset basedir="${Root.dir}">
-                <include name="**/*"/>
-                <exclude name="**/bin"/>
-                <exclude name="**/bin/**"/>
-                <exclude name="**/obj"/>
-                <exclude name="**/obj/**"/>
-                <exclude name="target/**"/>
-                <exclude name="*.resharper"/>
-                <exclude name="*.cache"/>
-                <exclude name="**/bin"/>
-                <exclude name=".nuget/**"/>
-                <exclude name="packages/**"/>
-                <exclude name="*.bat"/>
-                <exclude name="*.log"/>
-                <exclude name="doc/*.doc"/>
-            </fileset>
-        </zip>
-        <!-- Source with bin folder - input to help file -->
-        <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
+        </zip -->
+    <!-- Source section -->
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
+      <fileset basedir="${Root.dir}">
+        <include name="**/*"/>
+        <exclude name="**/bin"/>
+        <exclude name="**/bin/**"/>
+        <exclude name="**/obj"/>
+        <exclude name="**/obj/**"/>
+        <exclude name="target/**"/>
+        <exclude name="*.resharper"/>
+        <exclude name="*.cache"/>
+        <exclude name="**/bin"/>
+        <exclude name=".nuget/**"/>
+        <exclude name="packages/**"/>
+        <exclude name="*.bat"/>
+        <exclude name="*.log"/>
+        <exclude name="doc/*.doc"/>
+      </fileset>
+    </zip>
+    <!-- Source with bin folder - input to help file -->
+    <!-- zip zipfile="${Dist.dir}\dk.gov.oiosi-src-helpfile-input.zip">
             <fileset basedir="${Root.dir}">
                 <include name="**/*" />
             </fileset>
         </zip -->
-    </target>
-
-    <target name="Release" depends="Distribute"/>
-
-    <target name="DevBuild" depends="BuildVisualStudioSolutionNet35"/>
-
+  </target>
+  <target name="Release" depends="Distribute"/>
+  <target name="DevBuild" depends="BuildVisualStudioSolutionNet35"/>
 </project>
