@@ -22,20 +22,29 @@ namespace dk.gov.oiosi.tool.AutomaticPasswordFiller
 
         public Program(string file, string password)
         {
+            // Debug
+            //// Console.WriteLine("File args: '" + file + "'.");
+            //// Console.WriteLine("password args: '" + password+ "'.");
+            
+            // should this check be there?
             if (string.IsNullOrEmpty(file))
             {
                 throw new Exception("The file is no valid - NullOrEmpty! ");
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (!string.IsNullOrEmpty(password))
             {
-                throw new Exception("The password is no valid - NullOrEmpty! ");
+                Console.WriteLine("Password is empty - won't start the automatics password filler.");
             }
-
-            if (File.Exists(file))
+            else if(!File.Exists(file))             
             {
+                Console.WriteLine("File does not exist - won't start the automatics password filler.");
+            }
+            else
+            {
+                Console.WriteLine("Starting the automatics password filler.");
                 this.SatisfyEverySafeNetTokenPasswordRequest(file, password);
-            }
+            }            
         }
 
         public void SatisfyEverySafeNetTokenPasswordRequest(string file, string password)
