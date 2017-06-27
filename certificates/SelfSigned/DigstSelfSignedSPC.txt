@@ -1,0 +1,20 @@
+https://stackoverflow.com/questions/84847/how-do-i-create-a-self-signed-certificate-for-code-signing-on-windows
+
+Create Software Publisher Certificate (SPC)
+Open Developer Command Prompt for VS2012
+
+ makecert.exe -pe -n "CN=Digst SelfSigned SPC" -a sha256 -cy end -sky signature -ic DigstSelfSignedCA.cer -iv DigstSelfSignedCA.pvk -sv DigstSelfSignedSPC.pvk DigstSelfSignedSPC.cer
+
+The used password is: Digst
+
+
+
+Create PFX file.
+
+ pvk2pfx.exe -pvk DigstSelfSignedSPC.pvk -spc DigstSelfSignedSPC.cer -pfx DigstSelfSignedSPC.pfx
+
+The used password is: Digst
+
+Install SPC
+ certutil.exe -user -f -p "" -importpfx "DigstSelfSignedSPC.pfx"
+or simply dobble click on the certificate (DigstSelfSignedSPC.pfx).
