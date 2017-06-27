@@ -32,7 +32,7 @@ namespace dk.gov.oiosi.tool.AutomaticPasswordFiller
                 throw new Exception("The file is no valid - NullOrEmpty! ");
             }
 
-            if (!string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
             {
                 Console.WriteLine("Password is empty - won't start the automatics password filler.");
             }
