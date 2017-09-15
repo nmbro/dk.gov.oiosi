@@ -47,6 +47,7 @@ using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.extension.wcf.Interceptor.UbiquitousProperties;
 using dk.gov.oiosi.security.oces;
 using dk.gov.oiosi.communication.handlers.email;
+using System.Diagnostics;
 
 namespace dk.gov.oiosi.communication
 {
@@ -191,12 +192,12 @@ namespace dk.gov.oiosi.communication
 
 
                 this.SetCredentials();
-                this.SetMailConfig();
 
                 logging.WCFLogger.Write(System.Diagnostics.TraceEventType.Stop, "Proxy finished being created");
             }
             catch (Exception e)
             {
+                Debug.Fail("User the 'dk.gov.oiosi.communication.service.IServiceContract' contract instead of 'dk.gov.oiosi.communication.client.IClientProxyContract'.");
                 throw new ProxyGenerationException(e);
             }
         }
@@ -266,39 +267,7 @@ namespace dk.gov.oiosi.communication
             {
                 proxy.Endpoint.Address = new EndpointAddress(this.requestUri);
             }
-        }
-
-        private void SetMailConfig()
-        {
-            // Do we have dynamically set mail config?
-            if (this.policy != null && this.proxy.Endpoint.Binding.GetType() == typeof(CustomBinding))
-            {
-                EmailBindingElement binding = ((CustomBinding)this.proxy.Endpoint.Binding).Elements.Find<EmailBindingElement>();
-                // If we had an email binding element
-                if (binding != null)
-                {
-                    IMailServerConfiguration inboxConfiguration = this.policy.InboxMailConfiguration;
-                    IMailServerConfiguration outboxConfiguration = this.policy.OutboxMailConfiguration;
-                    if (inboxConfiguration != null)
-                    {
-                        binding.ReceivingServerAddress = inboxConfiguration.ServerAddress;
-                        binding.ReceivingUserName = inboxConfiguration.UserName;
-                        binding.ReceivingPassword = inboxConfiguration.Password;
-                        binding.ReceivingPort = inboxConfiguration.ConnectionPolicy.Port;
-                        binding.ReceivingAuthenticationMode = inboxConfiguration.ConnectionPolicy.AuthenticationMode;
-                    }
-                    if (this.policy.OutboxMailConfiguration != null)
-                    {
-                        binding.SendingServerAddress = outboxConfiguration.ServerAddress;
-                        binding.SendingUserName = outboxConfiguration.UserName;
-                        binding.SendingPassword = outboxConfiguration.Password;
-                        binding.ReplyAddress = outboxConfiguration.ReplyAddress;
-                        binding.SendingPort = outboxConfiguration.ConnectionPolicy.Port;
-                        binding.SendingAuthenticationMode = outboxConfiguration.ConnectionPolicy.AuthenticationMode;
-                    }
-                }
-            }
-        }
+        }        
 
         /// <summary>
         /// Synchronously sends a request and gets a response

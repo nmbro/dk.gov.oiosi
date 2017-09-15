@@ -139,6 +139,7 @@ namespace dk.gov.oiosi.security.lookup {
         /// <returns>An x5092 certificate or null</returns>
         public X509Certificate2 GetCertificateFromStore(string searchString, StoreLocation storeLocation, StoreName storeName, X509FindType findType)
         {
+            X509Certificate2 foundCertificate = null;
             X509Store store = new X509Store(storeName, storeLocation);
             X509Certificate2Collection result;
 
@@ -159,12 +160,37 @@ namespace dk.gov.oiosi.security.lookup {
             {
                 throw new CertificateLoaderCertificateNotFoundException(store, findType, searchString);
             }
-            if (result.Count > 1)
+            else if (result.Count == 1)
             {
-                throw new CertificateLoaderMultipleCertificatesFoundException(store, findType, searchString);
+                foundCertificate = result[0];
+            }
+            else
+            {
+                foreach (X509Certificate2 certificate in result)
+                {
+                    if (foundCertificate == null)
+                    {
+                        // first iteration.
+                        foundCertificate = certificate;
+                    }
+                    else
+                    {
+                        // All the other certificate must be equal to the found certificate, 
+                        // else something is totally wrong.
+                        if (foundCertificate.Thumbprint.Equals(certificate.Thumbprint, StringComparison.OrdinalIgnoreCase))
+                        {
+                            // The two certificate is equal.
+                            // All good, check the next certificate.
+                        }
+                        else
+                        {
+                            throw new CertificateLoaderMultipleCertificatesFoundException(store, findType, searchString);
+                        }
+                    }
+                }
             }
 
-            return result[0];
+            return foundCertificate;
         }
 
         /// <summary>

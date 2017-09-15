@@ -40,6 +40,7 @@ namespace dk.gov.oiosi.communication.client {
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "3.0.0.0")]
     [System.ServiceModel.ServiceContract(Namespace = "http://rep.oio.dk/oiosi/")]
+    [Obsolete("Old mail sending/receiving interface. Use the dk.gov.oiosi.communication.service.IServiceContract.RequestRespond(Message) instead. The interface will be removed.")]
     public interface IClientProxyContract : IServiceContract 
     {
         /// <summary>
@@ -50,7 +51,7 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="asyncState">async state</param>
         /// <returns></returns>
         [System.ServiceModel.OperationContract(Action = "*", ReplyAction = "*", AsyncPattern = true)]
-        [Obsolete("Old mail sending/receiving interface. Use the dk.gov.oiosi.communication.client.IClientProxyContract.RequestRespond(Message) instead.")]
+        [Obsolete("Old mail sending/receiving interface. Use the dk.gov.oiosi.communication.service.IServiceContract.RequestRespond(Message) instead.")]
         System.IAsyncResult BeginRequestRespond(System.ServiceModel.Channels.Message request, System.AsyncCallback callback, object asyncState);
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace dk.gov.oiosi.communication.client {
         /// </summary>
         /// <param name="result">result object</param>
         /// <returns>IAsyncResult</returns>
-        [Obsolete("Old mail sending/receiving interface. Use the dk.gov.oiosi.communication.client.IClientProxyContract.RequestRespond(Message) instead.")]
+        [Obsolete("Old mail sending/receiving interface. Use the dk.gov.oiosi.communication.service.IServiceContract.RequestRespond(Message) instead.")]
         System.ServiceModel.Channels.Message EndRequestRespond(System.IAsyncResult result);
     }
 }

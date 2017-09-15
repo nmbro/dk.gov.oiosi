@@ -193,7 +193,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
             this.logger.Debug(string.Format("OCSP validation the certificate '{0}'.", x509Certificate2.SubjectName.Name));
 
-            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
+            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.Thumbprint.ToLowerInvariant(), out revocationResponse);
             if (ocspResponseExistsInCache)
             {
                 // response already in cache.
@@ -266,7 +266,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                             if (this.rootCertificateDirectory.ContainsKey(issuerX509Certificate2.Thumbprint.ToLowerInvariant()))
                             {
                                 // the root certificate is trusted, so the RevocationResponse can be put on the cache
-                                this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                                this.ocspCache.Set(x509Certificate2.Thumbprint.ToLowerInvariant(), revocationResponse);
                             }
                             else
                             {
@@ -313,14 +313,14 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                                 }
 
                                 // update the cache
-                                this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                                this.ocspCache.Set(x509Certificate2.Thumbprint.ToLowerInvariant(), revocationResponse);
                             }
                         }
                         else
                         {
                             // the certificate is NOT valid
                             // no need to check the issuer certificate
-                            this.ocspCache.Set(x509Certificate2.SubjectName.Name, revocationResponse);
+                            this.ocspCache.Set(x509Certificate2.Thumbprint.ToLowerInvariant(), revocationResponse);
                         }
                     }
                     else
@@ -827,7 +827,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
             //To call the CheckCertificate asynchronously, we initialize the delegate and call it with IAsyncResult
             RevocationResponse revocationResponse;
 
-            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.SubjectName.Name, out revocationResponse);
+            bool ocspResponseExistsInCache = this.ocspCache.TryGetValue(x509Certificate2.Thumbprint.ToLowerInvariant(), out revocationResponse);
             if (ocspResponseExistsInCache)
             {
                 // response already in cache.

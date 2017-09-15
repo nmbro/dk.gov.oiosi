@@ -12,7 +12,7 @@ using dk.gov.oiosi.addressing;
 namespace dk.gov.oiosi.raspProfile.communication
 {
     /// <summary>
-    /// This class incapsulates a Request object. It extends its functionailty by 
+    /// This class encapsulates a Request object. It extends its functionality by 
     /// adding Rasp custom headers to the message in the GetResponse and BeginGetResponse methods.
     /// </summary>
     public class RaspRequest : IRaspRequest
@@ -22,7 +22,7 @@ namespace dk.gov.oiosi.raspProfile.communication
         /// <summary>
         /// Constructs a new RaspRequest given a Request object
         /// </summary>
-        /// <param name="request">The Request object to be incapsulated</param>
+        /// <param name="request">The Request object to be encapsulated</param>
         public RaspRequest(Request request)
         {
             incapsulatedRequest = request;

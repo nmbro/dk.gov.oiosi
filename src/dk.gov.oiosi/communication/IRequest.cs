@@ -51,11 +51,13 @@ namespace dk.gov.oiosi.communication {
         /// </summary>
         /// <param name="message">Request message</param>
         /// <param name="callback">Callback delegate</param>
+        [Obsolete("Is just a wrapper for GetResponse")]
         IAsyncResult BeginGetResponse(OiosiMessage message, out Response response, AsyncCallback callback);
        
         /// <summary>
         /// Asynchronously ends sending a request
         /// </summary>
+		[Obsolete("Is just a wrapper for GetResponse")]
         void EndGetResponse(IAsyncResult asyncResult, out Response response);
 
         /// <summary>

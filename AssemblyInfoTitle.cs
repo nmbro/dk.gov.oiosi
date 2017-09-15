@@ -10,6 +10,5 @@ using System.Reflection;
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: AssemblyVersionAttribute("2.1.1")]
-[assembly: AssemblyInformationalVersionAttribute("2.1.1 Dev")]
+[assembly: AssemblyTitleAttribute("RASP.Net 2.1.1")]
 

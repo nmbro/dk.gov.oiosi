@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens;
 using dk.gov.oiosi.security.validation.configuration;
 using dk.gov.oiosi.configuration;
 using dk.gov.oiosi.logging;
+using System.Diagnostics;
 
 namespace dk.gov.oiosi.security.validation {
     
@@ -116,6 +117,7 @@ namespace dk.gov.oiosi.security.validation {
             X509Chain x509Chain = this.CreateChain(certificate);
 
             // Modified chain validation of the certificate. We are not interested in Ctl lists
+
             X509ChainStatus status;
             int index = 0;
 
@@ -215,12 +217,30 @@ namespace dk.gov.oiosi.security.validation {
         private void LoadRootCertificates(RootCertificateCollectionConfig rootCertificateCollectionConfig)
         {
             CertificateLoader certificateLoader = new CertificateLoader();
-            X509Certificate2 loadedRootCertificate;
 
             foreach (RootCertificateLocation rootCertificateLocation in rootCertificateCollectionConfig.RootCertificateCollection)
             {
-                loadedRootCertificate = certificateLoader.GetCertificateFromCertificateStoreInformation(rootCertificateLocation);
-                this.rootCertificateDirectory.Add(loadedRootCertificate.Thumbprint.ToLowerInvariant(), loadedRootCertificate);
+                try
+                {
+                    X509Certificate2 loadedRootCertificate = certificateLoader.GetCertificateFromCertificateStoreInformation(rootCertificateLocation);
+                    this.rootCertificateDirectory.Add(loadedRootCertificate.Thumbprint.ToLowerInvariant(), loadedRootCertificate);
+                }
+                catch (CertificateLoaderCertificateNotFoundException notFoundException)
+                {
+                    // So, this root certificate was not found.
+                    try
+                    {
+                        this.logger.Warn(notFoundException.Message);
+                    }
+                    catch (Exception)
+                    {
+                        this.logger.Warn(string.Format("Root certificate ({0}) not found. StoreLocation: {1}. StoreName: {2}. SerialNumber: {3}.", rootCertificateLocation.Description, rootCertificateLocation.StoreLocation, rootCertificateLocation.StoreName, rootCertificateLocation.SerialNumber));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Fail(ex.Message);
+                }                
            }
         }
 

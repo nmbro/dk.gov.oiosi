@@ -31,14 +31,17 @@
   *
   */
 
+using dk.gov.oiosi.communication.service;
 namespace dk.gov.oiosi.communication.client {
 
     /// <summary>
     /// Core proxy class for sending XML messages to services.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "3.0.0.0")]
-    public partial class ClientProxy : System.ServiceModel.ClientBase<IClientProxyContract>, IClientProxyContract {
-
+    //  Old mail sending/receiving interface
+    //  public partial class ClientProxy : System.ServiceModel.ClientBase<IClientProxyContract>, IClientProxyContract
+    public partial class ClientProxy : System.ServiceModel.ClientBase<IServiceContract>, IServiceContract
+    {
         #region Constructors
         /// <summary>
         /// Constructor
@@ -51,9 +54,7 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="endpointConfigurationName">the name of the endpoint configuration</param>
         public ClientProxy(string endpointConfigurationName)
             :base(endpointConfigurationName) 
-        {
-            
-        }
+        { }
 
         /// <summary>
         /// Constructor
@@ -61,9 +62,8 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="endpointConfigurationName">the name of the endpoint configuration</param>
         /// <param name="remoteAddress">remote address</param>
         public ClientProxy(string endpointConfigurationName, string remoteAddress)
-            :base(endpointConfigurationName, remoteAddress) {
-
-        }
+            :base(endpointConfigurationName, remoteAddress) 
+        { }
 
         /// <summary>
         /// Constructor
@@ -71,9 +71,8 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="endpointConfigurationName">the name of the endpoint configuration</param>
         /// <param name="remoteAddress">remote address</param>
         public ClientProxy(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress)
-            :base(endpointConfigurationName, remoteAddress) {
-
-        }
+            :base(endpointConfigurationName, remoteAddress)
+        { }
 
         /// <summary>
         /// Constructor
@@ -81,29 +80,30 @@ namespace dk.gov.oiosi.communication.client {
         /// <param name="binding">binding</param>
         /// <param name="remoteAddress">remote address</param>
         public ClientProxy(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress)
-            :base(binding, remoteAddress) {
-        }
+            : base(binding, remoteAddress)
+        { }
         #endregion
 
         /// <summary>
         /// Sends a request to the remote endpoint, and returns the reply
         /// </summary>
-        public System.ServiceModel.Channels.Message RequestRespond(System.ServiceModel.Channels.Message request) {
+        public System.ServiceModel.Channels.Message RequestRespond(System.ServiceModel.Channels.Message request) 
+        {
             return base.Channel.RequestRespond(request);
         }
 
-        /// <summary>
-        /// Async request/response begin
-        /// </summary>
-        public System.IAsyncResult BeginRequestRespond(System.ServiceModel.Channels.Message request, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRequestRespond(request, callback, asyncState);
-        }
+        /////// <summary>
+        /////// Async request/response begin
+        /////// </summary>
+        ////public System.IAsyncResult BeginRequestRespond(System.ServiceModel.Channels.Message request, System.AsyncCallback callback, object asyncState) {
+        ////    return base.Channel.BeginRequestRespond(request, callback, asyncState);
+        ////}
 
-        /// <summary>
-        /// Async request/response end
-        /// </summary>
-        public System.ServiceModel.Channels.Message EndRequestRespond(System.IAsyncResult result) {
-            return base.Channel.EndRequestRespond(result);
-        }
+        /////// <summary>
+        /////// Async request/response end
+        /////// </summary>
+        ////public System.ServiceModel.Channels.Message EndRequestRespond(System.IAsyncResult result) {
+        ////    return base.Channel.EndRequestRespond(result);
+        ////}
     }
 }

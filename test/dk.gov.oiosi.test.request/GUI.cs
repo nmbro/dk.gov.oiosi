@@ -10,16 +10,19 @@ using dk.gov.oiosi.extension.wcf.EmailTransport;
 using dk.gov.oiosi.raspProfile.communication;
 using System.IO;
 
-namespace dk.gov.oiosi.test.request {
-    
-    public class GUI {
+namespace dk.gov.oiosi.test.request
+{
+
+    public class GUI
+    {
 
         #region 3 - Programatically configured mail
 
         /// <summary>
         /// Configures the mail account used for sending
         /// </summary>
-        public static void GetMailSettings(IRaspRequest request) {
+        public static void GetMailSettings(IRaspRequest request)
+        {
 
             // Read the settings from the console
             Console.WriteLine("\nPlease configure the mail account used for sending");
@@ -65,7 +68,8 @@ namespace dk.gov.oiosi.test.request {
         /// <summary>
         /// Simple menu handling mehtod
         /// </summary>
-        public static MenuChoice DisplayMenu() {
+        public static MenuChoice DisplayMenu()
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("OIOSI Request Test Application\n------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
@@ -79,14 +83,16 @@ namespace dk.gov.oiosi.test.request {
             Console.ForegroundColor = ConsoleColor.White;
 
             ConsoleKeyInfo key;
-            do {
+            do
+            {
                 Console.Write("\nChoice: ");
                 key = Console.ReadKey();
                 Console.WriteLine();
             }
             while (key.Key != ConsoleKey.D1 && key.Key != ConsoleKey.D2);
 
-            switch (key.Key) {
+            switch (key.Key)
+            {
                 case ConsoleKey.D1:
                     return MenuChoice.Default;
                 case ConsoleKey.D2:
@@ -99,10 +105,12 @@ namespace dk.gov.oiosi.test.request {
         /// <summary>
         /// Asks the user whether to restart the application
         /// </summary>
-        public static bool AskIfRestart() {
+        public static bool AskIfRestart()
+        {
             // See if the user wants to send again
             ConsoleKeyInfo key;
-            do {
+            do
+            {
                 Console.Write("Do you want to restart? [y/n]");
                 key = Console.ReadKey();
                 Console.WriteLine();
@@ -115,7 +123,7 @@ namespace dk.gov.oiosi.test.request {
                 return true;
         }
 
-        public static XmlDocument LoadXmlDocument() 
+        public static XmlDocument LoadXmlDocument()
         {
             bool answerCorrect = false;
             //bool tryAgain = true;
@@ -126,7 +134,7 @@ namespace dk.gov.oiosi.test.request {
             {
                 Console.Write("File to send - use predefined test files? (y/n)? ");
                 key = Console.ReadKey();
-                
+
                 if (key.Key == ConsoleKey.Y)
                 {
                     usePredefinedFile = true;
@@ -135,18 +143,18 @@ namespace dk.gov.oiosi.test.request {
                 else if (key.Key == ConsoleKey.N)
                 {
                     usePredefinedFile = false;
-                    answerCorrect = true; 
+                    answerCorrect = true;
                 }
                 else
                 {
                     Console.WriteLine(" Answer not regonized!");
                 }
             }
-            
+
             string fileNumber;
-            int fileNumberInt; 
+            int fileNumberInt;
             string file = string.Empty;
-            
+
             if (usePredefinedFile == true)
             {
                 IDictionary<int, string> files = DefaultFiles();
@@ -155,7 +163,7 @@ namespace dk.gov.oiosi.test.request {
                     Console.WriteLine();
                     Console.WriteLine("Choose a file:");
 
-                    foreach(KeyValuePair<int, string> pair in files)
+                    foreach (KeyValuePair<int, string> pair in files)
                     {
                         Console.WriteLine(pair.Key + " - " + pair.Value);
                     }
@@ -180,7 +188,7 @@ namespace dk.gov.oiosi.test.request {
                     else
                     {
                         // int not regonized
-                        Console.WriteLine("File number ("+fileNumber+") not regonized, try again.");
+                        Console.WriteLine("File number (" + fileNumber + ") not regonized, try again.");
                     }
                 }
             }
@@ -192,8 +200,8 @@ namespace dk.gov.oiosi.test.request {
 
             XmlDocument xdoc = new XmlDocument();
             xdoc.Load(file);
-    
-            
+
+
             return xdoc;
         }
 
@@ -209,14 +217,16 @@ namespace dk.gov.oiosi.test.request {
             return files;
         }
 
-        public static Uri GetEndpointAddress() {
+        public static Uri GetEndpointAddress()
+        {
             Console.Write("Receiving endpoint: ");
             string endpoint = Console.ReadLine();
             return new Uri(endpoint);
         }
 
 
-        public static X509Certificate2 GetCertificate() {
+        public static X509Certificate2 GetCertificate()
+        {
 
             Console.WriteLine("Store (empty line result in StoreName=My).");
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -226,7 +236,8 @@ namespace dk.gov.oiosi.test.request {
             StoreName storeName = StoreName.My;
             string userFeedback;
             bool done = false;
-            do {
+            do
+            {
                 userFeedback = Console.ReadLine();
                 if (string.IsNullOrEmpty(userFeedback))
                 {
@@ -257,7 +268,8 @@ namespace dk.gov.oiosi.test.request {
 
             StoreLocation storeLocation = StoreLocation.CurrentUser;
             done = false;
-            do {
+            do
+            {
                 userFeedback = Console.ReadLine();
                 if (string.IsNullOrEmpty(userFeedback))
                 {
@@ -306,7 +318,7 @@ namespace dk.gov.oiosi.test.request {
             ////{
             ////    defaultSerial = "4037fb49";
             ////}
-             
+
             Console.Write("Serial number (empty line will result in " + defaultSerial + "): ");
             string serial = Console.ReadLine();
 
@@ -322,23 +334,39 @@ namespace dk.gov.oiosi.test.request {
             return clientCert;
         }
 
-        public static void PrintException(Exception e) {
+        public static void PrintException(Exception e)
+        {
             Console.ForegroundColor = ConsoleColor.Red;
-            #if DEBUG
-                Console.WriteLine(e);
-            #else
+#if DEBUG
+            Console.WriteLine(e);
+#else
                 Console.WriteLine(e.Message);
-            #endif
+#endif
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void PrintResponse(Response response) {
+        public static void PrintResponse(Response response)
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
             if (response.ResponseMessage.HasBody)
             {
                 Console.WriteLine("Response received");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("  " + response.ResponseMessage.MessageXml.OuterXml);
+                XmlDocument xml = response.ResponseMessage.MessageXml;
+                string value;
+                try
+                {
+                    value = xml.FirstChild.InnerText;
+                    if(string.IsNullOrEmpty(value))
+                    {
+                        value = xml.OuterXml;
+                    }
+                }
+                catch (Exception)
+                {
+                    value = xml.OuterXml;
+                }
+                Console.WriteLine("  " + value);
             }
             else
             {
