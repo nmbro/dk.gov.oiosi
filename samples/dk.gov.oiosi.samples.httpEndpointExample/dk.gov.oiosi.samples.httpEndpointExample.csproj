@@ -131,11 +131,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>80</DevelopmentServerPort>
-          <DevelopmentServerVPath>/integration/RASPNET/2.0</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/integration/RASPNET/2.0</IISUrl>
+          <DevelopmentServerVPath>/Oiosi</DevelopmentServerVPath>
+          <IISUrl>http://localhost:80/Oiosi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

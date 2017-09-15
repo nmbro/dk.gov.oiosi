@@ -70,7 +70,9 @@ namespace dk.gov.oiosi.samples
             // subject = "CN=FOCES1 (funktionscertifikat) + SERIALNUMBER=CVR:30808460-FID:1255692730737, O=DANID A/S // CVR:30808460, C=DK";
             // subject = "CN=TU GENEREL MOCES gyldig + SERIALNUMBER=CVR:30808460-RID:45490598, O=Danid A/S // CVR:30808460, C=DK";
 
-            subject = "SERIALNUMBER=CVR:15231599-FID:1299510243552 + CN=CSC Nemhandel (funktionscertifikat), O=CSC DANMARK // CVR:15231599, C=DK";
+            subject = "CN = mySupply NemHandel - Foces2 (funktionscertifikat) + SERIALNUMBER = CVR:32433030-FID:27705483, O = mySupply NemHandel // CVR:32433030, C = DK";
+
+            //subject = "SERIALNUMBER=CVR:34051178-FID:56940413 + CN=NemLog-in ADFS Test (funktionscertifikat), O=Digitaliseringsstyrelsen // CVR:34051178, C=DK";
 
             // Now - retrive the certificate in LDAP, if the certificate is pressen...
             CertificateSubject certificateSubject = new CertificateSubject(subject);

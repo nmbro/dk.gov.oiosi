@@ -3,6 +3,7 @@ using System.Configuration;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using dk.gov.oiosi.communication;
+using dk.gov.oiosi.communication.client;
 using dk.gov.oiosi.communication.configuration;
 using dk.gov.oiosi.communication.service;
 using dk.gov.oiosi.configuration;
