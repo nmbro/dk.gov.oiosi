@@ -22,7 +22,7 @@
   *   Jesper Jensen, Avanade
   *   Ramzi Fadel, Avanade
   *   Patrik Johansson, Accenture
-  *   Dennis Søgaard, Accenture
+  *   Dennis SÃ¸gaard, Accenture
   *   Christian Pedersen, Accenture
   *   Martin Bentzen, Accenture
   *   Mikkel Hippe Brun, ITST
@@ -178,8 +178,8 @@ namespace dk.gov.oiosi.security.lookup {
         {
             X509Store store = new X509Store(storeName, storeLocation);
             store.Open(OpenFlags.ReadOnly);
-            // se på MultipleRootX509CertificateValidator.isValid(certifica, rootCertificate);
-            // TODO - JLM  - hvis der er tre nivauer - får vi så det ønskede certificat, eller det mellemste niveau?
+            // se pÃ¥ MultipleRootX509CertificateValidator.isValid(certifica, rootCertificate);
+            // TODO - JLM  - hvis der er tre nivauer - fÃ¸r vi sÃ¥ det Ã¸nskede certificat, eller det mellemste niveau?
 
             X509Certificate2Collection certificates = store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, false);
             store.Close();
