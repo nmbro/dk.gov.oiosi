@@ -5,8 +5,8 @@
 
   <!-- ${build.number} is the value coming from TeamCity, or the bat critpt that start the build -->
   <property name="Number_Major" value="2"/>
-  <property name="Number_Minor" value="2"/>
-  <property name="Number_Patch" value="0"/>
+  <property name="Number_Minor" value="1"/>
+  <property name="Number_Patch" value="1"/>
   <!-- When updating the version number, remember to update theses files.
       They have a reference to the actual version, almost at the end of the file.
       The number should be like this (note, it must end with '.0').
@@ -32,7 +32,7 @@
   <!-- setup directories -->
   <property name="Root.dir" value="."/>
   <property name="Dist.dir" value="target\dist"/>
-  <property name="Temp.dir" value="target\temp"/>  
+  <property name="Temp.dir" value="target\temp"/>
   <property name="Temp.NoSn.dir" value="${Temp.dir}\NoStronName"/>
   <property name="Temp.Sn.dir" value="${Temp.dir}\StronName"/>
   <property name="Packages.dir" value="packages"/>
