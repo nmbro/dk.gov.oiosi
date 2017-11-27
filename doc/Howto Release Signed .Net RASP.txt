@@ -1,0 +1,19 @@
+Work has gone into make a signed release og RASP .Net.
+However, we have the problem that the virtual build server can't reach the code Signing certificate on physical USB eToken.
+Therefore, the only option so far, is release a signed version from a workstation.
+These steps explain howto setup the workstation to release a signed version of RASP.Net.
+
+1) Add (if not already exist) to windows Enviroment, the password to the certificate (yes, the key start with '-'):
+   Name		-DigstSignToolPassword
+   Password not added to SVN.
+
+
+2) Add (if not already exist) to windows Enviroment, the key and Hash to the certificate (yes, the key start with '-'):
+   Name		-DigstSPCThumbprint
+   VAlue	98642f19b787ec0386db8b52ce9e8ed4e49c
+
+3) Install (if not already done) SAFENET DRIVERS: https://www.trustzone.com/standard-code-signing (step 1).
+
+4) Find the svn revision number, and update the file './../NAnt.build.Distribute.Signed.bat', and set the correct build number (line 27).
+
+5) Run the file './../NAnt.build.Distribute.Signed.bat'.

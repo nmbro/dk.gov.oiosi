@@ -503,6 +503,7 @@
     </Content>
     <Content Include="Resources\RaspConfigurationWithEmailTransportConfigSectionWithOnlyCertificatesSet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\RaspConfigurationWithOnlyOneDocumentType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

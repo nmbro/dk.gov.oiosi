@@ -43,7 +43,7 @@ namespace dk.gov.oiosi.security.revocation.crl
     using dk.gov.oiosi.logging;
     using Org.BouncyCastle.Asn1;
     using Org.BouncyCastle.Utilities.Collections;
-using System.Text;
+    using System.Text;
 
     /// <summary>
     /// Class used for storing CRLs retrieved from URL's in X509 certificates
@@ -69,7 +69,7 @@ using System.Text;
             this.logger = LoggerFactory.Create(this);
             this.crlParser = new X509CrlParser();
             this.data = null;
-            this.url = url;            
+            this.url = url;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ using System.Text;
                             // Only update if earlistNextUpdate is reached
                             // pervent the update tast to be performed and faileds many times, if the server is offline
                             if (DateTime.Now > this.earlistNextUpdate)
-                            {                                
+                            {
                                 this.upgradeData();
                                 this.earlistNextUpdate = DateTime.MinValue;
                             }
@@ -191,7 +191,7 @@ using System.Text;
                         this.data = this.crlParser.ReadCrl(stream);
                         this.logger.Trace("Finish with 'crlParser.ReadCrl(stream)'");
 
-                        
+
                         if (this.logger.IsDebugEnabled)
                         {
                             ISet revokedCertificates = this.data.GetRevokedCertificates();
@@ -207,6 +207,31 @@ using System.Text;
                                 {
                                     sb.AppendLine(string.Format("  {0}", obj.ToString()));
                                 }
+
+#if DEBUG
+                                // Default this is not enabled. Can be manual enabled in debug mode.
+                                bool dump = false;
+                                if (dump)
+                                {
+                                    StringBuilder sb2 = new StringBuilder();
+
+                                    foreach (object obj in revokedCertificates)
+                                    {
+                                        if (obj is Org.BouncyCastle.X509.X509CrlEntry)
+                                        {
+                                            Org.BouncyCastle.X509.X509CrlEntry entry = obj as Org.BouncyCastle.X509.X509CrlEntry;
+                                            sb2.AppendLine(entry.RevocationDate + ";" + entry.SerialNumber);
+                                        }
+                                        else
+                                        {
+                                        }
+                                    }
+
+                                    File.WriteAllText("d:/crl_dump.txt", sb2.ToString());
+                                }
+#endif
+
+
 
                                 this.logger.Debug(sb.ToString());
                             }
@@ -260,7 +285,7 @@ using System.Text;
                 throw;
             }
 
-            return; 
+            return;
         }
 
         /// <summary>
@@ -288,7 +313,7 @@ using System.Text;
                     result = true;
                 }
                 else
-                { 
+                {
                     // next update is in the past, so cache version is invalid
                     result = false;
                 }

@@ -24,7 +24,7 @@ set PATH=%PATH%;%msbuildPath01%;%msbuildPath02%;%nantPath01%
 REM NAnt log fil can not be savet to folder target/temp.
 REM NAnt start by deleting the directory (including it own log) which is not good
 REM And on a clean checkout, the directory does not even exist.
-nant -D:build.number=65534 -D:buildType=Dev -f:build.xml Release -logfile:NAnt.build.log
+nant -D:build.number=65534 -D:buildType=Dev -f:build.xml SignDebug -logfile:NAnt.build.log
 
 
 :EXIT

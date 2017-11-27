@@ -33,6 +33,7 @@
   <property name="Root.dir" value="."/>
   <property name="Dist.dir" value="target\dist"/>
   <property name="Temp.dir" value="target\temp"/>
+  <property name="Temp.NoSign.dir" value="${Temp.dir}\NoSign"/>
   <property name="Temp.NoSn.dir" value="${Temp.dir}\NoStronName"/>
   <property name="Temp.Sn.dir" value="${Temp.dir}\StronName"/>
   <property name="Packages.dir" value="packages"/>
@@ -167,7 +168,7 @@
       </fileset>
     </copy>
     <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
-    <copy todir="${tmp.Target.Dir}">      
+    <copy todir="${tmp.Target.Dir}">
       <fileset basedir="${RaspProfile.dir}\bin\Release">
         <include name="dk.gov.oiosi.raspProfile.dll"/>
       </fileset>
@@ -175,16 +176,24 @@
   </target>
 
   <target name="Execute.CopyToTmp">
-    <!-- We copy the all the resources to the two tmp directories: 'Temp.NoSn.dir' and 'Temp.Sn.dir'. -->
-    <!-- This is because we must make a release that is stronName signed and one that is NOT stronName signed. -->
+    <!-- We copy the all the resources to the two tmp directories: 'Temp.NoSign.dir', 'Temp.NoSn.dir' and 'Temp.Sn.dir'. -->
+    <!-- This is because we must make a clean release, one release that is NOT stronName signed, and one that is stronName signed. -->
     <trycatch>
       <try>
-        <!-- First to StrongName directory -->
-        <property name="tmp.Target.Dir" value="${Temp.Sn.dir}"/>
+      
+      Temp.NoSign.dir
+        <!-- First to NoSign directory -->
+        <property name="tmp.Target.Dir" value="${Temp.NoSign.dir}"/>
         <call target="Execute.CopyToTmp.DefinedTarget"/>
-        <!-- Then to No StrongName directory -->
+        
+        <!-- Then to NoStrongName directory -->
         <property name="tmp.Target.Dir" value="${Temp.NoSn.dir}"/>
         <call target="Execute.CopyToTmp.DefinedTarget"/>
+        
+        <!-- Last to StrongName directory -->
+        <property name="tmp.Target.Dir" value="${Temp.Sn.dir}"/>
+        <call target="Execute.CopyToTmp.DefinedTarget"/>
+        
         <!-- Cleanup -->
         <property name="tmp.Target.Dir" value=""/>
       </try>
@@ -345,49 +354,23 @@
     <!--        StrongName            |       x      |               | -->
     <!-- sourceCodeSigningcertificate |       x      |        x      | -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <!-- <call target="Execute.Sign.StrongName" /> -->
-    <!-- <call target="Execute.Sign.SourceCodeSigningCertificate" /> -->
+    <call target="Execute.Sign.StrongName" />
+    <call target="Execute.Sign.SourceCodeSigningCertificate" />
   </target>
 
+  <!-- This target is used in debug the 'Sign process', as it 'skip' the compile fase and thereby execution faster. -->
   <target name="SignDebug" depends="NuGetRestore, Execute.CopyToTmp, Execute.Sign" description="Sign the dlls."/>
+  
   <target name="Sign" depends="CopyToTmp,Execute.Sign" description="Sign the dlls."/>
   <!-- can't add sign yet, as donkel is mapped yet -->
 
   <target name="Execute.Distribute">
-    <!-- <target name="Distribute" depends="RunTests"> -->
-    <!-- Executable -->
-
-    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.Signed.zip">
-      <fileset basedir="${Temp.NoSn.dir}">
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.zip">
+      <fileset basedir="${Temp.NoSign.dir}">
         <include name="**/*"/>
       </fileset>
-      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
-      <!-- <fileset basedir="${RaspProfile.dir}\bin\Release"> -->
-      <!-- <include name="dk.gov.oiosi.raspProfile.dll"/> -->
-      <!-- </fileset> -->
-      <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
-      <!-- dk.gov.oiosi.xml project is not used anymore. -->
-      <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
-      <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
-      <!-- </fileset> -->
     </zip>
 
-    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.SignedAndStrongName.zip">
-      <fileset basedir="${Temp.Sn.dir}">
-        <include name="**/*"/>
-        <exclude name="**/*.unsigned"/>
-      </fileset>
-      <!-- Oiosi does not reference dk.gov.oiosi.raspProfile.dll, so it must be included here -->
-      <!-- <fileset basedir="${RaspProfile.dir}\bin\Release"> -->
-      <!-- <include name="dk.gov.oiosi.raspProfile.dll"/> -->
-      <!-- </fileset> -->
-      <!-- Oiosi does not reference dk.gov.oiosi.xml.dll, so it must be included here -->
-      <!-- dk.gov.oiosi.xml project is not used anymore. -->
-      <!-- <fileset basedir="${Xml.dir}\bin\Release"> -->
-      <!-- <include name="dk.gov.oiosi.xml.dll"/> -->
-      <!-- </fileset> -->
-    </zip>
-    
     <!-- Source section -->
     <zip zipfile="${Dist.dir}\dk.gov.oiosi-src-${Revision}.zip">
       <fileset basedir="${Root.dir}">
@@ -414,8 +397,24 @@
             </fileset>
         </zip -->
   </target>
-  <target name="Distribute" depends="Sign, Execute.Distribute" />
+  <target name="Distribute" depends="CopyToTmp, Execute.Distribute" />
   
-  <target name="Release" depends="Distribute"/>
+  <target name="Execute.DistributeSigned">
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.Signed.zip">
+      <fileset basedir="${Temp.NoSn.dir}">
+        <include name="**/*"/>
+      </fileset>
+    </zip>
+  
+    <zip zipfile="${Dist.dir}\dk.gov.oiosi-bin-${Revision}.SignedAndStrongName.zip">
+      <fileset basedir="${Temp.Sn.dir}">
+        <include name="**/*"/>
+        <exclude name="**/*.unsigned"/>
+      </fileset>
+    </zip>
+  </target>
+  <target name="DistributeSigned" depends="Sign, Execute.DistributeSigned" />
+  
+  <!-- <target name="Release" depends="Distribute"/> -->
   <target name="DevBuild" depends="BuildVisualStudioSolutionNet35"/>
 </project>
