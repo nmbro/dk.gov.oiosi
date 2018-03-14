@@ -4196,6 +4196,7 @@
       </DocumentTypeConfig>
     </DocumentTypes>
   </ConfigurationSection>
+
   <ConfigurationSection xsi:type="ProfileMappingCollectionConfig">
     <ProfileMappingCollection>
       <ProfileMapping>
