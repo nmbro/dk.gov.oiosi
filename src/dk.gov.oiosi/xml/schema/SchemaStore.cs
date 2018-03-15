@@ -9,6 +9,7 @@ using dk.gov.oiosi.communication.configuration;
 using System.IO;
 using dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace dk.gov.oiosi.xml.schema
 {
@@ -30,7 +31,7 @@ namespace dk.gov.oiosi.xml.schema
 
             // Get or create the base path for the resources
             // In development, if deployed on ASP.Net development  server, the default base path can not be used.
-            // Therefore the basepath is retrived from the web.config file
+            // Therefore the basePath is retrieved from the web.config file
             // If no basePath in app.config is defined, the Applications default base path is used.
             string basePath = ConfigurationManager.AppSettings["ResourceBasePath"];
             if (!string.IsNullOrEmpty(basePath))
@@ -90,19 +91,26 @@ namespace dk.gov.oiosi.xml.schema
                     // XmlSchemaSet not cached
                     // so create it and add it to the cache
                     XmlSchema xmlSchema = this.LoadXmlSchema(documentType);
-                    this.CheckNamespace(documentType, xmlSchema);
-
-                    xmlSchemaSet = this.LoadXmlSchemaSet(documentType, xmlSchema, validationEventHandler);
-                    
-                    if (validationEventHandler == null)
+                    if (xmlSchema == null)
                     {
-                        // no validationEventHandler, so we can cache the compiled XmlSchemaSet
-                        this.cache.TryAddValue(key, xmlSchemaSet);
+                        // schema does not exist
                     }
                     else
                     {
-                        // validationEventHandler is used, so the compiled xmlSchemaSet can not be cached 
-                        // (next time it can be another EventHandler, for the same XmlSchemaSet)
+                        this.CheckNamespace(documentType, xmlSchema);
+
+                        xmlSchemaSet = this.LoadXmlSchemaSet(documentType, xmlSchema, validationEventHandler);
+
+                        if (validationEventHandler == null)
+                        {
+                            // no validationEventHandler, so we can cache the compiled XmlSchemaSet
+                            this.cache.TryAddValue(key, xmlSchemaSet);
+                        }
+                        else
+                        {
+                            // validationEventHandler is used, so the compiled xmlSchemaSet can not be cached 
+                            // (next time it can be another EventHandler, for the same XmlSchemaSet)
+                        }
                     }
                 }
             }
@@ -117,35 +125,44 @@ namespace dk.gov.oiosi.xml.schema
         /// <returns></returns>
         public XmlSchema LoadXmlSchema(DocumentTypeConfig documentType)
         {
-            // ToDo: The XmlSchema file could be cached for faster retrivel
+            // ToDo: The XmlSchema file could be cached for faster retrieval.
             XmlSchema schema = null;
-            FileInfo schemaFile;
 
-            if (string.IsNullOrEmpty(this.basePath))
+            if (string.IsNullOrEmpty(documentType.SchemaPath))
             {
-                schemaFile = new FileInfo(documentType.SchemaPath);
+                // We should be here. The validation of the schemaPath should be done by the caller, and not here.
+                string msg = string.Format("Can't load Schema, as no schema is configured  for document with namespace '{0}' and root name '{1}', and id '{2}'.",documentType.Namespaces, documentType.RootName, documentType.Id);
+                Debug.Fail(msg);
             }
             else
             {
-                string path = Path.Combine(this.basePath, documentType.SchemaPath);
-                schemaFile = new FileInfo(path);
-            }
-
-            FileStream fs = null;            
-            try
-            {
-                fs = File.OpenRead(schemaFile.FullName);
-                schema = XmlSchema.Read(fs, null);
-            }
-            catch (Exception ex)
-            {
-                throw new FailedToLoadSchemaException(schemaFile, ex);
-            }
-            finally
-            {
-                if (fs != null)
+                FileInfo schemaFile;
+                if (string.IsNullOrEmpty(this.basePath))
                 {
-                    fs.Close();
+                    schemaFile = new FileInfo(documentType.SchemaPath);
+                }
+                else
+                {
+                    string path = Path.Combine(this.basePath, documentType.SchemaPath);
+                    schemaFile = new FileInfo(path);
+                }
+
+                FileStream fs = null;
+                try
+                {
+                    fs = File.OpenRead(schemaFile.FullName);
+                    schema = XmlSchema.Read(fs, null);
+                }
+                catch (Exception ex)
+                {
+                    throw new FailedToLoadSchemaException(schemaFile, ex);
+                }
+                finally
+                {
+                    if (fs != null)
+                    {
+                        fs.Close();
+                    }
                 }
             }
 
