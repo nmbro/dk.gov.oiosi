@@ -83,13 +83,21 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                 }
 
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(document);
-                SchemaStore schemaStore = new SchemaStore();
-                XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
-                SchemaValidator schemaValidator = new SchemaValidator();
-                ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
 
-                schemaValidator.SchemaValidateXmlDocument(document, XmlSchemaSet, validationEventHandler);
 
+                if (string.IsNullOrEmpty(documentType.SchemaPath))
+                {
+                    // Empty schema path equal no schema exist.
+                }
+                else
+                {
+                    SchemaStore schemaStore = new SchemaStore();
+                    XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
+                    SchemaValidator schemaValidator = new SchemaValidator();
+                    ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
+
+                    schemaValidator.SchemaValidateXmlDocument(document, XmlSchemaSet, validationEventHandler);
+                }
             }
             catch (SchemaValidateDocumentFailedException)
             {
@@ -127,13 +135,20 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                 // ny udfording, find documentType via XmlReader eller ren string ?
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(xmlDoc);
 
-                SchemaStore schemaStore = new SchemaStore();
-                XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
-                SchemaValidator schemaValidator = new SchemaValidator();
-                ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
+                if (string.IsNullOrEmpty(documentType.SchemaPath))
+                {
+                    // Empty schema path equal no schema exist.
+                }
+                else
+                {
+                    SchemaStore schemaStore = new SchemaStore();
+                    XmlSchemaSet XmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
 
-                schemaValidator.SchemaValidateXmlDocument(documentAsString, XmlSchemaSet, validationEventHandler);
+                    SchemaValidator schemaValidator = new SchemaValidator();
+                    ValidationEventHandler validationEventHandler = new ValidationEventHandler(ValidationCallBack);
 
+                    schemaValidator.SchemaValidateXmlDocument(documentAsString, XmlSchemaSet, validationEventHandler);
+                }
             }
             catch (SchemaValidateDocumentFailedException ex)
             {
