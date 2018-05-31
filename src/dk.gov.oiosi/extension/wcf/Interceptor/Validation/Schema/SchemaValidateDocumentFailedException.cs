@@ -92,7 +92,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema
             {
                 oiosiInnerFaultCode = OiosiInnerFaultCode.SchemaValidationFault;
             }
-            if (type == typeof(SchemaValidateDocumentFailedException))
+            else if (type == typeof(SchemaValidateDocumentFailedException))
             {
                 oiosiInnerFaultCode = OiosiInnerFaultCode.SchemaValidationFault;
             }
