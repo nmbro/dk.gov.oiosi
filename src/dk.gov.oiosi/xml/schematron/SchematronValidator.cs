@@ -46,6 +46,7 @@ using dk.gov.oiosi.xml.xpath;
 using dk.gov.oiosi.xml.xslt;
 using Saxon.Api;
 using dk.gov.oiosi.common;
+using System.Configuration;
 
 namespace dk.gov.oiosi.xml.schematron
 {
@@ -92,7 +93,19 @@ namespace dk.gov.oiosi.xml.schematron
             this.xlstUtil = new XsltUtility();
             this.errorXPath = config.ErrorXPath;
             this.errorMessageXPath = config.ErrorMessageXPath;
-            this.compiledXsltEntry = new CompiledXslt(new FileInfo(config.SchematronDocumentPath));            
+
+            string stylesheetPath;
+            string basePath = ConfigurationManager.AppSettings["ResourceBasePath"];
+            if (string.IsNullOrEmpty(basePath))
+            {
+                stylesheetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.SchematronDocumentPath);
+            }
+            else
+            {
+                stylesheetPath = Path.Combine(basePath, config.SchematronDocumentPath);
+            }
+
+            this.compiledXsltEntry = new CompiledXslt(new FileInfo(stylesheetPath));            
         }
 
         /// <summary>

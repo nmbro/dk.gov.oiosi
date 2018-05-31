@@ -60,7 +60,8 @@ namespace dk.gov.oiosi.xml.schematron {
 
             if (string.IsNullOrEmpty(this.basePath))
             {
-                fileInfo = new FileInfo(path);
+                string stylesheetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+                fileInfo = new FileInfo(stylesheetPath);
             }
             else
             {

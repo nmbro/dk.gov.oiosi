@@ -32,6 +32,7 @@
   */
 
 using System;
+using System.Configuration;
 using System.IO;
 using System.ServiceModel.Channels;
 using System.Xml;
@@ -128,11 +129,21 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.XsltTransform {
 
         private CompiledXslt LoadStyleSheet(XmlDocument body) {
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(body);
-            string path = documentType.XsltTransformStylesheetPath;
-            CompiledXslt compiledXslt = new CompiledXslt(new FileInfo(path));
-            
-            //XmlDocument styleSheet = new XmlDocument();
-            //styleSheet.Load(path);
+            //string path = documentType.XsltTransformStylesheetPath;
+
+            string stylesheetPath;
+            string basePath = ConfigurationManager.AppSettings["ResourceBasePath"];
+            if (string.IsNullOrEmpty(basePath))
+            {
+                stylesheetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, documentType.XsltTransformStylesheetPath);
+            }
+            else
+            {
+                stylesheetPath = Path.Combine(basePath, documentType.XsltTransformStylesheetPath);
+            }
+
+            CompiledXslt compiledXslt = new CompiledXslt(new FileInfo(stylesheetPath));
+
             return compiledXslt;
         }
     }

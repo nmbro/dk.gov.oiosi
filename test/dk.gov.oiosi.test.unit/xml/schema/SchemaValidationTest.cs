@@ -300,9 +300,17 @@ namespace dk.gov.oiosi.test.unit.xml.schema
 
             DocumentTypeConfig documentType = _searcher.FindUniqueDocumentType(document);
 
-            SchemaStore schemaStore = new SchemaStore();
-            XmlSchemaSet xmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
-            validator.SchemaValidateXmlDocument(document, xmlSchemaSet);
+
+            if (string.IsNullOrEmpty(documentType.SchemaPath))
+            {
+                // Empty schema path equal no schema exist.
+            }
+            else
+            {
+                SchemaStore schemaStore = new SchemaStore();
+                XmlSchemaSet xmlSchemaSet = schemaStore.GetCompiledXmlSchemaSet(documentType);
+                validator.SchemaValidateXmlDocument(document, xmlSchemaSet);
+            }
         }
     }
 }

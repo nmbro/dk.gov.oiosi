@@ -131,7 +131,7 @@ namespace dk.gov.oiosi.xml.schema
             if (string.IsNullOrEmpty(documentType.SchemaPath))
             {
                 // We should be here. The validation of the schemaPath should be done by the caller, and not here.
-                string msg = string.Format("Can't load Schema, as no schema is configured  for document with namespace '{0}' and root name '{1}', and id '{2}'.",documentType.Namespaces, documentType.RootName, documentType.Id);
+                string msg = string.Format("Can't load Schema, as no schema is configured for document with namespace '{0}' and root name '{1}', and id '{2}'.",documentType.Namespaces, documentType.RootName, documentType.Id);
                 Debug.Fail(msg);
             }
             else
@@ -139,7 +139,8 @@ namespace dk.gov.oiosi.xml.schema
                 FileInfo schemaFile;
                 if (string.IsNullOrEmpty(this.basePath))
                 {
-                    schemaFile = new FileInfo(documentType.SchemaPath);
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, documentType.SchemaPath);
+                    schemaFile = new FileInfo(path);
                 }
                 else
                 {
@@ -190,7 +191,8 @@ namespace dk.gov.oiosi.xml.schema
 
             if (string.IsNullOrEmpty(this.basePath))
             {
-                localSchemaLocationFileInfo = new FileInfo(schemaPath);
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, schemaPath);
+                localSchemaLocationFileInfo = new FileInfo(path);
             }
             else
             {
