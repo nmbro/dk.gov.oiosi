@@ -82,8 +82,15 @@ namespace dk.gov.oiosi.logging
                 if (loggerSection == null)
                 {
                     // Gets the logger from the framework app.condig file
-                    Configuration configuration = ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName);
-                    loggerSection = (LoggerSection)configuration.GetSection(LoggerSection.SectionName);
+                    try
+                    {
+                        Configuration configuration = ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName);
+                        loggerSection = (LoggerSection)configuration.GetSection(LoggerSection.SectionName);
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new LoggingException("Unable to load logging configuration by using 'ConfigurationManager.OpenExeConfiguration(LoggingConstant.AppConfigName)'. Copy the content of the 'dk.gov.oiosi.logging.dll.config' into the default app.config/web.config file.", ex);
+                    }
                 }
 
                 if (loggerSection != null)
