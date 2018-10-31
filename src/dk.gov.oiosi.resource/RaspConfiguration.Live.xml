@@ -3488,6 +3488,163 @@
           <XPath>/root:Order/cbc:ID</XPath>
         </DocumentIdXPath>
       </DocumentTypeConfig>
+
+      <!-- PEPPOL BIS3 Billing Invoice -->
+      <DocumentTypeConfig>
+        <Id>bab5613e-6360-4e84-84a3-61838a77590c</Id>
+        <FriendlyName>Faktura (PEPPOL BIS Billing)</FriendlyName>
+        <RootNamespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</RootNamespace>
+        <RootName>Invoice</RootName>
+        <IdentifierDiscriminators>
+          <XPathDiscriminatorConfig>
+            <XPathExpression>/root:Invoice/cbc:CustomizationID</XPathExpression>
+            <XPathExpectedResult>
+              urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0
+            </XPathExpectedResult>
+          </XPathDiscriminatorConfig>
+        </IdentifierDiscriminators>
+        <ServiceContractTModel>uddi:678befa8-ae31-437a-8e52-1139162698df</ServiceContractTModel>
+        <SchemaPath>Resources/Schemas/UBL_v2.1/maindoc/UBL-Invoice-2.1.xsd</SchemaPath>
+        <StylesheetPath>Resources/UI/OIOUBL/Stylesheets/InvoiceHTML.xsl</StylesheetPath>
+        <Namespaces>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2</Namespace>
+            <Prefix>cac</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2</Namespace>
+            <Prefix>cbc</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2</Namespace>
+            <Prefix>ccts</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2</Namespace>
+            <Prefix>sdt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2
+            </Namespace>
+            <Prefix>udt</Prefix>
+          </PrefixedNamespace>
+          <PrefixedNamespace>
+            <Namespace>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</Namespace>
+            <Prefix>root</Prefix>
+          </PrefixedNamespace>
+        </Namespaces>
+        <EndpointType>
+          <RequestAction>
+            http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceRequest
+          </RequestAction>
+          <ReplyAction>
+            http://rep.oio.dk/oiosi.ehandel.gov.dk/xml/schemas/2007/09/01/InvoicePeppol4aInterface/SubmitInvoiceResponse
+          </ReplyAction>
+          <EndpointFriendlyName>
+            <XPath>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </EndpointFriendlyName>
+          <SenderFriendlyName>
+            <XPath>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name</XPath>
+          </SenderFriendlyName>
+          <Key>
+            <Xpath>/root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>
+                  /root:Invoice/cac:AccountingCustomerParty/cac:Party/cbc:EndpointID/@schemeID
+                </XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </Key>
+          <SenderKey>
+            <Xpath>/root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID</Xpath>
+            <MappingExpressions>
+              <KeyTypeMappingExpressions>
+                <Name>EndpointKeyType</Name>
+                <XPathExpression>
+                  /root:Invoice/cac:AccountingSupplierParty/cac:Party/cbc:EndpointID/@schemeID
+                </XPathExpression>
+                <Mappings>
+                  <Mapping>
+                    <Value>GLN</Value>
+                    <MapsTo>ean</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CVR</Value>
+                    <MapsTo>cvr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:CPR</Value>
+                    <MapsTo>cpr</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:P</Value>
+                    <MapsTo>p</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:SE</Value>
+                    <MapsTo>se</MapsTo>
+                  </Mapping>
+                  <Mapping>
+                    <Value>DK:VANS</Value>
+                    <MapsTo>vans</MapsTo>
+                  </Mapping>
+                </Mappings>
+              </KeyTypeMappingExpressions>
+            </MappingExpressions>
+          </SenderKey>
+        </EndpointType>
+        <XsltTransformStylesheetPath/>
+        <SchematronValidationConfigs>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS3.0-Billing/CEN-EN16931-UBL.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+          <SchematronValidationConfig>
+            <SchematronDocumentPath>Resources/Schematrons/PEPPOL/BIS3.0-Billing/PEPPOL-EN16931-UBL.xsl</SchematronDocumentPath>
+            <ErrorXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']</ErrorXPath>
+            <ErrorMessageXPath>/svrl:schematron-output/svrl:failed-assert[@flag='fatal']/svrl:text</ErrorMessageXPath>
+          </SchematronValidationConfig>
+        </SchematronValidationConfigs>
+        <CustomHeaderConfiguration>
+          <XPaths/>
+        </CustomHeaderConfiguration>
+        <ProfileIdXPath>
+          <XPath>/root:Invoice/cbc:ProfileID</XPath>
+        </ProfileIdXPath>
+        <DocumentIdXPath>
+          <XPath>/root:Invoice/cbc:ID</XPath>
+        </DocumentIdXPath>
+      </DocumentTypeConfig>
+
       <DocumentTypeConfig>
         <Id>4873431b-fa84-4579-b789-2e3162d06038</Id>
         <FriendlyName>NKS Betalings Ordre</FriendlyName>
@@ -4371,6 +4528,13 @@
         <Name>urn:www.cenbii.eu:profile:bii03:ver2.0</Name>
         <TModelGuid>uddi:90043120-5eab-468c-be4a-5562d95a73a7</TModelGuid>
       </ProfileMapping>
+
+      <!-- PEPPOL BIS3 Billing Invoice -->
+      <ProfileMapping>
+        <Name>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</Name>
+        <TModelGuid>uddi:1d193a6a-23a2-425f-bb19-a864b2415c1a</TModelGuid>
+      </ProfileMapping>
+
       <ProfileMapping>
         <Name>NKS2.0</Name>
         <TModelGuid>uddi:fbc05a80-bde5-11dc-a81d-bfc65441a808</TModelGuid>
@@ -4381,6 +4545,8 @@
       </ProfileMapping>
     </ProfileMappingCollection>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="LdapLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
