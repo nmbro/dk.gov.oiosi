@@ -4534,6 +4534,11 @@
         <Name>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</Name>
         <TModelGuid>uddi:1d193a6a-23a2-425f-bb19-a864b2415c1a</TModelGuid>
       </ProfileMapping>
+      <!-- PEPPOL BIS3 Billing Invoice NS-profile-->
+      <ProfileMapping>
+        <Name>NS-urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</Name>
+        <TModelGuid>uddi:417c3aac-4bbb-46d6-86d1-a44f757fb326</TModelGuid>
+      </ProfileMapping>
 
       <ProfileMapping>
         <Name>NKS2.0</Name>
@@ -4551,6 +4556,8 @@
     <ImplementationNamespaceClass>dk.gov.oiosi.security.ldap.LdapCertificateLookup</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="LdapSettings">
     <Host>crtdir.certifikat.dk</Host>
     <Port>389</Port>
@@ -4559,22 +4566,32 @@
     <SearchClientTimeoutMsec>5000</SearchClientTimeoutMsec>
     <MaxResults>1</MaxResults>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="RevocationLookupFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.ocsp.OcspLookup</ImplementationNamespaceClass>
     <!-- ImplementationNamespaceClass>dk.gov.oiosi.security.revocation.crl.CrlLookup</ImplementationNamespaceClass -->
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="OcspConfig">
     <DefaultTimeoutMsec>20000</DefaultTimeoutMsec>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="UddiLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.UddiLookupClient</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="RegistryLookupClientFactoryConfig">
     <ImplementationNamespaceClass>dk.gov.oiosi.uddi.RegistryLookupClient</ImplementationNamespaceClass>
     <ImplementationAssembly>dk.gov.oiosi.library</ImplementationAssembly>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="UddiConfig">
     <FallbackTimeoutMinutes>15</FallbackTimeoutMinutes>
     <LookupRegistryFallbackConfig>
@@ -4589,6 +4606,8 @@
     </LookupRegistryFallbackConfig>
     <TryOtherHostsOnFailure>true</TryOtherHostsOnFailure>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="CacheConfig">
     <OcspLookupCache>
       <ImplementationNamespaceClass>dk.gov.oiosi.common.cache.TimedCache`2[[System.String, mscorlib],[dk.gov.oiosi.security.revocation.RevocationResponse, dk.gov.oiosi.library]]</ImplementationNamespaceClass>
@@ -4745,6 +4764,8 @@
       </CacheConfigurationCollection>
     </SequenceIdUnfinishedSignaturesCache>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="RootCertificateCollectionConfig">
     <RootCertificateLocationCollection>
       <RootCertificateLocation>
@@ -4755,6 +4776,8 @@
       </RootCertificateLocation>
     </RootCertificateLocationCollection>
   </ConfigurationSection>
+
+
   <ConfigurationSection xsi:type="OcesX509CertificateConfig">
     <PersonalCertificateSubjectKey>
       <SubjectKeyString>PID</SubjectKeyString>
@@ -4769,7 +4792,9 @@
       <SubjectKeyString>FID</SubjectKeyString>
     </FunctionCertificateSubjetKey>
   </ConfigurationSection>
-    <ConfigurationSection xsi:type="SendingOptionConfig">
+
+
+  <ConfigurationSection xsi:type="SendingOptionConfig">
     <SchemaValidation>True</SchemaValidation>
     <SchematronValidation>True</SchematronValidation>
   </ConfigurationSection>

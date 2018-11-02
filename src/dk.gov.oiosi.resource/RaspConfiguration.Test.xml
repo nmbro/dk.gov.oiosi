@@ -4535,6 +4535,11 @@
         <Name>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</Name>
         <TModelGuid>uddi:1d193a6a-23a2-425f-bb19-a864b2415c1a</TModelGuid>
       </ProfileMapping>
+      <!-- PEPPOL BIS3 Billing Invoice NS-profile-->
+      <ProfileMapping>
+        <Name>NS-urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</Name>
+        <TModelGuid>uddi:417c3aac-4bbb-46d6-86d1-a44f757fb326</TModelGuid>
+      </ProfileMapping>
 
       <ProfileMapping>
         <Name>NKS2.0</Name>
