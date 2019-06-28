@@ -4596,7 +4596,7 @@
         <Registry>
           <!-- Test UDDI -->
           <EndpointCollection>
-            <Endpoint>http://lookup-test.nemhandel.dk/uddi/services/inquiry</Endpoint>
+            <Endpoint>http://discoverypublic-test.nemhandel.dk/uddi/services/inquiry</Endpoint>
           </EndpointCollection>
         </Registry>
         <Registry>
