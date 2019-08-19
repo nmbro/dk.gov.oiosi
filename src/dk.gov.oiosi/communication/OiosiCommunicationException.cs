@@ -50,7 +50,7 @@ namespace dk.gov.oiosi.communication {
                 new ResourceManager(typeof(dk.gov.oiosi.communication.fault.ErrorMessages)),
                 new ResourceManager(typeof(dk.gov.oiosi.communication.handlers.email.ErrorMessages)),
                 new ResourceManager(typeof(dk.gov.oiosi.extension.wcf.EmailTransport.ErrorMessages)),                
-                new ResourceManager(typeof( dk.gov.oiosi.extension.wcf.Interceptor.ErrorMessages)),
+                new ResourceManager(typeof(dk.gov.oiosi.extension.wcf.Interceptor.ErrorMessages)),
                 new ResourceManager(typeof(dk.gov.oiosi.security.ldap.ErrorMessages)),
                 new ResourceManager(typeof(dk.gov.oiosi.security.lookup.ErrorMessages)),
                 new ResourceManager(typeof(dk.gov.oiosi.security.validation.ErrorMessages)),

@@ -1,108 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EB448C5D-5CED-4F3B-9694-7BCCF20DCA51}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi</RootNamespace>
     <AssemblyName>dk.gov.oiosi.library</AssemblyName>
-    <MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <PublishUrl>http://localhost/dk.gov.oiosi.library/</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\dk.gov.oiosi.library.xml</DocumentationFile>
-    <NoWarn>
-    </NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <TargetFramework>net35</TargetFramework>
+    <DefaultItemExcludes>$(DefaultItemExcludes);**/*.Designer.cs;**/*.resx</DefaultItemExcludes>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.OpenJDK.Charsets.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.OpenJDK.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.OpenJDK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.OpenJDK.XML.API.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\IKVM.Runtime.dll</HintPath>
-    </Reference>
+    <PackageReference Include="BouncyCastle" Version="1.8.1" />
+    <PackageReference Include="Brutal.Dev.StrongNameSigner" Version="2.1.3" />
+    <PackageReference Include="Saxon-HE" Version="9.5.1.8" />
     <Reference Include="Novell.Directory.Ldap, Version=2.1.10.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Novell.Directory.Ldap.dll</HintPath>
     </Reference>
-    <Reference Include="saxon9he">
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\saxon9he.dll</HintPath>
-    </Reference>
-    <Reference Include="saxon9he-api">
-      <HintPath>..\..\packages\Saxon-HE.9.5.1.8\lib\net35\saxon9he-api.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -134,35 +46,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="common\cache\ICache.cs" />
-    <Compile Include="common\cache\QuantityCache.cs" />
-    <Compile Include="common\cache\TimedCacheValue.cs" />
-    <Compile Include="common\cache\ZeroCache.cs" />
-    <Compile Include="common\StringUtil.cs" />
-    <Compile Include="common\UnknownKeyTypeValueException.cs" />
-    <Compile Include="common\CreateInstanceFailedException.cs" />
-    <Compile Include="common\Definitions.cs" />
-    <Compile Include="common\ExternalCodeFactory.cs" />
-    <Compile Include="common\ExternalCodeFactoryAppConfiguration.cs" />
-    <Compile Include="common\IExternalCodeFactoryConfiguration.cs" />
-    <Compile Include="common\UnknownEndpointTypeException.cs" />
-    <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromIdException.cs" />
-    <Compile Include="communication\configuration\AmbiguousDocumentTypeResultFromParametersException.cs" />
-    <Compile Include="communication\configuration\ProfileMapping.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="communication\configuration\ProfileMappingCollectionConfig.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="communication\configuration\ProfileIdXPath.cs" />
-    <Compile Include="communication\configuration\CustomHeaderConfiguration.cs" />
-    <Compile Include="communication\configuration\ExceptionKeywords.cs" />
-    <Compile Include="communication\configuration\KeyTypeMapping.cs" />
-    <Compile Include="communication\configuration\KeyTypeMappingExpression.cs" />
-    <Compile Include="communication\configuration\KeyTypeMappingFailedException.cs" />
-    <Compile Include="communication\configuration\NoDocumentTypeFoundFromParametersException.cs" />
-    <Compile Include="communication\configuration\CustomHeaderXPathConfiguration.cs" />
-    <Compile Include="communication\CreatingCommunicationChannelFailedException.cs" />
     <Compile Include="communication\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,419 +56,71 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="communication\fault\OiosiFaultCode.cs" />
-    <Compile Include="communication\fault\OiosiInnerFaultCode.cs" />
-    <Compile Include="communication\handlers\email\FailedToGetInboxException.cs" />
-    <Compile Include="communication\handlers\email\FailedToStopUsingInboxException.cs" />
-    <Compile Include="communication\handlers\email\InboxInvalidStateException.cs" />
-    <Compile Include="communication\handlers\email\InboxUnhandledStateException.cs" />
-    <Compile Include="communication\handlers\email\InboxIllegalStateTransactionException.cs" />
-    <Compile Include="communication\handlers\email\MailAuthenticationMode.cs" />
-    <Compile Include="communication\handlers\email\MailboxFaultedException.cs" />
-    <Compile Include="communication\handlers\email\OnInboxStateChangeDelegate.cs" />
-    <Compile Include="communication\InvalidTcpPortException.cs" />
-    <Compile Include="communication\listener\Keywords.cs" />
-    <Compile Include="communication\listener\NoEndpointsDefinedException.cs" />
-    <Compile Include="communication\listener\ListenerStateChangedHandler.cs" />
-    <Compile Include="communication\listener\StartListeningFailedException.cs" />
-    <Compile Include="communication\listener\StopListeningFailedException.cs" />
-    <Compile Include="communication\MissingStackElementException.cs" />
-    <Compile Include="communication\RequestShutdownException.cs" />
-    <Compile Include="communication\SendingValidation.cs" />
-    <Compile Include="communication\TcpPort.cs" />
-    <Compile Include="communication\UnexpectedReplyActionException.cs" />
-    <Compile Include="configuration\CacheFactory.cs" />
-    <Compile Include="extension\wcf\Behavior\EncryptRmBodiesBehavior.cs" />
-    <Compile Include="extension\wcf\Behavior\SignCustomHeadersBehavior.cs" />
-    <Compile Include="extension\wcf\Behavior\SignCustomHeadersBehaviorExtensionElement.cs" />
-    <Compile Include="extension\wcf\EmailTransport\IEmailBindingElementConfiguration.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelWrapperException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\AuthorisationProcessFailedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\IAuthorisationValidator.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\Keywords.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\NotAuthorisedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\ServerAuthorisationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\authorisation\ServerAuthorisationBindingElementExtension.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\CertificateRevokedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\CertificateRevokedValidationFailedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\FailedToGetCertificateSubjectException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Ubiquitous Properties\UbiquitousPropertiesBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Ubiquitous Properties\UbiquitousPropertiesBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Certificate\CertificateValidateDocumentFailedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Certificate\CertificateValidationInterceptionEmptyBodyException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Certificate\CertificateValidatorWithLookup.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Certificate\ServerCertificateValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Certificate\ServerCertificateValidationBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\ServiceHostFactory.cs" />
-    <Compile Include="security\ICertificateConfiguration.cs" />
-    <Compile Include="security\lookup\CertificateStoreIdentificationAppConfiguration.cs" />
-    <Compile Include="security\lookup\RootCertificateLocation.cs" />
-    <Compile Include="security\lookup\ICertificateStoreIdentification.cs" />
-    <Compile Include="security\oces\AmbigousSubjectCvrNumberException.cs" />
-    <Compile Include="security\oces\EmployeeOcesX509Certificate.cs" />
-    <Compile Include="security\ldap\LdapCertificateNotFoundException.cs" />
-    <Compile Include="security\ldap\LdapMultipleCertificatesFoundException.cs" />
-    <Compile Include="security\lookup\CertificateLoaderCertificateNotFoundException.cs" />
-    <Compile Include="security\lookup\CertificateLoaderMultipleCertificatesFoundException.cs" />
-    <Compile Include="security\lookup\CertificateStoreIdentification.cs" />
-    <Compile Include="security\oces\FailedGetOcesCertificateTypeException.cs" />
-    <Compile Include="security\oces\NoSubjectCvrNumberException.cs" />
-    <Compile Include="security\oces\InvalidOcesCertificateException.cs" />
-    <Compile Include="security\oces\InvalidOcesEmployeeCertificateException.cs" />
-    <Compile Include="security\oces\OcesCertificateException.cs" />
-    <Compile Include="security\oces\OcesCertificateSubjectKey.cs" />
-    <Compile Include="security\oces\OcesX509CertificateConfig.cs" />
-    <Compile Include="security\revocation\crl\CrlInstance.cs" />
-    <Compile Include="security\revocation\crl\CrlLookup.cs" />
-    <Compile Include="security\InvalidOcesCertificateException.cs" />
-    <Compile Include="security\revocation\crl\CertificateUtil.cs" />
-    <Compile Include="security\revocation\crl\CrlUnavailableForDownloadException.cs" />
-    <Compile Include="security\revocation\ocsp\InvalidOcspTimeoutValueException.cs" />
-    <Compile Include="security\revocation\ocsp\OcspLookupTest.cs" />
-    <Compile Include="security\RootCertificateCollectionConfig.cs" />
-    <Compile Include="security\lookup\CertificateStoreIdentificationAppConfigurationCollection.cs" />
-    <Compile Include="security\validation\configuration\MultipleRootX509CertificateValidatorAppConfiguration.cs" />
-    <Compile Include="security\validation\configuration\IMultipleRootX509CertificateValidatorConfiguration.cs" />
-    <Compile Include="security\validation\CertificateRootNotTrustedException.cs" />
-    <Compile Include="security\validation\MultipleRootX509CertificateValidator.cs" />
-    <Compile Include="uddi\EndpointAddressTypeCode.cs" />
-    <Compile Include="uddi\FindQualifiers.cs" />
-    <Compile Include="uddi\KeywordsFromLookupParameters.cs" />
-    <Compile Include="uddi\ProcessDefinition.cs" />
-    <Compile Include="uddi\RegistryLookupClientFactory.cs" />
-    <Compile Include="uddi\RegistryLookupClientFactoryConfig.cs" />
-    <Compile Include="uddi\Registry.cs" />
-    <Compile Include="uddi\LookupRegistryFallbackConfig.cs" />
-    <Compile Include="uddi\RegistryLookupClient.cs" />
-    <Compile Include="uddi\UddiCategoryBag.cs" />
-    <Compile Include="uddi\UddiLookupKey.cs" />
-    <Compile Include="uddi\UddiProxy.cs" />
-    <Compile Include="uddi\UddiBinding.cs" />
-    <Compile Include="uddi\UddiConfig.cs" />
-    <Compile Include="uddi\UddiFallbackClient.cs" />
-    <Compile Include="uddi\LookupParameters.cs" />
-    <Compile Include="uddi\ProcessRoleDefinition.cs" />
-    <Compile Include="uddi\UddiService.cs" />
-    <Compile Include="uddi\UddiStringId.cs" />
-    <Compile Include="communication\CurrentServiceHostSearchFailedException.cs" />
-    <Compile Include="addressing\IncorrectBusinessIdentifierException.cs" />
-    <Compile Include="addressing\IncorrectCountryCodeException.cs" />
-    <Compile Include="addressing\Identifier.cs" />
-    <Compile Include="addressing\IncorrectOvtNumberException.cs" />
-    <Compile Include="addressing\IncorrectSerialNumberException.cs" />
-    <Compile Include="communication\WcfListenerSearchFailedException.cs" />
-    <Compile Include="communication\transport\EmailTransport.cs" />
-    <Compile Include="communication\listener\EndpointTypeNotSupportedException.cs" />
-    <Compile Include="communication\transport\ITransport.cs" />
-    <Compile Include="communication\listener\NoUniqueEndpointException.cs" />
-    <Compile Include="communication\FaultReturnedException.cs" />
-    <Compile Include="communication\fault\OiosiMessageFault.cs" />
-    <Compile Include="communication\NoEndpointGivenException.cs" />
-    <Compile Include="communication\NotSupportedSchemeException.cs" />
-    <Compile Include="communication\fault\OiosiMessageFaultUnexpectedFaultCode.cs" />
-    <Compile Include="communication\TransportConfiguration.cs" />
     <Compile Include="ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="communication\configuration\DocumentAllreadyAddedException.cs" />
-    <Compile Include="OiosiException.cs" />
-    <Compile Include="security\CertificateHandlingException.cs" />
     <Compile Include="security\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\ISignatureValidationProof.cs" />
-    <Compile Include="security\SignatureValidationProof.cs" />
-    <Compile Include="security\SignatureValidationProofAllreadyCompletedException.cs" />
-    <Compile Include="common\CouldNotLoadTypeException.cs" />
     <Compile Include="common\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\ldap\LdapCertificateLookupInitializationFailedException.cs" />
-    <Compile Include="security\ldap\LdapNoImplementingAssemblyException.cs" />
-    <Compile Include="security\ldap\LdapNoImplementingClassException.cs" />
-    <Compile Include="communication\handlers\email\IMailHandlerConfiguration.cs" />
-    <Compile Include="communication\handlers\email\InboxFactory.cs" />
-    <Compile Include="communication\handlers\email\MailboxExceptionThrown.cs" />
-    <Compile Include="communication\handlers\email\MailHandlerConfiguration.cs" />
-    <Compile Include="security\revocation\FailedToLoadLookupTypeException.cs" />
-    <Compile Include="security\revocation\RevocationNoImplementingAssemblyException.cs" />
-    <Compile Include="security\revocation\RevocationNoImplementingClassException.cs" />
-    <Compile Include="common\cache\TimedCache.cs" />
     <Compile Include="uddi\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="uddi\UddiNoImplementingClassException.cs" />
-    <Compile Include="uddi\UddiNoImplementingAssemblyException.cs" />
-    <Compile Include="uddi\UddiEmptyGuidException.cs" />
-    <Compile Include="uddi\UddiException.cs" />
-    <Compile Include="uddi\UddiTModel.cs" />
-    <Compile Include="uddi\UddiWrongGuidFormatException.cs" />
-    <Compile Include="communication\MissingCredentialsException.cs" />
-    <Compile Include="xml\documentType\AmbiguousDocumentTypeFoundFromXmlDocumentException.cs" />
-    <Compile Include="xml\documentType\NoDocumentTypeFoundFromXmlDocumentException.cs" />
-    <Compile Include="communication\configuration\DocumentTypeCollectionConfig.cs" />
-    <Compile Include="security\CertificateConfig.cs" />
-    <Compile Include="security\lookup\CertificateLoader.cs" />
-    <Compile Include="security\ldap\FailedToLoadLookupTypeException.cs" />
-    <Compile Include="security\ldap\LdapCertificateLookupTest.cs" />
-    <Compile Include="security\ldap\LdapCertificateLookupTestConfig.cs" />
-    <Compile Include="security\ldap\LdapLookupFactory.cs" />
-    <Compile Include="security\ldap\LdapLookupFactoryConfig.cs" />
-    <Compile Include="communication\handlers\email\IMailHandler.cs" />
-    <Compile Include="communication\IRequest.cs" />
-    <Compile Include="communication\IResponse.cs" />
-    <Compile Include="communication\listener\IListener.cs" />
-    <Compile Include="communication\listener\ListenerIdentity.cs" />
-    <Compile Include="communication\listener\ListenerState.cs" />
-    <Compile Include="communication\listener\Listener.cs" />
-    <Compile Include="communication\listener\ListenerRequest.cs" />
-    <Compile Include="communication\MessageEventDelegate.cs" />
-    <Compile Include="communication\MessageProcessStatus.cs" />
-    <Compile Include="communication\client\IClientProxyContract.cs" />
-    <Compile Include="communication\service\ServiceImplementation.cs" />
-    <Compile Include="communication\service\ServiceCalledEventHandler.cs" />
-    <Compile Include="communication\OiosiCommunicationException.cs" />
-    <Compile Include="communication\Credentials.cs" />
-    <Compile Include="communication\OiosiMessage.cs" />
-    <Compile Include="communication\ProtocolType.cs" />
-    <Compile Include="communication\client\ClientProxy.cs" />
-    <Compile Include="communication\client\ProxyGenerationException.cs" />
-    <Compile Include="communication\Request.cs" />
-    <Compile Include="communication\Response.cs" />
-    <Compile Include="communication\SendPolicy.cs" />
-    <Compile Include="communication\service\IServiceContract.cs" />
-    <Compile Include="CertifikateLoopkupInformation.cs" />
-    <Compile Include="communication\configuration\DocumentTypeConfig.cs" />
-    <Compile Include="communication\configuration\DocumentEndpointInformation.cs" />
-    <Compile Include="communication\configuration\ServiceEndpointFriendlyName.cs" />
-    <Compile Include="communication\configuration\ServiceEndpointKey.cs" />
-    <Compile Include="communication\handlers\email\IMailQueue.cs" />
-    <Compile Include="communication\handlers\email\MailboxClosedException.cs" />
-    <Compile Include="communication\handlers\email\MailServerConfigurationMissingException.cs" />
-    <Compile Include="communication\handlers\email\MailServerPollingPatternNotSupportedException.cs" />
-    <Compile Include="security\revocation\IRevocationLookup.cs" />
-    <Compile Include="security\revocation\ocsp\OcspConfig.cs" />
-    <Compile Include="extension\wcf\EmailTransport\CommonChannelBase.cs" />
-    <Compile Include="security\revocation\RevocationLookupFactory.cs" />
-    <Compile Include="security\revocation\RevocationLookupFactoryConfig.cs" />
-    <Compile Include="security\revocation\ocsp\OcspLookupTestConfig.cs" />
-    <Compile Include="common\Utilities.cs" />
-    <Compile Include="common\IdentifierUtility.cs" />
-    <Compile Include="uddi\UddiLookupClientFactory.cs" />
-    <Compile Include="uddi\UddiLookupClientFactoryConfig.cs" />
-    <Compile Include="uddi\UddiLookupClientTestConfig.cs" />
-    <Compile Include="common\UtilityException.cs" />
-    <Compile Include="communication\configuration\NoDocumentTypeFoundFromIdException.cs" />
-    <Compile Include="xml\documentType\SearchForDocumentTypeFromXmlDocumentFailedException.cs" />
-    <Compile Include="xml\schematron\CompiledXslt.cs" />
-    <Compile Include="xml\schematron\SchematronStore.cs" />
-    <Compile Include="xml\schematron\ISchematronStoreConfig.cs" />
-    <Compile Include="xml\schematron\SchematronValidationConfig.cs" />
-    <Compile Include="xml\schema\SchemaStore.cs" />
-    <Compile Include="xml\XmlDocumentKeywords.cs" />
-    <Compile Include="xml\xpath\discriminator\XPathDiscriminator.cs" />
-    <Compile Include="xml\xpath\discriminator\XPathDiscriminatorConfig.cs" />
-    <Compile Include="xml\xpath\discriminator\XpathDiscriminatorConfigCollection.cs" />
-    <Compile Include="xml\xpath\NoXPathResultsException.cs" />
-    <Compile Include="xml\documentType\DocumentTypeConfigSearcher.cs" />
-    <Compile Include="xml\UrlToLocalFilelResolver.cs" />
-    <Compile Include="xml\xpath\TooManyXpathResultsException.cs" />
-    <Compile Include="xml\schematron\SchematronErrorException.cs" />
     <Compile Include="xml\schematron\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="xml\schematron\SchematronValidationException.cs" />
-    <Compile Include="xml\schematron\SchematronValidationFailedException.cs" />
-    <Compile Include="xml\schematron\SchematronValidator.cs" />
-    <Compile Include="xml\schema\SchemaValidationFailedException.cs" />
-    <Compile Include="uddi\UddiGuidId.cs" />
-    <Compile Include="uddi\UddiId.cs" />
+    <Compile Include="xml\schema\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="xml\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="communication\configuration\AmbiguousDocumentTypeResultException.cs" />
-    <Compile Include="communication\configuration\NoDocumentTypeFoundException.cs" />
-    <Compile Include="xml\XmlException.cs" />
-    <Compile Include="xml\xpath\XPathSizeTooSmallException.cs" />
-    <Compile Include="xml\xpath\DocumentXPathResolver.cs" />
-    <Compile Include="extension\wcf\Interceptor\BindingElementNotInStackException.cs" />
-    <Compile Include="extension\wcf\Interceptor\BindingElementOrderChecker.cs" />
-    <Compile Include="extension\wcf\Interceptor\BindingElementOrderMismatchException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailTransportUserConfig.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailBindingElemenNotFoundtException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailChannelListener.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailReplyChannel.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailReplyCouldNotBeSentException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailRequestContext.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailResponseNotGottenException.cs" />
-    <Compile Include="extension\wcf\Interceptor\BindingElementStackVerifier.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorInternalFailureException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\UnsupportedChannelTypeException.cs" />
-    <Compile Include="extension\wcf\Interceptor\CommonBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelFactory.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelExceptionCollection.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorMessage.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorReplySessionChannel.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorRequestSessionChannel.cs" />
     <Compile Include="extension\wcf\Interceptor\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="extension\wcf\Interceptor\InterceptorException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\SignatureValidationStackCheck.cs" />
-    <Compile Include="extension\wcf\Interceptor\XsltTransform\OriginalBody.cs" />
-    <Compile Include="extension\wcf\Interceptor\XsltTransform\ServerXsltTransformationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\XsltTransform\ServerXsltTransformationBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\ClientSignatureValidationProofBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\ClientSignatureValidationProofBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\Headers.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\NoElementsFoundException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\Header.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\SecurityHeader.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\SequenceAcknowledgementHeader.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\SequenceAcknowledgementRange.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\SequenceHeader.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\Header\ToManyElementsFoundException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\ServerSignatureValidationProofBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\ServerSignatureValidationProofBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProof.cs" />
-    <Compile Include="extension\wcf\Interceptor\Security\UnfinishedSignatureValidationProofStore.cs" />
-    <Compile Include="xml\schematron\FailedToLoadSchematronStylesheetException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidateDocumentFailedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookup.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidationInterceptionEmptyBodyException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ServerSchematronValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\ServerSchematronValidationBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\FailedToLoadSchemaException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\SchemaValidationInterceptionEmptyBodyException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\SchemaValidatorWithLookup.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\ServerSchemaValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\ServerSchemaValidationBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schema\SchemaValidateDocumentFailedException.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\ValidationServerBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\ValidationServerConfiguration.cs" />
-    <Compile Include="extension\wcf\Interceptor\XsltTransform\XsltTransformFailedException.cs" />
-    <Compile Include="extension\wcf\OiosiMessagePropertyAttribute.cs" />
-    <Compile Include="XmlPrefixedNamespace.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="communication\ProtocolMismatchException.cs" />
-    <Compile Include="security\CertificateSubject.cs" />
-    <Compile Include="security\lookup\CertificateLookupException.cs" />
-    <Compile Include="security\lookup\CertificateNotFoundException.cs" />
-    <Compile Include="security\lookup\ErrorMessages.Designer.cs" />
-    <Compile Include="security\lookup\ICertificateLookup.cs" />
-    <Compile Include="security\lookup\MultipleCertificatesFoundException.cs" />
-    <Compile Include="security\lookup\SearchFailedException.cs" />
-    <Compile Include="security\oces\OcesCertificateType.cs" />
-    <Compile Include="security\oces\OcesX509Certificate.cs" />
-    <Compile Include="security\revocation\RevocationCheckStatus.cs" />
-    <Compile Include="security\validation\CertificateExpiredException.cs" />
-    <Compile Include="security\validation\CertificateFailedChainValidationException.cs" />
-    <Compile Include="security\validation\CertificateNotActiveException.cs" />
-    <Compile Include="security\validation\CertificateNotInCorrectFormatException.cs" />
-    <Compile Include="security\validation\CertificateValidator.cs" />
-    <Compile Include="security\validation\CertificateValidationException.cs" />
+    <Compile Include="security\lookup\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="security\validation\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\X509CheckStatus.cs" />
     <Compile Include="communication\handlers\email\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="communication\handlers\email\IInbox.cs" />
-    <Compile Include="communication\handlers\email\IMailServerConfiguration.cs" />
-    <Compile Include="communication\handlers\email\Inbox.cs" />
-    <Compile Include="communication\handlers\email\InboxState.cs" />
-    <Compile Include="communication\handlers\email\IOutbox.cs" />
-    <Compile Include="communication\handlers\email\MailBindingAddressNotCompliantException.cs" />
-    <Compile Include="communication\handlers\email\MailBindingFieldMissingException.cs" />
-    <Compile Include="communication\handlers\email\Mailbox.cs" />
-    <Compile Include="communication\handlers\email\MailHandlerException.cs" />
-    <Compile Include="communication\handlers\email\MailServerConfiguration.cs" />
-    <Compile Include="communication\handlers\email\MailServerConnectionPolicy.cs" />
-    <Compile Include="communication\handlers\email\MailServerPollingPattern.cs" />
-    <Compile Include="communication\handlers\email\MailSoap12TransportBinding.cs" />
-    <Compile Include="communication\handlers\email\MailSoap12TransportBindingAttachment.cs" />
-    <Compile Include="communication\handlers\email\MessageNotCompliantWithMailBindingException.cs" />
-    <Compile Include="communication\handlers\email\Outbox.cs" />
-    <Compile Include="communication\handlers\email\OutboxState.cs" />
-    <Compile Include="communication\handlers\email\MailHandler.cs" />
-    <Compile Include="security\ldap\ConnectingToLdapServerFailedException.cs" />
-    <Compile Include="security\ldap\ConvertingSearchResultToCertificateFailedException.cs" />
     <Compile Include="security\ldap\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\ldap\LdapCertificateLookup.cs" />
-    <Compile Include="security\ldap\LdapException.cs" />
-    <Compile Include="security\ldap\LdapSettings.cs" />
-    <Compile Include="security\ldap\PatternsDoesNotMatchException.cs" />
-    <Compile Include="security\ldap\StoringCertificateFailedException.cs" />
-    <Compile Include="security\CertificateChecker.cs" />
-    <Compile Include="security\CertificateCheckResult.cs" />
-    <Compile Include="security\revocation\ocsp\CertificateRevokedTimeoutException.cs" />
-    <Compile Include="security\CheckCertificateActivatedUnexpectedException.cs" />
-    <Compile Include="security\CheckCertificateChainUnexpectedException.cs" />
-    <Compile Include="security\revocation\ocsp\CheckCertificateOcspUnexpectedException.cs" />
-    <Compile Include="security\revocation\CheckCertificateRevokedUnexpectedException.cs" />
-    <Compile Include="security\CheckCertificateTypeUnexpectedException.cs" />
-    <Compile Include="security\CheckCertificateValidUnexpectedException.cs" />
-    <Compile Include="security\CheckRootCertificateActivatedUnexpectedException.cs" />
-    <Compile Include="security\CheckRootCertificateValidUnexpectedException.cs" />
-    <Compile Include="security\revocation\RevocationException.cs" />
-    <Compile Include="security\revocation\RevocationResponse.cs" />
-    <Compile Include="security\revocation\ocsp\OcspLookup.cs" />
-    <Compile Include="xml\schema\ErrorMessages.Designer.cs" />
-    <Compile Include="xml\schema\SchemaValidator.cs" />
-    <Compile Include="xml\schema\SchemaValidationException.cs" />
-    <Compile Include="xml\schema\UnexpectedNamespaceException.cs" />
-    <Compile Include="uddi\UddiLookupClient.cs" />
-    <Compile Include="uddi\UddiLookupConfigurationSection.cs" />
-    <Compile Include="uddi\IUddiLookupClient.cs" />
-    <Compile Include="addressing\EndpointAddress.cs" />
-    <Compile Include="addressing\EndpointAddressHttp.cs" />
-    <Compile Include="uddi\UddiLookupResponse.cs" />
-    <Compile Include="xml\xslt\XsltUtility.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelBase.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorChannelListener.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\IChannelInterceptor.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorReplyChannel.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorRequestChannel.cs" />
-    <Compile Include="extension\wcf\Interceptor\Channels\InterceptorRequestContext.cs" />
     <Compile Include="extension\wcf\EmailTransport\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="extension\wcf\EmailTransport\EmailChannelFactoryCouldNotBeBuiltException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailChannelFactory.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailTransportException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailBindingElement.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailBindingExtensionElement.cs" />
-    <Compile Include="extension\wcf\EmailTransport\EmailRequestChannel.cs" />
-    <Compile Include="extension\wcf\EmailTransport\MailboxImplementationCouldNotBeFoundException.cs" />
-    <Compile Include="extension\wcf\EmailTransport\MailboxImplementationCouldNotBeInstantiated.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\ValidationBindingElement.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\ValidationConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\dk.gov.oiosi.resource\Resources\Licenses\RaspLicense.txt">
@@ -621,6 +156,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="security\lookup\ErrorMessages.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="security\validation\ErrorMessages.resx">
       <SubType>Designer</SubType>
@@ -654,6 +191,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="xml\schema\ErrorMessages.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="xml\ErrorMessages.resx">
       <SubType>Designer</SubType>
@@ -693,32 +232,4 @@
       <Name>dk.gov.oiosi.Logging</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="security\cache\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

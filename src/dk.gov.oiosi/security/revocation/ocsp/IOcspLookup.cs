@@ -30,27 +30,21 @@
   *   Christian Lanng, ITST
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace dk.gov.oiosi.security.ocsp {
+using System.Security.Cryptography.X509Certificates;
+
+namespace dk.gov.oiosi.security.revocation.ocsp {
 
     /// <summary>
-    /// Custom exception used when an unexpected exception is thrown during a check to see
-    /// if the certificate is revoked
+    /// Interface for an Revocation lookup
     /// </summary>
-    public class CheckCertificateOcspUnexpectedException : OcspException {
-        
+    public interface IOcspLookup {
+
         /// <summary>
-        /// Constructor with innerexception
+        /// Checks the certificate status against an OCSP server or CRL
         /// </summary>
-        /// <param name="innerException">innerexception of the thrown exception</param>
-        public CheckCertificateOcspUnexpectedException(Exception innerException) : base(innerException) { }
-        
-        /// <summary>
-        /// Base constructor
-        /// </summary>
-        public CheckCertificateOcspUnexpectedException() : base() { }
+        /// <param name="certificate">The certificate to check</param>
+        /// <returns>Returns the check status</returns>
+        OcspResponse CheckCertificate(X509Certificate2 certificate);
     }
 }

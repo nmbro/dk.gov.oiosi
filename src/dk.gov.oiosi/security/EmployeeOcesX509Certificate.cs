@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
+using dk.gov.oiosi.security.oces;
+using oces = dk.gov.oiosi.security.oces;
 
 namespace dk.gov.oiosi.security {
     /// <summary>
@@ -18,8 +20,8 @@ namespace dk.gov.oiosi.security {
         /// </summary>
         /// <param name="certificate"></param>
         public EmployeeOcesX509Certificate(X509Certificate2 certificate) : base(certificate) {
-            if (OcesCertificateType != OcesCertificateType.OcesEmployee)
-                throw new NotAValidOcesEmployeeCertificateException(certificate);
+            if (OcesCertificateType != oces::OcesCertificateType.OcesEmployee)
+                throw new InvalidOcesEmployeeCertificateException(certificate);
             SetCvrNumber();
         }
 
@@ -30,8 +32,8 @@ namespace dk.gov.oiosi.security {
         /// </summary>
         /// <param name="certifcate"></param>
         public EmployeeOcesX509Certificate(OcesX509Certificate certifcate) : this(certifcate.Certificate) {
-            if (OcesCertificateType != OcesCertificateType.OcesEmployee)
-                throw new NotAValidOcesEmployeeCertificateException(certifcate.Certificate);
+            if (OcesCertificateType != oces::OcesCertificateType.OcesEmployee)
+                throw new InvalidOcesEmployeeCertificateException(certifcate.Certificate);
             SetCvrNumber();
         }
 

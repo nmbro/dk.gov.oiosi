@@ -30,22 +30,27 @@
   *   Christian Lanng, ITST
   *
   */
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace dk.gov.oiosi.security.ocsp {
+namespace dk.gov.oiosi.security.revocation.ocsp {
 
     /// <summary>
-    /// Custom exception used when checking if a certificate has an valid root certificate 
-    /// throws an unexpected exception
+    /// Status of an OCSP/CRL check
     /// </summary>
-    public class CheckRootCertificateValidUnexpectedException : OcspException {
-        
+    public enum OcspCheckStatus {
         /// <summary>
-        /// Constructor with innerexception
+        /// No check has been performed
         /// </summary>
-        /// <param name="innerException">innerexception of the thrown exception</param>
-        public CheckRootCertificateValidUnexpectedException(Exception innerException) : base(innerException) { }
+        NotChecked,
+        /// <summary>
+        /// All checks have passed
+        /// </summary>
+        AllChecksPassed,
+        /// <summary>
+        /// The certificate has been revoked
+        /// </summary>
+        CertificateRevoked,
+        /// <summary>
+        /// An unknown issue prevented the check from being performed
+        /// </summary>
+        UnknownIssue
     }
 }
