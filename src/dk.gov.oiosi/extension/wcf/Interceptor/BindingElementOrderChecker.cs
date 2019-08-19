@@ -51,6 +51,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// as they can be placed anywhere.
         /// </summary>
         /// <param name="bindingOrder"></param>
+        [CLSCompliant(false)]
         public BindingElementOrderChecker(Type[] bindingOrder) {
             _bindingOrder = new Type[bindingOrder.Length][];
             for (int i = 0; i < bindingOrder.Length; i++) {
@@ -63,6 +64,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// Constructor
         /// </summary>
         /// <param name="bindingOrder">The binding order</param>
+        [CLSCompliant(false)]
         public BindingElementOrderChecker(Type[][] bindingOrder) {
             this._bindingOrder = bindingOrder;
         }

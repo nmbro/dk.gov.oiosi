@@ -130,7 +130,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor.Validation.Schema {
                     throw new SchemaValidationInterceptionEmptyBodyException();
                 }
 
-                XmlDataDocument xmlDoc = new XmlDataDocument();
+                XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(documentAsString);
                 // ny udfording, find documentType via XmlReader eller ren string ?
                 DocumentTypeConfig documentType = searcher.FindUniqueDocumentType(xmlDoc);

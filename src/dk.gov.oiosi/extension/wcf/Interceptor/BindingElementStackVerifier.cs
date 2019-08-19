@@ -47,6 +47,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// a parameter.
         /// </summary>
         /// <param name="expectedBindingElementTypes"></param>
+        [CLSCompliant(false)]
         public BindingElementStackVerifier(Type[] expectedBindingElementTypes) {
             _expectedBindingElementTypes = new Type[expectedBindingElementTypes.Length][];
             for (int i = 0; i < expectedBindingElementTypes.Length; i++) {
@@ -59,6 +60,7 @@ namespace dk.gov.oiosi.extension.wcf.Interceptor {
         /// Constructor
         /// </summary>
         /// <param name="expectedBindingElementTypes">List of the expected binding element types</param>
+        [CLSCompliant(false)]
         public BindingElementStackVerifier(Type[][] expectedBindingElementTypes) {
             _expectedBindingElementTypes = expectedBindingElementTypes;
         }

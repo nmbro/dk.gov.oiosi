@@ -39,28 +39,16 @@ namespace dk.gov.oiosi.extension.wcf
     /// <summary>
     /// Factory that creates a service host and adds the EncryptRmBodiesBehavior
     /// </summary>
-    public class ServiceHostFactory : System.ServiceModel.Activation.ServiceHostFactory
+    public class ServiceHostFactory : System.ServiceModel.Activation.ServiceHostFactoryBase
     {
         /// <summary>
         /// Creates a service host
         /// </summary>
-        /// <param name="constructorString">Construction parameters string</param>
-        /// <param name="baseAddresses">The base address of the service host</param>
-        /// <returns>Returns the service host</returns>
-        public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses)
-        {
-            return base.CreateServiceHost(constructorString, baseAddresses);
-        }
-
-        /// <summary>
-        /// Creates a service host
-        /// </summary>
-        /// <param name="serviceType">The service type</param>
+        /// <param name="constructorString"></param>
         /// <param name="baseAddresses">The host base address</param>
         /// <returns>Creates a service host</returns>
-        protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses)
-        {
-            ServiceHost sh = base.CreateServiceHost(serviceType, baseAddresses);
+        public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses) {
+            ServiceHost sh = new ServiceHost(constructorString, baseAddresses);
             sh.Description.Behaviors.Add(new EncryptRmBodiesBehavior());
             return sh;
         }
