@@ -56,7 +56,7 @@
   <!-- <property name="snPath01" value="C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools"/> -->
   <!-- <property name="ilasmPath01" value="C:\Windows\Microsoft.NET\Framework64\v4.0.30319"/> -->
   <property name="File.StrongNameSigner" value="StrongNameSigner.Console.exe"/>
-  <property name="File.dk.gov.oiosi.snk" value="certificates\StrongName\Release\dk.gov.oiosi.snk"/>
+  <property name="File.dk.gov.oiosi.snk" value="certificates\StrongName\dk.gov.oiosi.snk"/>
 
   <!-- Tell the build server what our actual build number is -->
   <echo message="##teamcity[buildNumber '${Revision}']"/>

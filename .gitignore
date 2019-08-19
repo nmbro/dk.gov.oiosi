@@ -350,3 +350,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+!certificates/SelfSigned/DigstSelfSignedSPC.pfx
+!dk.gov.oiosi.library.4.1.resharper
