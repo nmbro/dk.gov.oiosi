@@ -122,7 +122,7 @@ namespace dk.gov.oiosi.configuration
 
             // sequenceIdUnfinishedSignaturesCache
             element = cacheConfig.SequenceIdUnfinishedSignaturesCache;
-            this.sequenceIdUnfinishedSignaturesCache = this.Create<ICache<string, List<UnfinishedSignatureValidationProof>>>(element, "SequenceIdUnfinishedSignaturesCacheCache");
+            this.sequenceIdUnfinishedSignaturesCache = this.Create<ICache<string, List<UnfinishedSignatureValidationProof>>>(element, "SequenceIdUnfinishedSignaturesCache");
         }
 
         private T Create<T>(CacheConfigElement element, string name)
@@ -131,7 +131,7 @@ namespace dk.gov.oiosi.configuration
 
             if (string.IsNullOrEmpty(element.ImplementationNamespaceClass))
             {
-                throw new NotImplementedException("The Assembly and NamespaceClass for the cache '" + name + "' is not defined correct.");
+                return Create<T>(DefaultCacheConfig.GetDefaultCacheConfigElement(name), name);
             }
 
             StringBuilder builder = new StringBuilder();

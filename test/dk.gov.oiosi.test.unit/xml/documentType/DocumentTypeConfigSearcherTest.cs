@@ -25,7 +25,7 @@ namespace dk.gov.oiosi.test.unit.xml.documentType {
             ConfigurationHandler.SaveToFile();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown() {
             ConfigurationHandler.ConfigFilePath = "RaspConfiguration.xml";
             ConfigurationHandler.Reset();

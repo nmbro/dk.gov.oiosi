@@ -19,7 +19,7 @@ namespace dk.gov.oiosi.test.unit.configuration
     public class CacheConfigTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";

@@ -36,7 +36,7 @@ namespace dk.gov.oiosi.test.integration.uddi {
 
         private readonly List<EndpointAddressTypeCode> acceptHttpProtocol = new List<EndpointAddressTypeCode>() { EndpointAddressTypeCode.http };
         
-        [TestFixtureSetUp]
+        [SetUp]
         public void SetupUddi() 
         {
             ConfigurationUtil.SetupConfiguration();

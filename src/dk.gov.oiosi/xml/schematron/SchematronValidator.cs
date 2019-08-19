@@ -188,7 +188,7 @@ namespace dk.gov.oiosi.xml.schematron
 
                             Processor processor = new Processor();
                             XsltCompiler compiler = processor.NewXsltCompiler();
-                            Serializer serializer = new Serializer();
+                            var serializer = new Serializer();
 
                             try
                             {
@@ -432,7 +432,7 @@ namespace dk.gov.oiosi.xml.schematron
                             Processor processor = new Processor();
                             XsltCompiler compiler = processor.NewXsltCompiler();
                             Uri uri = new Uri("file://" + compiledXslt.FileInfo.Directory.FullName);
-                            compiler.ErrorList = new List<object>();
+                            compiler.ErrorList = new List<StaticError>();
                             compiler.BaseUri = uri;
                             Serializer serializer = new Serializer();
 

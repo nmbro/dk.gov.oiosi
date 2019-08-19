@@ -9,7 +9,7 @@ namespace dk.gov.oiosi.test.unit.security.oces {
     [TestFixture]
     public class OcesX509CertificateTest {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetOcesConfiguration() {
             try {
                 DefaultOcesCertificate ocesCertificates = new DefaultOcesCertificate();
@@ -23,7 +23,7 @@ namespace dk.gov.oiosi.test.unit.security.oces {
 
         [Test]
         public void EmployeeTypeTest() {
-            //ConfigurationHandler.ConfigFilePath = "Resources/RaspConfigurationOcesX509.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfigurationOcesX509.xml";
             string employeeCertificatePath = TestConstants.PATH_CERTIFICATE_EMPLOYEE;
             X509Certificate2 certificate = new X509Certificate2(employeeCertificatePath, TestConstants.PASSWORD_CERTIFICATE_EMPLOYEE);
             OcesX509Certificate ocesCertificate = new OcesX509Certificate(certificate);
@@ -44,7 +44,7 @@ namespace dk.gov.oiosi.test.unit.security.oces {
 
         [Test]
         public void DeviceTypeTest() {
-            //ConfigurationHandler.ConfigFilePath = "Resources/RaspConfigurationOcesX509.xml";
+            ConfigurationHandler.ConfigFilePath = "Resources/RaspConfigurationOcesX509.xml";
             string deviceCertificatePath = TestConstants.PATH_CERTIFICATE_DEVICE;
             X509Certificate2 certificate = new X509Certificate2(deviceCertificatePath, TestConstants.PASSWORD_CERTIFICATE_DEVICE);
             OcesX509Certificate ocesCertificate = new OcesX509Certificate(certificate);

@@ -28,7 +28,7 @@ namespace dk.gov.oiosi.test.integration.communication.EAN_5798009811578
     public class IntegrationRaspRequestTest : AbstractIntegrationRaspRequestTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //CertificateLoader loader = new CertificateLoader();

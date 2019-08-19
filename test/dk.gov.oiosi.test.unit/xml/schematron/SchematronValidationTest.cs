@@ -13,7 +13,7 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
     {
         private DefaultDocumentTypes _defaultDocumentTypes;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void InitDocumentTypes()
         {
             _defaultDocumentTypes = new DefaultDocumentTypes();

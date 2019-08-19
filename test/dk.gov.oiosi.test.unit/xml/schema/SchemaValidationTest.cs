@@ -27,7 +27,7 @@ namespace dk.gov.oiosi.test.unit.xml.schema
             this._validator21 = new SchemaValidator();
         }
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void LoadDefault()
         {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();

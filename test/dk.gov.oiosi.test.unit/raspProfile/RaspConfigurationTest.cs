@@ -104,8 +104,6 @@ namespace dk.gov.oiosi.test.unit.raspProfile
             string fileName = "RaspConfiguration.UnitTest.SetupAllSections.xml";
             ConfigurationHandler.ConfigFilePath = fileName;
             DocumentTypeCollectionConfig configuration = ConfigurationHandler.GetConfigurationSection<DocumentTypeCollectionConfig>();
-
-
         }
 
         private void SetupDefaultCacheConfig()

@@ -9,10 +9,39 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BouncyCastle" Version="1.8.1" />
-    <PackageReference Include="Saxon-HE" Version="9.5.1.8" />
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\saxon\IKVM.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Novell.Directory.Ldap, Version=2.1.10.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Novell.Directory.Ldap.dll</HintPath>
+    </Reference>
+    <Reference Include="saxon9he">
+      <HintPath>..\..\lib\saxon\saxon9he.dll</HintPath>
+    </Reference>
+    <Reference Include="Saxon.Api">
+      <HintPath>..\..\lib\saxon\saxon9he-api.dll</HintPath>
     </Reference>
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">

@@ -93,15 +93,6 @@ namespace dk.gov.oiosi.raspProfile
         }
 
         /// <summary>
-        /// Use test lookup
-        /// </summary>
-        public virtual void SetTestOscpConfig()
-        {
-            OcspLookupTestConfig ocspTestConfig = ConfigurationHandler.GetConfigurationSection<OcspLookupTestConfig>();
-            ocspTestConfig.ReturnPositiveResponse = true;
-        }
-
-        /// <summary>
         /// Use test Ocsp server as default
         /// </summary>
         public virtual void SetIfNotExistsTestCertificatesOscpConfig()
@@ -119,16 +110,6 @@ namespace dk.gov.oiosi.raspProfile
             if (ConfigurationHandler.HasConfigurationSection<OcspConfig>())
                 return;
             SetOscpConfig();
-        }
-
-        /// <summary>
-        /// Use test lookup Ocsp
-        /// </summary>
-        public virtual void SetIfNotExistsTestOscpConfig()
-        {
-            if (ConfigurationHandler.HasConfigurationSection<OcspLookupTestConfig>())
-                return;
-            SetTestOscpConfig();
         }
 
         /// <summary>

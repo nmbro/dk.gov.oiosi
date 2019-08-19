@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
     [TestFixture]
     public class CrlLookupTest : LookupTest
     {        
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             ConfigurationUtil.SetupConfiguration();

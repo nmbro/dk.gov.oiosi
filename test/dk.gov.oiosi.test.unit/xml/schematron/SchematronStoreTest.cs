@@ -15,7 +15,8 @@ namespace dk.gov.oiosi.test.unit.xml.schematron
     [TestFixture]
     public class SchematronStoreTest
     {
-        public SchematronStoreTest()
+        [SetUp]
+        public void Setup()
         {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";
             ConfigurationHandler.Reset();

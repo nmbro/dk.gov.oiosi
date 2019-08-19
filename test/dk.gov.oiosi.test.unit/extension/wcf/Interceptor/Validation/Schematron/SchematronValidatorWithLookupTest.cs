@@ -17,7 +17,7 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
     public class SchematronValidatorWithLookupTest
     {
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.Live.xml";

@@ -230,7 +230,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
         /// <exception cref="CheckCertificateOcspUnexpectedException">This exception is thrown, if an unexpected exception is thrown during the method</exception>
         private RevocationResponse RevocationResponseOnline(X509Certificate2 x509Certificate2)
         {
-            RevocationResponse revocationResponse = new RevocationResponse();
+            RevocationResponse revocationResponse;
 
             if (x509Certificate2 == null)
             {
@@ -362,7 +362,7 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
                 string url = urlList[0];
 
 
-                revocationResponse = this.RevocationResponseOnline(serverX509Certificate2, issuerX509Certificate2, url);               
+                revocationResponse = this.RevocationResponseOnline(serverX509Certificate2, issuerX509Certificate2, url);
             }
             catch (Exception e)
             {
@@ -671,7 +671,6 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
             Asn1OctetString asn1 = new DerOctetString(new DerOctetString(new byte[] { 1, 3, 6, 1, 5, 5, 7, 48, 1, 1 }));
 
-            values.Add(OcspObjectIdentifiers.PkixOcsp);
             values.Add(new Org.BouncyCastle.Asn1.X509.X509Extension(false, asn1));
             X509Extensions x509Extensions = new X509Extensions(oids, values);
             ocspRequestGenerator.SetRequestExtensions(x509Extensions);

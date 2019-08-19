@@ -90,15 +90,5 @@ namespace dk.gov.oiosi.raspProfile
                 return;
             SetOcesCertificateConfig();
         }
-
-        /// <summary>
-        /// Use the test values
-        /// </summary>
-        public virtual void SetIfNotExistsTestOcesCertificateConfig()
-        {
-            if (ConfigurationHandler.HasConfigurationSection<OcesX509CertificateConfig>())
-                return;
-            SetTestOcesCertificateConfig();
-        }
     }
 }

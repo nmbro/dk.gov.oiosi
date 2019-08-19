@@ -28,7 +28,7 @@ namespace dk.gov.oiosi.test.integration.communication.CVR_99010080
     public class IntegrationRaspRequestTest : AbstractIntegrationRaspRequestTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //CertificateLoader loader = new CertificateLoader();

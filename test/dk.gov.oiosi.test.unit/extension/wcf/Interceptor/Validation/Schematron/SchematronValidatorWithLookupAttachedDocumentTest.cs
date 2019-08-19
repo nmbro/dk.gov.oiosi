@@ -15,7 +15,7 @@ namespace dk.gov.oiosi.test.unit.extension.wcf.Interceptor.Validation.Schematron
     [TestFixture]
     public class SchematronValidatorWithLookupAttachedDocumentTest
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             ConfigurationHandler.ConfigFilePath = "Resources/RaspConfiguration.AttacthedDocument.xml";

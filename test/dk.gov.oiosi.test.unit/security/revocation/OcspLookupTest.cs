@@ -11,7 +11,7 @@ namespace dk.gov.oiosi.test.unit.security.revocation
     [TestFixture]
     public class OcspLookupTest : LookupTest
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             ConfigurationUtil.SetupConfiguration();

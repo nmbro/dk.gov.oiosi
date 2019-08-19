@@ -14,7 +14,7 @@ namespace dk.gov.oiosi.test.unit.xml.xpath {
     public class XPathTest {
         private DocumentTypeConfigSearcher _searcher;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Start() {
             DefaultDocumentTypes documentTypes = new DefaultDocumentTypes();
             documentTypes.CleanAdd();

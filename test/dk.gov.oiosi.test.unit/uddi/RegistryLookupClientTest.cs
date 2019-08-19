@@ -12,7 +12,7 @@ namespace dk.gov.oiosi.test.integration.uddi
     [TestFixture]
     public class RegistryLookupClientTest
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             ConfigurationUtil.SetupConfiguration("Resources/RaspConfiguration.Live.xml");
@@ -64,8 +64,5 @@ namespace dk.gov.oiosi.test.integration.uddi
             List<ProcessDefinition> processes = ulc.GetProcessDefinitions(uddiIds);
             Assert.AreEqual(uddiIds.Count, processes.Count);
         }
-
-
-
     }
 }
