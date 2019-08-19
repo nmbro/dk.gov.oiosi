@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nkspu:NemkontoPrivatUdbetalerTransporterRequest
+        xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterRequest.xsd"
+        xmlns:cvr="http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/" xmlns:cpr="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/"
+        xmlns:nkspu="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <nkspu:TransporterHeader>
+        <nkspu:TransporterAgreementIdentifier>1234567</nkspu:TransporterAgreementIdentifier>
+        <nkspu:TransporterSystemIdentifier>system</nkspu:TransporterSystemIdentifier>
+        <nkspu:TransporterGroupIdentifier>bundt001</nkspu:TransporterGroupIdentifier>
+    </nkspu:TransporterHeader>
+    <nkspu:NemkontoRequest>
+        <nkspu:Requester>
+            <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+        </nkspu:Requester>
+        <nkspu:RequesterPaymentReference>Betalingsreference001</nkspu:RequesterPaymentReference>
+        <nkspu:NemkontoAccountHolder>
+            <cpr:PersonCivilRegistrationIdentifier>0503914883</cpr:PersonCivilRegistrationIdentifier>
+        </nkspu:NemkontoAccountHolder>
+    </nkspu:NemkontoRequest>
+    <nkspu:NemkontoRequest>
+        <nkspu:Requester>
+            <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+        </nkspu:Requester>
+        <nkspu:RequesterPaymentReference>Betalingsreference002</nkspu:RequesterPaymentReference>
+        <nkspu:NemkontoAccountHolder>
+            <cpr:PersonCivilRegistrationIdentifier>0504854868</cpr:PersonCivilRegistrationIdentifier>
+        </nkspu:NemkontoAccountHolder>
+    </nkspu:NemkontoRequest>
+    <nkspu:NemkontoRequest>
+        <nkspu:Requester>
+            <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+        </nkspu:Requester>
+        <nkspu:RequesterPaymentReference>Betalingsreference003</nkspu:RequesterPaymentReference>
+        <nkspu:NemkontoAccountHolder>
+            <cpr:PersonCivilRegistrationIdentifier>0712614455</cpr:PersonCivilRegistrationIdentifier>
+        </nkspu:NemkontoAccountHolder>
+    </nkspu:NemkontoRequest>
+    <nkspu:NemkontoRequest>
+        <nkspu:Requester>
+            <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+        </nkspu:Requester>
+        <nkspu:RequesterPaymentReference>Betalingsreference004</nkspu:RequesterPaymentReference>
+        <nkspu:NemkontoAccountHolder>
+            <cpr:PersonCivilRegistrationIdentifier>1312814362</cpr:PersonCivilRegistrationIdentifier>
+        </nkspu:NemkontoAccountHolder>
+    </nkspu:NemkontoRequest>
+    <nkspu:NemkontoRequest>
+        <nkspu:Requester>
+            <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+        </nkspu:Requester>
+        <nkspu:RequesterPaymentReference>Betalingsreference005</nkspu:RequesterPaymentReference>
+        <nkspu:NemkontoAccountHolder>
+            <cpr:PersonCivilRegistrationIdentifier>0706614818</cpr:PersonCivilRegistrationIdentifier>
+        </nkspu:NemkontoAccountHolder>
+    </nkspu:NemkontoRequest>
+</nkspu:NemkontoPrivatUdbetalerTransporterRequest>

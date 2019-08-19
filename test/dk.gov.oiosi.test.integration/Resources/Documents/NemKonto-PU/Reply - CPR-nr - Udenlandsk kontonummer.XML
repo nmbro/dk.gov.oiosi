@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nkspu:NemkontoPrivatUdbetalerTransporterResponse
+        xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterResponse.xsd"
+        xmlns:nkspu="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/"
+        xmlns:cpr-20050318="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/"
+        xmlns:cpr-20051031="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/10/31/"
+        xmlns:cvr="http://rep.oio.dk/cvr.dk/xml/schemas/2005/03/22/"
+        xmlns:dkcc="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/05/19/"
+        xmlns:dkcc-20030213="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2003/02/13/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <nkspu:TransporterHeader>
+        <nkspu:TransporterAgreementIdentifier>1234567</nkspu:TransporterAgreementIdentifier>
+        <nkspu:TransporterSystemIdentifier>system</nkspu:TransporterSystemIdentifier>
+        <nkspu:TransporterGroupIdentifier>bundt002</nkspu:TransporterGroupIdentifier>
+    </nkspu:TransporterHeader>
+    <nkspu:NemkontoResponse>
+        <nkspu:NemkontoRequest>
+            <nkspu:Requester>
+                <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+            </nkspu:Requester>
+            <nkspu:RequesterPaymentReference>Betalingsreference006</nkspu:RequesterPaymentReference>
+            <nkspu:NemkontoAccountHolder>
+                <cpr-20050318:PersonCivilRegistrationIdentifier>0709614495</cpr-20050318:PersonCivilRegistrationIdentifier>
+            </nkspu:NemkontoAccountHolder>
+        </nkspu:NemkontoRequest>
+        <nkspu:LookupDateTime>2008-03-03T13:25:46Z</nkspu:LookupDateTime>
+        <nkspu:NemkontoAccountInformation>
+            <nkspu:ForeignBankAccount>
+                <nkspu:ForeignBankInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText/>
+                        <dkcc:PostalAddressSecondLineText/>
+                        <dkcc:PostalAddressThirdLineText/>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">FIN</dkcc-20030213:CountryIdentificationCode>
+                    <nkspu:IBANIdentifier>GB21531RBOS60802345678</nkspu:IBANIdentifier>
+                    <nkspu:BICIdentifier>MIDLGB22</nkspu:BICIdentifier>
+                    <nkspu:NemkontoCurrencyCode>FIM</nkspu:NemkontoCurrencyCode>
+                </nkspu:ForeignBankInfoStructure>
+                <nkspu:ForeignPersonInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText>0909614495</dkcc:PostalAddressFirstLineText>
+                        <dkcc:PostalAddressSecondLineText>Adresse</dkcc:PostalAddressSecondLineText>
+                        <dkcc:PostalAddressThirdLineText/>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">FIN</dkcc-20030213:CountryIdentificationCode>
+                </nkspu:ForeignPersonInfoStructure>
+            </nkspu:ForeignBankAccount>
+        </nkspu:NemkontoAccountInformation>
+    </nkspu:NemkontoResponse>
+    <nkspu:NemkontoResponse>
+        <nkspu:NemkontoRequest>
+            <nkspu:Requester>
+                <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+            </nkspu:Requester>
+            <nkspu:RequesterPaymentReference>Betalingsreference007</nkspu:RequesterPaymentReference>
+            <nkspu:NemkontoAccountHolder>
+                <cpr-20050318:PersonCivilRegistrationIdentifier>2503504874</cpr-20050318:PersonCivilRegistrationIdentifier>
+            </nkspu:NemkontoAccountHolder>
+        </nkspu:NemkontoRequest>
+        <nkspu:LookupDateTime>2008-03-03T13:25:46Z</nkspu:LookupDateTime>
+        <nkspu:NemkontoAccountInformation>
+            <nkspu:ForeignBankAccount>
+                <nkspu:ForeignBankInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText>Royal Bank of scotland PLC</dkcc:PostalAddressFirstLineText>
+                        <dkcc:PostalAddressSecondLineText>61, FORREST ROAD, EH1 2Q EDINBURGH</dkcc:PostalAddressSecondLineText>
+                        <dkcc:PostalAddressThirdLineText/>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">GBR</dkcc-20030213:CountryIdentificationCode>
+                    <nkspu:BICIdentifier>RBOSGB21531</nkspu:BICIdentifier>
+                    <nkspu:ForeignBankBranchCode>830608</nkspu:ForeignBankBranchCode>
+                    <nkspu:ForeignBankAccountIdentifier>0002345678</nkspu:ForeignBankAccountIdentifier>
+                    <nkspu:NemkontoCurrencyCode>GBP</nkspu:NemkontoCurrencyCode>
+                </nkspu:ForeignBankInfoStructure>
+                <nkspu:ForeignPersonInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText>Senia Scotland</dkcc:PostalAddressFirstLineText>
+                        <dkcc:PostalAddressSecondLineText>Tattoo</dkcc:PostalAddressSecondLineText>
+                        <dkcc:PostalAddressThirdLineText>212121</dkcc:PostalAddressThirdLineText>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">GBR</dkcc-20030213:CountryIdentificationCode>
+                </nkspu:ForeignPersonInfoStructure>
+            </nkspu:ForeignBankAccount>
+        </nkspu:NemkontoAccountInformation>
+    </nkspu:NemkontoResponse>
+    <nkspu:NemkontoResponse>
+        <nkspu:NemkontoRequest>
+            <nkspu:Requester>
+                <cvr:CVRnumberIdentifier>11223344</cvr:CVRnumberIdentifier>
+            </nkspu:Requester>
+            <nkspu:RequesterPaymentReference>Betalingsreference008</nkspu:RequesterPaymentReference>
+            <nkspu:NemkontoAccountHolder>
+                <cpr-20050318:PersonCivilRegistrationIdentifier>3112420028</cpr-20050318:PersonCivilRegistrationIdentifier>
+            </nkspu:NemkontoAccountHolder>
+        </nkspu:NemkontoRequest>
+        <nkspu:LookupDateTime>2008-03-03T13:25:46Z</nkspu:LookupDateTime>
+        <nkspu:NemkontoAccountInformation>
+            <nkspu:ForeignBankAccount>
+                <nkspu:ForeignBankInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText/>
+                        <dkcc:PostalAddressSecondLineText/>
+                        <dkcc:PostalAddressThirdLineText/>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">FIN</dkcc-20030213:CountryIdentificationCode>
+                    <nkspu:IBANIdentifier>GB21531RBOS60802345678</nkspu:IBANIdentifier>
+                    <nkspu:BICIdentifier>MIDLGB22</nkspu:BICIdentifier>
+                    <nkspu:NemkontoCurrencyCode>FIM</nkspu:NemkontoCurrencyCode>
+                </nkspu:ForeignBankInfoStructure>
+                <nkspu:ForeignPersonInfoStructure>
+                    <cpr-20051031:SecondaryPostalLabel>
+                        <dkcc:PostalAddressFirstLineText>3112420028</dkcc:PostalAddressFirstLineText>
+                        <dkcc:PostalAddressSecondLineText>Adresse</dkcc:PostalAddressSecondLineText>
+                        <dkcc:PostalAddressThirdLineText/>
+                    </cpr-20051031:SecondaryPostalLabel>
+                    <dkcc-20030213:CountryIdentificationCode scheme="iso3166-alpha3">FIN</dkcc-20030213:CountryIdentificationCode>
+                </nkspu:ForeignPersonInfoStructure>
+            </nkspu:ForeignBankAccount>
+        </nkspu:NemkontoAccountInformation>
+    </nkspu:NemkontoResponse>
+</nkspu:NemkontoPrivatUdbetalerTransporterResponse>

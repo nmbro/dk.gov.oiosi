@@ -1,46 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>net461</TargetFramework>
     <ProjectGuid>{F7E90D5A-EEB1-45F4-AD3E-C707BC5DB2A9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dk.gov.oiosi.test.unit</RootNamespace>
-    <AssemblyName>dk.gov.oiosi.test.unit</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <StartupObject>
-    </StartupObject>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
-    </Reference>
+    <PackageReference Include="NUnitTestAdapter" Version="2.1.1" />
+    <PackageReference Include="Nunit" Version="2.5.7.10213" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -54,45 +22,6 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="addressing\IdentifierTest.cs" />
-    <Compile Include="common\cache\QuantityCacheTest.cs" />
-    <Compile Include="common\cache\TimedCacheTest.cs" />
-    <Compile Include="common\UtilitiesTest.cs" />
-    <Compile Include="communitcation\configuration\RaspDocumentTypeCollectionConfigTest.cs" />
-    <Compile Include="communitcation\configuration\RaspDocumentTypeConfigTest.cs" />
-    <Compile Include="ConfigurationUtil.cs" />
-    <Compile Include="configuration\CacheConfigTest.cs" />
-    <Compile Include="configuration\ConfigurationHandlerTest.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupAttachedDocumentTest.cs" />
-    <Compile Include="extension\wcf\Interceptor\Validation\Schematron\SchematronValidatorWithLookupTest.cs" />
-    <Compile Include="Print.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="raspProfile\communication\RaspRequestTest.cs" />
-    <Compile Include="raspProfile\RaspConfigurationTest.cs" />
-    <Compile Include="security\CertificateSubjectTest.cs" />
-    <Compile Include="security\oces\OcesCertificateSubjectKeyTest.cs" />
-    <Compile Include="security\oces\OcesX509CertificateTest.cs" />
-    <Compile Include="security\revocation\LookupTest.cs" />
-    <Compile Include="security\RootCertificate.cs" />
-    <Compile Include="security\revocation\CrlLookupTest.cs" />
-    <Compile Include="security\revocation\OcspLookupTest.cs" />
-    <Compile Include="security\validation\configuration\MultipleRootX509CertificateValidatorAppConfigurationTest.cs" />
-    <Compile Include="security\validation\MultipleRootX509CertificateValidatorTest.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="TestConstants.cs" />
-    <Compile Include="uddi\AdvancedUddiDummyClient.cs" />
-    <Compile Include="uddi\RegistryLookupClientTest.cs" />
-    <Compile Include="uddi\RegistryLookupTest.cs" />
-    <Compile Include="uddi\UddiGuidIdTest.cs" />
-    <Compile Include="uddi\UddiLookupClientTest.cs" />
-    <Compile Include="xml\documentType\DocumentTypeConfigSearcherTest.cs" />
-    <Compile Include="xml\schematron\SchematronStoreTest.cs" />
-    <Compile Include="xml\schematron\SchematronValidationTest.cs" />
-    <Compile Include="xml\schema\SchemaValidationTest.cs" />
-    <Compile Include="xml\xpath\XPathTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\dk.gov.oiosi.appConfig\dk.gov.oiosi.appConfig.csproj">
@@ -182,9 +111,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -542,12 +468,4 @@
     <Folder Include="Resources\Schemas\" />
     <Folder Include="Resources\Schematrons\" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

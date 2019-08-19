@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="http://rep.oio.dk/ubl/xml/schemas/0p71/pip/" xmlns:com="http://rep.oio.dk/ubl/xml/schemas/0p71/common/"
+         xmlns:main="http://rep.oio.dk/ubl/xml/schemas/0p71/maindoc/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://rep.oio.dk/ubl/xml/schemas/0p71/pip/ http://rep.oio.dk/ubl/xml/schemas/0p71/pip/piplax.xsd">
+    <com:ID>239342</com:ID>
+    <com:IssueDate>2011-01-24</com:IssueDate>
+    <com:TypeCode>PIP</com:TypeCode>
+    <main:InvoiceCurrencyCode>DKK</main:InvoiceCurrencyCode>
+    <com:Note>Test document. Testing PIP</com:Note>
+    <main:EncodedDocument agencyID="5798000016408">
+        SUkqAIoEAABgAAAAAQAAAGAAAAABAAAA//////////////////5ZDMJLIsAXluFAeC5GAVgiDSrIHgubOmEwQafUIH7wg7qoTX6f7Cf9f6/0///X9L//69rRBqy16kMzX2pBQlggdqTYgG9JBoloN/0D/0g/+g//a/0P///9f//////9///f9v/f+/9/7/sP/D/w/7D/w/2wf5BYSB/th/2H/h/th/2/7D/sP+3/b/hv+3+g3/Df8N/oP+QUbTv9Bv+H/g3/D/w/8N/3/h/7/2/7/3/v//7///////////+l/K3f9Br/h/+Gl/hr/hr/hpfuDBfyB4b6EC4a/x/uv7X//1/r/X+v7X+v4YX9r7hhfoMLu4MJ7CDQMEwoiRMDAyyEgJH////////////////////////5NggE5UAwQIGCtgVwmEGEGE6aqv/r6///e//////r//X/////1r5BQbkSCha9a//////////////////////////////////////3/kFg2K/7/+QWQf/97///////////1////r/IKDcj+v/r/X+Qbrf/////////////////////////////////////3/kCvV/5A8NzYU+//f///////////////3f/V3aeGEwg0GoiI////////////////////////////+VwVndbJGW5jNeZHqaZjyNdq8yTgwgRdGYMGI8FOBUCLpPTIoITxOIZxPGzOhnoiIkl0fCGceCEqCEgU+Ev0P/Q/oPQbaX//fdoO+ZK4lVREXMGYGmtoInjwieO+1/1mx82ObGi8zY3+v+o4wg3wg26X/9bft7aQfbv//+k+k7fBEenH//v7lP7pDv///+/vS9f/X//69+SBTMYRE1ImESr+ERLP0zFOuey40n0nbS3r8himBmg89lxmhfv7+6W99NFj9P//0/T//+1/CaDRY/00P19fX1+jc0EIZqy8YZhH8M0+jc+J7/+xX1/Pwnygh4nujZr////110///19N/++2v4tN102k/////1f0v+QuEKH9X6//r/+v6910vS9L0v937f//99f//1+731/x8ZIDEfH+Nh9f8wZi/4///T21/Q2H//C4XC4X9g///////giPfX5DDYwf9fNrmSGTm0zV/Mnf///zBP/+l7a/onBad///v/+g33///X//pN//oE0G/7////b////f7aW2l/1/7/+//t/9/S/////9JvY/6t/9f/7/2vf//9/tpbaXfX9qv99/+2Z/9s9m/bbCX//tnv+GF4YVJ9/9M/m//bC//2F67HFQbFf/+x/sQtiEt/yFIIWxO44r9icf/jsV/aadr//2vw1hqn6/YTCa/a3/wwtYiIiIiIiIiIiIiIiIiIiIiIjYiIiP6uu+WWtF8vl8vl8vl8vl8vl8vl8vl8vl8vl8vl8vl8vl96sIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIutKIiIiIiIiIiIiIiIiIiP///////////////////////////+ACACAABMA/gAEAAEAAAAAAAAAAAEEAAEAAAC+AwAAAQEEAAEAAABYAwAAAgEDAAEAAAABAAAAAwEDAAEAAAAEAAAABgEDAAEAAAAAAAAACgEDAAEAAAABAAAAEQEEAAEAAAAYAAAAFQEDAAEAAAABAAAAFgEEAAEAAABYAwAAFwEEAAEAAABxBAAAGgEFAAEAAAAIAAAAGwEFAAEAAAAQAAAAHAEDAAEAAAABAAAAJAEEAAEAAAAAAAAAJQEEAAEAAAAAAAAAKAEDAAEAAAACAAAAKQEDAAIAAAABAAEARwEDAAEAAAAAAAAAAAAAAA==
+    </main:EncodedDocument>
+    <com:BuyersReferenceID schemeID="EAN">5798009811578</com:BuyersReferenceID>
+    <com:ReferencedOrder>
+        <com:BuyersOrderID>null</com:BuyersOrderID>
+        <com:SellersOrderID>null</com:SellersOrderID>
+        <com:IssueDate>0001-01-01</com:IssueDate>
+    </com:ReferencedOrder>
+    <com:BuyerParty>
+        <com:ID schemeID="n/a">0</com:ID>
+        <com:AccountCode>null</com:AccountCode>
+        <com:BuyerContact>
+            <com:ID>n/a</com:ID>
+        </com:BuyerContact>
+    </com:BuyerParty>
+    <com:SellerParty>
+        <com:ID schemeID="CVR">99010080</com:ID>
+        <com:PartyTaxScheme>
+            <com:CompanyTaxID schemeID="CVR">99010080</com:CompanyTaxID>
+        </com:PartyTaxScheme>
+    </com:SellerParty>
+    <com:PaymentMeans>
+        <com:TypeCodeID>null</com:TypeCodeID>
+        <com:PaymentDueDate>0001-01-01</com:PaymentDueDate>
+        <com:PaymentChannelCode>KONTOOVERFØRSEL</com:PaymentChannelCode>
+        <com:PaymentID>0</com:PaymentID>
+        <com:JointPaymentID>0</com:JointPaymentID>
+        <com:PayeeFinancialAccount>
+            <com:ID>2275640649</com:ID>
+            <com:TypeCode>BANK</com:TypeCode>
+            <com:FiBranch>
+                <com:ID>9712</com:ID>
+                <com:FinancialInstitution>
+                    <com:ID>null</com:ID>
+                    <com:Name>null</com:Name>
+                </com:FinancialInstitution>
+            </com:FiBranch>
+        </com:PayeeFinancialAccount>
+    </com:PaymentMeans>
+    <com:TaxTotal>
+        <com:TaxTypeCode>VAT</com:TaxTypeCode>
+        <com:TaxAmounts>
+            <com:TaxableAmount currencyID="DKK">0</com:TaxableAmount>
+            <com:TaxAmount currencyID="DKK">2067.00</com:TaxAmount>
+        </com:TaxAmounts>
+        <com:CategoryTotal>
+            <com:RateCategoryCodeID>VAT</com:RateCategoryCodeID>
+            <com:RatePercentNumeric>0</com:RatePercentNumeric>
+            <com:TaxAmounts>
+                <com:TaxableAmount currencyID="DKK">0</com:TaxableAmount>
+                <com:TaxAmount currencyID="DKK">2067.00</com:TaxAmount>
+            </com:TaxAmounts>
+        </com:CategoryTotal>
+    </com:TaxTotal>
+    <com:LegalTotals>
+        <com:LineExtensionTotalAmount currencyID="DKK">0</com:LineExtensionTotalAmount>
+        <com:ToBePaidTotalAmount currencyID="DKK">10335.00</com:ToBePaidTotalAmount>
+    </com:LegalTotals>
+    <com:InvoiceLine>
+        <com:ID>0</com:ID>
+        <com:InvoicedQuantity unitCode="Stk" unitCodeListAgencyID="n/a">0</com:InvoicedQuantity>
+        <com:LineExtensionAmount currencyID="DKK">0</com:LineExtensionAmount>
+        <com:Item>
+            <com:ID>null</com:ID>
+            <com:BasePrice>
+                <com:PriceAmount currencyID="DKK">0</com:PriceAmount>
+            </com:BasePrice>
+        </com:Item>
+        <com:BasePrice>
+            <com:PriceAmount currencyID="DKK">0</com:PriceAmount>
+            <com:BaseQuantity unitCode="stk" unitCodeListAgencyID="n/a">0</com:BaseQuantity>
+        </com:BasePrice>
+    </com:InvoiceLine>
+</Invoice>

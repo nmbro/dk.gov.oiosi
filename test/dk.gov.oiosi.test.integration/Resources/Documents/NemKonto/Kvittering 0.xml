@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på Kvittering 0, Bad XML. Bemærk at dataleverandør kortnavn og RefToMessageId kun fremgår, hvis de kan læses af betalingen
+-->
+<nks:NKSReceipt0 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                 xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt0.xsd">
+	<nks:MessageHeader ebms:id="Kvitteringssvar 0 NKS2C" ebms:version="2.0">
+		<ebms:From>
+			<ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798000016446</ebms:PartyId>
+		</ebms:From>
+		<ebms:To>
+			<ebms:PartyId>DATLEV</ebms:PartyId>
+		</ebms:To>
+		<ebms:Action>Bad XML</ebms:Action>
+		<ebms:MessageData>
+			<ebms:MessageId>NKS KVITTERING0 73</ebms:MessageId>
+			<ebms:Timestamp>2005-08-15T17:13:33</ebms:Timestamp>
+			<ebms:RefToMessageId>REF12345</ebms:RefToMessageId>
+		</ebms:MessageData>
+		<ebms:ErrorList ebms:highestSeverity="Error">
+			<ebms:Error ebms:errorCode="5199" ebms:severity="Error">
+				<ebms:Description>Authstn: The field length was less than minLen</ebms:Description>
+			</ebms:Error>
+		</ebms:ErrorList>
+	</nks:MessageHeader>
+</nks:NKSReceipt0>

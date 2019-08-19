@@ -30,39 +30,28 @@
   *   Christian Lanng, ITST
   *
   */
+using dk.gov.oiosi.extension.wcf.Behavior;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
-using dk.gov.oiosi.extension.wcf.Behavior;
 
 
-namespace dk.gov.oiosi.raspProfile.extension.wcf {
-    
+namespace dk.gov.oiosi.raspProfile.extension.wcf
+{
+
     /// <summary>
     /// Factory that creates a service host and adds the EncryptRmBodiesBehavior and the rasp custom headers
     /// </summary>
-    public class RaspServiceHostFactory : System.ServiceModel.Activation.ServiceHostFactory {
+    public class RaspServiceHostFactory : ServiceHostFactoryBase
+    {
         /// <summary>
         /// Creates a service host
         /// </summary>
-        /// <param name="constructorString">Construction parameters string</param>
-        /// <param name="baseAddresses">The base address of the service host</param>
-        /// <returns>Returns the service host</returns>
-        public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses) {
-            return base.CreateServiceHost(constructorString, baseAddresses);
-        }
-
-        /// <summary>
-        /// Creates a service host
-        /// </summary>
-        /// <param name="serviceType">The service type</param>
+        /// <param name="constructorString"></param>
         /// <param name="baseAddresses">The host base address</param>
         /// <returns>Creates a service host</returns>
-        protected override ServiceHost CreateServiceHost(Type serviceType, Uri[] baseAddresses) {
-            ServiceHost sh = base.CreateServiceHost(serviceType, baseAddresses);
+        public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses) {
+            ServiceHost sh = new ServiceHost(constructorString, baseAddresses);
 
             // Add the encrypt RM bodies behavior
             sh.Description.Behaviors.Add(new EncryptRmBodiesBehavior());

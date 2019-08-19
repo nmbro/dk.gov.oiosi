@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Komplette indbetalingskort (FI og Giro) med grouping, kortart 15 og 75
+-->
+<NKSPayment xmlns="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/" xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/" xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd">
+	<ebms:MessageHeader ebms:id="C2NKS" ebms:version="2.0">
+		<ebms:From>
+			<ebms:PartyId>DATLEV</ebms:PartyId>
+		</ebms:From>
+		<ebms:To>
+			<ebms:PartyId>NKS</ebms:PartyId>
+			<ebms:PartyId>5798000016446</ebms:PartyId>
+		</ebms:To>
+		<ebms:MessageData>
+			<ebms:MessageId>Bundt 3</ebms:MessageId>
+			<ebms:Timestamp>2005-05-31T09:30:00+01:00</ebms:Timestamp>
+		</ebms:MessageData>
+	</ebms:MessageHeader>
+	<swift:GrpHdr>
+		<swift:GrpId>Bundt 3</swift:GrpId>
+		<swift:CreDtTm>2005-05-31T09:30:00+01:00</swift:CreDtTm>
+		<swift:Authstn>1</swift:Authstn>
+		<swift:CtrlSum>200000</swift:CtrlSum>
+		<swift:NbOfTxs>2</swift:NbOfTxs>
+		<swift:Grpg>true</swift:Grpg>
+		<swift:InitgPty>
+			<swift:OrgId>
+				<swift:PrtryId>
+					<swift:Id>25</swift:Id>
+					<swift:Issr>ADMID</swift:Issr>
+				</swift:PrtryId>
+			</swift:OrgId>
+		</swift:InitgPty>
+	</swift:GrpHdr>
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-08-17</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:CdtTrfTpId>
+			<swift:LclInstrm>IBK</swift:LclInstrm>
+		</swift:CdtTrfTpId>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>001086</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81262720188882</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Debiteringstekst IBK</swift:DbtPurp>
+		<!-- Komplet betaling af kr. 100 til kortart 15 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 03.01</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>4684044</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>15+8714375749799926</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+		<!-- Komplet betaling af kr. 100 til kortart 75 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 03.02</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>70006677</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst linje 1</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>75+8714375749799926</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+</NKSPayment>

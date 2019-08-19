@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Komplette indbetalingskort (FI og Giro) med grouping, kortart 01, 04, 71 og 73
+ -->
+<NKSPayment xmlns="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+			xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+			xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd">
+	<ebms:MessageHeader ebms:id="C2NKS" ebms:version="2.0">
+		<ebms:From>
+			<ebms:PartyId>DATLEV</ebms:PartyId>
+		</ebms:From>
+		<ebms:To>
+			<ebms:PartyId>NKS</ebms:PartyId>
+			<ebms:PartyId>5798000016446</ebms:PartyId>
+		</ebms:To>
+		<ebms:MessageData>
+			<ebms:MessageId>Bundt 2</ebms:MessageId>
+			<ebms:Timestamp>2005-05-31T09:30:00+01:00</ebms:Timestamp>
+		</ebms:MessageData>
+	</ebms:MessageHeader>
+	<swift:GrpHdr>
+		<swift:GrpId>Bundt 2</swift:GrpId>
+		<swift:CreDtTm>2005-05-31T09:30:00+01:00</swift:CreDtTm>
+		<swift:Authstn>1</swift:Authstn>
+		<swift:CtrlSum>400000</swift:CtrlSum>
+		<swift:NbOfTxs>4</swift:NbOfTxs>
+		<swift:Grpg>true</swift:Grpg>
+		<swift:InitgPty>
+			<swift:OrgId>
+				<swift:PrtryId>
+					<swift:Id>25</swift:Id>
+					<swift:Issr>ADMID</swift:Issr>
+				</swift:PrtryId>
+			</swift:OrgId>
+		</swift:InitgPty>
+	</swift:GrpHdr>
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-08-17</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:CdtTrfTpId>
+			<swift:LclInstrm>IBK</swift:LclInstrm>
+		</swift:CdtTrfTpId>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>BANK01234</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81262720188882</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Debiteringstekst IBK</swift:DbtPurp>
+		<!-- Komplet betaling af kr. 100 til CVR 82002049, kortart 04 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 02.01</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:PrtryId>
+						<swift:Id>82002049</swift:Id>
+						<swift:Issr>CVR</swift:Issr>
+					</swift:PrtryId>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>4684044</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>04+8714375749799926</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+		<!-- Komplet betaling af kr. 100 til CVR 82002049, kortart 71 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 02.02</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:PrtryId>
+						<swift:Id>82002049</swift:Id>
+						<swift:Issr>CVR</swift:Issr>
+					</swift:PrtryId>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>70006677</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>71+000014560057664</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+		<!-- Komplet betaling af kr. 100 til CVR 82002049, kortart 01 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 02.03</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:PrtryId>
+						<swift:Id>82002049</swift:Id>
+						<swift:Issr>CVR</swift:Issr>
+					</swift:PrtryId>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>4176340</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Ustrd>Girokort med kortart 01</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst linje 5</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>01+</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+		<!-- Komplet betaling af kr. 100 til CVR 82002049, kortart 73 -->
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>UPR 02.04</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:PrtryId>
+						<swift:Id>82002049</swift:Id>
+						<swift:Issr>CVR</swift:Issr>
+					</swift:PrtryId>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:Prtry>
+						<swift:Id>70006677</swift:Id>
+						<!--Gironummer/FI-nummer-->
+					</swift:Prtry>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Ustrd>FI-kort med kortart 731111111111 1-4xxxx0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst linje 5</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:CdtrRef>73+</swift:CdtrRef>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+</NKSPayment>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nkspu:NemkontoPrivatUdbetalerTransporterResponse
+        xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterResponse.xsd"
+        xmlns:nkspu="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/"
+        xmlns:ean="http://rep.oio.dk/ean/xml/schemas/2005/01/10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <nkspu:InvalidMessageFormat>
+        <nkspu:VansHeader>
+            <nkspu:VansSenderAddress>
+                <nkspu:VansNemkontoEnvironmentCode>nkspu</nkspu:VansNemkontoEnvironmentCode>
+            </nkspu:VansSenderAddress>
+            <nkspu:VansRecipientAddress>
+                <ean:EAN13Identifier>5790000000123</ean:EAN13Identifier>
+            </nkspu:VansRecipientAddress>
+        </nkspu:VansHeader>
+        <nkspu:InvalidMessageFormathighestseverityCode>0008</nkspu:InvalidMessageFormathighestseverityCode>
+        <nkspu:InvalidMessageFormatCode>0008</nkspu:InvalidMessageFormatCode>
+        <nkspu:InvalidMessageFormatText>Error in XML line 1 char 1297 with message: Datatype error: Type:InvalidDatatypeValueException, Message:Value 'bl}b{rgr¦d' with length '10' is not equal to length facet of '8' .</nkspu:InvalidMessageFormatText>
+    </nkspu:InvalidMessageFormat>
+</nkspu:NemkontoPrivatUdbetalerTransporterResponse>

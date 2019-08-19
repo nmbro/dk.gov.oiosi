@@ -1,0 +1,10 @@
+These below mentioned example xml documents for deployment with the client.
+The match registrations in UDDI in both the development environment and in production. EAN and other identifiers SHOULD NOT be changed.
+
+See the document "TestEndpoints_v1.0.xls" in the documentation solution for UDDI, endpoint and endpoint key details.
+
+
+
+OIOUBL_Invoice_v2p1_B.xml
+OIOUBL_Invoice_v2p1_C.xml
+OIOUBL_Order_v2p2_B.xml

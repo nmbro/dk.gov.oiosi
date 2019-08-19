@@ -664,14 +664,15 @@ namespace dk.gov.oiosi.security.revocation.ocsp {
 
             BigInteger nonce = BigInteger.ValueOf(new DateTime().Ticks);
 
-            ArrayList oids = new ArrayList();
-            Hashtable values = new Hashtable();
+            IList oids = new ArrayList();
+            IList values = new ArrayList();
 
             oids.Add(OcspObjectIdentifiers.PkixOcsp);
 
             Asn1OctetString asn1 = new DerOctetString(new DerOctetString(new byte[] { 1, 3, 6, 1, 5, 5, 7, 48, 1, 1 }));
 
-            values.Add(OcspObjectIdentifiers.PkixOcsp, new Org.BouncyCastle.Asn1.X509.X509Extension(false, asn1));
+            values.Add(OcspObjectIdentifiers.PkixOcsp);
+            values.Add(new Org.BouncyCastle.Asn1.X509.X509Extension(false, asn1));
             X509Extensions x509Extensions = new X509Extensions(oids, values);
             ocspRequestGenerator.SetRequestExtensions(x509Extensions);
 
