@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -138,5 +138,14 @@
   </data>
   <data name="dk_gov_oiosi_xml_xpath_XPathSizeTooSmallException" xml:space="preserve">
     <value>Xpath-udtrykket '[xpath]'s  længde er for kort.</value>
+  </data>
+  <data name="dk_gov_oiosi_xml_schema_SchemaValidationException" xml:space="preserve">
+    <value>Schema validation failed</value>
+  </data>
+  <data name="dk_gov_oiosi_xml_schema_SchemaValidationFailedException" xml:space="preserve">
+    <value>The document with rootnode "[documentname]" and namespace "[documentnamespace]" failed schema validation.</value>
+  </data>
+  <data name="dk_gov_oiosi_xml_schema_UnexpectedNamespaceException" xml:space="preserve">
+    <value>The namspace found "[documentnamespace]" is not the expected namespace "[expectednamespace]"</value>
   </data>
 </root>

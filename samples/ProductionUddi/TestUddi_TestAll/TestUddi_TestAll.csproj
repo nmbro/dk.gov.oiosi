@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>dk.gov.oiosi.samples.TestUddi.TestUddi_TestAll</RootNamespace>
     <AssemblyName>dk.gov.oiosi.samples.TestUddi.TestUddi_TestAll</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>dk.gov.oiosi.samples.TestUddi.TestUddi_TestAll</StartupObject>
     <FileUpgradeFlags>
