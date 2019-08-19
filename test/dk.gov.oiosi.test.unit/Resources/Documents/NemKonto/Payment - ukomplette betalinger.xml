@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Eksempel: Grupperede ukomplette betalinger til forskellige modtagertyper (CPR/CVR/SE/P)
+-->
+<NKSPayment xmlns="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+            xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+            xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd">
+    <ebms:MessageHeader ebms:id="C2NKS" ebms:version="2.0">
+        <ebms:From>
+            <ebms:PartyId>DATLEV</ebms:PartyId>
+        </ebms:From>
+        <ebms:To>
+            <ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798000016446</ebms:PartyId>
+        </ebms:To>
+        <ebms:MessageData>
+            <ebms:MessageId>AFL.D1.B1</ebms:MessageId>
+            <ebms:Timestamp>2005-06-11T09:30:00Z</ebms:Timestamp>
+        </ebms:MessageData>
+    </ebms:MessageHeader>
+    <swift:GrpHdr>
+        <swift:GrpId>AFL.D1.B1</swift:GrpId>
+        <swift:CreDtTm>2005-06-11T09:30:00Z</swift:CreDtTm>
+        <swift:Authstn>1</swift:Authstn>
+        <swift:CtrlSum>700000</swift:CtrlSum>
+        <swift:NbOfTxs>5</swift:NbOfTxs>
+        <swift:Grpg>true</swift:Grpg>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>25</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </swift:GrpHdr>
+    <swift:PmtInf>
+        <swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+        <swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+        <swift:Dbtr>
+            <swift:OrgId>
+                <swift:BkPtyId>BANK01234</swift:BkPtyId>
+            </swift:OrgId>
+        </swift:Dbtr>
+        <swift:DbtrAcct>
+            <swift:Id>
+                <swift:BBAN>81090001000539</swift:BBAN>
+            </swift:Id>
+        </swift:DbtrAcct>
+        <swift:DbtPurp>Deb.tekst AFL.D1.B1</swift:DbtPurp>
+        <!-- Kontooverførsel af kr. 100 til CVR-27510647  -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:EndToEndId>AFL.D1.B1.UPR01</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR01</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:OrgId>
+                    <swift:PrtryId>
+                        <swift:Id>27510647</swift:Id>
+                        <swift:Issr>CVR</swift:Issr>
+                    </swift:PrtryId>
+                </swift:OrgId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSLEV</swift:BenefitType>
+        </swift:PmtTx>
+        <!-- Kontooverførsel af kr. 100 til CPR-2502414871 -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:EndToEndId>AFL.D1.B1.UPR02</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR02</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:PrvtId>
+                    <swift:SclSctyNb>2502414871</swift:SclSctyNb>
+                </swift:PrvtId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSDPE</swift:BenefitType>
+        </swift:PmtTx>
+        <!-- Kontooverførsel af kr. 100 til SE-66113329 -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:EndToEndId>AFL.D1.B1.UPR03</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR03</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:OrgId>
+                    <swift:TaxIdNb>66113329</swift:TaxIdNb>
+                </swift:OrgId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSOAM</swift:BenefitType>
+        </swift:PmtTx>
+        <!-- Kontooverførsel af kr. 100 til PNR-8200204901 -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:EndToEndId>AFL.D1.B1.UPR04</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR04</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:OrgId>
+                    <swift:PrtryId>
+                        <swift:Id>8200204901</swift:Id>
+                        <swift:Issr>PNR</swift:Issr>
+                    </swift:PrtryId>
+                </swift:OrgId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSMOA</swift:BenefitType>
+        </swift:PmtTx>
+        <!-- Kontooverførsel af kr. 300 til CPR-2502414871- med supplerende lang adviseringstekst -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:EndToEndId>AFL.D1.B1.UPR05</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR05</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">300000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:PrvtId>
+                    <swift:SclSctyNb>2502414871</swift:SclSctyNb>
+                </swift:PrvtId>
+            </swift:Cdtr>
+            <swift:RmtInf>
+                <swift:Ustrd>Lang adviseringstekst for AFL.D1.B1.UPR05</swift:Ustrd>
+            </swift:RmtInf>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSDPE</swift:BenefitType>
+        </swift:PmtTx>
+    </swift:PmtInf>
+</NKSPayment>

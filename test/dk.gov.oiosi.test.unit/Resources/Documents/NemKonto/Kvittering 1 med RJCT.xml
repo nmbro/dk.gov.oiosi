@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Eksempel på Kvittering 1, accept af betalingsbundt
+ -->
+<nks:NKSReceipt1 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+    xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+    xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/
+    http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSReceipt1.xsd">
+    <nks:MessageHeader ebms:id="Kvitteringssvar 1 NKS2C" ebms:version="2.0">
+        <ebms:From>
+            <ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798000016446</ebms:PartyId>
+        </ebms:From>
+        <ebms:To>
+            <ebms:PartyId>DATLEV</ebms:PartyId>
+        </ebms:To>
+        <ebms:Action>RJCT</ebms:Action>
+        <ebms:MessageData>
+            <ebms:MessageId>NKS KVITTERING1 73</ebms:MessageId>
+            <ebms:Timestamp>2005-08-26T09:54:56</ebms:Timestamp>
+            <ebms:RefToMessageId>TMO-20050826095549</ebms:RefToMessageId>
+        </ebms:MessageData>
+		<ebms:ErrorList ebms:highestSeverity="Error">
+			<ebms:Error ebms:errorCode="1" ebms:severity="Error">
+				<ebms:Description>Udbetalingsdato er ældre end 5 dage</ebms:Description>
+			</ebms:Error>
+		</ebms:ErrorList>
+    </nks:MessageHeader>
+</nks:NKSReceipt1>

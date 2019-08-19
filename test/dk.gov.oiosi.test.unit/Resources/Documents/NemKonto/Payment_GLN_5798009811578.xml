@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Eksempel: Grupperede ukomplette betalinger, der skal routes gennem VANS
+-->
+<NKSPayment xmlns="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+            xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+            xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd">
+    <ebms:MessageHeader ebms:id="C2NKS" ebms:version="2.0">
+        <ebms:From>
+            <ebms:PartyId>NAVIST</ebms:PartyId>
+            <!-- Afsenders EAN nummer (returneres i anden repetition af To/PartyId i kvitteringer 0 og 1 og retursvar 2 og 5) -->
+            <ebms:PartyId>5798000011127</ebms:PartyId>
+        </ebms:From>
+        <ebms:To>
+            <ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798009811578</ebms:PartyId>
+        </ebms:To>
+        <ebms:MessageData>
+            <!-- VANS stiller særlige krav til udformning af MessageID (EAN~bundtnr) -->
+            <ebms:MessageId>5798000011127~802</ebms:MessageId>
+            <ebms:Timestamp>2005-06-11T09:30:00Z</ebms:Timestamp>
+        </ebms:MessageData>
+    </ebms:MessageHeader>
+    <swift:GrpHdr>
+        <!-- VANS stiller særlige krav til udformning af GrpId (EAN~bundtnr) -->
+        <swift:GrpId>5798009811127~802</swift:GrpId>
+        <swift:CreDtTm>2005-06-11T09:30:00Z</swift:CreDtTm>
+        <swift:Authstn>1</swift:Authstn>
+        <swift:CtrlSum>200000</swift:CtrlSum>
+        <swift:NbOfTxs>2</swift:NbOfTxs>
+        <swift:Grpg>true</swift:Grpg>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>25</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </swift:GrpHdr>
+    <swift:PmtInf>
+        <swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+        <swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+        <swift:Dbtr>
+            <swift:OrgId>
+                <swift:BkPtyId>BANK01234</swift:BkPtyId>
+            </swift:OrgId>
+        </swift:Dbtr>
+        <swift:DbtrAcct>
+            <swift:Id>
+                <swift:BBAN>81090001000539</swift:BBAN>
+            </swift:Id>
+        </swift:DbtrAcct>
+        <swift:DbtPurp>Deb.tekst AFL.D1.B3</swift:DbtPurp>
+        <!-- Kontooverførsel af kr. 100 til CVR-27510647  -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:InstrId>0027510647</swift:InstrId>
+                <swift:EndToEndId>AFL.D1.B3.UPR01</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR01</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:OrgId>
+                    <swift:PrtryId>
+                        <swift:Id>27510647</swift:Id>
+                        <swift:Issr>CVR</swift:Issr>
+                    </swift:PrtryId>
+                </swift:OrgId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSLEV</swift:BenefitType>
+        </swift:PmtTx>
+        <!-- Kontooverførsel af kr. 100 til CPR-2502414871 -->
+        <swift:PmtTx>
+            <swift:PmtId>
+                <swift:InstrId>2502414871</swift:InstrId>
+                <swift:EndToEndId>AFL.D1.B3.UPR02</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:Purp>
+                <swift:Prtry>Kred. tekst ...UPR02</swift:Prtry>
+            </swift:Purp>
+            <swift:Amt>
+                <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+            </swift:Amt>
+            <swift:Cdtr>
+                <swift:PrvtId>
+                    <swift:SclSctyNb>2502414871</swift:SclSctyNb>
+                </swift:PrvtId>
+            </swift:Cdtr>
+            <swift:IncompletePaymentIndicator>true</swift:IncompletePaymentIndicator>
+            <swift:BenefitType>NKSLEV</swift:BenefitType>
+        </swift:PmtTx>
+    </swift:PmtInf>
+</NKSPayment>

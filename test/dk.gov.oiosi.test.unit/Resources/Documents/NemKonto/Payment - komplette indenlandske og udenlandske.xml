@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+No-grouping komplette IBB og UBB betalinger med modtageroplysninger og krediteringskonti indland/udland
+-->
+<NKSPayment xmlns="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/" xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/" xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSPayment.xsd">
+	<ebms:MessageHeader ebms:id="C2NKS" ebms:version="2.0">
+		<ebms:From>
+			<ebms:PartyId>DATLEV</ebms:PartyId>
+		</ebms:From>
+		<ebms:To>
+			<ebms:PartyId>NKS</ebms:PartyId>
+			<ebms:PartyId>5798000016446</ebms:PartyId>
+		</ebms:To>
+		<ebms:MessageData>
+			<ebms:MessageId>AFL.D1.B2</ebms:MessageId>
+			<ebms:Timestamp>2005-07-11T09:30:00Z</ebms:Timestamp>
+		</ebms:MessageData>
+	</ebms:MessageHeader>
+	<swift:GrpHdr>
+		<swift:GrpId>AFL.D1.B2</swift:GrpId>
+		<swift:CreDtTm>2005-07-11T09:30:00Z</swift:CreDtTm>
+		<swift:Authstn>1</swift:Authstn>
+		<swift:CtrlSum>400000</swift:CtrlSum>
+		<swift:NbOfTxs>4</swift:NbOfTxs>
+		<swift:Grpg>false</swift:Grpg>
+		<swift:InitgPty>
+			<swift:OrgId>
+				<swift:PrtryId>
+					<swift:Id>25</swift:Id>
+					<swift:Issr>ADMID</swift:Issr>
+				</swift:PrtryId>
+			</swift:OrgId>
+		</swift:InitgPty>
+	</swift:GrpHdr>
+	<!-- Komplet indenlandsk kontooverførsel kr. 100 til SE-21015628 Konto 5221-0000999892 -->
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>BANK01234</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFL.D1.B2.deb1</swift:DbtPurp>
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>AFL.D1.B2.UPR01</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Purp>
+				<swift:Prtry>Leverandørudbetaling</swift:Prtry>
+			</swift:Purp>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:TaxIdNb>21015628</swift:TaxIdNb>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:BBAN>52210000999892</swift:BBAN>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst linje 1-4 i kontoudtog</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst linje 5-8 i kontoudtog</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+	<!-- Komplet indenlandsk kontooverførsel af kr. 100, inkl. straksadvisering, til CVR-10145554 Konto 9991-2121212121 -->
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>BANK01234</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFL.D1.B2.deb2</swift:DbtPurp>
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>AFL.D1.B2.UPR02</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Purp>
+				<swift:Prtry>Leverandørudbetaling</swift:Prtry>
+			</swift:Purp>
+			<swift:Amt>
+				<swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:OrgId>
+					<swift:PrtryId>
+						<swift:Id>10145554</swift:Id>
+						<swift:Issr>CVR</swift:Issr>
+					</swift:PrtryId>
+				</swift:OrgId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:BBAN>99912121212121</swift:BBAN>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:InstrForFnlAgt>
+				<swift:Prtry>STRAKS</swift:Prtry>
+			</swift:InstrForFnlAgt>
+			<swift:RmtInf>
+				<swift:Strd>
+					<swift:DocRefNb>Fakturanummer</swift:DocRefNb>
+				</swift:Strd>
+			</swift:RmtInf>
+			<swift:RmtInf>
+				<swift:Ustrd>Adviseringstekst..20--------30-----Linje 2-10--------20--------30---35</swift:Ustrd>
+			</swift:RmtInf>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+	<!-- Komplet udenlandsk kontooverførsel af kr. 100 i valuta USD til SWIFT + IBAN -->
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:CdtTrfTpId>
+			<swift:LclInstrm>UBB</swift:LclInstrm>
+		</swift:CdtTrfTpId>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>BANK01234</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFL.D1.B2.deb3</swift:DbtPurp>
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>AFL.D1.B2.UPR03</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:EqvtAmt>
+					<swift:Amt Ccy="DKK">100000</swift:Amt>
+					<swift:CcyOfTrf>USD</swift:CcyOfTrf>
+				</swift:EqvtAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:Nm>Modtagernavn AFL.D1.B2.UPR03</swift:Nm>
+				<swift:PstlAdr>
+					<swift:AdrLine>Adresselinje.3</swift:AdrLine>
+					<swift:PstCd>Pcode.3</swift:PstCd>
+					<swift:TwnNm>By.3</swift:TwnNm>
+					<swift:Ctry>CH</swift:Ctry>
+				</swift:PstlAdr>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:IBAN>CH9300762011623852957</swift:IBAN>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:FnlAgt>
+				<swift:FinInstnId>
+					<swift:BIC>SNBZCHZZXXX</swift:BIC>
+					<swift:Nm>SCHWEIZERISCHE NATIONALBANK</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>ZURICH</swift:AdrLine>
+						<swift:Ctry>CH</swift:Ctry>
+					</swift:PstlAdr>
+				</swift:FinInstnId>
+			</swift:FnlAgt>
+			<swift:ChrgBr>BEN</swift:ChrgBr>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+	<!-- Komplet udenlandsk kontooverførsel af kr. 100 i EUR til BBAN, CPR-0101212726 -->
+	<swift:PmtInf>
+		<swift:ReqdExctnDt>2005-07-14</swift:ReqdExctnDt>
+		<swift:PmtMtdByFrstAgt>TRF</swift:PmtMtdByFrstAgt>
+		<swift:CdtTrfTpId>
+			<swift:LclInstrm>UBB</swift:LclInstrm>
+		</swift:CdtTrfTpId>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>BANK01234</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFL.D1.B2.deb5</swift:DbtPurp>
+		<swift:PmtTx>
+			<swift:PmtId>
+				<swift:EndToEndId>AFL.D1.B2.UPR04</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:Amt>
+				<swift:EqvtAmt>
+					<swift:Amt Ccy="DKK">100000</swift:Amt>
+					<swift:CcyOfTrf>EUR</swift:CcyOfTrf>
+				</swift:EqvtAmt>
+			</swift:Amt>
+			<swift:Cdtr>
+				<swift:Nm>Modtagernavn ved AFL.D1.B2.UPR05</swift:Nm>
+				<swift:PstlAdr>
+					<swift:AdrLine>Adresselinje.5</swift:AdrLine>
+					<swift:PstCd>Pcode.5</swift:PstCd>
+					<swift:TwnNm>By.5</swift:TwnNm>
+					<swift:Ctry>DE</swift:Ctry>
+				</swift:PstlAdr>
+				<swift:PrvtId>
+					<swift:SclSctyNb>0101212726</swift:SclSctyNb>
+				</swift:PrvtId>
+			</swift:Cdtr>
+			<swift:CdtrAcct>
+				<swift:Id>
+					<swift:BBAN>UdenlandskktonrBBAN</swift:BBAN>
+				</swift:Id>
+			</swift:CdtrAcct>
+			<swift:FnlAgt>
+				<swift:FinInstnId>
+					<swift:BIC>DEUTDEBBXXX</swift:BIC>
+					<swift:ClrSysMmbId>
+						<swift:DEBLZ>BL00000000</swift:DEBLZ>
+					</swift:ClrSysMmbId>
+					<swift:Nm>Deutsche Bank</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>Deutsche Bank Strasse 5</swift:AdrLine>
+						<swift:Ctry>DE</swift:Ctry>
+					</swift:PstlAdr>
+				</swift:FinInstnId>
+			</swift:FnlAgt>
+			<swift:ChrgBr>BEN</swift:ChrgBr>
+			<swift:IncompletePaymentIndicator>false</swift:IncompletePaymentIndicator>
+			<swift:BenefitType>NKSLEV</swift:BenefitType>
+		</swift:PmtTx>
+	</swift:PmtInf>
+</NKSPayment>

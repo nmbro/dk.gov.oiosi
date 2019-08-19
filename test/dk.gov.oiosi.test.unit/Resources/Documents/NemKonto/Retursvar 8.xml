@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på retursvar 8. Originalt bundt havde grouping = YES.
+-->
+<nks:NKSResponse8 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse8.xsd">
+    <nks:GnlInf>
+        <swift:PmtInitnStsId>NKS2C RETURSVAR8 0000000079</swift:PmtInitnStsId>
+        <swift:CreDtTm>2005-08-30T10:54:48</swift:CreDtTm>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>1</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </nks:GnlInf>
+    <nks:OrgnlGrpRefInfAndSts>
+        <swift:GrpId>TMO-20050826022933</swift:GrpId>
+        <swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+    </nks:OrgnlGrpRefInfAndSts>
+    <nks:OrgnlPmtInf>
+        <swift:ReqdExctnDt>2005-08-26</swift:ReqdExctnDt>
+        <swift:Dbtr>
+            <swift:OrgId>
+                <swift:BkPtyId>BANK01234</swift:BkPtyId>
+            </swift:OrgId>
+        </swift:Dbtr>
+        <swift:DbtrAcct>
+            <swift:Id>
+                <swift:BBAN>12340123456789</swift:BBAN>
+            </swift:Id>
+        </swift:DbtrAcct>
+        <swift:DbtPurp>Test udbetaling</swift:DbtPurp>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>12345678-1,BAR,20589,12532,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>ACPT</swift:TxSts>
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>12345678</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+                <swift:CdtrAcct>
+                    <swift:Id>
+                        <swift:BBAN>12341212121212</swift:BBAN>
+                    </swift:Id>
+                </swift:CdtrAcct>
+            </swift:OrgnlTxInf>
+        </swift:OrgnlTxRefInfAndSts>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>12345678-1,BAR,20591,12534,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>ACPT</swift:TxSts>
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:PrtryId>
+                            <swift:Id>12345678</swift:Id>
+                            <swift:Issr>CVR</swift:Issr>
+                        </swift:PrtryId>
+                    </swift:OrgId>
+                </swift:Cdtr>
+                <swift:CdtrAcct>
+                    <swift:Id>
+                        <swift:BBAN>12341212121212</swift:BBAN>
+                    </swift:Id>
+                </swift:CdtrAcct>
+            </swift:OrgnlTxInf>
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+</nks:NKSResponse8>

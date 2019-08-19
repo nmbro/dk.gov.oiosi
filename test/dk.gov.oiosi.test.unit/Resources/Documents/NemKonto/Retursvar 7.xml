@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på retursvar 7, retursvar til myndighed pga. af ingen NemKonto. Myndigheden har ikke valgt check.
+-->
+<nks:NKSResponse7 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse7.xsd">
+    <nks:GnlInf>
+        <swift:PmtInitnStsId>NKS2C RETURSVAR7 0000000073</swift:PmtInitnStsId>
+        <swift:CreDtTm>2005-08-26T11:00:39</swift:CreDtTm>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>1</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </nks:GnlInf>
+    <nks:OrgnlGrpRefInfAndSts>
+        <swift:GrpId>TMO-20050826095549</swift:GrpId>
+        <swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+    </nks:OrgnlGrpRefInfAndSts>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>20101377-1,FLE,20507,12490,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>RJCT</swift:StsRsn>
+            <swift:AddtlInf>Konto findes ikke. Myndighed har valgt check retur.</swift:AddtlInf>
+			<!-- Release 2 - start -->
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>12345678</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+            </swift:OrgnlTxInf>
+			<!-- Release 2 - slut -->
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>20101377-1,FLE,20509,12492,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>RJCT</swift:StsRsn>
+            <swift:AddtlInf>Konto findes ikke. Myndighed har valgt check retur.</swift:AddtlInf>
+			<!-- Release 2 - start -->
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">200000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>23456789</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+            </swift:OrgnlTxInf>
+			<!-- Release 2 - slut -->
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>20101377-1,FLE,20511,12494,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>RJCT</swift:StsRsn>
+            <swift:AddtlInf>Konto findes ikke. Myndighed har valgt check retur.</swift:AddtlInf>
+			<!-- Release 2 - start -->
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">300000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>34567890</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+            </swift:OrgnlTxInf>
+			<!-- Release 2 - slut -->
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+</nks:NKSResponse7>

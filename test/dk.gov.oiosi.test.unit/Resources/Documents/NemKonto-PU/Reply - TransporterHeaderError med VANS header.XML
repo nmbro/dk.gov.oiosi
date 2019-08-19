@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nkspu:NemkontoPrivatUdbetalerTransporterResponse
+        xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/NKSPU_NemkontoPrivatUdbetalerTransporterResponse.xsd"
+        xmlns:nkspu="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/"
+        xmlns:ean="http://rep.oio.dk/ean/xml/schemas/2005/01/10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <nkspu:TransporterHeaderError>
+        <nkspu:TransporterHeader>
+            <nkspu:VansHeader>
+                <nkspu:VansSenderAddress>
+                    <nkspu:VansNemkontoEnvironmentCode>nkspu</nkspu:VansNemkontoEnvironmentCode>
+                </nkspu:VansSenderAddress>
+                <nkspu:VansRecipientAddress>
+                    <ean:EAN13Identifier>5790000000123</ean:EAN13Identifier>
+                </nkspu:VansRecipientAddress>
+            </nkspu:VansHeader>
+            <nkspu:TransporterAgreementIdentifier>1234567</nkspu:TransporterAgreementIdentifier>
+            <nkspu:TransporterSystemIdentifier>system</nkspu:TransporterSystemIdentifier>
+            <nkspu:TransporterGroupIdentifier>bundt004</nkspu:TransporterGroupIdentifier>
+        </nkspu:TransporterHeader>
+        <nkspu:TransporterHeaderErrorCode>1501</nkspu:TransporterHeaderErrorCode>
+        <nkspu:TransporterHeaderErrorText>Ukendt aftalenummer</nkspu:TransporterHeaderErrorText>
+    </nkspu:TransporterHeaderError>
+</nkspu:NemkontoPrivatUdbetalerTransporterResponse>

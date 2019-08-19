@@ -1,0 +1,4 @@
+https://www.nemkonto.dk/Virksomhed/Udbetal-via-NemKonto/Teknisk-info/Snitfladebeskrivelse
+
+Schemas:
+http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2007/10/01/

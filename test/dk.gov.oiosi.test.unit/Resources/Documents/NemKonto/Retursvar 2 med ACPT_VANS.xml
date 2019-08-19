@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på retursvar 2, accept af alle betalinger i et bundt (originalt bundt havde een betaling)
+ -->
+<nks:NKSResponse2 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/
+    http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse2.xsd">
+    <nks:MessageHeader ebms:id="Retursvar 2 NKS2C" ebms:version="2.0">
+        <ebms:From>
+            <ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798000016446</ebms:PartyId>
+        </ebms:From>
+        <ebms:To>
+            <ebms:PartyId>DATLEV</ebms:PartyId>
+            <ebms:PartyId>5798002913118</ebms:PartyId>
+        </ebms:To>
+        <ebms:MessageData>
+            <ebms:MessageId>NKS2C RETURSVAR2 0000000795</ebms:MessageId>
+            <ebms:Timestamp>2005-08-17T14:00:44</ebms:Timestamp>
+            <ebms:RefToMessageId>TMO-20050817014232</ebms:RefToMessageId>
+        </ebms:MessageData>
+    </nks:MessageHeader>
+    <nks:GnlInf>
+        <swift:PmtInitnStsId>NKS2C RETURSVAR2 0000000795</swift:PmtInitnStsId>
+        <swift:CreDtTm>2005-08-17T14:00:44</swift:CreDtTm>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>1</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </nks:GnlInf>
+    <nks:OrgnlGrpRefInfAndSts>
+        <swift:GrpId>TMO-20050817014232</swift:GrpId>
+        <swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+        <!-- Alle betalinger i bundtet accepteret, derfor ACPT og ikke PART eller RJCT -->
+        <swift:GrpSts>ACPT</swift:GrpSts>
+        <swift:StsRsn></swift:StsRsn>
+    </nks:OrgnlGrpRefInfAndSts>
+</nks:NKSResponse2>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på retursvar 9, fejl fra betalingsafviklende PI
+-->
+<nks:NKSResponse9 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse9.xsd">
+    <nks:GnlInf>
+        <swift:PmtInitnStsId>NKS2C RETURSVAR9 0000000079</swift:PmtInitnStsId>
+        <swift:CreDtTm>2005-08-30T10:54:50</swift:CreDtTm>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>1</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </nks:GnlInf>
+    <nks:OrgnlGrpRefInfAndSts>
+        <swift:GrpId>TMO-20050826022933</swift:GrpId>
+        <swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+    </nks:OrgnlGrpRefInfAndSts>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>20101377-1,BAR,20589,12532,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>0001</swift:StsRsn>
+            <swift:AddtlInf>DEBITERING AFVIST Aftale mangler for udbetalingskonto</swift:AddtlInf>
+			<!-- Release 2 - start -->
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">100000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>12345678</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+            </swift:OrgnlTxInf>
+			<!-- Release 2 - slut -->
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>20905808-1,BAR,20591,12534,</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>0001</swift:StsRsn>
+            <swift:AddtlInf>DEBITERING AFVIST Aftale mangler for udbetalingskonto</swift:AddtlInf>
+			<!-- Release 2 - start -->
+            <swift:OrgnlTxInf>
+                <swift:Amt>
+                    <swift:InstdAmt Ccy="DKK">200000</swift:InstdAmt>
+                </swift:Amt>
+                <swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+                <swift:Cdtr>
+                    <swift:OrgId>
+                        <swift:TaxIdNb>23456789</swift:TaxIdNb>
+                    </swift:OrgId>
+                </swift:Cdtr>
+            </swift:OrgnlTxInf>
+			<!-- Release 2 - slut -->
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+</nks:NKSResponse9>

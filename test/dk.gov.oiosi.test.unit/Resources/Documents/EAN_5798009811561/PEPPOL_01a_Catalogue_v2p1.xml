@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Catalogue xmlns:sdt="urn:oasis:names:specification:ubl:schema:xsd:SpecializedDatatypes-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:a="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xsi:schemaLocation="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2">
+	<cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+	<cbc:CustomizationID>urn:www.cenbii.eu:transaction:biitrns019:ver2.0:extended:urn:www.peppol.eu:bis:peppol1a:ver4.0</cbc:CustomizationID>
+	<cbc:ProfileID>urn:www.cenbii.eu:profile:bii01:ver2.0</cbc:ProfileID>
+	<cbc:ID>1234</cbc:ID>
+	<cbc:Name>Peppol Test Catalogue</cbc:Name>
+	<cbc:IssueDate>2013-06-01</cbc:IssueDate>
+	<cbc:VersionID>1</cbc:VersionID>
+	<cac:ValidityPeriod>
+		<cbc:StartDate>2013-01-01</cbc:StartDate>
+		<cbc:EndDate>2013-12-31</cbc:EndDate>
+	</cac:ValidityPeriod>
+	<cac:ReferencedContract>
+		<cbc:ID>3299-RA</cbc:ID>
+		<cbc:ContractType>Rammeavtale</cbc:ContractType>
+	</cac:ReferencedContract>
+	<cac:ProviderParty>
+		<cbc:EndpointID schemeID="GLN">5700000000000</cbc:EndpointID>
+		<cac:PartyIdentification>
+			<cbc:ID schemeID="DK:CVR">DK32433030</cbc:ID>
+		</cac:PartyIdentification>
+		<cac:PartyName>
+			<cbc:Name>Office AS</cbc:Name>
+		</cac:PartyName>
+	</cac:ProviderParty>
+	<cac:ReceiverParty>
+		<cbc:EndpointID schemeAgencyID="9" schemeID="DK:CVR">5798009811561</cbc:EndpointID>
+		<cac:PartyIdentification>
+			<cbc:ID schemeAgencyID="9" schemeID="DK:CVR">5798009811561</cbc:ID>
+		</cac:PartyIdentification>
+		<cac:PartyName>
+			<cbc:Name>DIFI</cbc:Name>
+		</cac:PartyName>
+	</cac:ReceiverParty>
+	<cac:CatalogueLine>
+		<cbc:ID>2451015</cbc:ID>
+		<cbc:ActionCode listID="ACTIONCODE:BII2">Add</cbc:ActionCode>
+		<cbc:OrderableIndicator>true</cbc:OrderableIndicator>
+		<cbc:OrderableUnit>EA</cbc:OrderableUnit>
+		<cbc:OrderQuantityIncrementNumeric>1</cbc:OrderQuantityIncrementNumeric>
+		<cbc:MinimumOrderQuantity unitCode="EA" unitCodeListID="UNECERec20">1</cbc:MinimumOrderQuantity>
+		<cac:RequiredItemLocationQuantity>
+			<cac:Price>
+				<cbc:PriceAmount currencyID="NOK">20.0000</cbc:PriceAmount>
+			</cac:Price>
+		</cac:RequiredItemLocationQuantity>
+		<cac:Item>
+			<cbc:Description>Ballpoint penn. Blue colour  0.7 mm</cbc:Description>
+			<cbc:PackQuantity unitCode="EA" unitCodeListID="UNECERec20">10</cbc:PackQuantity>
+			<cbc:Name>Ballpoint pen</cbc:Name>
+			<cbc:Keyword>write equipment%felt pen</cbc:Keyword>
+			<cac:SellersItemIdentification>
+				<cbc:ID>2451015</cbc:ID>
+				<cbc:ExtendedID/>
+			</cac:SellersItemIdentification>
+			<cac:ItemSpecificationDocumentReference>
+				<cbc:ID>12</cbc:ID>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>http://anskaffelser.no/imagearchive/Kontrakt_1_3.jpg?w=800</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:ItemSpecificationDocumentReference>
+			<cac:CommodityClassification>
+				<cbc:ItemClassificationCode listID="UNSPSC">44121701</cbc:ItemClassificationCode>
+			</cac:CommodityClassification>
+			<cac:ClassifiedTaxCategory>
+				<cbc:ID schemeID="UNCL5305">S</cbc:ID>
+				<cac:TaxScheme>
+					<cbc:ID>MVA</cbc:ID>
+				</cac:TaxScheme>
+			</cac:ClassifiedTaxCategory>
+			<cac:ManufacturerParty>
+				<cac:PartyName>
+					<cbc:Name>ASSA OEM AB UNIT INDUSTRI</cbc:Name>
+				</cac:PartyName>
+			</cac:ManufacturerParty>
+		</cac:Item>
+	</cac:CatalogueLine>
+	<cac:CatalogueLine>
+		<cbc:ID>1038195</cbc:ID>
+		<cbc:ActionCode listID="ACTIONCODE:BII2">Add</cbc:ActionCode>
+		<cbc:OrderableIndicator>true</cbc:OrderableIndicator>
+		<cbc:OrderableUnit>EA</cbc:OrderableUnit>
+		<cbc:MinimumOrderQuantity unitCode="EA" unitCodeListID="UNECERec20">1</cbc:MinimumOrderQuantity>
+		<cac:RequiredItemLocationQuantity>
+			<cac:Price>
+				<cbc:PriceAmount currencyID="NOK">504.5000</cbc:PriceAmount>
+			</cac:Price>
+		</cac:RequiredItemLocationQuantity>
+		<cac:Item>
+			<cbc:Description>Capacity 430 pages by 5% coverage</cbc:Description>
+			<cbc:Name>Ink cartridge T0481 </cbc:Name>
+			<cbc:Keyword>R200/R300/R320/RX500/RX600/RX620</cbc:Keyword>
+			<cac:SellersItemIdentification>
+				<cbc:ID>1038195</cbc:ID>
+				<cbc:ExtendedID/>
+			</cac:SellersItemIdentification>
+			<cac:ItemSpecificationDocumentReference>
+				<cbc:ID>13</cbc:ID>
+				<cac:Attachment>
+					<cac:ExternalReference>
+						<cbc:URI>http://anskaffelser.no/imagearchive/Kontrakt_1_3.jpg?w=800</cbc:URI>
+					</cac:ExternalReference>
+				</cac:Attachment>
+			</cac:ItemSpecificationDocumentReference>
+			<cac:CommodityClassification>
+				<cbc:ItemClassificationCode listID="UNSPSC">44121904</cbc:ItemClassificationCode>
+			</cac:CommodityClassification>
+			<cac:ClassifiedTaxCategory>
+				<cbc:ID schemeID="UNCL5305">S</cbc:ID>
+				<cac:TaxScheme>
+					<cbc:ID>MVA</cbc:ID>
+				</cac:TaxScheme>
+			</cac:ClassifiedTaxCategory>
+			<cac:ManufacturerParty>
+				<cac:PartyName>
+					<cbc:Name>ASSA OEM AB UNIT INDUSTRI</cbc:Name>
+				</cac:PartyName>
+			</cac:ManufacturerParty>
+		</cac:Item>
+	</cac:CatalogueLine>
+	<cac:CatalogueLine>
+		<cbc:ID>7690213</cbc:ID>
+		<cbc:ActionCode listID="ACTIONCODE:BII2">Add</cbc:ActionCode>
+		<cbc:OrderableIndicator>true</cbc:OrderableIndicator>
+		<cbc:OrderableUnit>EA</cbc:OrderableUnit>
+		<cbc:MinimumOrderQuantity unitCode="EA" unitCodeListID="UNECERec20">1</cbc:MinimumOrderQuantity>
+		<cbc:PackLevelCode listID="GS17009:PEPPOL">TU</cbc:PackLevelCode>
+		<cac:LineValidityPeriod>
+			<cbc:StartDate>2013-01-01</cbc:StartDate>
+			<cbc:EndDate>2013-12-31</cbc:EndDate>
+		</cac:LineValidityPeriod>
+		<cac:RequiredItemLocationQuantity>
+			<cac:Price>
+				<cbc:PriceAmount currencyID="NOK">495.0000</cbc:PriceAmount>
+			</cac:Price>
+		</cac:RequiredItemLocationQuantity>
+		<cac:Item>
+			<cbc:Description>Volume paper for daily printout. To copy and laser printers. Imperishable according to Riksarkivets requirement (ISO 9706)</cbc:Description>
+			<cbc:PackQuantity unitCode="EA" unitCodeListID="UNECERec20">1</cbc:PackQuantity>
+			<cbc:Name>Copy paper A4 80g </cbc:Name>
+			<cbc:Keyword>Copy paper%office paper</cbc:Keyword>
+			<cac:SellersItemIdentification>
+				<cbc:ID>7690213</cbc:ID>
+				<cbc:ExtendedID/>
+			</cac:SellersItemIdentification>
+			<cac:ManufacturersItemIdentification>
+				<cbc:ID>2453005</cbc:ID>
+			</cac:ManufacturersItemIdentification>
+			<cac:CommodityClassification>
+				<cbc:ItemClassificationCode listID="UNSPSC">14111507</cbc:ItemClassificationCode>
+			</cac:CommodityClassification>
+			<cac:ClassifiedTaxCategory>
+				<cbc:ID schemeID="UNCL5305">S</cbc:ID>
+				<cac:TaxScheme>
+					<cbc:ID >MVA</cbc:ID>
+				</cac:TaxScheme>
+			</cac:ClassifiedTaxCategory>
+			<cac:ManufacturerParty>
+				<cac:PartyName>
+					<cbc:Name>ASSA OEM AB UNIT INDUSTRI</cbc:Name>
+				</cac:PartyName>
+			</cac:ManufacturerParty>
+		</cac:Item>
+	</cac:CatalogueLine>
+</Catalogue>

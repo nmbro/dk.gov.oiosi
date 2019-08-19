@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempler på retursvar 8 vedr. udlandsbetalinger. Originalt bundt havde grouping = NO.
+-->
+<nks:NKSResponse8 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse8.xsd">
+	<nks:GnlInf>
+		<swift:PmtInitnStsId>NKS2C RETURSVAR8 0000003120</swift:PmtInitnStsId>
+		<swift:CreDtTm>2006-01-11T08:23:09</swift:CreDtTm>
+		<swift:InitgPty>
+			<swift:OrgId>
+				<swift:PrtryId>
+					<swift:Id>24222</swift:Id>
+					<swift:Issr>ADMID</swift:Issr>
+				</swift:PrtryId>
+			</swift:OrgId>
+		</swift:InitgPty>
+	</nks:GnlInf>
+	<nks:OrgnlGrpRefInfAndSts>
+		<swift:GrpId>AFLU.MYNJ.BFCJ.T1</swift:GrpId>
+		<swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+	</nks:OrgnlGrpRefInfAndSts>
+	<!-- 
+    Ukomplet betaling, som er kompletteret til en udenlandsk kontooverførsel (med IBAN)
+    -->
+	<nks:OrgnlPmtInf>
+		<swift:ReqdExctnDt>2006-01-20</swift:ReqdExctnDt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>SKIVE-NKS</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFLU.MYNJ.BFCJ.T1.DEB1</swift:DbtPurp>
+		<swift:OrgnlTxRefInfAndSts>
+			<swift:PmtId>
+				<swift:EndToEndId>AFLU.MYNJ.BFCJ.T1.UPR01</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:TxSts>ACPT</swift:TxSts>
+			<swift:OrgnlTxInf>
+				<swift:Amt>
+					<swift:EqvtAmt>
+						<swift:Amt Ccy="DKK">1001010</swift:Amt>
+						<swift:CcyOfTrf>GBP</swift:CcyOfTrf>
+					</swift:EqvtAmt>
+				</swift:Amt>
+				<swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+				<swift:Cdtr>
+					<swift:Nm>Senia Scotland</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>Tattoo</swift:AdrLine>
+						<swift:PstCd>212121</swift:PstCd>
+						<swift:TwnNm>Skotsk By</swift:TwnNm>
+						<swift:Ctry>GB</swift:Ctry>
+					</swift:PstlAdr>
+					<swift:PrvtId>
+						<swift:SclSctyNb>2503504874</swift:SclSctyNb>
+					</swift:PrvtId>
+				</swift:Cdtr>
+				<swift:CdtrAcct>
+					<swift:Id>
+						<swift:IBAN>GB9300762011623852957</swift:IBAN>
+					</swift:Id>
+				</swift:CdtrAcct>
+				<swift:FnlAgt>
+					<swift:FinInstnId>
+						<swift:BIC>RBOSGB21531</swift:BIC>
+						<swift:Nm>Royal Bank of scotland PLC</swift:Nm>
+						<swift:PstlAdr>
+							<swift:AdrLine>61, Forrest Road, EH1 2QP, Edinburg</swift:AdrLine>
+							<swift:Ctry>GB</swift:Ctry>
+						</swift:PstlAdr>
+					</swift:FinInstnId>
+				</swift:FnlAgt>
+			</swift:OrgnlTxInf>
+		</swift:OrgnlTxRefInfAndSts>
+	</nks:OrgnlPmtInf>
+	<!-- 
+    Ukomplet betaling, som er kompletteret til en udenlandsk kontooverførsel (med bankkode/kontonummer)
+    -->
+	<nks:OrgnlPmtInf>
+		<swift:ReqdExctnDt>2006-01-20</swift:ReqdExctnDt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>SKIVE-NKS</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFLU.MYNJ.BFCJ.T1.DEB1X</swift:DbtPurp>
+		<swift:OrgnlTxRefInfAndSts>
+			<swift:PmtId>
+				<swift:EndToEndId>AFLU.MYNJ.BFCJ.T1.UPR01X</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:TxSts>ACPT</swift:TxSts>
+			<swift:OrgnlTxInf>
+				<swift:Amt>
+					<swift:EqvtAmt>
+						<swift:Amt Ccy="DKK">1001110</swift:Amt>
+						<swift:CcyOfTrf>USD</swift:CcyOfTrf>
+					</swift:EqvtAmt>
+				</swift:Amt>
+				<swift:IncompletePaymentIndicator>1</swift:IncompletePaymentIndicator>
+				<swift:Cdtr>
+					<swift:Nm>John</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>KMD GB</swift:AdrLine>
+						<swift:PstCd>90001</swift:PstCd>
+						<swift:TwnNm>London</swift:TwnNm>
+						<swift:Ctry>GB</swift:Ctry>
+					</swift:PstlAdr>
+					<swift:PrvtId>
+						<swift:SclSctyNb>2512484916</swift:SclSctyNb>
+					</swift:PrvtId>
+				</swift:Cdtr>
+				<swift:CdtrAcct>
+					<swift:Id>
+						<swift:BBAN>12345678901234567890</swift:BBAN>
+					</swift:Id>
+				</swift:CdtrAcct>
+				<swift:FnlAgt>
+					<swift:FinInstnId>
+						<swift:BIC>BICSUSXX</swift:BIC>
+						<swift:PrtryId>
+							<swift:Id>Bankcode</swift:Id>
+						</swift:PrtryId>
+						<swift:Nm>Banken filial 1</swift:Nm>
+						<swift:PstlAdr>
+							<swift:AdrLine>Bankvej 2, 99999, Bank City</swift:AdrLine>
+							<swift:Ctry>US</swift:Ctry>
+						</swift:PstlAdr>
+					</swift:FinInstnId>
+				</swift:FnlAgt>
+			</swift:OrgnlTxInf>
+		</swift:OrgnlTxRefInfAndSts>
+	</nks:OrgnlPmtInf>
+	<!-- 
+    Komplet udlandsbetaling med IBAN
+    -->
+	<nks:OrgnlPmtInf>
+		<swift:ReqdExctnDt>2006-01-20</swift:ReqdExctnDt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>SKIVE-NKS</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFLU.MYNJ.BFCJ.T1.DEB2</swift:DbtPurp>
+		<swift:OrgnlTxRefInfAndSts>
+			<swift:PmtId>
+				<swift:EndToEndId>AFLU.MYNJ.BFCJ.T1.UPR02</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:TxSts>ACPT</swift:TxSts>
+			<swift:OrgnlTxInf>
+				<swift:Amt>
+					<swift:EqvtAmt>
+						<swift:Amt Ccy="DKK">1002020</swift:Amt>
+						<swift:CcyOfTrf>USD</swift:CcyOfTrf>
+					</swift:EqvtAmt>
+				</swift:Amt>
+				<swift:IncompletePaymentIndicator>0</swift:IncompletePaymentIndicator>
+				<swift:Cdtr>
+					<swift:Nm>Modtagernavn AFLU.MYNJ.BFCJ.T1.UPR02</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>Adresselinje.2</swift:AdrLine>
+						<swift:PstCd>Pcode.2</swift:PstCd>
+						<swift:TwnNm>By.2</swift:TwnNm>
+						<swift:Ctry>CH</swift:Ctry>
+					</swift:PstlAdr>
+					<swift:OrgId>
+						<swift:PrtryId>
+							<swift:Id>10145554</swift:Id>
+							<swift:Issr>CVR</swift:Issr>
+						</swift:PrtryId>
+					</swift:OrgId>
+				</swift:Cdtr>
+				<swift:CdtrAcct>
+					<swift:Id>
+						<swift:IBAN>CH9300762011623852957</swift:IBAN>
+					</swift:Id>
+				</swift:CdtrAcct>
+				<swift:FnlAgt>
+					<swift:FinInstnId>
+						<swift:BIC>SNBZCHZZXXX</swift:BIC>
+						<swift:Nm>SCHWEIZERISCHE NATIONALBANK</swift:Nm>
+						<swift:PstlAdr>
+							<swift:AdrLine>ZURICH</swift:AdrLine>
+							<swift:Ctry>CH</swift:Ctry>
+						</swift:PstlAdr>
+					</swift:FinInstnId>
+				</swift:FnlAgt>
+			</swift:OrgnlTxInf>
+		</swift:OrgnlTxRefInfAndSts>
+	</nks:OrgnlPmtInf>
+	<!-- 
+    Komplet udlandsbetaling med bankkode/kontonummer
+    -->
+	<nks:OrgnlPmtInf>
+		<swift:ReqdExctnDt>2006-01-20</swift:ReqdExctnDt>
+		<swift:Dbtr>
+			<swift:OrgId>
+				<swift:BkPtyId>SKIVE-NKS</swift:BkPtyId>
+			</swift:OrgId>
+		</swift:Dbtr>
+		<swift:DbtrAcct>
+			<swift:Id>
+				<swift:BBAN>81090001000539</swift:BBAN>
+			</swift:Id>
+		</swift:DbtrAcct>
+		<swift:DbtPurp>Deb.tekst AFLU.MYNJ.BFCJ.T1.DEB3</swift:DbtPurp>
+		<swift:OrgnlTxRefInfAndSts>
+			<swift:PmtId>
+				<swift:EndToEndId>AFLU.MYNJ.BFCJ.T1.UPR03</swift:EndToEndId>
+			</swift:PmtId>
+			<swift:TxSts>ACPT</swift:TxSts>
+			<swift:OrgnlTxInf>
+				<swift:Amt>
+					<swift:EqvtAmt>
+						<swift:Amt Ccy="DKK">1002030</swift:Amt>
+						<swift:CcyOfTrf>EUR</swift:CcyOfTrf>
+					</swift:EqvtAmt>
+				</swift:Amt>
+				<swift:IncompletePaymentIndicator>0</swift:IncompletePaymentIndicator>
+				<swift:Cdtr>
+					<swift:Nm>Modtagernavn ved AFLU.MYNJ.BFCJ.T1.UPR03</swift:Nm>
+					<swift:PstlAdr>
+						<swift:AdrLine>Adresselinje.3</swift:AdrLine>
+						<swift:PstCd>Pcode.3</swift:PstCd>
+						<swift:TwnNm>By.3</swift:TwnNm>
+						<swift:Ctry>DE</swift:Ctry>
+					</swift:PstlAdr>
+					<swift:OrgId>
+						<swift:TaxIdNb>66112527</swift:TaxIdNb>
+					</swift:OrgId>
+				</swift:Cdtr>
+				<swift:CdtrAcct>
+					<swift:Id>
+						<swift:BBAN>12340123456789</swift:BBAN>
+					</swift:Id>
+				</swift:CdtrAcct>
+				<swift:FnlAgt>
+					<swift:FinInstnId>
+						<swift:BIC>DEUTDEBBXXX</swift:BIC>
+						<swift:PrtryId>
+							<swift:Id>BL00000000</swift:Id>
+						</swift:PrtryId>
+						<swift:Nm>Deutsche Bank</swift:Nm>
+						<swift:PstlAdr>
+							<swift:AdrLine>Deutsche Bank Strasse</swift:AdrLine>
+							<swift:Ctry>DE</swift:Ctry>
+						</swift:PstlAdr>
+					</swift:FinInstnId>
+				</swift:FnlAgt>
+			</swift:OrgnlTxInf>
+		</swift:OrgnlTxRefInfAndSts>
+	</nks:OrgnlPmtInf>
+</nks:NKSResponse8>

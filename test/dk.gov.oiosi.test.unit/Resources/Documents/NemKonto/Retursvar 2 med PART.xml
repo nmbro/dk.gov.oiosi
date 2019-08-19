@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Eksempel på retursvar 2, afvisning af nogle betalinger i et bundt
+-->
+<nks:NKSResponse2 xmlns:nks="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/"
+                  xmlns:ebms="http://rep.oio.dk/oes.dk/nemkonto.ebms/xml/schemas/2006/05/01/"
+                  xmlns:swift="http://rep.oio.dk/oes.dk/nemkonto.swift/xml/schemas/2006/05/01/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/ http://rep.oio.dk/oes.dk/nemkonto/xml/schemas/2006/05/01/NKS_NKSResponse2.xsd">
+    <nks:MessageHeader ebms:id="Retursvar 2 NKS2C" ebms:version="2.0">
+        <ebms:From>
+            <ebms:PartyId>NKS</ebms:PartyId>
+            <ebms:PartyId>5798000016446</ebms:PartyId>
+        </ebms:From>
+        <ebms:To>
+            <ebms:PartyId>DATLEV</ebms:PartyId>
+        </ebms:To>
+        <ebms:MessageData>
+            <ebms:MessageId>NKS2C RETURSVAR2 0000000787</ebms:MessageId>
+            <ebms:Timestamp>2005-08-15T19:00:50</ebms:Timestamp>
+            <ebms:RefToMessageId>RTS-20051220061717</ebms:RefToMessageId>
+        </ebms:MessageData>
+    </nks:MessageHeader>
+    <nks:GnlInf>
+        <swift:PmtInitnStsId>NKS2C RETURSVAR2 0000000787</swift:PmtInitnStsId>
+        <swift:CreDtTm>2005-08-15T19:00:50</swift:CreDtTm>
+        <swift:InitgPty>
+            <swift:OrgId>
+                <swift:PrtryId>
+                    <swift:Id>1</swift:Id>
+                    <swift:Issr>ADMID</swift:Issr>
+                </swift:PrtryId>
+            </swift:OrgId>
+        </swift:InitgPty>
+    </nks:GnlInf>
+    <nks:OrgnlGrpRefInfAndSts>
+        <swift:GrpId>RTS-20051220061717</swift:GrpId>
+        <swift:OrgnlMsgTp>NKSBetaling</swift:OrgnlMsgTp>
+        <!-- Ikke alle betalingerne i bundtet blev afvist, derfor PART -->
+        <swift:GrpSts>PART</swift:GrpSts>
+        <swift:StsRsn/>
+    </nks:OrgnlGrpRefInfAndSts>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>13,RTS,16983,2005</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>0009</swift:StsRsn>
+            <swift:AddtlInf>MODTAGER KAN IKKE IDENTIFICERES</swift:AddtlInf>
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>1103,RTS,17405,2005</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>0025</swift:StsRsn>
+            <swift:AddtlInf>INVALID MODTAGER KONTO</swift:AddtlInf>
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+    <nks:OrgnlPmtInf>
+        <swift:OrgnlTxRefInfAndSts>
+            <swift:PmtId>
+                <swift:EndToEndId>6699,RTS,17943,2005</swift:EndToEndId>
+            </swift:PmtId>
+            <swift:TxSts>RJCT</swift:TxSts>
+            <swift:StsRsn>0025</swift:StsRsn>
+            <swift:AddtlInf>INVALID MODTAGER KONTO</swift:AddtlInf>
+        </swift:OrgnlTxRefInfAndSts>
+    </nks:OrgnlPmtInf>
+</nks:NKSResponse2>
